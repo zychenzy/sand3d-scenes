@@ -10,7 +10,7 @@
     },
     "notes": [
       "Japanese restaurant: booth zone (repeated back-to-back diner booths) and a table zone with one chair type.",
-      "No freestanding screens/\u5c4f\u98ce. Larger rectangular dining tables kept in the chair zone."
+      "No freestanding screens/\u5c4f\u98ce. Larger rectangular dining tables kept in the chair zone, six matching chairs per table."
     ]
   },
   "assets": {
@@ -91,26 +91,6 @@
       "rotationY": 0.0
     },
     {
-      "id": "t1cA",
-      "kind": "dining_chair",
-      "position": [
-        2.55,
-        0,
-        2.25
-      ],
-      "rotationY": 3.1416
-    },
-    {
-      "id": "t1cB",
-      "kind": "dining_chair",
-      "position": [
-        2.55,
-        0,
-        0.65
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "t1cup",
       "kind": "cup_mug",
       "position": [
@@ -119,6 +99,66 @@
         1.4
       ],
       "rotationY": 0.7
+    },
+    {
+      "id": "t1cN1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        2.25
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t1cN2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        2.25
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t1cS1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        0.6499999999999999
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t1cS2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        0.6499999999999999
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t1cE",
+      "kind": "dining_chair",
+      "position": [
+        3.71,
+        0,
+        1.45
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "t1cW",
+      "kind": "dining_chair",
+      "position": [
+        1.39,
+        0,
+        1.45
+      ],
+      "rotationY": 1.5708
     },
     {
       "id": "t2",
@@ -131,26 +171,6 @@
       "rotationY": 0.0
     },
     {
-      "id": "t2cA",
-      "kind": "dining_chair",
-      "position": [
-        2.55,
-        0,
-        -0.35
-      ],
-      "rotationY": 3.1416
-    },
-    {
-      "id": "t2cB",
-      "kind": "dining_chair",
-      "position": [
-        2.55,
-        0,
-        -1.95
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "t2cup",
       "kind": "cup_mug",
       "position": [
@@ -159,6 +179,66 @@
         -1.05
       ],
       "rotationY": -0.4
+    },
+    {
+      "id": "t2cN1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        -0.34999999999999987
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t2cN2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        -0.34999999999999987
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t2cS1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        -1.95
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t2cS2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        -1.95
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t2cE",
+      "kind": "dining_chair",
+      "position": [
+        3.71,
+        0,
+        -1.15
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "t2cW",
+      "kind": "dining_chair",
+      "position": [
+        1.39,
+        0,
+        -1.15
+      ],
+      "rotationY": 1.5708
     },
     {
       "id": "p_bl1",
