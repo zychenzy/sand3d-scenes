@@ -1,0 +1,9 @@
+.venv*/
+__pycache__/
+*.pyc
+candidates/
+**/refs/*.jpg
+**/refs/*.png
+**/refs/*.webp
+**/bake_*.json
+.DS_Store

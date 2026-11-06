@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Starbucks-style cafe v1 dense",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.2, "depth": 7.0, "height": 3.05 },
+    "notes": [
+      "v1 density pass: sand3d enrich GLBs + procedural counter props.",
+      "No sofa. Warm wood + Starbucks green accents."
+    ]
+  },
+  "assets": {
+    "espresso_machine": { "glb": "assets/espresso_machine__3ada9ec69a54.glb", "nativeHeight": 0.253, "targetHeight": 0.42 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "nativeHeight": 0.09, "targetHeight": 0.12 },
+    "round_table": { "glb": "assets/round_table__49e5ede6a16d.glb", "nativeHeight": 0.376, "targetHeight": 0.74 },
+    "simple_chair": { "glb": "assets/simple_chair__a83a693ec68f.glb", "nativeHeight": 0.85, "targetHeight": 0.85 },
+    "bar_counter": { "glb": "assets/bar_counter__532dcc87f672.glb", "nativeHeight": 0.455, "targetHeight": 1.05 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "nativeHeight": 0.75, "targetHeight": 0.78 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "nativeHeight": 0.449, "targetHeight": 0.5 },
+    "tray_napkin": { "glb": "assets/tray_napkin__86821ece655f.glb", "nativeHeight": 0.235, "targetHeight": 0.16 },
+    "cash_register": { "glb": "assets/cash_register__870f6ebb115a.glb", "nativeHeight": 0.4, "targetHeight": 0.38 },
+    "pos_terminal": { "glb": "assets/pos_terminal__91c277a25bc3.glb", "nativeHeight": 0.2, "targetHeight": 0.22 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "nativeHeight": 0.6, "targetHeight": 0.55 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "nativeHeight": 0.3, "targetHeight": 0.28 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "nativeHeight": 0.25, "targetHeight": 0.22 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "nativeHeight": 0.12, "targetHeight": 0.16 },
+    "straw_holder": { "glb": "assets/straw_holder__252f730f1a04.glb", "nativeHeight": 0.25, "targetHeight": 0.26 }
+  },
+  "instances": [
+    { "id": "counter", "kind": "bar_counter", "position": [0.15, 0, -2.35], "rotationY": 0.0 },
+
+    { "id": "espresso", "kind": "espresso_machine", "position": [-0.85, 1.05, -2.35], "rotationY": 0.12 },
+    { "id": "register", "kind": "cash_register", "position": [1.35, 1.05, -2.4], "rotationY": -0.05 },
+    { "id": "pos", "kind": "pos_terminal", "position": [1.75, 1.05, -2.28], "rotationY": 0.35 },
+
+    { "id": "cup_a", "kind": "cup_mug", "position": [-0.35, 1.05, -2.2], "rotationY": 0.4 },
+    { "id": "cup_b", "kind": "cup_mug", "position": [-0.18, 1.05, -2.28], "rotationY": -0.3 },
+    { "id": "cup_c", "kind": "cup_mug", "position": [0.05, 1.05, -2.18], "rotationY": 1.1 },
+    { "id": "tray", "kind": "tray_napkin", "position": [0.55, 1.05, -2.35], "rotationY": 0.08 },
+    { "id": "thermos_1", "kind": "thermos", "position": [0.95, 1.05, -2.45], "rotationY": 0.2 },
+    { "id": "canister_1", "kind": "straw_holder", "position": [0.25, 1.05, -2.48], "rotationY": 0.1 },
+    { "id": "jar_1", "kind": "jam_jar", "position": [-1.35, 1.05, -2.2], "rotationY": 0.4 },
+    { "id": "jar_2", "kind": "jam_jar", "position": [-1.18, 1.05, -2.28], "rotationY": -0.2 },
+    { "id": "jar_3", "kind": "jam_jar", "position": [-1.52, 1.05, -2.3], "rotationY": 0.9 },
+
+    { "id": "shelf_back", "kind": "wall_shelf", "position": [-2.55, 1.35, -3.35], "rotationY": 0.0 },
+    { "id": "thermos_shelf_a", "kind": "thermos", "position": [-2.7, 1.55, -3.28], "rotationY": 0.3 },
+    { "id": "thermos_shelf_b", "kind": "thermos", "position": [-2.4, 1.55, -3.28], "rotationY": -0.2 },
+    { "id": "jar_shelf_a", "kind": "jam_jar", "position": [-2.55, 1.95, -3.28], "rotationY": 0.5 },
+    { "id": "canister_shelf", "kind": "straw_holder", "position": [-2.85, 1.95, -3.28], "rotationY": 0.1 },
+
+    { "id": "stool_1", "kind": "bar_stool", "position": [-1.25, 0, -1.7], "rotationY": 0.05 },
+    { "id": "stool_2", "kind": "bar_stool", "position": [-0.35, 0, -1.7], "rotationY": -0.08 },
+    { "id": "stool_3", "kind": "bar_stool", "position": [0.55, 0, -1.7], "rotationY": 0.12 },
+    { "id": "stool_4", "kind": "bar_stool", "position": [1.45, 0, -1.7], "rotationY": -0.05 },
+
+    { "id": "pendant_1", "kind": "pendant_lamp", "position": [-1.1, 2.55, -2.05], "rotationY": 0 },
+    { "id": "pendant_2", "kind": "pendant_lamp", "position": [0.15, 2.55, -2.05], "rotationY": 0.2 },
+    { "id": "pendant_3", "kind": "pendant_lamp", "position": [1.4, 2.55, -2.05], "rotationY": -0.15 },
+    { "id": "pendant_4", "kind": "pendant_lamp", "position": [-2.5, 2.55, 0.55], "rotationY": 0.1 },
+    { "id": "pendant_5", "kind": "pendant_lamp", "position": [1.3, 2.55, 0.7], "rotationY": -0.25 },
+    { "id": "pendant_6", "kind": "pendant_lamp", "position": [2.7, 2.55, -0.5], "rotationY": 0.15 },
+
+    { "id": "table_1", "kind": "round_table", "position": [-2.55, 0, 0.75], "rotationY": 0.2 },
+    { "id": "chair_1a", "kind": "simple_chair", "position": [-2.55, 0, 1.4], "rotationY": 3.1416 },
+    { "id": "chair_1b", "kind": "simple_chair", "position": [-2.55, 0, 0.1], "rotationY": 0.05 },
+    { "id": "cup_t1", "kind": "cup_mug", "position": [-2.5, 0.74, 0.7], "rotationY": 1.1 },
+    { "id": "jar_t1", "kind": "jam_jar", "position": [-2.65, 0.74, 0.85], "rotationY": 0.3 },
+
+    { "id": "table_2", "kind": "round_table", "position": [1.35, 0, 0.85], "rotationY": -0.3 },
+    { "id": "chair_2a", "kind": "simple_chair", "position": [1.35, 0, 1.5], "rotationY": 3.14 },
+    { "id": "chair_2b", "kind": "simple_chair", "position": [1.35, 0, 0.2], "rotationY": 0.1 },
+    { "id": "cup_t2a", "kind": "cup_mug", "position": [1.3, 0.74, 0.75], "rotationY": 0.8 },
+    { "id": "cup_t2b", "kind": "cup_mug", "position": [1.45, 0.74, 0.95], "rotationY": -0.6 },
+
+    { "id": "table_3", "kind": "round_table", "position": [2.85, 0, -0.55], "rotationY": 0.5 },
+    { "id": "chair_3a", "kind": "simple_chair", "position": [2.4, 0, -0.1], "rotationY": -1.0 },
+    { "id": "chair_3b", "kind": "simple_chair", "position": [3.3, 0, -1.0], "rotationY": 2.2 },
+    { "id": "cup_t3", "kind": "cup_mug", "position": [2.9, 0.74, -0.5], "rotationY": -0.5 },
+
+    { "id": "plant_corner", "kind": "flowerpot", "position": [-4.0, 0, -2.9], "rotationY": 0.2 },
+    { "id": "plant_window", "kind": "flowerpot", "position": [2.1, 0.95, -3.25], "rotationY": -0.3 },
+    { "id": "plant_ledge", "kind": "flowerpot", "position": [-1.2, 0.95, -3.25], "rotationY": 0.5 },
+    { "id": "plant_seat", "kind": "flowerpot", "position": [3.7, 0, 1.6], "rotationY": 0.1 }
+  ],
+  "shell": {
+    "floorColor": "#b8894a",
+    "wallColor": "#f2ebe0",
+    "accentColor": "#1e3932",
+    "woodColor": "#8b5a2b",
+    "woodLight": "#c4a574",
+    "windowTint": "#a9cce0",
+    "ceilingColor": "#ebe4d6",
+    "slateColor": "#2c2c2c",
+    "pastryGlass": "#cfe6f2"
+  },
+  "camera": {
+    "position": [6.4, 3.7, 5.8],
+    "target": [0.1, 0.9, -0.5],
+    "fov": 40
+  }
+}
