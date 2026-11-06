@@ -206,7 +206,10 @@ export async function boot(opts) {
     applyShading(node, shadingMode);
     node.position.set(inst.position[0], inst.position[1], inst.position[2]);
     if (inst.rotationY) node.rotation.y = inst.rotationY;
-    if (inst.scale) node.scale.multiplyScalar(inst.scale);
+    if (Array.isArray(inst.scale)) {
+      if (inst.scale.length === 3) node.scale.multiply(new THREE.Vector3(...inst.scale));
+      else node.scale.multiplyScalar(inst.scale[0]);
+    } else if (inst.scale) node.scale.multiplyScalar(inst.scale);
     node.name = inst.id;
     props.add(node);
   }

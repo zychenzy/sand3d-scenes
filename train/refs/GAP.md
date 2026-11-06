@@ -12,3 +12,6 @@ Photos show long window bands, facing pairs around a table, high seat backs, and
 - No matching facing-pair as a single train asset (Diner booth exists but reads American diner — reserved for restaurant).
 - Luggage on racks not populated (HF luggage hits were bags/punching-bags).
 - Near (+Z) end wall omitted on purpose; +X long wall omitted as the cutaway.
+
+## v2 layout fix
+Replaced square pedestal tables with HF rectangular wood dining table (`840ed61706e7`).

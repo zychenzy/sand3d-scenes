@@ -1,34 +1,6 @@
 import * as THREE from 'three';
 import { boot, toon, addBox, addCyl } from './scene_lib.js';
 
-function shojiPanel(g, x, z, rotY, w = 1.15, h = 2.15) {
-  const wood = toon('#6b4423');
-  const paper = toon('#efe6d2');
-  const grp = new THREE.Group();
-  // frame
-  const m1 = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), wood);
-  m1.position.set(0, h / 2, 0);
-  grp.add(m1);
-  const paperM = new THREE.Mesh(new THREE.BoxGeometry(w - 0.1, h - 0.12, 0.02), paper);
-  paperM.position.set(0, h / 2, 0.02);
-  grp.add(paperM);
-  // lattice
-  for (let i = 1; i < 4; i++) {
-    const bar = new THREE.Mesh(new THREE.BoxGeometry(w - 0.08, 0.025, 0.03), wood);
-    bar.position.set(0, 0.3 + i * (h / 4.4), 0.03);
-    grp.add(bar);
-  }
-  for (let i = 1; i < 3; i++) {
-    const bar = new THREE.Mesh(new THREE.BoxGeometry(0.025, h - 0.12, 0.03), wood);
-    bar.position.set(-w / 2 + i * (w / 3), h / 2, 0.03);
-    grp.add(bar);
-  }
-  grp.position.set(x, 0, z);
-  grp.rotation.y = rotY;
-  grp.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
-  g.add(grp);
-}
-
 function makeShell(layout) {
   const g = new THREE.Group();
   g.name = 'shell';
@@ -106,11 +78,6 @@ function makeProcedural(layout) {
   // vertical menu (not chalkboard cafe)
   addBox(g, 0.55, 1.5, 0.05, slate, 2.55, 2.05, -3.38);
   for (let r = 0; r < 8; r++) addBox(g, 0.38, 0.035, 0.02, cream, 2.55, 2.55 - r * 0.14, -3.34);
-
-  // 隔间 shoji — procedural (HF Wooden Partition Wall baked to 6.5MB; skipped)
-  shojiPanel(g, -3.55, -0.15, Math.PI / 2, 1.35, 2.2);
-  shojiPanel(g, -3.55, 1.55, Math.PI / 2, 1.35, 2.2);
-  shojiPanel(g, 1.15, 1.85, 0.0, 1.4, 2.05);
 
   // paper lanterns
   for (const [x, z] of [[-2.2, -1.6], [0.2, -1.6], [2.2, 0.4], [-1.1, 1.5]]) {

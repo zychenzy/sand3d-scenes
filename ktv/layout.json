@@ -9,25 +9,17 @@
       "height": 2.7
     },
     "notes": [
-      "One soft U-banquette (HF BOOTH EN U) as the readable center; solid box sofa; no overlapping seats."
+      "Simple KTV: three solid sofas on three sides of one low long table, TV on the open wall."
     ]
   },
   "assets": {
-    "u_booth": {
-      "glb": "assets/u_booth__02e7f0d6ad8c.glb",
-      "targetHeight": 1.12
-    },
     "sofa_solid": {
       "glb": "assets/sofa_solid__2172bb7e3b99.glb",
       "targetHeight": 0.82
     },
-    "box_chair": {
-      "glb": "assets/box_chair__3f870233a579.glb",
-      "targetHeight": 0.78
-    },
     "coffee_table": {
       "glb": "assets/coffee_table__29a509d8be0b.glb",
-      "targetHeight": 0.38
+      "targetHeight": 0.36
     },
     "tv": {
       "glb": "assets/tv__7a1ea89eeb48.glb",
@@ -37,10 +29,6 @@
       "glb": "assets/speaker__2db67686cd88.glb",
       "targetHeight": 0.42
     },
-    "speaker_wall": {
-      "glb": "assets/speaker_wall__b2585870f31f.glb",
-      "targetHeight": 1.15
-    },
     "cup_mug": {
       "glb": "assets/cup_mug__6da6f7f87b8d.glb",
       "targetHeight": 0.11
@@ -48,105 +36,84 @@
   },
   "instances": [
     {
-      "id": "u1",
-      "kind": "u_booth",
+      "id": "table",
+      "kind": "coffee_table",
       "position": [
-        0.05,
+        0.0,
         0,
-        -0.55
+        -0.15
       ],
       "rotationY": 0.0
     },
     {
-      "id": "sofa_l",
+      "id": "sofa_back",
       "kind": "sofa_solid",
       "position": [
-        -2.15,
+        0.0,
         0,
-        1.05
+        1.25
       ],
-      "rotationY": 1.15
+      "rotationY": 3.1416
     },
     {
-      "id": "chair_r",
-      "kind": "box_chair",
+      "id": "sofa_left",
+      "kind": "sofa_solid",
       "position": [
-        2.25,
+        -1.85,
         0,
-        0.85
+        -0.15
       ],
-      "rotationY": -1.35
+      "rotationY": 1.5708
     },
     {
-      "id": "ct_l",
-      "kind": "coffee_table",
+      "id": "sofa_right",
+      "kind": "sofa_solid",
       "position": [
-        -1.15,
+        1.85,
         0,
-        0.95
+        -0.15
       ],
-      "rotationY": 0.3
+      "rotationY": -1.5708
     },
     {
       "id": "tv1",
       "kind": "tv",
       "position": [
         0.1,
-        0.0,
+        0,
         -2.55
       ],
-      "rotationY": 0.0,
-      "scale": 1.0
-    },
-    {
-      "id": "sp_l",
-      "kind": "speaker",
-      "position": [
-        -2.85,
-        0,
-        -2.25
-      ],
-      "rotationY": 0.4
+      "rotationY": 0.0
     },
     {
       "id": "sp_r",
       "kind": "speaker",
       "position": [
-        2.7,
+        2.55,
         0,
         -2.25
       ],
-      "rotationY": -0.3
-    },
-    {
-      "id": "swall",
-      "kind": "speaker_wall",
-      "position": [
-        -2.95,
-        0,
-        -0.35
-      ],
-      "rotationY": 1.5708
+      "rotationY": -0.2
     },
     {
       "id": "cup1",
       "kind": "cup_mug",
       "position": [
-        -1.05,
-        0.4,
-        0.9
+        -0.25,
+        0.37,
+        -0.05
       ],
-      "rotationY": 0.6
+      "rotationY": 0.5
     },
     {
       "id": "cup2",
       "kind": "cup_mug",
       "position": [
-        0.35,
-        0.72,
-        -0.15
+        0.28,
+        0.37,
+        -0.25
       ],
-      "rotationY": -0.2
+      "rotationY": -0.3
     }
   ],
   "shell": {
@@ -164,39 +131,39 @@
   "camera": {
     "fov": 50,
     "position": [
-      4.6,
-      2.35,
-      3.7
+      4.4,
+      2.25,
+      3.5
     ],
     "target": [
-      0.05,
-      0.8,
-      -0.5
+      0.0,
+      0.7,
+      -0.4
     ]
   },
   "cameraPresets": {
     "corner": {
       "position": [
-        3.9,
-        2.2,
-        -0.6
+        3.6,
+        2.15,
+        -0.4
       ],
       "target": [
-        -0.2,
-        0.8,
-        -0.4
+        0.0,
+        0.7,
+        -0.3
       ]
     },
     "close": {
       "position": [
-        1.7,
-        1.45,
-        1.7
+        1.5,
+        1.35,
+        2.0
       ],
       "target": [
-        0.1,
-        0.7,
-        -0.5
+        0.0,
+        0.5,
+        -0.2
       ]
     }
   },

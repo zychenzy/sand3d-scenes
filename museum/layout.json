@@ -9,14 +9,10 @@
       "height": 4.2
     },
     "notes": [
-      "Few wide box-base chairs (no skinny legs). Spaced plinths and wall works \u2014 readable empty capacity."
+      "Gallery with long benches only \u2014 no sofas or armchairs. Spaced plinths and wall works."
     ]
   },
   "assets": {
-    "box_chair": {
-      "glb": "assets/box_chair__3f870233a579.glb",
-      "targetHeight": 0.82
-    },
     "museum_plinth": {
       "glb": "assets/museum_plinth__6bce39246b2c.glb",
       "targetHeight": 1.15
@@ -32,39 +28,13 @@
     "flowerpot": {
       "glb": "assets/flowerpot__4a270f247734.glb",
       "targetHeight": 0.28
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
     }
   },
   "instances": [
-    {
-      "id": "chair_a",
-      "kind": "box_chair",
-      "position": [
-        -3.15,
-        0,
-        2.05
-      ],
-      "rotationY": 2.6
-    },
-    {
-      "id": "chair_b",
-      "kind": "box_chair",
-      "position": [
-        3.35,
-        0,
-        1.85
-      ],
-      "rotationY": -2.4
-    },
-    {
-      "id": "chair_c",
-      "kind": "box_chair",
-      "position": [
-        0.35,
-        0,
-        2.55
-      ],
-      "rotationY": 3.14
-    },
     {
       "id": "plinth_a",
       "kind": "museum_plinth",
@@ -114,6 +84,36 @@
         3.15
       ],
       "rotationY": 0.3
+    },
+    {
+      "id": "bench_a",
+      "kind": "museum_bench",
+      "position": [
+        -2.2,
+        0,
+        1.85
+      ],
+      "rotationY": 0.08,
+      "scale": [
+        1.55,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "bench_b",
+      "kind": "museum_bench",
+      "position": [
+        2.15,
+        0,
+        1.95
+      ],
+      "rotationY": -0.06,
+      "scale": [
+        1.55,
+        1.0,
+        1.0
+      ]
     }
   ],
   "shell": {
