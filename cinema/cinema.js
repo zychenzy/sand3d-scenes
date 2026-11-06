@@ -37,8 +37,8 @@ function makeProcedural(layout) {
   const { depth: D } = layout.meta.room;
   // projection surface
   addBox(g, 4.15, 2.15, 0.04, toon('#1c181c'), 0, 1.55, -D / 2 + 0.2);
-  addBox(g, 3.95, 1.95, 0.03, toon('#4a4254'), 0, 1.55, -D / 2 + 0.23);
-  addBox(g, 3.55, 1.55, 0.02, toon('#5a5470'), 0, 1.55, -D / 2 + 0.25);
+  addBox(g, 3.95, 1.95, 0.03, toon('#5a5470'), 0, 1.55, -D / 2 + 0.23);
+  addBox(g, 3.55, 1.55, 0.02, toon('#7a7490'), 0, 1.55, -D / 2 + 0.25);
   // slight risers under rear rows (row1 z=1.05, row2 z=2.45)
   addBox(g, 5.2, 0.1, 1.15, toon('#322830'), 0, 0.05, 1.05);
   addBox(g, 5.2, 0.2, 1.15, toon('#322830'), 0, 0.1, 2.45);

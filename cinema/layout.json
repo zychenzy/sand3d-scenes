@@ -196,14 +196,14 @@
     }
   ],
   "shell": {
-    "floorColor": "#2a2428",
-    "wallColor": "#3a3036",
+    "floorColor": "#3a3238",
+    "wallColor": "#4a4048",
     "woodColor": "#5a3a28",
     "ceilingColor": "#1c181c",
     "accentColor": "#6a2430",
-    "carpetColor": "#4a2030",
-    "clearColor": "#1a1618",
-    "fogColor": "#1a1618",
+    "carpetColor": "#5a3040",
+    "clearColor": "#2a2428",
+    "fogColor": "#2a2428",
     "fogNear": 14,
     "fogFar": 32
   },
@@ -248,13 +248,13 @@
   },
   "lights": {
     "hemi": {
-      "sky": 8932152,
-      "ground": 2236962,
-      "intensity": 0.5
+      "sky": 14536900,
+      "ground": 3813430,
+      "intensity": 0.78
     },
     "key": {
       "color": 16769264,
-      "intensity": 1.05,
+      "intensity": 1.45,
       "position": [
         4,
         9,
@@ -262,8 +262,8 @@
       ]
     },
     "fill": {
-      "color": 4473924,
-      "intensity": 0.3,
+      "color": 9075336,
+      "intensity": 0.55,
       "position": [
         -4,
         5,
@@ -273,13 +273,23 @@
     "points": [
       {
         "color": 16744640,
-        "intensity": 0.7,
+        "intensity": 0.85,
         "position": [
           0,
           2.4,
           -2.8
         ],
         "distance": 10
+      },
+      {
+        "color": 16767144,
+        "intensity": 0.7,
+        "position": [
+          0,
+          2.35,
+          1.1
+        ],
+        "distance": 12
       }
     ]
   },

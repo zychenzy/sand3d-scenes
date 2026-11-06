@@ -11,7 +11,7 @@
     "notes": [
       "Easel line along the back wall (canvas facing into the room).",
       "Central work table with matching chairs facing the table; plinths as drying / display stands.",
-      "GAP: pottery wheel and kiln not in catalog — ceramic identity is easels + work table + plinths."
+      "GAP: pottery wheel and kiln not in catalog \u2014 ceramic identity is easels + work table + plinths."
     ]
   },
   "assets": {
@@ -26,10 +26,6 @@
     "dining_chair": {
       "glb": "assets/dining_chair__5e1f7a56da4a.glb",
       "targetHeight": 0.86
-    },
-    "museum_plinth": {
-      "glb": "assets/museum_plinth__6bce39246b2c.glb",
-      "targetHeight": 1.15
     },
     "pendant_lamp": {
       "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
@@ -125,26 +121,6 @@
         0.85
       ],
       "rotationY": 1.5708
-    },
-    {
-      "id": "plinth_a",
-      "kind": "museum_plinth",
-      "position": [
-        3.15,
-        0.0,
-        -1.15
-      ],
-      "rotationY": 0.1
-    },
-    {
-      "id": "plinth_b",
-      "kind": "museum_plinth",
-      "position": [
-        3.25,
-        0.0,
-        1.15
-      ],
-      "rotationY": -0.08
     },
     {
       "id": "plant",

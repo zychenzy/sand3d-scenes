@@ -10,7 +10,7 @@
     },
     "notes": [
       "SUBSTITUTE for yoga studio: catalog has no yoga mats, blocks, or bolsters in the scan.",
-      "Clear center floor with perimeter benches facing inward and plants — reads as a stretch/rest studio, not a furnished cafe."
+      "Clear center floor with perimeter benches facing inward and plants \u2014 reads as a stretch/rest studio, not a furnished cafe."
     ]
   },
   "assets": {
@@ -29,46 +29,16 @@
   },
   "instances": [
     {
-      "id": "bench_s",
-      "kind": "museum_bench",
-      "position": [
-        0.0,
-        0.0,
-        2.45
-      ],
-      "rotationY": 0.0,
-      "scale": [
-        1.7,
-        1,
-        1
-      ]
-    },
-    {
       "id": "bench_n",
       "kind": "museum_bench",
       "position": [
         0.0,
         0.0,
-        -2.45
+        -2.72
       ],
       "rotationY": 3.1416,
       "scale": [
-        1.7,
-        1,
-        1
-      ]
-    },
-    {
-      "id": "bench_w",
-      "kind": "museum_bench",
-      "position": [
-        -3.15,
-        0.0,
-        0.0
-      ],
-      "rotationY": 1.5708,
-      "scale": [
-        1.5,
+        1.4,
         1,
         1
       ]
@@ -219,7 +189,7 @@
     "must_read": [
       "Large empty floor is the main space.",
       "Benches face inward; no tables cluttering the center.",
-      "Do not label this a finished yoga studio — mats are missing."
+      "Do not label this a finished yoga studio \u2014 mats are missing."
     ]
   }
 }

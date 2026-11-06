@@ -10,7 +10,7 @@
     },
     "notes": [
       "Three stand-mounted heavy bags with clear striking space; rest benches along the entry wall.",
-      "No treadmills/dumbbells/racks in the catalog — this reads as a bag-training room, not a full cardio gym."
+      "No treadmills/dumbbells/racks in the catalog \u2014 this reads as a bag-training room, not a full cardio gym."
     ]
   },
   "assets": {
@@ -100,13 +100,13 @@
     }
   ],
   "shell": {
-    "floorColor": "#3a3a3a",
-    "wallColor": "#4a4a4c",
+    "floorColor": "#4a4a4c",
+    "wallColor": "#5a5a5e",
     "woodColor": "#2a2a2a",
     "ceilingColor": "#2e2e30",
-    "accentColor": "#8a2a2a",
-    "clearColor": "#2c2c2e",
-    "fogColor": "#2c2c2e",
+    "accentColor": "#9a3a3a",
+    "clearColor": "#3a3a3e",
+    "fogColor": "#3a3a3e",
     "fogNear": 14,
     "fogFar": 32
   },
@@ -151,13 +151,13 @@
   },
   "lights": {
     "hemi": {
-      "sky": 11119649,
-      "ground": 2236962,
-      "intensity": 0.7
+      "sky": 15262940,
+      "ground": 4868684,
+      "intensity": 0.95
     },
     "key": {
       "color": 16777200,
-      "intensity": 1.45,
+      "intensity": 1.75,
       "position": [
         5,
         10,
@@ -165,8 +165,8 @@
       ]
     },
     "fill": {
-      "color": 5592405,
-      "intensity": 0.35,
+      "color": 11579576,
+      "intensity": 0.6,
       "position": [
         -4,
         5,

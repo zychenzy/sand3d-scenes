@@ -6,7 +6,7 @@ function makeShell(layout) {
     carpet: { w: layout.meta.room.width - 0.8, d: layout.meta.room.depth - 1.6, x: 0, z: -0.55 },
   });
   const { depth: D } = layout.meta.room;
-  addBox(g, 4.8, 1.95, 0.04, toon('#c8d0d6'), 0.15, 1.55, -D / 2 + 0.12);
+  addBox(g, 4.8, 1.95, 0.04, toon('#d8e0e6'), 0.15, 1.55, -D / 2 + 0.12);
   addBox(g, 4.95, 0.06, 0.05, toon('#2a2a2c'), 0.15, 2.55, -D / 2 + 0.14);
   return g;
 }

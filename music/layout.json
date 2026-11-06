@@ -27,10 +27,6 @@
       "glb": "assets/speaker__2db67686cd88.glb",
       "targetHeight": 0.48
     },
-    "piano_bench": {
-      "glb": "assets/piano_bench__10332493b3a6.glb",
-      "targetHeight": 0.5
-    },
     "dining_chair": {
       "glb": "assets/dining_chair__5e1f7a56da4a.glb",
       "targetHeight": 0.86
@@ -84,16 +80,6 @@
         -2.7
       ],
       "rotationY": -0.2
-    },
-    {
-      "id": "keys_bench",
-      "kind": "piano_bench",
-      "position": [
-        0.0,
-        0.0,
-        -1.55
-      ],
-      "rotationY": 3.1416
     },
     {
       "id": "aud_0",

@@ -149,16 +149,6 @@
       "rotationY": 1.5708
     },
     {
-      "id": "catalog_desk",
-      "kind": "study_desk",
-      "position": [
-        3.85,
-        0,
-        2.55
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "lectern",
       "kind": "book_stand",
       "position": [
@@ -199,34 +189,14 @@
       "rotationY": -0.2
     },
     {
-      "id": "c0n0",
-      "kind": "dining_chair",
-      "position": [
-        -2.05,
-        0,
-        -0.27
-      ],
-      "rotationY": 3.1416
-    },
-    {
       "id": "c0s0",
       "kind": "dining_chair",
       "position": [
         -2.05,
         0,
-        -2.03
+        -1.92
       ],
       "rotationY": 0.0
-    },
-    {
-      "id": "c0n1",
-      "kind": "dining_chair",
-      "position": [
-        -0.68,
-        0,
-        -0.27
-      ],
-      "rotationY": 3.1416
     },
     {
       "id": "c0s1",
@@ -234,19 +204,9 @@
       "position": [
         -0.68,
         0,
-        -2.03
+        -1.92
       ],
       "rotationY": 0.0
-    },
-    {
-      "id": "c0n2",
-      "kind": "dining_chair",
-      "position": [
-        0.68,
-        0,
-        -0.27
-      ],
-      "rotationY": 3.1416
     },
     {
       "id": "c0s2",
@@ -254,19 +214,9 @@
       "position": [
         0.68,
         0,
-        -2.03
+        -1.92
       ],
       "rotationY": 0.0
-    },
-    {
-      "id": "c0n3",
-      "kind": "dining_chair",
-      "position": [
-        2.05,
-        0,
-        -0.27
-      ],
-      "rotationY": 3.1416
     },
     {
       "id": "c0s3",
@@ -274,7 +224,7 @@
       "position": [
         2.05,
         0,
-        -2.03
+        -1.92
       ],
       "rotationY": 0.0
     },
@@ -324,19 +274,9 @@
       "position": [
         -2.05,
         0,
-        2.08
+        1.97
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "c1s0",
-      "kind": "dining_chair",
-      "position": [
-        -2.05,
-        0,
-        0.32
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "c1n1",
@@ -344,19 +284,9 @@
       "position": [
         -0.68,
         0,
-        2.08
+        1.97
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "c1s1",
-      "kind": "dining_chair",
-      "position": [
-        -0.68,
-        0,
-        0.32
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "c1n2",
@@ -364,19 +294,9 @@
       "position": [
         0.68,
         0,
-        2.08
+        1.97
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "c1s2",
-      "kind": "dining_chair",
-      "position": [
-        0.68,
-        0,
-        0.32
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "c1n3",
@@ -384,19 +304,9 @@
       "position": [
         2.05,
         0,
-        2.08
+        1.97
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "c1s3",
-      "kind": "dining_chair",
-      "position": [
-        2.05,
-        0,
-        0.32
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "lamp1_0",
@@ -439,24 +349,44 @@
       "rotationY": 0.1
     },
     {
-      "id": "catalog_chair",
+      "id": "c0w",
       "kind": "dining_chair",
       "position": [
-        3.85,
+        -3.02,
         0,
-        3.12
+        -1.15
       ],
-      "rotationY": 3.1416
+      "rotationY": 1.5708
     },
     {
-      "id": "catalog_lamp",
-      "kind": "library_lamp",
+      "id": "c0e",
+      "kind": "dining_chair",
       "position": [
-        3.55,
-        0.77,
-        2.55
+        3.02,
+        0,
+        -1.15
       ],
-      "rotationY": 0.4
+      "rotationY": -1.5708
+    },
+    {
+      "id": "c1w",
+      "kind": "dining_chair",
+      "position": [
+        -3.02,
+        0,
+        1.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "c1e",
+      "kind": "dining_chair",
+      "position": [
+        3.02,
+        0,
+        1.2
+      ],
+      "rotationY": -1.5708
     }
   ],
   "shell": {
