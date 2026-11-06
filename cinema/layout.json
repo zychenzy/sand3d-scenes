@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "title": "Small cinema screening room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.2,
+      "depth": 8.0,
+      "height": 3.15
+    },
+    "notes": [
+      "One seat type: old theatre chair, 3 rows of 5, fronts toward the screen on the -Z wall.",
+      "Procedural projection screen + curtains. Side aisles. Native seat facing verified in-browser."
+    ]
+  },
+  "assets": {
+    "theatre_chair": {
+      "glb": "assets/theatre_chair__0e346addc570.glb",
+      "targetHeight": 1.05
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.55
+    }
+  },
+  "instances": [
+    {
+      "id": "sp_l",
+      "kind": "speaker",
+      "position": [
+        -2.55,
+        0,
+        -3.35
+      ],
+      "rotationY": 0.25
+    },
+    {
+      "id": "sp_r",
+      "kind": "speaker",
+      "position": [
+        2.55,
+        0,
+        -3.35
+      ],
+      "rotationY": -0.25
+    },
+    {
+      "id": "seat_r0_0",
+      "kind": "theatre_chair",
+      "position": [
+        -2.0,
+        0,
+        -0.35
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r0_1",
+      "kind": "theatre_chair",
+      "position": [
+        -1.0,
+        0,
+        -0.35
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r0_2",
+      "kind": "theatre_chair",
+      "position": [
+        0.0,
+        0,
+        -0.35
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r0_3",
+      "kind": "theatre_chair",
+      "position": [
+        1.0,
+        0,
+        -0.35
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r0_4",
+      "kind": "theatre_chair",
+      "position": [
+        2.0,
+        0,
+        -0.35
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r1_0",
+      "kind": "theatre_chair",
+      "position": [
+        -2.0,
+        0.1,
+        1.05
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r1_1",
+      "kind": "theatre_chair",
+      "position": [
+        -1.0,
+        0.1,
+        1.05
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r1_2",
+      "kind": "theatre_chair",
+      "position": [
+        0.0,
+        0.1,
+        1.05
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r1_3",
+      "kind": "theatre_chair",
+      "position": [
+        1.0,
+        0.1,
+        1.05
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r1_4",
+      "kind": "theatre_chair",
+      "position": [
+        2.0,
+        0.1,
+        1.05
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r2_0",
+      "kind": "theatre_chair",
+      "position": [
+        -2.0,
+        0.2,
+        2.45
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r2_1",
+      "kind": "theatre_chair",
+      "position": [
+        -1.0,
+        0.2,
+        2.45
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r2_2",
+      "kind": "theatre_chair",
+      "position": [
+        0.0,
+        0.2,
+        2.45
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r2_3",
+      "kind": "theatre_chair",
+      "position": [
+        1.0,
+        0.2,
+        2.45
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "seat_r2_4",
+      "kind": "theatre_chair",
+      "position": [
+        2.0,
+        0.2,
+        2.45
+      ],
+      "rotationY": 3.1416
+    }
+  ],
+  "shell": {
+    "floorColor": "#2a2428",
+    "wallColor": "#3a3036",
+    "woodColor": "#5a3a28",
+    "ceilingColor": "#1c181c",
+    "accentColor": "#6a2430",
+    "carpetColor": "#4a2030",
+    "clearColor": "#1a1618",
+    "fogColor": "#1a1618",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      6.2,
+      2.55,
+      5.6
+    ],
+    "target": [
+      0.0,
+      1.0,
+      -1.4
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.6,
+        2.4,
+        0.2
+      ],
+      "target": [
+        0.0,
+        1.0,
+        -2.0
+      ]
+    },
+    "close": {
+      "position": [
+        1.7,
+        1.25,
+        2.85
+      ],
+      "target": [
+        0.0,
+        0.85,
+        -0.4
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 8932152,
+      "ground": 2236962,
+      "intensity": 0.5
+    },
+    "key": {
+      "color": 16769264,
+      "intensity": 1.05,
+      "position": [
+        4,
+        9,
+        4
+      ]
+    },
+    "fill": {
+      "color": 4473924,
+      "intensity": 0.3,
+      "position": [
+        -4,
+        5,
+        2
+      ]
+    },
+    "points": [
+      {
+        "color": 16744640,
+        "intensity": 0.7,
+        "position": [
+          0,
+          2.4,
+          -2.8
+        ],
+        "distance": 10
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "front-row close",
+      "unlit default"
+    ],
+    "must_read": [
+      "At a glance: a small screening room \u2014 seats in ranked rows facing a large screen.",
+      "Every seat front faces the screen; seat backs toward the entry (+Z).",
+      "One matching theatre-chair type only (no dining chairs or sofas).",
+      "Row spacing ~1.4m; first row ~3.3m from screen.",
+      "If seats appear back-to-screen, flip theatre_chair rotationY from pi to 0 (native facing check)."
+    ]
+  }
+}

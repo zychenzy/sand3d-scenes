@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "Music rehearsal room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 8.4,
+      "depth": 6.8,
+      "height": 3.0
+    },
+    "notes": [
+      "Amp wall (guitar combo + Marshall) with speakers; piano bench as the player seat facing the amps.",
+      "Four matching chairs in a listening row facing the same wall.",
+      "GAP: no piano/guitar body in cached parquet shards (piano title exists on an uncached shard)."
+    ]
+  },
+  "assets": {
+    "guitar_amp": {
+      "glb": "assets/guitar_amp__4c520860a87e.glb",
+      "targetHeight": 0.52
+    },
+    "marshall_amp": {
+      "glb": "assets/marshall_amp__55af790ab812.glb",
+      "targetHeight": 0.5
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.48
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.5
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    }
+  },
+  "instances": [
+    {
+      "id": "amp_l",
+      "kind": "guitar_amp",
+      "position": [
+        -1.35,
+        0.0,
+        -2.85
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "amp_r",
+      "kind": "marshall_amp",
+      "position": [
+        1.15,
+        0.0,
+        -2.95
+      ],
+      "rotationY": -0.1
+    },
+    {
+      "id": "sp_l",
+      "kind": "speaker",
+      "position": [
+        -2.55,
+        0.0,
+        -2.7
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "sp_r",
+      "kind": "speaker",
+      "position": [
+        2.55,
+        0.0,
+        -2.7
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "keys_bench",
+      "kind": "piano_bench",
+      "position": [
+        0.0,
+        0.0,
+        -1.55
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "aud_0",
+      "kind": "dining_chair",
+      "position": [
+        -2.4,
+        0.0,
+        1.55
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "aud_1",
+      "kind": "dining_chair",
+      "position": [
+        -0.8,
+        0.0,
+        1.55
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "aud_2",
+      "kind": "dining_chair",
+      "position": [
+        0.8,
+        0.0,
+        1.55
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "aud_3",
+      "kind": "dining_chair",
+      "position": [
+        2.4,
+        0.0,
+        1.55
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [
+        3.55,
+        0.0,
+        2.2
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "pend",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.5,
+        -1.2
+      ],
+      "rotationY": 0
+    }
+  ],
+  "shell": {
+    "floorColor": "#5a4a3a",
+    "wallColor": "#d8c8b0",
+    "woodColor": "#4a3020",
+    "ceilingColor": "#e8dcc8",
+    "accentColor": "#3a2a28",
+    "clearColor": "#c8b8a4",
+    "fogColor": "#c8b8a4",
+    "fogNear": 14,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      5.8,
+      2.45,
+      4.6
+    ],
+    "target": [
+      0.0,
+      0.85,
+      -1.2
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.2,
+        2.3,
+        -0.4
+      ],
+      "target": [
+        0.0,
+        0.85,
+        -1.4
+      ]
+    },
+    "close": {
+      "position": [
+        1.4,
+        1.2,
+        0.2
+      ],
+      "target": [
+        0.0,
+        0.6,
+        -2.4
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16774890,
+      "ground": 5197644,
+      "intensity": 0.55
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.15,
+      "position": [
+        5,
+        10,
+        3
+      ]
+    },
+    "fill": {
+      "color": 8947848,
+      "intensity": 0.35,
+      "position": [
+        -4,
+        4,
+        2
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "amp close",
+      "unlit"
+    ],
+    "must_read": [
+      "Amp/speaker wall is the focus.",
+      "Listening chairs and piano bench face that wall.",
+      "Must not read as KTV (no U-sofa around a coffee table)."
+    ]
+  }
+}
