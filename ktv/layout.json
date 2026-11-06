@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "title": "KTV room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 6.8,
+      "depth": 5.6,
+      "height": 2.7
+    },
+    "notes": [
+      "One soft U-banquette (HF BOOTH EN U) as the readable center; solid box sofa; no overlapping seats."
+    ]
+  },
+  "assets": {
+    "u_booth": {
+      "glb": "assets/u_booth__02e7f0d6ad8c.glb",
+      "targetHeight": 1.12
+    },
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.82
+    },
+    "box_chair": {
+      "glb": "assets/box_chair__3f870233a579.glb",
+      "targetHeight": 0.78
+    },
+    "coffee_table": {
+      "glb": "assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.38
+    },
+    "tv": {
+      "glb": "assets/tv__7a1ea89eeb48.glb",
+      "targetHeight": 0.95
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.42
+    },
+    "speaker_wall": {
+      "glb": "assets/speaker_wall__b2585870f31f.glb",
+      "targetHeight": 1.15
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    }
+  },
+  "instances": [
+    {
+      "id": "u1",
+      "kind": "u_booth",
+      "position": [
+        0.05,
+        0,
+        -0.55
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "sofa_l",
+      "kind": "sofa_solid",
+      "position": [
+        -2.15,
+        0,
+        1.05
+      ],
+      "rotationY": 1.15
+    },
+    {
+      "id": "chair_r",
+      "kind": "box_chair",
+      "position": [
+        2.25,
+        0,
+        0.85
+      ],
+      "rotationY": -1.35
+    },
+    {
+      "id": "ct_l",
+      "kind": "coffee_table",
+      "position": [
+        -1.15,
+        0,
+        0.95
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "tv1",
+      "kind": "tv",
+      "position": [
+        0.1,
+        0.0,
+        -2.55
+      ],
+      "rotationY": 0.0,
+      "scale": 1.0
+    },
+    {
+      "id": "sp_l",
+      "kind": "speaker",
+      "position": [
+        -2.85,
+        0,
+        -2.25
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "sp_r",
+      "kind": "speaker",
+      "position": [
+        2.7,
+        0,
+        -2.25
+      ],
+      "rotationY": -0.3
+    },
+    {
+      "id": "swall",
+      "kind": "speaker_wall",
+      "position": [
+        -2.95,
+        0,
+        -0.35
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "cup1",
+      "kind": "cup_mug",
+      "position": [
+        -1.05,
+        0.4,
+        0.9
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "cup2",
+      "kind": "cup_mug",
+      "position": [
+        0.35,
+        0.72,
+        -0.15
+      ],
+      "rotationY": -0.2
+    }
+  ],
+  "shell": {
+    "floorColor": "#3a2a32",
+    "wallColor": "#4a3040",
+    "accentColor": "#6a3a52",
+    "woodColor": "#5a3a2a",
+    "ceilingColor": "#2a1c24",
+    "carpetColor": "#5a2438",
+    "clearColor": "#2a2228",
+    "fogColor": "#2a2228",
+    "fogNear": 12,
+    "fogFar": 28
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      4.6,
+      2.35,
+      3.7
+    ],
+    "target": [
+      0.05,
+      0.8,
+      -0.5
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        3.9,
+        2.2,
+        -0.6
+      ],
+      "target": [
+        -0.2,
+        0.8,
+        -0.4
+      ]
+    },
+    "close": {
+      "position": [
+        1.7,
+        1.45,
+        1.7
+      ],
+      "target": [
+        0.1,
+        0.7,
+        -0.5
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16765160,
+      "ground": 2758688,
+      "intensity": 0.4
+    },
+    "key": {
+      "color": 16769264,
+      "intensity": 1.05,
+      "position": [
+        4,
+        8,
+        3
+      ]
+    },
+    "fill": {
+      "color": 8937632,
+      "intensity": 0.45,
+      "position": [
+        -3,
+        4,
+        2
+      ]
+    },
+    "points": [
+      {
+        "color": 16744640,
+        "intensity": 0.55,
+        "position": [
+          0.1,
+          2.2,
+          -1.8
+        ],
+        "distance": 8
+      },
+      {
+        "color": 16763000,
+        "intensity": 0.35,
+        "position": [
+          -1.5,
+          1.6,
+          0.8
+        ],
+        "distance": 6
+      }
+    ]
+  }
+}

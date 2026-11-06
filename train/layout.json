@@ -1,0 +1,596 @@
+{
+  "meta": {
+    "title": "Dining coach cutaway v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 2.75,
+      "depth": 16.6,
+      "height": 2.35
+    },
+    "bays": 5,
+    "bayPitch": 2.65,
+    "bay0": -5.3,
+    "seatWidth": 0.98,
+    "partitionHeight": 1.18,
+    "notes": [
+      "Long passenger / Avanti-style dining coach. Interior cutaway, not exterior-only.",
+      "Long-side windows; facing seats + table per bay; yellow partitions reach the floor and match seat-back width.",
+      "HF Old Train Seats provide a solid plinth under the cushion. Near (+Z) end wall dropped for perspective. Coach lengthened to 16.6m."
+    ]
+  },
+  "assets": {
+    "train_seat": {
+      "glb": "assets/train_seat__5c06813c8bdc.glb",
+      "targetHeight": 1.08
+    },
+    "pedestal_table": {
+      "glb": "assets/pedestal_table__3fa3ea73c391.glb",
+      "targetHeight": 0.72
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.32
+    }
+  },
+  "instances": [
+    {
+      "id": "seat_w0a",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        -6.12
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w0b",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        -4.48
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_w0",
+      "kind": "pedestal_table",
+      "position": [
+        -0.72,
+        0,
+        -5.3
+      ],
+      "rotationY": 0.2,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_w0",
+      "kind": "cup_mug",
+      "position": [
+        -0.64,
+        0.73,
+        -5.3
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "seat_a0a",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        -6.12
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_a0b",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        -4.48
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_a0",
+      "kind": "pedestal_table",
+      "position": [
+        0.72,
+        0,
+        -5.3
+      ],
+      "rotationY": -0.15,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_a0",
+      "kind": "cup_mug",
+      "position": [
+        0.6599999999999999,
+        0.73,
+        -5.3
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "lamp_0",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        1.92,
+        -5.3
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w1a",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        -3.47
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w1b",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        -1.83
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_w1",
+      "kind": "pedestal_table",
+      "position": [
+        -0.72,
+        0,
+        -2.65
+      ],
+      "rotationY": 0.2,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_w1",
+      "kind": "cup_mug",
+      "position": [
+        -0.64,
+        0.73,
+        -2.65
+      ],
+      "rotationY": 0.8
+    },
+    {
+      "id": "seat_a1a",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        -3.47
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_a1b",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        -1.83
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_a1",
+      "kind": "pedestal_table",
+      "position": [
+        0.72,
+        0,
+        -2.65
+      ],
+      "rotationY": -0.15,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_a1",
+      "kind": "cup_mug",
+      "position": [
+        0.6599999999999999,
+        0.73,
+        -2.65
+      ],
+      "rotationY": 0.8
+    },
+    {
+      "id": "lamp_1",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        1.92,
+        -2.65
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "seat_w2a",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        -0.82
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w2b",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        0.82
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_w2",
+      "kind": "pedestal_table",
+      "position": [
+        -0.72,
+        0,
+        0.0
+      ],
+      "rotationY": 0.2,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_w2",
+      "kind": "cup_mug",
+      "position": [
+        -0.64,
+        0.73,
+        0.0
+      ],
+      "rotationY": 1.2000000000000002
+    },
+    {
+      "id": "seat_a2a",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        -0.82
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_a2b",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        0.82
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_a2",
+      "kind": "pedestal_table",
+      "position": [
+        0.72,
+        0,
+        0.0
+      ],
+      "rotationY": -0.15,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_a2",
+      "kind": "cup_mug",
+      "position": [
+        0.6599999999999999,
+        0.73,
+        0.0
+      ],
+      "rotationY": 1.2000000000000002
+    },
+    {
+      "id": "lamp_2",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        1.92,
+        0.0
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "seat_w3a",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        1.83
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w3b",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        3.47
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_w3",
+      "kind": "pedestal_table",
+      "position": [
+        -0.72,
+        0,
+        2.65
+      ],
+      "rotationY": 0.2,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_w3",
+      "kind": "cup_mug",
+      "position": [
+        -0.64,
+        0.73,
+        2.65
+      ],
+      "rotationY": 1.6
+    },
+    {
+      "id": "seat_a3a",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        1.83
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_a3b",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        3.47
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_a3",
+      "kind": "pedestal_table",
+      "position": [
+        0.72,
+        0,
+        2.65
+      ],
+      "rotationY": -0.15,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_a3",
+      "kind": "cup_mug",
+      "position": [
+        0.6599999999999999,
+        0.73,
+        2.65
+      ],
+      "rotationY": 1.6
+    },
+    {
+      "id": "lamp_3",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        1.92,
+        2.65
+      ],
+      "rotationY": 0.30000000000000004
+    },
+    {
+      "id": "seat_w4a",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        4.48
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_w4b",
+      "kind": "train_seat",
+      "position": [
+        -0.72,
+        0,
+        6.12
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_w4",
+      "kind": "pedestal_table",
+      "position": [
+        -0.72,
+        0,
+        5.3
+      ],
+      "rotationY": 0.2,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_w4",
+      "kind": "cup_mug",
+      "position": [
+        -0.64,
+        0.73,
+        5.3
+      ],
+      "rotationY": 2.0
+    },
+    {
+      "id": "seat_a4a",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        4.48
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "seat_a4b",
+      "kind": "train_seat",
+      "position": [
+        0.72,
+        0,
+        6.12
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "table_a4",
+      "kind": "pedestal_table",
+      "position": [
+        0.72,
+        0,
+        5.3
+      ],
+      "rotationY": -0.15,
+      "scale": 0.72
+    },
+    {
+      "id": "cup_a4",
+      "kind": "cup_mug",
+      "position": [
+        0.6599999999999999,
+        0.73,
+        5.3
+      ],
+      "rotationY": 2.0
+    },
+    {
+      "id": "lamp_4",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        1.92,
+        5.3
+      ],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#b8a890",
+    "wallColor": "#ebe4da",
+    "roofColor": "#4a545e",
+    "bodyColor": "#5a6a78",
+    "bodyDark": "#3e4a56",
+    "woodColor": "#8a5535",
+    "woodLight": "#c9925e",
+    "windowTint": "#a8c8e0",
+    "frameColor": "#d8d0c4",
+    "underColor": "#2e343a",
+    "aisleColor": "#a89880",
+    "partitionColor": "#e2b83a",
+    "clearColor": "#e4ddd2",
+    "fogColor": "#e4ddd2",
+    "fogNear": 16,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 46,
+    "position": [
+      5.15,
+      2.2,
+      7.35
+    ],
+    "target": [
+      0.1,
+      0.95,
+      -0.4
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        4.6,
+        2.35,
+        -7.4
+      ],
+      "target": [
+        0.15,
+        0.95,
+        0.6
+      ]
+    },
+    "close": {
+      "position": [
+        2.55,
+        1.45,
+        2.15
+      ],
+      "target": [
+        0.55,
+        0.72,
+        -1.8
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16773856,
+      "ground": 5920332,
+      "intensity": 0.55
+    },
+    "key": {
+      "color": 16774376,
+      "intensity": 1.35,
+      "position": [
+        8,
+        10,
+        6
+      ]
+    },
+    "fill": {
+      "color": 12110048,
+      "intensity": 0.32,
+      "position": [
+        -4,
+        5,
+        2
+      ]
+    },
+    "points": [
+      {
+        "color": 16769192,
+        "intensity": 0.45,
+        "position": [
+          0.2,
+          2.0,
+          0
+        ],
+        "distance": 14
+      }
+    ]
+  }
+}
