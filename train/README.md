@@ -1,6 +1,6 @@
 # Dining coach cutaway (Three.js + sand3d)
 
-Long Avanti-style dining coach: facing seats + table per bay, floor-reaching yellow partitions as wide as the seat backs, solid-plinth HF train seats, long-side windows, dropped near end wall, lengthened body.
+Long Avanti-style dining coach: facing seats + single-pedestal coach table per bay, floor-reaching yellow partitions as wide as the seat backs, solid-plinth HF train seats, long-side windows, dropped near end wall, lengthened body.
 
 ## Open
 ```bash

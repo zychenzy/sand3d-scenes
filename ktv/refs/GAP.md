@@ -11,3 +11,6 @@ Photos: padded room, U or L sofa around a low table, wall screen, speakers. Soft
 
 ## v2 layout fix
 Removed U-booth + divider, box chair, and speaker-wall. Three identical solid sofas around one low rectangular coffee table; TV on the fourth wall; one speaker.
+
+## v3 layout fix
+Sofas faced outward (backs to the table). Reversed so seats face the table; rotated the table 90° (long axis along X); enlarged it; stretched the long-side sofa to match. TV stays on the open side.

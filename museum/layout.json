@@ -9,7 +9,8 @@
       "height": 4.2
     },
     "notes": [
-      "Gallery with long benches only \u2014 no sofas or armchairs. Spaced plinths and wall works."
+      "Gallery with long benches only \u2014 no sofas or armchairs. Spaced plinths and wall works.",
+      "Both benches rotated 90\u00b0 so they face the art / sit along the gallery aisle."
     ]
   },
   "assets": {
@@ -89,11 +90,11 @@
       "id": "bench_a",
       "kind": "museum_bench",
       "position": [
-        -2.2,
+        -2.45,
         0,
-        1.85
+        2.05
       ],
-      "rotationY": 0.08,
+      "rotationY": 1.5708,
       "scale": [
         1.55,
         1.0,
@@ -104,11 +105,11 @@
       "id": "bench_b",
       "kind": "museum_bench",
       "position": [
-        2.15,
+        1.85,
         0,
-        1.95
+        2.15
       ],
-      "rotationY": -0.06,
+      "rotationY": 1.5708,
       "scale": [
         1.55,
         1.0,

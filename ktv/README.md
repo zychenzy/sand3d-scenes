@@ -1,6 +1,6 @@
 # KTV room (Three.js + sand3d)
 
-Recognizable U-banquette (HF BOOTH EN U), solid box sofa, spaced box chair, TV + speakers. Seats do not overlap.
+Simple U: three solid sofas facing a low long-wide table (long-side sofa stretched), TV on the open wall.
 
 ## Open
 ```bash

@@ -15,7 +15,7 @@
     "partitionHeight": 1.18,
     "notes": [
       "Long passenger / Avanti-style dining coach.",
-      "Rectangular dining tables (not cafe square pedestals) between facing seats.",
+      "Coach tables are procedural: one long central pedestal running the table length (not four free legs).",
       "Yellow floor-reaching partitions matching seat-back width; solid-plinth HF train seats; near end wall dropped."
     ]
   },
@@ -31,10 +31,6 @@
     "pendant_lamp": {
       "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
       "targetHeight": 0.32
-    },
-    "dining_table": {
-      "glb": "assets/long_dining__fb2f8f65156e.glb",
-      "targetHeight": 0.74
     }
   },
   "instances": [
@@ -57,16 +53,6 @@
         -4.48
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_w0",
-      "kind": "dining_table",
-      "position": [
-        -0.72,
-        0,
-        -5.3
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_w0",
@@ -97,16 +83,6 @@
         -4.48
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_a0",
-      "kind": "dining_table",
-      "position": [
-        0.72,
-        0,
-        -5.3
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_a0",
@@ -149,16 +125,6 @@
       "rotationY": 3.1416
     },
     {
-      "id": "table_w1",
-      "kind": "dining_table",
-      "position": [
-        -0.72,
-        0,
-        -2.65
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "cup_w1",
       "kind": "cup_mug",
       "position": [
@@ -187,16 +153,6 @@
         -1.83
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_a1",
-      "kind": "dining_table",
-      "position": [
-        0.72,
-        0,
-        -2.65
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_a1",
@@ -239,16 +195,6 @@
       "rotationY": 3.1416
     },
     {
-      "id": "table_w2",
-      "kind": "dining_table",
-      "position": [
-        -0.72,
-        0,
-        0.0
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "cup_w2",
       "kind": "cup_mug",
       "position": [
@@ -277,16 +223,6 @@
         0.82
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_a2",
-      "kind": "dining_table",
-      "position": [
-        0.72,
-        0,
-        0.0
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_a2",
@@ -329,16 +265,6 @@
       "rotationY": 3.1416
     },
     {
-      "id": "table_w3",
-      "kind": "dining_table",
-      "position": [
-        -0.72,
-        0,
-        2.65
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "cup_w3",
       "kind": "cup_mug",
       "position": [
@@ -367,16 +293,6 @@
         3.47
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_a3",
-      "kind": "dining_table",
-      "position": [
-        0.72,
-        0,
-        2.65
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_a3",
@@ -419,16 +335,6 @@
       "rotationY": 3.1416
     },
     {
-      "id": "table_w4",
-      "kind": "dining_table",
-      "position": [
-        -0.72,
-        0,
-        5.3
-      ],
-      "rotationY": 0.0
-    },
-    {
       "id": "cup_w4",
       "kind": "cup_mug",
       "position": [
@@ -457,16 +363,6 @@
         6.12
       ],
       "rotationY": 3.1416
-    },
-    {
-      "id": "table_a4",
-      "kind": "dining_table",
-      "position": [
-        0.72,
-        0,
-        5.3
-      ],
-      "rotationY": 0.0
     },
     {
       "id": "cup_a4",

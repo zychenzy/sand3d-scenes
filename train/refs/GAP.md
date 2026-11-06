@@ -15,3 +15,6 @@ Photos show long window bands, facing pairs around a table, high seat backs, and
 
 ## v2 layout fix
 Replaced square pedestal tables with HF rectangular wood dining table (`840ed61706e7`).
+
+## v3 layout fix
+Four-leg trestle dining tables were wrong for a coach. Procedural bay tables use one long central pedestal running the table length (not four free legs).

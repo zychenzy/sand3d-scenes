@@ -1,6 +1,6 @@
 # Japanese restaurant (Three.js + sand3d)
 
-Square lower tables, diner/doble booth 隔间, wall banquette, procedural shoji. Service counter is a sushi/plate strip, not a cafe bar.
+Booth zone with repeated back-to-back diner booths; table zone with one chair type and larger rectangular tables. No shoji. Service counter is a sushi/plate strip, not a cafe bar.
 
 ## Open
 ```bash

@@ -61,8 +61,8 @@ function makeProcedural(layout) {
     addCyl(g, 0.012, 0.012, 0.22, metal, x, 0.58, z, 8);
     addCyl(g, 0.03, 0.025, 0.08, toon('#2a2a30'), x, 0.72, z, 10);
   }
-  mic(-0.15, 0.15);
-  mic(0.25, -0.05);
+  mic(-0.45, 0.2);
+  mic(0.4, -0.15);
   // stage-ish LED kick
   addBox(g, 2.2, 0.06, 0.12, glow, 0.1, 0.04, -2.05);
   return g;

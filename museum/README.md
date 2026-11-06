@@ -1,6 +1,6 @@
 # Museum gallery (Three.js + sand3d)
 
-Wide darker box-base lounge chairs (HF Sofa2), spaced plinths + vitrine + wall works. Intentionally not crowded.
+Long slab benches only (rotated to face the art), spaced plinths + vitrine + wall works. Intentionally not crowded.
 
 ## Open
 ```bash
