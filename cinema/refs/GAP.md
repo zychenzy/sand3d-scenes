@@ -9,7 +9,7 @@ Closed in scene JS:
 
 - Procedural framed projection screen + gold proscenium + side curtains (TV asset dropped).
 - Rear-row risers (row 1 +0.10 m, row 2 +0.20 m) and aisle lights.
-- Seat rotations start at π (chair default +Z); verified against the screen on -Z.
+- Seat facing: GLB nodes place `back_pad`/`back_shell` at local +Z and `lower_panel` (cushion) at local −Z, so the occupant faces −Z. `rotationY` 0 points every row at the screen. π had been reversed.
 
 Remaining:
 

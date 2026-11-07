@@ -9,8 +9,9 @@
       "height": 3.15
     },
     "notes": [
-      "One seat type: old theatre chair, 3 rows of 5, fronts toward the screen on the -Z wall.",
-      "Procedural projection screen + curtains. Side aisles. Native seat facing verified in-browser."
+      "One seat type: old theatre chair, 3 rows of 5.",
+      "GLB native: backrest at +Z, seat pan toward -Z, occupant faces -Z. rotationY 0 faces the screen on the -Z wall. Do not use pi.",
+      "Procedural projection screen + curtains. Side aisles."
     ]
   },
   "assets": {
@@ -52,7 +53,7 @@
         0,
         -0.35
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r0_1",
@@ -62,7 +63,7 @@
         0,
         -0.35
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r0_2",
@@ -72,7 +73,7 @@
         0,
         -0.35
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r0_3",
@@ -82,7 +83,7 @@
         0,
         -0.35
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r0_4",
@@ -92,7 +93,7 @@
         0,
         -0.35
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r1_0",
@@ -102,7 +103,7 @@
         0.1,
         1.05
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r1_1",
@@ -112,7 +113,7 @@
         0.1,
         1.05
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r1_2",
@@ -122,7 +123,7 @@
         0.1,
         1.05
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r1_3",
@@ -132,7 +133,7 @@
         0.1,
         1.05
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r1_4",
@@ -142,7 +143,7 @@
         0.1,
         1.05
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r2_0",
@@ -152,7 +153,7 @@
         0.2,
         2.45
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r2_1",
@@ -162,7 +163,7 @@
         0.2,
         2.45
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r2_2",
@@ -172,7 +173,7 @@
         0.2,
         2.45
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r2_3",
@@ -182,7 +183,7 @@
         0.2,
         2.45
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     },
     {
       "id": "seat_r2_4",
@@ -192,7 +193,7 @@
         0.2,
         2.45
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0
     }
   ],
   "shell": {
@@ -243,6 +244,18 @@
         0.0,
         0.85,
         -0.4
+      ]
+    },
+    "side": {
+      "position": [
+        3.55,
+        1.28,
+        2.15
+      ],
+      "target": [
+        0.15,
+        0.62,
+        -0.8
       ]
     }
   },
@@ -301,11 +314,9 @@
       "unlit default"
     ],
     "must_read": [
-      "At a glance: a small screening room \u2014 seats in ranked rows facing a large screen.",
-      "Every seat front faces the screen; seat backs toward the entry (+Z).",
-      "One matching theatre-chair type only (no dining chairs or sofas).",
-      "Row spacing ~1.4m; first row ~3.3m from screen.",
-      "If seats appear back-to-screen, flip theatre_chair rotationY from pi to 0 (native facing check)."
+      "Every seat front (cushion / front edge) faces the screen on -Z.",
+      "Chair backs toward the entry (+Z), not toward the screen.",
+      "Native GLB occupant faces -Z; keep theatre_chair rotationY at 0."
     ]
   }
 }
