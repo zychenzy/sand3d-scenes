@@ -11,3 +11,6 @@ Photos: tall pale walls, few seats, plinths, large hanging works, air around obj
 
 ## v2 layout fix
 Replaced Sofa2 armchairs with a long slab museum bench (`0025f9484fc6`). Two benches only; no sofas.
+
+## v3 layout fix
+Rotated both benches 90° so they face the wall works / sit correctly in the gallery aisle.

@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "title": "Indoor lounge with billiards v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.0,
+      "depth": 7.4,
+      "height": 3.05
+    },
+    "notes": [
+      "Full-size pool table (balls + rack baked) centered with cueing clearance.",
+      "One sofa facing the table from the entry side; a small side seating pair \u2014 not a restaurant dining set."
+    ]
+  },
+  "assets": {
+    "pool_table": {
+      "glb": "assets/pool_table__001a994fe20b.glb",
+      "targetHeight": 0.82
+    },
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.82
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    }
+  },
+  "instances": [
+    {
+      "id": "pool",
+      "kind": "pool_table",
+      "position": [
+        0.0,
+        0.0,
+        -0.35
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "sofa",
+      "kind": "sofa_solid",
+      "position": [
+        0.0,
+        0.0,
+        2.85
+      ],
+      "rotationY": 0.0,
+      "scale": [
+        1.35,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "pend",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.62,
+        -0.35
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [
+        -3.55,
+        0.0,
+        2.45
+      ],
+      "rotationY": 0.25
+    }
+  ],
+  "shell": {
+    "floorColor": "#6a4a32",
+    "wallColor": "#4a5c54",
+    "woodColor": "#4a2e1c",
+    "ceilingColor": "#3a4440",
+    "accentColor": "#2a6a4a",
+    "clearColor": "#3a4842",
+    "fogColor": "#3a4842",
+    "fogNear": 14,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      6.5,
+      2.65,
+      5.0
+    ],
+    "target": [
+      0.0,
+      0.7,
+      -0.2
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.8,
+        2.4,
+        -1.2
+      ],
+      "target": [
+        0.0,
+        0.7,
+        -0.2
+      ]
+    },
+    "close": {
+      "position": [
+        1.8,
+        1.5,
+        2.0
+      ],
+      "target": [
+        0.0,
+        0.75,
+        -0.3
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 14598230,
+      "ground": 4872784,
+      "intensity": 0.82
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.65,
+      "position": [
+        5,
+        10,
+        4
+      ]
+    },
+    "fill": {
+      "color": 10137768,
+      "intensity": 0.62,
+      "position": [
+        -4,
+        5,
+        2
+      ]
+    },
+    "points": [
+      {
+        "color": 16771264,
+        "intensity": 0.95,
+        "position": [
+          0,
+          2.5,
+          -0.3
+        ],
+        "distance": 14
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "table close",
+      "unlit"
+    ],
+    "must_read": [
+      "Pool table is unmistakable (felt, pockets, racked balls).",
+      "Sofa faces the table, not back-to-table.",
+      "Clear cueing space around the table."
+    ]
+  }
+}

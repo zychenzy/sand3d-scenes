@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "title": "Board-game room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 8.8,
+      "depth": 7.2,
+      "height": 3.0
+    },
+    "notes": [
+      "Three square tables, four matching wooden chairs per table facing inward.",
+      "Not a restaurant restyle: no booths, no long dining tables, no service counter.",
+      "No baked chess/board prop in cached shards — cups mark play; board tokens are a catalog gap."
+    ]
+  },
+  "assets": {
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    }
+  },
+  "instances": [
+    {
+      "id": "t0",
+      "kind": "square_table",
+      "position": [
+        -2.15,
+        0.0,
+        -0.35
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "cup_0",
+      "kind": "cup_mug",
+      "position": [
+        -2.03,
+        0.76,
+        -0.43
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "pend_0",
+      "kind": "pendant_lamp",
+      "position": [
+        -2.15,
+        2.52,
+        -0.35
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "ch_0_0",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0.0,
+        0.27
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "ch_0_1",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0.0,
+        -0.97
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "ch_0_2",
+      "kind": "dining_chair",
+      "position": [
+        -1.53,
+        0.0,
+        -0.35
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "ch_0_3",
+      "kind": "dining_chair",
+      "position": [
+        -2.77,
+        0.0,
+        -0.35
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "t1",
+      "kind": "square_table",
+      "position": [
+        2.15,
+        0.0,
+        -0.35
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "cup_1",
+      "kind": "cup_mug",
+      "position": [
+        2.27,
+        0.76,
+        -0.43
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pend_1",
+      "kind": "pendant_lamp",
+      "position": [
+        2.15,
+        2.52,
+        -0.35
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "ch_1_0",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0.0,
+        0.27
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "ch_1_1",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0.0,
+        -0.97
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "ch_1_2",
+      "kind": "dining_chair",
+      "position": [
+        2.77,
+        0.0,
+        -0.35
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "ch_1_3",
+      "kind": "dining_chair",
+      "position": [
+        1.53,
+        0.0,
+        -0.35
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "t2",
+      "kind": "square_table",
+      "position": [
+        0.0,
+        0.0,
+        1.95
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "cup_2",
+      "kind": "cup_mug",
+      "position": [
+        0.12,
+        0.76,
+        1.87
+      ],
+      "rotationY": 0.8
+    },
+    {
+      "id": "pend_2",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.52,
+        1.95
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "ch_2_0",
+      "kind": "dining_chair",
+      "position": [
+        0.0,
+        0.0,
+        2.57
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "ch_2_1",
+      "kind": "dining_chair",
+      "position": [
+        0.0,
+        0.0,
+        1.33
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "ch_2_2",
+      "kind": "dining_chair",
+      "position": [
+        0.62,
+        0.0,
+        1.95
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "ch_2_3",
+      "kind": "dining_chair",
+      "position": [
+        -0.62,
+        0.0,
+        1.95
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "plant_a",
+      "kind": "flowerpot",
+      "position": [
+        3.9,
+        0.0,
+        -2.6
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "plant_b",
+      "kind": "flowerpot",
+      "position": [
+        -3.9,
+        0.0,
+        2.5
+      ],
+      "rotationY": -0.3
+    }
+  ],
+  "shell": {
+    "floorColor": "#8a6a4a",
+    "wallColor": "#e8dcc8",
+    "woodColor": "#5a3a22",
+    "ceilingColor": "#f0e6d4",
+    "accentColor": "#3a5a6a",
+    "clearColor": "#d8cbb8",
+    "fogColor": "#d8cbb8",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 48,
+    "position": [
+      6.4,
+      2.6,
+      4.8
+    ],
+    "target": [
+      0.0,
+      0.8,
+      0.2
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.5,
+        2.4,
+        -1.0
+      ],
+      "target": [
+        0.0,
+        0.8,
+        0.3
+      ]
+    },
+    "close": {
+      "position": [
+        0.4,
+        1.35,
+        3.3
+      ],
+      "target": [
+        0.0,
+        0.7,
+        1.8
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16774890,
+      "ground": 6972508,
+      "intensity": 0.58
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.2,
+      "position": [
+        5,
+        10,
+        4
+      ]
+    },
+    "fill": {
+      "color": 12105912,
+      "intensity": 0.35,
+      "position": [
+        -5,
+        5,
+        2
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "table close",
+      "unlit"
+    ],
+    "must_read": [
+      "Three distinct game tables with chairs facing the tabletop, never chair-backs to the table.",
+      "One chair type.",
+      "Does not read as the restaurant (no booths / no long banquet tables)."
+    ]
+  }
+}

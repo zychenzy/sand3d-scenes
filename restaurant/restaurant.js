@@ -79,8 +79,8 @@ function makeProcedural(layout) {
   addBox(g, 0.55, 1.5, 0.05, slate, 2.55, 2.05, -3.38);
   for (let r = 0; r < 8; r++) addBox(g, 0.38, 0.035, 0.02, cream, 2.55, 2.55 - r * 0.14, -3.34);
 
-  // paper lanterns
-  for (const [x, z] of [[-2.2, -1.6], [0.2, -1.6], [2.2, 0.4], [-1.1, 1.5]]) {
+  // paper lanterns over booth island + table zone
+  for (const [x, z] of [[-3.17, 1.22], [-0.63, 1.22], [-3.17, -0.88], [-0.63, -0.88], [2.55, 1.45], [2.55, -1.15]]) {
     addCyl(g, 0.14, 0.14, 0.28, toon('#e8c56b'), x, 2.35, z, 14);
     addCyl(g, 0.02, 0.02, 0.2, toon('#3a2a1a'), x, 2.55, z, 8);
   }

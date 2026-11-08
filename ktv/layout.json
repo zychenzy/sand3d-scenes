@@ -9,7 +9,7 @@
       "height": 2.7
     },
     "notes": [
-      "Simple KTV: three solid sofas on three sides of one low long table, TV on the open wall."
+      "Simple KTV U: three sofas facing a low long-wide table (rotated 90\u00b0, enlarged); long-side sofa stretched to the table; TV on the open wall."
     ]
   },
   "assets": {
@@ -41,39 +41,49 @@
       "position": [
         0.0,
         0,
-        -0.15
+        0.05
       ],
-      "rotationY": 0.0
+      "rotationY": 1.5708,
+      "scale": [
+        1.7,
+        1.0,
+        1.79
+      ]
     },
     {
-      "id": "sofa_back",
+      "id": "sofa_long",
       "kind": "sofa_solid",
       "position": [
         0.0,
         0,
-        1.25
+        1.31
       ],
-      "rotationY": 3.1416
+      "rotationY": 0.0,
+      "scale": [
+        1.87,
+        1.0,
+        1.0
+      ]
     },
     {
       "id": "sofa_left",
       "kind": "sofa_solid",
       "position": [
-        -1.85,
+        -1.94,
         0,
-        -0.15
+        0.05
       ],
-      "rotationY": 1.5708
+      "rotationY": -1.5708
     },
     {
       "id": "sofa_right",
       "kind": "sofa_solid",
       "position": [
-        1.85,
+        1.94,
         0,
-        -0.15
+        0.05
       ],
-      "rotationY": -1.5708
+      "rotationY": 1.5708
     },
     {
       "id": "tv1",
@@ -99,9 +109,9 @@
       "id": "cup1",
       "kind": "cup_mug",
       "position": [
-        -0.25,
+        -0.55,
         0.37,
-        -0.05
+        0.15
       ],
       "rotationY": 0.5
     },
@@ -109,9 +119,9 @@
       "id": "cup2",
       "kind": "cup_mug",
       "position": [
-        0.28,
+        0.45,
         0.37,
-        -0.25
+        -0.1
       ],
       "rotationY": -0.3
     }

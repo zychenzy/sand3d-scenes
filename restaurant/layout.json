@@ -9,8 +9,8 @@
       "height": 3.05
     },
     "notes": [
-      "Japanese restaurant: larger rectangular dining tables, booth \u9694\u95f4, no freestanding screens/\u5c4f\u98ce.",
-      "Decluttered mixed seating (removed booth-doble + banquette + shoji)."
+      "Japanese restaurant: booth zone (repeated back-to-back diner booths) and a table zone with one chair type.",
+      "No freestanding screens/\u5c4f\u98ce. Larger rectangular dining tables kept in the chair zone, six matching chairs per table."
     ]
   },
   "assets": {
@@ -41,22 +41,42 @@
   },
   "instances": [
     {
-      "id": "booth_1",
+      "id": "booth_l1",
       "kind": "diner_booth",
       "position": [
-        -2.55,
+        -3.167,
         0,
-        1.15
+        1.22
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "booth_r1",
+      "kind": "diner_booth",
+      "position": [
+        -0.633,
+        0,
+        1.22
       ],
       "rotationY": 1.5708
     },
     {
-      "id": "booth_2",
+      "id": "booth_l2",
       "kind": "diner_booth",
       "position": [
-        -2.55,
+        -3.167,
         0,
-        -0.95
+        -0.88
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "booth_r2",
+      "kind": "diner_booth",
+      "position": [
+        -0.633,
+        0,
+        -0.88
       ],
       "rotationY": 1.5708
     },
@@ -64,121 +84,221 @@
       "id": "t1",
       "kind": "dining_table",
       "position": [
-        0.05,
+        2.55,
         0,
-        1.15
+        1.45
       ],
       "rotationY": 0.0
-    },
-    {
-      "id": "t1cA",
-      "kind": "dining_chair",
-      "position": [
-        0.05,
-        0,
-        1.95
-      ],
-      "rotationY": 3.1416
-    },
-    {
-      "id": "t1cB",
-      "kind": "dining_chair",
-      "position": [
-        0.05,
-        0,
-        0.35
-      ],
-      "rotationY": 0.05
     },
     {
       "id": "t1cup",
       "kind": "cup_mug",
       "position": [
-        0.15,
+        2.65,
         0.77,
-        1.1
+        1.4
       ],
       "rotationY": 0.7
+    },
+    {
+      "id": "t1cN1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        2.25
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t1cN2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        2.25
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t1cS1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        0.6499999999999999
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t1cS2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        0.6499999999999999
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t1cE",
+      "kind": "dining_chair",
+      "position": [
+        3.71,
+        0,
+        1.45
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "t1cW",
+      "kind": "dining_chair",
+      "position": [
+        1.39,
+        0,
+        1.45
+      ],
+      "rotationY": 1.5708
     },
     {
       "id": "t2",
       "kind": "dining_table",
       "position": [
-        2.45,
+        2.55,
         0,
-        -0.15
+        -1.15
       ],
-      "rotationY": 1.5708
-    },
-    {
-      "id": "t2cA",
-      "kind": "dining_chair",
-      "position": [
-        3.25,
-        0,
-        -0.15
-      ],
-      "rotationY": -1.5708
-    },
-    {
-      "id": "t2cB",
-      "kind": "dining_chair",
-      "position": [
-        1.65,
-        0,
-        -0.15
-      ],
-      "rotationY": 1.5708
+      "rotationY": 0.0
     },
     {
       "id": "t2cup",
       "kind": "cup_mug",
       "position": [
-        2.45,
+        2.5,
         0.77,
-        -0.05
+        -1.05
       ],
       "rotationY": -0.4
     },
     {
-      "id": "p1",
-      "kind": "pendant_lamp",
+      "id": "t2cN1",
+      "kind": "dining_chair",
       "position": [
-        -2.4,
-        2.52,
-        1.15
+        2.0999999999999996,
+        0,
+        -0.34999999999999987
       ],
-      "rotationY": 0
+      "rotationY": 3.1416
     },
     {
-      "id": "p2",
+      "id": "t2cN2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        -0.34999999999999987
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "t2cS1",
+      "kind": "dining_chair",
+      "position": [
+        2.0999999999999996,
+        0,
+        -1.95
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t2cS2",
+      "kind": "dining_chair",
+      "position": [
+        3.0,
+        0,
+        -1.95
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "t2cE",
+      "kind": "dining_chair",
+      "position": [
+        3.71,
+        0,
+        -1.15
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "t2cW",
+      "kind": "dining_chair",
+      "position": [
+        1.39,
+        0,
+        -1.15
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "p_bl1",
       "kind": "pendant_lamp",
       "position": [
-        -2.4,
+        -3.167,
         2.52,
-        -0.95
+        1.22
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "p_br1",
+      "kind": "pendant_lamp",
+      "position": [
+        -0.633,
+        2.52,
+        1.22
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "p_bl2",
+      "kind": "pendant_lamp",
+      "position": [
+        -3.167,
+        2.52,
+        -0.88
       ],
       "rotationY": 0.2
     },
     {
-      "id": "p3",
+      "id": "p_br2",
       "kind": "pendant_lamp",
       "position": [
-        0.05,
+        -0.633,
         2.52,
-        1.15
-      ],
-      "rotationY": 0
-    },
-    {
-      "id": "p4",
-      "kind": "pendant_lamp",
-      "position": [
-        2.45,
-        2.52,
-        -0.15
+        -0.88
       ],
       "rotationY": -0.1
+    },
+    {
+      "id": "p_t1",
+      "kind": "pendant_lamp",
+      "position": [
+        2.55,
+        2.52,
+        1.45
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "p_t2",
+      "kind": "pendant_lamp",
+      "position": [
+        2.55,
+        2.52,
+        -1.15
+      ],
+      "rotationY": 0.1
     },
     {
       "id": "plant",

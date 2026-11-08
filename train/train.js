@@ -76,10 +76,8 @@ function makeProcedural(layout) {
   g.name = 'procedural';
   const s = layout.shell;
   const yellow = toon(s.partitionColor);
-  const wood = toon(s.woodColor);
-  const woodL = toon(s.woodLight);
   const metal = toon('#6a7278');
-  const { width: W, depth: D } = layout.meta.room;
+  const { depth: D } = layout.meta.room;
   const bays = layout.meta.bays;
   const pitch = layout.meta.bayPitch;
   const z0 = layout.meta.bay0;
@@ -96,8 +94,24 @@ function makeProcedural(layout) {
     addBox(g, seatW, partH, 0.07, yellow, 0.72, partH / 2, z);
   }
 
-  // extra solid plinth hints under each bay (in case a seat hovers visually)
-  // skipped — train_seat GLB already has sloping_base
+  // Railway dining tables: one long central pedestal (not four free legs).
+  const tableWood = toon('#7a5741');
+  const tablePed = toon('#5c4030');
+  function addCoachTable(x, z) {
+    const topW = 1.04; // across the seat pair (X)
+    const topD = 0.86; // between facing seats (Z)
+    const topY = 0.725;
+    addBox(g, topW, 0.05, topD, tableWood, x, topY, z);
+    // one long central pedestal running the table length (Z), not four legs
+    addBox(g, 0.16, 0.64, 0.62, tablePed, x, 0.34, z);
+    addBox(g, 0.26, 0.05, 0.70, tablePed, x, 0.025, z); // foot
+    addBox(g, 0.22, 0.04, 0.66, tablePed, x, 0.675, z); // capital
+  }
+  for (let i = 0; i < bays; i++) {
+    const z = z0 + i * pitch;
+    addCoachTable(-0.72, z);
+    addCoachTable(0.72, z);
+  }
 
   // overhead aisle lights
   for (let i = 0; i < bays; i++) {

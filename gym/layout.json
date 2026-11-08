@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "title": "Gym training / boxing room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.0,
+      "depth": 7.2,
+      "height": 3.2
+    },
+    "notes": [
+      "Three stand-mounted heavy bags with clear striking space; rest benches along the entry wall.",
+      "No treadmills/dumbbells/racks in the catalog \u2014 this reads as a bag-training room, not a full cardio gym."
+    ]
+  },
+  "assets": {
+    "punching_bag": {
+      "glb": "assets/punching_bag__5a21298417a6.glb",
+      "targetHeight": 2.15
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    }
+  },
+  "instances": [
+    {
+      "id": "bag_a",
+      "kind": "punching_bag",
+      "position": [
+        -2.15,
+        0.0,
+        -1.85
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "bag_b",
+      "kind": "punching_bag",
+      "position": [
+        0.15,
+        0.0,
+        -2.05
+      ],
+      "rotationY": -0.15
+    },
+    {
+      "id": "bag_c",
+      "kind": "punching_bag",
+      "position": [
+        2.35,
+        0.0,
+        -1.75
+      ],
+      "rotationY": 0.25
+    },
+    {
+      "id": "bench_a",
+      "kind": "museum_bench",
+      "position": [
+        -2.6,
+        0.0,
+        2.15
+      ],
+      "rotationY": 0.0,
+      "scale": [
+        1.4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "bench_b",
+      "kind": "museum_bench",
+      "position": [
+        2.4,
+        0.0,
+        2.15
+      ],
+      "rotationY": 0.0,
+      "scale": [
+        1.4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [
+        3.6,
+        0.0,
+        2.35
+      ],
+      "rotationY": 0.2
+    }
+  ],
+  "shell": {
+    "floorColor": "#4a4a4c",
+    "wallColor": "#5a5a5e",
+    "woodColor": "#2a2a2a",
+    "ceilingColor": "#2e2e30",
+    "accentColor": "#9a3a3a",
+    "clearColor": "#3a3a3e",
+    "fogColor": "#3a3a3e",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      6.4,
+      2.7,
+      5.0
+    ],
+    "target": [
+      0.1,
+      1.1,
+      -0.8
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.6,
+        2.5,
+        -0.6
+      ],
+      "target": [
+        0.0,
+        1.1,
+        -1.0
+      ]
+    },
+    "close": {
+      "position": [
+        0.9,
+        1.5,
+        1.2
+      ],
+      "target": [
+        0.15,
+        1.2,
+        -1.8
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 15262940,
+      "ground": 4868684,
+      "intensity": 0.95
+    },
+    "key": {
+      "color": 16777200,
+      "intensity": 1.75,
+      "position": [
+        5,
+        10,
+        4
+      ]
+    },
+    "fill": {
+      "color": 11579576,
+      "intensity": 0.6,
+      "position": [
+        -4,
+        5,
+        3
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "bag close",
+      "unlit"
+    ],
+    "must_read": [
+      "Three bag stands dominate; open floor around each bag.",
+      "Benches are for rest, not mixed dining furniture.",
+      "Does not claim treadmills or free weights."
+    ]
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "meta": {
+    "title": "Library reading room v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 10.6,
+      "depth": 7.6,
+      "height": 3.2
+    },
+    "notes": [
+      "Long communal reading tables (not classroom desks). Chairs face the tables and the back-wall stacks.",
+      "Bookcases along back and left are filled with procedural books. Catalog desk + lectern as a staff zone."
+    ]
+  },
+  "assets": {
+    "display_bookcase": {
+      "glb": "assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 2.15
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42
+    },
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.15
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55
+    }
+  },
+  "instances": [
+    {
+      "id": "case_back_0",
+      "kind": "display_bookcase",
+      "position": [
+        -4.2,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_1",
+      "kind": "display_bookcase",
+      "position": [
+        -2.8,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_2",
+      "kind": "display_bookcase",
+      "position": [
+        -1.4,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_3",
+      "kind": "display_bookcase",
+      "position": [
+        0.0,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_4",
+      "kind": "display_bookcase",
+      "position": [
+        1.4,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_5",
+      "kind": "display_bookcase",
+      "position": [
+        2.8,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_back_6",
+      "kind": "display_bookcase",
+      "position": [
+        4.2,
+        0,
+        -3.42
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "case_left_0",
+      "kind": "display_bookcase",
+      "position": [
+        -4.95,
+        0,
+        -1.7
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "case_left_1",
+      "kind": "display_bookcase",
+      "position": [
+        -4.95,
+        0,
+        -0.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "case_left_2",
+      "kind": "display_bookcase",
+      "position": [
+        -4.95,
+        0,
+        1.3
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lectern",
+      "kind": "book_stand",
+      "position": [
+        -3.85,
+        0,
+        2.55
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "shelf_side",
+      "kind": "wall_shelf",
+      "position": [
+        -4.7,
+        1.45,
+        2.55
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "plant_a",
+      "kind": "flowerpot",
+      "position": [
+        4.85,
+        0,
+        -2.85
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "plant_b",
+      "kind": "flowerpot",
+      "position": [
+        -4.85,
+        0,
+        2.85
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "c0s0",
+      "kind": "dining_chair",
+      "position": [
+        -2.05,
+        0,
+        -1.92
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "c0s1",
+      "kind": "dining_chair",
+      "position": [
+        -0.68,
+        0,
+        -1.92
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "c0s2",
+      "kind": "dining_chair",
+      "position": [
+        0.68,
+        0,
+        -1.92
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "c0s3",
+      "kind": "dining_chair",
+      "position": [
+        2.05,
+        0,
+        -1.92
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "lamp0_0",
+      "kind": "library_lamp",
+      "position": [
+        -1.48,
+        0.76,
+        -1.15
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp0_1",
+      "kind": "library_lamp",
+      "position": [
+        0.12,
+        0.76,
+        -1.15
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp0_2",
+      "kind": "library_lamp",
+      "position": [
+        1.72,
+        0.76,
+        -1.15
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "pend0",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.62,
+        -1.15
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "c1n0",
+      "kind": "dining_chair",
+      "position": [
+        -2.05,
+        0,
+        1.97
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "c1n1",
+      "kind": "dining_chair",
+      "position": [
+        -0.68,
+        0,
+        1.97
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "c1n2",
+      "kind": "dining_chair",
+      "position": [
+        0.68,
+        0,
+        1.97
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "c1n3",
+      "kind": "dining_chair",
+      "position": [
+        2.05,
+        0,
+        1.97
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "lamp1_0",
+      "kind": "library_lamp",
+      "position": [
+        -1.48,
+        0.76,
+        1.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp1_1",
+      "kind": "library_lamp",
+      "position": [
+        0.12,
+        0.76,
+        1.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp1_2",
+      "kind": "library_lamp",
+      "position": [
+        1.72,
+        0.76,
+        1.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "pend1",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.62,
+        1.2
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "c0w",
+      "kind": "dining_chair",
+      "position": [
+        -3.02,
+        0,
+        -1.15
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "c0e",
+      "kind": "dining_chair",
+      "position": [
+        3.02,
+        0,
+        -1.15
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "c1w",
+      "kind": "dining_chair",
+      "position": [
+        -3.02,
+        0,
+        1.2
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "c1e",
+      "kind": "dining_chair",
+      "position": [
+        3.02,
+        0,
+        1.2
+      ],
+      "rotationY": -1.5708
+    }
+  ],
+  "shell": {
+    "floorColor": "#c4b49a",
+    "wallColor": "#efe6d4",
+    "woodColor": "#6a4e36",
+    "ceilingColor": "#f3eee4",
+    "accentColor": "#3d5a45",
+    "clearColor": "#d9d2c4",
+    "fogColor": "#d9d2c4",
+    "fogNear": 16,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 48,
+    "position": [
+      7.4,
+      2.85,
+      5.4
+    ],
+    "target": [
+      0.1,
+      1.05,
+      -0.9
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        6.8,
+        2.7,
+        -0.8
+      ],
+      "target": [
+        -0.2,
+        1.1,
+        -1.2
+      ]
+    },
+    "close": {
+      "position": [
+        1.85,
+        1.45,
+        2.15
+      ],
+      "target": [
+        0.0,
+        0.82,
+        -1.45
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16774890,
+      "ground": 6972508,
+      "intensity": 0.6
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.2,
+      "position": [
+        6,
+        11,
+        5
+      ]
+    },
+    "fill": {
+      "color": 13160668,
+      "intensity": 0.38,
+      "position": [
+        -6,
+        6,
+        3
+      ]
+    },
+    "points": [
+      {
+        "color": 16771264,
+        "intensity": 0.32,
+        "position": [
+          0,
+          2.6,
+          -1.2
+        ],
+        "distance": 12
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "desk close",
+      "unlit default"
+    ],
+    "must_read": [
+      "At a glance: wall of shelves + rows of reading desks, not a cafe or gallery.",
+      "Every reading chair front faces its desk and the back-wall stacks (not chair-backs to the desks).",
+      "Consistent wooden chair; no sofas.",
+      "Clear aisle between stacks and first desk row (>=1.5m).",
+      "Green banker lamps sit on desk tops, not floating."
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Open-floor stretch studio v1 (yoga substitute)",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 8.6,
+      "depth": 7.4,
+      "height": 3.1
+    },
+    "notes": [
+      "SUBSTITUTE for yoga studio: catalog has no yoga mats, blocks, or bolsters in the scan.",
+      "Clear center floor with perimeter benches facing inward and plants \u2014 reads as a stretch/rest studio, not a furnished cafe."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_n",
+      "kind": "museum_bench",
+      "position": [
+        0.0,
+        0.0,
+        -2.72
+      ],
+      "rotationY": 3.1416,
+      "scale": [
+        1.4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "plant_0",
+      "kind": "flowerpot",
+      "position": [
+        -2.2,
+        0.0,
+        -2.85
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "plant_1",
+      "kind": "flowerpot",
+      "position": [
+        0.0,
+        0.0,
+        -2.85
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "plant_2",
+      "kind": "flowerpot",
+      "position": [
+        2.2,
+        0.0,
+        -2.85
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "plant_e1",
+      "kind": "flowerpot",
+      "position": [
+        3.4,
+        0.0,
+        1.6
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "plant_e2",
+      "kind": "flowerpot",
+      "position": [
+        3.4,
+        0.0,
+        -1.4
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "pend",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        2.55,
+        0.0
+      ],
+      "rotationY": 0
+    }
+  ],
+  "shell": {
+    "floorColor": "#e6d7c4",
+    "wallColor": "#f3efe6",
+    "woodColor": "#8a6a4a",
+    "ceilingColor": "#fffaf4",
+    "accentColor": "#8a6a4a",
+    "clearColor": "#ebe4d6",
+    "fogColor": "#ebe4d6",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 48,
+    "position": [
+      6.2,
+      2.6,
+      4.8
+    ],
+    "target": [
+      0.0,
+      0.6,
+      0.0
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.4,
+        2.4,
+        -1.2
+      ],
+      "target": [
+        0.0,
+        0.6,
+        0.0
+      ]
+    },
+    "close": {
+      "position": [
+        1.2,
+        1.2,
+        3.3
+      ],
+      "target": [
+        0.0,
+        0.35,
+        1.4
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16777200,
+      "ground": 9211568,
+      "intensity": 0.7
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.25,
+      "position": [
+        5,
+        12,
+        5
+      ]
+    },
+    "fill": {
+      "color": 13158600,
+      "intensity": 0.4,
+      "position": [
+        -5,
+        6,
+        3
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "bench close",
+      "unlit"
+    ],
+    "must_read": [
+      "Large empty floor is the main space.",
+      "Benches face inward; no tables cluttering the center.",
+      "Do not label this a finished yoga studio \u2014 mats are missing."
+    ]
+  }
+}
