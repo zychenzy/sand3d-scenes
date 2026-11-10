@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "title": "Orchard gathering terrace",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "sloping late-summer orchard harvest terrace",
+    "forward": "rotationY 0 faces +Z. Positive rotationY turns the facing toward +X.",
+    "notes": [
+      "Focal point is the long communal table under a grape pergola on the middle terrace.",
+      "Press, crates and the stone shed are the working edges. The path winds uphill between varied fruit trees.",
+      "Terrace y is the grass surface. Tabletop is mid terrace y plus table.top."
+    ]
+  },
+  "terraces": [
+    {"id": "low", "y": 0.0, "x0": -13.2, "x1": 13.6, "z0": 2.7, "z1": 13.2},
+    {"id": "mid", "y": 0.7, "x0": -11.2, "x1": 10.4, "z0": -5.6, "z1": 2.7},
+    {"id": "high", "y": 1.42, "x0": -9.4, "x1": 8.6, "z0": -10.7, "z1": -5.6},
+    {"id": "crest", "y": 2.08, "x0": -8.2, "x1": 7.2, "z0": -14.8, "z1": -10.7}
+  ],
+  "hill": {"z0": -14.8, "y0": 2.08, "z1": -26.0, "y1": 5.18},
+  "walls": [
+    {"id": "mid-front-l", "a": [-11.2, 2.9], "b": [-0.04, 2.9], "base": 0.0, "top": 0.76, "seed": 11},
+    {"id": "mid-front-r", "a": [1.84, 3.0], "b": [10.4, 3.26], "base": 0.0, "top": 0.76, "seed": 12},
+    {"id": "mid-return-l", "a": [-11.2, 2.9], "b": [-11.05, 1.6], "base": 0.0, "top": 0.76, "seed": 13},
+    {"id": "mid-return-r", "a": [10.4, 3.26], "b": [10.2, 2.15], "base": 0.0, "top": 0.7, "seed": 14},
+    {"id": "high-front-l", "a": [-9.4, -5.4], "b": [-2.56, -5.4], "base": 0.7, "top": 1.48, "seed": 21},
+    {"id": "high-front-r", "a": [-0.86, -5.32], "b": [8.6, -5.14], "base": 0.7, "top": 1.48, "seed": 22},
+    {"id": "crest-front-l", "a": [-8.2, -10.5], "b": [0.18, -10.5], "base": 1.42, "top": 2.14, "seed": 31},
+    {"id": "crest-front-r", "a": [1.92, -10.42], "b": [7.2, -10.22], "base": 1.42, "top": 2.14, "seed": 32},
+    {"id": "meadow-remnant", "a": [-9.6, 9.5], "b": [-3.1, 8.55], "base": 0.0, "top": 0.42, "seed": 41}
+  ],
+  "steps": [
+    {"id": "to-mid", "x": 0.9, "zWall": 2.7, "y0": 0.0, "y1": 0.7, "width": 1.8, "run": 0.36, "n": 4},
+    {"id": "to-high", "x": -1.7, "zWall": -5.6, "y0": 0.7, "y1": 1.42, "width": 1.66, "run": 0.34, "n": 4},
+    {"id": "to-crest", "x": 1.05, "zWall": -10.7, "y0": 1.42, "y1": 2.08, "width": 1.7, "run": 0.32, "n": 4}
+  ],
+  "piers": [
+    {"x": 5.55, "z": 10.75, "y": 0.0, "w": 0.5, "h": 0.88, "d": 0.46},
+    {"x": 7.4, "z": 11.0, "y": 0.0, "w": 0.42, "h": 0.74, "d": 0.4}
+  ],
+  "paths": [
+    {
+      "id": "meadow",
+      "width": 1.16,
+      "points": [[6.4, 0.0, 11.45], [4.7, 0.0, 9.5], [3.15, 0.0, 7.7], [2.05, 0.0, 6.05], [1.05, 0.0, 4.85], [0.9, 0.0, 4.05]]
+    },
+    {
+      "id": "gathering",
+      "width": 1.12,
+      "points": [[0.9, 0.7, 2.25], [-0.15, 0.7, 2.18], [-2.15, 0.7, 2.05], [-4.15, 0.7, 1.9], [-5.25, 0.7, 0.85], [-5.35, 0.7, -0.55], [-5.05, 0.7, -1.9], [-4.15, 0.7, -3.05], [-2.85, 0.7, -3.7], [-1.7, 0.7, -4.12]]
+    },
+    {
+      "id": "orchard",
+      "width": 1.02,
+      "points": [[-1.7, 1.42, -6.2], [-0.4, 1.42, -7.2], [0.45, 1.42, -8.15], [1.05, 1.42, -9.28]]
+    },
+    {
+      "id": "crest",
+      "width": 0.92,
+      "points": [[1.05, 2.08, -10.9], [0.05, 2.08, -12.3], [-1.15, 2.08, -13.55]]
+    }
+  ],
+  "table": {"x": 0.2, "z": -0.55, "length": 4.6, "width": 0.92, "top": 0.76, "terrace": "mid"},
+  "benches": [
+    {"id": "far-bench", "x": 0.2, "z": -1.5, "length": 3.45, "width": 0.36, "rotY": 0, "terrace": "mid", "facesTable": true}
+  ],
+  "pergola": {"x": 0.2, "z": -0.55, "halfX": 3.45, "halfZ": 1.62, "postH": 2.26, "terrace": "mid"},
+  "press": {"x": 5.5, "z": -0.85, "y": 0.7, "facing": "+z"},
+  "shed": {"x": -8.15, "z": -0.15, "y": 0.7, "w": 3.55, "d": 2.85, "wallH": 2.32, "rise": 1.5, "door": "+x"},
+  "crates": [
+    {"id": "crate-open", "x": 4.2, "z": 0.58, "y": 0.7, "rot": 0.25, "fill": "apple", "stack": 1},
+    {"id": "crate-stack", "x": 6.6, "z": -0.35, "y": 0.7, "rot": -0.12, "fill": "apple", "stack": 2},
+    {"id": "crate-back", "x": 6.05, "z": -1.95, "y": 0.7, "rot": 0.45, "fill": "pear", "stack": 1},
+    {"id": "crate-meadow", "x": 3.7, "z": 6.7, "y": 0.0, "rot": 0.55, "fill": "apple", "stack": 1}
+  ],
+  "barrels": [
+    {"x": 6.85, "z": -1.55, "y": 0.7, "r": 0.3, "h": 0.68},
+    {"x": 7.2, "z": -1.05, "y": 0.7, "r": 0.22, "h": 0.5}
+  ],
+  "baskets": [
+    {"x": 4.85, "z": -0.12, "y": 0.7, "r": 0.22, "h": 0.28, "fill": "apple"},
+    {"x": 6.2, "z": 0.02, "y": 0.7, "r": 0.2, "h": 0.26, "fill": "plum"}
+  ],
+  "barrow": {"x": 3.9, "z": 6.45, "y": 0.0, "rot": -0.55},
+  "trees": [
+    {"id": "apple-gate", "species": "apple", "x": -5.0, "z": 7.6, "y": 0.0, "seed": 101, "scale": 1.22, "lean": 0.7, "ladder": true},
+    {"id": "plum-right", "species": "plum", "x": 7.4, "z": 8.3, "y": 0.0, "seed": 202, "scale": 0.98, "lean": 0.45},
+    {"id": "apple-young", "species": "apple", "x": 4.45, "z": 5.05, "y": 0.0, "seed": 303, "scale": 0.58, "lean": 0.2, "stake": true},
+    {"id": "pear-low", "species": "pear", "x": -1.85, "z": 5.15, "y": 0.0, "seed": 404, "scale": 1.08, "lean": 0.5},
+    {"id": "apple-mid-l", "species": "apple", "x": -5.55, "z": -4.45, "y": 0.7, "seed": 505, "scale": 1.12, "lean": 0.55},
+    {"id": "pear-press", "species": "pear", "x": 7.35, "z": -3.85, "y": 0.7, "seed": 606, "scale": 1.16, "lean": 0.35},
+    {"id": "plum-shed", "species": "plum", "x": -8.95, "z": -3.55, "y": 0.7, "seed": 707, "scale": 0.92, "lean": 0.6},
+    {"id": "apple-mid-r", "species": "apple", "x": 2.55, "z": -4.25, "y": 0.7, "seed": 808, "scale": 0.88, "lean": 0.4, "sparse": true, "picked": true},
+    {"id": "apple-high-l", "species": "apple", "x": -5.7, "z": -7.55, "y": 1.42, "seed": 909, "scale": 1.18, "lean": 0.8},
+    {"id": "pear-high", "species": "pear", "x": -3.05, "z": -8.65, "y": 1.42, "seed": 111, "scale": 1.06, "lean": 0.4},
+    {"id": "plum-high", "species": "plum", "x": 3.7, "z": -7.25, "y": 1.42, "seed": 222, "scale": 0.94, "lean": 0.5},
+    {"id": "apple-high-r", "species": "apple", "x": 6.45, "z": -9.05, "y": 1.42, "seed": 333, "scale": 0.8, "lean": 0.3},
+    {"id": "pear-high-edge", "species": "pear", "x": -7.55, "z": -9.35, "y": 1.42, "seed": 444, "scale": 1.02, "lean": 0.65},
+    {"id": "apple-crest", "species": "apple", "x": -3.8, "z": -12.6, "y": 2.08, "seed": 555, "scale": 0.9, "lean": 0.4, "simple": true},
+    {"id": "plum-crest", "species": "plum", "x": 1.85, "z": -13.4, "y": 2.08, "seed": 666, "scale": 0.84, "lean": 0.5, "simple": true},
+    {"id": "pear-crest", "species": "pear", "x": 5.55, "z": -12.25, "y": 2.08, "seed": 777, "scale": 0.88, "lean": 0.25, "simple": true},
+    {"id": "apple-crest-l", "species": "apple", "x": -7.15, "z": -13.15, "y": 2.08, "seed": 888, "scale": 0.72, "lean": 0.55, "simple": true},
+    {"id": "hill-pear", "species": "pear", "x": -2.2, "z": -17.5, "y": 2.83, "seed": 1212, "scale": 0.86, "lean": 0.3, "simple": true, "hill": true},
+    {"id": "hill-apple", "species": "apple", "x": 4.2, "z": -19.2, "y": 3.3, "seed": 1313, "scale": 0.76, "lean": 0.5, "simple": true, "hill": true},
+    {"id": "hill-plum", "species": "plum", "x": -6.4, "z": -16.4, "y": 2.52, "seed": 1414, "scale": 0.72, "lean": 0.4, "simple": true, "hill": true}
+  ],
+  "assets": {
+    "dining_chair": {"glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86},
+    "cup_mug": {"glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09},
+    "jam_jar": {"glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.13},
+    "tray_napkin": {"glb": "assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.07},
+    "thermos": {"glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.22},
+    "flowerpot": {"glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32}
+  },
+  "instances": [
+    {"id": "chair-near-a", "kind": "dining_chair", "position": [-1.35, 0.7, 0.49], "rotationY": 3.1416},
+    {"id": "chair-near-b", "kind": "dining_chair", "position": [0.35, 0.7, 0.49], "rotationY": 3.1416},
+    {"id": "chair-near-c", "kind": "dining_chair", "position": [1.65, 0.7, 0.53], "rotationY": 3.1416},
+    {"id": "chair-end-w", "kind": "dining_chair", "position": [-2.6, 0.7, -0.55], "rotationY": 1.5708},
+    {"id": "chair-end-e", "kind": "dining_chair", "position": [3.0, 0.7, -0.55], "rotationY": -1.5708},
+    {"id": "mug-a", "kind": "cup_mug", "position": [-1.2, 1.46, -0.75], "rotationY": 0.4},
+    {"id": "mug-b", "kind": "cup_mug", "position": [-0.35, 1.46, -0.38], "rotationY": -0.5},
+    {"id": "mug-c", "kind": "cup_mug", "position": [0.55, 1.46, -0.78], "rotationY": 1.1},
+    {"id": "mug-d", "kind": "cup_mug", "position": [1.6, 1.46, -0.4], "rotationY": 0.2},
+    {"id": "jar-a", "kind": "jam_jar", "position": [1.05, 1.46, -0.62], "rotationY": 0.3},
+    {"id": "jar-b", "kind": "jam_jar", "position": [-0.85, 1.46, -0.42], "rotationY": -0.4},
+    {"id": "tray", "kind": "tray_napkin", "position": [2.05, 1.46, -0.62], "rotationY": 0.25},
+    {"id": "thermos", "kind": "thermos", "position": [-1.85, 1.46, -0.55], "rotationY": 0.6},
+    {"id": "pot-door", "kind": "flowerpot", "position": [-5.95, 0.7, 0.95], "rotationY": 0.4},
+    {"id": "pot-press", "kind": "flowerpot", "position": [4.55, 0.7, 1.05], "rotationY": -0.3}
+  ],
+  "shell": {
+    "clearColor": "#f3c99a",
+    "fogColor": "#efc59a",
+    "fogNear": 18,
+    "fogFar": 58
+  },
+  "camera": {
+    "fov": 40,
+    "near": 0.08,
+    "far": 220,
+    "position": [12.2, 7.6, 14.4],
+    "target": [-0.5, 1.65, -1.8]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [8.6, 2.85, 4.35],
+      "target": [-1.6, 1.55, -0.9]
+    },
+    "close": {
+      "position": [2.05, 1.78, 1.42],
+      "target": [0.15, 1.28, -0.5]
+    }
+  },
+  "lights": {
+    "hemi": {"sky": "#ffe0b8", "ground": "#6a5438", "intensity": 0.5},
+    "key": {"color": "#ffb15e", "intensity": 1.18, "position": [-12.5, 8.4, 14.5], "target": [0.2, 1.2, -1.0]},
+    "fill": {"color": "#8ea6c4", "intensity": 0.26, "position": [9.5, 5.2, -8.0]},
+    "shadow": {
+      "left": -22,
+      "right": 22,
+      "top": 22,
+      "bottom": -22,
+      "near": 0.5,
+      "far": 62,
+      "bias": -0.0004,
+      "normalBias": 0.03,
+      "mapSize": 2048
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "table close", "unlit"],
+    "must_read": [
+      "Stepped dry-stone terraces and a winding path, not a flat field.",
+      "Fruit trees show trunks and limbs, with apples, pears and plums mixed.",
+      "Long table and benches/chairs face each other under a grape pergola.",
+      "Press, crates and a stone shed sit at the edges of the gathering terrace.",
+      "Golden-hour light, no spotlight pools."
+    ]
+  }
+}
