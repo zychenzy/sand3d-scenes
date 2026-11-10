@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "title": "Billiards lounge — prior upgrade 20261110",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.8, "depth": 8.8, "height": 3.18 },
+    "table": {
+      "native": [1.527, 0.787, 2.8],
+      "targetHeight": 0.82,
+      "position": [0.05, 0.0, -0.45],
+      "cueClearance": 1.48,
+      "cueLength": 1.47
+    },
+    "notes": [
+      "One 9-foot table (long axis Z) is the focal play zone. A brass inlay marks a 1.48 m cue swing.",
+      "Spectator sofa on the entry wall faces the cloth. Two chairs on the right also face the table, not each other.",
+      "Bar is secondary: left-front corner, outside the swing. Cloth and pockets are the existing lounge bake."
+    ]
+  },
+  "anchors": {
+    "beads": [-0.2, 1.92, -4.22],
+    "rackA": [-5.26, 0.0, -2.95],
+    "rackB": [-5.26, 0.0, -1.2],
+    "rules": [-5.26, 1.52, 0.55],
+    "console": [3.45, 0.0, -3.98],
+    "cueStand": [3.22, 0.0, -2.55],
+    "window": [3.55, 2.02, -4.22],
+    "triangle": [-3.35, 1.85, -4.22]
+  },
+  "assets": {
+    "pool_table": {
+      "glb": "assets/pool_table__001a994fe20b.glb",
+      "targetHeight": 0.82
+    },
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.84,
+      "tint": "#6e4e38",
+      "tintMix": 0.9
+    },
+    "coffee_table": {
+      "glb": "assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.36
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.88
+    },
+    "bar_counter": {
+      "glb": "assets/bar_counter__532dcc87f672.glb",
+      "targetHeight": 1.05,
+      "tint": "#4a2c16",
+      "tintMix": 0.94
+    },
+    "bar_stool": {
+      "glb": "assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.78
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.44
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.24
+    }
+  },
+  "instances": [
+    {
+      "id": "pool",
+      "kind": "pool_table",
+      "position": [0.05, 0.0, -0.45],
+      "rotationY": 0.0
+    },
+    {
+      "id": "sofa",
+      "kind": "sofa_solid",
+      "position": [0.1, 0.0, 3.55],
+      "rotationY": 0.0,
+      "scale": [1.28, 1.0, 1.0],
+      "clearRadius": 0.95
+    },
+    {
+      "id": "coffee",
+      "kind": "coffee_table",
+      "position": [2.55, 0.0, 3.52],
+      "rotationY": 1.2,
+      "clearRadius": 0.42
+    },
+    {
+      "id": "mug_coffee_a",
+      "kind": "cup_mug",
+      "position": [2.48, 0.36, 3.46],
+      "rotationY": 0.6,
+      "clearRadius": 0.1
+    },
+    {
+      "id": "mug_coffee_b",
+      "kind": "cup_mug",
+      "position": [2.64, 0.36, 3.6],
+      "rotationY": -0.4,
+      "clearRadius": 0.1
+    },
+    {
+      "id": "chair_n",
+      "kind": "dining_chair",
+      "position": [3.72, 0.0, -1.05],
+      "rotationY": -1.5708,
+      "clearRadius": 0.36
+    },
+    {
+      "id": "chair_s",
+      "kind": "dining_chair",
+      "position": [3.72, 0.0, 0.55],
+      "rotationY": -1.5708,
+      "clearRadius": 0.36
+    },
+    {
+      "id": "bar",
+      "kind": "bar_counter",
+      "position": [-4.72, 0.0, 2.95],
+      "rotationY": 1.5708,
+      "scale": [0.5, 1.0, 0.45],
+      "clearRadius": 1.35
+    },
+    {
+      "id": "stool_a",
+      "kind": "bar_stool",
+      "position": [-3.68, 0.0, 2.35],
+      "rotationY": 1.5708,
+      "clearRadius": 0.28
+    },
+    {
+      "id": "stool_b",
+      "kind": "bar_stool",
+      "position": [-3.68, 0.0, 2.95],
+      "rotationY": 1.5708,
+      "clearRadius": 0.28
+    },
+    {
+      "id": "stool_c",
+      "kind": "bar_stool",
+      "position": [-3.68, 0.0, 3.55],
+      "rotationY": 1.5708,
+      "clearRadius": 0.28
+    },
+    {
+      "id": "pend_bar_a",
+      "kind": "pendant_lamp",
+      "position": [-4.42, 2.48, 2.5],
+      "rotationY": 0.15
+    },
+    {
+      "id": "pend_bar_b",
+      "kind": "pendant_lamp",
+      "position": [-4.42, 2.48, 3.4],
+      "rotationY": -0.25
+    },
+    {
+      "id": "mug_bar_a",
+      "kind": "cup_mug",
+      "position": [-4.4, 1.05, 2.7],
+      "rotationY": 0.5,
+      "clearRadius": 0.1
+    },
+    {
+      "id": "mug_bar_b",
+      "kind": "cup_mug",
+      "position": [-4.52, 1.05, 3.22],
+      "rotationY": -0.7,
+      "clearRadius": 0.1
+    },
+    {
+      "id": "plant_bar",
+      "kind": "flowerpot",
+      "position": [-5.05, 0.0, 1.55],
+      "rotationY": 0.35,
+      "clearRadius": 0.2
+    },
+    {
+      "id": "plant_sofa",
+      "kind": "flowerpot",
+      "position": [4.85, 0.0, 3.85],
+      "rotationY": 0.2,
+      "clearRadius": 0.2
+    },
+    {
+      "id": "plant_window",
+      "kind": "flowerpot",
+      "position": [4.55, 0.0, -4.05],
+      "rotationY": -0.3,
+      "clearRadius": 0.2
+    }
+  ],
+  "shell": {
+    "floorColor": "#5a3a24",
+    "wallColor": "#4a5c54",
+    "woodColor": "#4a2e1c",
+    "ceilingColor": "#e8dfd0",
+    "accentColor": "#2a6a4a",
+    "brassColor": "#c4a050",
+    "clearColor": "#3a4842",
+    "fogColor": "#3a4842",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 46,
+    "position": [7.7, 3.52, 5.55],
+    "target": [-0.2, 0.7, -0.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.85, 2.12, -0.45],
+      "target": [-0.35, 0.82, 0.15]
+    },
+    "close": {
+      "position": [1.52, 1.4, 1.82],
+      "target": [0.05, 0.78, -0.25]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff0dc", "ground": "#3a2a22", "intensity": 0.5 },
+    "key": {
+      "color": "#fff4e4",
+      "intensity": 0.88,
+      "position": [5.6, 11.2, 6.2],
+      "shadowExtent": 12
+    },
+    "fill": { "color": "#9eb4c8", "intensity": 0.24, "position": [-6.5, 4.6, 3.2] },
+    "spots": [
+      {
+        "color": "#ffe2b0",
+        "intensity": 13,
+        "distance": 6.5,
+        "angle": 0.95,
+        "penumbra": 0.55,
+        "decay": 1.5,
+        "position": [0.05, 1.52, -0.45],
+        "target": [0.05, 0.7, -0.45],
+        "castShadow": true
+      }
+    ],
+    "points": [
+      { "color": "#ffd8a4", "intensity": 2.4, "distance": 4.0, "decay": 2, "position": [0.05, 1.88, -1.1] },
+      { "color": "#ffd8a4", "intensity": 2.4, "distance": 4.0, "decay": 2, "position": [0.05, 1.88, 0.2] },
+      { "color": "#ffc888", "intensity": 1.55, "distance": 3.8, "decay": 2, "position": [-4.42, 2.58, 2.5] },
+      { "color": "#ffc888", "intensity": 1.55, "distance": 3.8, "decay": 2, "position": [-4.42, 2.58, 3.4] },
+      { "color": "#ffe0b0", "intensity": 1.05, "distance": 3.4, "decay": 2, "position": [-1.35, 2.12, -4.0] },
+      { "color": "#ffe0b0", "intensity": 1.05, "distance": 3.4, "decay": 2, "position": [0.95, 2.12, -4.0] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "table close", "unlit"],
+    "must_read": [
+      "One pool table is the focal point, under a long green banker's shade.",
+      "Brass floor inlay is the cue-clear rectangle; sofa, chairs, bar and racks sit outside it.",
+      "Sofa on the entry wall faces the table. Side chairs face the cloth, not each other.",
+      "Bar is a secondary corner. Cloth, pockets and the racked balls read in the close shot."
+    ]
+  }
+}
