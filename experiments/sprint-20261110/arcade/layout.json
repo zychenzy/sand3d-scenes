@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Retro arcade v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.6, "depth": 9.0, "height": 3.35 },
+    "notes": [
+      "Cutaway: back wall -Z, left wall -X, open +X and +Z.",
+      "Local +Z is the player side of uprights, blaster, pinball and the racing screens. Racing seat backs sit at local -Z so the occupant faces the dash.",
+      "Uprights are staggered widths, not a cloned row. Racing is one linked pair. Token booth is a separate zone.",
+      "Circulation rects in clear[] must stay empty: spine from entry to the cabinet row, left pass in front of pinball, bay between the racing pair and the stools."
+    ]
+  },
+  "shell": {
+    "floorColor": "#14101c",
+    "wallColor": "#2a2044",
+    "wallLower": "#161022",
+    "trim": "#3a3058",
+    "ceilingColor": "#100c18",
+    "brass": "#d7b56a",
+    "clearColor": "#161222",
+    "fogColor": "#161222",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "lights": {
+    "hemi": { "sky": 9077936, "ground": 2365480, "intensity": 0.62 },
+    "key": { "color": 16772701, "intensity": 1.12, "position": [5.5, 8.8, 6.2] },
+    "fill": { "color": 8222916, "intensity": 0.26, "position": [-5.5, 4.5, 2.5] },
+    "points": [
+      { "color": 16758074, "intensity": 0.42, "position": [-2.4, 2.45, -3.15], "distance": 5.5, "decay": 2 },
+      { "color": 3854591, "intensity": 0.28, "position": [2.4, 1.65, 0.15], "distance": 4.2, "decay": 2 },
+      { "color": 16732058, "intensity": 0.48, "position": [2.5, 2.05, 2.7], "distance": 4.4, "decay": 2 },
+      { "color": 16767144, "intensity": 0.3, "position": [2.7, 2.7, 2.45], "distance": 3.6, "decay": 2 }
+    ]
+  },
+  "camera": { "fov": 40, "position": [1.15, 2.85, 7.15], "target": [-1.85, 1.2, -2.35] },
+  "cameraPresets": {
+    "corner": { "position": [4.7, 2.35, 4.15], "target": [-0.8, 1.0, -1.15] },
+    "close": { "position": [0.85, 1.22, 0.95], "target": [2.45, 0.72, -0.4] }
+  },
+  "clear": [
+    { "id": "spine", "min": [-1.15, -2.55], "max": [0.7, 2.15] },
+    { "id": "leftpass", "min": [-4.5, -2.4], "max": [-1.2, -0.85] },
+    { "id": "entry", "min": [-1.15, 2.15], "max": [0.9, 4.2] },
+    { "id": "bay", "min": [1.4, 0.5], "max": [3.45, 1.22] }
+  ],
+  "blocks": [
+    { "id": "cab_drift", "kind": "upright", "variant": "classic", "x": -4.7, "z": -4.02, "yaw": 0, "w": 0.72, "d": 0.68, "h": 1.84, "body": "#d23a4a", "trim": "#f2d7a2", "screen": "drift", "marquee": "DRIFT" },
+    { "id": "cab_void", "kind": "upright", "variant": "deluxe", "x": -3.5, "z": -4.0, "yaw": 0, "w": 0.98, "d": 0.7, "h": 1.92, "body": "#127e78", "trim": "#d8fff6", "screen": "void", "marquee": "VOID" },
+    { "id": "cab_pulse", "kind": "upright", "variant": "tall", "x": -2.32, "z": -4.04, "yaw": 0, "w": 0.58, "d": 0.64, "h": 2.06, "body": "#e2a82e", "trim": "#2a2418", "screen": "pulse", "marquee": "PULSE" },
+    { "id": "cab_maze", "kind": "upright", "variant": "candy", "x": -1.22, "z": -3.98, "yaw": 0, "w": 0.9, "d": 0.76, "h": 1.56, "body": "#6a3d9a", "trim": "#f0c040", "screen": "maze", "marquee": "MAZE" },
+    { "id": "cab_dusk", "kind": "upright", "variant": "mono", "x": -0.12, "z": -4.02, "yaw": 0, "w": 0.74, "d": 0.68, "h": 1.8, "body": "#e6dfd2", "trim": "#1c1a22", "screen": "dusk", "marquee": "DUSK" },
+    { "id": "pinball", "kind": "pinball", "x": -5.32, "z": -1.45, "yaw": 0, "w": 0.7, "d": 1.58, "h": 1.55, "body": "#1d4e86" },
+    { "id": "blaster", "kind": "blaster", "x": -5.28, "z": 2.15, "yaw": 1.5708, "w": 0.86, "d": 0.7, "h": 1.74, "body": "#c4512a", "trim": "#1a120e", "screen": "raid", "marquee": "LOCK" },
+    { "id": "cocktail", "kind": "cocktail", "x": -3.05, "z": 1.02, "yaw": 0.28, "w": 0.92, "d": 0.92, "h": 0.78, "body": "#243044" },
+    { "id": "racing", "kind": "racing", "x": 2.48, "z": -0.58, "yaw": -0.4, "w": 1.96, "d": 1.46, "h": 1.28 },
+    { "id": "counter", "kind": "counter", "x": 2.72, "z": 2.42, "yaw": 0, "w": 2.64, "d": 0.66, "h": 1.08 },
+    { "id": "halfwall", "kind": "halfwall", "x": 4.22, "z": 2.55, "yaw": 1.5708, "w": 0.95, "d": 0.1, "h": 1.15 },
+    { "id": "sign", "kind": "sign", "x": -2.25, "z": 3.25, "yaw": 0.4, "w": 0.5, "d": 0.42, "h": 0.72 },
+    { "id": "trash", "kind": "trash", "x": 1.05, "z": -2.48, "yaw": 0.2, "w": 0.34, "d": 0.34, "h": 0.55 },
+    { "id": "neon_arcade", "kind": "neon", "mount": "wall", "text": "ARCADE", "color": "#ff4f9a", "scale": 0.046, "x": -2.35, "y": 2.32, "z": -4.3, "yaw": 0, "w": 1.85, "d": 0.06, "h": 0.34 },
+    { "id": "neon_tokens", "kind": "hangsign", "mount": "wall", "x": 2.72, "y": 2.38, "z": 2.48, "yaw": 0, "w": 1.2, "d": 0.05, "h": 0.28 },
+    { "id": "mural", "kind": "mural", "mount": "wall", "x": 2.55, "y": 1.95, "z": -4.36, "yaw": 0, "w": 3.5, "d": 0.04, "h": 1.45, "art": "mural" },
+    { "id": "post_l1", "kind": "mural", "mount": "wall", "x": -5.66, "y": 1.7, "z": 0.15, "yaw": 1.5708, "w": 0.7, "d": 0.04, "h": 0.95, "art": "drift" },
+    { "id": "post_l2", "kind": "mural", "mount": "wall", "x": -5.66, "y": 1.85, "z": 3.35, "yaw": 1.5708, "w": 0.62, "d": 0.04, "h": 0.82, "art": "pulse" }
+  ],
+  "assets": {
+    "cash_register": { "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.4 },
+    "pos_terminal": { "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.18 },
+    "bar_stool": { "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "pendant_lamp": { "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.5 },
+    "speaker": { "glb": "../../../ktv/assets/speaker__2db67686cd88.glb", "targetHeight": 0.38 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 }
+  },
+  "instances": [
+    { "id": "register", "kind": "cash_register", "position": [2.15, 1.08, 2.52], "rotationY": 0.35 },
+    { "id": "pos", "kind": "pos_terminal", "position": [3.15, 1.08, 2.48], "rotationY": 0.85 },
+    { "id": "cup", "kind": "cup_mug", "position": [1.72, 1.08, 2.24], "rotationY": 0.6 },
+    { "id": "stool_1", "kind": "bar_stool", "position": [1.95, 0, 3.24], "rotationY": 3.1416 },
+    { "id": "stool_2", "kind": "bar_stool", "position": [2.78, 0, 3.24], "rotationY": 3.1416 },
+    { "id": "stool_3", "kind": "bar_stool", "position": [3.55, 0, 3.24], "rotationY": 3.1416 },
+    { "id": "pendant_counter_a", "kind": "pendant_lamp", "position": [2.15, 2.74, 2.42], "rotationY": 0 },
+    { "id": "pendant_counter_b", "kind": "pendant_lamp", "position": [3.35, 2.74, 2.42], "rotationY": 0.4 },
+    { "id": "pendant_aisle", "kind": "pendant_lamp", "position": [-0.2, 2.74, -0.35], "rotationY": 0.2 },
+    { "id": "speaker_bay", "kind": "speaker", "position": [4.55, 0, 1.05], "rotationY": -1.15 },
+    { "id": "speaker_entry", "kind": "speaker", "position": [-4.75, 0, 3.45], "rotationY": 0.7 },
+    { "id": "plant", "kind": "flowerpot", "position": [4.45, 0, 3.55], "rotationY": 0.3 }
+  ]
+}
