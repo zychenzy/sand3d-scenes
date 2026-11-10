@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artisan glass studio · sand3d</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #c9c0b6; font-family: ui-sans-serif, system-ui, sans-serif; }
+    #c { display: block; width: 100%; height: 100%; }
+    #hud {
+      position: fixed; left: 12px; top: 12px; z-index: 2;
+      background: rgba(28, 22, 18, 0.78); color: #f6efe6; padding: 10px 12px;
+      border-radius: 10px; font-size: 13px; line-height: 1.35; max-width: 320px;
+    }
+    #hud h1 { margin: 0 0 4px; font-size: 14px; font-weight: 650; letter-spacing: 0.02em; }
+    #hud .row { display: flex; gap: 6px; margin-top: 8px; }
+    #hud button {
+      border: 0; border-radius: 7px; padding: 6px 10px; cursor: pointer;
+      background: #8a4524; color: #f6efe6; font-weight: 600; font-size: 12px;
+    }
+    #hud button:hover { filter: brightness(1.12); }
+    #hud #status { opacity: 0.88; margin-top: 6px; font-size: 12px; }
+  </style>
+  <script type="importmap">
+  { "imports": { "three": "../../../workshop/vendor/three.module.js" } }
+  </script>
+</head>
+<body>
+  <div id="hud">
+    <h1>Artisan glass studio · sand3d</h1>
+    <div>Shading: <strong id="mode">TOON</strong></div>
+    <div class="row">
+      <button id="btn-toon" type="button">Toon (T)</button>
+      <button id="btn-unlit" type="button">Unlit (U)</button>
+    </div>
+    <div id="status">boot…</div>
+  </div>
+  <canvas id="c"></canvas>
+  <script type="module" src="./glass.js"></script>
+</body>
+</html>
