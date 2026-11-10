@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "title": "Alpine lodge common room",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 7.8, "height": 3.52 },
+    "notes": [
+      "Cutaway common room: stone fireplace on the back wall is the focal point, with an inglenook frame.",
+      "Communal trestle table sits on layered rugs; dining chairs face the tabletop by local +Z.",
+      "Left-wall window is the cool daylight; reading nook (window benches, sofa, lamp, books) sits in that light and faces the fire.",
+      "Boot and gear wall is the right-hand stretch of the back wall, clear of the hearth.",
+      "sofa_solid faces local -Z. dining_chair faces local +Z. piano_bench long axis is local X."
+    ]
+  },
+  "anchors": {
+    "table": { "x": -0.1, "z": 0.05, "len": 3.2, "wid": 1.06, "top": 0.76 },
+    "fireplace": { "x": -1.75 },
+    "window": { "z0": -0.35, "z1": 2.35, "y0": 0.84, "y1": 2.48 },
+    "zones": ["fireplace", "communal-table", "reading-nook", "boot-gear"]
+  },
+  "assets": {
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "sofa_solid": { "glb": "assets/sofa_solid__2172bb7e3b99.glb", "targetHeight": 0.88 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.62 },
+    "coffee_table": { "glb": "assets/coffee_table__29a509d8be0b.glb", "targetHeight": 0.3 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.28 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.62 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.14 },
+    "tray": { "glb": "assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.05 },
+    "piano_bench": { "glb": "assets/piano_bench__10332493b3a6.glb", "targetHeight": 0.48 }
+  },
+  "instances": [
+    {
+      "id": "chair_s_west",
+      "kind": "dining_chair",
+      "position": [-1.4, 0, -0.88],
+      "rotationY": 0
+    },
+    {
+      "id": "chair_s_east",
+      "kind": "dining_chair",
+      "position": [0.95, 0, -0.88],
+      "rotationY": 0
+    },
+    {
+      "id": "chair_w",
+      "kind": "dining_chair",
+      "position": [-2.12, 0, 0.05],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "chair_e",
+      "kind": "dining_chair",
+      "position": [1.92, 0, 0.05],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "chair_n",
+      "kind": "dining_chair",
+      "position": [1.28, 0, 1.0],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "sofa",
+      "kind": "sofa_solid",
+      "position": [-3.35, 0, 2.2],
+      "rotationY": -1.02
+    },
+    {
+      "id": "coffee",
+      "kind": "coffee_table",
+      "position": [-2.05, 0, 1.72],
+      "rotationY": 0.12
+    },
+    {
+      "id": "pend_l",
+      "kind": "pendant_lamp",
+      "position": [-0.85, 2.52, 0.05],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pend_r",
+      "kind": "pendant_lamp",
+      "position": [0.65, 2.52, 0.05],
+      "rotationY": -0.15
+    },
+    {
+      "id": "pot",
+      "kind": "flowerpot",
+      "position": [-4.72, 0, -1.2],
+      "rotationY": 0.4
+    },
+    {
+      "id": "shelf_gear",
+      "kind": "wall_shelf",
+      "position": [1.82, 1.52, -3.66],
+      "rotationY": 0
+    },
+    {
+      "id": "bench_window_s",
+      "kind": "piano_bench",
+      "position": [-4.78, 0, 0.05],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "bench_window_n",
+      "kind": "piano_bench",
+      "position": [-4.78, 0, 1.05],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "position": [0.28, 0.76, 0.12],
+      "rotationY": 0.6
+    },
+    {
+      "id": "mug_a",
+      "kind": "cup_mug",
+      "position": [-0.45, 0.76, 0.18],
+      "rotationY": 0.3
+    },
+    {
+      "id": "mug_b",
+      "kind": "cup_mug",
+      "position": [0.15, 0.76, -0.16],
+      "rotationY": -0.4
+    },
+    {
+      "id": "mug_c",
+      "kind": "cup_mug",
+      "position": [0.72, 0.76, 0.2],
+      "rotationY": 1.1
+    },
+    {
+      "id": "jam",
+      "kind": "jam_jar",
+      "position": [-0.85, 0.76, -0.08],
+      "rotationY": 0.2
+    },
+    {
+      "id": "tray",
+      "kind": "tray",
+      "position": [-0.15, 0.76, -0.18],
+      "rotationY": 0.15
+    }
+  ],
+  "shell": {
+    "floorColor": "#b4895c",
+    "floorDark": "#8d6744",
+    "floorLight": "#c9a06e",
+    "wallColor": "#e7d3b8",
+    "woodColor": "#5c3a22",
+    "woodDark": "#3e2718",
+    "woodLight": "#a87548",
+    "ceilingColor": "#9a7048",
+    "stone": "#6e6860",
+    "rug": "#8a3030",
+    "rugEdge": "#3a2218",
+    "nookRug": "#31425c",
+    "hearthRug": "#1e3830",
+    "windowTint": "#b7d4ea",
+    "clearColor": "#c5d3de",
+    "fogColor": "#c5d3de",
+    "fogNear": 13,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 46,
+    "position": [5.15, 2.32, 4.55],
+    "target": [-0.7, 0.95, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.7, 2.25, 0.85],
+      "target": [-1.15, 0.95, -0.9]
+    },
+    "close": {
+      "position": [-0.15, 1.2, -1.05],
+      "target": [-1.75, 0.68, -2.7]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#d4e5f6", "ground": "#7a4a30", "intensity": 0.38 },
+    "key": {
+      "color": "#d5e4f7",
+      "intensity": 1.12,
+      "position": [7.4, 9.2, 6.4],
+      "target": [-0.8, 0.7, -1.3],
+      "shadowExtent": 14,
+      "bias": -0.0004,
+      "normalBias": 0.028
+    },
+    "fill": {
+      "color": "#ffb07a",
+      "intensity": 0.32,
+      "position": [-1.6, 2.5, -2.0],
+      "target": [0.4, 0.6, 1.0]
+    },
+    "points": [
+      { "color": "#ff7a2e", "intensity": 4.6, "distance": 4.5, "decay": 2, "position": [-1.75, 0.78, -2.4] },
+      { "color": "#ffb06a", "intensity": 2.6, "distance": 8.5, "decay": 2, "position": [-0.85, 1.05, -1.15] },
+      { "color": "#c3dcff", "intensity": 1.25, "distance": 6.2, "decay": 2, "position": [-5.15, 1.85, 1.05] },
+      { "color": "#ffd2a4", "intensity": 0.75, "distance": 3.8, "decay": 2, "position": [-4.45, 1.25, 1.85] },
+      { "color": "#ffe0b8", "intensity": 0.5, "distance": 3.4, "decay": 2, "position": [-0.85, 2.15, 0.05] },
+      { "color": "#ffe0b8", "intensity": 0.5, "distance": 3.4, "decay": 2, "position": [0.65, 2.15, 0.05] },
+      { "color": "#ffc48a", "intensity": 0.4, "distance": 2.8, "decay": 2, "position": [4.15, 1.15, -3.15] }
+    ],
+    "spots": [
+      {
+        "color": "#ff7a32",
+        "intensity": 5.5,
+        "distance": 8.5,
+        "angle": 0.82,
+        "penumbra": 0.5,
+        "decay": 2,
+        "position": [-1.75, 1.05, -2.55],
+        "target": [0.15, 0.4, 1.3],
+        "castShadow": false
+      }
+    ]
+  }
+}
