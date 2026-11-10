@@ -34,10 +34,10 @@
       { "color": 16767144, "intensity": 0.3, "position": [2.7, 2.7, 2.45], "distance": 3.6, "decay": 2 }
     ]
   },
-  "camera": { "fov": 38, "position": [6.15, 3.45, 6.05], "target": [0.15, 1.05, -0.55] },
+  "camera": { "fov": 40, "position": [1.15, 2.85, 7.15], "target": [-1.85, 1.2, -2.35] },
   "cameraPresets": {
     "corner": { "position": [4.7, 2.35, 4.15], "target": [-0.8, 1.0, -1.15] },
-    "close": { "position": [0.85, 1.48, 1.45], "target": [2.15, 0.78, -0.35] }
+    "close": { "position": [0.85, 1.22, 0.95], "target": [2.45, 0.72, -0.4] }
   },
   "clear": [
     { "id": "spine", "min": [-1.15, -2.55], "max": [0.7, 2.15] },
@@ -59,8 +59,8 @@
     { "id": "halfwall", "kind": "halfwall", "x": 4.22, "z": 2.55, "yaw": 1.5708, "w": 0.95, "d": 0.1, "h": 1.15 },
     { "id": "sign", "kind": "sign", "x": -2.25, "z": 3.25, "yaw": 0.4, "w": 0.5, "d": 0.42, "h": 0.72 },
     { "id": "trash", "kind": "trash", "x": 1.05, "z": -2.48, "yaw": 0.2, "w": 0.34, "d": 0.34, "h": 0.55 },
-    { "id": "neon_arcade", "kind": "neon", "mount": "wall", "text": "ARCADE", "color": "#ff4f9a", "scale": 0.06, "x": -2.4, "y": 2.58, "z": -4.32, "yaw": 0, "w": 2.15, "d": 0.06, "h": 0.4 },
-    { "id": "neon_tokens", "kind": "neon", "mount": "wall", "text": "TOKENS", "color": "#3ee0ff", "scale": 0.05, "x": 2.35, "y": 1.74, "z": 2.95, "yaw": 0, "w": 1.7, "d": 0.06, "h": 0.34 },
+    { "id": "neon_arcade", "kind": "neon", "mount": "wall", "text": "ARCADE", "color": "#ff4f9a", "scale": 0.046, "x": -2.35, "y": 2.32, "z": -4.3, "yaw": 0, "w": 1.85, "d": 0.06, "h": 0.34 },
+    { "id": "neon_tokens", "kind": "hangsign", "mount": "wall", "x": 2.72, "y": 2.38, "z": 2.48, "yaw": 0, "w": 1.2, "d": 0.05, "h": 0.28 },
     { "id": "mural", "kind": "mural", "mount": "wall", "x": 2.55, "y": 1.95, "z": -4.36, "yaw": 0, "w": 3.5, "d": 0.04, "h": 1.45, "art": "mural" },
     { "id": "post_l1", "kind": "mural", "mount": "wall", "x": -5.66, "y": 1.7, "z": 0.15, "yaw": 1.5708, "w": 0.7, "d": 0.04, "h": 0.95, "art": "drift" },
     { "id": "post_l2", "kind": "mural", "mount": "wall", "x": -5.66, "y": 1.85, "z": 3.35, "yaw": 1.5708, "w": 0.62, "d": 0.04, "h": 0.82, "art": "pulse" }

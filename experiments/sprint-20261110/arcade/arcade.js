@@ -313,8 +313,19 @@ function buildMaps() {
     g.font = '20px sans-serif';
     g.fillText('PER PLAY', w / 2, 96);
   }, false);
+  const tokens = canvasTex(320, 96, (g, w, h) => {
+    g.fillStyle = '#120814';
+    g.fillRect(0, 0, w, h);
+    g.fillStyle = '#3ee0ff';
+    g.fillRect(8, 8, w - 16, 5);
+    g.fillRect(8, h - 13, w - 16, 5);
+    g.font = 'bold 46px sans-serif';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.fillText('TOKENS', w / 2, h / 2 + 1);
+  }, false);
   return {
-    drift, night, void: voidScr, pulse, maze, dusk, raid, playfield, score, cocktail, mural, price, aframe,
+    drift, night, void: voidScr, pulse, maze, dusk, raid, playfield, score, cocktail, mural, price, aframe, tokens,
     mqDrift: paint('DRIFT', '#8a1e32', '#ffd9a8'),
     mqVoid: paint('VOID', '#0e3a38', '#d8fff4'),
     mqPulse: paint('PULSE', '#3a2a08', '#ffe08a'),
@@ -345,6 +356,37 @@ function contact(spec) {
   m.rotation.y = spec.yaw || 0;
   m.userData.noShadow = true;
   m.name = `${spec.id}_contact`;
+  return m;
+}
+
+function hungSign(spec, maps) {
+  const g = new THREE.Group();
+  const w = spec.w;
+  const h = spec.h;
+  addBox(g, w, h, 0.04, toon('#140c18'), 0, 0, 0);
+  addBox(g, w + 0.04, 0.025, 0.05, toon('#d7b56a'), 0, h / 2 - 0.01, 0);
+  addBox(g, w + 0.04, 0.025, 0.05, toon('#d7b56a'), 0, -h / 2 + 0.01, 0);
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.9, h * 0.62), lit(maps.tokens, 0.42));
+  face.position.z = 0.025;
+  g.add(face);
+  const rod = Math.max(0.2, 3.22 - (spec.y + h / 2));
+  addCyl(g, 0.01, 0.01, rod, toon('#c8ccd4'), -w * 0.36, h / 2 + rod / 2, 0, 6);
+  addCyl(g, 0.01, 0.01, rod, toon('#c8ccd4'), w * 0.36, h / 2 + rod / 2, 0, 6);
+  return g;
+}
+
+function floorSpill(spec) {
+  const yaw = spec.yaw || 0;
+  const dist = spec.d * 0.5 + 0.32;
+  const m = new THREE.Mesh(
+    new THREE.CircleGeometry(0.34, 18),
+    toon(spec.body || '#ffb45a', { emissive: spec.body || '#ffb45a', emissiveIntensity: 0.42 })
+  );
+  m.rotation.x = -Math.PI / 2;
+  m.scale.set(spec.w * 0.7, 0.55, 1);
+  m.position.set(spec.x + Math.sin(yaw) * dist, 0.018, spec.z + Math.cos(yaw) * dist);
+  m.userData.noShadow = true;
+  m.name = `${spec.id}_spill`;
   return m;
 }
 
@@ -542,55 +584,104 @@ function cocktail(spec, maps) {
   return g;
 }
 
-function oneRacer(side, maps) {
+function bucketSeat(g, seatMat, accent) {
+  addBox(g, 0.28, 0.07, 0.34, seatMat, 0, 0.36, -0.2);
+  addBox(g, 0.09, 0.22, 0.36, accent, -0.17, 0.46, -0.16);
+  addBox(g, 0.09, 0.22, 0.36, accent, 0.17, 0.46, -0.16);
+  const back = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.5, 0.08), seatMat);
+  back.position.set(0, 0.66, -0.4);
+  back.rotation.x = -0.48;
+  back.castShadow = true;
+  back.receiveShadow = true;
+  g.add(back);
+  for (const x of [-0.16, 0.16]) {
+    const wing = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.32, 0.1), accent);
+    wing.position.set(x, 0.68, -0.34);
+    wing.rotation.x = -0.48;
+    wing.castShadow = true;
+    g.add(wing);
+  }
+  addBox(g, 0.05, 0.12, 0.05, seatMat, 0, 0.96, -0.5);
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.14, 0.08), accent);
+  head.position.set(0, 1.08, -0.5);
+  head.rotation.x = -0.22;
+  head.castShadow = true;
+  g.add(head);
+}
+
+function steeringWheel(accent) {
+  const wheel = new THREE.Group();
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.028, 8, 28), toon('#f4f6fb'));
+  rim.castShadow = true;
+  wheel.add(rim);
+  for (let i = 0; i < 3; i++) {
+    const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.022, 0.02), toon('#2a2c32'));
+    spoke.rotation.z = (i * Math.PI) / 3;
+    spoke.castShadow = true;
+    wheel.add(spoke);
+  }
+  const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.05, 12), accent);
+  hub.rotation.x = Math.PI / 2;
+  hub.castShadow = true;
+  wheel.add(hub);
+  const column = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.026, 0.22, 8), toon('#1a1c22'));
+  column.rotation.x = 1.15;
+  column.position.set(0, -0.08, -0.1);
+  column.castShadow = true;
+  wheel.add(column);
+  wheel.position.set(0, 0.58, 0.2);
+  wheel.rotation.x = -0.62;
+  return wheel;
+}
+
+function oneRacer(side) {
   const g = new THREE.Group();
   const body = toon(side.body);
   const accent = toon(side.accent);
   const dark = toon('#121016');
-  const seat = toon('#241820');
+  const seatMat = toon('#6e4a3c');
   addBox(g, 0.84, 0.1, 1.36, dark, 0, 0.05, 0);
-  addBox(g, 0.08, 0.26, 1.12, body, -0.4, 0.24, 0.02);
-  addBox(g, 0.08, 0.26, 1.12, body, 0.4, 0.24, 0.02);
-  addBox(g, 0.02, 0.045, 0.9, accent, -0.45, 0.32, 0.04);
-  addBox(g, 0.02, 0.045, 0.9, accent, 0.45, 0.32, 0.04);
-  addBox(g, 0.46, 0.08, 0.42, seat, 0, 0.28, -0.28);
-  const back = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.48, 0.08), seat);
-  back.position.set(0, 0.52, -0.48);
-  back.rotation.x = -0.22;
-  back.castShadow = true;
-  back.receiveShadow = true;
-  g.add(back);
-  addBox(g, 0.26, 0.1, 0.07, accent, 0, 0.78, -0.5);
-  const dash = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.12, 0.36), body);
-  dash.position.set(0, 0.42, 0.28);
-  dash.rotation.x = 0.42;
+  addBox(g, 0.07, 0.16, 1.05, body, -0.4, 0.16, 0.02);
+  addBox(g, 0.07, 0.16, 1.05, body, 0.4, 0.16, 0.02);
+  addBox(g, 0.02, 0.04, 0.86, accent, -0.44, 0.22, 0.04);
+  addBox(g, 0.02, 0.04, 0.86, accent, 0.44, 0.22, 0.04);
+  bucketSeat(g, seatMat, accent);
+  const dash = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.12, 0.28), body);
+  dash.position.set(0, 0.34, 0.36);
+  dash.rotation.x = -0.5;
   dash.castShadow = true;
+  dash.receiveShadow = true;
   g.add(dash);
-  addBox(g, 0.56, 0.34, 0.04, dark, 0, 0.74, 0.4);
-  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.48, 0.28), lit( side.screen, 0.4));
-  screen.position.set(0, 0.74, 0.43);
-  screen.rotation.x = -0.22;
-  g.add(screen);
-  const wheel = new THREE.Group();
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.016, 8, 18), toon('#2a2a2a'));
-  ring.castShadow = true;
-  wheel.add(ring);
-  for (let i = 0; i < 3; i++) {
-    const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.018, 0.016), toon('#3a3a3a'));
-    spoke.rotation.z = (i * Math.PI) / 3;
-    wheel.add(spoke);
+  addBox(g, 0.4, 0.07, 0.02, dark, 0, 0.4, 0.46);
+  for (const x of [-0.11, 0.11]) {
+    const gauge = new THREE.Mesh(
+      new THREE.CircleGeometry(0.04, 14),
+      toon('#1a1208', { emissive: side.accent, emissiveIntensity: 0.7 })
+    );
+    gauge.position.set(x, 0.42, 0.48);
+    gauge.rotation.x = -0.55;
+    g.add(gauge);
   }
-  const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.04, 10), accent);
-  hub.rotation.x = Math.PI / 2;
-  wheel.add(hub);
-  wheel.position.set(0, 0.52, 0.18);
-  wheel.rotation.x = -0.65;
-  g.add(wheel);
-  addBox(g, 0.07, 0.02, 0.1, toon('#333'), -0.08, 0.12, 0.48);
-  addBox(g, 0.07, 0.02, 0.1, toon('#555'), 0.06, 0.12, 0.5);
+  addBox(g, 0.52, 0.3, 0.04, dark, 0, 0.9, 0.5);
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.44, 0.24), lit(side.screen, 0.4));
+  screen.position.set(0, 0.9, 0.53);
+  screen.rotation.x = -0.16;
+  g.add(screen);
+  g.add(steeringWheel(accent));
+  addBox(g, 0.06, 0.018, 0.09, toon('#3a3a3a'), -0.08, 0.12, 0.5);
+  addBox(g, 0.06, 0.018, 0.09, toon('#555555'), 0.06, 0.12, 0.52);
   const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.12, 0.1), lit(side.tag, 0.35));
-  tag.position.set(side.tagX, 0.3, 0.64);
+  tag.position.set(side.tagX, 0.28, 0.66);
   g.add(tag);
+  const pool = new THREE.Mesh(
+    new THREE.CircleGeometry(0.32, 18),
+    toon(side.pool, { emissive: side.pool, emissiveIntensity: 0.4 })
+  );
+  pool.rotation.x = -Math.PI / 2;
+  pool.scale.set(1.2, 0.7, 1);
+  pool.position.set(0, 0.02, 0.82);
+  pool.userData.noShadow = true;
+  g.add(pool);
   return g;
 }
 
@@ -614,7 +705,8 @@ function racingPair(spec, maps) {
     screen: maps.drift,
     tag: tagTex(1, '#ffd24a'),
     tagX: -0.34,
-  }, maps);
+    pool: '#ff4a62',
+  });
   p1.position.x = -0.48;
   const p2 = oneRacer({
     body: '#1d4f9e',
@@ -622,14 +714,15 @@ function racingPair(spec, maps) {
     screen: maps.night,
     tag: tagTex(2, '#7af0ff'),
     tagX: 0.34,
-  }, maps);
+    pool: '#3ec8ff',
+  });
   p2.position.x = 0.48;
   g.add(p1, p2);
-  addBox(g, 1.9, 0.1, 0.28, toon('#161018'), 0, 1.12, 0.22);
-  const header = new THREE.Mesh(new THREE.PlaneGeometry(1.35, 0.22), lit( maps.mqGrid, 0.5));
-  header.position.set(0, 1.12, 0.37);
+  addBox(g, 1.9, 0.08, 0.22, toon('#161018'), 0, 1.34, -0.02);
+  const header = new THREE.Mesh(new THREE.PlaneGeometry(1.35, 0.2), lit( maps.mqGrid, 0.5));
+  header.position.set(0, 1.34, 0.1);
   g.add(header);
-  const tube = addBox(g, 1.55, 0.035, 0.035, toon('#200010', { emissive: '#ff4f9a', emissiveIntensity: 0.7 }), 0, 1.02, 0.36);
+  const tube = addBox(g, 1.55, 0.035, 0.035, toon('#200010', { emissive: '#ff4f9a', emissiveIntensity: 0.7 }), 0, 1.22, 0.1);
   tube.userData.noShadow = true;
   return g;
 }
@@ -817,10 +910,12 @@ function makeProcedural(layout) {
     else if (spec.kind === 'sign') node = priceSign(spec, maps);
     else if (spec.kind === 'trash') node = trashCan(spec);
     else if (spec.kind === 'neon') node = neonWord(spec.text, spec.color, spec.scale || 0.05);
+    else if (spec.kind === 'hangsign') node = hungSign(spec, maps);
     else if (spec.kind === 'mural') node = mural(spec, maps);
     if (!node) continue;
     g.add(place(node, spec));
     if (FLOOR_KINDS.has(spec.kind)) g.add(contact(spec));
+    if (spec.kind === 'upright' || spec.kind === 'blaster' || spec.kind === 'pinball') g.add(floorSpill(spec));
   }
   return g;
 }
