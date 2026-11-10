@@ -9,3 +9,4 @@
 - Spotlight falloff is quantised by the 4-step toon ramp, so pools read as bands rather than smooth cones.
 - East and south sides are cut away. Piers, a return wall, and a threshold beam imply the missing enclosure.
 - Contact shadows are radial discs, not a screen-space AO pass.
+- Shell walls, soffits, and piers do not cast shadow maps. The key light stays steep so furniture shadows stay short and the plaster reads as an even field. Spotlights light the works without their own shadow maps.

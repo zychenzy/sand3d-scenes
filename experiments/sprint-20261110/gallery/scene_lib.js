@@ -69,8 +69,8 @@ export function toUnlitMaterial(src) {
 export function applyShading(root, mode) {
   root.traverse((obj) => {
     if (!obj.isMesh || obj.userData.noShade) return;
-    obj.castShadow = obj.userData.noShadow ? false : true;
-    obj.receiveShadow = obj.userData.noShadow ? false : true;
+    obj.castShadow = !(obj.userData.noShadow || obj.userData.noCast);
+    obj.receiveShadow = !obj.userData.noShadow;
     const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
     if (!materialBackup.has(obj)) materialBackup.set(obj, mats.map((m) => m));
     const originals = materialBackup.get(obj);

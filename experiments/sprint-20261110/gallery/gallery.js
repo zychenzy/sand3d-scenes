@@ -42,16 +42,79 @@ const WORKS = [
     ],
   },
   {
-    id: 'northbay',
-    title: 'North Bay',
-    x: -5.15, y: 1.95, z: -4.66, rotY: 0,
-    w: 1.12, h: 0.8,
+    id: 'alcove-hero',
+    title: 'West Triptych',
+    x: -5.15, y: 2.05, z: -4.64, rotY: 0,
+    w: 1.35, h: 1.15,
     frame: INK,
     ground: '#e7e2d8',
     shapes: [
-      { type: 'rect', x: -0.18, y: 0, w: 0.4, h: 0.52, color: '#6e7d62' },
-      { type: 'rect', x: 0.24, y: 0.04, w: 0.22, h: 0.46, color: '#9a4632' },
+      { type: 'rect', x: -0.18, y: 0.02, w: 0.48, h: 0.78, color: '#6e7d62' },
+      { type: 'rect', x: 0.28, y: -0.08, w: 0.28, h: 0.62, color: '#9a4632' },
+      { type: 'rect', x: 0, y: 0.42, w: 1.05, h: 0.04, color: INK },
     ],
+  },
+  {
+    id: 'alcove-l',
+    title: 'West, left',
+    x: -6.2, y: 1.85, z: -4.64, rotY: 0,
+    w: 0.48, h: 0.92,
+    frame: '#6b5340',
+    frameWidth: 0.035,
+    ground: '#1e1e1c',
+    shapes: [{ type: 'disc', x: 0, y: 0.04, r: 0.14, color: '#f3efe6' }],
+  },
+  {
+    id: 'alcove-r',
+    title: 'West, right',
+    x: -4.05, y: 1.78, z: -4.64, rotY: 0,
+    w: 0.5, h: 0.78,
+    frame: INK,
+    frameWidth: 0.035,
+    ground: '#c4a06a',
+    shapes: [{ type: 'rect', x: 0, y: 0, w: 0.16, h: 0.5, color: '#f6f3ec' }],
+  },
+  {
+    id: 'west-a',
+    title: 'Study A',
+    x: -6.88, y: 2.15, z: -0.85, rotY: Math.PI / 2,
+    w: 0.62, h: 0.78,
+    frame: INK,
+    frameWidth: 0.035,
+    ground: '#d9d3c8',
+    shapes: [{ type: 'rect', x: 0, y: 0, w: 0.28, h: 0.42, color: '#3d4e5c' }],
+  },
+  {
+    id: 'west-b',
+    title: 'Study B',
+    x: -6.88, y: 1.15, z: -0.85, rotY: Math.PI / 2,
+    w: 0.62, h: 0.55,
+    frame: '#6b5340',
+    frameWidth: 0.035,
+    ground: '#f4f0e8',
+    shapes: [{ type: 'rect', x: 0.08, y: 0, w: 0.12, h: 0.36, color: '#9a4632' }],
+  },
+  {
+    id: 'nave-side',
+    title: 'Nave Note',
+    x: -3.32, y: 1.95, z: -2.55, rotY: Math.PI / 2,
+    w: 0.92, h: 1.2,
+    frame: INK,
+    ground: '#c9aea8',
+    shapes: [
+      { type: 'rect', x: -0.12, y: 0, w: 0.22, h: 0.82, color: '#6e3c38' },
+      { type: 'disc', x: 0.18, y: 0.12, r: 0.12, color: '#f3efe6' },
+    ],
+  },
+  {
+    id: 'court-side',
+    title: 'After Still',
+    x: 5.85, y: 1.95, z: -4.6, rotY: 0,
+    w: 0.58, h: 0.86,
+    frame: '#f3eee6',
+    frameWidth: 0.035,
+    ground: '#2a2826',
+    shapes: [{ type: 'rect', x: 0, y: 0.05, w: 0.1, h: 0.55, color: '#c4a06a' }],
   },
   {
     id: 'longroom',
@@ -378,12 +441,23 @@ function spotHeads(g, layout) {
   }
 }
 
+function trackRun(g, x0, x1, y, z, step) {
+  const metal = toon('#141414');
+  const span = Math.abs(x1 - x0);
+  addBox(g, span, 0.028, 0.05, metal, (x0 + x1) / 2, y, z);
+  for (let x = Math.min(x0, x1); x <= Math.max(x0, x1) + 0.01; x += step) {
+    addCyl(g, 0.012, 0.012, 0.18, metal, x, y + 0.1, z, 6);
+  }
+}
+
 function tracks(g) {
   const metal = toon('#141414');
-  addBox(g, 0.055, 0.028, 4.6, metal, -5.45, 4.02, -1.15);
-  addBox(g, 5.4, 0.028, 0.055, metal, -0.4, 4.02, -3.2);
-  addBox(g, 3.4, 0.028, 0.055, metal, -0.7, 4.02, -1.55);
-  addBox(g, 3.5, 0.028, 0.055, metal, 4.55, 3.74, -2.4);
+  addBox(g, 0.05, 0.028, 4.8, metal, -5.45, 4.02, -1.2);
+  for (let z = -3.4; z <= 1.0; z += 1.1) addCyl(g, 0.012, 0.012, 0.16, metal, -5.45, 4.12, z, 6);
+  trackRun(g, -3.1, 1.5, 4.02, -3.9, 0.9);
+  trackRun(g, -3.1, 1.5, 4.02, -1.55, 0.9);
+  trackRun(g, 2.6, 6.2, 3.72, -3.55, 0.85);
+  trackRun(g, 2.6, 6.2, 3.72, -1.15, 0.85);
 }
 
 function piers(g) {
@@ -407,17 +481,17 @@ function makeShell(layout) {
   floor.receiveShadow = true;
   g.add(floor);
 
-  addBox(g, 3.2, 0.018, 5.85, toon(s.floorAlcove), -5.2, 0.01, -1.55);
-  addBox(g, 4.35, 0.018, 5.95, toon(s.floorCourt), 4.45, 0.01, -1.5);
-  addBox(g, 13.2, 0.012, 0.2, toon(s.thresholdColor), 0, 0.016, 1.64);
-
-  const inlay = toon('#8a8176');
-  addBox(g, 4.7, 0.008, 0.035, inlay, -0.7, 0.02, -4.35);
-  addBox(g, 4.7, 0.008, 0.035, inlay, -0.7, 0.02, 0.15);
-  addBox(g, 0.035, 0.008, 4.5, inlay, -3.05, 0.02, -2.1);
-  addBox(g, 0.035, 0.008, 4.5, inlay, 1.65, 0.02, -2.1);
-  addBox(g, 0.45, 0.008, 1.5, toon('#7a756e'), -3.45, 0.022, -0.92);
-  addBox(g, 0.5, 0.008, 1.95, toon('#7a756e'), 2.05, 0.022, -0.85);
+  addBox(g, 3.25, 0.028, 5.9, toon(s.floorAlcove), -5.15, 0.016, -1.55);
+  addBox(g, 5.05, 0.028, 5.85, toon(s.floorNave), -0.7, 0.016, -1.5);
+  addBox(g, 4.4, 0.028, 5.9, toon(s.floorCourt), 4.45, 0.016, -1.5);
+  addBox(g, 13.1, 0.03, 2.55, toon(s.floorOak), 0, 0.02, 3.25);
+  for (let i = 0; i < 5; i++) {
+    addBox(g, 12.6, 0.008, 0.028, toon('#5c3a22'), 0, 0.036, 2.15 + i * 0.48);
+  }
+  addBox(g, 13.15, 0.02, 0.46, toon(s.thresholdColor), 0, 0.034, 1.78);
+  addBox(g, 0.7, 0.016, 1.55, toon('#8d623c'), -3.45, 0.038, -0.92);
+  addBox(g, 0.72, 0.016, 2.0, toon('#8d623c'), 2.05, 0.038, -0.85);
+  addBox(g, 13.2, 0.012, 0.14, toon('#5e564e'), 0, 0.032, -4.48);
 
   const back = new THREE.Mesh(new THREE.BoxGeometry(14, H, 0.16), toon(s.wallColor));
   back.position.set(0, H / 2, -4.8);
@@ -456,15 +530,68 @@ function makeShell(layout) {
   addBox(g, 0.16, H - 0.15, 0.07, toon(SHADE), 0.05, H / 2, -4.66);
   addBox(g, 0.16, 2.4, 0.06, toon(SHADE), -6.86, 1.35, -0.2);
 
-  addBox(g, 13.4, 0.14, 6.55, toon(s.ceilingColor), -0.15, 4.16, -1.35);
-  addBox(g, 4.5, 0.12, 5.7, toon('#ddd4c8'), 4.45, 3.96, -1.45);
-  addBox(g, 13.2, 0.12, 0.14, toon('#6a5c4c'), -0.15, 3.96, 1.84);
-  addBox(g, 13.4, 0.05, 0.04, toon(LINER), -0.1, 4.08, -4.68);
-
+  ceiling(g, s);
   piers(g);
   tracks(g);
   spotHeads(g, layout);
+  g.traverse((obj) => {
+    if (obj.isMesh) obj.userData.noCast = true;
+  });
   return g;
+}
+
+function ceiling(g, s) {
+  const plaster = toon(s.ceilingColor);
+  const upstand = toon('#f6f1e8');
+  const mull = toon('#2e2a26');
+  const glass = toon('#fff6e4', { emissive: '#fff0cc', emissiveIntensity: 0.9 });
+  addBox(g, 13.5, 0.12, 1.15, plaster, -0.1, 4.14, -4.05);
+  addBox(g, 13.5, 0.12, 3.92, plaster, -0.1, 4.14, -0.06);
+  addBox(g, 4.35, 0.12, 1.45, plaster, -4.65, 4.14, -2.75);
+  addBox(g, 1.55, 0.12, 1.45, plaster, 1.35, 4.14, -2.75);
+  addBox(g, 3.05, 0.26, 0.06, upstand, -0.95, 4.26, -3.48);
+  addBox(g, 3.05, 0.26, 0.06, upstand, -0.95, 4.26, -2.02);
+  addBox(g, 0.06, 0.26, 1.46, upstand, -2.48, 4.26, -2.75);
+  addBox(g, 0.06, 0.26, 1.46, upstand, 0.58, 4.26, -2.75);
+  addBox(g, 2.9, 0.035, 1.32, glass, -0.95, 4.4, -2.75);
+  addBox(g, 0.035, 0.05, 1.28, mull, -1.75, 4.37, -2.75);
+  addBox(g, 0.035, 0.05, 1.28, mull, -0.15, 4.37, -2.75);
+  addBox(g, 2.85, 0.05, 0.035, mull, -0.95, 4.37, -3.15);
+  addBox(g, 2.85, 0.05, 0.035, mull, -0.95, 4.37, -2.35);
+  addBox(g, 4.35, 0.1, 5.5, toon('#ddd6cc'), 4.4, 3.9, -1.45);
+  const cove = toon('#ffe7bc', { emissive: '#ffd9a0', emissiveIntensity: 1.15 });
+  addBox(g, 3.3, 0.07, 0.1, cove, 4.6, 3.72, -4.52);
+  addBox(g, 2.6, 0.05, 0.08, cove, -5.2, 3.95, -4.52);
+  addBox(g, 13.15, 0.1, 0.16, toon('#6a5c4c'), -0.1, 4.02, 1.88);
+}
+
+function reception(g) {
+  const oak = toon('#a56b3c');
+  const plaster = toon('#f4f0e8');
+  addBox(g, 4.7, 1.12, 0.07, plaster, 0.15, 0.62, 2.48);
+  addBox(g, 4.85, 0.07, 0.12, oak, 0.15, 1.2, 2.48);
+  addBox(g, 4.85, 0.08, 0.14, oak, 0.15, 0.05, 2.48);
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 160;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#f4f0e8';
+  ctx.fillRect(0, 0, 512, 160);
+  ctx.fillStyle = '#1c1c1c';
+  ctx.font = '600 54px sans-serif';
+  ctx.fillText('EDITIONS', 36, 78);
+  ctx.font = '24px sans-serif';
+  ctx.fillStyle = '#5c564e';
+  ctx.fillText('catalogues  ·  the annex shop', 36, 118);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const sign = mesh(new THREE.PlaneGeometry(1.15, 0.36), toon('#ffffff', { map: tex }));
+  sign.position.set(0.85, 0.72, 2.53);
+  g.add(sign);
+  addBox(g, 5.15, 0.04, 0.07, oak, 0.15, 0.028, 2.62);
+  addBox(g, 5.15, 0.04, 0.07, oak, 0.15, 0.028, 4.12);
+  addBox(g, 0.07, 0.04, 1.5, oak, -2.42, 0.028, 3.37);
+  addBox(g, 0.07, 0.04, 1.5, oak, 2.72, 0.028, 3.37);
 }
 
 function plinthTop(layout, id, fallback) {
@@ -478,7 +605,7 @@ function makeProcedural(layout) {
   const g = new THREE.Group();
   g.name = 'procedural';
   for (const spec of WORKS) framedWork(g, spec);
-  sculptureTotem(g, -5.15, plinthTop(layout, 'plinth_totem', 1.08), 0.5);
+  sculptureTotem(g, -5.25, plinthTop(layout, 'plinth_totem', 1.08), -0.85);
   sculptureArc(g, -1.65, plinthTop(layout, 'plinth_arc', 1.15), -2.65);
   sculptureFigure(g, 0.15, plinthTop(layout, 'plinth_figure', 1.02), -2.4);
   sculptureRing(g, 4.5, plinthTop(layout, 'plinth_ring', 1.12), -2.0);
@@ -486,10 +613,11 @@ function makeProcedural(layout) {
   if (vitrine) {
     maquette(g, vitrine.position[0], layout.assets.museum_vitrine.targetHeight, vitrine.position[2]);
   }
-  infoDesk(g, 4.15, 3.52);
-  stele(g, 1.15, 3.28);
-  foliage(g, 5.35, 3.12);
-  fillCatalog(g, -2.45, 3.45, Math.PI);
+  reception(g);
+  infoDesk(g, 0.7, 3.4);
+  stele(g, -0.7, 3.22);
+  foliage(g, 2.15, 3.42);
+  fillCatalog(g, -1.9, 3.28, Math.PI);
   window.__gallery = {
     zones: ['alcove', 'nave', 'court'],
     works: WORKS.map((w) => w.id),

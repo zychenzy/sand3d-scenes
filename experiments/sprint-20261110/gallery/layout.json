@@ -69,7 +69,7 @@
     {
       "id": "plinth_totem",
       "kind": "museum_plinth",
-      "position": [-5.15, 0, 0.5],
+      "position": [-5.25, 0, -0.85],
       "rotationY": 0.15,
       "targetHeight": 1.08
     },
@@ -103,27 +103,29 @@
     {
       "id": "catalog",
       "kind": "display_bookcase",
-      "position": [-2.45, 0, 3.45],
+      "position": [-1.9, 0, 3.28],
       "rotationY": 3.1416
     },
     {
       "id": "desk_lamp",
       "kind": "library_lamp",
-      "position": [4.72, 0.99, 3.52],
-      "rotationY": -0.6
+      "position": [1.22, 0.99, 3.4],
+      "rotationY": -0.4
     },
     {
       "id": "plant",
       "kind": "flowerpot",
-      "position": [5.35, 0, 3.12],
+      "position": [2.15, 0, 3.42],
       "rotationY": 0.4
     }
   ],
   "shell": {
-    "floorColor": "#d2cbc0",
-    "floorAlcove": "#c8c1b5",
-    "floorCourt": "#b7afa3",
-    "thresholdColor": "#6e6962",
+    "floorColor": "#8d867c",
+    "floorAlcove": "#9aa7ad",
+    "floorNave": "#e4dccf",
+    "floorCourt": "#8f7358",
+    "floorOak": "#c4925a",
+    "thresholdColor": "#7a4e2c",
     "wallColor": "#f3eee6",
     "wallShade": "#e7e0d4",
     "accentWall": "#2a2826",
@@ -154,12 +156,12 @@
     "hemi": {
       "sky": 16775914,
       "ground": 12958900,
-      "intensity": 0.48
+      "intensity": 0.58
     },
     "key": {
       "color": 16774372,
-      "intensity": 0.72,
-      "position": [4.5, 11.5, 7.5]
+      "intensity": 0.46,
+      "position": [1.2, 14.5, 3.2]
     },
     "fill": {
       "color": 12967132,
@@ -168,14 +170,14 @@
     },
     "up": {
       "color": 16775394,
-      "intensity": 0.72,
+      "intensity": 0.38,
       "position": [0, -8, 0.5]
     },
     "points": [
       {
         "color": 16771752,
         "intensity": 1.1,
-        "position": [4.72, 1.28, 3.52],
+        "position": [1.22, 1.28, 3.4],
         "distance": 2.4,
         "decay": 2
       }
@@ -189,15 +191,14 @@
         "target": [-6.9, 1.85, -2.55],
         "angle": 0.5,
         "penumbra": 0.62,
-        "distance": 7.5,
-        "castShadow": true
+        "distance": 7.5
       },
       {
         "id": "spot_totem",
         "color": 16773570,
         "intensity": 5.5,
         "position": [-5.15, 3.84, 0.05],
-        "target": [-5.15, 1.45, 0.5],
+        "target": [-5.25, 1.45, -0.85],
         "angle": 0.4,
         "penumbra": 0.55,
         "distance": 6.5
@@ -206,18 +207,17 @@
         "id": "spot_long",
         "color": 16773570,
         "intensity": 8,
-        "position": [-1.35, 3.84, -3.15],
+        "position": [-1.35, 3.82, -1.9],
         "target": [-1.35, 1.9, -4.7],
         "angle": 0.58,
         "penumbra": 0.6,
-        "distance": 7.5,
-        "castShadow": true
+        "distance": 7.5
       },
       {
         "id": "spot_tall",
         "color": 16773570,
         "intensity": 6.5,
-        "position": [0.95, 3.84, -3.3],
+        "position": [0.95, 3.82, -1.9],
         "target": [0.95, 2.0, -4.7],
         "angle": 0.4,
         "penumbra": 0.55,
@@ -251,8 +251,27 @@
         "target": [4.6, 1.95, -4.64],
         "angle": 0.5,
         "penumbra": 0.58,
-        "distance": 7,
-        "castShadow": true
+        "distance": 7
+      },
+      {
+        "id": "spot_skylight",
+        "color": 16776420,
+        "intensity": 3.2,
+        "position": [-0.95, 4.2, -2.75],
+        "target": [-0.95, 0.3, -2.75],
+        "angle": 0.72,
+        "penumbra": 0.85,
+        "distance": 6
+      },
+      {
+        "id": "spot_triptych",
+        "color": 16773570,
+        "intensity": 6,
+        "position": [-5.2, 3.84, -3.15],
+        "target": [-5.2, 1.95, -4.66],
+        "angle": 0.48,
+        "penumbra": 0.6,
+        "distance": 6.5
       },
       {
         "id": "spot_ring",
