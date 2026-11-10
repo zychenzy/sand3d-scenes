@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Neighbourhood skatepark",
+    "units": "metres",
+    "style": "Toon hard",
+    "site": "compact concrete bowl, quarterpipe, and street section",
+    "notes": [
+      "Shallow oval bowl with a rolled mouth, circular quarterpipe, manual pad, steel ledge, and stair handrail.",
+      "The east lane from the gate to the quarter is kept clear.",
+      "Benches and shade trees sit outside the fence."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.48
+    }
+  },
+  "instances": [],
+  "shell": {
+    "clearColor": "#f6d7b4",
+    "fogColor": "#f3d0aa",
+    "fogNear": 36,
+    "fogFar": 82
+  },
+  "camera": {
+    "fov": 44,
+    "position": [13.2, 6.8, 14.6],
+    "target": [-0.4, 0.6, -0.8]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-13.4, 4.35, 7.6],
+      "target": [1.1, 0.55, -1.5]
+    },
+    "close": {
+      "position": [5.15, 1.85, 4.25],
+      "target": [0.35, 0.42, 0.45]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#ffe6c4", "ground": "#6a5c48", "intensity": 0.58 },
+    "key": {
+      "color": "#ffb87a",
+      "intensity": 1.72,
+      "position": [-15.5, 11.2, 9.2],
+      "target": [-0.6, 0.3, -0.8]
+    },
+    "fill": { "color": "#b7c6dc", "intensity": 0.46, "position": [10, 8, -7] },
+    "shadow": {
+      "left": -16,
+      "right": 16,
+      "top": 16,
+      "bottom": -16,
+      "mapSize": 4096,
+      "near": 1,
+      "far": 52,
+      "bias": -0.0008,
+      "normalBias": 0.04
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Smooth shallow bowl and a curved quarterpipe, not box ramps.",
+      "Manual pad, steel ledge, and round handrail off the gate-to-quarter run-up.",
+      "Fence with an open gate, spectator benches and varied trees outside the riding line.",
+      "Bright late-afternoon light."
+    ]
+  }
+}
