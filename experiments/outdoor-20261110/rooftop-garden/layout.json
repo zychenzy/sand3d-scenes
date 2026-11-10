@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "title": "Rooftop garden",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "urban roof terrace at golden hour",
+    "notes": [
+      "One dining table under a timber pergola, chairs facing the tabletop.",
+      "Low lounge sunk one step, sofa and bench aimed at the skyline.",
+      "Stepped concrete planters on the left, corten herb beds in the foreground.",
+      "Low view parapet plus rail so the city reads above the terrace, not through a wall."
+    ]
+  },
+  "site": {
+    "deck": { "x0": -6.3, "x1": 6.3, "z0": -4.7, "z1": 4.9 },
+    "parapet": { "t": 0.18, "sideH": 0.92, "entryH": 0.26, "viewH": 0.46, "railH": 1.02 },
+    "lounge": { "y": -0.15, "x0": -0.95, "x1": 3.95, "z0": -4.38, "z1": -1.52 },
+    "landing": { "x0": -5.75, "x1": -3.65, "z0": 2.12, "z1": 3.12 },
+    "stair": { "x0": -6.08, "x1": -3.48, "z0": 3.12, "z1": 4.7, "h": 2.32, "doorX0": -5.4, "doorX1": -4.4 },
+    "pergola": {
+      "x0": 0.4,
+      "x1": 3.4,
+      "z0": -0.9,
+      "z1": 2.0,
+      "post": 0.11,
+      "beamW": 0.075,
+      "beamH": 0.14,
+      "rafter": 0.04,
+      "rafterH": 0.09,
+      "pitch": 0.42,
+      "clearH": 2.32
+    },
+    "planters": [
+      { "id": "tier-low", "x0": -4.3, "x1": -3.48, "z0": -0.4, "z1": 2.45, "h": 0.42, "material": "concrete" },
+      { "id": "tier-mid", "x0": -5.16, "x1": -4.32, "z0": -1.9, "z1": 1.45, "h": 0.78, "material": "concrete" },
+      { "id": "tier-high", "x0": -6.06, "x1": -5.18, "z0": -3.25, "z1": 0.2, "h": 1.16, "material": "concrete" }
+    ],
+    "beds": [
+      { "id": "herb-main", "x0": 2.4, "x1": 5.95, "z0": 3.42, "z1": 4.5, "h": 0.4, "material": "corten" },
+      { "id": "herb-stair", "x0": -3.32, "x1": -2.1, "z0": 3.58, "z1": 4.48, "h": 0.32, "material": "corten" }
+    ],
+    "plants": [
+      { "id": "olive", "kind": "olive", "x": -5.62, "y": 1.16, "z": -1.45, "scale": 1.05 },
+      { "id": "plume-high", "kind": "plume", "x": -5.58, "y": 1.16, "z": -0.15, "scale": 1 },
+      { "id": "shrub-mid", "kind": "shrub", "x": -4.74, "y": 0.78, "z": 0.15, "scale": 1 },
+      { "id": "plume-mid", "kind": "plume", "x": -4.78, "y": 0.78, "z": -1.25, "scale": 0.85 },
+      { "id": "salvia-mid", "kind": "salvia", "x": -4.7, "y": 0.78, "z": 1.05, "scale": 1 },
+      { "id": "fig-low", "kind": "fig", "x": -3.9, "y": 0.42, "z": 1.55, "scale": 1 },
+      { "id": "grass-low", "kind": "grass", "x": -3.92, "y": 0.42, "z": 0.15, "scale": 1 },
+      { "id": "fern-spill", "kind": "fern", "x": -3.5, "y": 0.42, "z": 0.55, "scale": 1 },
+      { "id": "grass-low-b", "kind": "grass", "x": -3.95, "y": 0.42, "z": -0.15, "scale": 0.8 },
+      { "id": "rosemary-a", "kind": "rosemary", "x": 2.7, "y": 0.36, "z": 3.62, "scale": 1 },
+      { "id": "rosemary-b", "kind": "rosemary", "x": 3.25, "y": 0.36, "z": 4.18, "scale": 1.15 },
+      { "id": "basil-a", "kind": "basil", "x": 3.7, "y": 0.36, "z": 3.58, "scale": 1 },
+      { "id": "thyme-a", "kind": "thyme", "x": 4.35, "y": 0.34, "z": 4.12, "scale": 1 },
+      { "id": "salvia-herb", "kind": "salvia", "x": 4.05, "y": 0.36, "z": 3.85, "scale": 0.75 },
+      { "id": "basil-b", "kind": "basil", "x": 4.85, "y": 0.36, "z": 3.68, "scale": 1.1 },
+      { "id": "thyme-b", "kind": "thyme", "x": 5.35, "y": 0.34, "z": 4.22, "scale": 0.9 },
+      { "id": "rosemary-c", "kind": "rosemary", "x": 5.6, "y": 0.36, "z": 3.62, "scale": 0.85 },
+      { "id": "thyme-stair", "kind": "thyme", "x": -3.05, "y": 0.28, "z": 3.78, "scale": 1 },
+      { "id": "basil-stair", "kind": "basil", "x": -2.45, "y": 0.28, "z": 4.15, "scale": 0.9 },
+      { "id": "rosemary-stair", "kind": "rosemary", "x": -2.8, "y": 0.28, "z": 3.95, "scale": 0.8 },
+      { "id": "pot-basil", "kind": "basil", "x": -5.45, "y": 0.28, "z": 2.32, "scale": 0.7 },
+      { "id": "path-grass", "kind": "grass", "x": -1.85, "y": 0.0, "z": -1.35, "scale": 0.7 },
+      { "id": "vine", "kind": "vine", "x": 0.4, "y": 2.3, "z": 2.0, "scale": 1 }
+    ],
+    "city": [
+      { "id": "near-left", "x": -5.5, "z": -9.4, "w": 2.7, "d": 2.15, "h": 4.6, "type": "block" },
+      { "id": "near-saddle", "x": 0.7, "z": -8.8, "w": 2.8, "d": 1.7, "h": 2.15, "type": "roof" },
+      { "id": "near-brick", "x": 4.15, "z": -9.3, "w": 2.15, "d": 2.0, "h": 3.5, "type": "brick" },
+      { "id": "near-right", "x": 7.1, "z": -10.0, "w": 2.3, "d": 2.05, "h": 5.0, "type": "block" },
+      { "id": "west-tower", "x": -9.4, "z": -15.2, "w": 2.25, "d": 2.25, "h": 10.6, "type": "tower" },
+      { "id": "mid-brick", "x": -4.8, "z": -14.2, "w": 2.7, "d": 2.15, "h": 5.2, "type": "brick" },
+      { "id": "east-tower", "x": 9.6, "z": -15.6, "w": 2.15, "d": 2.15, "h": 9.4, "type": "tower" },
+      { "id": "far-left", "x": -6.4, "z": -20.5, "w": 4.8, "d": 2.1, "h": 3.0, "type": "roof" },
+      { "id": "far-mid", "x": 1.3, "z": -20.0, "w": 4.2, "d": 2.0, "h": 2.6, "type": "roof" },
+      { "id": "far-right", "x": 7.0, "z": -20.8, "w": 2.6, "d": 1.9, "h": 4.2, "type": "block" }
+    ],
+    "path": [
+      [-4.9, 2.7],
+      [-3.2, 2.62],
+      [-2.7, 1.05],
+      [-2.45, -0.35],
+      [-2.15, -2.7],
+      [-0.15, 0.55]
+    ]
+  },
+  "assets": {
+    "dining_table": {
+      "glb": "assets/long_dining__fb2f8f65156e.glb",
+      "targetHeight": 0.76,
+      "facing": "+z",
+      "footprint": [2.03, 1.057]
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "facing": "+z",
+      "footprint": [0.311, 0.439]
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1,
+      "facing": "+z",
+      "footprint": [0.1, 0.1]
+    },
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.8,
+      "facing": "-z",
+      "footprint": [1.547, 0.951]
+    },
+    "coffee_table": {
+      "glb": "assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.3,
+      "facing": "+z",
+      "footprint": [0.966, 1.771]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.45,
+      "facing": "+z",
+      "footprint": [0.495, 1.776],
+      "tint": "#b08958"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34,
+      "facing": "+z",
+      "footprint": [0.416, 0.416]
+    }
+  },
+  "instances": [
+    { "id": "table", "kind": "dining_table", "role": "dining-table", "position": [1.62, 0, 0.55], "rotationY": 0 },
+    { "id": "chair-s1", "kind": "dining_chair", "role": "dining-chair", "position": [1.18, 0, 1.55], "rotationY": 3.1416 },
+    { "id": "chair-s2", "kind": "dining_chair", "role": "dining-chair", "position": [2.06, 0, 1.52], "rotationY": 3.1416 },
+    { "id": "chair-n1", "kind": "dining_chair", "role": "dining-chair", "position": [1.1, 0, -0.45], "rotationY": 0 },
+    { "id": "chair-n2", "kind": "dining_chair", "role": "dining-chair", "position": [2.1, 0, -0.42], "rotationY": 0 },
+    { "id": "chair-e", "kind": "dining_chair", "role": "dining-chair", "position": [3.02, 0, 0.55], "rotationY": -1.5708 },
+    { "id": "cup-a", "kind": "cup_mug", "role": "tabletop", "position": [1.38, 0.76, 0.4], "rotationY": 0.4 },
+    { "id": "cup-b", "kind": "cup_mug", "role": "tabletop", "position": [1.92, 0.76, 0.74], "rotationY": -0.6 },
+    { "id": "sofa", "kind": "sofa_solid", "role": "lounge-sofa", "position": [0.55, -0.15, -2.55], "rotationY": 0, "scale": [1.22, 1, 1] },
+    { "id": "coffee", "kind": "coffee_table", "role": "lounge-table", "position": [0.45, -0.15, -3.67], "rotationY": 1.5708 },
+    { "id": "bench", "kind": "museum_bench", "role": "lounge-bench", "position": [2.85, -0.15, -3.38], "rotationY": 1.5708 },
+    { "id": "pot-landing", "kind": "flowerpot", "role": "pot", "position": [-5.45, 0, 2.32], "rotationY": 0.3 },
+    { "id": "pot-step", "kind": "flowerpot", "role": "pot", "position": [-1.62, 0, -1.12], "rotationY": -0.4 }
+  ],
+  "shell": {
+    "clearColor": "#9ebfe0",
+    "fogColor": "#e8c09a",
+    "fogNear": 20,
+    "fogFar": 54
+  },
+  "camera": {
+    "fov": 52,
+    "position": [2.15, 4.85, 10.6],
+    "target": [0.35, 1.65, -1.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-8.4, 4.15, 0.6],
+      "target": [1.1, 0.7, -0.6]
+    },
+    "close": {
+      "position": [0.85, 1.55, 3.25],
+      "target": [1.65, 0.78, 0.35]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#ffd2a4", "ground": "#5a5046", "intensity": 0.64 },
+    "key": { "color": "#ffc48a", "intensity": 1.32, "position": [11.5, 7.0, 8.2], "shadowExtent": 16 },
+    "fill": { "color": "#8aa4c4", "intensity": 0.4, "position": [-8, 6.2, -3] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Foreground stair head and herb beds, midground pergola dining, background lounge and city.",
+      "Chairs face the dining table. Lounge faces the skyline over a low parapet.",
+      "Vegetation is branched and layered, not repeated sphere trees."
+    ]
+  }
+}
