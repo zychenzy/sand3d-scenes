@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "title": "Woodland picnic grove",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "Shaded creek picnic grove composed from Great Smoky Mountains picnic sites and a Marin redwood creek bank",
+    "notes": [
+      "Three staggered metal-frame picnic tables on the east bank, one charcoal grill with a timber prep counter, a timber footbridge, a trail sign, and two fallen-log seats.",
+      "One afternoon sun casts shadows. Fill and hemisphere do not."
+    ]
+  },
+  "assets": {
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.13
+    }
+  },
+  "instances": [],
+  "site": {
+    "stream": [
+      [-2.0, -12.0],
+      [-1.4, -8.0],
+      [-0.5, -4.0],
+      [0.3, 0.0],
+      [1.2, 4.0],
+      [1.9, 8.0],
+      [2.4, 12.5]
+    ],
+    "pads": [
+      {"id": "pad_near", "x": 4.35, "z": 3.7, "r": 2.2},
+      {"id": "pad_mid", "x": 7.15, "z": -0.15, "r": 2.15},
+      {"id": "pad_far", "x": 5.2, "z": -4.5, "r": 2.1},
+      {"id": "pad_grill", "x": 8.4, "z": -3.0, "r": 2.15}
+    ],
+    "tables": [
+      {
+        "id": "table_near",
+        "pad": "pad_near",
+        "position": [4.35, 3.7],
+        "rotationY": -0.95,
+        "length": 1.83,
+        "topHeight": 0.76,
+        "topHalfWidth": 0.34,
+        "seatHeight": 0.45,
+        "seatZ": 0.56,
+        "benches": "both-long-sides"
+      },
+      {
+        "id": "table_mid",
+        "pad": "pad_mid",
+        "position": [7.15, -0.15],
+        "rotationY": -1.25,
+        "length": 1.83,
+        "topHeight": 0.76,
+        "topHalfWidth": 0.34,
+        "seatHeight": 0.45,
+        "seatZ": 0.56,
+        "benches": "both-long-sides"
+      },
+      {
+        "id": "table_far",
+        "pad": "pad_far",
+        "position": [5.2, -4.5],
+        "rotationY": -0.35,
+        "length": 1.83,
+        "topHeight": 0.76,
+        "topHalfWidth": 0.34,
+        "seatHeight": 0.45,
+        "seatZ": 0.56,
+        "benches": "both-long-sides"
+      }
+    ],
+    "topItems": [
+      {"id": "thermos_near", "kind": "thermos", "table": "table_near", "local": [-0.22, 0.02], "rotationY": 0.5},
+      {"id": "mug_near_a", "kind": "cup_mug", "table": "table_near", "local": [0.34, 0.08], "rotationY": 0.8},
+      {"id": "mug_near_b", "kind": "cup_mug", "table": "table_near", "local": [0.16, -0.1], "rotationY": -0.4},
+      {"id": "jar_near", "kind": "jam_jar", "table": "table_near", "local": [-0.46, -0.06], "rotationY": 0.2},
+      {"id": "mug_mid", "kind": "cup_mug", "table": "table_mid", "local": [0.12, 0.04], "rotationY": 1.1}
+    ],
+    "grill": {
+      "position": [8.85, -2.45],
+      "rotationY": -2.46,
+      "cookingHeight": 0.93,
+      "forward": "+Z"
+    },
+    "prep": {
+      "position": [7.95, -3.55],
+      "rotationY": 0.69,
+      "height": 0.92,
+      "forward": "+Z"
+    },
+    "bridge": {
+      "a": [-2.9, -2.35],
+      "b": [2.4, -2.95],
+      "width": 1.02,
+      "railHeight": 0.9
+    },
+    "sign": {
+      "position": [3.05, 1.25],
+      "rotationY": 0.55,
+      "boards": ["← CREEK TRAIL", "PICNIC  →"]
+    },
+    "junction": [4.3, 0.6],
+    "logs": [
+      {
+        "id": "log_creek",
+        "role": "seat",
+        "faces": "stream",
+        "position": [3.85, 6.35],
+        "rotationY": -1.4,
+        "length": 2.7,
+        "radius": 0.26
+      },
+      {
+        "id": "log_far",
+        "role": "seat",
+        "faces": "table_far",
+        "position": [4.55, -2.72],
+        "rotationY": -0.35,
+        "length": 1.7,
+        "radius": 0.18
+      },
+      {
+        "id": "log_snag",
+        "role": "snag",
+        "position": [1.55, 5.1],
+        "rotationY": 0.7,
+        "length": 3.1,
+        "radius": 0.11
+      }
+    ],
+    "path": [
+      [6.7, 10.4],
+      [6.0, 7.2],
+      [5.85, 4.8],
+      [5.4, 2.2],
+      [4.3, 0.6],
+      [3.0, -0.8],
+      [1.7, -2.15],
+      [-2.9, -2.35],
+      [-5.6, -4.4]
+    ],
+    "spurs": [
+      [[4.3, 0.6], [5.8, 1.55], [8.75, 1.2], [9.0, -0.35], [8.6, -1.75], [7.2, -3.05], [6.9, -3.85]],
+      [[8.6, -1.75], [8.4, -2.15]]
+    ],
+    "trees": [
+      {"id": "oak_e", "kind": "hardwood", "x": 14.2, "z": 7.4, "h": 11.5, "r": 0.4, "style": "broad", "seed": 11, "lean": 0.05, "bark": "#5c4636", "yaw": 0.4},
+      {"id": "oak_se", "kind": "hardwood", "x": 12.4, "z": 0.6, "h": 10.2, "r": 0.32, "style": "tall", "seed": 12, "lean": -0.04, "bark": "#4a382c", "yaw": 1.2},
+      {"id": "oak_ne", "kind": "hardwood", "x": 10.8, "z": -6.2, "h": 12.2, "r": 0.36, "style": "broad", "seed": 13, "lean": 0.03, "bark": "#6a5240", "yaw": 0.2},
+      {"id": "back_e", "kind": "hardwood", "x": 8.2, "z": -8.8, "h": 13.0, "r": 0.3, "style": "tall", "seed": 14, "lean": 0.02, "bark": "#3e322a", "yaw": 0.8},
+      {"id": "back_c", "kind": "hardwood", "x": 3.6, "z": -9.0, "h": 12.4, "r": 0.34, "style": "split", "seed": 15, "lean": -0.05, "bark": "#5c4636", "yaw": 2.1},
+      {"id": "back_w", "kind": "hardwood", "x": 1.15, "z": -10.6, "h": 13.2, "r": 0.38, "style": "broad", "seed": 16, "lean": 0.06, "bark": "#705848", "yaw": 0.5},
+      {"id": "back_ww", "kind": "hardwood", "x": -4.2, "z": -8.6, "h": 11.6, "r": 0.3, "style": "tall", "seed": 17, "lean": -0.03, "bark": "#4a382c", "yaw": 1.5},
+      {"id": "west", "kind": "hardwood", "x": -7.4, "z": -5.4, "h": 11.0, "r": 0.34, "style": "broad", "seed": 18, "lean": 0.08, "bark": "#5a4032", "yaw": 0.9},
+      {"id": "west2", "kind": "hardwood", "x": -8.2, "z": -0.6, "h": 10.4, "r": 0.28, "style": "tall", "seed": 19, "lean": -0.06, "bark": "#3e322a", "yaw": 2.4},
+      {"id": "west3", "kind": "hardwood", "x": -6.6, "z": 3.6, "h": 11.2, "r": 0.32, "style": "split", "seed": 20, "lean": 0.07, "bark": "#6a5240", "yaw": 0.3},
+      {"id": "nw", "kind": "hardwood", "x": -4.8, "z": 7.6, "h": 9.8, "r": 0.26, "style": "lean", "seed": 21, "lean": 0.12, "bark": "#5c4636", "yaw": 1.1},
+      {"id": "bank_w", "kind": "hardwood", "x": -3.4, "z": 2.4, "h": 10.6, "r": 0.3, "style": "split", "seed": 22, "lean": 0.1, "bark": "#4a382c", "yaw": 0.6},
+      {"id": "sap_s", "kind": "hardwood", "x": 13.4, "z": 9.6, "h": 5.2, "r": 0.12, "style": "sapling", "seed": 23, "lean": 0.04, "bark": "#6a5240", "yaw": 0.2},
+      {"id": "sap_e", "kind": "hardwood", "x": 13.6, "z": 2.6, "h": 4.6, "r": 0.1, "style": "sapling", "seed": 24, "lean": -0.05, "bark": "#5c4636", "yaw": 1.4},
+      {"id": "sap_b", "kind": "hardwood", "x": 2.2, "z": -6.6, "h": 4.8, "r": 0.11, "style": "sapling", "seed": 25, "lean": 0.08, "bark": "#705848", "yaw": 0.7},
+      {"id": "hem_w", "kind": "conifer", "x": -7.6, "z": -3.2, "h": 11.5, "r": 0.22, "seed": 31, "lean": 0.03, "bark": "#3a322c"},
+      {"id": "hem_e", "kind": "conifer", "x": 13.2, "z": -4.2, "h": 9.4, "r": 0.18, "seed": 32, "lean": -0.04, "bark": "#3e342e"},
+      {"id": "hem_n", "kind": "conifer", "x": -8.6, "z": 6.8, "h": 8.8, "r": 0.16, "seed": 33, "lean": 0.02, "bark": "#3a322c"},
+      {"id": "hem_s", "kind": "conifer", "x": -0.8, "z": 10.6, "h": 10.2, "r": 0.2, "seed": 34, "lean": 0.05, "bark": "#40342e"},
+      {"id": "hem_b", "kind": "conifer", "x": 6.4, "z": -7.6, "h": 12.0, "r": 0.2, "seed": 35, "lean": -0.02, "bark": "#3a322c"}
+    ]
+  },
+  "shell": {
+    "clearColor": "#d2dcc8",
+    "fogColor": "#c5d0c0",
+    "fogNear": 30,
+    "fogFar": 68
+  },
+  "camera": {
+    "fov": 46,
+    "near": 0.08,
+    "far": 180,
+    "minDistance": 0.7,
+    "maxDistance": 42,
+    "position": [8.4, 9.2, 14.2],
+    "target": [1.6, 0.7, -1.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-7.4, 3.4, -7.6],
+      "target": [3.2, 0.7, 0.2]
+    },
+    "close": {
+      "position": [6.9, 1.7, 5.2],
+      "target": [4.5, 0.85, 3.5]
+    }
+  },
+  "lights": {
+    "hemi": {"sky": 14084552, "ground": 4078122, "intensity": 0.58},
+    "key": {
+      "color": 16773074,
+      "intensity": 1.18,
+      "position": [-8, 26, 4],
+      "target": [1.2, 0.4, -0.6],
+      "castShadow": true
+    },
+    "fill": {
+      "color": 12174800,
+      "intensity": 0.32,
+      "position": [9, 8, -6],
+      "castShadow": false
+    },
+    "shadow": {
+      "mapSize": 2048,
+      "near": 0.5,
+      "far": 72,
+      "left": -22,
+      "right": 22,
+      "top": 22,
+      "bottom": -22,
+      "bias": -0.00035,
+      "normalBias": 0.04
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "A shaded picnic grove beside a rocky creek, not a room and not a furniture grid.",
+      "Three staggered tables, a charcoal grill with a prep counter, a timber footbridge, a trail sign, and fallen-log seats.",
+      "One shadow direction. Afternoon light, no spotlight pools."
+    ]
+  }
+}
