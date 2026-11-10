@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "title": "Authored library reading room",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 13.2, "depth": 9.2, "height": 4.45 },
+    "notes": [
+      "Tall built-in oak stacks on the back wall, three unequal window alcoves on the left, communal table plus smaller study tables, two book carts.",
+      "Zones: daylight alcoves (carrel, tall window, window seat) and the stacks/communal study floor. Catalog lectern sits in the open right corner.",
+      "Dining chairs face the table they belong to. Banker lamps sit on tabletops. Pendants and sconces add a second warm layer over cool window light."
+    ]
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "hx": 0.156,
+      "hz": 0.22,
+      "source": "library"
+    },
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76,
+      "hx": 0.216,
+      "hz": 0.644,
+      "top": 0.76,
+      "source": "library"
+    },
+    "school_desk": {
+      "glb": "assets/school_desk__57f955646049.glb",
+      "targetHeight": 0.75,
+      "hx": 0.322,
+      "hz": 0.237,
+      "top": 0.75,
+      "source": "library"
+    },
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75,
+      "hx": 0.38,
+      "hz": 0.38,
+      "top": 0.75,
+      "source": "boardgame"
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42,
+      "source": "library"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.5,
+      "source": "library"
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.12,
+      "hx": 0.32,
+      "hz": 0.32,
+      "source": "library"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28,
+      "source": "library"
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.62,
+      "source": "library"
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.08,
+      "source": "cafe"
+    }
+  },
+  "architecture": {
+    "bays": {
+      "x0": -5.72,
+      "x1": 5.05,
+      "pilaster": 0.22,
+      "widths": [1.58, 2.02, 1.42, 2.32, 2.11],
+      "zWall": -4.42,
+      "depth": 0.44,
+      "nicheBay": 2
+    },
+    "alcoves": [
+      { "id": "carrel", "z0": -3.85, "z1": -2.05, "sill": 0.82, "seat": false },
+      { "id": "tall", "z0": -1.58, "z1": 0.08, "sill": 1.02, "seat": false },
+      { "id": "nook", "z0": 0.62, "z1": 2.78, "sill": 0.5, "seat": true }
+    ],
+    "carts": [
+      { "id": "cart_stacks", "x": 3.2, "z": -3.22, "rot": 0.28, "scale": 1 },
+      { "id": "cart_aisle", "x": -1.55, "z": 2.35, "rot": -0.62, "scale": 0.9 }
+    ],
+    "tables": [
+      { "id": "communal", "x": -0.85, "z": -1.22, "hx": 2.35, "hz": 0.59, "top": 0.78 },
+      { "id": "carrel_top", "x": -5.42, "z": -2.95, "hx": 0.28, "hz": 0.7, "top": 0.76 }
+    ],
+    "lowRange": { "x": 4.55, "z0": -0.15, "z1": 1.7, "h": 1.16, "d": 0.66 },
+    "pier": { "x0": 5.08, "x1": 6.6, "z0": -4.6, "z1": -3.16 },
+    "leftWall": { "xOut": -6.58, "xGlass": -6.46, "xIn": -5.84 }
+  },
+  "instances": [
+    { "id": "chair_s0", "kind": "dining_chair", "position": [-2.35, 0, -2.06], "rotationY": 0 },
+    { "id": "chair_s1", "kind": "dining_chair", "position": [-0.7, 0, -2.06], "rotationY": 0 },
+    { "id": "chair_s2", "kind": "dining_chair", "position": [0.85, 0, -2.04], "rotationY": 0 },
+    { "id": "chair_n0", "kind": "dining_chair", "position": [-1.9, 0, -0.4], "rotationY": 3.1416 },
+    { "id": "chair_n1", "kind": "dining_chair", "position": [-0.15, 0, -0.4], "rotationY": 3.1416 },
+    { "id": "chair_n2", "kind": "dining_chair", "position": [1.15, 0, -0.42], "rotationY": 3.1416 },
+    { "id": "chair_w", "kind": "dining_chair", "position": [-3.6, 0, -1.22], "rotationY": 1.5708 },
+    { "id": "chair_e", "kind": "dining_chair", "position": [1.9, 0, -1.22], "rotationY": -1.5708 },
+
+    { "id": "square_a", "kind": "square_table", "position": [-3.72, 0, 1.62], "rotationY": 0.2 },
+    { "id": "chair_a_s", "kind": "dining_chair", "position": [-3.55, 0, 2.42], "rotationY": 3.1416 },
+    { "id": "chair_a_w", "kind": "dining_chair", "position": [-4.52, 0, 1.5], "rotationY": 1.5708 },
+
+    { "id": "square_b", "kind": "square_table", "position": [2.05, 0, 1.78], "rotationY": -0.15 },
+    { "id": "chair_b_s", "kind": "dining_chair", "position": [2.15, 0, 2.58], "rotationY": 3.1416 },
+    { "id": "chair_b_e", "kind": "dining_chair", "position": [2.85, 0, 1.7], "rotationY": -1.5708 },
+
+    { "id": "chair_carrel", "kind": "dining_chair", "position": [-4.86, 0, -2.95], "rotationY": -1.5708 },
+
+    { "id": "desk_quiet", "kind": "study_desk", "position": [-0.35, 0, 3.35], "rotationY": 0 },
+    { "id": "chair_quiet", "kind": "dining_chair", "position": [0.42, 0, 3.35], "rotationY": -1.5708 },
+
+    { "id": "desk_index", "kind": "school_desk", "position": [3.85, 0, -2.42], "rotationY": 0.08 },
+    { "id": "chair_index", "kind": "dining_chair", "position": [3.78, 0, -1.68], "rotationY": 3.1416 },
+
+    { "id": "lamp_t0", "kind": "library_lamp", "position": [-2.05, 0.785, -1.08], "rotationY": 1.5708 },
+    { "id": "lamp_t1", "kind": "library_lamp", "position": [-0.5, 0.785, -1.36], "rotationY": 1.15 },
+    { "id": "lamp_t2", "kind": "library_lamp", "position": [0.85, 0.785, -1.05], "rotationY": 2.05 },
+    { "id": "lamp_a", "kind": "library_lamp", "position": [-3.72, 0.75, 1.62], "rotationY": 0.4 },
+    { "id": "lamp_b", "kind": "library_lamp", "position": [2.05, 0.75, 1.78], "rotationY": -0.4 },
+    { "id": "lamp_carrel", "kind": "library_lamp", "position": [-5.42, 0.76, -2.7], "rotationY": 1.5708 },
+    { "id": "lamp_quiet", "kind": "library_lamp", "position": [-0.35, 0.76, 3.7], "rotationY": 0.4 },
+    { "id": "lamp_index", "kind": "library_lamp", "position": [3.85, 0.75, -2.42], "rotationY": 0.6 },
+    { "id": "lamp_niche", "kind": "library_lamp", "position": [-1.12, 0.96, -4.12], "rotationY": 0.3 },
+
+    { "id": "pend_a", "kind": "pendant_lamp", "position": [-2.25, 2.02, -1.22], "rotationY": 0.2 },
+    { "id": "pend_b", "kind": "pendant_lamp", "position": [0.35, 2.16, -1.05], "rotationY": -0.4 },
+
+    { "id": "lectern", "kind": "book_stand", "position": [5.05, 0, -2.48], "rotationY": 2.4 },
+    { "id": "shelf_pier", "kind": "wall_shelf", "position": [5.55, 1.68, -3.02], "rotationY": 0 },
+
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-5.42, 0, 3.72], "rotationY": 0.4 },
+    { "id": "pot_pier", "kind": "flowerpot", "position": [4.95, 0, -2.85], "rotationY": -0.3 },
+    { "id": "pot_sill", "kind": "flowerpot", "position": [-6.18, 1.04, -0.95], "rotationY": 0.2 },
+    { "id": "pot_range", "kind": "flowerpot", "position": [4.55, 1.16, 1.35], "rotationY": 0.5 },
+
+    { "id": "mug_t", "kind": "cup_mug", "position": [-1.15, 0.785, -1.4], "rotationY": 0.6 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [2.28, 0.75, 1.58], "rotationY": 1.1 },
+    { "id": "mug_q", "kind": "cup_mug", "position": [-0.15, 0.76, 3.05], "rotationY": -0.4 }
+  ],
+  "shell": {
+    "floorA": "#b28968",
+    "floorB": "#9b734f",
+    "floorBorder": "#6a4630",
+    "plaster": "#efe4d2",
+    "plasterShade": "#e3d3b8",
+    "oak": "#6b452c",
+    "oakMid": "#8a5c38",
+    "oakLight": "#c4a06a",
+    "oakDark": "#3c2818",
+    "shelfBack": "#2a1b12",
+    "rug": "#2c4638",
+    "rugEdge": "#7a342c",
+    "brass": "#c6a15a",
+    "glass": "#d5e7e2",
+    "sky": "#8ea4b0",
+    "cushion": "#7c3a32",
+    "curtain": "#8a4034",
+    "ceiling": "#f4efe6",
+    "beam": "#5c4030",
+    "clearColor": "#d8d2c6",
+    "fogColor": "#d8d2c6",
+    "fogNear": 20,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 46,
+    "position": [7.5, 3.15, 6.15],
+    "target": [-0.7, 1.35, -1.05]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.9, 2.75, 0.55],
+      "target": [-2.0, 1.35, -1.15]
+    },
+    "close": {
+      "position": [0.55, 1.32, 0.05],
+      "target": [-1.55, 0.92, -1.25]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774880, "ground": 6906440, "intensity": 0.46 },
+    "key": {
+      "color": 16774376,
+      "intensity": 0.82,
+      "position": [6.5, 11.5, 5.5],
+      "shadowSpan": 14,
+      "bias": -0.0004,
+      "normalBias": 0.03
+    },
+    "window": {
+      "color": 14218495,
+      "intensity": 0.62,
+      "position": [-9.5, 7.5, 0.2],
+      "shadowSpan": 13,
+      "bias": -0.00055,
+      "normalBias": 0.035
+    },
+    "fill": { "color": 15790320, "intensity": 0.22, "position": [5, 4.5, 8] },
+    "points": [
+      { "color": 14218495, "intensity": 0.85, "position": [-5.15, 2.25, -2.95], "distance": 5.5, "decay": 2 },
+      { "color": 14218495, "intensity": 0.95, "position": [-5.15, 2.35, -0.75], "distance": 6.2, "decay": 2 },
+      { "color": 14740223, "intensity": 0.8, "position": [-5.2, 1.9, 1.7], "distance": 5.8, "decay": 2 },
+      { "color": 16766122, "intensity": 0.55, "position": [-2.25, 2.35, -1.22], "distance": 5.5, "decay": 2 },
+      { "color": 16766122, "intensity": 0.5, "position": [0.35, 2.45, -1.05], "distance": 5.2, "decay": 2 },
+      { "color": 16762842, "intensity": 0.14, "position": [-5.28, 1.82, -1.82], "distance": 2.4, "decay": 2 },
+      { "color": 16762842, "intensity": 0.14, "position": [-5.28, 1.82, 0.35], "distance": 2.4, "decay": 2 },
+      { "color": 16764032, "intensity": 0.62, "position": [-2.05, 1.15, -1.08], "distance": 3.1, "decay": 2 },
+      { "color": 16764032, "intensity": 0.62, "position": [-0.5, 1.15, -1.36], "distance": 3.1, "decay": 2 },
+      { "color": 16764032, "intensity": 0.58, "position": [0.85, 1.15, -1.05], "distance": 3.1, "decay": 2 },
+      { "color": 16764032, "intensity": 0.48, "position": [-3.72, 1.12, 1.62], "distance": 2.8, "decay": 2 },
+      { "color": 16764032, "intensity": 0.48, "position": [2.05, 1.12, 1.78], "distance": 2.8, "decay": 2 },
+      { "color": 16764032, "intensity": 0.4, "position": [-5.42, 1.12, -2.7], "distance": 2.4, "decay": 2 },
+      { "color": 16768992, "intensity": 0.36, "position": [-0.75, 1.55, -3.9], "distance": 2.6, "decay": 2 }
+    ]
+  }
+}
