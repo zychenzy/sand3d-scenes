@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "title": "Afterglow Records",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.2, "depth": 8.4, "height": 3.2 },
+    "notes": [
+      "Evening vinyl shop. Listening lounge (sofa + audition desk) on the left wall, retail floor of flip bins and a face-out new-release rack in the middle, cashier island on the right.",
+      "Album wall on the back is the focal point. Wood bays stock spines. Acoustic foam, slats, bass trap and hung clouds define the listening side.",
+      "Sofa faces +X toward the coffee-table turntable. Audition chair faces -X toward its desk. Guest stool faces the counter; staff stool faces back across it.",
+      "Sleeve art is original canvas graphics (fictional titles), not scanned albums."
+    ]
+  },
+  "fixtures": {
+    "counter": { "x": 3.95, "z": 1.35, "length": 2.15, "depth": 0.68, "height": 1.02 },
+    "rugs": [
+      { "x": -4.05, "z": -2.45, "w": 2.7, "d": 2.35, "color": "#7a2e3c", "edge": "#3f1c24" },
+      { "x": -3.05, "z": -0.35, "w": 1.85, "d": 1.4, "color": "#5c3a2e", "edge": "#2c1c16" },
+      { "x": 2.85, "z": 1.15, "w": 1.15, "d": 1.45, "color": "#3a2a24", "edge": "#241812" }
+    ],
+    "covers": [
+      { "x": 0.85, "y": 1.68, "s": 0.68, "art": 0, "feature": true },
+      { "x": -0.05, "y": 1.92, "s": 0.4, "art": 2 },
+      { "x": -0.08, "y": 1.2, "s": 0.42, "art": 5 },
+      { "x": 1.72, "y": 1.88, "s": 0.4, "art": 4 },
+      { "x": 1.85, "y": 1.28, "s": 0.36, "art": 7 },
+      { "x": 0.82, "y": 2.36, "s": 0.28, "art": 8 },
+      { "x": 0.32, "y": 2.38, "s": 0.26, "art": 10 },
+      { "x": 1.32, "y": 2.36, "s": 0.24, "art": 9 },
+      { "x": 0.5, "y": 1.02, "s": 0.34, "art": 3 },
+      { "x": 1.28, "y": 1.0, "s": 0.3, "art": 6 },
+      { "x": 2.28, "y": 1.7, "s": 0.32, "art": 11 },
+      { "x": -1.55, "y": 1.55, "s": 0.62, "art": 1 }
+    ],
+    "bins": [
+      { "id": "jazz", "type": "flip", "x": -0.3, "z": -2.05, "rot": 0.08, "w": 1.16, "d": 0.42, "wall": 0.28, "label": "JAZZ", "seed": 4, "fan": 3, "stain": "#6b442c" },
+      { "id": "soul", "type": "flip", "x": 1.65, "z": -2.4, "rot": -0.06, "w": 1.12, "d": 0.42, "wall": 0.3, "label": "SOUL", "seed": 19, "fan": 3, "stain": "#5a3824" },
+      { "id": "rock", "type": "flip", "x": 0.45, "z": -0.48, "rot": 0.05, "w": 1.26, "d": 0.44, "wall": 0.27, "label": "ROCK", "seed": 31, "fan": 4, "stain": "#7a5132" },
+      { "id": "club", "type": "crate", "x": 2.15, "z": -0.02, "rot": -0.2, "w": 0.9, "d": 0.4, "wall": 0.18, "label": "CLUB", "seed": 47, "fan": 5, "stain": "#4a301f" },
+      { "id": "new", "type": "face", "x": 0.85, "z": 1.08, "rot": -0.04, "w": 1.46, "label": "NEW PRESSINGS", "seed": 8, "count": 4, "stain": "#6a4630" },
+      { "id": "delivery", "type": "crate", "x": -2.15, "z": 3.05, "rot": 0.45, "w": 0.62, "d": 0.36, "wall": 0.16, "label": "IN", "seed": 60, "fan": 4, "stain": "#6a4a30" }
+    ],
+    "bays": [
+      { "x": 3.28, "z": -3.86, "w": 1.18, "label": "ROCK / FOLK", "seed": 21 },
+      { "x": 4.52, "z": -3.86, "w": 1.18, "label": "CLUB / IMPORT", "seed": 48 }
+    ]
+  },
+  "assets": {
+    "sofa_solid": { "glb": "shared/lounge/sofa_solid__2172bb7e3b99.glb", "targetHeight": 0.82 },
+    "coffee_table": { "glb": "shared/lounge/coffee_table__29a509d8be0b.glb", "targetHeight": 0.4 },
+    "square_table": { "glb": "shared/workshop/square_table__7aaf2767b5f0.glb", "targetHeight": 0.74 },
+    "dining_chair": { "glb": "shared/music/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "library_lamp": { "glb": "shared/library/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
+    "speaker": { "glb": "shared/music/speaker__2db67686cd88.glb", "targetHeight": 0.32 },
+    "guitar_amp": { "glb": "shared/music/guitar_amp__4c520860a87e.glb", "targetHeight": 0.48 },
+    "pendant_lamp": { "glb": "shared/cafe/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.46 },
+    "cash_register": { "glb": "shared/cafe/cash_register__870f6ebb115a.glb", "targetHeight": 0.34 },
+    "pos_terminal": { "glb": "shared/cafe/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.18 },
+    "bar_stool": { "glb": "shared/cafe/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "flowerpot": { "glb": "shared/cafe/flowerpot__4a270f247734.glb", "targetHeight": 0.36 },
+    "cup_mug": { "glb": "shared/cafe/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "museum_plinth": { "glb": "shared/museum/museum_plinth__6bce39246b2c.glb", "targetHeight": 0.7 },
+    "piano_bench": { "glb": "shared/music/piano_bench__10332493b3a6.glb", "targetHeight": 0.48 }
+  },
+  "instances": [
+    { "id": "sofa_lounge", "kind": "sofa_solid", "position": [-4.78, 0, -2.55], "rotationY": -1.5708, "scale": [1.12, 1, 1] },
+    { "id": "lounge_table", "kind": "coffee_table", "position": [-3.45, 0, -2.55], "rotationY": 0, "scale": [0.78, 1, 0.68] },
+    { "id": "lounge_lamp", "kind": "library_lamp", "position": [-3.12, 0.4, -2.02], "rotationY": -0.9 },
+    { "id": "sp_lounge_a", "kind": "speaker", "position": [-3.55, 0, -3.68], "rotationY": -1.5708, "scale": [0.75, 0.75, 0.75] },
+    { "id": "sp_lounge_b", "kind": "speaker", "position": [-3.55, 0, -1.38], "rotationY": -1.5708, "scale": [0.75, 0.75, 0.75] },
+    { "id": "audition_table", "kind": "square_table", "position": [-3.2, 0, -0.35], "rotationY": 0.12 },
+    { "id": "audition_chair", "kind": "dining_chair", "position": [-2.18, 0, -0.35], "rotationY": -1.5708 },
+    { "id": "audition_lamp", "kind": "library_lamp", "position": [-2.95, 0.74, -0.1], "rotationY": 2.2 },
+    { "id": "audition_amp", "kind": "guitar_amp", "position": [-4.15, 0, 0.22], "rotationY": 1.15 },
+    { "id": "audition_mug", "kind": "cup_mug", "position": [-3.02, 0.74, -0.55], "rotationY": 0.5 },
+    { "id": "pend_lounge", "kind": "pendant_lamp", "position": [-3.55, 2.46, -2.55], "rotationY": 0.2 },
+    { "id": "pend_audition", "kind": "pendant_lamp", "position": [-3.15, 2.4, -0.35], "rotationY": -0.15 },
+    { "id": "pend_floor", "kind": "pendant_lamp", "position": [-1.75, 2.4, -1.2], "rotationY": -0.2 },
+    { "id": "pend_till", "kind": "pendant_lamp", "position": [3.95, 2.44, 1.35], "rotationY": 0.1 },
+    { "id": "register", "kind": "cash_register", "position": [3.98, 1.025, 0.82], "rotationY": 1.5708 },
+    { "id": "pos", "kind": "pos_terminal", "position": [3.78, 1.025, 1.55], "rotationX": -1.5708, "rotationY": 0.4, "scale": [0.5, 0.5, 0.5] },
+    { "id": "mug_till", "kind": "cup_mug", "position": [4.12, 1.025, 2.02], "rotationY": -0.4 },
+    { "id": "stool_staff", "kind": "bar_stool", "position": [4.72, 0, 1.45], "rotationY": -1.5708 },
+    { "id": "stool_guest", "kind": "bar_stool", "position": [3.02, 0, 1.05], "rotationY": 1.5708 },
+    { "id": "plant_window", "kind": "flowerpot", "position": [-5.05, 0, 3.25], "rotationY": 0.4 },
+    { "id": "plant_till", "kind": "flowerpot", "position": [5.05, 0, 2.95], "rotationY": -0.3 },
+    { "id": "plinth_pick", "kind": "museum_plinth", "position": [-1.15, 0, 2.45], "rotationY": 0.25 },
+    { "id": "bench_wait", "kind": "piano_bench", "position": [-3.25, 0, 3.15], "rotationY": 0.05 },
+    { "id": "sp_wall_a", "kind": "speaker", "position": [-0.15, 0, -3.42], "rotationY": 0.12 },
+    { "id": "sp_wall_b", "kind": "speaker", "position": [2.15, 0, -3.42], "rotationY": -0.08 }
+  ],
+  "shell": {
+    "floorColor": "#7a4e32",
+    "wallColor": "#5c463f",
+    "woodColor": "#3c2c28",
+    "trimColor": "#4e3428",
+    "ceilingColor": "#241c18",
+    "clearColor": "#2a211e",
+    "fogColor": "#2a211e",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 40,
+    "position": [6.35, 2.72, 5.85],
+    "target": [0.15, 1.2, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 42,
+      "position": [6.35, 2.15, 0.25],
+      "target": [-0.8, 1.0, -1.35]
+    },
+    "close": {
+      "fov": 38,
+      "position": [1.7, 1.62, -0.95],
+      "target": [0.85, 1.55, -3.85]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#ffe0c0", "ground": "#4a3028", "intensity": 0.48 },
+    "key": { "color": "#ffc48a", "intensity": 1.28, "position": [7.5, 12, 6.5] },
+    "fill": { "color": "#9eb0d0", "intensity": 0.32, "position": [-8, 4.5, 1.2] },
+    "points": [
+      { "color": "#ff9a40", "intensity": 8, "distance": 5.2, "decay": 2, "position": [-3.55, 2.3, -2.55] },
+      { "color": "#ffb060", "intensity": 6, "distance": 4.2, "decay": 2, "position": [-3.15, 2.25, -0.35] },
+      { "color": "#ffb060", "intensity": 7, "distance": 6.5, "decay": 2, "position": [-1.75, 2.2, -1.2] },
+      { "color": "#ffc070", "intensity": 8, "distance": 5, "decay": 2, "position": [3.95, 2.3, 1.35] },
+      { "color": "#ffe0b0", "intensity": 10, "distance": 6.5, "decay": 2, "position": [0.9, 2.05, -2.55] },
+      { "color": "#ffc080", "intensity": 3.5, "distance": 2.8, "decay": 2, "position": [-3.15, 0.85, -2.05] },
+      { "color": "#ffc080", "intensity": 3.2, "distance": 2.6, "decay": 2, "position": [-3.0, 1.15, -0.15] },
+      { "color": "#ffd2a8", "intensity": 4, "distance": 4.5, "decay": 2, "position": [-6.3, 1.9, 1.2] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "album-wall close", "unlit"],
+    "must_read": [
+      "Listening zone: sofa faces the coffee-table turntable; audition chair faces its desk.",
+      "Retail zone: record bins plus a cashier with register, and the album wall as the focal point.",
+      "Warm evening light — pendants, desk lamps and the AFTERGLOW sign read as sources."
+    ]
+  }
+}
