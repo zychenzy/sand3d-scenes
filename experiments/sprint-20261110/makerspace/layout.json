@@ -1,0 +1,370 @@
+{
+  "meta": {
+    "title": "Maker workshop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.6,
+      "depth": 7.6,
+      "height": 3.05
+    },
+    "anchors": {
+      "bench": [-2.7, -3.25],
+      "chest": [-1.28, -2.38],
+      "board": [0.35, -3.42],
+      "bins": [2.45, -3.42],
+      "printer": [3.45, -2.15],
+      "cart": [1.25, -1.15],
+      "assembly": [-0.25, 1.3]
+    },
+    "notes": [
+      "Cutaway shop: tool pegboard and standing bench on the back wall, electronics pair on the left wall, parts rack and 3D printer in the back-right, communal assembly table in the open center.",
+      "Chairs and monitors face the surface they serve. One assembly chair is pulled out.",
+      "Catalog furniture is referenced in place. Pegboard, printer, bins, and the standing bench are procedural because the catalog has no maker machines."
+    ]
+  },
+  "assets": {
+    "study_desk": {
+      "glb": "../../../cowork/assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76
+    },
+    "dining_chair": {
+      "glb": "../../../cowork/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.25
+    },
+    "library_lamp": {
+      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.34
+    },
+    "chalkboard": {
+      "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb",
+      "targetHeight": 1.45
+    },
+    "square_table": {
+      "glb": "../../../workshop/assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.7
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.52
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.13
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    }
+  },
+  "instances": [
+    {
+      "id": "board",
+      "kind": "chalkboard",
+      "position": [0.35, 0, -3.42],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "elec_desk_a",
+      "kind": "study_desk",
+      "position": [-4.05, 0, -1.42],
+      "rotationY": 1.5708,
+      "faces": [-3.02, -1.42]
+    },
+    {
+      "id": "elec_chair_a",
+      "kind": "dining_chair",
+      "position": [-3.02, 0, -1.42],
+      "rotationY": -1.5708,
+      "faces": [-4.05, -1.42]
+    },
+    {
+      "id": "elec_mon_a",
+      "kind": "monitor",
+      "position": [-4.28, 0.77, -1.42],
+      "rotationY": 1.5708,
+      "faces": [-3.02, -1.42]
+    },
+    {
+      "id": "elec_lamp_a",
+      "kind": "library_lamp",
+      "position": [-4.18, 0.77, -1.42],
+      "rotationY": 0.6
+    },
+    {
+      "id": "elec_desk_b",
+      "kind": "study_desk",
+      "position": [-4.05, 0, -0.7],
+      "rotationY": 1.5708,
+      "faces": [-3.02, -0.7]
+    },
+    {
+      "id": "elec_chair_b",
+      "kind": "dining_chair",
+      "position": [-3.02, 0, -0.7],
+      "rotationY": -1.5708,
+      "faces": [-4.05, -0.7]
+    },
+    {
+      "id": "elec_mon_b",
+      "kind": "monitor",
+      "position": [-4.28, 0.77, -0.7],
+      "rotationY": 1.5708,
+      "faces": [-3.02, -0.7]
+    },
+    {
+      "id": "elec_lamp_b",
+      "kind": "library_lamp",
+      "position": [-4.18, 0.77, -0.7],
+      "rotationY": -0.4
+    },
+    {
+      "id": "jar_desk",
+      "kind": "jam_jar",
+      "position": [-3.72, 0.78, -1.28],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug_elec",
+      "kind": "cup_mug",
+      "position": [-3.7, 0.78, -0.58],
+      "rotationY": 0.8
+    },
+    {
+      "id": "stool",
+      "kind": "bar_stool",
+      "position": [-3.5, 0, -2.35],
+      "rotationY": 2.4,
+      "faces": [-2.7, -3.25]
+    },
+    {
+      "id": "assembly",
+      "kind": "square_table",
+      "position": [-0.25, 0, 1.3],
+      "rotationY": 0.08,
+      "scale": [1.4, 1, 1.4]
+    },
+    {
+      "id": "asm_s",
+      "kind": "dining_chair",
+      "position": [-0.25, 0, 0.58],
+      "rotationY": 0,
+      "faces": [-0.25, 1.3]
+    },
+    {
+      "id": "asm_n",
+      "kind": "dining_chair",
+      "position": [-0.1, 0, 2.16],
+      "rotationY": 2.9616,
+      "faces": [-0.25, 1.3]
+    },
+    {
+      "id": "asm_e",
+      "kind": "dining_chair",
+      "position": [0.47, 0, 1.3],
+      "rotationY": -1.5708,
+      "faces": [-0.25, 1.3]
+    },
+    {
+      "id": "asm_w",
+      "kind": "dining_chair",
+      "position": [-1.15, 0, 1.42],
+      "rotationY": 1.8208,
+      "faces": [-0.25, 1.3]
+    },
+    {
+      "id": "mug_asm",
+      "kind": "cup_mug",
+      "position": [0.12, 0.78, 1.48],
+      "rotationY": 0.6
+    },
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "position": [-0.32, 0.78, 1.08],
+      "rotationY": -0.4
+    },
+    {
+      "id": "pend_a",
+      "kind": "pendant_lamp",
+      "position": [-0.7, 2.42, 1.3],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pend_b",
+      "kind": "pendant_lamp",
+      "position": [0.18, 2.5, 1.3],
+      "rotationY": -0.15
+    },
+    {
+      "id": "shelf_a",
+      "kind": "wall_shelf",
+      "position": [-4.64, 1.18, 0.85],
+      "rotationY": 1.5708,
+      "faces": [-3.6, 0.85]
+    },
+    {
+      "id": "shelf_b",
+      "kind": "wall_shelf",
+      "position": [-4.64, 1.18, 1.75],
+      "rotationY": 1.5708,
+      "faces": [-3.6, 1.75]
+    },
+    {
+      "id": "jar_bin_a",
+      "kind": "jam_jar",
+      "position": [2.15, 1.54, -3.4],
+      "rotationY": 0.2
+    },
+    {
+      "id": "jar_bin_b",
+      "kind": "jam_jar",
+      "position": [2.7, 1.54, -3.36],
+      "rotationY": -0.5
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-4.35, 0, 2.95],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#c2beb4",
+    "wallColor": "#e7e2d6",
+    "woodColor": "#4a4038",
+    "ceilingColor": "#d8d2c6",
+    "accentColor": "#c4512c",
+    "clearColor": "#d5d8d4",
+    "fogColor": "#d5d8d4",
+    "fogNear": 15,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 48,
+    "position": [2.65, 2.4, 5.05],
+    "target": [-0.45, 0.98, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.35, 2.05, 2.15],
+      "target": [0.1, 1.05, -1.55]
+    },
+    "close": {
+      "position": [1.45, 1.46, 2.55],
+      "target": [-0.15, 0.82, 1.22]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#e7eef6",
+      "ground": "#8d7352",
+      "intensity": 0.46
+    },
+    "key": {
+      "color": "#fff3e4",
+      "intensity": 1.02,
+      "position": [7.4, 10.2, 6.4]
+    },
+    "fill": {
+      "color": "#c5d4e4",
+      "intensity": 0.3,
+      "position": [-6.2, 4.2, 1.4]
+    },
+    "points": [
+      {
+        "id": "pend_a",
+        "color": "#ffc58a",
+        "intensity": 1.15,
+        "distance": 6.2,
+        "decay": 2,
+        "position": [-0.7, 2.22, 1.3]
+      },
+      {
+        "id": "pend_b",
+        "color": "#ffd0a0",
+        "intensity": 0.9,
+        "distance": 5.6,
+        "decay": 2,
+        "position": [0.18, 2.28, 1.3]
+      },
+      {
+        "id": "shop",
+        "color": "#fff1d0",
+        "intensity": 0.75,
+        "distance": 7,
+        "decay": 2,
+        "position": [-2.7, 2.5, -3.05]
+      },
+      {
+        "id": "shop_printer",
+        "color": "#fff1d0",
+        "intensity": 0.45,
+        "distance": 4.5,
+        "decay": 2,
+        "position": [3.45, 2.45, -2.15]
+      },
+      {
+        "id": "task_a",
+        "color": "#ffe0a0",
+        "intensity": 0.5,
+        "distance": 3.2,
+        "decay": 2,
+        "position": [-3.7, 1.15, -1.42]
+      },
+      {
+        "id": "task_b",
+        "color": "#ffe0a0",
+        "intensity": 0.5,
+        "distance": 3.2,
+        "decay": 2,
+        "position": [-3.7, 1.15, -0.7]
+      },
+      {
+        "id": "bed",
+        "color": "#ff6a2a",
+        "intensity": 0.4,
+        "distance": 2.2,
+        "decay": 2,
+        "position": [3.45, 1.05, -2.15]
+      },
+      {
+        "id": "window",
+        "color": "#c9daf0",
+        "intensity": 0.5,
+        "distance": 9,
+        "decay": 2,
+        "position": [-4.3, 2.35, 1.3]
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Pegboard tools over a standing bench.",
+      "Electronics chairs face the monitors.",
+      "Printer bay and parts bins are a second zone.",
+      "Assembly chairs face the communal table."
+    ]
+  }
+}
