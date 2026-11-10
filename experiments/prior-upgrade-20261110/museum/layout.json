@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "title": "North Hall gallery — prior-upgrade 20261110",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 13.8, "depth": 9.6, "height": 4.75 },
+    "notes": [
+      "Cutaway gallery with a picture wall, sculpture court, and object bay. Long slab benches only — no sofas.",
+      "HF plinth/vitrine/bookcase bakes read as solid columns, so displays are procedural stone plinths and glass cases.",
+      "Benches rotate so their long axis runs along X; occupants look toward the back-wall paintings (−Z).",
+      "Zones: picture wall, sculpture court with a clear center vista, viewing benches, right-hand table vitrines, left niche + next-gallery door."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "hx": 0.188,
+      "hz": 0.75,
+      "source": "museum"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48,
+      "source": "cafe"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3,
+      "source": "cafe"
+    }
+  },
+  "architecture": {
+    "pictureRailY": 3.62,
+    "corniceY": 4.42,
+    "leftWall": { "xOut": -6.9, "xIn": -6.76 },
+    "backWallZ": -4.8,
+    "skylight": { "x": -0.35, "z": -1.05, "w": 9.4, "d": 1.85 },
+    "niche": { "z0": -1.92, "z1": 0.22, "xBack": -7.32, "sill": 0.12, "head": 2.62 },
+    "door": { "z0": 2.18, "z1": 3.58, "xBack": -7.55, "sill": 0, "head": 2.78 },
+    "aisle": {
+      "centerX0": -0.85,
+      "centerX1": 0.85,
+      "viewingZ": -2.35,
+      "behindBenchesZ": 3.15
+    },
+    "works": [
+      { "id": "hero", "wall": "back", "x": 0.08, "y": 2.42, "w": 2.48, "h": 1.82, "frame": "#3a2c22", "gilt": "#c6a15a", "mat": "#f3ead8", "palette": ["#6b3a28", "#243044", "#c4a06a", "#1c1814", "#8a5340"] },
+      { "id": "left_tall", "wall": "back", "x": -3.05, "y": 2.38, "w": 1.28, "h": 1.92, "frame": "#2a2420", "gilt": "#8a6a38", "mat": "#efe6d4", "palette": ["#2f3d4a", "#6a5340", "#d8c6a4", "#1a2428"] },
+      { "id": "left_small", "wall": "back", "x": -4.78, "y": 2.58, "w": 0.98, "h": 1.12, "frame": "#4a3020", "gilt": "#c6a15a", "mat": "#f0e6d2", "palette": ["#5a3a42", "#d2b48c", "#2a1c18"] },
+      { "id": "right_sq", "wall": "back", "x": 2.82, "y": 2.46, "w": 1.52, "h": 1.52, "frame": "#2a2420", "gilt": "#b08a48", "mat": "#efe4d0", "palette": ["#3d4a38", "#8a5a3a", "#1e2a22", "#cbb892"] },
+      { "id": "right_wide", "wall": "back", "x": 4.88, "y": 2.28, "w": 1.72, "h": 1.22, "frame": "#3a2a1c", "gilt": "#c6a15a", "mat": "#f2e8d6", "palette": ["#2f3d4a", "#8a5a3a", "#efe6d4", "#243040"] },
+      { "id": "side_a", "wall": "left", "z": -3.12, "y": 2.18, "w": 1.22, "h": 1.42, "frame": "#2a2420", "gilt": "#8a6a38", "mat": "#efe6d4", "palette": ["#4a3058", "#c4a06a", "#1c1814"] },
+      { "id": "side_b", "wall": "left", "z": 1.08, "y": 2.08, "w": 1.08, "h": 1.32, "frame": "#3a2c22", "gilt": "#c6a15a", "mat": "#f3ead8", "palette": ["#2c4a62", "#7a3b32", "#d8c6a4"] }
+    ],
+    "plinths": [
+      { "id": "bronze", "x": -2.12, "z": -0.58, "w": 0.54, "d": 0.54, "h": 1.08, "exhibit": "figure", "stone": "#d8d0c4" },
+      { "id": "abstract", "x": 2.42, "z": -0.92, "w": 0.64, "d": 0.64, "h": 0.78, "exhibit": "slabs", "stone": "#cfc6ba" },
+      { "id": "torso", "x": 3.22, "z": 0.28, "w": 0.5, "d": 0.5, "h": 0.9, "exhibit": "torso", "stone": "#e2d8cc" },
+      { "id": "niche_bust", "x": -7.02, "z": -0.85, "w": 0.36, "d": 0.36, "h": 1.12, "exhibit": "bust", "stone": "#d2c8bc" }
+    ],
+    "vitrines": [
+      { "id": "vit_ceramic", "kind": "standing", "x": -4.18, "z": -1.58, "w": 0.95, "d": 0.54, "h": 1.64, "rot": 0.06 },
+      { "id": "vit_table_a", "kind": "table", "x": 4.78, "z": -1.18, "w": 1.42, "d": 0.74, "h": 0.94, "rot": -0.1 },
+      { "id": "vit_table_b", "kind": "table", "x": 4.88, "z": 1.28, "w": 1.24, "d": 0.66, "h": 0.94, "rot": 0.16 }
+    ],
+    "stanchion": { "around": "bronze", "radius": 0.92 },
+    "lectern": { "x": 5.42, "z": 3.28, "rot": -0.55 },
+    "spots": [
+      { "position": [-3.05, 4.22, -3.35], "target": [-3.05, 2.38, -4.55], "color": 16772080, "intensity": 1.15, "distance": 7, "angle": 0.38 },
+      { "position": [0.08, 4.28, -3.28], "target": [0.08, 2.42, -4.55], "color": 16774376, "intensity": 1.35, "distance": 7.5, "angle": 0.42 },
+      { "position": [2.82, 4.22, -3.35], "target": [2.82, 2.46, -4.55], "color": 16772080, "intensity": 1.1, "distance": 7, "angle": 0.36 },
+      { "position": [4.88, 4.18, -3.4], "target": [4.88, 2.28, -4.55], "color": 16772080, "intensity": 0.95, "distance": 6.5, "angle": 0.34 },
+      { "position": [-2.12, 3.85, 0.35], "target": [-2.12, 1.55, -0.58], "color": 16769480, "intensity": 0.7, "distance": 5.5, "angle": 0.45 },
+      { "position": [2.42, 3.7, 0.15], "target": [2.42, 1.2, -0.92], "color": 16769480, "intensity": 0.62, "distance": 5.2, "angle": 0.42 }
+    ]
+  },
+  "instances": [
+    { "id": "bench_west", "kind": "museum_bench", "position": [-2.48, 0, 2.22], "rotationY": 1.5708, "scale": [1.18, 1, 1.38] },
+    { "id": "bench_east", "kind": "museum_bench", "position": [2.22, 0, 2.22], "rotationY": 1.5708, "scale": [1.18, 1, 1.38] },
+    { "id": "pend_bronze", "kind": "pendant_lamp", "position": [-2.12, 2.92, -0.58], "rotationY": 0.2 },
+    { "id": "pend_abstract", "kind": "pendant_lamp", "position": [2.42, 2.98, -0.92], "rotationY": -0.35 },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-6.22, 0, 3.88], "rotationY": 0.4 },
+    { "id": "pot_right", "kind": "flowerpot", "position": [5.95, 0, -3.72], "rotationY": -0.25 }
+  ],
+  "shell": {
+    "floorA": "#c6b9aa",
+    "floorB": "#b7aa9b",
+    "floorC": "#d0c4b6",
+    "grout": "#8a8176",
+    "border": "#6e6458",
+    "plaster": "#efe6d6",
+    "plasterShade": "#e4d7c4",
+    "plasterDeep": "#d8cbb8",
+    "stone": "#d5cdc2",
+    "stoneDark": "#9a9084",
+    "oak": "#6a4e36",
+    "oakDark": "#3c2818",
+    "oakLight": "#c4a06a",
+    "brass": "#c6a15a",
+    "iron": "#2a2a2a",
+    "glass": "#d5e7ee",
+    "sky": "#9eb0bc",
+    "ceiling": "#f4efe6",
+    "beam": "#6a5344",
+    "rope": "#5a2430",
+    "linen": "#e6dcc8",
+    "bronze": "#6a4a32",
+    "bronzeDark": "#3a2818",
+    "marble": "#e8e0d4",
+    "nextRoom": "#c8bba8",
+    "label": "#d8cfc2",
+    "clearColor": "#d6d0c6",
+    "fogColor": "#d6d0c6",
+    "fogNear": 20,
+    "fogFar": 48
+  },
+  "camera": {
+    "fov": 46,
+    "position": [9.15, 3.28, 6.35],
+    "target": [0.15, 1.42, -0.55]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [8.35, 2.82, -0.35],
+      "target": [-1.35, 1.48, -1.05]
+    },
+    "close": {
+      "position": [0.95, 1.42, 1.15],
+      "target": [-1.55, 1.18, -0.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774880, "ground": 7631980, "intensity": 0.48 },
+    "key": {
+      "color": 16774376,
+      "intensity": 0.78,
+      "position": [7.5, 12.2, 6.2],
+      "shadowSpan": 15,
+      "bias": -0.0004,
+      "normalBias": 0.03
+    },
+    "window": {
+      "color": 14805247,
+      "intensity": 0.72,
+      "position": [0.2, 14.5, -1.0],
+      "shadowSpan": 14,
+      "bias": -0.0005,
+      "normalBias": 0.032
+    },
+    "fill": { "color": 15790320, "intensity": 0.24, "position": [6.5, 4.8, 8.2] },
+    "points": [
+      { "color": 14805247, "intensity": 0.95, "position": [-0.35, 4.55, -1.05], "distance": 9.5, "decay": 2 },
+      { "color": 16772080, "intensity": 0.55, "position": [-3.05, 4.05, -3.4], "distance": 5.5, "decay": 2 },
+      { "color": 16774376, "intensity": 0.7, "position": [0.08, 4.1, -3.3], "distance": 6.2, "decay": 2 },
+      { "color": 16772080, "intensity": 0.5, "position": [2.82, 4.05, -3.4], "distance": 5.5, "decay": 2 },
+      { "color": 16772080, "intensity": 0.45, "position": [4.88, 4.0, -3.45], "distance": 5.2, "decay": 2 },
+      { "color": 16769480, "intensity": 0.42, "position": [-2.12, 2.55, -0.58], "distance": 4.2, "decay": 2 },
+      { "color": 16769480, "intensity": 0.4, "position": [2.42, 2.55, -0.92], "distance": 4.0, "decay": 2 },
+      { "color": 14805247, "intensity": 0.35, "position": [-4.18, 1.7, -1.58], "distance": 3.2, "decay": 2 },
+      { "color": 16772080, "intensity": 0.32, "position": [4.78, 1.15, -1.18], "distance": 3.0, "decay": 2 },
+      { "color": 16772080, "intensity": 0.3, "position": [4.88, 1.15, 1.28], "distance": 2.8, "decay": 2 },
+      { "color": 16766122, "intensity": 0.22, "position": [-6.55, 1.85, -0.85], "distance": 2.6, "decay": 2 }
+    ]
+  }
+}
