@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "title": "Intimate jazz club",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 8.6, "height": 3.28 },
+    "stage": { "x0": -2.6, "x1": 2.55, "z0": -4.05, "z1": -2.12, "h": 0.36 },
+    "bar": { "x": -4.78, "z": 1.05, "length": 3.5, "depth": 0.68, "height": 1.05 },
+    "instruments": {
+      "piano": { "position": [-0.95, 0.36, -3.3], "rotationY": 1.5708 },
+      "bass": { "position": [0.72, 0.36, -3.48], "rotationY": 0.45 },
+      "drums": { "position": [1.42, 0.36, -2.78], "rotationY": 0.15 },
+      "sax": { "position": [0.58, 0.36, -2.4], "rotationY": -0.4 },
+      "mic": { "position": [0.88, 0.36, -2.5], "rotationY": 0.2 }
+    },
+    "notes": [
+      "Tiny stage against a draped back wall: parlor grand, double bass, jazz kit, saxophone, vocal mic.",
+      "Four brass rounds turned toward the stage, not a grid. Bar runs the left wall with stools facing it.",
+      "Dining-chair front is +Z (sand3d node layout). Audience seats use rotationY ≈ π so they face the stage."
+    ]
+  },
+  "assets": {
+    "round_table": { "glb": "assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.74 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 1.0 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.78 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.42 },
+    "piano_bench": { "glb": "assets/piano_bench__10332493b3a6.glb", "targetHeight": 0.5 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 }
+  },
+  "instances": [
+    { "id": "table_a", "kind": "round_table", "position": [-2.15, 0, -0.82], "rotationY": 0.2 },
+    { "id": "chair_a_s", "kind": "dining_chair", "position": [-2.15, 0, -0.1], "rotationY": 3.1416, "role": "audience", "at": "table_a" },
+    { "id": "chair_a_e", "kind": "dining_chair", "position": [-1.43, 0, -0.82], "rotationY": -1.85, "role": "side", "at": "table_a" },
+
+    { "id": "table_b", "kind": "round_table", "position": [2.22, 0, -0.08], "rotationY": -0.3 },
+    { "id": "chair_b_s", "kind": "dining_chair", "position": [2.22, 0, 0.64], "rotationY": 3.2, "role": "audience", "at": "table_b" },
+    { "id": "chair_b_w", "kind": "dining_chair", "position": [1.5, 0, -0.08], "rotationY": 1.82, "role": "side", "at": "table_b" },
+
+    { "id": "table_c", "kind": "round_table", "position": [-0.55, 0, 1.22], "rotationY": 0.4 },
+    { "id": "chair_c_s", "kind": "dining_chair", "position": [-0.55, 0, 1.94], "rotationY": 3.1416, "role": "audience", "at": "table_c" },
+    { "id": "chair_c_e", "kind": "dining_chair", "position": [0.17, 0, 1.22], "rotationY": -1.85, "role": "side", "at": "table_c" },
+    { "id": "chair_c_w", "kind": "dining_chair", "position": [-1.27, 0, 1.22], "rotationY": 1.78, "role": "side", "at": "table_c" },
+
+    { "id": "table_d", "kind": "round_table", "position": [2.55, 0, 2.22], "rotationY": 0.15 },
+    { "id": "chair_d_s", "kind": "dining_chair", "position": [2.55, 0, 2.94], "rotationY": 3.26, "role": "audience", "at": "table_d" },
+    { "id": "chair_d_w", "kind": "dining_chair", "position": [1.83, 0, 2.22], "rotationY": 1.82, "role": "side", "at": "table_d" },
+
+    { "id": "stool_1", "kind": "bar_stool", "position": [-3.98, 0, -0.22], "rotationY": -1.5708, "role": "bar" },
+    { "id": "stool_2", "kind": "bar_stool", "position": [-3.98, 0, 0.68], "rotationY": -1.5708, "role": "bar" },
+    { "id": "stool_3", "kind": "bar_stool", "position": [-3.98, 0, 1.58], "rotationY": -1.5708, "role": "bar" },
+    { "id": "stool_4", "kind": "bar_stool", "position": [-3.98, 0, 2.48], "rotationY": -1.5708, "role": "bar" },
+
+    { "id": "bench", "kind": "piano_bench", "position": [-0.42, 0.36, -3.3], "rotationY": -1.5708, "role": "bench" },
+
+    { "id": "lamp_a", "kind": "pendant_lamp", "position": [-2.15, 2.16, -0.82], "rotationY": 0.1 },
+    { "id": "lamp_b", "kind": "pendant_lamp", "position": [2.22, 2.16, -0.08], "rotationY": 0.4 },
+    { "id": "lamp_c", "kind": "pendant_lamp", "position": [-0.55, 2.2, 1.22], "rotationY": -0.2 },
+    { "id": "lamp_d", "kind": "pendant_lamp", "position": [2.55, 2.24, 2.22], "rotationY": 0.3 },
+    { "id": "lamp_bar_1", "kind": "pendant_lamp", "position": [-4.55, 2.28, 0.25], "rotationY": 0 },
+    { "id": "lamp_bar_2", "kind": "pendant_lamp", "position": [-4.55, 2.28, 1.85], "rotationY": 0.2 },
+
+    { "id": "plant", "kind": "flowerpot", "position": [-4.35, 0, 3.55], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#5c4030",
+    "wallColor": "#6d4a4e",
+    "woodColor": "#3e2a28",
+    "ceilingColor": "#3a3332",
+    "drapeColor": "#8d3a48",
+    "drapeDeep": "#5a2432",
+    "brassColor": "#c4a15a",
+    "stageColor": "#7a5436",
+    "fasciaColor": "#241c1a",
+    "runnerColor": "#6e3140",
+    "clearColor": "#2a211e",
+    "fogColor": "#2a211e",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 42,
+    "position": [6.45, 2.72, 5.25],
+    "target": [-0.35, 0.98, -1.55]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.7, 2.2, 2.55],
+      "target": [-0.7, 0.95, -2.15]
+    },
+    "close": {
+      "position": [1.9, 1.48, -0.35],
+      "target": [0.15, 0.85, -2.85]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#ffe0cc", "ground": "#4a3030", "intensity": 0.5 },
+    "key": {
+      "color": "#ffe6cf",
+      "intensity": 0.62,
+      "position": [4.2, 8.2, 3.6],
+      "target": [-0.4, 0.6, -1.2],
+      "shadowExtent": 11,
+      "shadowFar": 30
+    },
+    "fill": { "color": "#6a5048", "intensity": 0.16, "position": [-5, 3.2, 2] },
+    "spots": [
+      {
+        "id": "spot_piano",
+        "color": "#ffc48a",
+        "intensity": 9,
+        "distance": 6.5,
+        "angle": 0.46,
+        "penumbra": 0.62,
+        "decay": 2,
+        "castShadow": true,
+        "position": [-0.7, 2.98, -2.45],
+        "target": [-1.05, 0.85, -3.25]
+      },
+      {
+        "id": "spot_sax",
+        "color": "#ffb870",
+        "intensity": 7.5,
+        "distance": 6,
+        "angle": 0.38,
+        "penumbra": 0.7,
+        "decay": 2,
+        "castShadow": true,
+        "position": [0.45, 2.98, -1.75],
+        "target": [0.58, 1.15, -2.4]
+      },
+      {
+        "id": "spot_drums",
+        "color": "#ffc090",
+        "intensity": 7,
+        "distance": 6,
+        "angle": 0.42,
+        "penumbra": 0.65,
+        "decay": 2,
+        "castShadow": false,
+        "position": [1.35, 2.96, -2.05],
+        "target": [1.42, 0.75, -2.78]
+      }
+    ],
+    "points": [
+      { "id": "pool_a", "color": "#ffb56a", "intensity": 1.35, "distance": 3.6, "decay": 2, "position": [-2.15, 2.05, -0.82] },
+      { "id": "pool_b", "color": "#ffb56a", "intensity": 1.35, "distance": 3.6, "decay": 2, "position": [2.22, 2.05, -0.08] },
+      { "id": "pool_c", "color": "#ffb56a", "intensity": 1.25, "distance": 3.6, "decay": 2, "position": [-0.55, 2.08, 1.22] },
+      { "id": "pool_d", "color": "#ffb56a", "intensity": 1.15, "distance": 3.4, "decay": 2, "position": [2.55, 2.12, 2.22] },
+      { "id": "pool_bar", "color": "#ffc48a", "intensity": 1.05, "distance": 3.2, "decay": 2, "position": [-4.5, 2.05, 1.05] },
+      { "id": "pool_host", "color": "#ffd0a0", "intensity": 0.45, "distance": 2.2, "decay": 2, "position": [-3.55, 1.35, 3.35] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "A low stage with a grand piano, bass, drums and horn is the focal point.",
+      "Tables sit in front of the stage; chair fronts point at the table and the stage, not at the camera.",
+      "A bar with stools runs the left wall. Drapes and warm practicals make it a club, not an empty hall."
+    ]
+  }
+}
