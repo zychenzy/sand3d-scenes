@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "title": "Garden open-air cinema",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Walled garden at dusk. Tensile screen on the -Z wall. Folding deckchairs face that screen.",
+      "Local chair: foot rail at -Z, backrest at +Z. rotationY near 0 looks toward -Z. Outward stagger on odd rows. Do not set rotationY to pi.",
+      "Center aisle, two side aisles. Projector booth ends the right aisle. Cable cover stays in that aisle. Drinks cart sits in a left-bed bay, off the through-aisle."
+    ]
+  },
+  "shell": {
+    "clearColor": "#1a2038",
+    "fogColor": "#c48b78",
+    "fogNear": 48,
+    "fogFar": 130
+  },
+  "camera": {
+    "fov": 40,
+    "position": [3.4, 8.1, 15.6],
+    "target": [-0.15, 1.55, -2.5]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-14.8, 7.4, 12.2],
+      "target": [0.3, 1.55, -2.6]
+    },
+    "close": {
+      "position": [6.45, 1.38, 0.35],
+      "target": [-1.1, 0.95, -3.2]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#8a86b4", "ground": "#3e342c", "intensity": 0.58 },
+    "key": {
+      "color": "#ffb07a",
+      "intensity": 1.05,
+      "position": [-9.5, 11.5, -8.5],
+      "target": [0.4, 0.8, 0.5],
+      "shadow": {
+        "left": -20,
+        "right": 20,
+        "top": 20,
+        "bottom": -20,
+        "near": 0.5,
+        "far": 55,
+        "bias": -0.0006,
+        "normalBias": 0.03,
+        "mapSize": 2048
+      }
+    },
+    "fill": { "color": "#a8b8d0", "intensity": 0.46, "position": [8, 6.5, 11] }
+  },
+  "site": {
+    "lawnY": 0.14,
+    "pathTop": 0.175,
+    "bedTop": 0.24,
+    "bounds": {
+      "innerX": 8.05,
+      "innerZBack": -7.7,
+      "innerZFront": 7.7,
+      "wallH": 2.12,
+      "wallT": 0.32,
+      "coping": 0.12
+    },
+    "gate": { "halfWidth": 1.08 },
+    "screen": {
+      "center": [0, 3.0, -6.55],
+      "width": 6.1,
+      "height": 2.95,
+      "aabb": {
+        "min": [-3.1, 1.42, -6.82],
+        "max": [3.1, 4.58, -6.28]
+      }
+    },
+    "seating": {
+      "rows": [-2.3, -0.4, 1.5, 3.4],
+      "xLeft": [-5.05, -3.85, -2.65, -1.5],
+      "xRight": [1.5, 2.65, 3.85, 5.05],
+      "stagger": 0.34,
+      "toe": 0.72,
+      "screenZ": -6.55,
+      "stripes": ["terracotta", "teal", "ochre", "navy"]
+    },
+    "chair": {
+      "foot": [0, 0.42, -0.42],
+      "back": [0, 0.9, 0.12],
+      "frontGround": [0, 0.02, -0.5],
+      "rearGround": [0, 0.02, 0.48],
+      "halfWidth": 0.26,
+      "halfDepth": 0.58,
+      "height": 0.96,
+      "frameX": 0.24
+    },
+    "aisles": {
+      "center": { "minX": -0.82, "maxX": 0.82, "minZ": -5.35, "maxZ": 7.6 },
+      "left": { "minX": -7.12, "maxX": -6.02, "minZ": -6.6, "maxZ": 7.5 },
+      "right": { "minX": 6.05, "maxX": 7.22, "minZ": -6.6, "maxZ": 7.5 }
+    },
+    "beds": [
+      { "name": "bed-left-a", "minX": -7.95, "maxX": -7.18, "minZ": -7.55, "maxZ": 0.12 },
+      { "name": "bed-left-b", "minX": -7.95, "maxX": -7.18, "minZ": 1.72, "maxZ": 7.5 },
+      { "name": "bed-right", "minX": 7.22, "maxX": 7.95, "minZ": -7.55, "maxZ": 5.25 },
+      { "name": "bed-back-l", "minX": -7.05, "maxX": -3.45, "minZ": -7.55, "maxZ": -6.82 },
+      { "name": "bed-back-r", "minX": 3.45, "maxX": 7.1, "minZ": -7.55, "maxZ": -6.82 },
+      { "name": "bed-front-l", "minX": -7.05, "maxX": -1.45, "minZ": 6.85, "maxZ": 7.52 },
+      { "name": "bed-front-r", "minX": 1.45, "maxX": 6.15, "minZ": 6.85, "maxZ": 7.52 }
+    ],
+    "pads": [
+      { "name": "pad-cart", "minX": -7.98, "maxX": -7.16, "minZ": 0.22, "maxZ": 1.62 }
+    ],
+    "cable": { "x": 6.62, "halfWidth": 0.08, "z0": -6.35, "z1": 5.48 },
+    "cableLateral": { "z": -6.4, "halfWidth": 0.08, "x0": 3.45, "x1": 6.62 },
+    "booth": {
+      "min": [6.4, 0.14, 5.52],
+      "max": [7.88, 2.58, 7.42]
+    },
+    "cart": {
+      "min": [-7.92, 0.175, 0.38],
+      "max": [-7.24, 1.74, 1.46]
+    }
+  },
+  "assets": {
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.3 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.13 }
+  },
+  "instances": [
+    { "id": "pot_front_l", "kind": "flowerpot", "position": [-3.6, 0.24, 7.12], "rotationY": 0.4 },
+    { "id": "pot_front_r", "kind": "flowerpot", "position": [3.4, 0.24, 7.08], "rotationY": -0.6 },
+    { "id": "pot_left_bed", "kind": "flowerpot", "position": [-7.55, 0.24, -3.4], "rotationY": 0.2 },
+    { "id": "pot_cart_side", "kind": "flowerpot", "position": [-7.58, 0.24, 1.85], "rotationY": 1.1 },
+    { "id": "pot_back_l", "kind": "flowerpot", "position": [-5.6, 0.24, -7.15], "rotationY": 0.5 },
+    { "id": "pot_back_r", "kind": "flowerpot", "position": [5.5, 0.24, -7.12], "rotationY": -0.3 },
+    { "id": "pot_right_bed", "kind": "flowerpot", "position": [7.55, 0.24, 2.4], "rotationY": 0.8 },
+    { "id": "pot_booth", "kind": "flowerpot", "position": [7.55, 0.24, 4.55], "rotationY": -1.2, "scale": 0.9 },
+    { "id": "mug_a", "kind": "cup_mug", "position": [-7.72, 0.96, 0.72], "rotationY": 0.6 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [-7.5, 0.96, 0.62], "rotationY": 2.2 },
+    { "id": "mug_c", "kind": "cup_mug", "position": [-7.38, 0.96, 0.88], "rotationY": -0.4 },
+    { "id": "thermos_a", "kind": "thermos", "position": [-7.42, 0.96, 1.18], "rotationY": 0.3 },
+    { "id": "jar_a", "kind": "jam_jar", "position": [-7.74, 0.96, 1.16], "rotationY": 0.2 },
+    { "id": "jar_b", "kind": "jam_jar", "position": [-7.62, 0.96, 1.28], "rotationY": 1.4 }
+  ],
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "aisle close", "unlit default"],
+    "must_read": [
+      "Every deckchair foot is closer to the screen than its backrest.",
+      "No chair yaw near pi.",
+      "Default and corner cameras see the screen without a chair, booth, or cart in the way.",
+      "Cable cover stays in the right aisle."
+    ]
+  }
+}
