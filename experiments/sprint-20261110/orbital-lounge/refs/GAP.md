@@ -1,11 +1,11 @@
 # GAP — orbital lounge
 
-What the sand3d set does not contain, and what this scene does instead.
+What this scene still simplifies.
 
-- No cupola, hatch, locker, or station-rib GLB. The port, sandwich bulkheads, bay ribs, lockers, galley carcass, rails, deck hatch, and light strips are procedural meshes in `orbital.js`.
-- No Earth or exterior panorama asset. The view is a small canvas painting (limb, two land masses, one solar wing). It is not a NASA photograph.
-- Seats and the mess table are domestic kit: metal cafe chairs, a gray sofa, a wood trestle table, a museum bench, a wood wall shelf. They are scaled and aimed for this room. They are not flight hardware.
-- The open locker holds a blanket block and a mug, not soft goods or a suit.
-- Contact shadows are radial decals. There is no screen-space AO and no bloom.
-- Toon materials stay flat color plus the vista and label maps. Panel breakup is geometry (ribs, seams, insets), not a grunge texture.
+- No cupola, hatch, locker, or station-rib GLB. The chamfered hull, pads, port frame, lockers, galley niche, rails, benches, pedestal table, and LED strips are procedural meshes in `orbital.js`.
+- Earth and the star field are canvas textures on a sphere and a plane, not a NASA photograph. The atmosphere is a fresnel shader.
+- Seating is built-in geometry, not flight couches with restraints.
+- The open locker holds a folded block and a cup, not soft goods or a suit.
+- The cool port spill is a light plus a radial decal. There is no screen-space AO and no bloom.
+- Toon materials stay flat color plus the earth, star, and label maps.
 - No crew figures.

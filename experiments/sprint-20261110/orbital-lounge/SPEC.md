@@ -1,23 +1,23 @@
 # Orbital station communal lounge
 
-A cutaway of one habitat module, not a neon arcade and not an empty box with a window decal.
+A cutaway of one habitat module: a chamfered-octagon section, padded white and grey panels, one accent color.
 
 ## Zones
 
-- **Port and conversation.** The aft bulkhead carries one rounded pressure port. A bench sits on the sill line. Inboard of that, a gray sofa faces two metal chairs across a low table. People on the chairs look toward the sofa and the limb above it.
-- **Shared meal.** A trestle table runs fore-aft on the starboard side. Two chairs face it from the aisle; one sits at each end. The starboard side of the table stays clear so someone can stand between the table and the galley.
-- **Storage.** Four personal lockers fill the lower port bays between the wall ribs. L4 is open. A short galley counter and a wall shelf occupy the aft-starboard pier.
+- **Port.** The aft bulkhead has one rounded pressure port. Earth is a sphere set well behind the glass, larger than the opening, with a fresnel atmosphere and a star field behind it. The port spills a cool patch onto the deck. A low watch bench faces the port.
+- **Mess.** Two built-in benches face each other across a rounded pedestal table. Cups sit on the top. The starboard side stays a short galley niche, flush with the hull.
+- **Storage.** Four lockers are recessed into the port wall so the doors sit on the pad face. L4 is open. Labels read L1–L4, STOW, GALLEY, MESS, and HAB-03.
 
-Circulation is the open deck between the rugs, past a closed floor hatch, and along the port lockers to the window.
+Circulation is the aisle between the benches, from the open cut back to the port.
 
 ## Architecture
 
-Walls are a liner / core / hull sandwich, so the cut edge reads as a module section. Vertical ribs set the bay rhythm on the port wall and on both piers beside the port. Ceiling frames stop short of the cut so the camera can see in. Deck seams and the hatch keep the floor from being one slab. A grab rail crosses the port; an overhead rail runs the locker corridor, clear of the doors.
+The cross-section is an octagon with the lower corners chamfered and the deck flat. The starboard upper corner is cut away so the camera can see in; the forward cut shows the full section ring. Panels are off-white pads between grey hull seams. A handrail runs the port wall and a shorter one runs the starboard coaming. The deck has two LED lines; the ceiling has two more. There is no floor hatch and no rug.
 
 ## Light and palette
 
-Warm off-white liner, graphite ribs, warm-gray deck, a deep green rug under the conversation seats and a brown rug under the mess. Two warm practical strips and one pale port wash. No bloom, no cyan grid, no scattered neon.
+Off-white pads, grey hull, warm-grey deck, teal cushions and table rim. Ceiling and floor strips are a cool white. The port adds a cool spill. No bloom, no black scaffold grid, no cafe orange.
 
 ## Assets
 
-Reused sand3d GLBs, referenced from their existing scene folders. Ribs, port, vista, lockers, galley carcass, rails, and strips are procedural. See `ATTRIBUTIONS.md` and `refs/GAP.md`.
+Hull, pads, rails, benches, table, lockers, galley, earth, stars, and strips are procedural meshes in this folder. The renderer is the vendored Three.js r170 build. See `ATTRIBUTIONS.md` and `refs/GAP.md`.
