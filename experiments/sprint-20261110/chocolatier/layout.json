@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "Maison Cacao chocolatier atelier",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.8, "depth": 8.6, "height": 3.22 },
+    "notes": [
+      "Two zones: workshop (z < 0, wood floor) and shop (z > 0, stone tile), split by a brass threshold.",
+      "Workshop focal point is the marble prep island. Shop focal point is the glass display case.",
+      "Left pantry is seen through a wood-and-glass partition. Wrap counter sits on the open right.",
+      "Dining-chair forward axis is +Z at rotationY 0. Register/POS forward is +Z, turned to face -X."
+    ]
+  },
+  "anchors": {
+    "island": [-0.15, -1.65],
+    "case": [1.65, 1.05],
+    "counter": [4.45, 2.35],
+    "temper": [2.15, -3.5],
+    "rack": [3.9, -3.22],
+    "cart": [-2.9, -2.25],
+    "crate": [-4.25, -3.68],
+    "lectern": [0.15, 3.55],
+    "sacks": [[-3.85, -2.5], [-3.4, -1.72]],
+    "partitionZ": -0.5,
+    "partitionX1": -2.4
+  },
+  "assets": {
+    "bookcase": { "glb": "assets/bookcase.glb", "targetHeight": 1.95 },
+    "wall_shelf": { "glb": "assets/wall_shelf.glb", "targetHeight": 0.7 },
+    "jam_jar": { "glb": "assets/jam_jar.glb", "targetHeight": 0.16 },
+    "thermos": { "glb": "assets/thermos.glb", "targetHeight": 0.34 },
+    "straw_holder": { "glb": "assets/straw_holder.glb", "targetHeight": 0.2 },
+    "round_table": { "glb": "assets/round_table.glb", "targetHeight": 0.74 },
+    "dining_chair": { "glb": "assets/dining_chair.glb", "targetHeight": 0.94 },
+    "square_table": { "glb": "assets/square_table.glb", "targetHeight": 0.76 },
+    "bar_stool": { "glb": "assets/bar_stool.glb", "targetHeight": 0.86 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp.glb", "targetHeight": 0.42 },
+    "flowerpot": { "glb": "assets/flowerpot.glb", "targetHeight": 0.22 },
+    "cash_register": { "glb": "assets/cash_register.glb", "targetHeight": 0.32 },
+    "pos_terminal": { "glb": "assets/pos_terminal.glb", "targetHeight": 0.075 },
+    "tray": { "glb": "assets/tray.glb", "targetHeight": 0.16 },
+    "cup_mug": { "glb": "assets/cup_mug.glb", "targetHeight": 0.09 },
+    "library_lamp": { "glb": "assets/library_lamp.glb", "targetHeight": 0.36 },
+    "plinth": { "glb": "assets/plinth.glb", "targetHeight": 0.88 }
+  },
+  "instances": [
+    { "id": "bookcase_bulk", "kind": "bookcase", "position": [-5.08, 0, -2.72], "rotationY": -1.5708 },
+    { "id": "bookcase_spice", "kind": "bookcase", "position": [-5.08, 0, -1.15], "rotationY": -1.5708 },
+    { "id": "wall_shelf", "kind": "wall_shelf", "position": [2.6, 1.68, -4.08], "rotationY": 0 },
+
+    { "id": "tin_cocoa", "kind": "thermos", "position": [-5.0, 0.055, -2.95], "rotationY": 0.4, "tint": "#6b3e28" },
+    { "id": "scoop_bulk", "kind": "straw_holder", "position": [-4.98, 0.055, -2.48], "rotationY": 0.2, "tint": "#c6a15a" },
+    { "id": "jar_cocoa", "kind": "jam_jar", "position": [-5.0, 0.528, -3.0], "rotationY": 0.3, "tint": "#3a2418" },
+    { "id": "jar_caramel", "kind": "jam_jar", "position": [-4.96, 0.528, -2.72], "rotationY": -0.4, "tint": "#c46a32", "scale": [1, 0.9, 1] },
+    { "id": "jar_sugar", "kind": "jam_jar", "position": [-5.02, 0.528, -2.46], "rotationY": 0.8, "tint": "#f0e2c8" },
+    { "id": "jar_milk", "kind": "jam_jar", "position": [-5.0, 1.002, -2.9], "rotationY": 0.2, "tint": "#a87548" },
+    { "id": "jar_raspberry", "kind": "jam_jar", "position": [-4.97, 1.002, -2.5], "rotationY": 1.1, "tint": "#7a2430", "scale": [0.9, 0.9, 0.9] },
+    { "id": "holder_mid", "kind": "straw_holder", "position": [-4.96, 1.002, -2.7], "rotationY": -0.3, "tint": "#f4efe6" },
+    { "id": "jar_vanilla", "kind": "jam_jar", "position": [-5.0, 1.476, -2.86], "rotationY": 0.5, "tint": "#4a3424", "scale": [0.8, 0.8, 0.8] },
+    { "id": "jar_blanc", "kind": "jam_jar", "position": [-4.98, 1.476, -2.52], "rotationY": -0.2, "tint": "#f6efe4", "scale": [0.75, 0.85, 0.75] },
+
+    { "id": "tin_cream", "kind": "thermos", "position": [-5.0, 0.055, -1.32], "rotationY": -0.5, "tint": "#f7f3ea" },
+    { "id": "jar_mass", "kind": "jam_jar", "position": [-4.98, 0.528, -1.38], "rotationY": 0.6, "tint": "#5a3318" },
+    { "id": "jar_honey", "kind": "jam_jar", "position": [-5.02, 0.528, -0.96], "rotationY": 0.1, "tint": "#e0b44a", "scale": [1.05, 1.15, 1.05] },
+    { "id": "jar_nib", "kind": "jam_jar", "position": [-4.97, 1.002, -1.22], "rotationY": -0.7, "tint": "#2c1814" },
+    { "id": "jar_top_spice", "kind": "jam_jar", "position": [-5.0, 1.476, -1.05], "rotationY": 0.4, "tint": "#f3ead8", "scale": [0.8, 0.8, 0.8] },
+
+    { "id": "jar_wall_a", "kind": "jam_jar", "position": [2.4, 1.833, -4.08], "rotationY": 0.2, "tint": "#6b3e28", "scale": [0.85, 0.85, 0.85] },
+    { "id": "jar_wall_b", "kind": "jam_jar", "position": [2.66, 1.833, -4.08], "rotationY": -0.5, "tint": "#f0e2c8", "scale": [0.8, 0.8, 0.8] },
+    { "id": "jar_wall_c", "kind": "jam_jar", "position": [2.48, 2.25, -4.08], "rotationY": 0.3, "tint": "#7a2430", "scale": [0.75, 0.75, 0.75] },
+    { "id": "holder_wall", "kind": "straw_holder", "position": [2.78, 2.25, -4.08], "rotationY": 0.6, "tint": "#c6a15a", "scale": [0.85, 0.85, 0.85] },
+
+    { "id": "taste_table", "kind": "round_table", "position": [-2.7, 0, 2.55], "rotationY": 0.2, "scale": [1.22, 1, 1.22] },
+    { "id": "chair_taste_n", "kind": "dining_chair", "position": [-2.7, 0, 1.66], "rotationY": 0, "faces": [-2.7, 0, 2.55] },
+    { "id": "chair_taste_e", "kind": "dining_chair", "position": [-1.8, 0, 2.55], "rotationY": -1.5708, "faces": [-2.7, 0, 2.55] },
+    { "id": "cup_a", "kind": "cup_mug", "position": [-2.52, 0.74, 2.4], "rotationY": 0.8 },
+    { "id": "cup_b", "kind": "cup_mug", "position": [-2.9, 0.74, 2.72], "rotationY": -0.4 },
+    { "id": "tray_taste", "kind": "tray", "position": [-2.55, 0.74, 2.62], "rotationY": 0.5, "scale": [1.2, 1, 1.15] },
+
+    { "id": "pack_table", "kind": "square_table", "position": [3.5, 0, -1.75], "rotationY": 0.08, "scale": [1.55, 1, 1.22] },
+    { "id": "chair_pack", "kind": "dining_chair", "position": [3.5, 0, -0.95], "rotationY": 3.1416, "faces": [3.5, 0, -1.75] },
+
+    { "id": "stool_island", "kind": "bar_stool", "position": [-1.15, 0, -0.55], "rotationY": 0.2 },
+    { "id": "stool_bar_a", "kind": "bar_stool", "position": [5.02, 0, 2.05], "rotationY": 0.1 },
+    { "id": "stool_bar_b", "kind": "bar_stool", "position": [5.02, 0, 2.78], "rotationY": -0.15 },
+
+    { "id": "pend_island", "kind": "pendant_lamp", "position": [-0.15, 1.9, -1.65], "rotationY": 0.2 },
+    { "id": "pend_case", "kind": "pendant_lamp", "position": [1.65, 1.62, 1.05], "rotationY": -0.3 },
+    { "id": "pend_taste", "kind": "pendant_lamp", "position": [-2.7, 1.58, 2.55], "rotationY": 0.4 },
+    { "id": "pend_counter", "kind": "pendant_lamp", "position": [4.2, 1.7, 2.55], "rotationY": 0.1 },
+
+    { "id": "pot_sill_a", "kind": "flowerpot", "position": [-0.85, 1.18, -4.06], "rotationY": 0.4, "scale": 0.75 },
+    { "id": "pot_sill_b", "kind": "flowerpot", "position": [0.75, 1.18, -4.06], "rotationY": -0.2, "scale": 0.75 },
+    { "id": "pot_floor", "kind": "flowerpot", "position": [-4.55, 0, 3.45], "rotationY": 0.5, "scale": 1.25 },
+
+    { "id": "register", "kind": "cash_register", "position": [4.45, 0.984, 1.72], "rotationY": -1.5708, "faces": [3.2, 0.984, 1.72] },
+    { "id": "pos", "kind": "pos_terminal", "position": [4.45, 0.984, 2.08], "rotationY": -1.5708, "faces": [3.2, 0.984, 2.08] },
+
+    { "id": "task_lamp", "kind": "library_lamp", "position": [-0.95, 0.93, -1.98], "rotationY": 3.1416 },
+    { "id": "plinth", "kind": "plinth", "position": [-0.75, 0, 2.65], "rotationY": 0.15 }
+  ],
+  "shell": {
+    "wallColor": "#f3e6d4",
+    "floorWood": "#8d5e38",
+    "floorTile": "#f1e6d4",
+    "woodColor": "#4a2e24",
+    "ceilingColor": "#f6f0e6",
+    "accentColor": "#3a2218",
+    "clearColor": "#d4cfc6",
+    "fogColor": "#d4cfc6",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "lights": {
+    "hemi": { "sky": "#fff1dc", "ground": "#6a4030", "intensity": 0.42 },
+    "key": { "color": "#fff6e8", "intensity": 1.28, "position": [-1.6, 8.2, -6.4] },
+    "fill": { "color": "#f4e2cc", "intensity": 0.26, "position": [5.5, 4.2, 5.2] },
+    "points": [
+      { "color": "#ffc48a", "intensity": 0.9, "distance": 5.5, "position": [-0.15, 2.05, -1.65] },
+      { "color": "#ffc48a", "intensity": 0.7, "distance": 4.5, "position": [1.65, 1.78, 1.05] },
+      { "color": "#ffc48a", "intensity": 0.55, "distance": 4.2, "position": [-2.7, 1.72, 2.55] },
+      { "color": "#ffc48a", "intensity": 0.6, "distance": 4.2, "position": [4.2, 1.86, 2.55] },
+      { "color": "#ffe2bc", "intensity": 0.45, "distance": 2.6, "position": [1.65, 1.2, 1.05] }
+    ]
+  },
+  "camera": {
+    "fov": 40,
+    "position": [6.35, 3.15, 5.75],
+    "target": [0.25, 1.2, -0.45]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [7.3, 2.55, 3.15],
+      "target": [0.6, 1.05, -0.7]
+    },
+    "close": {
+      "position": [2.55, 1.48, 2.85],
+      "target": [1.35, 1.08, 1.05]
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "case close", "unlit"],
+    "must_read": [
+      "Marble island reads as the workshop focus, with molds and a task lamp.",
+      "Glass case and wrap counter read as the shop, with chocolates visible through the glass.",
+      "Ingredient bookcases and the wall shelf are stocked, not empty.",
+      "Tasting chairs face the marble table; the packing chair faces the packing table.",
+      "Register faces the customer aisle."
+    ]
+  }
+}
