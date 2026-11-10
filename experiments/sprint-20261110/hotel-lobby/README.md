@@ -22,9 +22,10 @@ node render_shots.mjs http://127.0.0.1:8791 /opt/cursor/artifacts
 
 ## What is in the room
 
-- Reception desk with key cubbies, desk bell, banker's lamps, POS, and a luggage drop.
-- Hearth lounge: sofa and two dining chairs face a low table, under coffers and amber pendants. The sofa looks at the painting.
-- Arrival nook: round table, three chairs (open toward the aisle).
+- Long front desk, desk bell, brass fabric lamps, POS, and a backlit key wall with the wordmark.
+- Hearth lounge: sofa and two burgundy club chairs face a low table, under coffers and amber pendants.
+- Arrival nook: low round table with two club chairs facing it.
+- Runner from a single entrance mat to the desk, with a flower table in the middle.
 - Focal canvas in a brass arch, sculpture on the book-stand plinth, secondary canvas by the elevator.
 - Bell cart with three cases, plus bags at the desk.
 

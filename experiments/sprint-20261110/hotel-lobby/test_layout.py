@@ -8,11 +8,11 @@ SCENE = Path(__file__).resolve().parent
 NATIVE = {
     "sofa_solid": (2.156, 1.115, 1.326),
     "coffee_table": (0.6548, 0.2033, 1.200),
-    "dining_chair": (0.3615, 1.000, 0.5101),
+    "club_chair": (2.156, 1.115, 1.326),
     "round_table": (0.448, 0.312, 0.448),
     "round_table_low": (0.448, 0.312, 0.448),
+    "center_table": (0.448, 0.312, 0.448),
     "pendant_lamp": (0.2463, 0.212, 0.2463),
-    "library_lamp": (0.290, 0.4875, 0.290),
     "flowerpot": (0.250, 0.2042, 0.250),
     "cup_mug": (0.0752, 0.076, 0.0752),
     "pos_terminal": (0.200, 0.08087, 0.137),
@@ -23,10 +23,11 @@ NATIVE = {
 }
 FLOOR = {
     "sofa_solid",
+    "club_chair",
     "coffee_table",
-    "dining_chair",
     "round_table",
     "round_table_low",
+    "center_table",
     "museum_bench",
     "book_stand",
     "flowerpot",

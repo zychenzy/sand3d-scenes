@@ -247,6 +247,33 @@ function luggageCart(g, x, z, rot) {
   g.add(grp);
 }
 
+function brassLamp(g, x, y, z) {
+  const brass = toon(PAL.brass, { emissive: '#6a4518', emissiveIntensity: 0.16 });
+  const shade = toon('#f3ddc0', { emissive: '#ffc98a', emissiveIntensity: 0.45, side: THREE.DoubleSide });
+  const glow = toon('#fff3d4', { emissive: '#ffb15a', emissiveIntensity: 1.05 });
+  addCyl(g, 0.1, 0.12, 0.028, brass, x, y + 0.014, z, 18);
+  addCyl(g, 0.016, 0.02, 0.2, brass, x, y + 0.12, z, 8);
+  addCyl(g, 0.075, 0.125, 0.11, shade, x, y + 0.28, z, 18);
+  addCyl(g, 0.05, 0.085, 0.07, glow, x, y + 0.27, z, 14, { noCast: true });
+}
+
+function bouquet(g, x, y, z) {
+  addCyl(g, 0.07, 0.09, 0.18, toon('#f7f1e6'), x, y + 0.09, z, 14);
+  addCyl(g, 0.09, 0.07, 0.04, toon(PAL.brass), x, y + 0.19, z, 14);
+  const colors = ['#f6efe4', '#8d3040', '#e2b15a', '#f3e0c8', '#6e2c34', '#d8c4a2', '#f7f3ea'];
+  for (let i = 0; i < 14; i++) {
+    const a = i * 0.85;
+    const ring = i < 8 ? 0.1 : 0.02;
+    const bloom = new THREE.Mesh(
+      new THREE.SphereGeometry(0.055 + (i % 3) * 0.016, 10, 8),
+      toon(colors[i % colors.length]),
+    );
+    bloom.position.set(x + Math.cos(a) * ring, y + 0.28 + (i % 4) * 0.055, z + Math.sin(a) * ring);
+    bloom.castShadow = true;
+    g.add(bloom);
+  }
+}
+
 function bell(g, x, y, z) {
   const base = addCyl(g, 0.07, 0.08, 0.02, toon(PAL.brass), x, y + 0.01, z, 16);
   base.name = 'bell-base';
@@ -336,7 +363,7 @@ function makeShell(layout) {
   addBox(g, W - 0.15, 0.1, 0.12, deep, 0, H - 0.12, -D / 2 + 0.08);
   addBox(g, 0.12, 0.1, D - 0.2, deep, -W / 2 + 0.08, H - 0.12, 0);
 
-  const pilasters = [-6.15, -2.15, 0.35, 3.7, 5.85];
+  const pilasters = [-6.15, 3.2, 6.15];
   for (const x of pilasters) {
     addBox(g, 0.16, H - 0.35, 0.1, toon(PAL.plaster), x, (H - 0.35) / 2, -D / 2 + 0.16);
     addBox(g, 0.26, 0.08, 0.14, walnut, x, 1.12, -D / 2 + 0.18);
@@ -354,11 +381,15 @@ function makeShell(layout) {
   g.add(ceil);
 
   const b = layout.build;
-  const soffitBottom = H - 0.56;
-  addBox(g, b.desk.w + 0.8, 0.48, 2.35, toon(PAL.coffer), b.desk.x, soffitBottom + 0.24, -D / 2 + 1.2);
-  addBox(g, b.desk.w + 0.85, 0.04, 0.08, brass, b.desk.x, soffitBottom, -D / 2 + 2.35);
-  const cove = toon('#ffd7a4', { emissive: '#ffc27a', emissiveIntensity: 0.9 });
-  addBox(g, b.desk.w + 0.5, 0.03, 0.05, cove, b.desk.x, soffitBottom - 0.02, -D / 2 + 2.28, { noCast: true });
+  const frontZ = b.desk.z + b.desk.d / 2;
+  const soffitFar = frontZ + 0.42;
+  const soffitD = soffitFar - (-D / 2);
+  const soffitZ = (-D / 2 + soffitFar) / 2;
+  const soffitBottom = H - 0.48;
+  addBox(g, b.desk.w + 0.5, 0.4, soffitD, toon(PAL.coffer), b.desk.x, soffitBottom + 0.2, soffitZ);
+  addBox(g, b.desk.w + 0.55, 0.045, 0.08, brass, b.desk.x, soffitBottom, soffitFar - 0.04);
+  const cove = toon('#ffd7a4', { emissive: '#ffc27a', emissiveIntensity: 1 });
+  addBox(g, b.desk.w + 0.15, 0.04, 0.07, cove, b.desk.x, soffitBottom - 0.02, frontZ + 0.12, { noCast: true });
 
   return g;
 }
@@ -385,18 +416,25 @@ function makeProcedural(layout) {
     PAL.rug,
     PAL.rugEdge,
   );
-  rug(g, b.nook.x, b.nook.z, 2.75, 2.75, PAL.rugNook, PAL.rugNookEdge);
-  rug(g, -1.35, 3.55, 1.15, 2.7, '#4a3428', PAL.rugEdge);
-  rug(g, 4.35, 4.62, 2.3, 0.85, '#3a2c26', '#b7a48c');
-  addBox(g, b.desk.w + 0.4, 0.012, 1.15, toon('#efe4d4', { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }), b.desk.x, 0.01, b.desk.z + 0.85, { noCast: true });
+  rug(g, b.nook.x, b.nook.z, 2.3, 2.9, PAL.rugNook, PAL.rugNookEdge);
+  rug(g, b.path.x, b.path.z, b.path.w, b.path.d, '#6a3034', '#d7c39a');
+  rug(g, b.doormat.x, b.doormat.z, b.doormat.w, b.doormat.d, '#2c241e', '#8a7358');
+  const centerDisk = new THREE.Mesh(
+    new THREE.CircleGeometry(0.95, 28),
+    toon('#6e2c34', { polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }),
+  );
+  centerDisk.rotation.x = -Math.PI / 2;
+  centerDisk.position.set(b.center.x, 0.02, b.center.z);
+  centerDisk.userData.noCast = true;
+  g.add(centerDisk);
 
   const desk = b.desk;
   addBox(g, desk.w, 0.12, desk.d - 0.06, deep, desk.x, 0.06, desk.z);
   addBox(g, desk.w - 0.08, desk.h - 0.2, desk.d - 0.12, walnut, desk.x, desk.h / 2, desk.z + 0.02);
   addBox(g, desk.w + 0.12, 0.07, desk.d + 0.1, stone, desk.x, desk.h - 0.02, desk.z + 0.02);
   addBox(g, desk.w + 0.14, 0.025, 0.03, brass, desk.x, desk.h - 0.06, desk.z + desk.d / 2 + 0.02);
-  const panelW = 0.72;
-  const panels = 4;
+  const panelW = 0.86;
+  const panels = 7;
   const span = desk.w - 0.5;
   for (let i = 0; i < panels; i++) {
     const px = desk.x - span / 2 + (i + 0.5) * (span / panels);
@@ -404,35 +442,43 @@ function makeProcedural(layout) {
     addBox(g, panelW * 0.78 + 0.05, 0.04, 0.025, brass, px, 0.28, desk.z + desk.d / 2);
     addBox(g, panelW * 0.78 + 0.05, 0.04, 0.025, brass, px, 0.9, desk.z + desk.d / 2);
   }
-  addBox(g, 0.9, 0.08, 0.08, deep, desk.x - desk.w / 2 + 0.15, 0.04, desk.z + 0.55);
-  addBox(g, 0.72, 0.72, 0.62, walnut, desk.x - desk.w / 2 + 0.15, 0.4, desk.z + 0.72);
-  addBox(g, 0.86, 0.05, 0.74, stoneEdge, desk.x - desk.w / 2 + 0.15, 0.78, desk.z + 0.72);
-
-  const sign = labelTexture('THE MARLOWE', 'RECEPTION', 1024, 320, '#3a261c', '#f3eadc', '#e0c27a');
-  const signMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.15, 0.62), toon('#ffffff', { map: sign, emissive: '#ffffff', emissiveMap: sign, emissiveIntensity: 0.22 }));
-  signMesh.position.set(desk.x, 2.68, -D / 2 + 0.16);
-  g.add(signMesh);
-
-  const cols = 8;
-  const rows = 3;
-  const cubW = 0.28;
-  const cubH = 0.22;
-  const gridW = cols * cubW;
-  const gridX0 = desk.x - gridW / 2 + cubW / 2;
-  const gridY0 = 1.78;
-  addBox(g, gridW + 0.16, rows * cubH + 0.16, 0.08, deep, desk.x, gridY0 + cubH, -D / 2 + 0.16);
+  const wallZ = desk.z - desk.d / 2 - 0.32;
+  const wallW = desk.w - 0.3;
+  const wallH = 3.35;
+  addBox(g, wallW + 0.22, wallH, 0.16, deep, desk.x, wallH / 2 + 0.05, wallZ);
+  const glow = toon('#ffd7a6', { emissive: '#ffb45c', emissiveIntensity: 0.9 });
+  addBox(g, wallW, wallH - 0.45, 0.05, glow, desk.x, wallH / 2 + 0.12, wallZ + 0.09, { noCast: true });
+  addBox(g, wallW + 0.08, 0.06, 0.07, brass, desk.x, 0.22, wallZ + 0.12);
+  addBox(g, wallW + 0.08, 0.07, 0.07, brass, desk.x, wallH - 0.08, wallZ + 0.12);
+  const cols = 14;
+  const rows = 4;
+  const cubW = (wallW - 0.45) / cols;
+  const cubH = 0.3;
+  const gridTop = 2.62;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      const cx = gridX0 + c * cubW;
-      const cy = gridY0 + r * cubH;
-      addBox(g, cubW - 0.05, cubH - 0.05, 0.04, toon(r === 1 && c % 3 === 0 ? '#c45a3a' : '#efe6da'), cx, cy, -D / 2 + 0.2);
-      addCyl(g, 0.012, 0.012, 0.02, brass, cx, cy, -D / 2 + 0.23, 8);
+      const cx = desk.x - (wallW - 0.45) / 2 + cubW * (c + 0.5);
+      const cy = gridTop - r * (cubH + 0.05);
+      addBox(g, cubW - 0.05, cubH - 0.045, 0.045, toon('#241910'), cx, cy, wallZ + 0.12);
+      addBox(g, cubW - 0.12, cubH - 0.12, 0.02, toon('#ffe6c0', { emissive: '#ffc56a', emissiveIntensity: 0.85 }), cx, cy, wallZ + 0.15, { noCast: true });
+      addCyl(g, 0.01, 0.01, 0.018, brass, cx, cy - cubH * 0.28, wallZ + 0.17, 6);
     }
   }
+  const sign = labelTexture('THE MARLOWE', 'RECEPTION', 1280, 360, '#2a1c16', '#f6efe4', '#e0c27a');
+  const signMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.8, 0.72),
+    toon('#ffffff', { map: sign, emissive: '#ffffff', emissiveMap: sign, emissiveIntensity: 0.4 }),
+  );
+  signMesh.position.set(desk.x, 3.12, wallZ + 0.18);
+  g.add(signMesh);
 
-  bell(g, -3.72, desk.h, desk.z + 0.22);
-  addBox(g, 0.22, 0.015, 0.1, toon('#f7f1e6'), -3.25, desk.h + 0.01, desk.z + 0.18);
-  addBox(g, 0.16, 0.012, 0.08, toon('#f7f1e6'), -3.22, desk.h + 0.02, desk.z + 0.2);
+  bell(g, desk.x + 1.15, desk.h, desk.z + 0.28);
+  brassLamp(g, desk.x - 2.55, desk.h, desk.z + 0.05);
+  brassLamp(g, desk.x + 2.35, desk.h, desk.z + 0.02);
+  brassLamp(g, b.side.x, 0.5, b.side.z);
+  bouquet(g, b.center.x, 0.58, b.center.z);
+  addBox(g, 0.22, 0.015, 0.1, toon('#f7f1e6'), desk.x + 0.55, desk.h + 0.01, desk.z + 0.22);
+  addBox(g, 0.16, 0.012, 0.08, toon('#f7f1e6'), desk.x + 0.58, desk.h + 0.022, desk.z + 0.24);
 
   const artX = b.art.x;
   const artZ = -D / 2 + 0.2;
@@ -499,9 +545,9 @@ function makeProcedural(layout) {
   }
 
   luggageCart(g, b.cart.x, b.cart.z, b.cart.rot);
-  suitcase(g, -5.45, 0, -2.42, 0.4, 0.36, 0.58, 0.22, PAL.luggageA);
-  suitcase(g, -4.7, 0, -2.55, -0.55, 0.46, 0.3, 0.28, PAL.luggageC);
-  duffel(g, -5.05, -2.05, 1.1);
+  suitcase(g, desk.x - desk.w / 2 - 0.15, 0, desk.z + 0.15, 0.35, 0.36, 0.58, 0.22, PAL.luggageA);
+  suitcase(g, desk.x - desk.w / 2 + 0.55, 0, desk.z + desk.d / 2 + 0.7, -0.4, 0.46, 0.3, 0.28, PAL.luggageC);
+  duffel(g, desk.x - desk.w / 2 + 0.15, desk.z + desk.d / 2 + 1.15, 0.9);
   suitcase(g, b.cart.x - 0.95, 0, b.cart.z - 0.15, 0.7, 0.34, 0.52, 0.22, PAL.luggageB);
 
   const sc = b.sculpture;
@@ -519,13 +565,13 @@ function makeProcedural(layout) {
   };
   const contacts = [
     [...at('sofa_hearth'), 1.05, 0.48, 0.32],
-    [...at('chair_hearth_w'), 0.28, 0.28, 0.22],
-    [...at('chair_hearth_e'), 0.28, 0.28, 0.22],
+    [...at('chair_hearth_w'), 0.46, 0.42, 0.26],
+    [...at('chair_hearth_e'), 0.46, 0.42, 0.26],
     [...at('table_hearth'), 1.05, 0.55, 0.2],
-    [...at('table_nook'), 0.55, 0.55, 0.18],
-    [...at('chair_nook_s'), 0.28, 0.28, 0.2],
-    [...at('chair_nook_n'), 0.28, 0.28, 0.2],
-    [...at('chair_nook_w'), 0.28, 0.28, 0.2],
+    [...at('table_nook'), 0.48, 0.48, 0.18],
+    [...at('chair_nook_s'), 0.46, 0.42, 0.24],
+    [...at('chair_nook_n'), 0.46, 0.42, 0.24],
+    [...at('table_center'), 0.55, 0.55, 0.18],
     [b.bench.x, b.bench.z, 0.32, 0.85, 0.22],
     [b.column.x, b.column.z, 0.36, 0.36, 0.26],
     [b.sculpture.x, b.sculpture.z, 0.4, 0.4, 0.24],
@@ -557,15 +603,8 @@ function tuneAsset(kind, root) {
       } else if (kind === 'pendant_lamp' && name.includes('shade')) {
         m.emissive.set('#6a3408');
         m.emissiveIntensity = 0.22;
-      } else if (kind === 'library_lamp' && (name.includes('light') || name.includes('tube'))) {
-        m.color.set('#fff6dd');
-        m.emissive.set('#ffc56a');
-        m.emissiveIntensity = 1.2;
-      } else if (kind === 'library_lamp' && name.includes('roof')) {
-        m.emissive.set('#1d4a28');
-        m.emissiveIntensity = 0.35;
-      } else if (kind === 'sofa_solid' && m.name && String(m.name).includes('fabric')) {
-        m.color.set(PAL.leather);
+      } else if ((kind === 'sofa_solid' || kind === 'club_chair') && m.name && String(m.name).includes('fabric')) {
+        m.color.set(kind === 'club_chair' ? '#6a2e3c' : PAL.leather);
       } else if (kind === 'flowerpot') {
         m.color.set(PAL.terracotta);
       }
