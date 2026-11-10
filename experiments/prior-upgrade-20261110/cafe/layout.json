@@ -1,0 +1,959 @@
+{
+  "meta": {
+    "title": "Pike House cafe",
+    "slug": "prior-upgrade-cafe",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 10.4,
+      "depth": 7.8,
+      "height": 3.24
+    },
+    "zones": [
+      "espresso-bar",
+      "pastry-pickup",
+      "seating-well"
+    ],
+    "anchors": {
+      "counter": {
+        "x": -0.52,
+        "z": -2.52,
+        "top": 1.05,
+        "frontZ": -2.02
+      },
+      "pastry": {
+        "x": 2.42,
+        "z": -2.48,
+        "w": 1.52,
+        "d": 0.7,
+        "base": 0.92,
+        "glass": 0.78
+      },
+      "pickup": {
+        "x": 0.35,
+        "z": -1.92
+      },
+      "queueX": 0.52
+    },
+    "notes": [
+      "Starbucks-like cutaway. Focal L espresso bar with pastry case, POS, and cup density. Secondary seating well of round tables; window 2-top on the left. Chairs and stools only.",
+      "Circulation: open-front runner to queue, order at the left register, pickup at the pastry pass, then seating. Chairs face their tables (+Z forward at yaw 0).",
+      "Warm wood + brand green. Serve from the repository root so relative GLB paths resolve."
+    ]
+  },
+  "assets": {
+    "bar_counter": {
+      "glb": "../../../cafe/assets/bar_counter__532dcc87f672.glb",
+      "fit": [
+        3.65,
+        1.05,
+        0.76
+      ],
+      "tints": {
+        "base": "#3e4a44",
+        "top": "#d7c4a6"
+      },
+      "note": "Native mesh is a low wide L. Non-uniform fit keeps bar height without the 4m x 2m blow-up."
+    },
+    "espresso_machine": {
+      "glb": "../../../cafe/assets/espresso_machine__3ada9ec69a54.glb",
+      "targetHeight": 0.46
+    },
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.36
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.1
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.78
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.4
+    },
+    "round_table": {
+      "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.74
+    },
+    "simple_chair": {
+      "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.86,
+      "forward": "+Z at rotationY 0. Backrest sits on -Z."
+    },
+    "chalkboard": {
+      "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb",
+      "targetHeight": 1.12
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.15
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "straw_holder": {
+      "glb": "../../../cafe/assets/straw_holder__252f730f1a04.glb",
+      "targetHeight": 0.24
+    },
+    "tray_napkin": {
+      "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.07
+    }
+  },
+  "instances": [
+    {
+      "id": "counter",
+      "kind": "bar_counter",
+      "position": [
+        -0.52,
+        0,
+        -2.52
+      ]
+    },
+    {
+      "id": "espresso",
+      "kind": "espresso_machine",
+      "position": [
+        0.88,
+        1.05,
+        -2.48
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "register",
+      "kind": "cash_register",
+      "position": [
+        -1.78,
+        1.05,
+        -2.42
+      ]
+    },
+    {
+      "id": "pos",
+      "kind": "pos_terminal",
+      "position": [
+        -1.42,
+        1.05,
+        -2.32
+      ],
+      "rotationY": 0.35
+    },
+    {
+      "id": "stool_a",
+      "kind": "bar_stool",
+      "position": [
+        -1.58,
+        0,
+        -1.76
+      ],
+      "rotationY": 0.08
+    },
+    {
+      "id": "stool_b",
+      "kind": "bar_stool",
+      "position": [
+        -0.72,
+        0,
+        -1.76
+      ],
+      "rotationY": -0.12
+    },
+    {
+      "id": "stool_c",
+      "kind": "bar_stool",
+      "position": [
+        0.12,
+        0,
+        -1.76
+      ],
+      "rotationY": 0.18
+    },
+    {
+      "id": "stool_d",
+      "kind": "bar_stool",
+      "position": [
+        0.92,
+        0,
+        -1.76
+      ],
+      "rotationY": -0.06
+    },
+    {
+      "id": "pendant_order",
+      "kind": "pendant_lamp",
+      "position": [
+        -1.65,
+        2.52,
+        -2.18
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pendant_pass",
+      "kind": "pendant_lamp",
+      "position": [
+        -0.55,
+        2.62,
+        -2.28
+      ],
+      "rotationY": -0.12
+    },
+    {
+      "id": "pendant_espresso",
+      "kind": "pendant_lamp",
+      "position": [
+        1.42,
+        2.6,
+        -2.32
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pendant_window",
+      "kind": "pendant_lamp",
+      "position": [
+        -3.82,
+        2.18,
+        2.38
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "pendant_nw",
+      "kind": "pendant_lamp",
+      "position": [
+        -1.78,
+        2.22,
+        2.42
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "pendant_ne",
+      "kind": "pendant_lamp",
+      "position": [
+        2.48,
+        2.2,
+        2.22
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "pendant_sw",
+      "kind": "pendant_lamp",
+      "position": [
+        -2.68,
+        2.24,
+        0.18
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "pendant_se",
+      "kind": "pendant_lamp",
+      "position": [
+        2.58,
+        2.18,
+        0.16
+      ],
+      "rotationY": -0.25
+    },
+    {
+      "id": "table_window",
+      "kind": "round_table",
+      "position": [
+        -3.82,
+        0,
+        2.38
+      ],
+      "rotationY": 0.18
+    },
+    {
+      "id": "table_nw",
+      "kind": "round_table",
+      "position": [
+        -1.78,
+        0,
+        2.42
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "table_ne",
+      "kind": "round_table",
+      "position": [
+        2.48,
+        0,
+        2.22
+      ],
+      "rotationY": 0.35
+    },
+    {
+      "id": "table_sw",
+      "kind": "round_table",
+      "position": [
+        -2.68,
+        0,
+        0.18
+      ],
+      "rotationY": 0.12
+    },
+    {
+      "id": "table_se",
+      "kind": "round_table",
+      "position": [
+        2.58,
+        0,
+        0.16
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "chair_window_s",
+      "kind": "simple_chair",
+      "position": [
+        -3.82,
+        0,
+        1.74
+      ],
+      "rotationY": 0.0,
+      "lookAt": [
+        -3.82,
+        2.38
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_window_e",
+      "kind": "simple_chair",
+      "position": [
+        -3.18,
+        0,
+        2.38
+      ],
+      "rotationY": -1.5708,
+      "lookAt": [
+        -3.82,
+        2.38
+      ],
+      "role": "faces table and window"
+    },
+    {
+      "id": "chair_nw_n",
+      "kind": "simple_chair",
+      "position": [
+        -1.78,
+        0,
+        3.06
+      ],
+      "rotationY": 3.1416,
+      "lookAt": [
+        -1.78,
+        2.42
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_nw_s",
+      "kind": "simple_chair",
+      "position": [
+        -1.78,
+        0,
+        1.78
+      ],
+      "rotationY": 0.0,
+      "lookAt": [
+        -1.78,
+        2.42
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_ne_n",
+      "kind": "simple_chair",
+      "position": [
+        2.48,
+        0,
+        2.86
+      ],
+      "rotationY": 3.1416,
+      "lookAt": [
+        2.48,
+        2.22
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_ne_s",
+      "kind": "simple_chair",
+      "position": [
+        2.48,
+        0,
+        1.58
+      ],
+      "rotationY": 0.0,
+      "lookAt": [
+        2.48,
+        2.22
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_sw_n",
+      "kind": "simple_chair",
+      "position": [
+        -2.68,
+        0,
+        0.82
+      ],
+      "rotationY": 3.1416,
+      "lookAt": [
+        -2.68,
+        0.18
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_sw_s",
+      "kind": "simple_chair",
+      "position": [
+        -2.68,
+        0,
+        -0.46
+      ],
+      "rotationY": 0.0,
+      "lookAt": [
+        -2.68,
+        0.18
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_se_n",
+      "kind": "simple_chair",
+      "position": [
+        2.58,
+        0,
+        0.8
+      ],
+      "rotationY": 3.1416,
+      "lookAt": [
+        2.58,
+        0.16
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "chair_se_s",
+      "kind": "simple_chair",
+      "position": [
+        2.58,
+        0,
+        -0.48
+      ],
+      "rotationY": 0.0,
+      "lookAt": [
+        2.58,
+        0.16
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "lamp_window",
+      "kind": "library_lamp",
+      "position": [
+        -3.62,
+        0.74,
+        2.22
+      ],
+      "rotationY": -1.2
+    },
+    {
+      "id": "lamp_se",
+      "kind": "library_lamp",
+      "position": [
+        2.72,
+        0.74,
+        0.32
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "chalkboard",
+      "kind": "chalkboard",
+      "position": [
+        -4.55,
+        0,
+        -1.45
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "shelf_back_l",
+      "kind": "wall_shelf",
+      "position": [
+        -2.55,
+        1.22,
+        -3.68
+      ]
+    },
+    {
+      "id": "shelf_back_m",
+      "kind": "wall_shelf",
+      "position": [
+        -0.15,
+        1.28,
+        -3.68
+      ],
+      "rotationY": 0.05
+    },
+    {
+      "id": "shelf_back_r",
+      "kind": "wall_shelf",
+      "position": [
+        1.15,
+        1.34,
+        -3.68
+      ],
+      "rotationY": -0.08
+    },
+    {
+      "id": "pot_window_corner",
+      "kind": "flowerpot",
+      "position": [
+        -4.85,
+        0,
+        3.45
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "pot_front_right",
+      "kind": "flowerpot",
+      "position": [
+        4.55,
+        0,
+        2.85
+      ],
+      "rotationY": -0.25
+    },
+    {
+      "id": "pot_bar",
+      "kind": "flowerpot",
+      "position": [
+        -3.55,
+        0.94,
+        -3.52
+      ],
+      "rotationY": 0.2,
+      "scale": 0.7
+    },
+    {
+      "id": "pot_sill_left",
+      "kind": "flowerpot",
+      "position": [
+        -4.92,
+        0.88,
+        1.35
+      ],
+      "rotationY": 0.4,
+      "scale": 0.55
+    },
+    {
+      "id": "pot_sill_back",
+      "kind": "flowerpot",
+      "position": [
+        3.55,
+        0.96,
+        -3.52
+      ],
+      "rotationY": -0.3,
+      "scale": 0.6
+    },
+    {
+      "id": "pot_pastry",
+      "kind": "flowerpot",
+      "position": [
+        3.35,
+        0,
+        -1.55
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "mug_bar_a",
+      "kind": "cup_mug",
+      "position": [
+        -0.42,
+        1.06,
+        -2.28
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "mug_bar_b",
+      "kind": "cup_mug",
+      "position": [
+        -0.22,
+        1.06,
+        -2.36
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "mug_bar_c",
+      "kind": "cup_mug",
+      "position": [
+        0.05,
+        1.06,
+        -2.24
+      ],
+      "rotationY": 1.1
+    },
+    {
+      "id": "mug_pickup_a",
+      "kind": "cup_mug",
+      "position": [
+        0.22,
+        1.06,
+        -1.88
+      ],
+      "rotationY": 0.5
+    },
+    {
+      "id": "mug_pickup_b",
+      "kind": "cup_mug",
+      "position": [
+        0.48,
+        1.06,
+        -1.82
+      ],
+      "rotationY": -0.8
+    },
+    {
+      "id": "mug_shelf_a",
+      "kind": "cup_mug",
+      "position": [
+        -2.7,
+        1.35,
+        -3.62
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug_shelf_b",
+      "kind": "cup_mug",
+      "position": [
+        -2.48,
+        1.35,
+        -3.6
+      ],
+      "rotationY": 1.2
+    },
+    {
+      "id": "mug_shelf_c",
+      "kind": "cup_mug",
+      "position": [
+        -2.58,
+        1.7,
+        -3.62
+      ],
+      "rotationY": -0.3
+    },
+    {
+      "id": "mug_window_a",
+      "kind": "cup_mug",
+      "position": [
+        -3.95,
+        0.74,
+        2.28
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "mug_window_b",
+      "kind": "cup_mug",
+      "position": [
+        -3.7,
+        0.74,
+        2.5
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "mug_nw",
+      "kind": "cup_mug",
+      "position": [
+        -1.7,
+        0.74,
+        2.32
+      ],
+      "rotationY": 0.9
+    },
+    {
+      "id": "mug_ne_a",
+      "kind": "cup_mug",
+      "position": [
+        2.38,
+        0.74,
+        2.12
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "mug_ne_b",
+      "kind": "cup_mug",
+      "position": [
+        2.58,
+        0.74,
+        2.32
+      ],
+      "rotationY": -0.7
+    },
+    {
+      "id": "mug_sw",
+      "kind": "cup_mug",
+      "position": [
+        -2.58,
+        0.74,
+        0.1
+      ],
+      "rotationY": 1.0
+    },
+    {
+      "id": "mug_se",
+      "kind": "cup_mug",
+      "position": [
+        2.48,
+        0.74,
+        0.08
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "tray_bar",
+      "kind": "tray_napkin",
+      "position": [
+        -0.58,
+        1.06,
+        -2.32
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "tray_pickup",
+      "kind": "tray_napkin",
+      "position": [
+        0.62,
+        1.06,
+        -1.9
+      ],
+      "rotationY": -0.25
+    },
+    {
+      "id": "tray_window",
+      "kind": "tray_napkin",
+      "position": [
+        -3.68,
+        0.74,
+        2.32
+      ],
+      "rotationY": -0.35
+    },
+    {
+      "id": "jar_bar_a",
+      "kind": "jam_jar",
+      "position": [
+        -2.55,
+        0.94,
+        -3.48
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "jar_bar_b",
+      "kind": "jam_jar",
+      "position": [
+        -2.38,
+        0.94,
+        -3.38
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "jar_bar_c",
+      "kind": "jam_jar",
+      "position": [
+        -2.7,
+        0.94,
+        -3.4
+      ],
+      "rotationY": 1.1
+    },
+    {
+      "id": "jar_window",
+      "kind": "jam_jar",
+      "position": [
+        -3.9,
+        0.74,
+        2.5
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "jar_nw",
+      "kind": "jam_jar",
+      "position": [
+        -1.88,
+        0.74,
+        2.52
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "jar_se",
+      "kind": "jam_jar",
+      "position": [
+        2.68,
+        0.74,
+        0.05
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "thermos_bar",
+      "kind": "thermos",
+      "position": [
+        0.48,
+        0.94,
+        -3.42
+      ],
+      "rotationY": 0.35
+    },
+    {
+      "id": "thermos_shelf",
+      "kind": "thermos",
+      "position": [
+        1.05,
+        1.82,
+        -3.62
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "thermos_shelf_b",
+      "kind": "thermos",
+      "position": [
+        1.28,
+        1.48,
+        -3.6
+      ],
+      "rotationY": 0.5
+    },
+    {
+      "id": "straw_bar",
+      "kind": "straw_holder",
+      "position": [
+        -2.12,
+        0.94,
+        -3.44
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "straw_pickup",
+      "kind": "straw_holder",
+      "position": [
+        0.85,
+        1.06,
+        -1.95
+      ],
+      "rotationY": -0.2
+    }
+  ],
+  "shell": {
+    "floorColor": "#8a5a32",
+    "plankA": "#c49662",
+    "plankB": "#b4834e",
+    "plankC": "#d0a56e",
+    "wallColor": "#f3ece1",
+    "accent": "#1e3932",
+    "wainscot": "#1e3932",
+    "wood": "#7a4e2e",
+    "woodLight": "#c4a574",
+    "woodDark": "#4e3224",
+    "stone": "#e4d6c4",
+    "tile": "#2a4a40",
+    "tileLight": "#3d5c52",
+    "brass": "#b08d57",
+    "ink": "#2c2824",
+    "menu": "#1c2422",
+    "ceiling": "#f4eee4",
+    "glass": "#c5d8e8",
+    "rug": "#1e3932",
+    "cream": "#f7f1e4",
+    "clearColor": "#d5e0ea",
+    "fogColor": "#d5e0ea"
+  },
+  "camera": {
+    "position": [
+      6.35,
+      3.85,
+      6.15
+    ],
+    "target": [
+      0.05,
+      0.95,
+      -0.85
+    ],
+    "fov": 40
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        4.85,
+        2.35,
+        3.55
+      ],
+      "target": [
+        -0.15,
+        1.02,
+        -1.85
+      ]
+    },
+    "close": {
+      "position": [
+        3.55,
+        1.62,
+        -0.35
+      ],
+      "target": [
+        1.55,
+        1.12,
+        -2.35
+      ]
+    }
+  }
+}
