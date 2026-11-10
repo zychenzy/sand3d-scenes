@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Bag-and-iron training gym",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 8.4, "height": 3.55 },
+    "zones": [
+      {
+        "id": "bags",
+        "kind": "striking",
+        "note": "Three stand-mounted heavy bags on oxblood rubber, 2.4 m centres, 1.55 m striking pads, 1.5 m clear in front of each stand."
+      },
+      {
+        "id": "strength",
+        "kind": "free-weights",
+        "note": "Full-height squat rack facing the floor, three-tier dumbbell run, plate tree and kettlebells along the left wall."
+      },
+      {
+        "id": "floor",
+        "kind": "functional",
+        "note": "Open turf lane for circulation and conditioning — battle ropes, plyo boxes, medicine balls. Not a furniture scatter."
+      },
+      {
+        "id": "mats",
+        "kind": "stretch",
+        "note": "Three 0.62 × 1.82 m mats facing the mirror wall, walking gaps between stations."
+      },
+      {
+        "id": "rest",
+        "kind": "recovery",
+        "note": "Benches on the open edge face the training floor. Lockers and a water stoop sit at the left-front corner, off the aisle."
+      }
+    ],
+    "notes": [
+      "Cutaway drops the front (+Z) and right (+X) walls. Back wall is mirrored clerestory; left wall is the iron run.",
+      "Catalog has no racks, mats, plates or cardio machines — those are procedural at human scale.",
+      "GLBs are relative symlinks into gym/ and cafe/. Vendor is a symlink to gym/vendor."
+    ]
+  },
+  "architecture": {
+    "aisle": { "z": -0.92, "x0": -4.75, "x1": 4.95, "w": 0.34 },
+    "mirror": { "x0": -3.85, "x1": 4.85, "y0": 1.18, "y1": 2.72 },
+    "rack": {
+      "x": -4.38,
+      "z": -0.12,
+      "spanX": 1.22,
+      "spanZ": 1.48,
+      "uprightH": 2.32,
+      "upright": 0.075,
+      "barY": 1.38,
+      "safetyY": 0.72,
+      "pullupY": 2.26
+    },
+    "dbRack": { "x": -4.98, "z": 1.42, "len": 2.22, "depth": 0.44, "h": 1.08 },
+    "plateTree": { "x": -4.88, "z": -1.62 },
+    "speedBag": { "x": -4.52, "z": -3.48, "h": 1.92 },
+    "turf": { "x0": -1.62, "x1": 1.72, "z0": -0.58, "z1": 2.62 },
+    "lockers": { "x": -4.98, "z": 3.38, "n": 4, "w": 0.36, "d": 0.42, "h": 1.86 },
+    "water": { "x": -3.42, "z": 3.48, "h": 0.96 },
+    "mat": { "w": 0.62, "l": 1.82, "t": 0.024 },
+    "ceiling": { "x0": -5.15, "x1": 4.55, "z0": -4.05, "z1": 2.15, "y": 3.48 }
+  },
+  "mats": [
+    { "id": "mat_a", "x": 3.22, "z": -0.08, "color": "#3a4a58", "head": -1 },
+    { "id": "mat_b", "x": 4.42, "z": -0.08, "color": "#4a3a38", "head": -1 },
+    { "id": "mat_c", "x": 3.82, "z": 2.38, "color": "#355046", "head": -1 }
+  ],
+  "assets": {
+    "punching_bag": {
+      "glb": "assets/punching_bag__5a21298417a6.glb",
+      "targetHeight": 2.15
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "tint": "#d8d0c4"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28,
+      "tint": "#c8b8a4"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26,
+      "tint": "#e8e4dc"
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.42
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    }
+  },
+  "instances": [
+    { "id": "bag_l", "kind": "punching_bag", "position": [-2.55, 0.0, -2.62], "rotationY": 0.18 },
+    { "id": "bag_c", "kind": "punching_bag", "position": [-0.10, 0.0, -2.72], "rotationY": -0.08 },
+    { "id": "bag_r", "kind": "punching_bag", "position": [2.35, 0.0, -2.55], "rotationY": 0.12 },
+    { "id": "bench_rest_l", "kind": "museum_bench", "position": [-1.55, 0.0, 3.42], "rotationY": 1.5708, "scale": [1, 1, 1.12] },
+    { "id": "bench_rest_r", "kind": "museum_bench", "position": [1.45, 0.0, 3.42], "rotationY": 1.5708, "scale": [1, 1, 1.12] },
+    { "id": "bench_mats", "kind": "museum_bench", "position": [5.18, 0.0, 1.15], "rotationY": 0.0, "scale": [1, 1, 1] },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [4.95, 0.0, 3.55], "rotationY": 0.35, "foliage": "floor" },
+    { "id": "shelf_towels", "kind": "wall_shelf", "position": [-5.05, 1.78, 1.42], "rotationY": 1.5708 },
+    { "id": "thermos_a", "kind": "thermos", "position": [-3.28, 0.98, 3.42], "rotationY": 0.4 },
+    { "id": "thermos_b", "kind": "thermos", "position": [-3.52, 0.98, 3.55], "rotationY": -0.25 },
+    { "id": "mug_water", "kind": "cup_mug", "position": [-3.38, 0.98, 3.58], "rotationY": 0.8 },
+    { "id": "pend_rest_l", "kind": "pendant_lamp", "position": [-1.52, 2.92, 3.05], "rotationY": 0 },
+    { "id": "pend_rest_r", "kind": "pendant_lamp", "position": [1.38, 2.92, 3.05], "rotationY": 0.15 },
+    { "id": "pend_mats", "kind": "pendant_lamp", "position": [3.85, 2.92, 1.05], "rotationY": 0.2 },
+    { "id": "pend_rack", "kind": "pendant_lamp", "position": [-3.55, 2.92, 0.15], "rotationY": -0.1 }
+  ],
+  "shell": {
+    "floorColor": "#3a3c40",
+    "floorAlt": "#2e3034",
+    "wallColor": "#c6c0b6",
+    "wainscot": "#2c2e32",
+    "woodColor": "#3a3a3c",
+    "ceilingColor": "#d6d2cc",
+    "accentColor": "#8a2e2c",
+    "clearColor": "#c5ccd4",
+    "fogColor": "#c5ccd4",
+    "fogNear": 18,
+    "fogFar": 42
+  },
+  "camera": {
+    "fov": 48,
+    "position": [7.35, 2.92, 6.55],
+    "target": [0.15, 1.12, -0.55]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.55, 2.48, -1.55],
+      "target": [-0.35, 1.15, -0.35]
+    },
+    "close": {
+      "position": [-1.55, 1.52, 1.85],
+      "target": [-4.15, 0.95, 0.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#eef2f6", "ground": "#4a4a48", "intensity": 0.58 },
+    "key": {
+      "color": "#fff4e6",
+      "intensity": 1.58,
+      "position": [5.8, 12.2, 4.2],
+      "target": [0.0, 0.0, -0.4]
+    },
+    "fill": { "color": "#c8d6e8", "intensity": 0.34, "position": [-5.2, 4.2, 2.8] },
+    "points": [
+      { "color": "#f4f0e4", "intensity": 0.42, "distance": 7.5, "position": [-2.55, 3.15, -2.4] },
+      { "color": "#f4f0e4", "intensity": 0.38, "distance": 7.5, "position": [2.35, 3.15, -2.4] },
+      { "color": "#ffe1b0", "intensity": 0.48, "distance": 5.5, "position": [-1.52, 2.55, 3.05] },
+      { "color": "#ffe1b0", "intensity": 0.48, "distance": 5.5, "position": [1.38, 2.55, 3.05] },
+      { "color": "#e8f0ff", "intensity": 0.32, "distance": 6.5, "position": [0.0, 3.2, 0.8] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "rack close", "unlit"],
+    "must_read": [
+      "Equipment zones plus a clear turf lane — not three bags in an empty room.",
+      "Squat rack is ~2.3 m tall; mats are body-length; dumbbell run is wall-scale.",
+      "Rest benches face the training floor. Bags keep striking clearance in front."
+    ]
+  }
+}
