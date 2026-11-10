@@ -27,9 +27,9 @@
     "clerestory": { "x0": -2.85, "x1": 3.55, "y0": 2.52, "y1": 3.14, "z": -3.82, "panes": 5 },
     "platform": { "x0": -0.32, "x1": 1.12, "z0": -3.52, "z1": -1.58, "h": 0.09 },
     "ledge": { "x": 0.4, "z": -3.66, "y": 0.94, "w": 2.55, "d": 0.18 },
-    "cubbies": { "x0": -4.58, "x1": -3.48, "z0": -3.28, "z1": 0.52, "h": 1.78 },
-    "shoes": { "x0": -4.58, "x1": -3.58, "z0": 1.22, "z1": 3.12, "h": 0.54 },
-    "water": { "x": -3.98, "z": -3.42, "y": 1.80, "w": 0.72, "d": 0.28 },
+    "cubbies": { "x0": -4.52, "x1": -4.04, "z0": -3.28, "z1": 0.55, "h": 1.72 },
+    "shoes": { "x0": -4.52, "x1": -4.06, "z0": 1.38, "z1": 3.18, "h": 0.52 },
+    "water": { "x": -4.22, "z": -3.05, "y": 1.74, "w": 0.42, "d": 0.28 },
     "border": { "x0": -2.62, "x1": 3.52, "z0": -3.55, "z1": 3.38 },
     "ceiling": { "x0": -4.58, "x1": 4.18, "z0": -3.86, "z1": 1.18, "y": 3.16 },
     "mat": { "w": 0.64, "l": 1.76, "t": 0.022 }
@@ -70,23 +70,17 @@
     "cup_mug": {
       "glb": "assets/cup_mug__6da6f7f87b8d.glb",
       "targetHeight": 0.09
-    },
-    "wall_shelf": {
-      "glb": "assets/wall_shelf__8732f5e14a30.glb",
-      "targetHeight": 0.55,
-      "tint": "#f0e0c4"
     }
   },
   "instances": [
-    { "id": "bench_rest", "kind": "museum_bench", "position": [-3.18, 0.0, 0.78], "rotationY": 0.0 },
+    { "id": "bench_rest", "kind": "museum_bench", "position": [-3.42, 0.0, 0.95], "rotationY": 0.0 },
     { "id": "bench_wait", "kind": "museum_bench", "position": [3.28, 0.0, -2.05], "rotationY": 0.0 },
     { "id": "pot_ledge", "kind": "flowerpot_small", "position": [1.18, 0.96, -3.66], "rotationY": 0.25, "foliage": "succulent" },
     { "id": "pot_corner", "kind": "flowerpot", "position": [3.88, 0.0, -3.42], "rotationY": 0.4, "foliage": "floor" },
-    { "id": "pot_entry", "kind": "flowerpot", "position": [-3.92, 0.0, 3.38], "rotationY": -0.2, "foliage": "floor" },
-    { "id": "thermos", "kind": "thermos", "position": [-3.98, 1.82, -3.42], "rotationY": 0.35 },
-    { "id": "mug_a", "kind": "cup_mug", "position": [-3.78, 1.82, -3.36], "rotationY": 0.6 },
-    { "id": "mug_b", "kind": "cup_mug", "position": [-4.16, 1.82, -3.48], "rotationY": -0.4 },
-    { "id": "shelf_entry", "kind": "wall_shelf", "position": [-4.48, 1.22, 2.18], "rotationY": 1.5708 },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-3.72, 0.0, 3.42], "rotationY": -0.2, "foliage": "floor" },
+    { "id": "thermos", "kind": "thermos", "position": [-4.22, 1.74, -3.05], "rotationY": 0.35 },
+    { "id": "mug_a", "kind": "cup_mug", "position": [-4.12, 1.74, -2.9], "rotationY": 0.6 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [-4.32, 1.74, -3.18], "rotationY": -0.4 },
     { "id": "pendant_i", "kind": "pendant_lamp", "position": [0.4, 2.74, -2.55], "rotationY": 0 },
     { "id": "pendant_r1", "kind": "pendant_lamp", "position": [-0.22, 2.74, -0.15], "rotationY": 0.15 },
     { "id": "pendant_r2", "kind": "pendant_lamp", "position": [-0.12, 2.74, 2.22], "rotationY": -0.1 }
@@ -112,8 +106,8 @@
       "target": [-0.15, 1.22, 0.05]
     },
     "close": {
-      "position": [-1.28, 1.32, 0.55],
-      "target": [-4.05, 0.88, 0.12]
+      "position": [-1.05, 1.18, 1.72],
+      "target": [-4.22, 0.82, -0.55]
     }
   },
   "lights": {

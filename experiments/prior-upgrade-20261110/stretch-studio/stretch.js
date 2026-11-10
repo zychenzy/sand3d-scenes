@@ -397,61 +397,65 @@ function addCubbies(g, cub) {
   const zc = (z0 + z1) / 2;
   const wood = matOf(PAL.oakLite);
   const dark = matOf(PAL.oakDeep);
-  const back = matOf('#6e4a32');
+  const cavity = matOf('#6a4630');
   const t = 0.028;
 
   const bank = new THREE.Group();
   bank.name = 'cubby-bank';
   g.add(bank);
 
-  addBox(bank, w, 0.06, d, dark, xc, 0.03, zc);
+  addBox(bank, w, 0.055, d, dark, xc, 0.028, zc);
   addBox(bank, w + 0.02, 0.04, d + 0.02, wood, xc, h - 0.02, zc);
-  addBox(bank, w - 0.04, h - 0.12, 0.018, back, xc, 0.08 + (h - 0.12) / 2, z0 + 0.02);
-  addBox(bank, t, h - 0.1, d - 0.02, wood, x0 + t / 2, 0.08 + (h - 0.1) / 2, zc);
-  addBox(bank, t, h - 0.1, d - 0.02, wood, x1 - t / 2, 0.08 + (h - 0.1) / 2, zc);
+  addBox(bank, 0.04, h - 0.1, d - 0.04, cavity, x0 + 0.03, 0.08 + (h - 0.1) / 2, zc);
+  addBox(bank, w - 0.02, h - 0.1, t, wood, xc + 0.01, 0.08 + (h - 0.1) / 2, z0 + t / 2);
+  addBox(bank, w - 0.02, h - 0.1, t, wood, xc + 0.01, 0.08 + (h - 0.1) / 2, z1 - t / 2);
+  addBox(bank, 0.03, h - 0.08, 0.03, dark, x1 - 0.01, 0.08 + (h - 0.08) / 2, z0 + 0.02);
+  addBox(bank, 0.03, h - 0.08, 0.03, dark, x1 - 0.01, 0.08 + (h - 0.08) / 2, z1 - 0.02);
 
   const cols = 4;
-  const rows = 2;
   const innerZ0 = z0 + t;
   const innerZ1 = z1 - t;
   const slot = (innerZ1 - innerZ0) / cols;
   for (let i = 1; i < cols; i++) {
-    addBox(bank, w - 0.06, h - 0.12, 0.022, wood, xc, 0.08 + (h - 0.12) / 2, innerZ0 + slot * i);
+    addBox(bank, w - 0.04, h - 0.12, 0.018, wood, xc + 0.01, 0.08 + (h - 0.12) / 2, innerZ0 + slot * i);
   }
   const shelfY = 0.08 + (h - 0.12) / 2;
-  addBox(bank, w - 0.05, 0.022, d - 0.06, wood, xc, shelfY, zc);
+  addBox(bank, w - 0.04, 0.02, d - 0.06, wood, xc + 0.01, shelfY, zc);
 
   const roll = (x, y, z, hh, color) => {
-    addCyl(bank, 0.075, 0.075, hh, matOf(color), x, y + hh / 2, z, 14);
-    addCyl(bank, 0.032, 0.032, 0.014, dark, x, y + hh + 0.002, z, 10);
+    addCyl(bank, 0.07, 0.07, hh, matOf(color), x, y + hh / 2, z, 14);
+    addCyl(bank, 0.03, 0.03, 0.014, dark, x, y + hh + 0.002, z, 10);
   };
 
   const bayZ = (i) => innerZ0 + slot * (i + 0.5);
-  const xFront = xc + 0.08;
-  roll(xFront, 0.1, bayZ(0), 0.52, PAL.terracotta);
-  roll(xFront - 0.16, 0.1, bayZ(0) + 0.1, 0.44, PAL.sage);
-  addBox(bank, 0.42, 0.055, 0.28, matOf(PAL.linen), xFront, 0.14, bayZ(1));
-  addBox(bank, 0.4, 0.05, 0.26, matOf(PAL.sageLite), xFront, 0.2, bayZ(1));
-  addBox(bank, 0.38, 0.05, 0.24, matOf(PAL.sand), xFront, 0.26, bayZ(1));
+  const xShow = x1 - 0.16;
+  roll(xShow, 0.1, bayZ(0) - 0.08, 0.58, PAL.terracotta);
+  roll(xShow + 0.08, 0.1, bayZ(0) + 0.1, 0.5, PAL.sage);
+  addBox(bank, 0.24, 0.055, 0.3, matOf(PAL.linen), xShow, 0.145, bayZ(1));
+  addBox(bank, 0.22, 0.05, 0.28, matOf(PAL.sageLite), xShow, 0.205, bayZ(1));
+  addBox(bank, 0.2, 0.05, 0.26, matOf(PAL.sand), xShow, 0.265, bayZ(1));
+  roll(xShow + 0.06, 0.1, bayZ(1) + 0.22, 0.36, PAL.terracotta);
   for (let i = 0; i < 3; i++) {
-    addBox(bank, 0.2, 0.09, 0.14, matOf(i === 1 ? PAL.cork : PAL.corkDeep), xFront - 0.06, 0.15 + i * 0.095, bayZ(2));
+    addBox(bank, 0.18, 0.09, 0.14, matOf(i === 1 ? PAL.cork : PAL.corkDeep), xShow, 0.155 + i * 0.095, bayZ(2) - 0.08);
   }
-  const coil = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.01, 6, 16), matOf(PAL.mauve));
-  coil.rotation.x = Math.PI / 2;
-  coil.position.set(xFront + 0.14, 0.18, bayZ(2));
+  const coil = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.012, 6, 16), matOf(PAL.mauve));
+  coil.rotation.y = Math.PI / 2;
+  coil.position.set(xShow + 0.04, 0.2, bayZ(2) + 0.18);
   bank.add(coil);
-  const bolster = addCyl(bank, 0.1, 0.1, 0.46, matOf(PAL.sand), xFront, 0.2, bayZ(3), 14);
-  bolster.rotation.z = Math.PI / 2;
+  const bolster = addCyl(bank, 0.09, 0.09, 0.42, matOf(PAL.sand), xShow, 0.2, bayZ(3), 14);
+  bolster.rotation.x = Math.PI / 2;
 
-  roll(xFront, shelfY + 0.03, bayZ(0), 0.48, PAL.mauve);
-  roll(xFront - 0.14, shelfY + 0.03, bayZ(1), 0.4, '#3a5a8a');
-  addBox(bank, 0.38, 0.05, 0.24, matOf(PAL.linenShadow), xFront, shelfY + 0.08, bayZ(2));
-  addBox(bank, 0.36, 0.045, 0.22, matOf(PAL.sage), xFront, shelfY + 0.13, bayZ(2));
+  roll(xShow, shelfY + 0.03, bayZ(0), 0.52, PAL.mauve);
+  roll(xShow + 0.08, shelfY + 0.03, bayZ(0) + 0.14, 0.44, PAL.sageDeep);
+  roll(xShow, shelfY + 0.03, bayZ(1), 0.48, '#3a5a8a');
+  addBox(bank, 0.22, 0.05, 0.26, matOf(PAL.linenShadow), xShow, shelfY + 0.085, bayZ(2));
+  addBox(bank, 0.2, 0.045, 0.24, matOf(PAL.sage), xShow, shelfY + 0.135, bayZ(2));
+  addBox(bank, 0.18, 0.04, 0.22, matOf(PAL.sand), xShow, shelfY + 0.18, bayZ(2));
   for (let i = 0; i < 2; i++) {
-    addBox(bank, 0.2, 0.09, 0.14, matOf(PAL.cork), xFront, shelfY + 0.08 + i * 0.1, bayZ(3));
+    addBox(bank, 0.18, 0.09, 0.14, matOf(PAL.cork), xShow, shelfY + 0.085 + i * 0.1, bayZ(3));
   }
 
-  addPad(g, w + 0.22, d + 0.22, xc, 0.008, zc);
+  addPad(g, w + 0.28, d + 0.18, xc + 0.08, 0.008, zc);
 }
 
 function addShoes(g, sh) {
@@ -466,33 +470,32 @@ function addShoes(g, sh) {
   grp.name = 'shoe-cubbies';
   g.add(grp);
 
-  addBox(grp, w, 0.05, d, dark, xc, 0.025, zc);
+  addBox(grp, w, 0.045, d, dark, xc, 0.022, zc);
   addBox(grp, w + 0.01, 0.03, d + 0.01, wood, xc, h - 0.015, zc);
-  addBox(grp, 0.022, h - 0.08, d - 0.04, wood, x0 + 0.02, 0.08 + (h - 0.08) / 2, zc);
-  addBox(grp, 0.022, h - 0.08, d - 0.04, wood, x1 - 0.02, 0.08 + (h - 0.08) / 2, zc);
-  addBox(grp, w - 0.05, h - 0.1, 0.016, matOf('#6a4630'), xc, 0.08 + (h - 0.1) / 2, z0 + 0.02);
+  addBox(grp, 0.022, h - 0.08, d - 0.04, matOf('#6a4630'), x0 + 0.02, 0.08 + (h - 0.08) / 2, zc);
+  addBox(grp, w - 0.02, h - 0.08, 0.022, wood, xc + 0.01, 0.08 + (h - 0.08) / 2, z0 + 0.02);
+  addBox(grp, w - 0.02, h - 0.08, 0.022, wood, xc + 0.01, 0.08 + (h - 0.08) / 2, z1 - 0.02);
 
   const cols = 4;
   const rows = 2;
   const slotZ = (d - 0.08) / cols;
   const slotY = (h - 0.12) / rows;
   for (let i = 1; i < cols; i++) {
-    addBox(grp, w - 0.06, h - 0.1, 0.016, wood, xc, 0.08 + (h - 0.1) / 2, z0 + 0.04 + slotZ * i);
+    addBox(grp, w - 0.04, h - 0.1, 0.016, wood, xc + 0.01, 0.08 + (h - 0.1) / 2, z0 + 0.04 + slotZ * i);
   }
-  addBox(grp, w - 0.05, 0.016, d - 0.06, wood, xc, 0.08 + slotY, zc);
+  addBox(grp, w - 0.04, 0.016, d - 0.06, wood, xc + 0.01, 0.08 + slotY, zc);
 
   const shoeCols = [PAL.linenShadow, PAL.sageDeep, PAL.oakDeep, PAL.mauve];
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      if ((r + c) % 2 === 0) continue;
-      const x = xc + 0.06;
+      const x = x1 - 0.15;
       const y = 0.12 + r * slotY + 0.04;
       const z = z0 + 0.04 + slotZ * (c + 0.5);
-      addBox(grp, 0.22, 0.06, 0.1, matOf(shoeCols[c]), x, y, z);
-      addBox(grp, 0.08, 0.05, 0.09, matOf(shoeCols[c]), x + 0.12, y - 0.005, z);
+      addBox(grp, 0.18, 0.055, 0.1, matOf(shoeCols[(c + r) % shoeCols.length]), x, y, z);
+      addBox(grp, 0.08, 0.045, 0.09, matOf(shoeCols[(c + r) % shoeCols.length]), x + 0.09, y - 0.004, z);
     }
   }
-  addPad(g, w + 0.18, d + 0.18, xc, 0.008, zc);
+  addPad(g, w + 0.22, d + 0.16, xc + 0.06, 0.008, zc);
 }
 
 function addHooks(g, cub) {
@@ -613,18 +616,18 @@ function makeProcedural(layout) {
   addShoes(g, layout.architecture.shoes);
   addHooks(g, layout.architecture.cubbies);
   addAltarObjects(g, layout);
-  addBasket(g, -3.22, 2.55);
-  addBox(g, 0.28, 0.03, 0.2, matOf(PAL.linen), -3.2, 0.475, 0.55);
-  addBox(g, 0.24, 0.025, 0.18, matOf(PAL.sage), -3.18, 0.5, 0.56);
+  addBasket(g, -3.38, 2.72);
+  addBox(g, 0.28, 0.03, 0.2, matOf(PAL.linen), -3.42, 0.475, 0.72);
+  addBox(g, 0.24, 0.025, 0.18, matOf(PAL.sage), -3.4, 0.5, 0.73);
   for (const inst of layout.instances) {
     if (!inst.foliage) continue;
     addFoliage(g, inst, layout.assets[inst.kind].targetHeight);
   }
   addPendants(g, layout);
-  addPad(g, 0.85, 0.45, -3.18, 0.008, 0.78);
+  addPad(g, 0.85, 0.45, -3.42, 0.008, 0.95);
   addPad(g, 0.85, 0.45, 3.28, 0.008, -2.05);
   addPad(g, 0.46, 0.46, 3.88, 0.008, -3.42);
-  addPad(g, 0.46, 0.46, -3.92, 0.008, 3.38);
+  addPad(g, 0.46, 0.46, -3.72, 0.008, 3.42);
   return g;
 }
 

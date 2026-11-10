@@ -12,4 +12,4 @@ Other limits:
 - Mirror glass is a pale toon pane. It does not reflect the room.
 - Clerestory glass is a transparent toon pane. It does not refract.
 - No people, and no cloth simulation. Drapes are overlapping slabs at the mirror jambs.
-- The wall shelf GLB is a generic cafe shelf, used as an entry-zone peg rail companion, not a custom cubby carcass.
+- Cubbies are open timber bays facing the practice floor. They are not scanned locker carcasses.

@@ -7,6 +7,5 @@ Reused bakes from Hugging Face `Sandflow/sand3d-objaverse` (CC-BY-4.0 programs).
 - **Pendant lamp** — "Modern ceiling lamp" by krolzuzannapl, https://sketchfab.com/3d-models/1b528c6ab04e42f990105db142cd71bd, CC-BY-4.0. Symlink: `stretch-studio/assets/pendant_lamp__1b528c6ab04e.glb`. Emissive bulbs are added in scene code.
 - **Thermos** — "Thermos" by Platon_Debik, https://sketchfab.com/3d-models/c85ee7b8828b44998bb1cec3971424ec, CC-BY-4.0. Symlink: `cafe/assets/thermos__c85ee7b8828b.glb`.
 - **Cup / mug** — "Stylized Coffee Cup" by n30hrtgdv, https://sketchfab.com/3d-models/6da6f7f87b8d4706a563331657d6b5c3, CC-BY-4.0. Symlink: `cafe/assets/cup_mug__6da6f7f87b8d.glb`.
-- **Wall shelf** — "CC0 - Wall Shelf 4" by plaggy, https://sketchfab.com/3d-models/8732f5e14a30461f83bcb34a9101cbc0, CC-BY-4.0. Symlink: `cafe/assets/wall_shelf__8732f5e14a30.glb`.
 
 Three.js r167-era build, OrbitControls, GLTFLoader, and BufferGeometryUtils are symlinked from `stretch-studio/vendor/` (the repo's existing vendored runtime).
