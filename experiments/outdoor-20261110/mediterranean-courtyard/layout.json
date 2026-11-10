@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "Mediterranean courtyard",
+    "units": "metres",
+    "style": "Toon hard",
+    "openSky": true,
+    "ceiling": false,
+    "notes": [
+      "Open-sky court. Roofs cover only the south and west arcades.",
+      "Warm afternoon key from the southwest. Terraces: lane, court, arcade walk.",
+      "Focal fountain west of center; olive and one cafe table to the east; stone bench on the east wall."
+    ]
+  },
+  "site": {
+    "walkY": 0.18,
+    "pierW": 0.46,
+    "spring": 2.02,
+    "ceilingY": 3.5,
+    "south": { "wallZ": -6.55, "wallT": 0.34, "pierZ": -4.15, "xs": [-5.05, -2.35, 0.35, 3.05] },
+    "west": { "wallX": -7.55, "wallT": 0.34, "pierX": -5.05, "zs": [-4.15, -1.45, 1.25, 3.95] },
+    "court": { "x0": -4.44, "x1": 5.72, "z0": -3.5, "z1": 4.85 },
+    "fountain": { "x": -1.05, "z": 0.2, "w": 2.55, "d": 1.72, "h": 0.62 },
+    "olive": { "x": 2.7, "z": 1.4 },
+    "citrus": { "x": -3.35, "z": 3.55 },
+    "bench": { "x": 5.9, "z0": 0.3, "z1": 3.5, "seatY": 0.46, "faces": "-x" },
+    "entrance": { "x0": 0.2, "x1": 2.4, "z": 5.05 },
+    "laneY": -0.16
+  },
+  "urns": [
+    { "id": "urn_nw", "position": [-2.22, 0.7, 0.95], "scale": 1.0, "plant": "red" },
+    { "id": "urn_se", "position": [0.12, 0.7, -0.55], "scale": 0.78, "plant": "pink" },
+    { "id": "urn_door", "position": [-6.9, 0.18, -2.7], "scale": 1.12, "plant": "red" }
+  ],
+  "assets": {
+    "round_table": { "glb": "assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.74 },
+    "simple_chair": { "glb": "assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.86 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.34, "tint": "#c16a42" }
+  },
+  "instances": [
+    { "id": "table_south", "kind": "round_table", "position": [-1.0, 0.18, -5.8], "rotationY": 0.15 },
+    { "id": "chair_south_w", "kind": "simple_chair", "position": [-1.78, 0.18, -5.8], "rotationY": 1.5708, "faces": "table_south" },
+    { "id": "chair_south_e", "kind": "simple_chair", "position": [-0.22, 0.18, -5.8], "rotationY": -1.5708, "faces": "table_south" },
+    { "id": "cup_south_a", "kind": "cup_mug", "position": [-0.88, 0.92, -5.68], "rotationY": 0.4 },
+    { "id": "cup_south_b", "kind": "cup_mug", "position": [-1.12, 0.92, -5.9], "rotationY": -0.6 },
+
+    { "id": "table_west", "kind": "round_table", "position": [-6.5, 0.18, -0.1], "rotationY": -0.2 },
+    { "id": "chair_west_s", "kind": "simple_chair", "position": [-6.5, 0.18, -0.88], "rotationY": 0.0, "faces": "table_west" },
+    { "id": "chair_west_n", "kind": "simple_chair", "position": [-6.5, 0.18, 0.68], "rotationY": 3.1416, "faces": "table_west" },
+    { "id": "cup_west", "kind": "cup_mug", "position": [-6.38, 0.92, -0.02], "rotationY": 0.8 },
+
+    { "id": "table_olive", "kind": "round_table", "position": [3.45, 0.0, 2.4], "rotationY": 0.35 },
+    { "id": "chair_olive_n", "kind": "simple_chair", "position": [3.45, 0.0, 3.18], "rotationY": 3.1416, "faces": "table_olive" },
+    { "id": "chair_olive_e", "kind": "simple_chair", "position": [4.25, 0.0, 2.4], "rotationY": -1.5708, "faces": "table_olive" },
+    { "id": "cup_olive_a", "kind": "cup_mug", "position": [3.32, 0.74, 2.28], "rotationY": 0.2 },
+    { "id": "cup_olive_b", "kind": "cup_mug", "position": [3.58, 0.74, 2.5], "rotationY": 1.4 },
+
+    { "id": "pot_sw", "kind": "flowerpot", "position": [-6.85, 0.18, -5.95], "rotationY": 0.4, "plant": "red" },
+    { "id": "pot_south_bay", "kind": "flowerpot", "position": [1.15, 0.18, -5.7], "rotationY": -0.3, "plant": "pink", "scale": [1.15, 1.15, 1.15] },
+    { "id": "pot_west_bay", "kind": "flowerpot", "position": [-5.72, 0.18, 1.85], "rotationY": 0.6, "plant": "rosemary" },
+    { "id": "pot_fountain", "kind": "flowerpot", "position": [1.15, 0.0, 1.35], "rotationY": 0.2, "plant": "red" },
+    { "id": "pot_bench", "kind": "flowerpot", "position": [5.35, 0.0, 0.42], "rotationY": 1.1, "plant": "pink" },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [2.85, 0.0, 4.35], "rotationY": -0.4, "plant": "red", "scale": [1.2, 1.2, 1.2] },
+    { "id": "pot_door", "kind": "flowerpot", "position": [-6.55, 0.18, -3.15], "rotationY": 0.8, "plant": "rosemary", "scale": [0.85, 0.85, 0.85] }
+  ],
+  "shell": {
+    "clearColor": "#c5d6ea",
+    "fogColor": "#ead7c0",
+    "fogNear": 18,
+    "fogFar": 46,
+    "skyTop": "#8eafd2",
+    "skyMid": "#d5e2f0",
+    "skyHorizon": "#f3dcc4"
+  },
+  "camera": {
+    "fov": 40,
+    "position": [4.6, 6.5, 12.4],
+    "target": [-1.35, 0.75, -1.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [3.4, 1.85, 9.3],
+      "target": [-0.55, 0.95, -0.85]
+    },
+    "close": {
+      "position": [0.72, 1.28, 1.72],
+      "target": [-1.05, 0.4, 0.12]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#ffe6c8", "ground": "#a88458", "intensity": 0.48 },
+    "key": {
+      "color": "#ffc892",
+      "intensity": 1.22,
+      "position": [-9.5, 13.5, -7.2],
+      "target": [-0.4, 0.8, -0.2]
+    },
+    "fill": { "color": "#d5e0ee", "intensity": 0.26, "position": [8, 6.5, 8] },
+    "bounce": { "color": "#f0c8a0", "intensity": 0.12, "position": [4, 2.2, 5] }
+  },
+  "auditRays": [
+    { "name": "fountain-sky", "origin": [-1.05, 1.15, 0.2], "expect": "open" },
+    { "name": "entrance-sky", "origin": [1.25, 1.15, 4.15], "expect": "open" },
+    { "name": "east-court-sky", "origin": [4.35, 1.15, -1.7], "expect": "open" },
+    { "name": "south-gallery", "origin": [-1.0, 1.15, -5.55], "expect": "covered" },
+    { "name": "west-gallery", "origin": [-6.45, 1.15, -0.1], "expect": "covered" }
+  ],
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "fountain close", "unlit"],
+    "must_read": [
+      "Open sky over the court, roofs only on two arcades.",
+      "Tiled fountain is the focal point.",
+      "Olive, bougainvillea, terracotta pots, shaded tables, east stone bench.",
+      "Warm afternoon sun and shade."
+    ]
+  }
+}
