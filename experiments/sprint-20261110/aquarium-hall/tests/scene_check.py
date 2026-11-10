@@ -33,23 +33,23 @@ def main():
 
     kinds = set(layout["assets"])
     ids = []
-    bench = None
+    benches = []
     for inst in layout["instances"]:
         ids.append(inst["id"])
         if inst["kind"] not in kinds:
             errors += fail(f"unknown kind {inst['kind']}")
         if inst["kind"] == "museum_bench":
-            bench = inst
+            benches.append(inst)
     if len(ids) != len(set(ids)):
         errors += fail("duplicate instance ids")
-    if bench is None:
-        errors += fail("viewing bench missing")
-    else:
+    if len(benches) < 2:
+        errors += fail("expected two viewing benches facing the glass")
+    for bench in benches:
         rot = bench["rotationY"]
         if abs(abs(rot) - math.pi / 2) > 0.05:
-            errors += fail(f"bench should face the tank, rotationY={rot}")
+            errors += fail(f"{bench['id']} should face the tank, rotationY={rot}")
         if bench["position"][1] != 0:
-            errors += fail("bench should sit on the floor")
+            errors += fail(f"{bench['id']} should sit on the floor")
 
     if not any(i["kind"] == "flowerpot" for i in layout["instances"]):
         errors += fail("expected lobby flowerpots")

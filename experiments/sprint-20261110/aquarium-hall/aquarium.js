@@ -324,13 +324,13 @@ function makeShell(layout) {
   ceil.position.set(-0.15, H - 0.06, -D * 0.16);
   g.add(ceil);
 
-  const soffit = addBox(g, 7.3, 0.42, 1.7, toon('#10161a'), 0, 3.52, innerBack + 0.95);
+  const soffit = addBox(g, 11.5, 0.26, 1.35, toon('#10161a'), 0, 3.84, innerBack + 0.72);
   soffit.name = 'soffit';
   const spotMat = toon('#c9d5d4');
   const lens = toon('#d7fffb', { emissive: '#c8fff6', emissiveIntensity: 0.85 });
-  for (const x of [-2.3, -1.15, 0.05, 1.25, 2.4]) {
-    addCyl(g, 0.07, 0.09, 0.16, spotMat, x, 3.22, innerBack + 0.72, 10);
-    const cap = addCyl(g, 0.045, 0.045, 0.02, lens, x, 3.13, innerBack + 0.72, 10);
+  for (const x of [-4.2, -2.5, -0.8, 0.9, 2.6, 4.3]) {
+    addCyl(g, 0.06, 0.08, 0.12, spotMat, x, 3.7, innerBack + 1.05, 10);
+    const cap = addCyl(g, 0.04, 0.04, 0.02, lens, x, 3.63, innerBack + 1.05, 10);
     flag(cap, { noShadow: true });
   }
   return g;
@@ -346,17 +346,17 @@ function buildTank(g, layout) {
   const stone = toon('#3c4746');
   const stoneDark = toon('#232b2c');
   const metal = toon('#8e9894');
-  const plinthW = 6.55;
-  const plinthD = 1.16;
-  const plinthH = 0.46;
+  const plinthW = 10.5;
+  const plinthD = 1.02;
+  const plinthH = 0.16;
 
-  addBox(tank, plinthW + 0.08, 0.07, plinthD + 0.08, toon('#161c1e'), 0, 0.035, plinthD / 2);
-  addBox(tank, plinthW, plinthH - 0.07, plinthD, stone, 0, 0.07 + (plinthH - 0.07) / 2, plinthD / 2);
-  addBox(tank, plinthW - 0.18, 0.045, 0.045, stoneDark, 0, 0.2, plinthD - 0.01);
+  addBox(tank, plinthW + 0.1, 0.05, plinthD + 0.08, toon('#161c1e'), 0, 0.025, plinthD / 2);
+  addBox(tank, plinthW, plinthH - 0.05, plinthD, stone, 0, 0.05 + (plinthH - 0.05) / 2, plinthD / 2);
+  addBox(tank, plinthW - 0.2, 0.028, 0.035, stoneDark, 0, 0.09, plinthD - 0.01);
 
-  const glassW = 5.95;
-  const glassH = 2.46;
-  const glassD = 0.82;
+  const glassW = 10.15;
+  const glassH = 3.42;
+  const glassD = 0.78;
   const glassBottom = plinthH;
   const glassZ = 0.1;
   const glassCenterZ = glassZ + glassD / 2;
@@ -377,13 +377,15 @@ function buildTank(g, layout) {
   addBox(tank, glassW + 0.08, 0.05, 0.05, metal, 0, glassBottom + glassH - 0.02, glassZ + glassD + 0.01);
   addBox(tank, 0.05, glassH, 0.05, metal, -glassW / 2, glassCenterY, glassZ + glassD + 0.01);
   addBox(tank, 0.05, glassH, 0.05, metal, glassW / 2, glassCenterY, glassZ + glassD + 0.01);
-  addBox(tank, 0.045, glassH - 0.08, 0.04, metal, -1.85, glassCenterY, glassZ + glassD + 0.02);
-  addBox(tank, 0.045, glassH - 0.08, 0.04, metal, 1.9, glassCenterY, glassZ + glassD + 0.02);
-  addBox(tank, glassW - 0.1, 0.04, 0.04, metal, 0, 2.52, glassZ + glassD + 0.02);
+  for (const mx of [-4.0, -2.0, 2.0, 4.0]) {
+    addBox(tank, 0.045, glassH - 0.08, 0.04, metal, mx, glassCenterY, glassZ + glassD + 0.02);
+  }
+  const waterY = glassBottom + glassH - 0.28;
+  addBox(tank, glassW - 0.12, 0.035, 0.04, metal, 0, waterY, glassZ + glassD + 0.02);
 
   const backPanel = addBox(
     tank, glassW - 0.28, glassH - 0.28, 0.04,
-    toon('#124e58', { emissive: '#1c8a96', emissiveIntensity: 0.42 }),
+    toon('#0e6270', { emissive: '#2aa8b4', emissiveIntensity: 0.62 }),
     0, glassCenterY + 0.04, 0.06,
   );
   backPanel.name = 'tank-back';
@@ -397,39 +399,42 @@ function buildTank(g, layout) {
     addBox(tank, 0.28, 0.012, 0.02, toon('#0e1416'), -2.2 + i * 0.64, glassBottom + glassH + 0.19, glassCenterZ);
   }
 
-  const foam = addBox(tank, glassW - 0.45, 0.03, 0.025, toon('#e7f6f4', { emissive: '#d5fffb', emissiveIntensity: 0.2 }), 0, 2.58, glassZ + glassD - 0.04);
+  const foam = addBox(tank, glassW - 0.5, 0.028, 0.025, toon('#e7f6f4', { emissive: '#d5fffb', emissiveIntensity: 0.25 }), 0, waterY, glassZ + glassD - 0.04);
   flag(foam, { noShadow: true, order: 2 });
 
-  rock(tank, -1.9, sandTop + 0.22, 0.28, 0.95, 0.62, 0.58, '#3a4346', [0.2, 0.4, 0.1]);
-  rock(tank, -1.45, sandTop + 0.48, 0.36, 0.42, 0.34, 0.36, '#52584e', [0.4, 0.2, 0.3]);
-  rock(tank, -2.3, sandTop + 0.12, 0.48, 0.46, 0.28, 0.34, '#2a3134', [0.1, 0.8, 0.2]);
-  rock(tank, 0.28, sandTop + 0.28, 0.22, 0.58, 0.7, 0.46, '#454e4c', [0.3, 0.1, 0.05]);
-  rock(tank, 1.15, sandTop + 0.24, 0.3, 0.5, 0.58, 0.42, '#3e463f', [0.2, 1.1, 0.15]);
-  rock(tank, 0.72, sandTop + 0.58, 0.26, 1.15, 0.22, 0.48, '#5c584c', [0.05, 0.3, 0.08], true);
-  rock(tank, 2.15, sandTop + 0.2, 0.24, 0.7, 0.48, 0.5, '#2c3336', [0.4, 0.6, 0.2]);
-  rock(tank, 2.45, sandTop + 0.1, 0.5, 0.36, 0.24, 0.3, '#6a6258', [0.2, 0.2, 0.4]);
-  rock(tank, -0.35, sandTop + 0.05, 0.62, 0.38, 0.14, 0.28, '#4a453c', [0, 0.5, 0.04], true);
-  rock(tank, 0.15, sandTop + 0.1, 0.18, 0.4, 0.26, 0.32, '#1e2628', [0.5, 0.7, 0.1]);
+  rock(tank, -3.7, sandTop + 0.28, 0.26, 1.05, 0.7, 0.62, '#3a4346', [0.2, 0.5, 0.1]);
+  rock(tank, -3.15, sandTop + 0.55, 0.34, 0.48, 0.36, 0.4, '#52584e', [0.3, 0.2, 0.2]);
+  rock(tank, -1.7, sandTop + 0.22, 0.3, 0.7, 0.48, 0.5, '#2a3134', [0.1, 0.8, 0.15]);
+  rock(tank, 0.35, sandTop + 0.32, 0.22, 0.72, 0.78, 0.5, '#454e4c', [0.25, 0.15, 0.05]);
+  rock(tank, 1.25, sandTop + 0.26, 0.3, 0.55, 0.6, 0.42, '#3e463f', [0.2, 1.0, 0.1]);
+  rock(tank, 0.8, sandTop + 0.62, 0.26, 1.25, 0.22, 0.5, '#5c584c', [0.05, 0.3, 0.08], true);
+  rock(tank, 3.15, sandTop + 0.24, 0.24, 0.85, 0.55, 0.55, '#2c3336', [0.35, 0.6, 0.15]);
+  rock(tank, 4.15, sandTop + 0.16, 0.42, 0.5, 0.32, 0.38, '#6a6258', [0.2, 0.3, 0.3]);
+  rock(tank, -0.4, sandTop + 0.06, 0.58, 0.42, 0.14, 0.3, '#4a453c', [0, 0.5, 0.04], true);
+  rock(tank, -4.35, sandTop + 0.12, 0.48, 0.46, 0.24, 0.34, '#1e2628', [0.4, 0.7, 0.1]);
 
   const rand = mulberry32(20261110);
   const pebbleColors = ['#b7a888', '#8d8474', '#d2c4a4', '#6e6a60'];
   for (let i = 0; i < 16; i++) {
-    const px = -2.4 + rand() * 4.8;
+    const px = -4.6 + rand() * 9.2;
     const pz = 0.22 + rand() * 0.55;
     const s = 0.05 + rand() * 0.06;
     rock(tank, px, sandTop + 0.01, pz, s * 1.6, s * 0.7, s * 1.2, pebbleColors[i % pebbleColors.length], [rand(), rand(), rand()], true);
   }
 
   const kelpSpecs = [
-    [-2.35, 0.18, 1.95, -0.16, 0.4, '#1e6840'],
-    [-2.0, 0.28, 2.15, 0.1, -0.3, '#2c7a48'],
-    [-1.62, 0.16, 1.75, -0.05, 0.8, '#174e32'],
-    [-1.25, 0.34, 2.05, 0.18, 0.2, '#347848'],
-    [-2.2, 0.5, 1.5, 0.06, -0.5, '#245c38'],
-    [1.7, 0.2, 1.55, -0.12, 0.6, '#1f6a44'],
-    [2.05, 0.32, 1.8, 0.14, 1.1, '#3d8a45'],
-    [2.4, 0.22, 1.35, -0.08, 0.3, '#163f2e'],
-    [1.45, 0.4, 1.2, 0.2, -0.4, '#2a6a40'],
+    [-4.45, 0.2, 2.75, -0.12, 0.3, '#1e6840'],
+    [-3.85, 0.32, 3.05, 0.08, -0.2, '#2c7a48'],
+    [-3.2, 0.16, 2.45, -0.05, 0.7, '#174e32'],
+    [-2.55, 0.38, 2.9, 0.14, 0.2, '#347848'],
+    [-1.9, 0.22, 2.55, -0.1, -0.4, '#245c38'],
+    [-1.15, 0.3, 2.25, 0.06, 0.5, '#1f6a44'],
+    [0.55, 0.18, 2.4, -0.08, 0.8, '#3d8a45'],
+    [1.45, 0.34, 2.95, 0.1, -0.3, '#174e32'],
+    [2.25, 0.2, 2.6, -0.12, 0.4, '#2c7a48'],
+    [3.15, 0.28, 3.05, 0.15, 1.0, '#245c38'],
+    [3.85, 0.16, 2.5, -0.06, 0.2, '#1e6840'],
+    [4.45, 0.32, 2.75, 0.1, -0.5, '#347848'],
   ];
   for (const [x, z, h, lean, twist, color] of kelpSpecs) {
     kelp(tank, x, sandTop, z, h, lean, twist, color);
@@ -453,41 +458,47 @@ function buildTank(g, layout) {
   }
 
   const life = [
-    ['angel', '#5d7c8c', -1.55, 1.62, 0.55, -0.35, 1.35, 0.4],
-    ['angel', '#6e8a58', -1.05, 1.08, 0.66, 0.3, 0.85, 1.7],
-    ['garibaldi', '#ef6a28', -0.15, 1.32, 0.64, 0.15, 1.35, 0.2],
-    ['garibaldi', '#f2b15a', -1.95, 1.15, 0.58, -0.5, 0.7, 2.4],
-    ['discus', '#9a463c', 1.05, 1.42, 0.52, 0.4, 1.05, 1.1],
-    ['rockfish', '#3e4c56', 0.72, 0.82, 0.34, -0.15, 1.05, 2.2],
-    ['wrasse', '#e2c15a', 0.35, 1.68, 0.58, 2.7, 1.05, 0.8],
-    ['needle', '#d5e4e6', -0.55, 2.32, 0.5, 0.1, 1.05, 1.5],
-    ['ray', '#7f9aa6', -1.25, 0.62, 0.4, 0.25, 1.15, 0.6],
-    ['tetra', '#f7fbfb', 2.05, 1.28, 0.62, 0.25, 0.85, 0.3],
-    ['tetra', '#c5d6d8', 2.32, 1.08, 0.5, -0.1, 0.7, 1.4],
-    ['tetra', '#f4f7f7', 1.72, 1.46, 0.66, 0.45, 0.75, 2.1],
-    ['tetra', '#9ec4c8', 2.15, 1.55, 0.54, 0.05, 0.62, 0.9],
-    ['tetra', '#e7eeef', 1.88, 1.02, 0.7, 0.3, 0.72, 1.8],
-    ['tetra', '#f7fbfb', 2.48, 1.22, 0.46, -0.3, 0.66, 2.6],
+    ['angel', '#6d90a2', -3.1, 2.35, 0.5, -0.4, 2.15, 0.4],
+    ['angel', '#7ea268', -1.35, 1.55, 0.62, 0.25, 1.35, 1.6],
+    ['garibaldi', '#ef6a28', 0.15, 1.7, 0.6, 0.12, 2.15, 0.2],
+    ['garibaldi', '#f2b15a', -3.6, 1.15, 0.52, -0.45, 1.05, 2.2],
+    ['discus', '#a34b40', 2.4, 2.15, 0.48, 0.35, 1.45, 1.1],
+    ['rockfish', '#4a5c68', 3.4, 0.72, 0.32, -0.2, 1.85, 2.1],
+    ['wrasse', '#e2c15a', 1.15, 2.55, 0.55, 2.6, 1.35, 0.8],
+    ['needle', '#e7f2f4', -0.8, 3.05, 0.46, 0.08, 1.25, 1.4],
+    ['ray', '#8aabb6', -2.2, 0.48, 0.42, 0.3, 1.45, 0.5],
   ];
-  for (const [kind, color, x, y, z, rot, scale, phase] of life) {
+  for (const row of life) {
+    const [kind, color, x, y, z, rot, scale, phase] = row;
     const fish = addSwimmer(tank, kind, color, x, y, z, rot, scale, phase);
     if (kind === 'ray') fish.rotation.x = -0.72;
   }
+  const schoolColors = ['#f7fbfb', '#d5e6e8', '#b7d0d4', '#eef6f6', '#c5ddd8'];
+  for (let i = 0; i < 34; i++) {
+    const cluster = i < 22 ? 0 : 1;
+    const cx = cluster === 0 ? 1.6 : -2.4;
+    const spread = cluster === 0 ? 3.6 : 2.6;
+    const x = Math.max(-4.6, Math.min(4.6, cx + (rand() - 0.5) * spread));
+    const y = 0.85 + rand() * 2.15;
+    const z = 0.32 + rand() * 0.42;
+    const rot = (rand() - 0.5) * 0.9 + (cluster === 0 ? 0.15 : -0.35);
+    const scale = 0.62 + rand() * 0.38;
+    addSwimmer(tank, 'tetra', schoolColors[i % schoolColors.length], x, y, z, rot, scale, rand() * 6.2, 0.1);
+  }
 
   const pipe = toon('#4e5856');
-  const run = addCyl(tank, 0.032, 0.032, 6.3, pipe, 0.1, 3.18, 0.04, 8);
+  const run = addCyl(tank, 0.03, 0.03, 9.4, pipe, 0.05, waterY - 0.08, 0.12, 8);
   run.rotation.z = Math.PI / 2;
-  addCyl(tank, 0.028, 0.028, 1.9, pipe, 2.85, 1.85, 0.72, 8);
   const valveMat = toon('#c2b48a');
-  const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.012, 6, 16), valveMat);
-  wheel.position.set(2.7, 0.72, plinthD + 0.02);
+  const valveX = plinthW / 2 - 0.28;
+  const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.012, 6, 16), valveMat);
+  wheel.position.set(valveX, 0.28, plinthD + 0.02);
   wheel.castShadow = true;
   tank.add(wheel);
-  const spokeA = addCyl(tank, 0.01, 0.01, 0.16, valveMat, 2.7, 0.72, plinthD + 0.02, 6);
+  const spokeA = addCyl(tank, 0.01, 0.01, 0.14, valveMat, valveX, 0.28, plinthD + 0.02, 6);
   spokeA.rotation.z = Math.PI / 2;
-  const spokeB = addCyl(tank, 0.01, 0.01, 0.16, valveMat, 2.7, 0.72, plinthD + 0.02, 6);
+  const spokeB = addCyl(tank, 0.01, 0.01, 0.14, valveMat, valveX, 0.28, plinthD + 0.02, 6);
   spokeB.rotation.x = Math.PI / 2;
-  addCyl(tank, 0.02, 0.02, 0.04, toon('#6a5538'), 2.7, 0.72, plinthD + 0.04, 8);
 
   const title = plaqueTexture({
     title: 'PACIFIC KELP',
@@ -495,7 +506,7 @@ function buildTank(g, layout) {
     width: 900,
     height: 280,
   });
-  signPlane(tank, 1.35, 0.28, title, 0, 0.24, plinthD + 0.03, 0, 0);
+  signPlane(tank, 1.55, 0.16, title, -1.6, 0.09, plinthD + 0.02, 0, 0);
 
   const drain = toon('#1a2124');
   addBox(g, 0.72, 0.012, 0.18, drain, 0.1, 0.008, innerBack + 0.02 + plinthD + 0.22);
@@ -586,29 +597,53 @@ function buildNiches(g, layout) {
   }
 }
 
-function buildWallWorks(g, layout) {
-  const { innerBack } = roomOf(layout);
-  const frame = addBox(g, 0.62, 1.7, 0.04, toon('#1a2428'), -5.05, 1.85, innerBack + 0.03);
-  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 1.58), toon('#ffffff', { map: habitatTexture() }));
-  face.position.z = 0.025;
+function buildWalkPanels(g, layout) {
+  const { innerLeft } = roomOf(layout);
+  const x = innerLeft + 0.08;
+  const panels = [
+    {
+      z: -3.5,
+      title: 'HOW TO LOOK',
+      lines: ['Stand behind the rail.', 'The orange fish is a garibaldi.', 'Kelp rises from the holdfast.'],
+    },
+    {
+      z: -1.22,
+      title: 'CANOPY',
+      lines: ['Blades reach the surface.', 'Small fish school in the shade.', 'Look up, not only ahead.'],
+    },
+    {
+      z: 0.62,
+      title: 'HOLDFAST',
+      lines: ['Rockfish rest on stone.', 'The ray skims the sand.', 'Please do not tap the glass.'],
+    },
+  ];
+  for (const p of panels) {
+    const stand = new THREE.Group();
+    stand.position.set(x, 0, p.z);
+    g.add(stand);
+    addBox(stand, 0.28, 0.04, 0.22, toon('#1a2428'), 0.12, 0.02, 0);
+    addCyl(stand, 0.025, 0.028, 0.92, toon('#3a4448'), 0.1, 0.48, 0, 8);
+    const tex = plaqueTexture({ title: p.title, lines: p.lines, width: 720, height: 880 });
+    signPlane(stand, 0.62, 0.92, tex, 0.12, 1.38, 0, Math.PI / 2, 0);
+  }
+  const chart = new THREE.Group();
+  chart.position.set(x + 0.02, 0, 3.2);
+  g.add(chart);
+  addBox(chart, 0.08, 1.55, 0.52, toon('#1a2428'), 0.06, 0.95, 0);
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 1.35), toon('#ffffff', { map: habitatTexture() }));
+  face.position.set(0.11, 0.95, 0);
+  face.rotation.y = Math.PI / 2;
   face.userData.noShadow = true;
-  frame.add(face);
-
-  const door = addBox(g, 0.92, 2.15, 0.06, toon('#1c262c'), 4.72, 1.08, innerBack + 0.04);
-  addBox(g, 0.72, 1.7, 0.02, toon('#12181c'), 4.72, 1.15, innerBack + 0.075);
-  addBox(g, 0.08, 0.16, 0.03, toon('#8d7344'), 4.95, 1.05, innerBack + 0.09);
-  const staff = plaqueTexture({ title: 'STAFF', lines: ['Life support'], width: 640, height: 280 });
-  signPlane(g, 0.42, 0.2, staff, 4.72, 2.28, innerBack + 0.05, 0, 0);
-  door.name = 'staff-door';
+  chart.add(face);
 }
 
 function buildVisitor(g, layout) {
   const { innerBack } = roomOf(layout);
   const pad = toon('#3a464c');
   const joint = toon('#222a2e');
-  const padW = 7.5;
-  const padD = 4.35;
-  const padZ = -0.2;
+  const padW = 10.8;
+  const padD = 5.15;
+  const padZ = -0.15;
   addBox(g, padW, 0.028, padD, pad, 0.05, 0.014, padZ);
   const inset = 0.16;
   addBox(g, padW - inset * 2, 0.008, 0.06, joint, 0.05, 0.03, padZ - padD / 2 + inset);
@@ -632,8 +667,8 @@ function buildVisitor(g, layout) {
   const post = toon('#2a3336');
   const brass = toon('#b7a06a');
   const rope = toon('#6e6248');
-  const railZ = innerBack + 2.15;
-  const posts = [-2.65, -0.85, 0.95, 2.7];
+  const railZ = -1.72;
+  const posts = [-4.5, -2.25, 0, 2.25, 4.5];
   for (const x of posts) {
     addCyl(g, 0.045, 0.05, 0.04, post, x, 0.02, railZ, 8);
     addCyl(g, 0.022, 0.022, 0.9, post, x, 0.49, railZ, 8);
@@ -661,26 +696,117 @@ function buildVisitor(g, layout) {
     height: 520,
   });
   const lectern = new THREE.Group();
-  lectern.position.set(-2.45, 0, -0.55);
+  lectern.position.set(-4.15, 0, -0.35);
   g.add(lectern);
   addBox(lectern, 0.46, 0.06, 0.36, toon('#2a3336'), 0, 0.03, 0);
   addCyl(lectern, 0.035, 0.04, 1.02, toon('#3a4446'), 0, 0.55, 0, 8);
   const panel = signPlane(lectern, 0.78, 0.5, lecternTex, 0, 1.18, 0.02, 0, 0.46);
   panel.name = 'lectern';
 
-  const pylon = new THREE.Group();
-  pylon.position.set(5.45, 0, 3.85);
-  g.add(pylon);
-  addBox(pylon, 0.38, 2.25, 0.38, toon('#1e282e'), 0, 1.125, 0);
-  addBox(pylon, 0.5, 0.08, 0.5, toon('#2c3836'), 0, 0.04, 0);
-  addBox(pylon, 0.46, 0.06, 0.46, brass, 0, 2.22, 0);
-  const way = plaqueTexture({
-    title: 'AQUATIC HALL',
-    lines: ['Kelp forest ahead', 'Niches along the left wall'],
-    width: 800,
+  buildInfoDesk(g);
+  addCausticSpill(g);
+  addWayfinding(g);
+}
+
+function causticTexture() {
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 512;
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, 512, 512);
+  for (let i = 0; i < 22; i++) {
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(210, 255, 244, ${0.28 + (i % 5) * 0.08})`;
+    ctx.lineWidth = 1.5 + (i % 3);
+    const y0 = (i * 23) % 512;
+    ctx.moveTo(0, y0);
+    for (let x = 0; x <= 512; x += 6) {
+      const y = y0 + Math.sin(x * 0.045 + i * 0.7) * 16 + Math.sin(x * 0.012 + i) * 9;
+      ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(2.4, 1.6);
+  tex.needsUpdate = true;
+  return tex;
+}
+
+function addCausticSpill(g) {
+  const wash = new THREE.Mesh(
+    new THREE.PlaneGeometry(9.4, 4.2),
+    toon('#1f8f86', {
+      emissive: '#3ed4c4',
+      emissiveIntensity: 0.55,
+      transparent: true,
+      opacity: 0.34,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    }),
+  );
+  wash.rotation.x = -Math.PI / 2;
+  wash.position.set(0.1, 0.036, -0.15);
+  flag(wash, { noShadow: true, noReceive: true, order: 2 });
+  wash.name = 'tank-spill';
+  g.add(wash);
+
+  const ripples = new THREE.Mesh(
+    new THREE.PlaneGeometry(8.8, 3.6),
+    toon('#d8fff6', {
+      map: causticTexture(),
+      emissive: '#8ffff0',
+      emissiveIntensity: 0.75,
+      transparent: true,
+      opacity: 0.72,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    }),
+  );
+  ripples.rotation.x = -Math.PI / 2;
+  ripples.position.set(0.15, 0.042, -0.45);
+  flag(ripples, { noShadow: true, noReceive: true, order: 3 });
+  ripples.name = 'caustics';
+  g.add(ripples);
+}
+
+function addWayfinding(g) {
+  const mat = toon('#12332f', { emissive: '#9ffff0', emissiveIntensity: 1.35 });
+  const lay = (x, z, w, d) => {
+    const m = addBox(g, w, 0.01, d, mat, x, 0.02, z);
+    flag(m, { noShadow: true, order: 4 });
+  };
+  for (let i = 0; i < 5; i++) lay(0.2, 3.35 - i * 0.72, 0.55, 0.055);
+  for (let i = 0; i < 7; i++) lay(-4.72, 2.7 - i * 0.85, 0.055, 0.48);
+}
+
+function buildInfoDesk(g) {
+  const desk = new THREE.Group();
+  desk.name = 'info-desk';
+  desk.position.set(4.05, 0, 2.72);
+  g.add(desk);
+  addBox(desk, 1.55, 0.08, 0.52, toon('#12181c'), 0, 0.04, 0);
+  addBox(desk, 1.72, 0.9, 0.64, toon('#243238'), 0, 0.53, 0);
+  addBox(desk, 1.9, 0.055, 0.76, toon('#5c6c70'), 0, 1.0, 0.02);
+  const sign = plaqueTexture({
+    title: 'INFORMATION',
+    lines: ['Kelp forest hall', 'Ask about the dive'],
+    width: 960,
     height: 420,
   });
-  signPlane(pylon, 0.34, 0.42, way, 0, 1.45, 0.2, 0, 0);
+  signPlane(desk, 1.2, 0.36, sign, 0, 0.58, 0.35, 0, 0);
+  addBox(desk, 0.2, 0.16, 0.14, toon('#e7f4ef'), -0.48, 1.1, 0.04);
+  addBox(desk, 0.16, 0.22, 0.12, toon('#f3efe6'), -0.22, 1.13, 0);
+  addBox(desk, 0.18, 0.12, 0.12, toon('#1d6a62'), 0.12, 1.08, 0.02);
+  addCyl(desk, 0.02, 0.024, 0.26, toon('#8e9894'), 0.62, 1.16, -0.06, 8);
+  const shade = addCyl(
+    desk, 0.08, 0.1, 0.07,
+    toon('#e9fffb', { emissive: '#b8fff2', emissiveIntensity: 0.95 }),
+    0.62, 1.32, -0.06, 10,
+  );
+  flag(shade, { noShadow: true });
 }
 
 function buildPotFoliage(g, layout) {
@@ -705,7 +831,7 @@ function makeProcedural(layout) {
   g.name = 'procedural';
   buildTank(g, layout);
   buildNiches(g, layout);
-  buildWallWorks(g, layout);
+  buildWalkPanels(g, layout);
   buildVisitor(g, layout);
   buildPotFoliage(g, layout);
   return g;

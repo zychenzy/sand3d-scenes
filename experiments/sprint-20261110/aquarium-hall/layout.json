@@ -9,9 +9,9 @@
       "height": 4.0
     },
     "notes": [
-      "Cutaway hall: back and left walls only. Focal kelp tank on the back wall, niche walk on the left, bench facing the glass.",
-      "Bench long axis is along the tank (rotationY π/2) so visitors sit facing the exhibit.",
-      "Tank life, niches, rail, lectern and signs are procedural. Bench and flowerpots are shared GLBs by symlink."
+      "Cutaway hall. The kelp tank is nearly floor-to-ceiling and most of the back wall.",
+      "Two benches, both rotationY π/2, so sitters face the glass. Info desk at the right entry.",
+      "Teal spill and a caustic decal fall on the floor in front of the tank."
     ]
   },
   "assets": {
@@ -26,23 +26,30 @@
   },
   "instances": [
     {
-      "id": "viewing_bench",
+      "id": "bench_left",
       "kind": "museum_bench",
-      "position": [0.1, 0, 1.55],
+      "position": [-2.15, 0, 1.78],
       "rotationY": 1.5708,
-      "scale": [1.05, 1, 2.1]
+      "scale": [1.05, 1, 1.9]
+    },
+    {
+      "id": "bench_right",
+      "kind": "museum_bench",
+      "position": [2.15, 0, 1.42],
+      "rotationY": 1.5708,
+      "scale": [1.05, 1, 1.85]
     },
     {
       "id": "pot_l",
       "kind": "flowerpot",
-      "position": [-3.85, 0, -3.35],
-      "rotationY": 0.4
+      "position": [-5.5, 0, -1.85],
+      "rotationY": 0.3
     },
     {
       "id": "pot_r",
       "kind": "flowerpot",
-      "position": [3.7, 0, -3.28],
-      "rotationY": -0.5
+      "position": [5.45, 0, -1.7],
+      "rotationY": -0.4
     }
   ],
   "shell": {
@@ -56,29 +63,29 @@
     "fogFar": 40
   },
   "camera": {
-    "fov": 42,
-    "position": [5.35, 2.58, 6.35],
-    "target": [0.05, 1.32, -2.05]
+    "fov": 46,
+    "position": [4.6, 1.62, 6.7],
+    "target": [0.15, 1.85, -2.3]
   },
   "cameraPresets": {
     "corner": {
-      "position": [6.7, 2.55, 3.15],
-      "target": [-0.6, 1.25, -2.35]
+      "position": [6.55, 1.9, 3.55],
+      "target": [-0.8, 1.7, -2.5]
     },
     "close": {
-      "position": [0.45, 1.36, -1.82],
-      "target": [-0.35, 1.2, -3.5]
+      "position": [0.35, 1.55, -1.65],
+      "target": [-0.15, 1.75, -3.45]
     }
   },
   "lights": {
     "hemi": {
       "sky": "#c5d3da",
       "ground": "#1a3034",
-      "intensity": 0.62
+      "intensity": 0.42
     },
     "key": {
       "color": "#d7e4e8",
-      "intensity": 1.05,
+      "intensity": 0.68,
       "position": [4.6, 9.4, 6.2],
       "shadowBias": -0.00035,
       "normalBias": 0.02
@@ -90,32 +97,39 @@
     },
     "points": [
       {
-        "color": "#7ad4c8",
-        "intensity": 1.15,
-        "distance": 5.2,
-        "decay": 2,
-        "position": [0.2, 0.85, -2.45]
+        "color": "#5ee0d2",
+        "intensity": 6.5,
+        "distance": 11,
+        "decay": 1,
+        "position": [-3.1, 1.15, -2.05]
+      },
+      {
+        "color": "#7af0e2",
+        "intensity": 8.2,
+        "distance": 12,
+        "decay": 1,
+        "position": [0.15, 0.95, -1.75]
+      },
+      {
+        "color": "#5ee0d2",
+        "intensity": 6.5,
+        "distance": 11,
+        "decay": 1,
+        "position": [3.2, 1.15, -2.05]
       },
       {
         "color": "#b7ebe4",
-        "intensity": 0.55,
-        "distance": 3.2,
+        "intensity": 0.8,
+        "distance": 4.5,
         "decay": 2,
-        "position": [0.3, 2.35, -3.22]
-      },
-      {
-        "color": "#3f8f86",
-        "intensity": 0.45,
-        "distance": 3.4,
-        "decay": 2,
-        "position": [-1.7, 1.35, -3.3]
+        "position": [0.2, 2.9, -3.4]
       },
       {
         "color": "#8fd0c8",
-        "intensity": 0.85,
+        "intensity": 0.7,
         "distance": 5.5,
         "decay": 2,
-        "position": [-4.7, 1.7, -0.15]
+        "position": [-4.55, 1.55, 0.2]
       }
     ]
   }

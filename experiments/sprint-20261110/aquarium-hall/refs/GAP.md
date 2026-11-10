@@ -4,10 +4,10 @@ The shared Objaverse kit has benches, pots, plinths, and vitrines. It does not h
 
 Closed in this scene:
 
-- Large tank with a plinth, mullions, hood, sand, rocks, kelp, driftwood, waterline, and more than one fish silhouette.
-- Three niches that are not copies of each other.
-- Bench turned to face the glass. Rail, lectern, habitat diagram, staff door, wayfinding pylon.
-- Cool practical light from inside the tank, hard shadows from the key.
+- Near floor-to-ceiling tank, about 10 m wide, with a low curb, mullions, hood, sand, rocks, kelp, driftwood, waterline, a school of small fish, and larger fish at different depths.
+- Three niches that are not copies of each other, with visitor-height panels along that walk.
+- Two benches turned to face the glass. Rail, lectern, information desk, floor wayfinding strips.
+- Teal spill from the tank onto the floor and benches, plus a caustic decal. Hard shadows from the key.
 
 Still open:
 
@@ -16,5 +16,5 @@ Still open:
 - Kelp is stacked blades, not a true lamina with pneumatocysts.
 - The bench is the gallery slab from the museum bake (oak seat, curved steel legs), not a purpose-made aquarium seat.
 - Flowerpots are the cafe-kit vessel. Foliage above them is procedural.
-- No caustic animation. The tank reads by emissive backing, a pale surface line, and three small point lights.
+- Caustics are a still decal, not an animated projection. The glass does not cast real caustic light.
 - Soffit spots have emissive lenses. They do not each cast a pool; the single key is the hard shadow.

@@ -1,6 +1,6 @@
 # Aquarium visitor hall
 
-Cutaway public hall: one planted kelp tank on the back wall, three specimen niches on the left, a bench facing the glass, and interpretation signs. Toon-hard Three.js, offline.
+Cutaway public hall: one near floor-to-ceiling kelp tank on the back wall, three specimen niches on the left, two benches facing the glass, and interpretation signs. Toon-hard Three.js, offline.
 
 ## Launch
 
