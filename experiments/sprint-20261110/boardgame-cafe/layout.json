@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "Meeple & Bean — social boardgame cafe",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.4, "depth": 8.6, "height": 3.2 },
+    "notes": [
+      "Play floor, boxed-game library, service bar, and a teaching nook.",
+      "Chairs face their tabletops. Each table has a different game in progress.",
+      "Instances are built by placement.js so facing and clearances stay testable."
+    ]
+  },
+  "assets": {
+    "long_table": { "glb": "../../../restaurant/assets/long_dining__fb2f8f65156e.glb", "targetHeight": 0.76 },
+    "square_table": { "glb": "../../../boardgame/assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.75 },
+    "round_table": { "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.74 },
+    "dining_chair": { "glb": "../../../boardgame/assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.9 },
+    "bar_stool": { "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.75 },
+    "pendant_lamp": { "glb": "../../../boardgame/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.56 },
+    "cup_mug": { "glb": "../../../boardgame/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.11 },
+    "flowerpot": { "glb": "../../../boardgame/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.3 },
+    "display_bookcase": { "glb": "../../../library/assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 2.05 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.72 },
+    "espresso_machine": { "glb": "../../../cafe/assets/espresso_machine__3ada9ec69a54.glb", "targetHeight": 0.42 },
+    "cash_register": { "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.32 },
+    "pos_terminal": { "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.22 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.28 },
+    "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.14 },
+    "tray_napkin": { "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.12 },
+    "straw_holder": { "glb": "../../../cafe/assets/straw_holder__252f730f1a04.glb", "targetHeight": 0.22 },
+    "library_lamp": { "glb": "../../../library/assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.38 },
+    "chalkboard": { "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb", "targetHeight": 1.5 },
+    "book_stand": { "glb": "../../../library/assets/book_stand__fb784262748d.glb", "targetHeight": 0.98 }
+  },
+  "instances": [],
+  "shell": {
+    "floorColor": "#8d5e38",
+    "wallColor": "#f4eadc",
+    "woodColor": "#5c3b28",
+    "accentColor": "#1c3f38",
+    "ceilingColor": "#f3eadc",
+    "windowTint": "#c5d8e6",
+    "clearColor": "#d9cbb8",
+    "fogColor": "#d9cbb8",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 42,
+    "position": [6.4, 3.05, 6.15],
+    "target": [-0.45, 0.95, -0.45]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [5.5, 2.65, 0.05],
+      "target": [-1.15, 0.9, -0.25]
+    },
+    "close": {
+      "position": [-0.55, 1.68, -0.35],
+      "target": [-2.35, 0.82, -1.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16772700, "ground": 4473924, "intensity": 0.38 },
+    "key": { "color": 16774360, "intensity": 0.52, "position": [7.5, 9.5, 6.2] },
+    "fill": { "color": 13488896, "intensity": 0.18, "position": [-6, 4.5, 2] }
+  }
+}
