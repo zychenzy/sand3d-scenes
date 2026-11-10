@@ -160,10 +160,12 @@ function buildDrapes(g, layout) {
 
   const legH = H - 0.2;
   addBox(g, 0.42, legH, 0.16, toon(s.drapeDeep), st.x0 + 0.08, legH / 2, st.z1 + 0.02);
-  addBox(g, 0.42, legH, 0.16, toon(s.drapeColor), st.x1 - 0.05, legH / 2, st.z1 + 0.02);
+  // Stage-left tormentor sits on the audience's right, in front of the default camera.
+  // Keep it, but narrow it and set it back off the lip so the deck stays visible.
+  addBox(g, 0.16, legH, 0.08, toon(s.drapeColor), st.x1 + 0.1, legH / 2, st.z1 - 0.72);
   for (let i = 0; i < 2; i++) {
     addBox(g, 0.18, legH, 0.08, toon(i ? s.drapeColor : s.drapeDeep), st.x0 + 0.22 + i * 0.1, legH / 2, st.z1 + 0.08);
-    addBox(g, 0.18, legH, 0.08, toon(i ? s.drapeDeep : s.drapeColor), st.x1 - 0.22 - i * 0.1, legH / 2, st.z1 + 0.08);
+    addBox(g, 0.08, legH, 0.05, toon(i ? s.drapeDeep : s.drapeColor), st.x1 + 0.02 - i * 0.06, legH / 2, st.z1 - 0.5 - i * 0.1);
   }
 
   const vx0 = st.x0 + 0.1;
@@ -280,6 +282,30 @@ function buildPoster(g, layout) {
   addBox(g, 0.02, 0.44, 0.3, paper, -5.08, 1.7, -1.15);
 }
 
+function grandOutline() {
+  const spine = 0.5;
+  const bent = 0.58;
+  const length = 1.42;
+  const sh = new THREE.Shape();
+  sh.moveTo(-spine, 0);
+  sh.lineTo(bent, 0);
+  sh.lineTo(bent, 0.26);
+  sh.bezierCurveTo(bent + 0.02, length * 0.52, bent * 0.42, length * 0.9, 0.02, length);
+  sh.bezierCurveTo(-spine * 0.2, length * 1.045, -spine, length * 0.78, -spine, length * 0.6);
+  sh.lineTo(-spine, 0);
+  return { shape: sh, spine, bent, length };
+}
+
+function flatGrand(shape, thickness) {
+  const geo = new THREE.ExtrudeGeometry(shape, {
+    depth: thickness,
+    bevelEnabled: false,
+    curveSegments: 12,
+  });
+  geo.rotateX(-Math.PI / 2);
+  return geo;
+}
+
 function grandPiano(parent, x, y, z, rotY) {
   const grp = new THREE.Group();
   grp.name = 'piano';
@@ -287,64 +313,56 @@ function grandPiano(parent, x, y, z, rotY) {
   const gold = toon('#c4a15a');
   const ivory = toon('#f3efe4');
   const ebony = toon('#161616');
+  const { shape, spine, length } = grandOutline();
+  const caseH = 0.22;
+  const caseY = 0.62;
 
-  const length = 1.22;
-  const hw = 0.64;
-  const sh = new THREE.Shape();
-  sh.moveTo(-hw, 0);
-  sh.lineTo(hw, 0);
-  sh.lineTo(hw, 0.26);
-  sh.bezierCurveTo(hw - 0.02, length * 0.58, hw * 0.42, length * 0.88, 0.02, length * 0.98);
-  sh.bezierCurveTo(-hw * 0.28, length * 1.02, -hw * 0.82, length * 0.75, -hw, 0.34);
-  sh.lineTo(-hw, 0);
-  const rimGeo = new THREE.ExtrudeGeometry(sh, {
-    depth: 0.18,
-    bevelEnabled: true,
-    bevelThickness: 0.01,
-    bevelSize: 0.01,
-    bevelSegments: 1,
-    curveSegments: 7,
-  });
-  const rim = put(grp, new THREE.Mesh(rimGeo, black));
-  rim.rotation.x = -Math.PI / 2;
-  rim.position.set(0, 0.64, 0.02);
+  const rim = put(grp, new THREE.Mesh(flatGrand(shape, caseH), black));
+  rim.position.set(0, caseY, 0.02);
 
-  const keybed = put(grp, new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.1, 0.36), black));
-  keybed.position.set(0, 0.66, 0.02);
-  const keys = put(grp, new THREE.Mesh(new THREE.BoxGeometry(1.22, 0.035, 0.2), ivory));
-  keys.position.set(0, 0.74, 0.08);
+  const board = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.018, 0.92), toon('#6a4530')));
+  board.position.set(0.0, caseY + 0.08, -0.58);
+  const plate = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.012, 0.62), gold));
+  plate.position.set(0.06, caseY + 0.1, -0.62);
+  for (let i = 0; i < 6; i++) {
+    const string = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.004, 0.78), toon('#e4dcc8')));
+    string.position.set(-0.08 + i * 0.045, caseY + 0.112, -0.55);
+  }
+
+  const keybed = put(grp, new THREE.Mesh(new THREE.BoxGeometry(1.12, 0.07, 0.32), black));
+  keybed.position.set(0.02, caseY + 0.02, 0.08);
+  const keys = put(grp, new THREE.Mesh(new THREE.BoxGeometry(1.04, 0.028, 0.2), ivory));
+  keys.position.set(0.02, caseY + caseH + 0.01, 0.14);
   for (let i = 0; i < 14; i++) {
     if (i % 7 === 2 || i % 7 === 6) continue;
-    const bk = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.028, 0.11), ebony));
-    bk.position.set(-0.52 + i * 0.08, 0.77, 0.04);
+    const bk = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.038, 0.022, 0.1), ebony));
+    bk.position.set(-0.44 + i * 0.072, caseY + caseH + 0.03, 0.09);
   }
-  const plate = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.015, 0.55), gold));
-  plate.position.set(0, 0.8, -0.48);
+  put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.06, caseH, 0.16), black)).position.set(-spine + 0.03, caseY + caseH / 2, 0.06);
+  put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.06, caseH, 0.16), black)).position.set(0.52, caseY + caseH / 2, 0.06);
 
   const lidPivot = new THREE.Group();
-  lidPivot.position.set(0, 0.86, -1.08);
-  lidPivot.rotation.x = 0.95;
-  const lid = put(lidPivot, new THREE.Mesh(new THREE.BoxGeometry(1.12, 0.02, 0.98), black));
-  lid.position.set(0, 0.01, 0.5);
+  lidPivot.position.set(-spine, caseY + caseH, 0.02);
+  lidPivot.rotation.z = 1.05;
+  const lid = put(lidPivot, new THREE.Mesh(flatGrand(shape, 0.016), black));
+  lid.position.x = spine;
   grp.add(lidPivot);
-  const stick = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.4, 6), gold));
-  stick.position.set(0.4, 1.02, -0.55);
-  stick.rotation.z = 0.15;
+  tube(grp, [0.22, caseY + caseH - 0.02, -0.62], [-0.02, caseY + caseH + 0.62, -0.62], 0.008, gold);
 
-  const legGeo = new THREE.CylinderGeometry(0.035, 0.048, 0.64, 8);
-  for (const p of [[-0.42, -0.12], [0.42, -0.12], [0.02, -0.92]]) {
+  const legGeo = new THREE.CylinderGeometry(0.034, 0.046, caseY, 8);
+  for (const p of [[-0.36, -0.06], [0.4, -0.06], [-0.02, -length + 0.16]]) {
     const leg = put(grp, new THREE.Mesh(legGeo, black));
-    leg.position.set(p[0], 0.32, p[1]);
+    leg.position.set(p[0], caseY / 2, p[1]);
   }
-  const lyre = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.2, 0.05), gold));
-  lyre.position.set(0, 0.28, 0.06);
+  const lyre = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.18, 0.04), gold));
+  lyre.position.set(0.02, 0.26, 0.1);
   for (let i = 0; i < 3; i++) {
-    const pedal = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.015, 0.07), gold));
-    pedal.position.set(-0.05 + i * 0.05, 0.16, 0.08);
+    const pedal = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.014, 0.06), gold));
+    pedal.position.set(-0.04 + i * 0.045, 0.14, 0.12);
   }
-  const desk = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.22, 0.015), toon('#3a342f')));
-  desk.position.set(0, 0.98, -0.06);
-  desk.rotation.x = -0.4;
+  const desk = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.14, 0.012), toon('#3a342f')));
+  desk.position.set(0.02, caseY + caseH + 0.1, -0.02);
+  desk.rotation.x = -0.5;
 
   grp.position.set(x, y, z);
   grp.rotation.y = rotY;
@@ -459,51 +477,135 @@ function tube(grp, a, b, radius, mat) {
   return put(grp, mesh);
 }
 
+function sweep(grp, points, radii, mat, radial = 12) {
+  const pts = points.map((p) => new THREE.Vector3(p[0], p[1], p[2]));
+  const tangents = pts.map((_, i) => {
+    const prev = pts[Math.max(0, i - 1)];
+    const next = pts[Math.min(pts.length - 1, i + 1)];
+    return next.clone().sub(prev).normalize();
+  });
+  const helper = Math.abs(tangents[0].y) < 0.85 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+  let normal = new THREE.Vector3().crossVectors(tangents[0], helper).normalize();
+  const frames = [];
+  for (let i = 0; i < pts.length; i++) {
+    if (i > 0) {
+      const axis = new THREE.Vector3().crossVectors(tangents[i - 1], tangents[i]);
+      const sin = axis.length();
+      if (sin > 1e-5) {
+        axis.normalize();
+        const cos = THREE.MathUtils.clamp(tangents[i - 1].dot(tangents[i]), -1, 1);
+        normal.applyAxisAngle(axis, Math.atan2(sin, cos));
+      }
+    }
+    const binormal = new THREE.Vector3().crossVectors(tangents[i], normal).normalize();
+    normal.crossVectors(binormal, tangents[i]).normalize();
+    frames.push({ n: normal.clone(), b: binormal.clone() });
+  }
+  const positions = [];
+  const indices = [];
+  for (let i = 0; i < pts.length; i++) {
+    for (let k = 0; k < radial; k++) {
+      const a = (k / radial) * Math.PI * 2;
+      const c = Math.cos(a);
+      const s = Math.sin(a);
+      const r = radii[i];
+      positions.push(
+        pts[i].x + (frames[i].n.x * c + frames[i].b.x * s) * r,
+        pts[i].y + (frames[i].n.y * c + frames[i].b.y * s) * r,
+        pts[i].z + (frames[i].n.z * c + frames[i].b.z * s) * r,
+      );
+    }
+  }
+  for (let i = 0; i < pts.length - 1; i++) {
+    for (let k = 0; k < radial; k++) {
+      const k2 = (k + 1) % radial;
+      const a = i * radial + k;
+      const b = i * radial + k2;
+      const c = (i + 1) * radial + k;
+      const d = (i + 1) * radial + k2;
+      indices.push(a, c, b, b, c, d);
+    }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return put(grp, new THREE.Mesh(geo, mat));
+}
+
 function saxophone(parent, x, y, z, rotY) {
   const grp = new THREE.Group();
   grp.name = 'sax';
-  const brass = toon('#e0b45e');
+  const brass = toon('#e0b45e', { side: THREE.DoubleSide });
   const dark = toon('#8a6a32');
   const black = toon('#1a1814');
-  const bellGrp = new THREE.Group();
-  const bell = put(bellGrp, new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.095, 0.24, 14), brass));
-  const bellIn = put(bellGrp, new THREE.Mesh(new THREE.CircleGeometry(0.082, 14), toon('#1a120c')));
-  bellIn.rotation.x = Math.PI / 2;
-  bellIn.position.y = -0.12;
-  bellIn.userData.noShadow = true;
-  bellGrp.position.set(0, 0.2, 0.04);
-  bellGrp.rotation.x = -0.45;
-  grp.add(bellGrp);
-  const pts = [
-    [0.02, 0.34, 0],
-    [0.1, 0.4, 0],
-    [0.2, 0.4, 0],
-    [0.28, 0.52, 0],
-    [0.28, 0.82, 0],
-    [0.24, 1.04, 0],
-    [0.12, 1.22, 0],
-    [0.02, 1.34, 0],
+  // Straight stack, bow swung out to the side so the J reads in profile,
+  // then the bell turns back toward the house.
+  const path = [
+    [-0.02, 0.84, -0.06],
+    [0.0, 0.79, -0.02],
+    [0.0, 0.73, 0.012],
+    [0.0, 0.62, 0.016],
+    [0.0, 0.5, 0.016],
+    [0.0, 0.38, 0.012],
+    [0.0, 0.26, 0.006],
+    [0.0, 0.17, 0.0],
+    [-0.035, 0.12, 0.02],
+    [-0.08, 0.095, 0.055],
+    [-0.115, 0.1, 0.1],
+    [-0.125, 0.14, 0.145],
+    [-0.09, 0.185, 0.18],
+    [-0.03, 0.22, 0.205],
+    [0.04, 0.25, 0.225],
+    [0.11, 0.275, 0.245],
   ];
-  tube(grp, [0.0, 0.3, 0.02], pts[0], 0.026, brass);
-  for (let i = 0; i < pts.length - 1; i++) {
-    const r = i < 2 ? 0.024 : i < 5 ? 0.021 : 0.015;
-    tube(grp, pts[i], pts[i + 1], r, brass);
+  const radii = [
+    0.011, 0.012, 0.014,
+    0.017, 0.018, 0.018, 0.019, 0.02,
+    0.022, 0.024, 0.028, 0.034,
+    0.046, 0.062, 0.08, 0.096,
+  ];
+  sweep(grp, path, radii, brass, 12);
+
+  const tip = new THREE.Vector3(...path[path.length - 1]);
+  const prev = new THREE.Vector3(...path[path.length - 2]);
+  const bellDir = tip.clone().sub(prev).normalize();
+  const rim = put(grp, new THREE.Mesh(new THREE.TorusGeometry(0.084, 0.007, 6, 18), brass));
+  rim.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), bellDir);
+  rim.position.copy(tip);
+  const bore = put(grp, new THREE.Mesh(new THREE.CircleGeometry(0.074, 18), toon('#2a1c12')));
+  bore.quaternion.copy(rim.quaternion);
+  bore.position.copy(tip).addScaledVector(bellDir, -0.008);
+  bore.userData.noShadow = true;
+
+  const neckTip = new THREE.Vector3(...path[0]);
+  const neckNext = new THREE.Vector3(...path[1]);
+  const neckDir = neckTip.clone().sub(neckNext).normalize();
+  const mp = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.013, 0.07, 8), black));
+  mp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), neckDir);
+  mp.position.copy(neckTip).addScaledVector(neckDir, 0.03);
+  const reed = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.038, 0.004), toon('#c4b49a')));
+  reed.quaternion.copy(mp.quaternion);
+  reed.position.copy(neckTip).addScaledVector(neckDir, 0.028).add(new THREE.Vector3(0.008, 0, 0.004));
+
+  for (let i = 0; i < 7; i++) {
+    const key = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.006, 8), dark));
+    key.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0.75, 0, 0.66).normalize());
+    key.position.set(0.018, 0.3 + i * 0.055, 0.02);
   }
-  for (let i = 0; i < 5; i++) {
-    const key = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.018, 0.012), dark));
-    key.position.set(0.305, 0.62 + i * 0.07, 0);
-  }
-  const mp = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.07, 0.02), black));
-  mp.position.set(-0.01, 1.39, 0);
-  mp.rotation.z = 0.9;
+
   const stand = toon('#b7bdc2');
-  const pole = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.012, 0.78, 8), stand));
-  pole.position.set(0.36, 0.39, 0);
-  const base = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.1, 0.02, 12), stand));
-  base.position.set(0.36, 0.012, 0);
-  const arm = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.18, 6), stand));
-  arm.rotation.z = Math.PI / 2;
-  arm.position.set(0.27, 0.72, 0);
+  const base = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.1, 0.016, 12), stand));
+  base.position.set(-0.07, 0.008, 0.05);
+  const pole = put(grp, new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.01, 0.16, 8), stand));
+  pole.position.set(-0.07, 0.09, 0.05);
+  const yoke = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.01, 0.012), stand));
+  yoke.position.set(-0.07, 0.1, 0.055);
+  for (const side of [-1, 1]) {
+    const prong = put(grp, new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.04, 0.01), stand));
+    prong.position.set(-0.07 + side * 0.042, 0.118, 0.06);
+  }
+
   grp.position.set(x, y, z);
   grp.rotation.y = rotY;
   parent.add(grp);
