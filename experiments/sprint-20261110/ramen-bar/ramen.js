@@ -105,9 +105,11 @@ function makeShell(layout) {
 
   const ceil = new THREE.Mesh(new THREE.BoxGeometry(W * 0.86, 0.05, D * 0.48), toon('#f6ead6'));
   ceil.position.set(-0.35, H - 0.04, -D * 0.26);
+  ceil.userData.noShadow = true;
   g.add(ceil);
   for (const z of [-2.15, -1.35, -0.55]) {
-    addBox(g, W * 0.78, 0.08, 0.1, beam, -0.25, H - 0.12, z);
+    const joist = addBox(g, W * 0.78, 0.08, 0.1, beam, -0.25, H - 0.12, z);
+    joist.userData.noShadow = true;
   }
 
   const stones = ['#8d847a', '#7b736a', '#9a9186', '#6e675f'];
@@ -133,41 +135,70 @@ function makeShell(layout) {
   return g;
 }
 
+function makeWisp(phase, rise, baseRot) {
+  const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.02, 0.2),
+    toon('#f7f3ea', {
+      emissive: '#f4efe4',
+      emissiveIntensity: 0.4,
+      transparent: true,
+      opacity: 0.16,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    }),
+  );
+  mesh.userData.steam = { phase, rise, baseRot };
+  mesh.userData.noShadow = true;
+  mesh.renderOrder = 4;
+  return mesh;
+}
+
+function addWisps(parent, phase, rise) {
+  const a = makeWisp(phase, rise, 0.2);
+  const b = makeWisp(phase + 0.04, rise, Math.PI / 2);
+  parent.add(a, b);
+}
+
 function stockPot(g, x, y, z, r, h) {
   addCyl(g, r, r * 0.94, h, toon(P.pot), x, y + h / 2, z, 20);
   addCyl(g, r * 1.05, r * 1.05, 0.018, toon(P.potRim), x, y + h - 0.004, z, 20);
-  const lid = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.86, r * 0.92, 0.02, 18), toon('#3a4248'));
-  lid.position.set(x + r * 0.08, y + h + 0.02, z);
-  lid.rotation.z = -0.22;
-  lid.rotation.x = 0.06;
+  const lid = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.72, r * 0.78, 0.018, 16), toon('#3a4248'));
+  lid.position.set(x - r * 0.15, y + h + 0.02, z - r * 0.28);
+  lid.rotation.z = 0.35;
+  lid.rotation.x = -0.2;
   lid.castShadow = true;
   g.add(lid);
-  addCyl(g, 0.016, 0.012, 0.03, toon(P.potRim), x + r * 0.16, y + h + 0.045, z, 8);
+  addCyl(g, 0.014, 0.01, 0.028, toon(P.potRim), x - r * 0.22, y + h + 0.04, z - r * 0.32, 8);
   const steam = new THREE.Group();
-  steam.position.set(x, y + h + 0.02, z);
-  for (let i = 0; i < 3; i++) {
-    const puff = new THREE.Mesh(
-      new THREE.SphereGeometry(0.03 + i * 0.008, 8, 6),
-      toon('#f7f4ee', { transparent: true, opacity: 0.35, depthWrite: false }),
-    );
-    puff.userData.steam = { phase: i * 0.33 + (x + z) * 0.1, rise: 0.22 + i * 0.04 };
-    puff.userData.noShadow = true;
-    puff.renderOrder = 3;
-    steam.add(puff);
-  }
+  steam.position.set(x + r * 0.05, y + h + 0.02, z + r * 0.08);
+  addWisps(steam, (x + z) * 0.17, 0.34);
   g.add(steam);
 }
 
 function bowlSteam(g, x, y, z, phase) {
-  const puff = new THREE.Mesh(
-    new THREE.SphereGeometry(0.028, 8, 6),
-    toon('#f7f4ee', { transparent: true, opacity: 0.3, depthWrite: false }),
-  );
-  puff.position.set(x, y, z);
-  puff.userData.steam = { phase, rise: 0.16, anchor: [x, y, z] };
-  puff.userData.noShadow = true;
-  puff.renderOrder = 3;
-  g.add(puff);
+  const steam = new THREE.Group();
+  steam.position.set(x, y, z);
+  addWisps(steam, phase, 0.16);
+  g.add(steam);
+}
+
+function noodleBasket(g, x, y, z, r) {
+  const wire = toon('#d5dde2');
+  const wireD = toon('#8b949a');
+  for (const dy of [0.012, 0.04, 0.068]) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r, 0.0032, 4, 14), wire);
+    ring.rotation.x = Math.PI / 2;
+    ring.position.set(x, y + dy, z);
+    g.add(ring);
+  }
+  for (let i = 0; i < 6; i++) {
+    const a = (i / 6) * Math.PI * 2;
+    addCyl(g, 0.0024, 0.0024, 0.07, wireD, x + Math.cos(a) * r * 0.82, y + 0.038, z + Math.sin(a) * r * 0.82, 4);
+  }
+  const handle = new THREE.Mesh(new THREE.TorusGeometry(r * 0.42, 0.004, 4, 8, Math.PI), wire);
+  handle.rotation.z = Math.PI / 2;
+  handle.position.set(x, y + 0.1, z);
+  g.add(handle);
 }
 
 function ramenBowl(g, x, y, z, spec) {
@@ -337,40 +368,57 @@ function makeProcedural(layout) {
     addCyl(g, 0.012, 0.012, 0.26, toon('#8d9398'), x, 0.13, railZ, 8);
   }
 
-  const steelW = 2.35;
-  const steelX = -0.72;
-  const steelZ = c.z - 0.14;
-  const steelDpth = 0.34;
-  addBox(g, steelW, 0.02, steelDpth, steel, steelX, c.top + 0.012, steelZ);
-  for (const bx of [-1.22, -0.58, 0.08]) {
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.008, 6, 16), toon('#2a2e32'));
+  const passTop = c.top + 0.1;
+  const passZ = -1.22;
+  const passD = 0.32;
+  const passCx = -0.12;
+  const passLen = 3.9;
+  addBox(g, passLen, 0.1, passD, woodD, passCx, c.top + 0.05, passZ);
+  addBox(g, passLen, 0.1, 0.014, woodS, passCx, c.top + 0.05, passZ + passD / 2);
+  addBox(g, passLen + 0.02, 0.018, 0.028, wood, passCx, passTop - 0.008, passZ + passD / 2 + 0.006);
+  addBox(g, passLen - 0.16, 0.016, passD - 0.05, steel, passCx, passTop + 0.006, passZ - 0.01);
+  const potY = passTop + 0.014;
+  const potZ = passZ - 0.01;
+  for (const bx of [-1.32, -0.7, -0.12]) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.007, 6, 16), toon('#2a2e32'));
     ring.rotation.x = Math.PI / 2;
-    ring.position.set(bx, c.top + 0.026, steelZ);
+    ring.position.set(bx, potY + 0.004, potZ);
     g.add(ring);
-    const inner = ring.clone();
-    inner.scale.setScalar(0.62);
-    g.add(inner);
   }
-  stockPot(g, -1.22, c.top + 0.02, steelZ, 0.15, 0.26);
-  stockPot(g, -0.58, c.top + 0.02, steelZ + 0.02, 0.13, 0.22);
-  stockPot(g, 0.08, c.top + 0.02, steelZ - 0.01, 0.1, 0.16);
+  stockPot(g, -1.32, potY, potZ, 0.14, 0.24);
+  stockPot(g, -0.7, potY, potZ + 0.01, 0.12, 0.2);
+  stockPot(g, -0.12, potY, potZ - 0.01, 0.09, 0.15);
+  noodleBasket(g, -1.3, potY + 0.25, potZ + 0.05, 0.085);
+  noodleBasket(g, -0.68, potY + 0.21, potZ + 0.05, 0.07);
 
-  addBox(g, 0.36, 0.04, 0.22, toon('#6e5538'), 0.62, c.top + 0.03, steelZ + 0.02);
-  addBox(g, 0.16, 0.08, 0.12, steelD, 1.15, c.top + 0.02, steelZ);
-  const faucet = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.01, 6, 10, Math.PI), toon(P.steel));
-  faucet.rotation.z = Math.PI;
-  faucet.position.set(1.15, c.top + 0.14, steelZ - 0.02);
-  g.add(faucet);
-  addCyl(g, 0.012, 0.012, 0.12, steel, 1.09, c.top + 0.08, steelZ - 0.02, 8);
-
-  addBox(g, 0.32, 0.02, 0.22, toon('#d8b072'), 1.28, c.top + 0.016, -1.2);
-  for (let i = 0; i < 4; i++) {
-    addBox(g, 0.012, 0.008, 0.09, toon(P.negi), 1.2 + i * 0.035, c.top + 0.032, -1.16);
-  }
-  const slice = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.008, 12), toon(P.pork));
-  slice.position.set(1.38, c.top + 0.04, -1.26);
+  const boardY = passTop + 0.02;
+  addBox(g, 0.38, 0.016, 0.22, toon('#d8b072'), 0.58, boardY, passZ);
+  for (let i = 0; i < 4; i++) addBox(g, 0.012, 0.008, 0.08, toon(P.negi), 0.48 + i * 0.032, boardY + 0.014, passZ + 0.02);
+  const slice = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.008, 12), toon(P.pork));
+  slice.position.set(0.68, boardY + 0.016, passZ - 0.04);
   g.add(slice);
-  addBox(g, 0.14, 0.008, 0.016, toon('#d9dde0'), 1.16, c.top + 0.03, -1.24);
+  addBox(g, 0.15, 0.006, 0.014, toon('#e4e8ea'), 0.46, boardY + 0.012, passZ - 0.05);
+
+  addBox(g, 0.34, 0.012, 0.1, steelD, 1.12, passTop + 0.008, passZ + 0.02);
+  for (const [lx, lz] of [[1.02, passZ + 0.01], [1.14, passZ + 0.04], [1.26, passZ]]) {
+    const cup = new THREE.Mesh(new THREE.SphereGeometry(0.026, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.55), toon('#d0d7dc'));
+    cup.rotation.z = Math.PI / 2;
+    cup.position.set(lx, passTop + 0.03, lz);
+    g.add(cup);
+    const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.2, 5), toon('#8e969c'));
+    handle.rotation.z = Math.PI / 2;
+    handle.position.set(lx + 0.1, passTop + 0.026, lz);
+    g.add(handle);
+  }
+
+  addBox(g, 0.16, 0.06, 0.12, steelD, 1.62, passTop + 0.02, passZ);
+  const faucet = new THREE.Mesh(new THREE.TorusGeometry(0.055, 0.009, 6, 10, Math.PI), toon(P.steel));
+  faucet.rotation.z = Math.PI;
+  faucet.position.set(1.62, passTop + 0.12, passZ - 0.02);
+  g.add(faucet);
+  addCyl(g, 0.011, 0.011, 0.1, steel, 1.56, passTop + 0.07, passZ - 0.02, 8);
+  const steelX = -0.72;
+  const steelZ = potZ;
 
   const prepLen = prep.x1 - prep.x0;
   const prepCx = (prep.x0 + prep.x1) / 2;
@@ -408,7 +456,7 @@ function makeProcedural(layout) {
   ramenBowl(g, -1.82, c.top, -0.78, { broth: '#a56b32', nori: true, pork: true, negi: true, steam: true, yaw: 0.3 });
   ramenBowl(g, -0.95, c.top, -0.82, { broth: '#c4924a', egg: true, corn: true, negi: true, steam: true, yaw: -0.4 });
   ramenBowl(g, 0.78, c.top, -0.76, { broth: '#a33a28', egg: true, chili: true, pork: true, steam: true, yaw: 0.6 });
-  ramenBowl(g, 0.42, c.top + 0.02, -1.08, { broth: '#c9843c', nori: true, negi: true, yaw: 1.1 });
+  ramenBowl(g, 0.22, passTop, passZ + 0.04, { broth: '#c9843c', nori: true, negi: true, yaw: 0.8 });
   yunomi(g, -1.62, c.top, -0.7);
   yunomi(g, 0.98, c.top, -0.68);
   chopsticks(g, -1.55, c.top, -0.7, 0.5);
@@ -451,10 +499,13 @@ function makeProcedural(layout) {
 
   const postH = 2.52;
   for (const x of [door.x0, door.x1]) {
-    addBox(g, 0.1, postH, 0.1, beam, x, postH / 2, door.z);
+    const post = addBox(g, 0.1, postH, 0.1, beam, x, postH / 2, door.z);
+    post.userData.noShadow = true;
   }
-  addBox(g, door.x1 - door.x0 + 0.12, 0.1, 0.1, beam, (door.x0 + door.x1) / 2, 2.58, door.z);
-  addCylX(g, 0.018, door.x1 - door.x0 - 0.05, beam, (door.x0 + door.x1) / 2, door.rodY, door.z);
+  const header = addBox(g, door.x1 - door.x0 + 0.12, 0.1, 0.1, beam, (door.x0 + door.x1) / 2, 2.58, door.z);
+  header.userData.noShadow = true;
+  const rod = addCylX(g, 0.018, door.x1 - door.x0 - 0.05, beam, (door.x0 + door.x1) / 2, door.rodY, door.z);
+  rod.userData.noShadow = true;
   const norenMats = [
     toon('#ffffff', { map: norenTexture('plain'), side: THREE.DoubleSide }),
     toon('#ffffff', { map: norenTexture('deep'), side: THREE.DoubleSide }),
@@ -466,9 +517,10 @@ function makeProcedural(layout) {
   for (let i = 0; i < 5; i++) {
     const panel = plane(g, span / 5 - 0.03, 1.12, norenMats[i], door.x0 + 0.16 + (i + 0.5) * (span / 5), door.rodY - 0.58, door.z + 0.02);
     panel.userData.noren = { i };
+    panel.userData.noShadow = true;
     panel.rotation.z = (i - 2) * 0.01;
   }
-  plane(
+  const sign = plane(
     g,
     1.15,
     0.32,
@@ -477,12 +529,14 @@ function makeProcedural(layout) {
     door.rodY + 0.28,
     door.z + 0.08,
   );
-  addBox(g, 1.22, 0.34, 0.04, woodD, (door.x0 + door.x1) / 2, door.rodY + 0.28, door.z + 0.05);
+  sign.userData.noShadow = true;
+  const signBoard = addBox(g, 1.22, 0.34, 0.04, woodD, (door.x0 + door.x1) / 2, door.rodY + 0.28, door.z + 0.05);
+  signBoard.userData.noShadow = true;
 
   const lattice = new THREE.Group();
   const lw = 1.2;
   const lh = 0.95;
-  addBox(lattice, lw, lh, 0.02, toon(P.amber, { emissive: '#e0943a', emissiveIntensity: 0.35 }), 0, 0, -0.03);
+  addBox(lattice, lw, lh, 0.02, toon(P.amber, { emissive: '#e8b56a', emissiveIntensity: 0.08 }), 0, 0, -0.03);
   addBox(lattice, lw + 0.08, 0.05, 0.05, woodD, 0, lh / 2, 0);
   addBox(lattice, lw + 0.08, 0.05, 0.05, woodD, 0, -lh / 2, 0);
   addBox(lattice, 0.05, lh, 0.05, woodD, -lw / 2, 0, 0);
@@ -491,6 +545,9 @@ function makeProcedural(layout) {
   for (let j = 1; j < 4; j++) addBox(lattice, lw - 0.06, 0.018, 0.03, woodS, 0, -lh / 2 + (lh * j) / 4, 0.015);
   lattice.position.set(-W / 2 + 0.16, 1.58, 0.55);
   lattice.rotation.y = Math.PI / 2;
+  lattice.traverse((o) => {
+    if (o.isMesh) o.userData.noShadow = true;
+  });
   g.add(lattice);
 
   const menu = new THREE.Group();
@@ -543,17 +600,12 @@ function onFrame(t, { scene }) {
   scene.traverse((o) => {
     if (o.userData.steam) {
       const st = o.userData.steam;
-      const p = (t * 0.32 + st.phase) % 1;
-      const sway = Math.sin(t * 0.8 + st.phase * 5) * 0.02;
-      if (st.anchor) {
-        o.position.set(st.anchor[0] + sway, st.anchor[1] + p * st.rise, st.anchor[2]);
-      } else {
-        o.position.y = 0.02 + p * st.rise;
-        o.position.x = sway;
-      }
-      const s = 0.55 + p * 0.9;
-      o.scale.set(s, s * 1.3, s);
-      if (o.material) o.material.opacity = 0.36 * (1 - p);
+      const p = (t * 0.2 + st.phase) % 1;
+      const sway = Math.sin(t * 0.65 + st.phase * 6) * 0.01;
+      o.position.set(sway, p * st.rise, Math.cos(t * 0.45 + st.phase) * 0.008);
+      o.scale.set(0.8, 0.5 + p * 1.45, 1);
+      o.rotation.y = st.baseRot + Math.sin(t * 0.35 + st.phase) * 0.25;
+      if (o.material) o.material.opacity = 0.15 * (1 - p);
     }
     if (o.userData.noren) {
       const i = o.userData.noren.i;

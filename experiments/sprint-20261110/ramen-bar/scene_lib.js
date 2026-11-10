@@ -367,8 +367,8 @@ export async function boot(opts) {
     key.shadow.camera.right = fr;
     key.shadow.camera.top = fr;
     key.shadow.camera.bottom = -fr;
-    key.shadow.bias = -0.0004;
-    key.shadow.normalBias = 0.02;
+    key.shadow.bias = -0.0006;
+    key.shadow.normalBias = 0.045;
     const aim = layout.lights?.keyTarget || [-0.2, 0.9, -0.8];
     key.target.position.set(...aim);
     scene.add(key);
