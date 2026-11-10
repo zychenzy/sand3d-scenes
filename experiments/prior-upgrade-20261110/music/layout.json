@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "title": "Rehearsal hall — prior upgrade 20261110",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 10.6,
+      "depth": 8.2,
+      "height": 3.45
+    },
+    "notes": [
+      "Cutaway rehearsal hall. Practice dais on the back wall; listening chairs face that wall across a centre aisle.",
+      "Piano, drum kit, amps and PA stands occupy the dais. Score rack and studio door sit on the left wall.",
+      "Acoustic foam, bass traps, slat diffuser and hung clouds are procedural. Catalog has no piano or guitar body."
+    ]
+  },
+  "architecture": {
+    "dais": { "x0": -3.15, "x1": 3.55, "z0": -4.02, "z1": -2.22, "h": 0.13 },
+    "piano": { "x": -0.2, "z": -3.22 },
+    "pianoBench": { "x": -0.2, "z": -2.52, "rotationY": 0 },
+    "drums": { "x": -2.45, "z": -3.18 },
+    "ampWall": {
+      "guitar": { "x": 1.72, "z": -3.55, "rotationY": 0.12 },
+      "marshall": { "x": 2.55, "z": -3.58, "rotationY": -0.08 }
+    },
+    "speakers": {
+      "left": { "x": -3.55, "z": -2.05, "y": 1.08, "rotationY": 0.42 },
+      "right": { "x": 3.62, "z": -2.02, "y": 1.08, "rotationY": -0.42 }
+    },
+    "listening": {
+      "z": 1.72,
+      "aisleX0": -0.72,
+      "aisleX1": 0.72,
+      "chairs": [
+        { "id": "aud_l0", "x": -2.92, "rotationY": 3.02 },
+        { "id": "aud_l1", "x": -1.62, "rotationY": 3.08 },
+        { "id": "aud_r0", "x": 1.62, "rotationY": 3.20 },
+        { "id": "aud_r1", "x": 2.92, "rotationY": 3.26 }
+      ]
+    },
+    "coach": { "x": 3.55, "z": 0.55, "rotationY": -1.85 },
+    "scoreRack": { "x": -4.72, "z": 0.85 },
+    "shelf": { "x": -5.12, "y": 1.42, "z": 0.15, "rotationY": 1.5708 },
+    "door": { "z0": 1.95, "z1": 2.95, "y0": 0.0, "y1": 2.12 },
+    "clearPractice": { "x0": -1.15, "x1": 1.15, "z0": -2.05, "z1": 0.55 },
+    "centreAisle": { "x0": -0.7, "x1": 0.7, "z0": -2.15, "z1": 3.55 }
+  },
+  "assets": {
+    "guitar_amp": {
+      "glb": "assets/guitar_amp__4c520860a87e.glb",
+      "targetHeight": 0.54
+    },
+    "marshall_amp": {
+      "glb": "assets/marshall_amp__55af790ab812.glb",
+      "targetHeight": 0.52
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.5,
+      "prepRotation": [0, 0, 1.5707963]
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.5
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.24
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.12
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.12
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42
+    }
+  },
+  "instances": [
+    {
+      "id": "amp_guitar",
+      "kind": "guitar_amp",
+      "position": [1.72, 0.13, -3.55],
+      "rotationY": 0.12
+    },
+    {
+      "id": "amp_marshall",
+      "kind": "marshall_amp",
+      "position": [2.55, 0.13, -3.58],
+      "rotationY": -0.08
+    },
+    {
+      "id": "speaker_l",
+      "kind": "speaker",
+      "position": [-3.55, 1.08, -2.05],
+      "rotationY": 0.42
+    },
+    {
+      "id": "speaker_r",
+      "kind": "speaker",
+      "position": [3.62, 1.08, -2.02],
+      "rotationY": -0.42
+    },
+    {
+      "id": "piano_bench",
+      "kind": "piano_bench",
+      "position": [-0.2, 0.13, -2.52],
+      "rotationY": 0
+    },
+    {
+      "id": "aud_l0",
+      "kind": "dining_chair",
+      "position": [-2.92, 0, 1.72],
+      "rotationY": 3.02
+    },
+    {
+      "id": "aud_l1",
+      "kind": "dining_chair",
+      "position": [-1.62, 0, 1.72],
+      "rotationY": 3.08
+    },
+    {
+      "id": "aud_r0",
+      "kind": "dining_chair",
+      "position": [1.62, 0, 1.72],
+      "rotationY": 3.20
+    },
+    {
+      "id": "aud_r1",
+      "kind": "dining_chair",
+      "position": [2.92, 0, 1.72],
+      "rotationY": 3.26
+    },
+    {
+      "id": "coach_chair",
+      "kind": "dining_chair",
+      "position": [3.55, 0, 0.55],
+      "rotationY": -1.85
+    },
+    {
+      "id": "pendant_practice",
+      "kind": "pendant_lamp",
+      "position": [0.05, 2.78, -1.55]
+    },
+    {
+      "id": "pendant_left",
+      "kind": "pendant_lamp",
+      "position": [-1.85, 2.78, 1.15]
+    },
+    {
+      "id": "pendant_right",
+      "kind": "pendant_lamp",
+      "position": [1.95, 2.78, 1.15]
+    },
+    {
+      "id": "score_stand",
+      "kind": "book_stand",
+      "position": [-4.72, 0, 0.85],
+      "rotationY": 1.35
+    },
+    {
+      "id": "score_shelf",
+      "kind": "wall_shelf",
+      "position": [-5.12, 1.42, 0.15],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "coach_lamp",
+      "kind": "library_lamp",
+      "position": [3.58, 0.74, 1.18]
+    },
+    {
+      "id": "coach_mug",
+      "kind": "cup_mug",
+      "position": [3.42, 0.76, 1.32]
+    },
+    {
+      "id": "pot_door",
+      "kind": "flowerpot",
+      "position": [-4.85, 0, 3.45],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#c9964e",
+    "wallColor": "#f3eee6",
+    "woodColor": "#6b4632",
+    "ceilingColor": "#f7f3ec",
+    "accentColor": "#3d5c66",
+    "clearColor": "#e4d8c8",
+    "fogColor": "#e4d8c8",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 48,
+    "position": [6.35, 2.55, 5.55],
+    "target": [0.15, 0.95, -1.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-1.35, 2.62, 6.05],
+      "target": [0.45, 1.05, -1.75]
+    },
+    "close": {
+      "position": [0.92, 1.22, -0.62],
+      "target": [-0.22, 0.78, -3.12]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16773092, "ground": 9069124, "intensity": 0.48 },
+    "key": { "color": 16774376, "intensity": 1.65, "position": [7.5, 11.5, 8.5] },
+    "fill": { "color": 12632256, "intensity": 0.38, "position": [-7.2, 5.8, 2.4] },
+    "points": [
+      { "color": 16765600, "intensity": 1.12, "distance": 7.4, "decay": 2, "position": [0.05, 2.68, -1.55] },
+      { "color": 16765600, "intensity": 0.95, "distance": 6.8, "decay": 2, "position": [-1.85, 2.68, 1.15] },
+      { "color": 16765600, "intensity": 0.95, "distance": 6.8, "decay": 2, "position": [1.95, 2.68, 1.15] },
+      { "color": 16770756, "intensity": 0.55, "distance": 4.2, "decay": 2, "position": [-0.05, 1.35, -3.05] },
+      { "color": 16769920, "intensity": 0.42, "distance": 5.0, "decay": 2, "position": [0.6, 3.05, -3.55] },
+      { "color": 13421823, "intensity": 0.32, "distance": 4.0, "decay": 2, "position": [-5.0, 1.7, 2.45] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "piano close", "unlit"],
+    "must_read": [
+      "Practice dais with piano, drum kit and amps is the focal wall.",
+      "Listening chairs face that wall across a centre aisle. Piano bench faces the keys.",
+      "Acoustic foam, bass traps, slat diffuser and hung clouds read as treatment.",
+      "Speakers sit on stands. Must not read as KTV (no U-sofa around a coffee table)."
+    ]
+  }
+}
