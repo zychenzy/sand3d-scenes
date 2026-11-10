@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "title": "Ceramics workshop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.8, "depth": 8.8, "height": 3.18 },
+    "facing": "rotationY 0 looks toward +Z. Forward vector is (sin(rotationY), cos(rotationY)).",
+    "notes": [
+      "Cutaway: back wall -Z, left wall -X, open front and right.",
+      "Throwing bay on the left (two wheels + a banding wheel), clay prep against the back-left window, drying rack on the back wall, kiln in the back-right corner, glaze bench and sample display on the right.",
+      "Aisle enters at the front and runs between the rack and the pier to the kiln."
+    ]
+  },
+  "assets": {
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.76 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.78 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.46 },
+    "museum_plinth": { "glb": "assets/museum_plinth__6bce39246b2c.glb", "targetHeight": 1.2 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.78 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.15 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.34 }
+  },
+  "procedural": {
+    "wheels": [
+      { "id": "wheel_a", "position": [-3.2, 1.15], "rotationY": 0.0, "state": "throwing" },
+      { "id": "wheel_b", "position": [-3.85, -0.42], "rotationY": 0.851, "state": "idle" }
+    ],
+    "throwingStools": [
+      { "id": "stool_a", "position": [-3.2, 1.9], "rotationY": 3.1416, "faces": "wheel_a" },
+      { "id": "stool_b", "position": [-3.28, 0.08], "rotationY": -2.291, "faces": "wheel_b" }
+    ],
+    "banding": { "id": "banding", "position": [-1.9, 2.5], "rotationY": 0.0 },
+    "bandingStool": { "id": "stool_c", "position": [-1.9, 3.16], "rotationY": 3.1416, "faces": "banding" },
+    "kiln": { "position": [3.82, -3.15] },
+    "dryingRack": { "position": [-0.8, -3.92] },
+    "glazeBench": { "position": [4.4, 0.95] },
+    "tileBoard": { "position": [1.55, -0.85], "rotationY": 0.28 },
+    "pier": { "position": [1.78, -3.39], "size": [0.18, 2.6, 1.78] },
+    "cart": { "position": [-0.15, 0.35] }
+  },
+  "instances": [
+    {
+      "id": "wedge_table",
+      "kind": "square_table",
+      "position": [-3.55, 0, -3.45],
+      "rotationY": 0.0,
+      "scale": [1.5, 1, 1.2]
+    },
+    {
+      "id": "wedge_chair",
+      "kind": "dining_chair",
+      "position": [-3.55, 0, -2.48],
+      "rotationY": 3.1416,
+      "faces": "wedge_table"
+    },
+    {
+      "id": "lamp_wedge",
+      "kind": "library_lamp",
+      "position": [-3.95, 0.76, -3.68],
+      "rotationY": 0.4
+    },
+    {
+      "id": "glaze_stool",
+      "kind": "bar_stool",
+      "position": [3.78, 0, 0.95],
+      "rotationY": 1.5708,
+      "faces": "glazeBench"
+    },
+    {
+      "id": "pend_a",
+      "kind": "pendant_lamp",
+      "position": [-3.2, 2.36, 1.15],
+      "rotationY": 0.1
+    },
+    {
+      "id": "pend_b",
+      "kind": "pendant_lamp",
+      "position": [-3.85, 2.36, -0.42],
+      "rotationY": -0.2
+    },
+    {
+      "id": "pend_display",
+      "kind": "pendant_lamp",
+      "position": [2.35, 2.36, 2.2],
+      "rotationY": 0.3
+    },
+    {
+      "id": "plinth_bottle",
+      "kind": "museum_plinth",
+      "position": [1.55, 0, 0.85],
+      "rotationY": 0.15,
+      "scale": [1.0, 0.78, 1.0]
+    },
+    {
+      "id": "plinth_bowl",
+      "kind": "museum_plinth",
+      "position": [2.55, 0, 1.72],
+      "rotationY": -0.28,
+      "scale": [1.42, 0.5, 1.42]
+    },
+    {
+      "id": "plinth_jar",
+      "kind": "museum_plinth",
+      "position": [3.15, 0, 1.05],
+      "rotationY": 0.4,
+      "scale": [1.12, 0.66, 1.12]
+    },
+    {
+      "id": "shelf_oxides",
+      "kind": "wall_shelf",
+      "position": [-5.16, 1.42, -2.2],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "oxide_a",
+      "kind": "jam_jar",
+      "position": [-4.9, 1.62, -2.38],
+      "rotationY": 0.4
+    },
+    {
+      "id": "oxide_b",
+      "kind": "jam_jar",
+      "position": [-4.9, 1.9, -2.05],
+      "rotationY": -0.3
+    },
+    {
+      "id": "oxide_c",
+      "kind": "jam_jar",
+      "position": [-4.9, 2.16, -2.28],
+      "rotationY": 0.8
+    },
+    {
+      "id": "mug_wedge",
+      "kind": "cup_mug",
+      "position": [-3.12, 0.76, -3.22],
+      "rotationY": 0.6
+    },
+    {
+      "id": "mug_glaze_a",
+      "kind": "cup_mug",
+      "position": [4.28, 1.02, 0.48],
+      "rotationY": 0.9
+    },
+    {
+      "id": "mug_glaze_b",
+      "kind": "cup_mug",
+      "position": [4.52, 1.02, 1.28],
+      "rotationY": -0.4
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-4.55, 0, 3.72],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#a89886",
+    "wallColor": "#f3eadc",
+    "woodColor": "#8a5a32",
+    "woodLight": "#c4a06a",
+    "ceilingColor": "#f7f1e6",
+    "brick": "#7a4032",
+    "mortar": "#d5c6b2",
+    "accentColor": "#6e4a34",
+    "clearColor": "#e4d9cc",
+    "fogColor": "#e4d9cc",
+    "fogNear": 18,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 46,
+    "position": [6.35, 3.05, 5.55],
+    "target": [-0.35, 0.9, -0.55]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-4.15, 2.55, 5.65],
+      "target": [0.7, 0.85, -1.15]
+    },
+    "close": {
+      "position": [-1.15, 1.28, 1.85],
+      "target": [-3.2, 0.55, 1.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775914, "ground": 5914680, "intensity": 0.48 },
+    "key": {
+      "color": 16774892,
+      "intensity": 1.18,
+      "position": [5.4, 10.2, 6.4],
+      "target": [0.0, 0.7, -0.8],
+      "shadow": {
+        "left": -8,
+        "right": 8,
+        "top": 8,
+        "bottom": -8,
+        "near": 1,
+        "far": 30,
+        "mapSize": 2048,
+        "bias": -0.00045,
+        "normalBias": 0.035
+      }
+    },
+    "fill": { "color": 13425640, "intensity": 0.3, "position": [-5.5, 4.2, 4.5] },
+    "window": { "color": 14738672, "intensity": 0.34, "position": [-3.4, 5.5, -7.2], "target": [-3.2, 1.2, -2.5] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "zones": ["throwing wheels", "clay preparation", "drying shelves", "kiln corner", "glazed samples"]
+  }
+}
