@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "The Marlowe boutique hotel lobby",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 13.2, "depth": 10.2, "height": 4.15 },
+    "notes": [
+      "Long front desk and backlit key wall are the hero, pulled forward of the back wall.",
+      "club_chair is the sofa bake narrowed and lowered, fabric recolored. Forward is -Z, same as sofa_solid.",
+      "sofa_solid rotationY 0 faces -Z. Club chairs at the coffee-table ends use ±π/2 so they face the table.",
+      "One doormat at the entrance. A runner leads from that mat to the desk, with a flower table on the path.",
+      "Table lamps are procedural brass and fabric, not the green library lamp."
+    ]
+  },
+  "build": {
+    "desk": { "x": -1.35, "z": -2.42, "w": 7.6, "d": 1.02, "h": 1.18 },
+    "hearth": { "x": 2.05, "z": 1.55 },
+    "nook": { "x": -4.2, "z": 2.5 },
+    "center": { "x": -1.15, "z": 0.2 },
+    "art": { "x": 4.65 },
+    "column": { "x": 2.85, "z": -1.2 },
+    "cart": { "x": 5.85, "z": 4.15, "rot": -0.55 },
+    "bench": { "x": -6.05, "z": 3.55 },
+    "sculpture": { "x": 6.15, "z": -3.35 },
+    "elevator": { "z": 0.85 },
+    "side": { "x": 3.85, "z": 2.9 },
+    "path": { "x": -1.15, "z": 1.35, "w": 1.35, "d": 6.05 },
+    "doormat": { "x": -1.15, "z": 4.68, "w": 1.55, "d": 0.82 }
+  },
+  "assets": {
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.84,
+      "forward": [0, 0, -1]
+    },
+    "coffee_table": {
+      "glb": "assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.42,
+      "forward": [0, 0, 1]
+    },
+    "club_chair": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.7,
+      "forward": [0, 0, -1]
+    },
+    "round_table": {
+      "glb": "assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.74,
+      "forward": [0, 0, 1]
+    },
+    "round_table_low": {
+      "glb": "assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.5,
+      "forward": [0, 0, 1]
+    },
+    "center_table": {
+      "glb": "assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.58,
+      "forward": [0, 0, 1]
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.5,
+      "forward": [0, 0, 1]
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.36,
+      "forward": [0, 0, 1]
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "forward": [0, 0, 1]
+    },
+    "pos_terminal": {
+      "glb": "assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.2,
+      "forward": [0, 0, 1]
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.28,
+      "forward": [0, 0, 1]
+    },
+    "tray_napkin": {
+      "glb": "assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.1,
+      "forward": [0, 0, 1]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "forward": [0, 0, 1]
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.02,
+      "forward": [0, 0, 1]
+    }
+  },
+  "instances": [
+    { "id": "table_hearth", "kind": "coffee_table", "position": [2.05, 0, 1.55], "rotationY": 1.5708, "scale": [0.86, 1, 0.86] },
+    { "id": "sofa_hearth", "kind": "sofa_solid", "position": [2.05, 0, 2.791], "rotationY": 0, "scale": [1.3, 1, 1] },
+    { "id": "chair_hearth_w", "kind": "club_chair", "position": [0.4, 0, 1.55], "rotationY": -1.5708, "scale": [0.62, 1, 1] },
+    { "id": "chair_hearth_e", "kind": "club_chair", "position": [3.7, 0, 1.55], "rotationY": 1.5708, "scale": [0.62, 1, 1] },
+    { "id": "table_side", "kind": "round_table_low", "position": [3.85, 0, 2.9], "rotationY": 0.2 },
+    { "id": "cup_hearth_a", "kind": "cup_mug", "position": [1.72, 0.42, 1.43], "rotationY": 0.4 },
+    { "id": "cup_hearth_b", "kind": "cup_mug", "position": [2.32, 0.42, 1.71], "rotationY": -0.5 },
+
+    { "id": "table_nook", "kind": "round_table_low", "position": [-4.2, 0, 2.5], "rotationY": 0.15 },
+    { "id": "chair_nook_s", "kind": "club_chair", "position": [-4.2, 0, 3.38], "rotationY": 0, "scale": [0.62, 1, 1] },
+    { "id": "chair_nook_n", "kind": "club_chair", "position": [-4.2, 0, 1.62], "rotationY": 3.1416, "scale": [0.62, 1, 1] },
+    { "id": "cup_nook", "kind": "cup_mug", "position": [-4.05, 0.5, 2.42], "rotationY": 0.8 },
+    { "id": "table_center", "kind": "center_table", "position": [-1.15, 0, 0.2], "rotationY": 0.2 },
+
+    { "id": "pend_hearth_a", "kind": "pendant_lamp", "position": [1.55, 2.22, 1.27], "rotationY": 0.1 },
+    { "id": "pend_hearth_b", "kind": "pendant_lamp", "position": [2.55, 2.22, 1.87], "rotationY": -0.2 },
+    { "id": "pend_nook", "kind": "pendant_lamp", "position": [-4.2, 2.18, 2.5], "rotationY": 0.15 },
+
+    { "id": "pos_desk", "kind": "pos_terminal", "position": [-1.35, 1.18, -2.62], "rotationY": 0.1 },
+    { "id": "tray_desk", "kind": "tray_napkin", "position": [-0.15, 1.18, -2.28], "rotationY": 0.2 },
+    { "id": "thermos_desk", "kind": "thermos", "position": [-3.35, 1.18, -2.68], "rotationY": 0.3 },
+    { "id": "cup_desk", "kind": "cup_mug", "position": [-0.45, 1.18, -2.42], "rotationY": 1.1 },
+    { "id": "pot_desk", "kind": "flowerpot", "position": [-4.35, 1.18, -2.55], "rotationY": 0.2, "scale": 0.78 },
+
+    { "id": "pot_column", "kind": "flowerpot", "position": [-5.55, 0, -1.35], "rotationY": 0.4, "scale": 1.15 },
+    { "id": "pot_art", "kind": "flowerpot", "position": [5.15, 0, -1.85], "rotationY": -0.3, "scale": 1.15 },
+    { "id": "pot_lift", "kind": "flowerpot", "position": [-5.75, 0, -0.35], "rotationY": 0.6, "scale": 1.05 },
+
+    { "id": "bench_wait", "kind": "museum_bench", "position": [-6.05, 0, 3.55], "rotationY": 0 },
+    { "id": "plinth_art", "kind": "book_stand", "position": [6.15, 0, -3.35], "rotationY": 0.2 }
+  ],
+  "facing": [
+    { "id": "sofa_hearth", "toward": "table_hearth" },
+    { "id": "chair_hearth_w", "toward": "table_hearth" },
+    { "id": "chair_hearth_e", "toward": "table_hearth" },
+    { "id": "chair_nook_s", "toward": "table_nook" },
+    { "id": "chair_nook_n", "toward": "table_nook" }
+  ],
+  "shell": {
+    "floorColor": "#e3d3bf",
+    "wallColor": "#f3eee6",
+    "woodColor": "#5a3b28",
+    "woodDeep": "#3a261c",
+    "brass": "#b08a45",
+    "ceilingColor": "#f6f0e6",
+    "rug": "#6e2c34",
+    "rugEdge": "#c6a15a",
+    "rugNook": "#243f38",
+    "clearColor": "#d5c8b6",
+    "fogColor": "#d5c8b6",
+    "fogNear": 24,
+    "fogFar": 52
+  },
+  "camera": {
+    "fov": 48,
+    "position": [9.4, 4.35, 9.6],
+    "target": [-0.7, 1.2, -0.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [7.2, 3.05, -2.35],
+      "target": [-1.6, 1.0, 1.15]
+    },
+    "close": {
+      "position": [2.35, 2.45, -1.05],
+      "target": [2.05, 0.42, 1.7]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff0d8", "ground": "#6a5344", "intensity": 0.58 },
+    "key": { "color": "#ffe2c0", "intensity": 1.55, "position": [7.5, 12.5, 8] },
+    "fill": { "color": "#d7c4ae", "intensity": 0.32, "position": [-6, 5.5, 2] },
+    "points": [
+      { "color": "#ffc27a", "intensity": 4.5, "position": [1.55, 2.15, 1.27], "distance": 6.5, "decay": 2 },
+      { "color": "#ffc27a", "intensity": 4.5, "position": [2.55, 2.15, 1.87], "distance": 6.5, "decay": 2 },
+      { "color": "#ffc27a", "intensity": 3.8, "position": [-4.2, 2.1, 2.5], "distance": 5.5, "decay": 2 },
+      { "color": "#ffe0a8", "intensity": 5.5, "position": [4.65, 3.05, -4.35], "distance": 6.5, "decay": 2 },
+      { "color": "#ffd09a", "intensity": 9, "position": [-1.35, 2.3, -1.45], "distance": 10, "decay": 2 },
+      { "color": "#ffc98a", "intensity": 5, "position": [-3.7, 2.15, -1.65], "distance": 6, "decay": 2 },
+      { "color": "#ffc98a", "intensity": 5, "position": [1.0, 2.15, -1.65], "distance": 6, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "hearth close", "unlit default"],
+    "must_read": [
+      "Reception desk and hearth lounge read as two zones, with a separate chair nook.",
+      "Sofa and club chairs face their tables.",
+      "The backlit key wall is the hero. The painting is the secondary focal point.",
+      "Luggage cart and suitcases sit on the arrival side.",
+      "Ceiling is layered (soffit, coffers, pendants), not a single slab."
+    ]
+  }
+}
