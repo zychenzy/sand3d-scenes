@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "title": "Karaoke suite",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.0, "depth": 5.6, "height": 2.88 },
+    "notes": [
+      "Cutaway: back wall -Z, left wall -X, short pier at the back-right corner. Front and most of the right side are open.",
+      "Sofa GLB: backrest is local +Z, seat faces local -Z. rotationY 0 faces the screen.",
+      "Long sofa is scaled on local X so it runs along world X, parallel to the table's long side.",
+      "Coffee table GLB long axis is local Z. rotationY π/2 lays that axis along world X.",
+      "Side sofas: left rotationY -π/2 faces +X; right rotationY +π/2 faces -X.",
+      "Main screen is a framed plane facing +Z (toward the seats). The TV GLB is the queue monitor on the credenza; its large face is the local YZ plane, so rotationY 0 faces the room from the left wall.",
+      "Two zones: lounge U around the low table, and a low stage pocket in front of the screen."
+    ]
+  },
+  "assets": {
+    "sofa_solid": {
+      "glb": "../../../ktv/assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.96,
+      "recolor": { "fabric": "#6d564c" }
+    },
+    "coffee_table": {
+      "glb": "../../../ktv/assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.4
+    },
+    "speaker": {
+      "glb": "../../../ktv/assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.44
+    },
+    "tv": {
+      "glb": "../../../ktv/assets/tv__7a1ea89eeb48.glb",
+      "targetHeight": 0.36
+    },
+    "cup_mug": {
+      "glb": "../../../ktv/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.68,
+      "recolor": { "painted_metal": "#8d6840", "glass": "#fff1d4" },
+      "emissive": { "glass": "#ffd7a2" },
+      "emissiveIntensity": 1.15
+    }
+  },
+  "instances": [
+    {
+      "id": "table",
+      "kind": "coffee_table",
+      "position": [0, 0, -0.32],
+      "rotationY": 1.570796,
+      "scale": [1.264, 1, 1.696]
+    },
+    {
+      "id": "sofa_long",
+      "kind": "sofa_solid",
+      "position": [0, 0, 1.17],
+      "rotationY": 0,
+      "scale": [1.78, 1, 1]
+    },
+    {
+      "id": "sofa_left",
+      "kind": "sofa_solid",
+      "position": [-2.323, 0, -0.46],
+      "rotationY": -1.570796
+    },
+    {
+      "id": "sofa_right",
+      "kind": "sofa_solid",
+      "position": [2.323, 0, -0.46],
+      "rotationY": 1.570796
+    },
+    {
+      "id": "speaker_l",
+      "kind": "speaker",
+      "position": [-1.98, 0.348, -2.36],
+      "rotationY": 0
+    },
+    {
+      "id": "speaker_r",
+      "kind": "speaker",
+      "position": [1.98, 0.348, -2.36],
+      "rotationY": 0
+    },
+    {
+      "id": "monitor",
+      "kind": "tv",
+      "position": [-3.55, 0.78, -2.12],
+      "rotationY": 0
+    },
+    {
+      "id": "cup_l",
+      "kind": "cup_mug",
+      "position": [-0.78, 0.4, -0.22],
+      "rotationY": 0.4
+    },
+    {
+      "id": "cup_r",
+      "kind": "cup_mug",
+      "position": [0.42, 0.4, -0.52],
+      "rotationY": -0.5
+    },
+    {
+      "id": "cup_bar",
+      "kind": "cup_mug",
+      "position": [-3.48, 0.78, -1.62],
+      "rotationY": 0.8
+    },
+    {
+      "id": "pendant_l",
+      "kind": "pendant_lamp",
+      "position": [-1.25, 2.12, -0.05],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_r",
+      "kind": "pendant_lamp",
+      "position": [1.25, 2.12, -0.05],
+      "rotationY": 0.4
+    }
+  ],
+  "build": {
+    "tableTop": 0.4,
+    "screen": { "x": 0, "y": 1.5, "z": -2.58, "w": 2.56, "h": 1.44, "facing": [0, 0, 1] },
+    "stage": { "x": 0, "z": -1.62, "w": 3.05, "d": 1.12, "h": 0.07 },
+    "credenza": { "x": -3.64, "z": -1.95, "depth": 0.46, "length": 1.05, "h": 0.78 },
+    "door": { "x": -3.9, "z": 2.12, "w": 0.9, "h": 2.12 },
+    "sconce": { "x": -3.78, "y": 1.68, "z": -1.95 },
+    "clouds": [
+      { "x": -0.05, "y": 2.5, "z": 0.5, "w": 1.05, "d": 0.5, "color": "#6a5a4c" },
+      { "x": -1.4, "y": 2.48, "z": -1.15, "w": 0.78, "d": 0.4, "color": "#7d4d58" }
+    ],
+    "panels": [
+      { "x": -3.68, "y": 1.58, "z": -2.67, "w": 0.34, "h": 1.3, "rotY": 0, "color": "#7d4d58" },
+      { "x": -3.16, "y": 1.4, "z": -2.67, "w": 0.48, "h": 0.92, "rotY": 0, "color": "#6a5a4c" },
+      { "x": 3.22, "y": 1.52, "z": -2.67, "w": 0.5, "h": 1.18, "rotY": 0, "color": "#4e3c4a" },
+      { "x": 3.66, "y": 1.48, "z": -2.08, "w": 0.56, "h": 1.08, "rotY": -1.570796, "color": "#6a5a4c" },
+      { "x": -3.87, "y": 1.55, "z": -0.05, "w": 0.4, "h": 1.22, "rotY": 1.570796, "color": "#7d4d58" },
+      { "x": -3.87, "y": 1.36, "z": 0.55, "w": 0.72, "h": 0.86, "rotY": 1.570796, "color": "#6a5a4c" },
+      { "x": -3.87, "y": 1.62, "z": 1.2, "w": 0.32, "h": 1.36, "rotY": 1.570796, "color": "#4e3c4a" }
+    ],
+    "mics": [
+      { "type": "stand", "x": 1.05, "z": -1.18 },
+      { "type": "table", "x": -0.28, "z": -0.58, "rotY": 0.7, "tilt": -1.15 },
+      { "type": "table", "x": 0.86, "z": -0.06, "rotY": -0.45, "tilt": -1.28 }
+    ]
+  },
+  "shell": {
+    "floorColor": "#3a2c26",
+    "plankColor": "#2a201c",
+    "wallColor": "#4a4248",
+    "dadoColor": "#3a343c",
+    "baffleColor": "#241f26",
+    "accentColor": "#7d4d58",
+    "woodColor": "#6b4a34",
+    "brassColor": "#a8845a",
+    "ceilingColor": "#2a262c",
+    "carpetColor": "#5a2840",
+    "carpetEdge": "#3a1c2c",
+    "stageColor": "#4a3428",
+    "matColor": "#221c22",
+    "clearColor": "#241f22",
+    "fogColor": "#241f22",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 46,
+    "position": [3.15, 1.92, 2.35],
+    "target": [-0.35, 0.85, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-0.35, 2.2, 3.4],
+      "target": [0.35, 0.75, -1.35]
+    },
+    "close": {
+      "position": [1.85, 1.38, 0.42],
+      "target": [-0.35, 0.95, -1.7]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15984342, "ground": 4862008, "intensity": 0.4 },
+    "key": {
+      "color": 16773600,
+      "intensity": 1.22,
+      "position": [3.6, 7.4, 2.8],
+      "target": [0, 0.7, -0.6],
+      "shadow": { "near": 0.4, "far": 24, "left": -8, "right": 8, "top": 8, "bottom": -8, "bias": -0.0004, "normalBias": 0.03 }
+    },
+    "fill": { "color": 13812424, "intensity": 0.32, "position": [-4.2, 3.8, 1.2] },
+    "points": [
+      { "color": 16767144, "intensity": 0.55, "position": [-1.25, 2.3, -0.05], "distance": 4.8, "decay": 2 },
+      { "color": 16767144, "intensity": 0.55, "position": [1.25, 2.3, -0.05], "distance": 4.8, "decay": 2 },
+      { "color": 12043998, "intensity": 0.38, "position": [0, 1.55, -1.85], "distance": 6.5, "decay": 2 },
+      { "color": 16767144, "intensity": 0.28, "position": [-3.45, 1.6, -1.95], "distance": 3.4, "decay": 2 }
+    ]
+  }
+}
