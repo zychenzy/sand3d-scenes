@@ -1,0 +1,53 @@
+PASS  square_table resolves to boardgame/assets/square_table__7aaf2767b5f0.glb
+PASS  square_table is a binary GLB
+PASS  dining_chair resolves to boardgame/assets/dining_chair__5e1f7a56da4a.glb
+PASS  dining_chair is a binary GLB
+PASS  simple_chair resolves to cafe/assets/simple_chair__a83a693ec68f.glb
+PASS  simple_chair is a binary GLB
+PASS  round_table resolves to cafe/assets/round_table__49e5ede6a16d.glb
+PASS  round_table is a binary GLB
+PASS  cup_mug resolves to cafe/assets/cup_mug__6da6f7f87b8d.glb
+PASS  cup_mug is a binary GLB
+PASS  flowerpot resolves to cafe/assets/flowerpot__4a270f247734.glb
+PASS  flowerpot is a binary GLB
+PASS  bar_counter resolves to cafe/assets/bar_counter__532dcc87f672.glb
+PASS  bar_counter is a binary GLB
+PASS  espresso_machine resolves to cafe/assets/espresso_machine__3ada9ec69a54.glb
+PASS  espresso_machine is a binary GLB
+PASS  key light is southwest and elevated [-12.0, 8.2, 9.0]
+PASS  no point lights (no spotlight pools)
+PASS  key intensity 1.12 stays in a controlled range
+PASS  fill is a low bounce, not a second sun
+PASS  camera preset corner
+PASS  camera preset close
+PASS  default camera sits in the open southwest
+PASS  corner drops from plaza to street
+PASS  corner slope 1:15.1 (0.066) within (0.062, 0.11)
+PASS  corner bottom is lower than the top
+PASS  south drops from plaza to street
+PASS  south slope 1:12.0 (0.083) within (0.075, 0.095)
+PASS  south bottom is lower than the top
+PASS  west drops from plaza to street
+PASS  west slope 1:12.0 (0.083) within (0.075, 0.095)
+PASS  west bottom is lower than the top
+PASS  south-far drops from plaza to street
+PASS  south-far slope 1:12.0 (0.083) within (0.075, 0.095)
+PASS  south-far bottom is lower than the top
+PASS  west-far drops from plaza to street
+PASS  west-far slope 1:12.0 (0.083) within (0.075, 0.095)
+PASS  west-far bottom is lower than the top
+PASS  corner ramp is on the southwest edge
+PASS  cafe door is on the north facade
+PASS  residential stoop is on the east facade
+PASS  bench gap opens southwest (-0.80, 0.60)
+INFO  closest island/bench sample to a desire line: 1.07m (corner-to-cafe)
+PASS  counter stays inside the cafe
+PASS  espresso stays inside the cafe
+PASS  counter_cup stays inside the cafe
+PASS  chess_chair_s faces chess_table (dot 1.00)
+PASS  chess_chair_n faces chess_table (dot 1.00)
+PASS  chess_spectator faces chess_table (dot 1.00)
+PASS  cafe_chair_s faces cafe_table (dot 1.00)
+PASS  cafe_chair_w faces cafe_table (dot 1.00)
+
+All layout/orientation checks passed.

@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "title": "Neighbourhood pocket plaza",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Street-corner pedestrian plaza. Facades hold the north and east edges; the southwest corner is open to the intersection.",
+      "Afternoon sun sits in the open southwest sky so the paving stays lit and the shade-tree shadow falls northeast onto the curved bench and the chess nook.",
+      "Brick desire line runs from the corner curb ramp to the cafe door. A second walk follows the east sidewalk. Ramps at both crossings and the corner."
+    ]
+  },
+  "shell": {
+    "clearColor": "#c5d0d8",
+    "fogColor": "#d5e0e8",
+    "fogNear": 36,
+    "fogFar": 82
+  },
+  "camera": {
+    "fov": 36,
+    "near": 0.08,
+    "far": 180,
+    "position": [-13.4, 8.4, 13.6],
+    "target": [0.4, 1.15, -1.3]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 40,
+      "position": [-7.6, 2.15, 5.4],
+      "target": [0.8, 1.15, -2.2]
+    },
+    "close": {
+      "fov": 36,
+      "position": [1.85, 1.85, 4.15],
+      "target": [0.15, 0.65, -0.45]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#d5e3ef", "ground": "#7d6e5e", "intensity": 0.5 },
+    "key": {
+      "color": "#fff0d8",
+      "intensity": 1.12,
+      "position": [-12.0, 8.2, 9.0],
+      "target": [0.4, 0.6, -0.8],
+      "shadow": {
+        "left": -16,
+        "right": 16,
+        "top": 16,
+        "bottom": -16,
+        "near": 0.5,
+        "far": 48,
+        "map": 2048,
+        "bias": -0.00028,
+        "normalBias": 0.012
+      }
+    },
+    "fill": { "color": "#c5d4e4", "intensity": 0.2, "position": [8, 5.5, -5] }
+  },
+  "site": {
+    "streetY": -0.15,
+    "deck": { "x0": -5.9, "x1": 7.2, "z0": -6.6, "z1": 5.45 },
+    "island": { "cx": 0.35, "cz": -0.15, "rx": 2.05, "rz": 1.55, "rot": -0.18, "soilY": 0.36 },
+    "bench": { "a0": -2.64, "a1": 1.36, "seatOut": 0.46 },
+    "fountain": { "x": -2.28, "z": 2.45 },
+    "cafeDoor": [-1.8, -6.6],
+    "stoop": { "x": 7.2, "z": -1.65 },
+    "desireLines": [
+      {
+        "id": "corner-to-cafe",
+        "halfWidth": 0.78,
+        "points": [[-4.55, 4.05], [-3.55, 1.15], [-2.85, -1.7], [-2.2, -4.35], [-1.8, -5.65]]
+      },
+      {
+        "id": "south-to-east-walk",
+        "halfWidth": 0.7,
+        "points": [[1.2, 5.05], [3.3, 4.45], [5.25, 3.35], [5.25, -0.6]]
+      },
+      {
+        "id": "west-merge",
+        "halfWidth": 0.68,
+        "points": [[-5.5, -0.55], [-4.35, -0.15], [-3.55, 0.85]]
+      }
+    ],
+    "ramps": [
+      { "id": "corner", "kind": "corner", "top": [-4.55, 0.0, 4.05], "bottom": [-6.05, -0.15, 5.75], "width": 1.7 },
+      { "id": "south", "kind": "crossing", "top": [1.2, 0.0, 5.2], "bottom": [1.2, -0.15, 7.0], "width": 1.55 },
+      { "id": "west", "kind": "crossing", "top": [-5.65, 0.0, -0.55], "bottom": [-7.45, -0.15, -0.55], "width": 1.55 },
+      { "id": "south-far", "kind": "crossing", "top": [1.2, 0.0, 11.6], "bottom": [1.2, -0.15, 9.8], "width": 1.55 },
+      { "id": "west-far", "kind": "crossing", "top": [-12.2, 0.0, -0.55], "bottom": [-10.4, -0.15, -0.55], "width": 1.55 }
+    ],
+    "obstacles": [
+      { "id": "fountain", "x": -2.28, "z": 2.45, "r": 0.5 },
+      { "id": "lamp", "x": -10.6, "z": 1.6, "r": 0.16 },
+      { "id": "trash", "x": 6.42, "z": 4.2, "r": 0.26 },
+      { "id": "hedge", "x": -4.05, "z": -6.22, "r": 0.45 },
+      { "id": "rack0", "x": 6.52, "z": 0.95, "r": 0.26 },
+      { "id": "rack1", "x": 6.52, "z": 2.1, "r": 0.26 },
+      { "id": "rack2", "x": 6.52, "z": 3.25, "r": 0.26 },
+      { "id": "bike0", "x": 6.95, "z": 0.95, "r": 0.42 },
+      { "id": "bike2", "x": 6.95, "z": 3.25, "r": 0.42 },
+      { "id": "stoop", "x": 6.85, "z": -1.65, "r": 0.38 }
+    ]
+  },
+  "assets": {
+    "square_table": {
+      "glb": "../../../boardgame/assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.74
+    },
+    "dining_chair": {
+      "glb": "../../../boardgame/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "simple_chair": {
+      "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.84
+    },
+    "round_table": {
+      "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.74
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3
+    },
+    "bar_counter": {
+      "glb": "../../../cafe/assets/bar_counter__532dcc87f672.glb",
+      "targetHeight": 1.02
+    },
+    "espresso_machine": {
+      "glb": "../../../cafe/assets/espresso_machine__3ada9ec69a54.glb",
+      "targetHeight": 0.4
+    }
+  },
+  "instances": [
+    {
+      "id": "chess_table",
+      "kind": "square_table",
+      "position": [1.82, 0, -3.95],
+      "rotationY": 0.12,
+      "clearance": 0.5
+    },
+    {
+      "id": "chess_chair_s",
+      "kind": "dining_chair",
+      "position": [1.98, 0, -3.12],
+      "rotationY": -2.9393,
+      "faces": "chess_table",
+      "clearance": 0.36
+    },
+    {
+      "id": "chess_chair_n",
+      "kind": "dining_chair",
+      "position": [1.7, 0, -4.74],
+      "rotationY": 0.12,
+      "faces": "chess_table",
+      "clearance": 0.36
+    },
+    {
+      "id": "chess_spectator",
+      "kind": "dining_chair",
+      "position": [2.62, 0, -4.42],
+      "rotationY": -1.023,
+      "faces": "chess_table",
+      "clearance": 0.36
+    },
+    {
+      "id": "chess_cup",
+      "kind": "cup_mug",
+      "position": [2.12, 0.76, -3.72],
+      "rotationY": 0.4,
+      "clearance": 0.08
+    },
+    {
+      "id": "cafe_table",
+      "kind": "round_table",
+      "position": [-3.42, 0, -5.18],
+      "rotationY": 0.2,
+      "clearance": 0.42
+    },
+    {
+      "id": "cafe_chair_s",
+      "kind": "simple_chair",
+      "position": [-3.42, 0, -4.42],
+      "rotationY": 3.1416,
+      "faces": "cafe_table",
+      "clearance": 0.34
+    },
+    {
+      "id": "cafe_chair_w",
+      "kind": "simple_chair",
+      "position": [-4.16, 0, -5.22],
+      "rotationY": 1.5708,
+      "faces": "cafe_table",
+      "clearance": 0.34
+    },
+    {
+      "id": "cafe_cup_a",
+      "kind": "cup_mug",
+      "position": [-3.28, 0.76, -5.08],
+      "rotationY": 0.6,
+      "clearance": 0.08
+    },
+    {
+      "id": "cafe_cup_b",
+      "kind": "cup_mug",
+      "position": [-3.52, 0.76, -5.3],
+      "rotationY": -0.4,
+      "clearance": 0.08
+    },
+    {
+      "id": "pot_cafe_w",
+      "kind": "flowerpot",
+      "position": [-2.78, 0, -6.28],
+      "rotationY": 0.3,
+      "clearance": 0.2,
+      "foliage": "mound"
+    },
+    {
+      "id": "pot_cafe_e",
+      "kind": "flowerpot",
+      "position": [-0.82, 0, -6.28],
+      "rotationY": -0.2,
+      "clearance": 0.2,
+      "foliage": "upright"
+    },
+    {
+      "id": "pot_stoop",
+      "kind": "flowerpot",
+      "position": [6.42, 0, -2.45],
+      "rotationY": 1.2,
+      "clearance": 0.2,
+      "foliage": "broad"
+    },
+    {
+      "id": "counter",
+      "kind": "bar_counter",
+      "position": [-2.55, 0, -8.15],
+      "rotationY": 0,
+      "clearance": 0.2
+    },
+    {
+      "id": "espresso",
+      "kind": "espresso_machine",
+      "position": [-3.15, 1.02, -8.15],
+      "rotationY": 0.15,
+      "clearance": 0.1
+    },
+    {
+      "id": "counter_cup",
+      "kind": "cup_mug",
+      "position": [-2.15, 1.02, -8.05],
+      "rotationY": 0.8,
+      "clearance": 0.08
+    }
+  ]
+}
