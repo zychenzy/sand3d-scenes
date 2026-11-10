@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "title": "Clerestory stretch studio",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.4, "depth": 7.8, "height": 3.22 },
+    "zones": [
+      {
+        "id": "practice",
+        "kind": "practice-floor",
+        "note": "Instructor platform at the mirror; two student rows with walking aisles. Heads face the instructor."
+      },
+      {
+        "id": "cubby",
+        "kind": "prop-storage",
+        "note": "Left-wall cubbies for rolled mats, blocks, straps; shoe cubbies and a rest bench at the entry."
+      }
+    ],
+    "notes": [
+      "Cutaway drops the front (+Z) and right (+X) walls. Clerestory and mirror read in elevation on the back wall.",
+      "Mats are a class layout with aisles, not a packed grid and not empty slabs on a blank floor.",
+      "GLBs are symlinks to existing Sandflow bakes. Architecture, mats, cubbies, and textiles are procedural."
+    ]
+  },
+  "architecture": {
+    "mirror": { "x0": -2.85, "x1": 3.55, "y0": 0.44, "y1": 2.36, "z": -3.78 },
+    "clerestory": { "x0": -2.85, "x1": 3.55, "y0": 2.52, "y1": 3.14, "z": -3.82, "panes": 5 },
+    "platform": { "x0": -0.32, "x1": 1.12, "z0": -3.52, "z1": -1.58, "h": 0.09 },
+    "ledge": { "x": 0.4, "z": -3.66, "y": 0.94, "w": 2.55, "d": 0.18 },
+    "cubbies": { "x0": -4.58, "x1": -3.48, "z0": -3.28, "z1": 0.52, "h": 1.78 },
+    "shoes": { "x0": -4.58, "x1": -3.58, "z0": 1.22, "z1": 3.12, "h": 0.54 },
+    "water": { "x": -3.98, "z": -3.42, "y": 1.80, "w": 0.72, "d": 0.28 },
+    "border": { "x0": -2.62, "x1": 3.52, "z0": -3.55, "z1": 3.38 },
+    "ceiling": { "x0": -4.58, "x1": 4.18, "z0": -3.86, "z1": 1.18, "y": 3.16 },
+    "mat": { "w": 0.64, "l": 1.76, "t": 0.022 }
+  },
+  "mats": [
+    { "id": "instructor", "x": 0.4, "z": -2.58, "y": 0.09, "color": "#c45a4a", "head": 1, "props": ["blocks"] },
+    { "id": "student_l", "x": -2.05, "z": -0.12, "y": 0, "color": "#6f8f7c", "head": -1, "props": ["blanket"] },
+    { "id": "student_c", "x": -0.22, "z": -0.18, "y": 0, "color": "#d4b896", "head": -1, "props": [] },
+    { "id": "student_r", "x": 1.62, "z": -0.08, "y": 0, "color": "#8a6e86", "head": -1, "props": ["blocks"] },
+    { "id": "student_fl", "x": -1.18, "z": 2.22, "y": 0, "color": "#3a5a8a", "head": -1, "props": ["bolster"] },
+    { "id": "student_fr", "x": 0.92, "z": 2.28, "y": 0, "color": "#7a9a6a", "head": -1, "props": [] }
+  ],
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "tint": "#efe3c8"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3,
+      "tint": "#e8d2b4"
+    },
+    "flowerpot_small": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.18,
+      "tint": "#e8d2b4"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.24,
+      "tint": "#f0e6d4"
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55,
+      "tint": "#f0e0c4"
+    }
+  },
+  "instances": [
+    { "id": "bench_rest", "kind": "museum_bench", "position": [-3.18, 0.0, 0.78], "rotationY": 0.0 },
+    { "id": "bench_wait", "kind": "museum_bench", "position": [3.28, 0.0, -2.05], "rotationY": 0.0 },
+    { "id": "pot_ledge", "kind": "flowerpot_small", "position": [1.18, 0.96, -3.66], "rotationY": 0.25, "foliage": "succulent" },
+    { "id": "pot_corner", "kind": "flowerpot", "position": [3.88, 0.0, -3.42], "rotationY": 0.4, "foliage": "floor" },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-3.92, 0.0, 3.38], "rotationY": -0.2, "foliage": "floor" },
+    { "id": "thermos", "kind": "thermos", "position": [-3.98, 1.82, -3.42], "rotationY": 0.35 },
+    { "id": "mug_a", "kind": "cup_mug", "position": [-3.78, 1.82, -3.36], "rotationY": 0.6 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [-4.16, 1.82, -3.48], "rotationY": -0.4 },
+    { "id": "shelf_entry", "kind": "wall_shelf", "position": [-4.48, 1.22, 2.18], "rotationY": 1.5708 },
+    { "id": "pendant_i", "kind": "pendant_lamp", "position": [0.4, 2.74, -2.55], "rotationY": 0 },
+    { "id": "pendant_r1", "kind": "pendant_lamp", "position": [-0.22, 2.74, -0.15], "rotationY": 0.15 },
+    { "id": "pendant_r2", "kind": "pendant_lamp", "position": [-0.12, 2.74, 2.22], "rotationY": -0.1 }
+  ],
+  "shell": {
+    "floorColor": "#e4d2b4",
+    "wallColor": "#eef3ee",
+    "woodColor": "#8a623c",
+    "ceilingColor": "#f4f1ea",
+    "clearColor": "#e8eee8",
+    "fogColor": "#e8eee8",
+    "fogNear": 22,
+    "fogFar": 48
+  },
+  "camera": {
+    "fov": 50,
+    "position": [6.05, 2.48, 6.15],
+    "target": [0.05, 1.32, -0.45]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.25, 2.28, -1.35],
+      "target": [-0.15, 1.22, 0.05]
+    },
+    "close": {
+      "position": [-1.28, 1.32, 0.55],
+      "target": [-4.05, 0.88, 0.12]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#f3f7f2", "ground": "#d4e0d2", "intensity": 0.7 },
+    "key": {
+      "color": "#f4f8f4",
+      "intensity": 1.38,
+      "position": [0.35, 10.6, -6.1],
+      "target": [0.3, 0.0, 0.15]
+    },
+    "fill": { "color": "#f2e8d6", "intensity": 0.34, "position": [4.6, 3.5, 3.4] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "cubby close", "unlit"],
+    "must_read": [
+      "Full-width studio mirror with clerestory above is the back-wall architecture.",
+      "Instructor mat sits on a low platform facing the class; students face the mirror.",
+      "Left-wall cubbies and shoe storage are a second zone, not a furniture scatter.",
+      "Mats have walking gaps; the floor is not a packed grid or empty slabs."
+    ]
+  }
+}
