@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "title": "Canal-side café",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "European canal quay, warm afternoon",
+    "notes": [
+      "Utrecht-style wharf: olive canal in front, brick cellar wall, terrace one level above the water, street and bicycles above that.",
+      "Shaded table sits under the awning against the wall. View table and square table sit closer to the canal. Chairs face their table or the water.",
+      "A clear quay path runs along the coping, a service path leaves the café door, and the stair foot meets the quay path.",
+      "Stepped landing at the mooring stays outboard of the path. Boat sits in the water, gunwale below the paving."
+    ]
+  },
+  "site": {
+    "waterY": -0.48,
+    "quayY": 0.0,
+    "copingTop": 0.08,
+    "streetY": 2.3,
+    "doorHeight": 2.15,
+    "wallFaceZ": -5.78,
+    "water": { "x0": -9.0, "x1": 8.2, "z0": 0.04, "z1": 7.15 },
+    "quay": { "x0": -7.35, "x1": 4.55, "z0": -5.78, "z1": -0.06 },
+    "boat": {
+      "position": [-1.45, -0.48, 2.28],
+      "rotationY": 0.05,
+      "length": 3.5,
+      "beam": 1.12,
+      "keel": -0.4,
+      "gunwale": 0.36
+    }
+  },
+  "walkways": [
+    { "id": "quay_path", "min": [-6.4, -0.92], "max": [4.15, -0.18], "note": "along the coping, inboard of the water steps" },
+    { "id": "door_apron", "min": [-5.3, -5.7], "max": [-3.65, -4.15], "note": "in front of the café door" },
+    { "id": "door_to_quay", "min": [-5.2, -4.55], "max": [-3.8, -0.68], "note": "service path from the door down to the quay path" },
+    { "id": "stair_foot", "min": [-7.4, -2.02], "max": [-5.45, -0.55], "note": "landing in front of the street stair" }
+  ],
+  "built": {
+    "stairs": { "x": -6.68, "width": 1.16, "bottomZ": -2.05, "steps": 13, "rise": 0.177, "run": 0.28 },
+    "waterSteps": {
+      "x0": -2.9,
+      "x1": -0.3,
+      "treads": [
+        { "y": -0.16, "z0": 0.1, "z1": 0.58 },
+        { "y": -0.32, "z0": 0.5, "z1": 1.08 }
+      ]
+    },
+    "awning": { "x0": -3.2, "x1": 0.15, "zWall": -5.76, "zFront": -3.28, "yWall": 2.18, "yFront": 1.96 },
+    "bridge": { "faceX": 4.95, "thickness": 1.35, "centerZ": 1.65, "radius": 1.48, "springY": 0.02, "parapetY": 2.02 },
+    "bikes": [
+      { "id": "bike_street_a", "position": [-4.7, 2.3, -6.05], "rotationY": 1.55, "color": "#24282c" },
+      { "id": "bike_street_b", "position": [-1.35, 2.3, -6.02], "rotationY": 1.7, "color": "#1d4a38" },
+      { "id": "bike_wharf", "position": [-5.78, 0.0, -4.7], "rotationY": 0.08, "color": "#6e3030" }
+    ],
+    "trees": [
+      { "id": "tree_quay", "position": [-3.45, 0, -2.45], "kind": "lime", "lean": 0.08 },
+      { "id": "tree_stair", "position": [-5.58, 0, -3.35], "kind": "multistem", "lean": -0.1 }
+    ],
+    "trough": { "position": [1.72, 0, -5.38], "size": [1.25, 0.42, 0.46] }
+  },
+  "obstacles": [
+    { "id": "stairs", "min": [-7.28, -5.72], "max": [-6.08, -2.02] },
+    { "id": "tree_quay", "min": [-3.58, -2.58], "max": [-3.32, -2.32] },
+    { "id": "tree_stair", "min": [-5.76, -3.52], "max": [-5.4, -3.18] },
+    { "id": "bike_wharf", "min": [-6.05, -5.55], "max": [-5.5, -3.85] },
+    { "id": "trough", "min": [1.08, -5.64], "max": [2.36, -5.12] },
+    { "id": "bridge", "min": [4.7, -0.15], "max": [6.4, 3.7] }
+  ],
+  "assets": {
+    "round_table": { "glb": "assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.74 },
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.76 },
+    "simple_chair": { "glb": "assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.84 },
+    "museum_bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.45 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.11 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.14 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 },
+    "espresso_machine": { "glb": "assets/espresso_machine__3ada9ec69a54.glb", "targetHeight": 0.4 }
+  },
+  "instances": [
+    { "id": "table_shade", "kind": "round_table", "position": [-1.55, 0, -4.22], "rotationY": 0.2 },
+    { "id": "chair_shade_n", "kind": "simple_chair", "position": [-1.55, 0, -4.88], "rotationY": 0, "face": "canal", "at": "table_shade" },
+    { "id": "chair_shade_s", "kind": "simple_chair", "position": [-1.55, 0, -3.56], "rotationY": 3.141592653589793, "face": "table", "at": "table_shade" },
+    { "id": "chair_shade_w", "kind": "simple_chair", "position": [-2.21, 0, -4.22], "rotationY": 1.5707963267948966, "face": "table", "at": "table_shade" },
+
+    { "id": "table_view", "kind": "round_table", "position": [0.95, 0, -2.28], "rotationY": -0.15 },
+    { "id": "chair_view_n", "kind": "simple_chair", "position": [0.95, 0, -2.94], "rotationY": 0, "face": "canal", "at": "table_view" },
+    { "id": "chair_view_w", "kind": "simple_chair", "position": [0.29, 0, -2.28], "rotationY": 1.5707963267948966, "face": "table", "at": "table_view" },
+    { "id": "chair_view_s", "kind": "simple_chair", "position": [0.95, 0, -1.62], "rotationY": 3.141592653589793, "face": "table", "at": "table_view" },
+
+    { "id": "table_square", "kind": "square_table", "position": [2.7, 0, -3.45], "rotationY": 0.08 },
+    { "id": "chair_sq_n", "kind": "simple_chair", "position": [2.7, 0, -4.11], "rotationY": 0, "face": "canal", "at": "table_square" },
+    { "id": "chair_sq_s", "kind": "simple_chair", "position": [2.7, 0, -2.79], "rotationY": 3.141592653589793, "face": "table", "at": "table_square" },
+
+    { "id": "bench_wall", "kind": "museum_bench", "position": [4.55, 0, -5.15], "rotationY": 1.5707963267948966, "face": "canal" },
+
+    { "id": "cup_shade", "kind": "cup_mug", "position": [-1.4, 0.74, -4.12], "rotationY": 0.4 },
+    { "id": "jar_shade", "kind": "jam_jar", "position": [-1.72, 0.74, -4.32], "rotationY": 0.2 },
+    { "id": "cup_view", "kind": "cup_mug", "position": [1.08, 0.74, -2.18], "rotationY": -0.6 },
+    { "id": "cup_sq", "kind": "cup_mug", "position": [2.55, 0.76, -3.35], "rotationY": 0.8 },
+
+    { "id": "espresso", "kind": "espresso_machine", "position": [-4.35, 0.9, -6.48], "rotationY": 0 },
+
+    { "id": "pot_pier", "kind": "flowerpot", "position": [-3.22, 0, -5.42], "rotationY": 0.4, "plant": "geranium" },
+    { "id": "pot_sill", "kind": "flowerpot", "position": [0.12, 0.66, -5.66], "rotationY": -0.2, "plant": "herb" },
+    { "id": "pot_east", "kind": "flowerpot", "position": [5.05, 0, -3.35], "rotationY": 0.5, "plant": "shrub" },
+    { "id": "pot_stair", "kind": "flowerpot", "position": [-5.72, 0, -2.42], "rotationY": 0.1, "plant": "grass" }
+  ],
+  "shell": {
+    "floorColor": "#7a5340",
+    "wallColor": "#8a4a38",
+    "mortarColor": "#cbb9a4",
+    "stoneColor": "#cfc6b6",
+    "woodColor": "#6a4a32",
+    "awningLight": "#f3ecdf",
+    "awningStripe": "#a24b38",
+    "doorColor": "#6e2430",
+    "ironColor": "#2c3130",
+    "waterDeep": "#3e4c42",
+    "clearColor": "#f4dcc0",
+    "fogColor": "#f3dcc4",
+    "fogNear": 24,
+    "fogFar": 68
+  },
+  "camera": {
+    "fov": 48,
+    "position": [-7.4, 4.15, 9.4],
+    "target": [0.8, 1.0, -1.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-8.4, 3.15, 3.6],
+      "target": [0.2, 1.0, -2.15]
+    },
+    "close": {
+      "position": [-0.15, 1.55, -2.55],
+      "target": [-1.55, 0.82, -4.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16770756, "ground": 6969416, "intensity": 0.58 },
+    "key": {
+      "color": 16766884,
+      "intensity": 1.48,
+      "position": [-8.5, 13.5, 7.5],
+      "target": [-0.4, 0.6, -2.2],
+      "shadow": { "extent": 13, "bias": -0.0004, "normalBias": 0.03 }
+    },
+    "fill": { "color": 14015974, "intensity": 0.36, "position": [9, 6.5, 5] },
+    "bounce": { "color": 15582384, "intensity": 0.16, "position": [-2, 3, -8] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Canal, moored boat, stepped edge, brick façade, awning, and bridge fragment read in the default view.",
+      "Chairs face a table or the canal, and the quay path, door path, and stair foot stay clear.",
+      "Waterline sits below the paving with the hull in the water."
+    ]
+  }
+}
