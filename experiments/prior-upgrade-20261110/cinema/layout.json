@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "Small cinema screening room — prior-upgrade",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 10.4,
+      "depth": 8.9,
+      "height": 3.52
+    },
+    "levels": [0.1, 0.34, 0.6],
+    "screenWall": "-Z",
+    "notes": [
+      "Upgrade of cinema/ v1: authored rake, center aisle, foyer/concession zone.",
+      "GLB auditorium chair: back_surface centroid is +Z, cushion centroid is -Z. Occupant faces -Z.",
+      "rotationY stays near 0 (small arc toe-in only). π would point the backrest at the screen.",
+      "Front row on a 0.10 m dais, middle 0.34 m, rear/foyer 0.60 m. Center aisle stays clear."
+    ]
+  },
+  "assets": {
+    "theatre_chair": {
+      "glb": "assets/theatre_chair__0e346addc570.glb",
+      "targetHeight": 1.02,
+      "note": "symlink to cinema/assets — not a copied GLB"
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.32,
+      "note": "symlink to cinema/assets — on procedural plinths"
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11,
+      "note": "symlink to cafe/assets — concession drinks"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.36,
+      "note": "symlink to cafe/assets — foyer pendant"
+    }
+  },
+  "instances": [
+    { "id": "sp_l", "kind": "speaker", "position": [-4.15, 0.52, -4.05], "rotationY": 0.42 },
+    { "id": "sp_r", "kind": "speaker", "position": [4.15, 0.52, -4.05], "rotationY": -0.42 },
+
+    { "id": "seat_r0_l0", "kind": "theatre_chair", "position": [-2.35, 0.1, -1.48], "rotationY": -0.1 },
+    { "id": "seat_r0_l1", "kind": "theatre_chair", "position": [-1.42, 0.1, -1.58], "rotationY": -0.05 },
+    { "id": "seat_r0_r0", "kind": "theatre_chair", "position": [1.42, 0.1, -1.58], "rotationY": 0.05 },
+    { "id": "seat_r0_r1", "kind": "theatre_chair", "position": [2.35, 0.1, -1.48], "rotationY": 0.1 },
+
+    { "id": "seat_r1_l0", "kind": "theatre_chair", "position": [-3.2, 0.34, 0.22], "rotationY": -0.14 },
+    { "id": "seat_r1_l1", "kind": "theatre_chair", "position": [-2.26, 0.34, 0.1], "rotationY": -0.09 },
+    { "id": "seat_r1_l2", "kind": "theatre_chair", "position": [-1.32, 0.34, 0.04], "rotationY": -0.04 },
+    { "id": "seat_r1_r0", "kind": "theatre_chair", "position": [1.32, 0.34, 0.04], "rotationY": 0.04 },
+    { "id": "seat_r1_r1", "kind": "theatre_chair", "position": [2.26, 0.34, 0.1], "rotationY": 0.09 },
+    { "id": "seat_r1_r2", "kind": "theatre_chair", "position": [3.2, 0.34, 0.22], "rotationY": 0.14 },
+
+    { "id": "seat_r2_l0", "kind": "theatre_chair", "position": [-3.2, 0.6, 1.88], "rotationY": -0.13 },
+    { "id": "seat_r2_l1", "kind": "theatre_chair", "position": [-2.26, 0.6, 1.76], "rotationY": -0.08 },
+    { "id": "seat_r2_l2", "kind": "theatre_chair", "position": [-1.32, 0.6, 1.7], "rotationY": -0.04 },
+    { "id": "seat_r2_r0", "kind": "theatre_chair", "position": [1.32, 0.6, 1.7], "rotationY": 0.04 },
+    { "id": "seat_r2_r1", "kind": "theatre_chair", "position": [2.26, 0.6, 1.76], "rotationY": 0.08 },
+    { "id": "seat_r2_r2", "kind": "theatre_chair", "position": [3.2, 0.6, 1.88], "rotationY": 0.13 },
+
+    { "id": "cup_a", "kind": "cup_mug", "position": [-3.85, 1.58, 3.45], "rotationY": 0.4 },
+    { "id": "cup_b", "kind": "cup_mug", "position": [-3.68, 1.58, 3.58], "rotationY": -0.35 },
+    { "id": "cup_c", "kind": "cup_mug", "position": [-4.05, 1.58, 3.92], "rotationY": 1.1 },
+    { "id": "pendant_foyer", "kind": "pendant_lamp", "position": [-4.25, 2.72, 3.55], "rotationY": 0.15 }
+  ],
+  "shell": {
+    "floorColor": "#3a2418",
+    "wallColor": "#3e363c",
+    "woodColor": "#5a3a28",
+    "ceilingColor": "#1a161a",
+    "accentColor": "#6a2430",
+    "carpetColor": "#5a3040",
+    "clearColor": "#1a1418",
+    "fogColor": "#1a1418",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 46,
+    "position": [6.35, 3.05, 5.55],
+    "target": [-0.45, 1.08, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [1.35, 1.58, -3.28],
+      "target": [-1.85, 0.88, 0.55]
+    },
+    "close": {
+      "position": [0.08, 1.18, 2.62],
+      "target": [0.0, 0.95, -3.4]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 6188664,
+      "ground": 2368548,
+      "intensity": 0.58
+    },
+    "key": {
+      "color": 16774368,
+      "intensity": 1.52,
+      "position": [5.6, 9.0, 4.6],
+      "target": [0, 1.05, -1.0]
+    },
+    "fill": {
+      "color": 8427696,
+      "intensity": 0.4,
+      "position": [-3.2, 5.2, -3.4]
+    },
+    "points": [
+      { "color": 16769264, "intensity": 5.5, "position": [0, 2.15, -3.05], "distance": 9 },
+      { "color": 16767144, "intensity": 3.4, "position": [0, 2.7, 0.35], "distance": 7 },
+      { "color": 16760976, "intensity": 3.6, "position": [-4.25, 2.35, 3.55], "distance": 4.5 },
+      { "color": 16744640, "intensity": 1.8, "position": [0, 2.9, 3.05], "distance": 5 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "aisle close", "unlit default"],
+    "must_read": [
+      "Cushion centroid Z is less than back_surface centroid Z for every seat (front toward the screen on -Z).",
+      "Chair backs face the foyer (+Z), not the screen.",
+      "No seat sits in the center aisle (|x| < 0.85).",
+      "Rows sit on three different floor levels with aisle treads.",
+      "Proscenium, rake, aisle lights, and foyer/concession are present."
+    ]
+  }
+}
