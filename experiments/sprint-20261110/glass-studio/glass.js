@@ -67,7 +67,10 @@ function vessel(g, spec) {
   );
   mouth.position.y = lipY - 0.012;
   grp.add(mouth);
-  const lip = new THREE.Mesh(new THREE.TorusGeometry(lipR, Math.max(0.006, lipR * 0.08), 6, 18), toon(tone.lip));
+  const lipMat = spec.glow
+    ? toon(tone.lip, { emissive: tone.lip, emissiveIntensity: 0.45 })
+    : toon(tone.lip);
+  const lip = new THREE.Mesh(new THREE.TorusGeometry(lipR, Math.max(0.006, lipR * 0.08), 6, 18), lipMat);
   lip.rotation.x = Math.PI / 2;
   lip.position.y = lipY;
   grp.add(lip);
@@ -262,35 +265,42 @@ function furnace(g, layout) {
   addCyl(g, 0.16, 0.16, 0.05, steel, f.x, 3.38, f.z - 0.05, 12);
   addBox(g, 0.7, 0.04, 0.7, soot, f.x, 3.36, f.z - 0.05);
 
-  const rack = layout.zones.colorRack;
-  addBox(g, 0.04, rack.h, 0.04, iron, rack.x - rack.w / 2, rack.h / 2, rack.z);
-  addBox(g, 0.04, rack.h, 0.04, iron, rack.x + rack.w / 2, rack.h / 2, rack.z);
-  for (const y of [0.35, 0.72, 1.08]) addBox(g, rack.w, 0.03, 0.03, steel, rack.x, y, rack.z);
-  ['#1d4e9c', '#e39a2e', '#1c8a56', '#b4233a', '#1a7a78'].forEach((c, i) => {
-    addCyl(g, 0.014, 0.016, 0.7 + (i % 2) * 0.12, toon(c), rack.x - 0.08 + i * 0.04, 0.48, rack.z + 0.02, 6);
-  });
 }
 
 function lehr(g, layout) {
   const L = layout.zones.lehr;
   const iron = toon(layout.shell.ironColor);
   const steel = toon(layout.shell.steelColor);
-  const body = toon('#3c3a38');
-  addBox(g, L.w + 0.08, 0.08, L.d + 0.06, iron, L.x, 0.04, L.z);
-  addBox(g, L.w, L.h - 0.08, L.d, body, L.x, 0.08 + (L.h - 0.08) / 2, L.z);
+  const body = toon('#4a4744');
   const front = L.z + L.d / 2;
-  addBox(g, L.w * 0.7, L.h * 0.58, 0.04, iron, L.x, 0.5, front + 0.02);
-  const slit = addBox(
-    g, 0.5, 0.1, 0.03,
-    toon('#ffb46a', { emissive: '#ff9a3a', emissiveIntensity: 0.8 }),
-    L.x, 0.84, front + 0.045,
+  for (const dx of [-L.w / 2 + 0.08, L.w / 2 - 0.08]) {
+    for (const dz of [-L.d / 2 + 0.08, L.d / 2 - 0.08]) {
+      addBox(g, 0.08, 0.1, 0.08, iron, L.x + dx, 0.05, L.z + dz);
+    }
+  }
+  addBox(g, L.w, L.h, L.d, body, L.x, 0.1 + L.h / 2, L.z);
+  addBox(g, L.w + 0.04, 0.06, L.d + 0.04, iron, L.x, 0.1 + L.h + 0.03, L.z);
+  const doorY = 0.18 + L.h * 0.46;
+  const doorH = L.h * 0.78;
+  addBox(g, L.w * 0.86, doorH, 0.045, toon('#3a3836'), L.x, doorY, front + 0.02);
+  addBox(g, 0.045, doorH, 0.06, iron, L.x - L.w * 0.4, doorY, front + 0.035);
+  addBox(g, 0.045, doorH, 0.06, iron, L.x + L.w * 0.4, doorY, front + 0.035);
+  addBox(g, L.w * 0.86, 0.045, 0.06, iron, L.x, 0.18 + L.h * 0.08, front + 0.035);
+  addBox(g, L.w * 0.86, 0.045, 0.06, iron, L.x, 0.18 + L.h * 0.84, front + 0.035);
+  for (const dy of [-0.22, 0, 0.22]) {
+    addCyl(g, 0.02, 0.02, 0.07, steel, L.x - L.w * 0.43, doorY + dy, front + 0.05, 8);
+  }
+  addBox(g, 0.34, 0.04, 0.045, toon('#d7d2c8'), L.x + L.w * 0.28, doorY, front + 0.06);
+  const windowGlow = addBox(
+    g, L.w * 0.22, 0.14, 0.02,
+    toon('#e87830', { emissive: '#ff7a28', emissiveIntensity: 0.4 }),
+    L.x - 0.05, doorY + 0.16, front + 0.05,
   );
-  slit.userData.noShadow = true;
-  addBox(g, 0.18, 0.028, 0.04, steel, L.x - 0.32, 0.58, front + 0.05);
-  addBox(g, 0.18, 0.028, 0.04, steel, L.x + 0.32, 0.58, front + 0.05);
-  addBox(g, 1.2, 0.04, 0.3, steel, L.x, L.trayY - 0.02, front + 0.16);
-  addBox(g, 0.08, 0.16, 0.04, steel, L.x, L.h + 0.04, L.z);
-  addBox(g, 0.22, 0.04, 0.1, toon('#a33b32'), L.x + L.w * 0.32, L.h * 0.55, front + 0.03);
+  windowGlow.userData.noShadow = true;
+  addBox(g, L.w * 0.24, 0.02, 0.025, iron, L.x - 0.05, doorY + 0.16, front + 0.062);
+  addBox(g, 0.02, 0.16, 0.025, iron, L.x - 0.05, doorY + 0.16, front + 0.062);
+  addBox(g, L.w * 0.62, 0.04, 0.22, steel, L.x, L.sillY, front + 0.22);
+  addBox(g, 0.16, 0.05, 0.12, toon('#a33b32'), L.x + L.w * 0.36, L.h + 0.16, L.z - 0.08);
 }
 
 function hotShopTools(g, layout) {
@@ -322,34 +332,43 @@ function hotShopTools(g, layout) {
 
   const m = layout.zones.marver;
   const top = m.top + 0.01;
-  addBox(g, 0.26, 0.012, 0.18, toon('#d9d0bc'), m.x - 0.16, top, m.z - 0.08);
-  addBox(g, 0.28, 0.018, 0.09, wood, m.x + 0.18, top + 0.01, m.z + 0.08);
-  addCyl(g, 0.012, 0.014, 0.12, wood, m.x + 0.34, top + 0.02, m.z + 0.08, 6).rotation.z = Math.PI / 2;
-  addCyl(g, 0.05, 0.055, 0.05, toon('#6e3030'), m.x + 0.05, top + 0.025, m.z + 0.12, 10);
-  spar(g, m.x + 0.08, top + 0.02, m.z - 0.12, m.x + 0.34, top + 0.02, m.z + 0.02, 0.008, steel, 6);
-  spar(g, m.x + 0.08, top + 0.02, m.z - 0.02, m.x + 0.32, top + 0.02, m.z - 0.16, 0.008, steel, 6);
-  addBox(g, 0.16, 0.008, 0.035, steel, m.x - 0.02, top + 0.01, m.z + 0.16);
-  addBox(g, 0.16, 0.008, 0.035, steel, m.x + 0.02, top + 0.015, m.z + 0.2);
+  addBox(g, 0.22, 0.012, 0.16, toon('#d9d0bc'), m.x - 0.12, top, m.z - 0.06);
+  addBox(g, 0.18, 0.016, 0.07, wood, m.x + 0.16, top + 0.01, m.z + 0.08);
+  addCyl(g, 0.045, 0.05, 0.04, toon('#6e3030'), m.x + 0.02, top + 0.02, m.z + 0.12, 10);
+  spar(g, m.x - 0.02, top + 0.02, m.z - 0.08, m.x + 0.22, top + 0.02, m.z + 0.04, 0.008, steel, 6);
+  spar(g, m.x + 0.02, top + 0.02, m.z + 0.02, m.x + 0.2, top + 0.02, m.z - 0.14, 0.008, steel, 6);
+  addBox(g, 0.14, 0.008, 0.03, steel, m.x - 0.08, top + 0.01, m.z + 0.16);
 
-  addCyl(g, 0.16, 0.18, 0.28, wood, bench.x - bench.halfX - 0.28, 0.14, bench.z + 0.1, 12);
-  addCyl(g, 0.13, 0.13, 0.02, toon('#1c2428'), bench.x - bench.halfX - 0.28, 0.27, bench.z + 0.1, 12);
+  const seatY = 0.48;
+  const sx = m.x;
+  const sz = m.z + m.halfZ + 0.28;
+  addCyl(g, 0.15, 0.15, 0.035, wood, sx, seatY, sz, 16);
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2 + 0.4;
+    addCyl(g, 0.016, 0.018, seatY - 0.02, iron, sx + Math.cos(a) * 0.1, (seatY - 0.02) / 2, sz + Math.sin(a) * 0.1, 6);
+  }
+
+  addCyl(g, 0.16, 0.18, 0.28, wood, bench.x - bench.halfX - 0.28, 0.14, bench.z + 0.05, 12);
+  addCyl(g, 0.13, 0.13, 0.02, toon('#1c2428'), bench.x - bench.halfX - 0.28, 0.27, bench.z + 0.05, 12);
   const fire = toon('#8e2e28');
-  addCyl(g, 0.15, 0.17, 0.32, fire, -2.5, 0.16, -2.4, 12);
-  addCyl(g, 0.12, 0.12, 0.02, toon('#e6d3a4'), -2.5, 0.31, -2.4, 12);
+  addCyl(g, 0.15, 0.17, 0.32, fire, -2.45, 0.16, -2.35, 12);
+  addCyl(g, 0.12, 0.12, 0.02, toon('#e6d3a4'), -2.45, 0.31, -2.35, 12);
 }
 
 function pipeRack(g, layout) {
   const p = layout.zones.pipeRack;
   const iron = toon(layout.shell.ironColor);
   const wood = toon(layout.shell.woodColor);
-  addBox(g, 0.5, 0.06, 0.36, wood, p.x, 0.04, p.z);
-  addBox(g, 0.05, 1.25, 0.05, iron, p.x - 0.18, 0.66, p.z);
-  addBox(g, 0.05, 1.25, 0.05, iron, p.x + 0.18, 0.66, p.z);
-  addBox(g, 0.46, 0.04, 0.04, iron, p.x, 1.15, p.z);
-  for (let i = 0; i < 4; i++) {
-    const x = p.x - 0.15 + i * 0.1;
-    spar(g, x, 1.12, p.z, x + 0.05, 0.18, p.z + 0.72, 0.012, toon('#3a3937'), 8);
-    addCyl(g, 0.02, 0.016, 0.05, toon('#6b442c'), x + 0.04, 0.2, p.z + 0.7, 6);
+  addBox(g, 0.72, 0.06, 0.28, wood, p.x, 0.04, p.z);
+  addBox(g, 0.045, 1.45, 0.045, iron, p.x - 0.3, 0.76, p.z);
+  addBox(g, 0.045, 1.45, 0.045, iron, p.x + 0.3, 0.76, p.z);
+  addBox(g, 0.68, 0.04, 0.04, iron, p.x, 1.42, p.z);
+  addBox(g, 0.68, 0.035, 0.035, wood, p.x, 0.72, p.z);
+  for (let i = 0; i < 6; i++) {
+    const x = p.x - 0.25 + i * 0.1;
+    const lean = 0.06 + (i % 2) * 0.04;
+    spar(g, x, 1.38, p.z, x + lean, 0.12, p.z + 0.16, 0.013, toon('#2e2d2b'), 8);
+    addCyl(g, 0.022, 0.016, 0.045, toon('#6b442c'), x + lean * 0.85, 0.16, p.z + 0.14, 6);
   }
 }
 
@@ -361,20 +380,6 @@ function storage(g, layout) {
   for (const b of layout.zones.barrels) barrel(g, b, iron);
   stockShelves(g, layout);
   pipeRack(g, layout);
-
-  const c = layout.zones.cart;
-  addBox(g, c.w, 0.04, c.d, wood, c.x, 0.42, c.z);
-  addBox(g, c.w, 0.04, c.d, wood, c.x, 0.78, c.z);
-  for (const dx of [-c.w / 2 + 0.04, c.w / 2 - 0.04]) {
-    for (const dz of [-c.d / 2 + 0.04, c.d / 2 - 0.04]) {
-      addBox(g, 0.035, 0.78, 0.035, iron, c.x + dx, 0.39, c.z + dz);
-      addCyl(g, 0.04, 0.04, 0.03, iron, c.x + dx, 0.05, c.z + dz, 8).rotation.z = Math.PI / 2;
-    }
-  }
-  ['#1d4e9c', '#e39a2e', '#1c8a56', '#b4233a', '#1a7a78', '#c5d0d4'].forEach((color, i) => {
-    addCyl(g, 0.01, 0.01, 0.36 + (i % 3) * 0.06, toon(color), c.x - 0.18 + i * 0.07, 0.98, c.z, 6);
-  });
-  addCyl(g, 0.045, 0.05, 0.1, steel, c.x, 0.5, c.z + 0.08, 8);
 
   const { width: W } = layout.meta.room;
   addBox(g, 0.04, 0.7, 1.1, toon('#4a342c'), -W / 2 + 0.12, 1.45, -2.15);
@@ -392,22 +397,36 @@ function coldShop(g, layout) {
   const wood = toon('#6e4a30');
   const iron = toon(layout.shell.ironColor);
   const steel = toon(layout.shell.steelColor);
-  addBox(g, c.w, 0.06, c.d, wood, c.x, c.h - 0.03, c.z);
+  addBox(g, c.w, 0.07, c.d, wood, c.x, c.h - 0.035, c.z);
+  addBox(g, c.w - 0.08, 0.04, c.d - 0.08, toon('#8a6240'), c.x, c.h * 0.48, c.z);
   for (const dx of [-c.w / 2 + 0.06, c.w / 2 - 0.06]) {
     for (const dz of [-c.d / 2 + 0.06, c.d / 2 - 0.06]) {
-      addBox(g, 0.05, c.h - 0.06, 0.05, iron, c.x + dx, (c.h - 0.06) / 2, c.z + dz);
+      addBox(g, 0.05, c.h - 0.07, 0.05, iron, c.x + dx, (c.h - 0.07) / 2, c.z + dz);
     }
   }
-  const wheel = addCyl(g, 0.16, 0.16, 0.04, steel, c.x + 0.12, c.h + 0.16, c.z, 20);
-  wheel.rotation.z = Math.PI / 2;
-  addBox(g, 0.16, 0.1, 0.14, iron, c.x - 0.22, c.h + 0.05, c.z + 0.05);
-  addBox(g, 0.1, 0.03, 0.08, toon('#2f6a3a'), c.x - 0.05, c.h + 0.015, c.z - 0.12);
+  const wheel = addCyl(g, 0.2, 0.2, 0.045, steel, c.x + c.w * 0.28, c.h + 0.2, c.z, 24);
+  wheel.rotation.x = Math.PI / 2;
+  addCyl(g, 0.035, 0.035, 0.08, iron, c.x + c.w * 0.28, c.h + 0.2, c.z, 8).rotation.x = Math.PI / 2;
+  addBox(g, 0.16, 0.12, 0.22, iron, c.x + c.w * 0.12, c.h + 0.08, c.z);
+  addBox(g, 0.22, 0.04, 0.16, toon('#2f6a3a'), c.x - 0.15, c.h + 0.02, c.z);
+}
 
-  const k = layout.zones.crate;
-  addBox(g, k.hx * 2, k.h, k.hz * 2, wood, k.x, k.h / 2, k.z);
-  addBox(g, k.hx * 1.7, 0.02, k.hz * 1.5, toon('#e6d7b0'), k.x, k.h + 0.005, k.z);
-  addBox(g, 0.04, k.h, 0.03, iron, k.x - k.hx, k.h / 2, k.z - k.hz);
-  addBox(g, 0.04, k.h, 0.03, iron, k.x + k.hx, k.h / 2, k.z + k.hz);
+function gallery(g, layout) {
+  const G = layout.zones.gallery;
+  const wood = toon('#5c4030');
+  const iron = toon(layout.shell.ironColor);
+  addBox(g, G.w, 0.05, G.d, wood, G.x, G.top - 0.025, G.z);
+  for (const dx of [-G.w / 2 + 0.04, G.w / 2 - 0.04]) {
+    addBox(g, 0.04, 0.16, G.d, iron, G.x + dx, G.top - 0.1, G.z);
+  }
+  addBox(g, G.w * 0.15, 0.04, G.d * 0.7, iron, G.x, G.top - 0.12, G.z);
+  const panel = addBox(
+    g, G.w + 0.12, 0.85, 0.04,
+    toon('#ffd7a4', { emissive: '#ffb060', emissiveIntensity: 0.7 }),
+    G.x, G.top + 0.38, G.z - G.d / 2 - 0.08,
+  );
+  panel.userData.noShadow = true;
+  addBox(g, G.w + 0.2, 1.15, 0.06, toon('#6a4034'), G.x, G.top + 0.42, G.z - G.d / 2 - 0.14);
 }
 
 function makeShell(layout) {
@@ -432,8 +451,6 @@ function makeShell(layout) {
   addBox(g, plate.w, 0.02, plate.d, flat('#4a4642'), plate.x, 0.016, plate.z);
   const path = layout.zones.path;
   addBox(g, path.w, 0.016, path.d, flat('#5c5854'), path.x, 0.012, path.z);
-  const pad = layout.zones.pad;
-  addBox(g, pad.w, 0.02, pad.d, flat('#d5cbb8'), pad.x, 0.015, pad.z);
   stain(g, -1.3, -2.35, 0.55, 0.32, '#3a332e');
   stain(g, -1.55, -1.9, 0.28, 0.2, '#342e2a');
 
@@ -451,6 +468,7 @@ function makeProcedural(layout) {
   g.name = 'procedural';
   furnace(g, layout);
   lehr(g, layout);
+  gallery(g, layout);
   hotShopTools(g, layout);
   storage(g, layout);
   coldShop(g, layout);

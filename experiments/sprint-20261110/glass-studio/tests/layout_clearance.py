@@ -13,10 +13,7 @@ GLASS = (ROOT / "glass.js").read_text()
 # World-axis extents in metres, measured from the baked GLBs.
 NATIVE = {
     "square_table": (1.2, 1.184, 1.2),
-    "dining_chair": (0.3615, 1.0, 0.5107),
     "pendant_lamp": (0.2463, 0.449, 0.2463),
-    "museum_plinth": (0.684, 1.8, 0.684),
-    "museum_vitrine": (0.8123, 0.9, 0.8123),
     "museum_bench": (0.418, 0.456, 1.5),
     "wall_shelf": (0.7012, 0.8, 0.2873),
     "jam_jar": (0.094, 0.12, 0.094),
@@ -131,25 +128,18 @@ marver = zones["marver"]
 blocks_swing("marver", marver["x"] - marver["halfX"], marver["x"] + marver["halfX"], marver["z"] - marver["halfZ"], marver["z"] + marver["halfZ"])
 for b in zones["bins"]:
     blocks_swing(b["id"], b["x"] - b["hx"], b["x"] + b["hx"], b["z"] - b["hz"], b["z"] + b["hz"])
-cart = zones["cart"]
-blocks_swing("cart", cart["x"] - cart["w"] / 2, cart["x"] + cart["w"] / 2, cart["z"] - cart["d"] / 2, cart["z"] + cart["d"] / 2)
 cold = zones["cold"]
 blocks_swing("cold", cold["x"] - cold["w"] / 2, cold["x"] + cold["w"] / 2, cold["z"] - cold["d"] / 2, cold["z"] + cold["d"] / 2)
-crate = zones["crate"]
-blocks_swing("crate", crate["x"] - crate["hx"], crate["x"] + crate["hx"], crate["z"] - crate["hz"], crate["z"] + crate["hz"])
-for iid in ("plinth_hero", "plinth_mid", "vitrine", "chair_marver", "chair_cold"):
-    box = boxes[iid]
-    blocks_swing(iid, box[0], box[1], box[4], box[5])
+rack = zones["pipeRack"]
+blocks_swing("pipeRack", rack["x"] - 0.4, rack["x"] + 0.4, rack["z"] - 0.2, rack["z"] + 0.4)
 
 # 0.9 m reach in front of every cullet bin.
 clear = zones["clearance"]
 obstacles = []
-for iid in ("gaffer_bench", "marver", "chair_marver", "chair_cold", "plinth_hero", "plinth_mid", "vitrine"):
+for iid in ("gaffer_bench", "marver"):
     box = boxes[iid]
     obstacles.append((iid, (box[0], box[1], box[4], box[5])))
-obstacles.append(("cart", (cart["x"] - cart["w"] / 2, cart["x"] + cart["w"] / 2, cart["z"] - cart["d"] / 2, cart["z"] + cart["d"] / 2)))
 obstacles.append(("cold", (cold["x"] - cold["w"] / 2, cold["x"] + cold["w"] / 2, cold["z"] - cold["d"] / 2, cold["z"] + cold["d"] / 2)))
-obstacles.append(("crate", (crate["x"] - crate["hx"], crate["x"] + crate["hx"], crate["z"] - crate["hz"], crate["z"] + crate["hz"])))
 for b in zones["bins"]:
     front = b["x"] + b["hx"]
     aisle = (front, front + clear, b["z"] - b["hz"], b["z"] + b["hz"])
@@ -157,12 +147,16 @@ for b in zones["bins"]:
         if xz_overlap(aisle, box):
             fails.append(f"{b['id']} reach aisle hits {name}")
 
-# Chairs face their work. Dining-chair local facing is +Z, so pi turns them toward -Z.
-for cid, work_z in (("chair_marver", marver["z"]), ("chair_cold", cold["z"])):
-    inst = instances[cid]
-    rot = inst["rotationY"]
-    check(abs(rot - math.pi) < 0.05, f"{cid} rotation {rot} does not face -Z")
-    check(inst["position"][2] > work_z + 0.4, f"{cid} is not on the near side of its work surface")
+check("dining_chair" not in LAYOUT["assets"], "dining chairs do not belong in the hot shop")
+check(all(i["kind"] != "dining_chair" for i in LAYOUT["instances"]), "a dining chair is still instanced")
+check(lehr["w"] >= 2.2 and lehr["h"] >= 1.05, "lehr should read as a long box")
+check("sillY" in lehr, "lehr sill missing")
+check(cold["w"] >= 1.4, "cold shop should be one long bench")
+bench_zone = zones["bench"]
+check(abs(bench_zone["x"] - f["x"]) < 0.02, "gaffer bench is off the furnace axis")
+check(abs(bench_zone["z"] - marver["z"]) < 0.02, "marver is not beside the bench at the same depth")
+check(marver["x"] > bench_zone["x"] + bench_zone["halfX"], "marver does not sit to the bench's right")
+check(abs(instances["marver"]["rotationY"]) < 0.05, "marver is yawed off the furnace axis")
 
 bench_inst = instances["gaffer_bench"]
 check(abs(bench_inst["rotationY"] - math.pi / 2) < 0.02, "gaffer bench long axis is not along X")
@@ -178,16 +172,30 @@ check(abs((mb[1] - mb[0]) / 2 - marver["halfX"]) < 0.03, "marver halfX drifted")
 check(abs((mb[3] - mb[2]) - marver["top"]) < 0.02, "marver top is not the table height")
 
 # Finished pieces sit on a real support, inset by their own radius.
+gallery = zones["gallery"]
 supports = {
-    "plinth_hero": boxes["plinth_hero"],
-    "plinth_mid": boxes["plinth_mid"],
-    "vitrine": boxes["vitrine"],
-    "crate": (crate["x"] - crate["hx"], crate["x"] + crate["hx"], 0, crate["h"], crate["z"] - crate["hz"], crate["z"] + crate["hz"]),
+    "gallery": (
+        gallery["x"] - gallery["w"] / 2,
+        gallery["x"] + gallery["w"] / 2,
+        0,
+        gallery["top"],
+        gallery["z"] - gallery["d"] / 2,
+        gallery["z"] + gallery["d"] / 2,
+    ),
     "cold": (cold["x"] - cold["w"] / 2, cold["x"] + cold["w"] / 2, 0, cold["h"], cold["z"] - cold["d"] / 2, cold["z"] + cold["d"] / 2),
     "marver": (marver["x"] - marver["halfX"], marver["x"] + marver["halfX"], 0, marver["top"], marver["z"] - marver["halfZ"], marver["z"] + marver["halfZ"]),
 }
 front = lehr["z"] + lehr["d"] / 2
-supports["lehr"] = (lehr["x"] - 0.6, lehr["x"] + 0.6, 0, lehr["trayY"], front + 0.02, front + 0.3)
+sill_z = front + 0.22
+supports["lehr"] = (
+    lehr["x"] - lehr["w"] * 0.31,
+    lehr["x"] + lehr["w"] * 0.31,
+    0,
+    lehr["sillY"] + 0.018,
+    sill_z - 0.11,
+    sill_z + 0.11,
+)
+check(sum(1 for p in zones["pieces"] if p["support"] == "gallery") >= 5, "gallery shelf should hold the finished glass")
 
 for piece in zones["pieces"]:
     sup = supports[piece["support"]]

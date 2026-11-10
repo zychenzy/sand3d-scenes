@@ -1,6 +1,6 @@
 # Artisan glass studio
 
-Cutaway hot shop: glory-hole furnace as the warm focal light, gaffer bench and marver, annealing lehr, cullet and batch storage with a clear reach aisle, and a finished-glass display. Toon is the default; `U` switches to unlit. Glass is opaque colour (dark mouth, light lip), not stacked transparent shells.
+Cutaway hot shop: glory-hole furnace as the warm focal light, gaffer bench and marver on the furnace axis, a long annealing lehr with a door, a blowpipe rack, cullet storage with a clear reach aisle, one cold bench with a grinder, and finished glass on a backlit wall shelf. Toon is the default; `U` switches to unlit. Glass is opaque colour (dark mouth, light lip), not stacked transparent shells.
 
 ## Open
 
