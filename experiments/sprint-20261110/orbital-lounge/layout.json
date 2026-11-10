@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "Orbital station communal lounge",
+    "units": "metres",
+    "style": "Toon hard",
+    "hull": "chamfered-octagon",
+    "room": { "width": 4.6, "depth": 4.9, "height": 2.6 },
+    "window": { "x": -0.05, "y": 1.42, "width": 1.85, "height": 1.05 },
+    "lockers": [
+      { "id": "L1", "z": -2.35, "open": false },
+      { "id": "L2", "z": -1.7, "open": false },
+      { "id": "L3", "z": -1.05, "open": false },
+      { "id": "L4", "z": -0.4, "open": true }
+    ],
+    "benches": [
+      { "id": "mess-port", "x": -1.42, "z": -0.9, "len": 1.45, "rot": 1.5708, "aim": [0, -0.9] },
+      { "id": "mess-stbd", "x": 1.42, "z": -0.9, "len": 1.45, "rot": -1.5708, "aim": [0, -0.9] },
+      { "id": "port-watch", "x": -0.05, "z": -2.28, "len": 1.45, "rot": 3.1416, "aim": [-0.05, -3.05] }
+    ],
+    "table": { "kind": "pedestal", "x": 0, "z": -0.9, "sx": 1.35, "sz": 0.95 },
+    "strips": [
+      { "id": "floor-port", "where": "floor", "x": -0.55, "y": 0.09, "z": -0.75, "len": 3.4, "axis": "z", "color": "#f4fbff" },
+      { "id": "floor-stbd", "where": "floor", "x": 0.55, "y": 0.09, "z": -0.75, "len": 3.4, "axis": "z", "color": "#f4fbff" },
+      { "id": "floor-aft", "where": "floor", "x": 0, "y": 0.09, "z": -2.05, "len": 2.2, "axis": "x", "color": "#f4fbff" },
+      { "id": "ceil-port", "where": "ceiling", "x": -0.38, "y": 2.2, "z": -0.8, "len": 3.0, "axis": "z", "color": "#f4fbff" },
+      { "id": "ceil-stbd", "where": "ceiling", "x": 0.38, "y": 2.2, "z": -0.8, "len": 3.0, "axis": "z", "color": "#f4fbff" }
+    ],
+    "notes": [
+      "Chamfered-octagon habitat section. Built-in benches and a rounded pedestal table. Lockers flush in the port wall. Earth is a sphere set behind the port."
+    ]
+  },
+  "assets": {},
+  "instances": [],
+  "shell": {
+    "floorColor": "#cfcbc3",
+    "wallColor": "#e7e4dc",
+    "ceilingColor": "#e7e4dc",
+    "clearColor": "#9aa3ab",
+    "fogColor": "#9aa3ab",
+    "fogNear": 36,
+    "fogFar": 70
+  },
+  "camera": {
+    "fov": 42,
+    "position": [4.15, 1.95, 3.05],
+    "target": [-0.15, 1.15, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-0.4, 2.25, 2.85],
+      "target": [0.15, 1.15, -1.25]
+    },
+    "close": {
+      "position": [1.55, 1.4, 0.55],
+      "target": [-0.15, 0.75, -1.05]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16053484, "ground": 9082784, "intensity": 0.48 },
+    "key": { "color": 16775914, "intensity": 0.42, "position": [3.2, 5.5, 3.4] },
+    "fill": { "color": 11717344, "intensity": 0.22, "position": [1.5, 2.2, 2] },
+    "points": [
+      { "color": 12965872, "intensity": 0.7, "position": [-0.05, 1.5, -2.55], "distance": 7.5, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "table close", "unlit"],
+    "must_read": [
+      "Hull cross-section is a chamfered octagon with padded panels.",
+      "Port shows a star field, a large earth limb, and a cool spill on the deck.",
+      "Seating is built-in benches around a rounded pedestal table.",
+      "Lockers are flush with the port wall. The deck is bare panel, with LED lines."
+    ]
+  }
+}
