@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Fashion design showroom",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.6, "depth": 6.8, "height": 3.18 },
+    "notes": [
+      "Three zones: back display court (mannequins, swatch bay, clothing rail), left fitting niche, front-right consultation table.",
+      "The stone inset in the middle is the circulation pause between those zones.",
+      "Chairs face the consultation table. Rails, garments, mannequins, niche and swatches are procedural; table, chairs, pendant and vase are catalog GLBs."
+    ]
+  },
+  "zones": {
+    "platform": { "x": -0.02, "z": -1.95, "w": 2.15, "d": 1.58, "h": 0.12 },
+    "dressForm": { "x": -0.48, "z": -2.22, "rot": 0.42 },
+    "mannequin": { "x": 0.46, "z": -1.68, "rot": -0.62 },
+    "swatch": { "x": -2.02, "y": 1.55, "w": 1.08, "h": 1.12 },
+    "railBack": { "x": 2.5, "z": -3.08, "rot": 0, "length": 2.25 },
+    "railSide": { "x": 3.42, "z": -1.85, "rot": 1.5708, "length": 1.75 },
+    "niche": { "x0": -4.24, "x1": -2.58, "z0": 0.38, "z1": 2.32, "h": 2.48 },
+    "bench": { "x": 1.05, "z": 0.62, "rot": -0.22 },
+    "consult": { "x": 1.72, "z": 2.02, "seat": 0.82 },
+    "vase": { "x": -3.82, "z": -2.72 }
+  },
+  "assets": {
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.75 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.5 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 }
+  },
+  "instances": [
+    { "id": "consult_table", "kind": "square_table", "position": [1.72, 0, 2.02], "rotationY": 0 },
+    { "id": "chair_client", "kind": "dining_chair", "position": [1.72, 0, 2.84], "rotationY": 3.1416 },
+    { "id": "chair_designer", "kind": "dining_chair", "position": [0.9, 0, 2.02], "rotationY": 1.5708 },
+    { "id": "pendant", "kind": "pendant_lamp", "position": [1.72, 2.55, 2.02], "rotationY": 0 },
+    { "id": "vase", "kind": "flowerpot", "position": [-3.82, 0, -2.72], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#d2c9bb",
+    "wallColor": "#f3eee6",
+    "woodColor": "#6d5344",
+    "ceilingColor": "#f7f3ec",
+    "clearColor": "#e7e2d8",
+    "fogColor": "#e7e2d8",
+    "fogNear": 20,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 42,
+    "position": [5.15, 2.48, 4.55],
+    "target": [-0.35, 1.05, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.7, 1.95, 3.35],
+      "target": [-2.6, 1.15, 0.85]
+    },
+    "close": {
+      "position": [2.15, 1.88, 0.55],
+      "target": [0.0, 1.12, -1.9]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774890, "ground": 12035214, "intensity": 0.68 },
+    "key": { "color": 16773596, "intensity": 1.28, "position": [6.4, 10.2, 5.2] },
+    "fill": { "color": 14016732, "intensity": 0.32, "position": [-5.2, 6.2, 1.8] },
+    "points": [
+      { "color": 16770756, "intensity": 0.55, "distance": 5.5, "position": [1.72, 2.35, 2.02] },
+      { "color": 16767152, "intensity": 0.7, "distance": 3.4, "position": [-3.5, 2.05, 1.35] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Dressed mannequin and dress form are the focal pair on a low plinth.",
+      "Clothing rails carry varied garments, not a cloned grid.",
+      "Fitting niche reads as a curtained volume with a mirror.",
+      "Two chairs face the consultation table.",
+      "The central stone inset stays clear."
+    ]
+  }
+}
