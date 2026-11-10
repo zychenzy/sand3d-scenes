@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Contemporary tea house",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.6, "depth": 7.4, "height": 3.16 },
+    "zones": {
+      "tasting": "Communal oak table on a walnut dais, six chairs facing the top, tasting flight and kettle.",
+      "preparation": "Shallow stone prep bar along the back-left, shelves, a paper andon, and one maker stool."
+    },
+    "notes": [
+      "Dining chair local +Z is the seat direction (backrest toward -Z). rotationY 0 faces +Z.",
+      "Window lattice is two offset wood screens over glass. Two freestanding screens stand on one line to the right, with a gap between them.",
+      "Dining-chair backs keep a single low rail. The upper rails are hidden and the posts are cut down to that rail.",
+      "The prep counter is the cafe L-bar with local Z scaled to 0.42 so the working depth is about 0.82 m.",
+      "Cup meshes are the cafe lidded cup, recolored per instance to ceramic glazes."
+    ]
+  },
+  "assets": {
+    "dining_table": { "glb": "assets/long_dining__fb2f8f65156e.glb", "targetHeight": 0.76 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "bar_counter": { "glb": "assets/bar_counter__532dcc87f672.glb", "targetHeight": 1.0 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.13 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "tray_napkin": { "glb": "assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.2 },
+    "straw_holder": { "glb": "assets/straw_holder__252f730f1a04.glb", "targetHeight": 0.18 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.26 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.48 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.76 },
+    "museum_bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "book_stand": { "glb": "assets/book_stand__fb784262748d.glb", "targetHeight": 0.92 }
+  },
+  "architecture": {
+    "dais": { "x": -1.62, "z": -0.72, "w": 3.64, "d": 2.8, "h": 0.09 },
+    "window": { "x0": 1.72, "x1": 4.42, "sill": 0.84, "head": 2.58 },
+    "table": [0.15, 0.09, 0.62],
+    "tableTop": 0.85,
+    "counter": [-2.55, -3.11],
+    "counterTop": 1.0
+  },
+  "instances": [
+    { "id": "tasting_table", "kind": "dining_table", "position": [0.15, 0.09, 0.62], "rotationY": 0 },
+    { "id": "c_back_l", "kind": "dining_chair", "position": [-0.38, 0.09, -0.28], "rotationY": 0 },
+    { "id": "c_back_r", "kind": "dining_chair", "position": [0.68, 0.09, -0.26], "rotationY": 0 },
+    { "id": "c_front_l", "kind": "dining_chair", "position": [-0.3, 0.09, 1.52], "rotationY": 3.1416 },
+    { "id": "c_front_r", "kind": "dining_chair", "position": [0.72, 0.09, 1.54], "rotationY": 3.1416 },
+    { "id": "c_east", "kind": "dining_chair", "position": [1.47, 0.09, 0.6], "rotationY": -1.5708 },
+    { "id": "c_west", "kind": "dining_chair", "position": [-1.17, 0.09, 0.66], "rotationY": 1.5708 },
+
+    { "id": "prep_counter", "kind": "bar_counter", "position": [-2.55, 0, -3.11], "rotationY": 0, "scale": [1, 1, 0.42] },
+    { "id": "maker_stool", "kind": "bar_stool", "position": [-2.15, 0, -2.38], "rotationY": 3.1416 },
+
+    { "id": "shelf_a", "kind": "wall_shelf", "position": [-3.95, 1.42, -3.42], "rotationY": 0 },
+    { "id": "shelf_b", "kind": "wall_shelf", "position": [-3.12, 1.42, -3.42], "rotationY": 0.04 },
+    { "id": "shelf_c", "kind": "wall_shelf", "position": [-2.18, 1.42, -3.4], "rotationY": -0.05 },
+    { "id": "jar_s1", "kind": "jam_jar", "position": [-4.05, 2.02, -3.38], "rotationY": 0.4, "tint": "#6e2e28" },
+    { "id": "thermos_s1", "kind": "thermos", "position": [-3.78, 1.6, -3.38], "rotationY": 0.2 },
+    { "id": "jar_s2", "kind": "jam_jar", "position": [-3.12, 1.6, -3.38], "rotationY": -0.3, "tint": "#c6a15a" },
+    { "id": "straw_s", "kind": "straw_holder", "position": [-2.95, 2.02, -3.36], "rotationY": 0.2, "tint": "#2c3330" },
+    { "id": "jar_s3", "kind": "jam_jar", "position": [-2.18, 2.06, -3.36], "rotationY": 0.8, "tint": "#24362c" },
+    { "id": "cup_s", "kind": "cup_mug", "position": [-2.38, 1.6, -3.36], "rotationY": 0.6, "tint": "#efe6d4" },
+
+    { "id": "pot_counter", "kind": "flowerpot", "position": [-4.05, 1.0, -3.08], "rotationY": 0.3, "tint": "#a85a3a" },
+    { "id": "thermos_c", "kind": "thermos", "position": [-3.55, 1.0, -3.18], "rotationY": 0.5 },
+    { "id": "jar_c1", "kind": "jam_jar", "position": [-3.22, 1.0, -2.98], "rotationY": 0.2, "tint": "#6e2e28" },
+    { "id": "jar_c2", "kind": "jam_jar", "position": [-3.02, 1.0, -3.2], "rotationY": -0.4, "tint": "#c6a15a" },
+    { "id": "tray_c", "kind": "tray_napkin", "position": [-2.55, 1.0, -3.08], "rotationY": 0.15 },
+    { "id": "straw_c", "kind": "straw_holder", "position": [-2.15, 1.0, -3.2], "rotationY": 0.4, "tint": "#3d4a3e" },
+    { "id": "cup_c1", "kind": "cup_mug", "position": [-1.72, 1.0, -3.0], "rotationY": 0.8, "tint": "#f3efe6" },
+    { "id": "cup_c2", "kind": "cup_mug", "position": [-1.48, 1.0, -3.18], "rotationY": -0.5, "tint": "#b7c7b0" },
+
+    { "id": "pend_t1", "kind": "pendant_lamp", "position": [-0.42, 2.58, 0.62], "rotationY": 0 },
+    { "id": "pend_t2", "kind": "pendant_lamp", "position": [0.78, 2.58, 0.62], "rotationY": 0.2 },
+    { "id": "pend_c", "kind": "pendant_lamp", "position": [-2.55, 2.56, -3.05], "rotationY": -0.1 },
+
+    { "id": "bench_window", "kind": "museum_bench", "position": [3.15, 0, -3.32], "rotationY": 1.5708, "scale": [1, 1, 1.38] },
+    { "id": "bench_wait", "kind": "museum_bench", "position": [-4.22, 0, 1.35], "rotationY": 0, "scale": [1, 1, 1.12] },
+
+    { "id": "pot_entry_l", "kind": "flowerpot", "position": [-3.85, 0, 2.55], "rotationY": 0.4, "tint": "#8d4a32" },
+    { "id": "pot_garden_a", "kind": "flowerpot", "position": [4.28, 0, -1.85], "rotationY": 0.2, "tint": "#5e6e58" },
+    { "id": "pot_garden_b", "kind": "flowerpot", "position": [4.15, 0, -0.15], "rotationY": -0.3, "tint": "#a85a3a" },
+    { "id": "pot_entry_r", "kind": "flowerpot", "position": [4.22, 0, 2.15], "rotationY": 0.5, "tint": "#3e4a40" },
+    { "id": "pot_bench", "kind": "flowerpot", "position": [3.85, 0.43, -3.28], "rotationY": 0.2, "tint": "#c4b49a" },
+    { "id": "pot_dais", "kind": "flowerpot", "position": [1.72, 0.09, -0.42], "rotationY": 0.6, "tint": "#7d8f72" },
+    { "id": "pot_sill", "kind": "flowerpot", "position": [1.95, 0.88, -3.22], "rotationY": -0.2, "tint": "#8d4a32" },
+    { "id": "pot_ledge", "kind": "flowerpot", "position": [-4.48, 1.2, 0.95], "rotationY": 0.3, "tint": "#6e5344" },
+
+    { "id": "thermos_t", "kind": "thermos", "position": [-0.55, 0.85, 0.78], "rotationY": 0.6 },
+    { "id": "jar_t1", "kind": "jam_jar", "position": [-0.28, 0.85, 0.42], "rotationY": 0.3, "tint": "#6e2e28" },
+    { "id": "jar_t2", "kind": "jam_jar", "position": [0.02, 0.85, 0.38], "rotationY": -0.5, "tint": "#c6a15a" },
+    { "id": "straw_t", "kind": "straw_holder", "position": [0.62, 0.85, 0.4], "rotationY": 0.7, "tint": "#2c3330" },
+    { "id": "cup_t1", "kind": "cup_mug", "position": [-0.22, 0.85, 1.0], "rotationY": 1.1, "tint": "#f0e6d4" },
+    { "id": "cup_t2", "kind": "cup_mug", "position": [0.55, 0.85, 1.02], "rotationY": -0.4, "tint": "#d8c4a4" },
+    { "id": "cup_t3", "kind": "cup_mug", "position": [0.42, 0.85, 0.28], "rotationY": 0.5, "tint": "#b7c4b0" },
+    { "id": "jar_display", "kind": "jam_jar", "position": [2.55, 0.45, -1.32], "rotationY": 0.3, "tint": "#6e2e28" },
+
+    { "id": "menu_stand", "kind": "book_stand", "position": [4.32, 0, -2.55], "rotationY": -0.6 }
+  ],
+  "shell": {
+    "floorColor": "#c4a36c",
+    "floorAlt": "#b5915c",
+    "wallColor": "#f3eee6",
+    "woodColor": "#6b442c",
+    "woodLight": "#c4925a",
+    "ceilingColor": "#f7f2ea",
+    "windowTint": "#d5e6dc",
+    "clearColor": "#e4ddd2",
+    "fogColor": "#e4ddd2",
+    "fogNear": 15,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 40,
+    "position": [5.15, 2.72, 4.65],
+    "target": [-0.15, 0.92, 0.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [3.7, 2.2, 3.25],
+      "target": [0.15, 1.05, -1.2]
+    },
+    "close": {
+      "position": [1.45, 1.78, 2.45],
+      "target": [0.05, 0.9, 0.48]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff3e4", "ground": "#6a5644", "intensity": 0.62 },
+    "key": { "color": "#fff6ea", "intensity": 1.18, "position": [4.6, 8.2, 5.0] },
+    "fill": { "color": "#c5d0e2", "intensity": 0.34, "position": [-4.8, 4.6, 1.8] },
+    "points": [
+      { "color": "#ffc27a", "intensity": 0.72, "position": [-0.42, 2.3, 0.62], "distance": 5.5 },
+      { "color": "#ffc27a", "intensity": 0.72, "position": [0.78, 2.3, 0.62], "distance": 5.5 },
+      { "color": "#ffd7a8", "intensity": 0.5, "position": [-2.55, 2.25, -3.05], "distance": 5.0 },
+      { "color": "#ffb15c", "intensity": 0.55, "position": [-1.08, 1.28, -3.09], "distance": 3.2 },
+      { "color": "#ffb45a", "intensity": 0.38, "position": [3.4, 2.05, -1.7], "distance": 4.2 },
+      { "color": "#ffe0b0", "intensity": 0.26, "position": [-1.35, 2.1, 0.15], "distance": 4.5 }
+    ]
+  }
+}
