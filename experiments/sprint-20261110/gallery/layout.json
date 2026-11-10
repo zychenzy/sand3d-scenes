@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "title": "Contemporary annex",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 14.0,
+      "depth": 9.6,
+      "height": 4.25
+    },
+    "notes": [
+      "Three connected rooms: west alcove, central nave, east sculpture court.",
+      "Long oak slab benches only — no sofas, armchairs, or dining chairs.",
+      "Benches run parallel to the wall they address. Alcove bench long axis is Z (faces the west wall). Nave and court benches are rotated 90° so the long axis runs along X (faces the back wall).",
+      "Circulation: enter from the open south, cross the stone threshold, pass the stele, then either the west alcove (around the pier or through its portal), the nave aisle around the central bench, or the east court through the wide portal. Sculpture plinths sit off those paths."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "museum_plinth": {
+      "glb": "../../../museum/assets/museum_plinth__6bce39246b2c.glb",
+      "targetHeight": 1.1
+    },
+    "museum_vitrine": {
+      "glb": "../../../museum/assets/museum_vitrine__bcc6c9850ce8.glb",
+      "targetHeight": 0.98
+    },
+    "display_bookcase": {
+      "glb": "../../../museum/assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 1.55
+    },
+    "flowerpot": {
+      "glb": "../../../museum/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.38
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_alcove",
+      "kind": "museum_bench",
+      "position": [-5.55, 0, -2.65],
+      "rotationY": 0,
+      "scale": [1, 1, 1.4],
+      "faces": "west wall field painting"
+    },
+    {
+      "id": "bench_nave",
+      "kind": "museum_bench",
+      "position": [-0.75, 0, -0.4],
+      "rotationY": 1.5708,
+      "scale": [1, 1, 1.55],
+      "faces": "nave back wall"
+    },
+    {
+      "id": "bench_court",
+      "kind": "museum_bench",
+      "position": [4.4, 0, 1.15],
+      "rotationY": 1.5708,
+      "scale": [1, 1, 1.42],
+      "faces": "court charcoal wall and ring"
+    },
+    {
+      "id": "plinth_totem",
+      "kind": "museum_plinth",
+      "position": [-5.15, 0, 0.5],
+      "rotationY": 0.15,
+      "targetHeight": 1.08
+    },
+    {
+      "id": "plinth_arc",
+      "kind": "museum_plinth",
+      "position": [-1.65, 0, -2.65],
+      "rotationY": -0.35,
+      "targetHeight": 1.15
+    },
+    {
+      "id": "plinth_figure",
+      "kind": "museum_plinth",
+      "position": [0.15, 0, -2.4],
+      "rotationY": 0.25,
+      "targetHeight": 1.02
+    },
+    {
+      "id": "plinth_ring",
+      "kind": "museum_plinth",
+      "position": [4.5, 0, -2.0],
+      "rotationY": 0.2,
+      "targetHeight": 1.12
+    },
+    {
+      "id": "vitrine",
+      "kind": "museum_vitrine",
+      "position": [5.65, 0, -0.55],
+      "rotationY": 0.45
+    },
+    {
+      "id": "catalog",
+      "kind": "display_bookcase",
+      "position": [-2.45, 0, 3.45],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "desk_lamp",
+      "kind": "library_lamp",
+      "position": [4.72, 0.99, 3.52],
+      "rotationY": -0.6
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [5.35, 0, 3.12],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#d2cbc0",
+    "floorAlcove": "#c8c1b5",
+    "floorCourt": "#b7afa3",
+    "thresholdColor": "#6e6962",
+    "wallColor": "#f3eee6",
+    "wallShade": "#e7e0d4",
+    "accentWall": "#2a2826",
+    "woodColor": "#6b4e36",
+    "metalColor": "#1c1c1c",
+    "ceilingColor": "#e6dfd4",
+    "clearColor": "#ddd6cc",
+    "fogColor": "#ddd6cc",
+    "fogNear": 22,
+    "fogFar": 48
+  },
+  "camera": {
+    "fov": 46,
+    "position": [8.4, 4.15, 8.7],
+    "target": [-1.0, 1.35, -1.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [7.9, 2.95, 4.45],
+      "target": [0.15, 1.35, -2.1]
+    },
+    "close": {
+      "position": [5.9, 1.68, 0.15],
+      "target": [4.45, 1.5, -2.15]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16775914,
+      "ground": 12958900,
+      "intensity": 0.48
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 0.72,
+      "position": [4.5, 11.5, 7.5]
+    },
+    "fill": {
+      "color": 12967132,
+      "intensity": 0.16,
+      "position": [-7, 5.5, 3]
+    },
+    "up": {
+      "color": 16775394,
+      "intensity": 0.72,
+      "position": [0, -8, 0.5]
+    },
+    "points": [
+      {
+        "color": 16771752,
+        "intensity": 1.1,
+        "position": [4.72, 1.28, 3.52],
+        "distance": 2.4,
+        "decay": 2
+      }
+    ],
+    "spots": [
+      {
+        "id": "spot_field",
+        "color": 16773570,
+        "intensity": 7.5,
+        "position": [-5.7, 3.84, -2.55],
+        "target": [-6.9, 1.85, -2.55],
+        "angle": 0.5,
+        "penumbra": 0.62,
+        "distance": 7.5,
+        "castShadow": true
+      },
+      {
+        "id": "spot_totem",
+        "color": 16773570,
+        "intensity": 5.5,
+        "position": [-5.15, 3.84, 0.05],
+        "target": [-5.15, 1.45, 0.5],
+        "angle": 0.4,
+        "penumbra": 0.55,
+        "distance": 6.5
+      },
+      {
+        "id": "spot_long",
+        "color": 16773570,
+        "intensity": 8,
+        "position": [-1.35, 3.84, -3.15],
+        "target": [-1.35, 1.9, -4.7],
+        "angle": 0.58,
+        "penumbra": 0.6,
+        "distance": 7.5,
+        "castShadow": true
+      },
+      {
+        "id": "spot_tall",
+        "color": 16773570,
+        "intensity": 6.5,
+        "position": [0.95, 3.84, -3.3],
+        "target": [0.95, 2.0, -4.7],
+        "angle": 0.4,
+        "penumbra": 0.55,
+        "distance": 7
+      },
+      {
+        "id": "spot_arc",
+        "color": 16773570,
+        "intensity": 5.5,
+        "position": [-1.65, 3.84, -1.65],
+        "target": [-1.65, 1.55, -2.65],
+        "angle": 0.42,
+        "penumbra": 0.5,
+        "distance": 6.5
+      },
+      {
+        "id": "spot_figure",
+        "color": 16773570,
+        "intensity": 5.5,
+        "position": [0.15, 3.84, -1.4],
+        "target": [0.15, 1.5, -2.4],
+        "angle": 0.38,
+        "penumbra": 0.5,
+        "distance": 6.5
+      },
+      {
+        "id": "spot_still",
+        "color": 16773570,
+        "intensity": 9,
+        "position": [4.6, 3.55, -2.75],
+        "target": [4.6, 1.95, -4.64],
+        "angle": 0.5,
+        "penumbra": 0.58,
+        "distance": 7,
+        "castShadow": true
+      },
+      {
+        "id": "spot_ring",
+        "color": 16773570,
+        "intensity": 7,
+        "position": [4.5, 3.55, -0.95],
+        "target": [4.5, 1.55, -2.0],
+        "angle": 0.45,
+        "penumbra": 0.5,
+        "distance": 6.5
+      }
+    ]
+  }
+}
