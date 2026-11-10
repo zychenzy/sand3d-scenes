@@ -5,7 +5,7 @@ One room, two jobs: guests sit down to taste, and someone prepares tea behind th
 ## Zones
 
 - **Tasting.** One long oak table on a low walnut dais. Six matching chairs face the top (two along each long side, one at each end). The host end is the west chair, toward the counter. A cloth runner, iron kettle, clay pot, caddies, and a loose cluster of bowls sit on the top — a flight, not a place-setting grid.
-- **Preparation.** The cafe L-counter, retinted to warm stone, runs along the back-left. Shelves, jars, a thermos, and a banker’s lamp sit on and above it. One stool faces the counter. Millwork continues along the left wall toward a backless waiting bench.
+- **Preparation.** The cafe counter mesh is scaled shallow (about 0.82 m deep) and retinted to a stone top over a dark base. Shelves, jars, a thermos, and a paper andon sit on and above it. One stool faces the counter. Millwork continues along the left wall toward a backless waiting bench.
 
 ## Architecture
 

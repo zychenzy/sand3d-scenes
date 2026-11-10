@@ -42,7 +42,42 @@ function tintNeutrals(root, darkHex, lightHex) {
   });
 }
 
+function shortenWorldUp(mesh, factor) {
+  const geo = mesh.geometry.clone();
+  const attr = geo.attributes.position;
+  mesh.updateWorldMatrix(true, false);
+  const world = mesh.matrixWorld;
+  const inv = world.clone().invert();
+  const v = new THREE.Vector3();
+  let minY = Infinity;
+  for (let i = 0; i < attr.count; i++) {
+    v.fromBufferAttribute(attr, i).applyMatrix4(world);
+    if (v.y < minY) minY = v.y;
+  }
+  for (let i = 0; i < attr.count; i++) {
+    v.fromBufferAttribute(attr, i).applyMatrix4(world);
+    v.y = minY + (v.y - minY) * factor;
+    v.applyMatrix4(inv);
+    attr.setXYZ(i, v.x, v.y, v.z);
+  }
+  attr.needsUpdate = true;
+  geo.computeBoundingBox();
+  geo.computeVertexNormals();
+  mesh.geometry = geo;
+}
+
+function simplifyChairBack(root) {
+  root.updateWorldMatrix(true, true);
+  root.traverse((obj) => {
+    if (!obj.isMesh) return;
+    const n = (obj.name || '').replaceAll('.', '');
+    if (n === 'back_bar001' || n === 'back_bar002' || n === 'back_bar003') obj.visible = false;
+    if (n === 'back_post' || n === 'back_post001') shortenWorldUp(obj, 0.58);
+  });
+}
+
 function onBeforeShade(kind, root) {
+  if (kind === 'dining_chair') simplifyChairBack(root);
   if (kind === 'bar_counter') {
     root.traverse((obj) => {
       if (!obj.isMesh || !obj.material) return;
@@ -57,10 +92,6 @@ function onBeforeShade(kind, root) {
   if (kind === 'pendant_lamp') {
     tagMaterials(root, (c) => near(c, '#ad6100', 0.18), '#ff9a3c', 0.72);
     tagMaterials(root, (c) => near(c, '#d9d9d9', 0.12), '#fff1d2', 1.05);
-  }
-  if (kind === 'library_lamp') {
-    tagMaterials(root, (c) => c.r > 0.9 && c.g > 0.9 && c.b > 0.9, '#fff6df', 1.15);
-    tagMaterials(root, (c) => near(c, '#399c3c', 0.16), '#7dce6a', 0.38);
   }
 }
 
@@ -195,10 +226,7 @@ function makeShell(layout) {
   addBox(g, cw, 0.08, cd, ceilMat, -0.15, H - 0.05, -D * 0.16);
   addBox(g, 3.6, 0.1, 0.08, wood, arch.table[0], H - 0.22, arch.table[2] - 0.42);
   addBox(g, 3.6, 0.1, 0.08, wood, arch.table[0], H - 0.22, arch.table[2] + 0.42);
-  addBox(g, 0.08, 0.1, 2.4, wood, arch.counter[0], H - 0.28, arch.counter[1]);
-  addBox(g, 0.1, H - 0.4, 0.1, wood, dais.x + 0.15, (H - 0.4) / 2, dais.z + 0.12);
-  addBox(g, 0.1, H - 0.4, 0.1, wood, dais.x + dais.w - 0.15, (H - 0.4) / 2, dais.z + 0.12);
-  addBox(g, dais.w - 0.2, 0.08, 0.08, wood, dx, H - 0.46, dais.z + 0.12);
+  addBox(g, 0.08, 0.1, 1.05, wood, arch.counter[0], H - 0.28, arch.counter[1]);
 
   return g;
 }
@@ -315,6 +343,20 @@ function menuBoard(g, x, y, z) {
   }
 }
 
+function andon(g, x, y, z) {
+  const wood = toon('#5a3d28');
+  const paper = toon('#f6d7a4', { emissive: '#ffb15c', emissiveIntensity: 0.95 });
+  addBox(g, 0.18, 0.018, 0.18, wood, x, y + 0.012, z);
+  addBox(g, 0.014, 0.32, 0.014, wood, x - 0.07, y + 0.17, z - 0.07);
+  addBox(g, 0.014, 0.32, 0.014, wood, x + 0.07, y + 0.17, z - 0.07);
+  addBox(g, 0.014, 0.32, 0.014, wood, x - 0.07, y + 0.17, z + 0.07);
+  addBox(g, 0.014, 0.32, 0.014, wood, x + 0.07, y + 0.17, z + 0.07);
+  addBox(g, 0.12, 0.24, 0.12, paper, x, y + 0.16, z);
+  addBox(g, 0.012, 0.2, 0.012, toon('#8a6238'), x, y + 0.16, z);
+  addBox(g, 0.19, 0.02, 0.19, wood, x, y + 0.33, z);
+  addCyl(g, 0.008, 0.008, 0.07, wood, x, y + 0.37, z, 6);
+}
+
 function lantern(g, x, y, z) {
   addCyl(g, 0.008, 0.008, 0.45, toon(INK), x, y + 0.28, z, 6);
   addCyl(g, 0.15, 0.16, 0.035, toon(FRAME), x, y, z, 12);
@@ -335,11 +377,10 @@ function makeProcedural(layout) {
   const { width: W } = layout.meta.room;
 
   screenPanel(g, {
-    x: 3.35, z: -2.05, w: 1.65, h: 1.55, kick: 0.16, paper: true, slatEvery: 0.11, postEvery: 0.28,
+    x: 2.4, z: -1.92, w: 1.4, h: 1.58, kick: 0.14, paper: true, slatEvery: 0.11, postEvery: 0.28,
   });
   screenPanel(g, {
-    x: 2.95, z: -1.22, w: 1.2, h: 1.35, rotY: 0.42, kick: 0.12, paper: false,
-    slatEvery: 0.09, postEvery: 0.24, frame: WOOD, slat: WOOD_LIT,
+    x: 4.15, z: -1.92, w: 1.0, h: 1.58, kick: 0.14, paper: true, slatEvery: 0.11, postEvery: 0.28,
   });
   screenPanel(g, {
     x: -W / 2 + 0.28, z: -0.15, w: 1.15, h: 1.7, rotY: Math.PI / 2, kick: 0.08,
@@ -389,7 +430,8 @@ function makeProcedural(layout) {
   addBox(g, 0.1, 0.008, 0.07, toon('#f3f6f4'), t[0] + 0.62, top + 0.008, t[2] - 0.16);
 
   const c = arch.counter;
-  kettle(g, c[0] - 0.85, arch.counterTop, c[1] + 0.12);
+  andon(g, -1.08, arch.counterTop, c[1] + 0.02);
+  kettle(g, c[0] - 0.85, arch.counterTop, c[1] + 0.08);
   addBox(g, 0.36, 0.02, 0.22, toon('#efe6d8'), c[0] - 0.15, arch.counterTop + 0.01, c[1] + 0.05);
   addCyl(g, 0.045, 0.05, 0.03, toon('#d8d2c8'), c[0] + 0.35, arch.counterTop + 0.02, c[1] - 0.15, 14);
   for (let i = 0; i < 4; i++) {

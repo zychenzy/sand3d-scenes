@@ -3,8 +3,9 @@
 The catalog has no gaiwan, tetsubin, or shoji lattice. Those are procedural: clay pot, iron kettle, paper lanterns, and the two wood screens. They are details around real furniture, not a stand-in for the table and counter.
 
 - The only cup mesh is a lidded takeaway cup (`cup_mug`). Instances are recolored to glazes. The lid and sleeve silhouette still read as a coffee cup up close.
-- The preparation counter is the cafe L-bar, scaled to a 1.0 m working height, so it is almost 4 m wide. Neutrals are shifted to stone. It is still an L-bar, not a tea cabinet.
+- The preparation counter is the cafe bar mesh, scaled to a 1.0 m working height and about 0.82 m deep (local Z 0.42). Neutrals are shifted to stone. The original L fillet is still in the mesh, but the plan is a shallow bar rather than the cafe footprint.
 - The maker’s seat is the cafe pedestal stool, darkened. There is no wood tea stool in the bakes.
+- Dining chairs are the wooden dining chair. The upper three back rails are hidden and the posts are cut down to a single low rail. There is no separate low-back chair in the catalog.
 - `tray_napkin` bakes as a small wooden stand, not a flat tray.
 - Jars stand in for tea caddies. There is no tin or canister with a tea label.
 - Flowerpots are simple tapered pots. Leaves and bamboo are procedural.

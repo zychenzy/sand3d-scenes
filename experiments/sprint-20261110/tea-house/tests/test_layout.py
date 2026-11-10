@@ -37,7 +37,10 @@ def test_zones_and_focal_pieces():
     assert kinds.count("dining_table") == 1
     assert kinds.count("bar_counter") == 1
     assert kinds.count("dining_chair") >= 6
-    assert "screenPanel" in scene and "teapot" in scene and "teaBowl" in scene
+    assert "screenPanel" in scene and "teapot" in scene and "teaBowl" in scene and "andon" in scene
+    assert "library_lamp" not in layout["assets"]
+    scale = by_id["prep_counter"].get("scale")
+    assert scale and scale[2] <= 0.5
 
 
 def test_inside_room():

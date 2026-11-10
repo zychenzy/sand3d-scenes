@@ -24,7 +24,6 @@ See `cafe/ATTRIBUTIONS.md` for Sketchfab links. Reused here:
 
 ## Other existing bakes
 
-- **Library / banker’s lamp** `library_lamp__06accd4e0351.glb` — objaverse `06accd4e0351480e8c4eb2f28fadaa35`, "Library Desk Lamp" by oriolescolarcano, CC-BY-4.0.
 - **Book stand** `book_stand__fb784262748d.glb` — objaverse `fb784262748d414fa1ff882a871a5af8`, by jba41662, CC-BY-4.0. Used as the entry lectern.
 - **Bench** `museum_bench__0025f9484fc6.glb` — objaverse `0025f9484fc64af29f59cf11a8beced7`, "Bench" by RookeyJerry, CC-BY-4.0.
 
