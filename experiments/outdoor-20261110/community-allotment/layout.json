@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "title": "Community allotment",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Working paths between narrow beds. Bean cane row is the focal silhouette; picnic corner is the social zone.",
+      "Mild morning sun from the south-east, one shadow-casting key light.",
+      "Dining-chair local forward is +Z at rotationY 0."
+    ]
+  },
+  "fence": { "minX": -7.28, "maxX": 7.45, "minZ": -6.55, "maxZ": 6.7 },
+  "assets": {
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.27
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "forward": "+Z"
+    }
+  },
+  "beds": [
+    { "id": "beans", "x": -6.05, "z": -3.4, "w": 1.65, "d": 6.3, "h": 0.24, "soil": 0.18, "crop": "beans", "stage": "climbing-mixed" },
+    { "id": "chard", "x": -3.25, "z": -3.4, "w": 1.35, "d": 5.6, "h": 0.3, "soil": 0.23, "crop": "chard", "stage": "mature-leaf" },
+    { "id": "salad", "x": -1.65, "z": -3.4, "w": 1.0, "d": 6.0, "h": 0.28, "soil": 0.21, "crop": "salad", "stage": "mixed-leaf" },
+    { "id": "brassica", "x": 1.15, "z": -3.65, "w": 1.5, "d": 5.3, "h": 0.3, "soil": 0.23, "crop": "brassica", "stage": "heading" },
+    { "id": "tomato", "x": 3.8, "z": -3.65, "w": 1.55, "d": 6.5, "h": 0.26, "soil": 0.2, "crop": "tomato", "stage": "fruiting", "also": "squash" },
+    { "id": "leek", "x": 6.35, "z": -3.65, "w": 0.9, "d": 6.5, "h": 0.22, "soil": 0.16, "crop": "leek", "stage": "standing" },
+    { "id": "raspberry", "x": 1.15, "z": -6.2, "w": 5.95, "d": 1.1, "h": 0.12, "soil": 0.09, "crop": "raspberry", "stage": "cane-summer" },
+    { "id": "seedling", "x": -5.5, "z": 4.45, "w": 1.4, "d": 1.5, "h": 0.24, "soil": 0.18, "crop": "seedling", "stage": "cotyledon" },
+    { "id": "roots", "x": -3.55, "z": 4.45, "w": 1.25, "d": 1.45, "h": 0.26, "soil": 0.2, "crop": "roots", "stage": "mid-root" }
+  ],
+  "paths": [
+    { "id": "spine", "x": -0.45, "z": -4.9, "w": 1.4, "d": 11.65, "surface": "chip", "worn": true, "tufts": true },
+    { "id": "cross", "x": -7.15, "z": 3.1, "w": 14.55, "d": 1.1, "surface": "chip", "worn": true, "tufts": true },
+    { "id": "westHead", "x": -7.15, "z": -3.45, "w": 1.1, "d": 6.55, "surface": "chip", "tufts": true },
+    { "id": "mid", "x": -4.4, "z": -3.4, "w": 1.15, "d": 6.5, "surface": "chip", "tufts": true },
+    { "id": "eastA", "x": 2.65, "z": -3.65, "w": 1.15, "d": 6.75, "surface": "chip" },
+    { "id": "eastB", "x": 5.35, "z": -3.65, "w": 1.0, "d": 6.75, "surface": "chip" },
+    { "id": "northPath", "x": 0.95, "z": -4.9, "w": 6.45, "d": 1.05, "surface": "chip" },
+    { "id": "apron", "x": -7.15, "z": -6.4, "w": 6.7, "d": 2.95, "surface": "gravel" },
+    { "id": "picnicPad", "x": 1.25, "z": 4.2, "w": 5.95, "d": 2.3, "surface": "gravel" }
+  ],
+  "structures": {
+    "shed": { "x": -6.95, "z": -6.22, "w": 1.8, "d": 1.42, "eave": 1.92, "ridge": 2.28 },
+    "doorClear": { "x": -6.55, "z": -4.8, "w": 0.95, "d": 0.85 },
+    "barrel": { "x": -4.72, "z": -5.4, "r": 0.3, "h": 0.88 },
+    "compost": [
+      { "x": -4.0, "z": -6.15, "w": 1.2, "d": 0.95, "h": 0.82, "fill": 0.72, "kind": "mature" },
+      { "x": -2.7, "z": -6.15, "w": 1.15, "d": 0.95, "h": 0.74, "fill": 0.38, "kind": "fresh" }
+    ],
+    "potting": { "x": -2.45, "z": -4.82, "w": 1.45, "d": 0.6, "h": 0.9, "top": 0.9, "rotY": 0 },
+    "coldFrame": { "x": -6.95, "z": 4.5, "w": 1.2, "d": 0.78 },
+    "picnic": {
+      "x": 4.05,
+      "z": 5.15,
+      "rotY": 0,
+      "length": 1.9,
+      "width": 0.7,
+      "top": 0.75,
+      "benchOffset": 0.58,
+      "benchFace": [0, 3.14159265]
+    },
+    "gate": { "hingeX": -0.45, "z": 6.7, "leaf": 1.05, "openDeg": 152, "opening": 1.4 },
+    "sign": { "x": 1.2, "y": 1.32, "z": 6.52, "w": 1.15, "h": 0.28, "rotY": 0 },
+    "tools": [
+      { "id": "spade", "x": -5.38, "z": -4.48, "yaw": 0.35, "lean": -0.28, "blade": "#c5ccd2" },
+      { "id": "fork", "x": -3.4, "z": -5.02, "yaw": -0.15, "lean": -0.26, "blade": "#b7bec4" }
+    ],
+    "can": { "x": -4.15, "z": -4.35 }
+  },
+  "instances": [
+    { "id": "pot_a", "kind": "flowerpot", "position": [-2.22, 0.9, -4.5], "rotationY": 0.2, "scale": 0.9 },
+    { "id": "pot_b", "kind": "flowerpot", "position": [-1.88, 0.9, -4.56], "rotationY": 1.1, "scale": 1.05 },
+    { "id": "pot_c", "kind": "flowerpot", "position": [-1.58, 0.9, -4.46], "rotationY": 0.4, "scale": 0.82 },
+    { "id": "mug", "kind": "cup_mug", "position": [4.38, 0.75, 5.02], "rotationY": 0.4 },
+    { "id": "chair_w", "kind": "dining_chair", "position": [2.72, 0, 5.15], "rotationY": 1.570796 },
+    { "id": "chair_e", "kind": "dining_chair", "position": [5.38, 0, 5.15], "rotationY": -1.570796 }
+  ],
+  "background": {
+    "houses": [
+      { "id": "semi-a", "x": -11.4, "z": -16.6, "w": 6.4, "d": 4.0, "eave": 4.4, "ridge": 6.1, "wall": "#b7a89c", "roof": "#6a5e5a" },
+      { "id": "semi-b", "x": 4.6, "z": -17.2, "w": 5.6, "d": 3.7, "eave": 4.2, "ridge": 5.85, "wall": "#c4b6aa", "roof": "#5e6568" }
+    ],
+    "apple": { "id": "apple", "x": -8.6, "z": 3.6 },
+    "column": { "id": "column", "x": 8.7, "z": -1.8 },
+    "broad": { "id": "broad", "x": -0.6, "z": -11.2 },
+    "neighbor": {
+      "bed": { "id": "neighbor-plot", "x": 7.75, "z": -0.4, "w": 1.25, "d": 2.6, "h": 0.22, "soil": 0.16, "crop": "chard", "stage": "mature-leaf" },
+      "shed": { "x": 8.5, "z": -5.4, "w": 1.25, "d": 1.05, "h": 1.7 }
+    }
+  },
+  "shell": {
+    "clearColor": "#d5e4f2",
+    "fogColor": "#d5e4f2",
+    "fogNear": 22,
+    "fogFar": 50
+  },
+  "camera": {
+    "fov": 42,
+    "position": [9.2, 8.4, 13.2],
+    "target": [-0.8, 0.55, -1.0]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-10.2, 3.8, 8.6],
+      "target": [-1.8, 0.9, -1.2]
+    },
+    "close": {
+      "position": [-3.82, 1.28, 1.45],
+      "target": [-5.2, 0.65, -0.7]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774116, "ground": 6978130, "intensity": 0.6 },
+    "key": {
+      "color": 16769720,
+      "intensity": 1.18,
+      "position": [13.5, 7.2, 8.4],
+      "target": [-0.4, 0.4, -0.6],
+      "shadow": { "size": 18, "near": 2, "far": 42, "map": 4096, "bias": -0.00018, "normalBias": 0.012 }
+    },
+    "fill": { "color": 12965094, "intensity": 0.32, "position": [-10, 6.5, -3] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Raised beds of different crops and stages beside paths a person can walk.",
+      "Climbing-bean trellis, tool shed, rain barrel, compost, potting bench, picnic table.",
+      "Morning light, one shadow direction, no repeated pot field."
+    ]
+  }
+}
