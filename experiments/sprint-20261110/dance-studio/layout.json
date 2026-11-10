@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "title": "Dance rehearsal studio",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 11.4,
+      "depth": 8.8,
+      "height": 3.9
+    },
+    "notes": [
+      "Cutaway rehearsal hall. Focal wall is the mirrored barre wall; the floor center stays clear.",
+      "Foreground left is a lower changing bay. Stage right holds the playback deck, a monitor, and the sprung-floor section.",
+      "Catalog has no barre, mirror, or sprung floor, so those are procedural. Speakers, bench, shelf, pendants, piano bench, mug, and pot are shared GLBs."
+    ]
+  },
+  "architecture": {
+    "mirror": { "x0": -2.45, "x1": 4.15, "y0": 0.22, "y1": 2.58, "z": -4.3 },
+    "barre": { "x0": -2.25, "x1": 3.95, "z": -3.98, "heights": [1.08, 0.76] },
+    "sideBarre": { "z0": -2.48, "z1": -0.18, "x": -5.34, "y": 1.08 },
+    "sprungCutX": 4.55,
+    "floor": { "z0": -4.18, "z1": 4.12, "x0": -5.48 },
+    "changing": {
+      "xPart": -3.42,
+      "zBack": 1.82,
+      "zFront": 4.26,
+      "doorZ0": 2.5,
+      "doorZ1": 3.46,
+      "ceilingY": 2.5
+    },
+    "storage": {
+      "x": -5.38,
+      "z0": -0.08,
+      "d": 0.4,
+      "h": 0.76,
+      "widths": [0.34, 0.28, 0.42, 0.3, 0.36]
+    },
+    "piano": { "x": -5.2, "z": -3.55 },
+    "soundDeck": { "x": 4.08, "z": -3.18, "w": 0.56, "d": 0.38, "h": 0.64 },
+    "speakers": {
+      "left": { "x": -3.3, "z": -2.7, "y": 1.0, "rotationY": 1.06 },
+      "right": { "x": 3.2, "z": -2.42, "y": 0.99, "rotationY": -0.72 }
+    },
+    "window": { "z0": 0.25, "z1": 1.45, "y0": 1.88, "y1": 2.72 },
+    "clearRehearsal": { "x0": -1.15, "x1": 2.7, "z0": -1.7, "z1": 1.55 }
+  },
+  "assets": {
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.62,
+      "prepRotation": [0, 0, 1.5707963]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.72
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.92
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.5
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.15
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.24
+    }
+  },
+  "instances": [
+    {
+      "id": "speaker_l",
+      "kind": "speaker",
+      "position": [-3.3, 1.0, -2.7],
+      "rotationY": 1.06
+    },
+    {
+      "id": "speaker_r",
+      "kind": "speaker",
+      "position": [3.2, 0.99, -2.42],
+      "rotationY": -0.72
+    },
+    {
+      "id": "bench_change",
+      "kind": "museum_bench",
+      "position": [-5.24, 0.014, 3.22],
+      "rotationY": 0
+    },
+    {
+      "id": "shelf_change",
+      "kind": "wall_shelf",
+      "position": [-4.7, 1.08, 2.04],
+      "rotationY": 0
+    },
+    {
+      "id": "piano_bench",
+      "kind": "piano_bench",
+      "position": [-4.32, 0, -3.55],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "pendant_a",
+      "kind": "pendant_lamp",
+      "position": [0.15, 2.89, -0.7]
+    },
+    {
+      "id": "pendant_b",
+      "kind": "pendant_lamp",
+      "position": [2.05, 2.89, 0.35]
+    },
+    {
+      "id": "pendant_c",
+      "kind": "pendant_lamp",
+      "position": [-1.25, 2.89, 0.85]
+    },
+    {
+      "id": "mug_deck",
+      "kind": "cup_mug",
+      "position": [4.22, 0.66, -3.18]
+    },
+    {
+      "id": "mug_cubby",
+      "kind": "cup_mug",
+      "position": [-5.36, 0.1, 1.38]
+    },
+    {
+      "id": "pot_change",
+      "kind": "flowerpot",
+      "position": [-4.72, 0, 4.0],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#c9964e",
+    "wallColor": "#f3eee6",
+    "woodColor": "#6b4632",
+    "ceilingColor": "#f7f3ec",
+    "accentColor": "#c57d86",
+    "clearColor": "#e6dfd4",
+    "fogColor": "#e6dfd4",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 48,
+    "position": [6.15, 2.35, 6.35],
+    "target": [0.2, 1.15, -0.9]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-1.6, 2.55, 7.15],
+      "target": [0.55, 1.15, -1.7]
+    },
+    "close": {
+      "position": [1.05, 1.5, -1.25],
+      "target": [0.7, 1.08, -3.95]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16773092, "ground": 9069124, "intensity": 0.46 },
+    "key": { "color": 16774376, "intensity": 1.7, "position": [8, 12, 9] },
+    "fill": { "color": 15784128, "intensity": 0.4, "position": [-7, 6, 2] },
+    "points": [
+      { "color": 16765600, "intensity": 1.15, "distance": 7.5, "decay": 2, "position": [0.15, 2.78, -0.7] },
+      { "color": 16765600, "intensity": 1.05, "distance": 7.5, "decay": 2, "position": [2.05, 2.78, 0.35] },
+      { "color": 16765600, "intensity": 0.9, "distance": 6.5, "decay": 2, "position": [-1.25, 2.78, 0.85] },
+      { "color": 16770756, "intensity": 0.55, "distance": 4.2, "decay": 2, "position": [-4.7, 1.7, -3.4] },
+      { "color": 16769920, "intensity": 0.38, "distance": 5.5, "decay": 2, "position": [0.85, 3.25, -3.7] },
+      { "color": 16764080, "intensity": 0.42, "distance": 4.2, "decay": 2, "position": [-4.4, 2.15, 3.3] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "barre close", "unlit"],
+    "must_read": [
+      "Mirrored barre wall is the focal point and the rehearsal floor in front of it is clear.",
+      "A sprung timber section is visible along the open right edge.",
+      "Changing bay, shoe cubbies, and a playback deck with two monitors are separate zones."
+    ]
+  }
+}
