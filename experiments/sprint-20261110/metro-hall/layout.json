@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "North Quay metro concourse",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 15.0, "depth": 14.0, "height": 4.8 },
+    "zones": ["unpaid concourse", "paid hall"],
+    "focal": "Route map on the paid wall, framed by tiled columns and seen through the ticket gates",
+    "notes": [
+      "Unpaid zone (+Z): street stair down the left wall, wayfinding totem, ticket machines, queue rail, waiting bench facing the departures TV.",
+      "Gate line splits unpaid from paid. One lane is open, one is closed (red), one is the wide accessible aisle.",
+      "Paid zone (-Z): route map, clock and NORTH QUAY frieze, two tiled columns, bench facing the map, stair down to platforms.",
+      "Museum benches are backless. Long axis is model Z. rotationY π/2 puts that length on world X so a side faces ±Z.",
+      "The TV panel is thin in local X (faces ±X at rotation 0). rotationY -π/2 turns the face toward +Z, at the bench_info.",
+      "Ceiling is a coffer grid with a repeating lamp run and a lower bright bridge over the gates. The street portal breaks the grid."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "faces": "long axis model +Z; rotationY π/2 faces the seat sides ±world Z"
+    },
+    "flowerpot": {
+      "glb": "../../../museum/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34
+    },
+    "tv": {
+      "glb": "../../../ktv/assets/tv__7a1ea89eeb48.glb",
+      "targetHeight": 1.02,
+      "faces": "panel is thin in local X; rotationY -π/2 turns the screen toward +Z"
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_map",
+      "kind": "museum_bench",
+      "position": [0.1, 0, -3.2],
+      "rotationY": 1.5708,
+      "note": "Paid hall, side faces the route map at -Z"
+    },
+    {
+      "id": "bench_stair",
+      "kind": "museum_bench",
+      "position": [-2.35, 0, 4.45],
+      "rotationY": 1.5708,
+      "note": "Unpaid entrance, side faces the gate line at -Z"
+    },
+    {
+      "id": "bench_info",
+      "kind": "museum_bench",
+      "position": [4.55, 0, 3.65],
+      "rotationY": 1.5708,
+      "note": "Faces the departures TV at smaller Z"
+    },
+    {
+      "id": "pot_left",
+      "kind": "flowerpot",
+      "position": [-2.15, 0, -3.55],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pot_right",
+      "kind": "flowerpot",
+      "position": [2.25, 0, -3.55],
+      "rotationY": -0.5
+    },
+    {
+      "id": "info_screen",
+      "kind": "tv",
+      "position": [4.55, 0.36, 2.15],
+      "rotationY": -1.5708
+    }
+  ],
+  "shell": {
+    "floorColor": "#d4cfc3",
+    "wallColor": "#e7e2d6",
+    "dadoColor": "#f3efe6",
+    "bandColor": "#1c6f78",
+    "brassColor": "#c6a15a",
+    "skirtingColor": "#6a645c",
+    "ceilingColor": "#c5ced6",
+    "beamColor": "#7e8b96",
+    "metalColor": "#5c666e",
+    "metalDark": "#1c2228",
+    "concreteColor": "#c9c3b6",
+    "safetyColor": "#e2b423",
+    "lampColor": "#fff1cf",
+    "stoneColor": "#b7b1a6",
+    "runnerColor": "#b3ab9e",
+    "clearColor": "#d5dde4",
+    "fogColor": "#d5dde4",
+    "fogNear": 26,
+    "fogFar": 52
+  },
+  "camera": {
+    "fov": 40,
+    "position": [9.1, 4.9, 10.0],
+    "target": [-0.4, 1.55, -1.0]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [0.85, 3.25, -5.95],
+      "target": [-2.2, 1.15, 2.4]
+    },
+    "close": {
+      "position": [2.85, 1.55, 0.72],
+      "target": [-0.35, 1.05, -1.65]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15987962, "ground": 9274486, "intensity": 0.48 },
+    "key": { "color": 16773572, "intensity": 1.12, "position": [10, 15, 11] },
+    "fill": { "color": 12968934, "intensity": 0.3, "position": [-8, 6, 3] },
+    "shadow": { "left": -14, "right": 14, "top": 14, "bottom": -14, "near": 2, "far": 46, "bias": -0.0007, "normalBias": 0.045 },
+    "points": [
+      { "color": 16772818, "intensity": 0.62, "distance": 8, "position": [0.0, 3.25, -1.55] },
+      { "color": 16772818, "intensity": 0.34, "distance": 8, "position": [0.1, 4.1, -4.7] },
+      { "color": 16772818, "intensity": 0.28, "distance": 7, "position": [-1.2, 4.05, 1.3] },
+      { "color": 16772818, "intensity": 0.26, "distance": 7, "position": [2.3, 4.05, 3.0] },
+      { "color": 16772818, "intensity": 0.24, "distance": 6.5, "position": [-4.5, 4.0, 4.5] },
+      { "color": 16772818, "intensity": 0.22, "distance": 6, "position": [5.2, 3.8, -5.1] }
+    ]
+  }
+}
