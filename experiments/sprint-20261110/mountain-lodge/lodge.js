@@ -36,16 +36,6 @@ function decoratePrototype(kind, root) {
         src.emissiveIntensity = 0.9;
       }
     });
-  } else if (kind === 'library_lamp') {
-    editSourceMaterials(root, (src, obj) => {
-      const n = `${obj.name || ''} ${src.name || ''}`.toLowerCase();
-      if (n.includes('light') || n.includes('tube') || n.includes('bulb')) {
-        src.color.set('#fff6d8');
-        if (!src.emissive) src.emissive = new THREE.Color();
-        src.emissive.set('#ffd18a');
-        src.emissiveIntensity = 0.85;
-      }
-    });
   }
 }
 
@@ -216,10 +206,6 @@ function rugs(g, m, s) {
   addBox(g, 2.8, 0.01, 2.35, toon(s.nookRug), -3.15, 0.028, 1.55);
   addBox(g, 2.35, 0.008, 0.045, toon('#d7c4a4'), -3.15, 0.036, 1.55 - 1.0);
   addBox(g, 2.35, 0.008, 0.045, toon('#d7c4a4'), -3.15, 0.036, 1.55 + 1.0);
-
-  // Entry mat at the cutaway threshold.
-  addBox(g, 1.15, 0.015, 0.62, toon('#4a3428'), 1.35, 0.02, 2.85);
-  addBox(g, 0.95, 0.01, 0.42, toon('#6a5344'), 1.35, 0.03, 2.85);
 }
 
 function sheepskin(g, x, z, rx, rz) {
@@ -283,17 +269,20 @@ function fireplace(g, m, s) {
 
   // Logs, andirons, flames.
   const logMat = toon('#3a2a1c');
-  const ember = toon('#ff6a28', { emissive: '#ff4a10', emissiveIntensity: 0.85, noReceive: true, noCast: true });
-  const flame = toon('#ffb15a', { emissive: '#ff7a22', emissiveIntensity: 0.95, noReceive: true, noCast: true });
-  const flameHot = toon('#ffe08a', { emissive: '#ffb040', emissiveIntensity: 1, noReceive: true, noCast: true });
+  const ember = toon('#ff6a28', { emissive: '#ff4a10', emissiveIntensity: 1.15, noReceive: true, noCast: true });
+  const flame = toon('#ffb15a', { emissive: '#ff7a22', emissiveIntensity: 1.15, noReceive: true, noCast: true });
+  const flameHot = toon('#ffe08a', { emissive: '#ffb040', emissiveIntensity: 1.25, noReceive: true, noCast: true });
   for (const [lx, ly] of [[-0.18, 0.28], [0.16, 0.3], [0.0, 0.42]]) {
     const log = addCyl(g, 0.07, 0.08, 0.55, logMat, cx + lx, ly, front - 0.02, 8);
     log.rotation.z = Math.PI / 2;
   }
-  addCyl(g, 0.04, 0.045, 0.2, ember, cx, 0.34, front + 0.02, 8);
-  addCone(g, 0.16, 0.38, flame, cx - 0.06, 0.62, front + 0.02, 7);
-  addCone(g, 0.1, 0.28, flameHot, cx + 0.08, 0.7, front + 0.04, 6);
-  addCone(g, 0.07, 0.18, flameHot, cx - 0.12, 0.78, front + 0.01, 6);
+  addBox(g, 0.62, 0.1, 0.28, ember, cx, 0.38, front + 0.02);
+  addCyl(g, 0.1, 0.12, 0.08, ember, cx - 0.12, 0.4, front + 0.06, 8);
+  addCyl(g, 0.08, 0.1, 0.07, ember, cx + 0.16, 0.4, front + 0.05, 8);
+  addCone(g, 0.26, 0.62, flame, cx - 0.08, 0.68, front + 0.04, 8);
+  addCone(g, 0.2, 0.5, flameHot, cx + 0.12, 0.72, front + 0.06, 7);
+  addCone(g, 0.14, 0.4, flameHot, cx - 0.02, 0.9, front + 0.05, 7);
+  addCone(g, 0.08, 0.22, flameHot, cx + 0.18, 0.58, front + 0.07, 6);
   andiron(g, cx - 0.32, front + 0.08);
   andiron(g, cx + 0.32, front + 0.08);
 
@@ -421,8 +410,19 @@ function communalTable(g, m, s) {
   addBox(g, 1.9, 0.06, 0.08, dark, bx, 0.16, bz);
 }
 
-function nook(g, m, s, layout) {
-  const lamp = layout.instances.find((i) => i.id === 'reading_lamp');
+function readingLamp(g, x, y, z) {
+  const brass = toon('#7a4e2c');
+  const shade = toon('#e8c07a', { emissive: '#ffb15a', emissiveIntensity: 0.55, noCast: true });
+  const bulb = toon('#fff3cc', { emissive: '#ffc56a', emissiveIntensity: 1, noCast: true, noReceive: true });
+  addCyl(g, 0.1, 0.11, 0.03, brass, x, y + 0.02, z, 12);
+  addCyl(g, 0.016, 0.02, 0.26, brass, x, y + 0.16, z, 8);
+  const neck = addCyl(g, 0.012, 0.014, 0.16, brass, x + 0.05, y + 0.34, z, 6);
+  neck.rotation.z = -0.7;
+  addCyl(g, 0.1, 0.14, 0.11, shade, x + 0.11, y + 0.42, z, 14);
+  addCyl(g, 0.045, 0.05, 0.04, bulb, x + 0.11, y + 0.4, z, 8);
+}
+
+function nook(g, m, s) {
   const wood = toon(s.woodDark);
   const top = toon(s.woodLight);
   // Sill pad over the two piano benches, plus a sheepskin and an open book.
@@ -433,15 +433,14 @@ function nook(g, m, s, layout) {
   bookStack(g, -4.85, 0.58, 1.35, 4, 0.16);
 
   // Lamp table on the floor between the window seat and the sofa.
-  if (lamp) {
-    const lx = lamp.position[0];
-    const lz = lamp.position[2];
-    const topY = lamp.position[1];
-    addBox(g, 0.48, 0.06, 0.4, top, lx, topY - 0.03, lz);
-    for (const [dx, dz] of [[-0.18, -0.14], [0.18, -0.14], [-0.18, 0.14], [0.18, 0.14]]) {
-      addBox(g, 0.05, topY - 0.06, 0.05, wood, lx + dx, (topY - 0.06) / 2, lz + dz);
-    }
+  const lx = -4.55;
+  const lz = 1.85;
+  const topY = 0.62;
+  addBox(g, 0.48, 0.06, 0.4, top, lx, topY - 0.03, lz);
+  for (const [dx, dz] of [[-0.18, -0.14], [0.18, -0.14], [-0.18, 0.14], [0.18, 0.14]]) {
+    addBox(g, 0.05, topY - 0.06, 0.05, wood, lx + dx, (topY - 0.06) / 2, lz + dz);
   }
+  readingLamp(g, lx, topY, lz);
 
   // Throw across the sofa seat, coffee-table books, mug is a GLB.
   addBox(g, 0.55, 0.05, 0.38, toon('#6e2430'), -3.05, 0.48, 2.05);

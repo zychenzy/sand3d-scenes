@@ -90,9 +90,8 @@ def main():
     if dot < 0.45:
         errors += fail(f"sofa does not face the fireplace (dot {dot:.2f})")
 
-    lamp = next(i for i in LAYOUT["instances"] if i["id"] == "reading_lamp")
-    if lamp["position"][1] < 0.45:
-        errors += fail("reading lamp is on the floor")
+    if "library_lamp" in LAYOUT["assets"] or "readingLamp" not in (ROOT / "lodge.js").read_text():
+        errors += fail("reading nook should use the procedural fabric-shade lamp")
 
     html = (ROOT / "index.html").read_text()
     js = (ROOT / "lodge.js").read_text() + (ROOT / "scene_lib.js").read_text()

@@ -21,7 +21,6 @@
   "assets": {
     "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
     "sofa_solid": { "glb": "assets/sofa_solid__2172bb7e3b99.glb", "targetHeight": 0.88 },
-    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
     "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.62 },
     "coffee_table": { "glb": "assets/coffee_table__29a509d8be0b.glb", "targetHeight": 0.3 },
     "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
@@ -74,12 +73,6 @@
       "kind": "coffee_table",
       "position": [-2.05, 0, 1.72],
       "rotationY": 0.12
-    },
-    {
-      "id": "reading_lamp",
-      "kind": "library_lamp",
-      "position": [-4.55, 0.62, 1.85],
-      "rotationY": 0.4
     },
     {
       "id": "pend_l",
@@ -207,7 +200,8 @@
       "target": [0.4, 0.6, 1.0]
     },
     "points": [
-      { "color": "#ff8a3c", "intensity": 1.05, "distance": 6.5, "decay": 2, "position": [-1.75, 0.85, -2.55] },
+      { "color": "#ff7a2e", "intensity": 4.6, "distance": 4.5, "decay": 2, "position": [-1.75, 0.78, -2.4] },
+      { "color": "#ffb06a", "intensity": 2.6, "distance": 8.5, "decay": 2, "position": [-0.85, 1.05, -1.15] },
       { "color": "#c3dcff", "intensity": 1.25, "distance": 6.2, "decay": 2, "position": [-5.15, 1.85, 1.05] },
       { "color": "#ffd2a4", "intensity": 0.75, "distance": 3.8, "decay": 2, "position": [-4.45, 1.25, 1.85] },
       { "color": "#ffe0b8", "intensity": 0.5, "distance": 3.4, "decay": 2, "position": [-0.85, 2.15, 0.05] },
@@ -217,7 +211,7 @@
     "spots": [
       {
         "color": "#ff7a32",
-        "intensity": 2.8,
+        "intensity": 5.5,
         "distance": 8.5,
         "angle": 0.82,
         "penumbra": 0.5,

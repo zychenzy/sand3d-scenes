@@ -4,7 +4,6 @@ GLBs are symlinks to existing sand3d bakes in this repo (not recopied). Programs
 
 - **dining_chair** `dining_chair__5e1f7a56da4a.glb` — Wooden Dining Chair, objaverse `5e1f7a56da4a4dab8ad64efd46ed9d9f`, by vikki0612, CC-BY-4.0. Symlink to `restaurant/assets/`.
 - **sofa_solid** `sofa_solid__2172bb7e3b99.glb` — Basic Red Couch, objaverse `2172bb7e3b994189b4b654b258fa03d6`, by bearsareaware, CC-BY-4.0. Symlink to `ktv/assets/`. Tinted here to cognac leather.
-- **library_lamp** `library_lamp__06accd4e0351.glb` — Library Desk Lamp, objaverse `06accd4e0351480e8c4eb2f28fadaa35`, by oriolescolarcano, CC-BY-4.0. Symlink to `library/assets/`.
 - **pendant_lamp** `pendant_lamp__1b528c6ab04e.glb` — Modern ceiling lamp, by krolzuzannapl, https://sketchfab.com/3d-models/1b528c6ab04e42f990105db142cd71bd, CC-BY-4.0. Symlink to `cafe/assets/`.
 - **coffee_table** `coffee_table__29a509d8be0b.glb` — Coffee Table, objaverse `29a509d8be0b448c8f0332e6102a0d6f`, by DrewA, CC-BY-4.0. Symlink to `ktv/assets/`.
 - **cup_mug** `cup_mug__6da6f7f87b8d.glb` — Stylized Coffee Cup, by n30hrtgdv, https://sketchfab.com/3d-models/6da6f7f87b8d4706a563331657d6b5c3, CC-BY-4.0. Symlink to `cafe/assets/`.
@@ -17,4 +16,4 @@ GLBs are symlinks to existing sand3d bakes in this repo (not recopied). Programs
 
 Three.js r170 is the repo's vendored build, symlinked from `library/vendor/`.
 
-Procedural (no external model): stone fireplace, hearth, mantel, flames, beams, trestle table, bench, rugs, coats, boots, skis, book wall, window, exterior snow and pines.
+Procedural (no external model): stone fireplace, hearth, mantel, flames, warm fabric-shade reading lamp, beams, trestle table, bench, rugs, coats, boots, skis, book wall, window, exterior snow and pines.
