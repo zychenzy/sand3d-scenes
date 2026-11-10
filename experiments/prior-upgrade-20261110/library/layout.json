@@ -1,0 +1,697 @@
+{
+  "meta": {
+    "title": "Library reading room \u2014 prior-upgrade 20261110",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 11.0,
+      "depth": 8.4,
+      "height": 4.15
+    },
+    "notes": [
+      "Tall built-in wooden stacks (procedural carcass + packed books), not a white display-case grid.",
+      "Two long communal reading tables; chairs face the table. No empty school-desk grid.",
+      "Catalog / staff zone: one study desk + lectern + card catalog. Circulation aisle down the runner.",
+      "Banker lamps: muted forest shade + warm amber glow (not neon green)."
+    ]
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.22
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.15
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55
+    },
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76
+    }
+  },
+  "instances": [
+    {
+      "id": "rear_s0",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0,
+        -2.28
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "rear_n0",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0,
+        -0.72
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "front_s0",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0,
+        0.94
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "front_n0",
+      "kind": "dining_chair",
+      "position": [
+        -2.15,
+        0,
+        2.5
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "rear_s1",
+      "kind": "dining_chair",
+      "position": [
+        -0.72,
+        0,
+        -2.28
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "rear_n1",
+      "kind": "dining_chair",
+      "position": [
+        -0.72,
+        0,
+        -0.72
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "front_s1",
+      "kind": "dining_chair",
+      "position": [
+        -0.72,
+        0,
+        0.94
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "front_n1",
+      "kind": "dining_chair",
+      "position": [
+        -0.72,
+        0,
+        2.5
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "rear_s2",
+      "kind": "dining_chair",
+      "position": [
+        0.72,
+        0,
+        -2.28
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "rear_n2",
+      "kind": "dining_chair",
+      "position": [
+        0.72,
+        0,
+        -0.72
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "front_s2",
+      "kind": "dining_chair",
+      "position": [
+        0.72,
+        0,
+        0.94
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "front_n2",
+      "kind": "dining_chair",
+      "position": [
+        0.72,
+        0,
+        2.5
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "rear_s3",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0,
+        -2.28
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "rear_n3",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0,
+        -0.72
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "front_s3",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0,
+        0.94
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "front_n3",
+      "kind": "dining_chair",
+      "position": [
+        2.15,
+        0,
+        2.5
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "rear_w",
+      "kind": "dining_chair",
+      "position": [
+        -3.22,
+        0,
+        -1.5
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "rear_e",
+      "kind": "dining_chair",
+      "position": [
+        3.22,
+        0,
+        -1.5
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "front_w",
+      "kind": "dining_chair",
+      "position": [
+        -3.22,
+        0,
+        1.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "front_e",
+      "kind": "dining_chair",
+      "position": [
+        3.22,
+        0,
+        1.72
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "lamp_r0",
+      "kind": "library_lamp",
+      "position": [
+        -1.9,
+        0.78,
+        -1.5
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_f0",
+      "kind": "library_lamp",
+      "position": [
+        -1.9,
+        0.78,
+        1.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_r1",
+      "kind": "library_lamp",
+      "position": [
+        -0.63,
+        0.78,
+        -1.5
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_f1",
+      "kind": "library_lamp",
+      "position": [
+        -0.63,
+        0.78,
+        1.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_r2",
+      "kind": "library_lamp",
+      "position": [
+        0.63,
+        0.78,
+        -1.5
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_f2",
+      "kind": "library_lamp",
+      "position": [
+        0.63,
+        0.78,
+        1.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_r3",
+      "kind": "library_lamp",
+      "position": [
+        1.9,
+        0.78,
+        -1.5
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_f3",
+      "kind": "library_lamp",
+      "position": [
+        1.9,
+        0.78,
+        1.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lamp_cat",
+      "kind": "library_lamp",
+      "position": [
+        -4.05,
+        0.76,
+        2.72
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pend0",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        3.52,
+        -1.5
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "pend1",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        3.52,
+        0.12
+      ],
+      "rotationY": 0.08
+    },
+    {
+      "id": "pend2",
+      "kind": "pendant_lamp",
+      "position": [
+        0.0,
+        3.52,
+        1.72
+      ],
+      "rotationY": -0.05
+    },
+    {
+      "id": "catalog_desk",
+      "kind": "study_desk",
+      "position": [
+        -4.15,
+        0.0,
+        2.72
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "catalog_chair",
+      "kind": "dining_chair",
+      "position": [
+        -4.72,
+        0.0,
+        2.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "lectern",
+      "kind": "book_stand",
+      "position": [
+        -4.55,
+        0.0,
+        1.55
+      ],
+      "rotationY": 0.25
+    },
+    {
+      "id": "shelf_ref",
+      "kind": "wall_shelf",
+      "position": [
+        -5.28,
+        1.52,
+        2.72
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "plant_a",
+      "kind": "flowerpot",
+      "position": [
+        4.95,
+        0.0,
+        -3.55
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "plant_b",
+      "kind": "flowerpot",
+      "position": [
+        -4.95,
+        0.0,
+        3.78
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "plant_c",
+      "kind": "flowerpot",
+      "position": [
+        4.95,
+        0.0,
+        3.72
+      ],
+      "rotationY": 0.15
+    }
+  ],
+  "shell": {
+    "floorColor": "#c4a882",
+    "wallColor": "#efe6d4",
+    "woodColor": "#5c3d2a",
+    "woodLight": "#8a6244",
+    "ceilingColor": "#f2ebe0",
+    "accentColor": "#3d4f3a",
+    "carpetColor": "#6b2e32",
+    "clearColor": "#d4cbb8",
+    "fogColor": "#d4cbb8",
+    "fogNear": 18,
+    "fogFar": 44
+  },
+  "camera": {
+    "fov": 46,
+    "position": [
+      8.15,
+      3.45,
+      6.35
+    ],
+    "target": [
+      0.15,
+      1.25,
+      -0.55
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        7.05,
+        3.15,
+        -0.15
+      ],
+      "target": [
+        -0.35,
+        1.2,
+        -1.35
+      ]
+    },
+    "close": {
+      "position": [
+        1.55,
+        1.52,
+        2.72
+      ],
+      "target": [
+        0.05,
+        0.9,
+        -1.35
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16774364,
+      "ground": 5917244,
+      "intensity": 0.5
+    },
+    "key": {
+      "color": 16774372,
+      "intensity": 1.08,
+      "position": [
+        7.2,
+        10.5,
+        5.2
+      ]
+    },
+    "fill": {
+      "color": 12962536,
+      "intensity": 0.3,
+      "position": [
+        -6.2,
+        5.6,
+        2.4
+      ]
+    },
+    "rim": {
+      "color": 16771016,
+      "intensity": 0.18,
+      "position": [
+        1.5,
+        4.2,
+        -7.0
+      ]
+    },
+    "points": [
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          -1.9,
+          1.05,
+          -1.5
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          -1.9,
+          1.05,
+          1.72
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          -0.63,
+          1.05,
+          -1.5
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          -0.63,
+          1.05,
+          1.72
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          0.63,
+          1.05,
+          -1.5
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          0.63,
+          1.05,
+          1.72
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          1.9,
+          1.05,
+          -1.5
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.48,
+        "position": [
+          1.9,
+          1.05,
+          1.72
+        ],
+        "distance": 3.6,
+        "decay": 2
+      },
+      {
+        "color": 16760952,
+        "intensity": 0.4,
+        "position": [
+          -4.05,
+          1.02,
+          2.72
+        ],
+        "distance": 3.2,
+        "decay": 2
+      },
+      {
+        "color": 16766112,
+        "intensity": 0.32,
+        "position": [
+          0.0,
+          3.28,
+          -1.5
+        ],
+        "distance": 6.5,
+        "decay": 2
+      },
+      {
+        "color": 16766112,
+        "intensity": 0.32,
+        "position": [
+          0.0,
+          3.28,
+          0.12
+        ],
+        "distance": 6.5,
+        "decay": 2
+      },
+      {
+        "color": 16766112,
+        "intensity": 0.32,
+        "position": [
+          0.0,
+          3.28,
+          1.72
+        ],
+        "distance": 6.5,
+        "decay": 2
+      },
+      {
+        "color": 16771268,
+        "intensity": 0.28,
+        "position": [
+          0.0,
+          3.7,
+          -3.4
+        ],
+        "distance": 9,
+        "decay": 2
+      },
+      {
+        "color": 15786168,
+        "intensity": 0.22,
+        "position": [
+          -4.6,
+          2.4,
+          3.15
+        ],
+        "distance": 5,
+        "decay": 2
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "desk close",
+      "unlit default"
+    ],
+    "must_read": [
+      "At a glance: tall packed stacks + two communal reading tables, not a cafe, gallery, or classroom desk grid.",
+      "Every chair faces its table (or the catalog desk). No chair-backs to the work surface.",
+      "Banker lamps glow warm amber, not neon green. Shades are muted forest.",
+      "Books packed on shelves (not 8 lonely slabs). Tables have open books / papers.",
+      "Clear stack aisle and centre runner circulation. Objects sit on floor or table tops."
+    ]
+  }
+}
