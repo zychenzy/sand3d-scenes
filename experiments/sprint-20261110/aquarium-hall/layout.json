@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Aquarium visitor hall",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 12.0,
+      "depth": 8.4,
+      "height": 4.0
+    },
+    "notes": [
+      "Cutaway hall: back and left walls only. Focal kelp tank on the back wall, niche walk on the left, bench facing the glass.",
+      "Bench long axis is along the tank (rotationY π/2) so visitors sit facing the exhibit.",
+      "Tank life, niches, rail, lectern and signs are procedural. Bench and flowerpots are shared GLBs by symlink."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    }
+  },
+  "instances": [
+    {
+      "id": "viewing_bench",
+      "kind": "museum_bench",
+      "position": [0.1, 0, 1.55],
+      "rotationY": 1.5708,
+      "scale": [1.05, 1, 2.1]
+    },
+    {
+      "id": "pot_l",
+      "kind": "flowerpot",
+      "position": [-3.85, 0, -3.35],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pot_r",
+      "kind": "flowerpot",
+      "position": [3.7, 0, -3.28],
+      "rotationY": -0.5
+    }
+  ],
+  "shell": {
+    "floorColor": "#3e4c54",
+    "wallColor": "#334854",
+    "trimColor": "#8e9894",
+    "ceilingColor": "#141b20",
+    "clearColor": "#8ea4ae",
+    "fogColor": "#8ea4ae",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 42,
+    "position": [5.35, 2.58, 6.35],
+    "target": [0.05, 1.32, -2.05]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.7, 2.55, 3.15],
+      "target": [-0.6, 1.25, -2.35]
+    },
+    "close": {
+      "position": [0.45, 1.36, -1.82],
+      "target": [-0.35, 1.2, -3.5]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#c5d3da",
+      "ground": "#1a3034",
+      "intensity": 0.62
+    },
+    "key": {
+      "color": "#d7e4e8",
+      "intensity": 1.05,
+      "position": [4.6, 9.4, 6.2],
+      "shadowBias": -0.00035,
+      "normalBias": 0.02
+    },
+    "fill": {
+      "color": "#7f9aa4",
+      "intensity": 0.28,
+      "position": [-6.2, 4.4, 1.6]
+    },
+    "points": [
+      {
+        "color": "#7ad4c8",
+        "intensity": 1.15,
+        "distance": 5.2,
+        "decay": 2,
+        "position": [0.2, 0.85, -2.45]
+      },
+      {
+        "color": "#b7ebe4",
+        "intensity": 0.55,
+        "distance": 3.2,
+        "decay": 2,
+        "position": [0.3, 2.35, -3.22]
+      },
+      {
+        "color": "#3f8f86",
+        "intensity": 0.45,
+        "distance": 3.4,
+        "decay": 2,
+        "position": [-1.7, 1.35, -3.3]
+      },
+      {
+        "color": "#8fd0c8",
+        "intensity": 0.85,
+        "distance": 5.5,
+        "decay": 2,
+        "position": [-4.7, 1.7, -0.15]
+      }
+    ]
+  }
+}
