@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "title": "Star Chamber planetarium",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.0, "depth": 12.4, "height": 5.5 },
+    "notes": [
+      "Intimate cutaway: partial dome over a horseshoe of theatre chairs facing a central projector.",
+      "GLB theatre chair faces local -Z. Seat rotationY is aimed at the projector, not a wall.",
+      "Foyer (positive Z) holds plinth planets, an orrery vitrine, bookcase and lectern.",
+      "Entry aisle is the open wedge toward +Z. A radial gap in the outer ring is the second aisle."
+    ]
+  },
+  "anchors": {
+    "saturn": [-2.35, 4.4],
+    "jupiter": [1.05, 4.6],
+    "orrery": [2.5, 3.75],
+    "bookcase": [-5.2, 4.15],
+    "lectern": [-3.55, 4.9],
+    "console": [-5.18, 5.45],
+    "bench": [-1.45, 5.45],
+    "potL": [-4.35, 5.85],
+    "potR": [1.75, 5.75]
+  },
+  "assets": {
+    "theatre_chair": {
+      "glb": "../../../cinema/assets/theatre_chair__0e346addc570.glb",
+      "targetHeight": 0.98
+    },
+    "museum_plinth": {
+      "glb": "../../../museum/assets/museum_plinth__6bce39246b2c.glb",
+      "targetHeight": 1.0
+    },
+    "museum_vitrine": {
+      "glb": "../../../museum/assets/museum_vitrine__bcc6c9850ce8.glb",
+      "targetHeight": 0.95
+    },
+    "display_bookcase": {
+      "glb": "../../../museum/assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 2.15
+    },
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.44
+    },
+    "book_stand": {
+      "glb": "../../../library/assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.05
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.46
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.56
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34
+    }
+  },
+  "instances": [
+    { "id": "plinth_saturn", "kind": "museum_plinth", "position": [-2.35, 0, 4.4], "rotationY": 0.2 },
+    { "id": "plinth_jupiter", "kind": "museum_plinth", "position": [1.05, 0, 4.6], "rotationY": -0.15 },
+    { "id": "vitrine", "kind": "museum_vitrine", "position": [2.5, 0, 3.75], "rotationY": 0.35 },
+    { "id": "case", "kind": "display_bookcase", "position": [-5.2, 0, 4.15], "rotationY": 1.5708 },
+    { "id": "lectern", "kind": "book_stand", "position": [-3.55, 0, 4.9], "rotationY": 0.9 },
+    { "id": "bench", "kind": "museum_bench", "position": [-1.45, 0, 5.45], "rotationY": 1.5708 },
+    { "id": "lamp", "kind": "library_lamp", "position": [-4.98, 0.76, 5.45], "rotationY": 0.4 },
+    { "id": "pendant_s", "kind": "pendant_lamp", "position": [-2.35, 2.57, 4.4], "rotationY": 0.2 },
+    { "id": "pendant_j", "kind": "pendant_lamp", "position": [1.05, 2.57, 4.6], "rotationY": -0.2 },
+    { "id": "pendant_aisle", "kind": "pendant_lamp", "position": [-0.6, 2.57, 5.2], "rotationY": 0.0 },
+    { "id": "pot_l", "kind": "flowerpot", "position": [-4.35, 0, 5.85], "rotationY": 0.3 },
+    { "id": "pot_r", "kind": "flowerpot", "position": [1.75, 0, 5.75], "rotationY": -0.4 }
+  ],
+  "shell": {
+    "floorColor": "#6e675e",
+    "wallColor": "#d7cec2",
+    "woodColor": "#4a382c",
+    "ceilingColor": "#efe4d4",
+    "accentColor": "#c6a15e",
+    "carpetColor": "#1c2436",
+    "clearColor": "#171c28",
+    "fogColor": "#171c28",
+    "fogNear": 16,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 45,
+    "position": [6.7, 3.25, 6.7],
+    "target": [-0.7, 1.35, -0.5]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [5.5, 2.05, 0.15],
+      "target": [-0.9, 1.4, -1.5]
+    },
+    "close": {
+      "position": [1.45, 1.55, 0.7],
+      "target": [-0.6, 1.15, -1.45]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 12965866, "ground": 2761758, "intensity": 0.62 },
+    "key": { "color": 16771460, "intensity": 1.22, "position": [5.4, 9.4, 6.4] },
+    "fill": { "color": 8230076, "intensity": 0.34, "position": [-5.2, 4.8, 0.6] },
+    "points": [
+      { "color": 16764314, "intensity": 1.35, "position": [-0.6, 1.35, -1.45], "distance": 7.5 },
+      { "color": 12044543, "intensity": 0.48, "position": [-0.6, 3.55, -1.45], "distance": 12 },
+      { "color": 16757118, "intensity": 0.7, "position": [-2.35, 2.85, 4.4], "distance": 6.5 },
+      { "color": 16757118, "intensity": 0.7, "position": [1.05, 2.85, 4.6], "distance": 6.5 },
+      { "color": 16757118, "intensity": 0.62, "position": [-0.6, 2.85, 5.2], "distance": 6.5 },
+      { "color": 16767146, "intensity": 0.45, "position": [-1.58, 1.85, 2.92], "distance": 5 },
+      { "color": 16767146, "intensity": 0.45, "position": [0.38, 1.85, 2.92], "distance": 5 },
+      { "color": 16767146, "intensity": 0.28, "position": [-0.6, 0.4, 1.2], "distance": 5.5 },
+      { "color": 16767146, "intensity": 0.28, "position": [-0.6, 0.4, 3.6], "distance": 5.5 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "projector close", "unlit default"],
+    "must_read": [
+      "Partial dome is open toward the foyer and the cutaway side.",
+      "Every theatre chair front faces the central projector.",
+      "Entry aisle along +Z and the radial gap in the outer ring stay clear.",
+      "Foyer plinths carry planets; the vitrine carries an orrery."
+    ]
+  }
+}
