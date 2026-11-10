@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "title": "Hearth neighborhood bakery",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 8.0, "height": 3.18 },
+    "zones": [
+      { "id": "bread", "name": "Bread display", "at": [-3.4, -3.5] },
+      { "id": "pastry", "name": "Pastry counter", "at": [1.05, -1.78] },
+      { "id": "prep", "name": "Open preparation", "at": [4.15, -2.5] },
+      { "id": "window", "name": "Window cafe", "at": [-4.0, 1.1] }
+    ],
+    "anchors": {
+      "counter": {
+        "x": 1.05,
+        "z": -1.78,
+        "top": 0.98,
+        "rot": 3.1416,
+        "scale": [0.92, 1, 0.78],
+        "frontZ": -1.036
+      },
+      "case": { "x": 1.15, "z": -1.42, "w": 2.0, "d": 0.5, "h": 0.62 },
+      "breadRack": { "x": -4.9, "z": -3.5, "w": 3.0 },
+      "breadTable": { "x": -0.85, "z": 0.88, "top": 0.75 },
+      "prep": { "x": 4.15, "z": -2.22, "top": 0.75 },
+      "oven": { "x": 4.22, "z": -3.42 },
+      "couple": [-2.45, 2.58],
+      "windowTables": [[-4.14, 1.78], [-4.02, 0.08], [-4.1, 2.88]]
+    },
+    "notes": [
+      "Cutaway: back wall -Z, street window on -X, open front +Z and open right +X.",
+      "Counter local front after 180 degree yaw is +Z. frontZ = cz + 0.443 * (targetHeight/nativeHeight) * scaleZ.",
+      "Dining chairs face +Z at rotationY 0. Banquette faces +X toward the window tables. No bar stools in the queue.",
+      "GLBs are referenced from cafe/, restaurant/, and workshop/. Serve the repo root."
+    ]
+  },
+  "assets": {
+    "bar_counter": {
+      "glb": "../../../cafe/assets/bar_counter__532dcc87f672.glb",
+      "nativeHeight": 0.455,
+      "targetHeight": 0.98
+    },
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "nativeHeight": 0.452,
+      "targetHeight": 0.34
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "nativeHeight": 0.061,
+      "targetHeight": 0.13
+    },
+    "espresso_machine": {
+      "glb": "../../../cafe/assets/espresso_machine__3ada9ec69a54.glb",
+      "nativeHeight": 0.253,
+      "targetHeight": 0.4
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "nativeHeight": 0.09,
+      "targetHeight": 0.09
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "nativeHeight": 0.12,
+      "targetHeight": 0.14
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "nativeHeight": 0.3,
+      "targetHeight": 0.24
+    },
+    "tray_napkin": {
+      "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb",
+      "nativeHeight": 0.235,
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "nativeHeight": 0.207,
+      "targetHeight": 0.34
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "nativeHeight": 0.449,
+      "targetHeight": 0.46
+    },
+    "round_table": {
+      "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb",
+      "nativeHeight": 0.375,
+      "targetHeight": 0.73
+    },
+    "dining_chair": {
+      "glb": "../../../restaurant/assets/dining_chair__5e1f7a56da4a.glb",
+      "nativeHeight": 1.0,
+      "targetHeight": 0.86
+    },
+    "square_table": {
+      "glb": "../../../workshop/assets/square_table__7aaf2767b5f0.glb",
+      "nativeHeight": 1.184,
+      "targetHeight": 0.75
+    }
+  },
+  "instances": [
+    { "id": "counter", "kind": "bar_counter", "position": [1.05, 0, -1.78], "rotationY": 3.1416, "scale": [0.92, 1, 0.78] },
+    { "id": "espresso", "kind": "espresso_machine", "position": [-0.42, 0.98, -1.52], "rotationY": 0.2 },
+    { "id": "register", "kind": "cash_register", "position": [2.52, 0.98, -1.5], "rotationY": 0.15 },
+    { "id": "pos", "kind": "pos_terminal", "position": [2.38, 0.98, -1.24], "rotationY": -0.4 },
+    { "id": "thermos", "kind": "thermos", "position": [2.22, 0.98, -1.72], "rotationY": 0.5 },
+    { "id": "cup_counter_a", "kind": "cup_mug", "position": [0.02, 0.98, -1.38], "rotationY": 0.6 },
+    { "id": "cup_counter_b", "kind": "cup_mug", "position": [0.16, 0.98, -1.56], "rotationY": -0.3 },
+    { "id": "jar_counter", "kind": "jam_jar", "position": [0.1, 0.98, -1.7], "rotationY": 0.4 },
+
+    { "id": "pendant_1", "kind": "pendant_lamp", "position": [0.55, 2.46, -1.42], "rotationY": 0.1 },
+    { "id": "pendant_2", "kind": "pendant_lamp", "position": [1.48, 2.38, -1.52], "rotationY": -0.2 },
+    { "id": "pendant_3", "kind": "pendant_lamp", "position": [2.32, 2.48, -1.36], "rotationY": 0.25 },
+
+    { "id": "table_win_a", "kind": "round_table", "position": [-4.14, 0, 1.78], "rotationY": 0.2 },
+    { "id": "chair_win_a", "kind": "dining_chair", "position": [-3.36, 0, 1.78], "rotationY": 1.5708, "lookAt": [-4.14, 1.78] },
+    { "id": "mug_win_a", "kind": "cup_mug", "position": [-4.04, 0.73, 1.68], "rotationY": 0.8 },
+    { "id": "jar_win_a", "kind": "jam_jar", "position": [-4.26, 0.73, 1.9], "rotationY": -0.4 },
+
+    { "id": "table_win_b", "kind": "round_table", "position": [-4.02, 0, 0.08], "rotationY": -0.15 },
+    { "id": "chair_win_b", "kind": "dining_chair", "position": [-3.22, 0, 0.18], "rotationY": 1.5708, "lookAt": [-4.02, 0.08] },
+    { "id": "mug_win_b", "kind": "cup_mug", "position": [-3.9, 0.73, 0.16], "rotationY": 1.2 },
+
+    { "id": "table_win_c", "kind": "round_table", "position": [-4.1, 0, 2.88], "rotationY": 0.1 },
+    { "id": "chair_win_c", "kind": "dining_chair", "position": [-3.32, 0, 2.88], "rotationY": 1.5708, "lookAt": [-4.1, 2.88] },
+    { "id": "mug_win_c", "kind": "cup_mug", "position": [-4.0, 0.73, 2.78], "rotationY": 0.5 },
+
+    { "id": "table_couple", "kind": "round_table", "position": [-2.45, 0, 2.58], "rotationY": 0.4 },
+    { "id": "chair_couple_n", "kind": "dining_chair", "position": [-2.45, 0, 1.8], "rotationY": 0, "lookAt": [-2.45, 2.58] },
+    { "id": "chair_couple_s", "kind": "dining_chair", "position": [-2.45, 0, 3.36], "rotationY": 3.1416, "lookAt": [-2.45, 2.58] },
+    { "id": "mug_couple_a", "kind": "cup_mug", "position": [-2.32, 0.73, 2.48], "rotationY": 0.4 },
+    { "id": "mug_couple_b", "kind": "cup_mug", "position": [-2.58, 0.73, 2.66], "rotationY": -0.7 },
+    { "id": "jar_couple", "kind": "jam_jar", "position": [-2.5, 0.73, 2.74], "rotationY": 0.2 },
+    { "id": "pendant_couple", "kind": "pendant_lamp", "position": [-2.45, 2.22, 2.58], "rotationY": 0.3 },
+
+    { "id": "bread_table", "kind": "square_table", "position": [-0.85, 0, 0.88], "rotationY": 0.08, "scale": [1.9, 1, 1.25] },
+    { "id": "tray_bread", "kind": "tray_napkin", "position": [-0.58, 0.75, 0.78], "rotationY": 0.4 },
+    { "id": "jar_bread", "kind": "jam_jar", "position": [-1.15, 0.75, 1.05], "rotationY": 0.6 },
+    { "id": "mug_bread", "kind": "cup_mug", "position": [-0.42, 0.75, 1.02], "rotationY": -0.5 },
+    { "id": "pendant_bread", "kind": "pendant_lamp", "position": [-0.85, 2.32, 0.88], "rotationY": -0.1 },
+
+    { "id": "prep_table", "kind": "square_table", "position": [4.15, 0, -2.22], "rotationY": 0, "scale": [2.05, 1, 1.15] },
+    { "id": "chair_prep", "kind": "dining_chair", "position": [4.15, 0, -1.42], "rotationY": 3.1416, "lookAt": [4.15, -2.22] },
+    { "id": "mug_prep", "kind": "cup_mug", "position": [3.7, 0.75, -2.1], "rotationY": 0.3 },
+    { "id": "jar_prep", "kind": "jam_jar", "position": [3.88, 0.75, -2.4], "rotationY": -0.2 },
+
+    { "id": "plant_window", "kind": "flowerpot", "position": [-4.85, 0, 3.62], "rotationY": 0.4 },
+    { "id": "plant_sill", "kind": "flowerpot", "position": [-5.02, 0.8, 1.02], "rotationY": 0.2, "scale": 0.55 },
+    { "id": "plant_prep", "kind": "flowerpot", "position": [4.82, 0, -0.42], "rotationY": -0.3 }
+  ],
+  "shell": {
+    "floorColor": "#c4784a",
+    "wallColor": "#f4ecdf",
+    "woodColor": "#6b4228",
+    "woodLight": "#c4a06a",
+    "ceilingColor": "#f7f1e6",
+    "accentColor": "#8d9a78",
+    "clearColor": "#efe4d4",
+    "fogColor": "#efe4d4",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 54,
+    "position": [5.85, 2.62, 6.15],
+    "target": [-0.63, 1.02, -0.8]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.7, 2.05, 1.35],
+      "target": [-1.5, 1.05, -1.35]
+    },
+    "close": {
+      "position": [1.85, 1.42, -0.2],
+      "target": [1.1, 1.18, -1.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774370, "ground": 8018494, "intensity": 0.46 },
+    "key": {
+      "color": 16774888,
+      "intensity": 1.55,
+      "position": [-7.5, 9.2, 1.4],
+      "shadowExtent": 16,
+      "bias": -0.0004,
+      "normalBias": 0.03
+    },
+    "fill": { "color": 16766112, "ground": 0, "intensity": 0.3, "position": [6.2, 4.2, 5.4] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "pastry close", "unlit"],
+    "must_read": [
+      "Bread wall reads as the back-left focal display.",
+      "Pastry case sits on the service counter, with the deck oven and work table in the open prep bay.",
+      "Window banquette faces the room; dining chairs face their tables. The queue is a stanchion lane, not stools.",
+      "Warm pendants, the case strip, and the oven mouth are the practical sources. The prep bench holds tubs, a scale, flour, and baskets."
+    ]
+  }
+}
