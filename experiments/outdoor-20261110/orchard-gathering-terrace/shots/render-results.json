@@ -1,0 +1,78 @@
+[
+  {
+    "view": "default",
+    "mode": "TOON",
+    "trees": 20,
+    "meshes": 414,
+    "issues": [],
+    "stats": {
+      "mean": 111.4,
+      "std": 66.4,
+      "rgb": [
+        132.5,
+        109.3,
+        70.1
+      ],
+      "blown": 0,
+      "black": 0.0001
+    },
+    "bytes": 472676
+  },
+  {
+    "view": "corner",
+    "mode": "TOON",
+    "trees": 20,
+    "meshes": 414,
+    "issues": [],
+    "stats": {
+      "mean": 103,
+      "std": 71.4,
+      "rgb": [
+        121.2,
+        101,
+        69.4
+      ],
+      "blown": 0,
+      "black": 0.0005
+    },
+    "bytes": 340554
+  },
+  {
+    "view": "close",
+    "mode": "TOON",
+    "trees": 20,
+    "meshes": 414,
+    "issues": [],
+    "stats": {
+      "mean": 70.8,
+      "std": 52.9,
+      "rgb": [
+        89.2,
+        68.7,
+        37.4
+      ],
+      "blown": 0,
+      "black": 0.0049
+    },
+    "bytes": 257704
+  },
+  {
+    "view": "unlit",
+    "mode": "UNLIT",
+    "trees": 20,
+    "meshes": 414,
+    "issues": [],
+    "stats": {
+      "mean": 156.8,
+      "std": 43.7,
+      "rgb": [
+        169.1,
+        157.9,
+        109.7
+      ],
+      "blown": 0.0023,
+      "black": 0
+    },
+    "bytes": 283601
+  }
+]
