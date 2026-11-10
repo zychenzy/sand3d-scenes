@@ -1,0 +1,629 @@
+{
+  "meta": {
+    "title": "Lakeside campsite",
+    "units": "metres",
+    "style": "Toon hard",
+    "time": "blue-hour dusk",
+    "slug": "lakeside-campsite"
+  },
+  "waterLevel": 0.07,
+  "padHeight": 0.5,
+  "fire": {
+    "x": -0.32,
+    "z": -1.02,
+    "ringRadius": 0.56
+  },
+  "tents": [
+    {
+      "id": "tent-ridge",
+      "kind": "ridge",
+      "x": -4.15,
+      "z": -3.75,
+      "yaw": -2.1900571823533945
+    },
+    {
+      "id": "tent-dome",
+      "kind": "dome",
+      "x": 3.75,
+      "z": -2.6,
+      "yaw": 1.9410946365499264
+    }
+  ],
+  "seats": [
+    {
+      "id": "seat-lake",
+      "kind": "log",
+      "x": -0.1,
+      "z": 0.6199999999999999,
+      "yaw": 0.13335025417155244
+    },
+    {
+      "id": "seat-west",
+      "kind": "stump",
+      "x": -1.82,
+      "z": -1.2,
+      "yaw": -1.690225252813235
+    },
+    {
+      "id": "seat-east",
+      "kind": "log",
+      "x": 1.0599999999999998,
+      "z": -1.8,
+      "yaw": 2.0852476398539244
+    }
+  ],
+  "table": {
+    "id": "picnic-table",
+    "x": 2.28,
+    "z": 0.08,
+    "yaw": -0.42
+  },
+  "benches": [
+    {
+      "id": "bench-south",
+      "x": 2.027188519103066,
+      "z": 0.646115142993631,
+      "yaw": -0.42,
+      "localZ": 0.62
+    },
+    {
+      "id": "bench-north",
+      "x": 2.5328114808969335,
+      "z": -0.48611514299363107,
+      "yaw": 2.721592653589793,
+      "localZ": -0.62
+    }
+  ],
+  "dock": {
+    "id": "dock",
+    "x": 0.72,
+    "z": 2.556986849777972,
+    "yaw": 0.2,
+    "length": 4.05,
+    "width": 1.12,
+    "deckAboveWater": 0.3
+  },
+  "canoe": {
+    "id": "canoe",
+    "x": -3.55,
+    "z": 0.5277839448618638,
+    "yaw": -0.62,
+    "length": 3.55
+  },
+  "pines": [
+    {
+      "id": "pine-a",
+      "kind": "pine",
+      "x": -6.9,
+      "z": -6.4,
+      "h": 8.6,
+      "leanX": 0.03,
+      "leanZ": 0.055,
+      "seed": 1
+    },
+    {
+      "id": "spruce-a",
+      "kind": "spruce",
+      "x": -3.4,
+      "z": -7.7,
+      "h": 10.8,
+      "leanX": -0.02,
+      "leanZ": 0.012,
+      "seed": 2
+    },
+    {
+      "id": "pine-b",
+      "kind": "pine",
+      "x": -0.5,
+      "z": -8.5,
+      "h": 7.4,
+      "leanX": 0.07,
+      "leanZ": -0.03,
+      "seed": 3
+    },
+    {
+      "id": "cedar-a",
+      "kind": "cedar",
+      "x": 2.35,
+      "z": -7.15,
+      "h": 6.7,
+      "leanX": 0,
+      "leanZ": 0.045,
+      "seed": 4
+    },
+    {
+      "id": "snag-a",
+      "kind": "snag",
+      "x": 5.05,
+      "z": -6.55,
+      "h": 9.2,
+      "leanX": 0.1,
+      "leanZ": 0.02,
+      "seed": 5
+    },
+    {
+      "id": "spruce-b",
+      "kind": "spruce",
+      "x": 7.85,
+      "z": -5.35,
+      "h": 8.7,
+      "leanX": -0.045,
+      "leanZ": -0.05,
+      "seed": 6
+    },
+    {
+      "id": "pine-c",
+      "kind": "pine",
+      "x": -9.5,
+      "z": -3.5,
+      "h": 7.1,
+      "leanX": 0.085,
+      "leanZ": 0.07,
+      "seed": 7
+    },
+    {
+      "id": "cedar-b",
+      "kind": "cedar",
+      "x": 9.35,
+      "z": -2.45,
+      "h": 5.8,
+      "leanX": -0.02,
+      "leanZ": 0.035,
+      "seed": 8
+    },
+    {
+      "id": "pine-d",
+      "kind": "pine",
+      "x": -6.2,
+      "z": -5.15,
+      "h": 5.3,
+      "leanX": 0.02,
+      "leanZ": -0.065,
+      "seed": 9
+    },
+    {
+      "id": "spruce-c",
+      "kind": "spruce",
+      "x": 1.15,
+      "z": -6.35,
+      "h": 9.6,
+      "leanX": 0.015,
+      "leanZ": 0.05,
+      "seed": 10
+    },
+    {
+      "id": "sap-a",
+      "kind": "sapling",
+      "x": -6.15,
+      "z": -1.85,
+      "h": 2.15,
+      "leanX": 0.04,
+      "leanZ": 0.02,
+      "seed": 11
+    },
+    {
+      "id": "sap-b",
+      "kind": "sapling",
+      "x": 5.45,
+      "z": -4.35,
+      "h": 1.65,
+      "leanX": -0.05,
+      "leanZ": 0.03,
+      "seed": 12
+    },
+    {
+      "id": "sap-c",
+      "kind": "sapling",
+      "x": -5.15,
+      "z": 0.35,
+      "h": 1.55,
+      "leanX": 0.03,
+      "leanZ": -0.025,
+      "seed": 13
+    },
+    {
+      "id": "cedar-c",
+      "kind": "cedar",
+      "x": 8.55,
+      "z": 2.45,
+      "h": 4.5,
+      "leanX": 0.05,
+      "leanZ": -0.04,
+      "seed": 14
+    },
+    {
+      "id": "pine-e",
+      "kind": "pine",
+      "x": -8.35,
+      "z": -8.05,
+      "h": 11.5,
+      "leanX": -0.03,
+      "leanZ": 0.02,
+      "seed": 15
+    },
+    {
+      "id": "snag-b",
+      "kind": "snag",
+      "x": -1.35,
+      "z": -6.15,
+      "h": 6.5,
+      "leanX": 0.12,
+      "leanZ": -0.045,
+      "seed": 16
+    },
+    {
+      "id": "pine-f",
+      "kind": "pine",
+      "x": -11.2,
+      "z": -7.4,
+      "h": 8.9,
+      "leanX": 0.04,
+      "leanZ": -0.02,
+      "seed": 31
+    },
+    {
+      "id": "spruce-d",
+      "kind": "spruce",
+      "x": -5.15,
+      "z": -9.35,
+      "h": 9.5,
+      "leanX": -0.035,
+      "leanZ": 0.04,
+      "seed": 32
+    },
+    {
+      "id": "cedar-d",
+      "kind": "cedar",
+      "x": 3.9,
+      "z": -9.2,
+      "h": 7.3,
+      "leanX": 0.02,
+      "leanZ": -0.035,
+      "seed": 33
+    },
+    {
+      "id": "pine-g",
+      "kind": "pine",
+      "x": 6.55,
+      "z": -8.7,
+      "h": 10.2,
+      "leanX": 0.055,
+      "leanZ": 0.015,
+      "seed": 34
+    },
+    {
+      "id": "spruce-e",
+      "kind": "spruce",
+      "x": 10.6,
+      "z": -4.2,
+      "h": 7.9,
+      "leanX": -0.05,
+      "leanZ": 0.045,
+      "seed": 35
+    },
+    {
+      "id": "cedar-e",
+      "kind": "cedar",
+      "x": -10.7,
+      "z": -5.2,
+      "h": 6.2,
+      "leanX": 0.03,
+      "leanZ": 0.06,
+      "seed": 36
+    },
+    {
+      "id": "pine-h",
+      "kind": "pine",
+      "x": 0.55,
+      "z": -9.9,
+      "h": 8.3,
+      "leanX": -0.025,
+      "leanZ": -0.05,
+      "seed": 37
+    }
+  ],
+  "shrubs": [
+    {
+      "id": "shrub-shore-a",
+      "kind": "grass",
+      "x": -3.4,
+      "z": 1.15,
+      "s": 1.15,
+      "seed": 21
+    },
+    {
+      "id": "shrub-shore-b",
+      "kind": "willow",
+      "x": 4.6,
+      "z": 1.55,
+      "s": 1.35,
+      "seed": 22
+    },
+    {
+      "id": "shrub-shore-c",
+      "kind": "grass",
+      "x": 6.4,
+      "z": 2.35,
+      "s": 0.85,
+      "seed": 23
+    },
+    {
+      "id": "shrub-knoll",
+      "kind": "mound",
+      "x": -7.9,
+      "z": -0.4,
+      "s": 1.4,
+      "seed": 24
+    },
+    {
+      "id": "shrub-tent",
+      "kind": "mound",
+      "x": -5.5,
+      "z": -4.6,
+      "s": 0.9,
+      "seed": 25
+    },
+    {
+      "id": "shrub-dome",
+      "kind": "fern",
+      "x": 4.7,
+      "z": -1.35,
+      "s": 0.8,
+      "seed": 26
+    },
+    {
+      "id": "shrub-back",
+      "kind": "mound",
+      "x": 0.4,
+      "z": -5.4,
+      "s": 1.2,
+      "seed": 27
+    },
+    {
+      "id": "shrub-head",
+      "kind": "willow",
+      "x": 7.6,
+      "z": 1.7,
+      "s": 1.05,
+      "seed": 28
+    }
+  ],
+  "pathSegments": [
+    [
+      0.87,
+      2.4069868497779723,
+      0.85,
+      0.45
+    ],
+    [
+      0.85,
+      0.45,
+      0.2,
+      -0.35
+    ],
+    [
+      0.2,
+      -0.35,
+      0.02999999999999997,
+      -0.17000000000000004
+    ],
+    [
+      -0.47,
+      -1.17,
+      -3.7500000000000004,
+      -3.2
+    ],
+    [
+      -0.12,
+      -1.12,
+      3.3,
+      -2.25
+    ],
+    [
+      0.55,
+      0.15,
+      1.9299999999999997,
+      0.03
+    ]
+  ],
+  "shell": {
+    "clearColor": "#1a2744",
+    "fogColor": "#243656",
+    "fogNear": 18,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 40,
+    "position": [
+      4.35,
+      4.55,
+      12.4
+    ],
+    "target": [
+      0.15,
+      1.15,
+      -1.15
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 42,
+      "position": [
+        -8.6,
+        3.15,
+        7.4
+      ],
+      "target": [
+        0.6,
+        0.85,
+        -0.7
+      ]
+    },
+    "close": {
+      "fov": 38,
+      "position": [
+        1.95,
+        1.72,
+        2.45
+      ],
+      "target": [
+        -0.2,
+        0.4,
+        -0.9
+      ]
+    },
+    "top": {
+      "fov": 42,
+      "position": [
+        0.2,
+        16.5,
+        0.4
+      ],
+      "target": [
+        0.2,
+        0.2,
+        -0.6
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#a9b8d4",
+      "ground": "#3c4658",
+      "intensity": 0.72
+    },
+    "key": {
+      "color": "#c5d2ea",
+      "intensity": 0.78,
+      "position": [
+        -7.5,
+        11.5,
+        6.2
+      ],
+      "target": [
+        0,
+        0.4,
+        -1
+      ]
+    },
+    "fill": {
+      "color": "#6e6280",
+      "intensity": 0.24,
+      "position": [
+        7,
+        4.5,
+        -3
+      ]
+    },
+    "points": [
+      {
+        "id": "fire",
+        "color": "#ff9440",
+        "intensity": 0.72,
+        "distance": 4.4,
+        "decay": 2,
+        "position": [
+          -0.32,
+          0.88,
+          -1.02
+        ]
+      },
+      {
+        "id": "lantern",
+        "color": "#ffc58a",
+        "intensity": 0.2,
+        "distance": 2.6,
+        "decay": 2,
+        "position": [
+          2.85,
+          1.55,
+          0.35
+        ]
+      }
+    ]
+  },
+  "assets": {
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.12
+    },
+    "bucket": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.2
+    }
+  },
+  "tabletop": [
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "local": [
+        -0.38,
+        0.76,
+        0.02
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug-a",
+      "kind": "cup_mug",
+      "local": [
+        0.12,
+        0.76,
+        -0.12
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "mug-b",
+      "kind": "cup_mug",
+      "local": [
+        0.34,
+        0.76,
+        0.1
+      ],
+      "rotationY": -0.6
+    },
+    {
+      "id": "jar",
+      "kind": "jam_jar",
+      "local": [
+        -0.05,
+        0.76,
+        0.14
+      ],
+      "rotationY": 0.8
+    }
+  ],
+  "groundProps": [
+    {
+      "id": "bucket",
+      "kind": "bucket",
+      "x": 3.42,
+      "z": -0.42,
+      "rotationY": 0.5
+    }
+  ],
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "toon close",
+      "unlit"
+    ],
+    "must_read": [
+      "Two different pitched tents on a worn pad.",
+      "Stone ring with seats facing the fire, glow kept local.",
+      "Picnic and cooking kit off to the side of the fire.",
+      "Short timber landing into the lake.",
+      "Uneven shoreline and mixed pines, not a cone grid."
+    ]
+  }
+}
