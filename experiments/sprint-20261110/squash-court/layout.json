@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "Ash Court — boutique singles squash",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.15,
+      "depth": 12.5,
+      "height": 5.78
+    },
+    "court": {
+      "frontZ": -4.9,
+      "length": 9.75,
+      "width": 6.4,
+      "ceilingY": 5.78,
+      "canopyY": 2.62,
+      "galleryCeilingY": 3.08,
+      "rightCutZ": 1.05,
+      "galleryEndZ": 7.22,
+      "nicheOuterX": 5.52,
+      "door": { "width": 0.86, "height": 2.115 }
+    },
+    "notes": [
+      "WSF singles court, 480 mm club tin, glass back with the out line marked on the court face.",
+      "Gallery and reception sit behind the glass. Nothing is placed in the playing box."
+    ]
+  },
+  "zones": {
+    "desk": { "x": 4.38, "z": 6.28, "y": 0.75, "w": 1.26, "d": 0.58 },
+    "rack": { "x": -3.175, "z": 6.52 },
+    "sign": { "x": 4.02, "y": 1.62, "w": 1.05, "h": 0.54 }
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.45
+    },
+    "dining_chair": {
+      "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "library_lamp": {
+      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.24
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_l",
+      "kind": "museum_bench",
+      "position": [-1.72, 0, 5.72],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "bench_r",
+      "kind": "museum_bench",
+      "position": [1.58, 0, 5.72],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "reception_chair",
+      "kind": "dining_chair",
+      "position": [4.38, 0, 5.48],
+      "rotationY": 0
+    },
+    {
+      "id": "desk_lamp",
+      "kind": "library_lamp",
+      "position": [4.78, 0.75, 6.16],
+      "rotationY": -0.7
+    },
+    {
+      "id": "desk_plant",
+      "kind": "flowerpot",
+      "position": [3.96, 0.75, 6.22],
+      "rotationY": 0.2
+    }
+  ],
+  "shell": {
+    "floorColor": "#c9a36e",
+    "wallColor": "#f4f0e6",
+    "clearColor": "#d2d0c8",
+    "fogColor": "#d2d0c8",
+    "fogNear": 22,
+    "fogFar": 48
+  },
+  "camera": {
+    "fov": 50,
+    "position": [3.15, 1.7, 9.05],
+    "target": [-0.2, 1.15, -2.5]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 48,
+      "position": [2.55, 1.62, 8.55],
+      "target": [-2.55, 0.95, 5.35]
+    },
+    "close": {
+      "fov": 50,
+      "position": [0.48, 1.58, 2.55],
+      "target": [-0.15, 1.35, -4.4]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775918, "ground": 14273572, "intensity": 0.58 },
+    "key": {
+      "color": 16775396,
+      "intensity": 1.55,
+      "position": [2.4, 13.5, 6.2],
+      "target": [-0.4, 1.1, -1.2],
+      "shadow": 14
+    },
+    "fill": {
+      "color": 14019050,
+      "intensity": 0.18,
+      "position": [-7, 8, 1]
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Front wall carries a projecting tin, a service line and an out line.",
+      "Floor shows the short line, half-court line and two service boxes.",
+      "Glass back wall, viewing benches, racket rack and a reception niche outside the court."
+    ]
+  }
+}
