@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "title": "Small harbour quay",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "Working L-shaped stone fishing quay, clear late morning",
+    "notes": [
+      "Mid tide: about 1.2 m of wall above water so ladders, courses and floating waterlines all read.",
+      "Boat A is a 7.4 m beamy inshore boat with a wheelhouse. Boat B is a 5.1 m clinker day boat with a low cuddy.",
+      "Public bench faces the harbour. Cafe chairs face the table and the water."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.48
+    },
+    "round_table": {
+      "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.74
+    },
+    "simple_chair": {
+      "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.86
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.12
+    }
+  },
+  "instances": [
+    {
+      "id": "public-bench",
+      "kind": "museum_bench",
+      "position": [1.05, 1.22, -3.85],
+      "rotationY": 1.5708,
+      "scale": [1, 1, 1.2],
+      "faces": "water"
+    },
+    {
+      "id": "cafe-table",
+      "kind": "round_table",
+      "position": [5.45, 1.7, -2.62],
+      "rotationY": 0.2
+    },
+    {
+      "id": "cafe-chair-a",
+      "kind": "simple_chair",
+      "position": [4.92, 1.7, -3.42],
+      "rotationY": 0.08,
+      "faces": "table-and-harbour"
+    },
+    {
+      "id": "cafe-chair-b",
+      "kind": "simple_chair",
+      "position": [6.05, 1.7, -3.5],
+      "rotationY": -0.16,
+      "faces": "table-and-harbour"
+    },
+    {
+      "id": "mug-a",
+      "kind": "cup_mug",
+      "position": [5.28, 2.44, -2.48],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug-b",
+      "kind": "cup_mug",
+      "position": [5.64, 2.44, -2.72],
+      "rotationY": -0.6
+    },
+    {
+      "id": "jar",
+      "kind": "jam_jar",
+      "position": [5.8, 2.44, -2.4],
+      "rotationY": 0.2
+    },
+    {
+      "id": "cafe-pot",
+      "kind": "flowerpot",
+      "position": [4.42, 1.7, -5.05],
+      "rotationY": 0.3
+    }
+  ],
+  "shell": {
+    "clearColor": "#b7d4ea",
+    "fogColor": "#d5e4f0",
+    "fogNear": 38,
+    "fogFar": 105
+  },
+  "camera": {
+    "fov": 42,
+    "near": 0.08,
+    "far": 220,
+    "position": [12.8, 7.8, 14.2],
+    "target": [-1.8, 1.2, 0.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [9.4, 3.15, 6.6],
+      "target": [-4.2, 0.95, -0.2]
+    },
+    "close": {
+      "position": [4.8, 1.9, 2.7],
+      "target": [1.2, 0.65, -0.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#d7e7f4", "ground": "#6d6458", "intensity": 0.64 },
+    "key": {
+      "color": "#fff1d8",
+      "intensity": 1.18,
+      "position": [16, 22, 12],
+      "shadow": {
+        "mapSize": 2048,
+        "near": 2,
+        "far": 74,
+        "left": -30,
+        "right": 30,
+        "top": 30,
+        "bottom": -30,
+        "bias": -0.00035,
+        "normalBias": 0.045
+      }
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "L-shaped stone quay with two different fishing boats afloat",
+      "Water has depth colour, a tide line and foam, not a flat blue floor",
+      "Net, rope and buoy work zone, fish shed, public bench, cafe pocket",
+      "Steps and ladders connect quay and water"
+    ]
+  }
+}
