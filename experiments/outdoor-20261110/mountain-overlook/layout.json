@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Mountain overlook",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "Alpine hiking overlook at sunrise: cantilevered timber deck, stone switchback, rock outcrop, gapahuk shelter",
+    "notes": [
+      "View and layered peaks are -Z. Sunrise key light comes from +X.",
+      "Walking surface is the stone switchback, the shelter spur, and the timber deck.",
+      "The view bench is the reused museum bench, oriented so its depth axis faces the peaks."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    }
+  },
+  "instances": [
+    {
+      "id": "view_bench",
+      "kind": "museum_bench",
+      "position": [0.15, 6.05, -4.5],
+      "rotationY": 1.5707963267948966,
+      "scale": [1.28, 1, 1]
+    }
+  ],
+  "shell": {
+    "clearColor": "#8eb6d4",
+    "fogColor": "#d5e4f2",
+    "fogNear": 40,
+    "fogFar": 118
+  },
+  "camera": {
+    "fov": 48,
+    "near": 0.12,
+    "far": 480,
+    "position": [3.4, 11.2, 18.2],
+    "target": [0.15, 5.7, -3.4]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-6.4, 7.1, -12.2],
+      "target": [0.4, 6.15, -2.2]
+    },
+    "close": {
+      "position": [0.28, 7.28, -0.85],
+      "target": [0.12, 6.42, -8.6]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16771282,
+      "ground": 9273974,
+      "intensity": 0.92
+    },
+    "key": {
+      "color": 16761994,
+      "intensity": 1.35,
+      "position": [20, 16, 9],
+      "target": [0.2, 5.2, 1.2]
+    },
+    "fill": {
+      "color": 12965092,
+      "intensity": 0.72,
+      "position": [-8, 12, -18]
+    }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "deck close", "unlit"],
+    "must_read": [
+      "A stone switchback climbs a sculpted shoulder to a cantilevered timber deck.",
+      "The deck projects over a drop toward layered peaks, with a bench facing that view.",
+      "A modest three-walled shelter sits off the trail as the secondary place to sit.",
+      "Pines are irregular and grasses are clumped. The ground is not a flat platform."
+    ]
+  }
+}

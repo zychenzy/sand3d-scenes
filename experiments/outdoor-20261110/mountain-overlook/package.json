@@ -1,0 +1,8 @@
+{
+  "name": "mountain-overlook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/orientation.test.mjs"
+  }
+}
