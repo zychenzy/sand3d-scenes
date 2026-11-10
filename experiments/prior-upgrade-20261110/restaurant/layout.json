@@ -1,0 +1,947 @@
+{
+  "meta": {
+    "title": "Hinoki dining",
+    "slug": "hinoki-dining",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 11.6,
+      "depth": 8.8,
+      "height": 3.28
+    },
+    "zones": [
+      "wall-booths",
+      "table-dining",
+      "sushi-pass"
+    ],
+    "readyText": "ready — Hinoki dining · drag orbit · T toon · U unlit",
+    "notes": [
+      "Japanese dining room redo of restaurant/. Three wall booths on the left, three large 8-top tables, sushi pass on the back wall.",
+      "No screens, shoji, or partitions. One chair type around the tables; booths are complete diner pairs, not facing islands of pairs.",
+      "Chairs face their table (dining-chair forward is +Z at rotationY 0, backrest on −Z). Circulation aisle on the red runner between booths and tables."
+    ]
+  },
+  "assets": {
+    "diner_booth": {
+      "glb": "../../../restaurant/assets/diner_booth__c976b6f9406d.glb",
+      "targetHeight": 1.12,
+      "forward": "benches face across local X; rotationY π/2 puts the pair against the left wall"
+    },
+    "dining_chair": {
+      "glb": "../../../restaurant/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "forward": "+Z at rotationY 0. Backrest sits on −Z."
+    },
+    "dining_table": {
+      "glb": "../../../restaurant/assets/long_dining__fb2f8f65156e.glb",
+      "fit": [
+        2.56,
+        0.76,
+        1.14
+      ],
+      "note": "Native trestle is ~1.8×0.94 m. Non-uniform fit makes an 8-top without a new bake."
+    },
+    "pendant_lamp": {
+      "glb": "../../../restaurant/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46
+    },
+    "cup_mug": {
+      "glb": "../../../restaurant/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "../../../restaurant/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.14
+    },
+    "tray_napkin": {
+      "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.07
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.5
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.24
+    },
+    "book_stand": {
+      "glb": "../../../library/assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.08
+    }
+  },
+  "instances": [
+    {
+      "id": "booth_a",
+      "kind": "diner_booth",
+      "position": [
+        -4.52,
+        0,
+        -2.22
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "cup_booth_a",
+      "kind": "cup_mug",
+      "position": [
+        -4.4399999999999995,
+        0.78,
+        -2.16
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "booth_b",
+      "kind": "diner_booth",
+      "position": [
+        -4.52,
+        0,
+        0.12
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "cup_booth_b",
+      "kind": "cup_mug",
+      "position": [
+        -4.4399999999999995,
+        0.78,
+        0.18
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "booth_c",
+      "kind": "diner_booth",
+      "position": [
+        -4.52,
+        0,
+        2.46
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "cup_booth_c",
+      "kind": "cup_mug",
+      "position": [
+        -4.4399999999999995,
+        0.78,
+        2.52
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "t1",
+      "kind": "dining_table",
+      "position": [
+        1.55,
+        0,
+        2.32
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "t1_s0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        3.0999999999999996
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        0.79,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_n0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        1.5399999999999998
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        0.79,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_s1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        3.0999999999999996
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        1.55,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_n1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        1.5399999999999998
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        1.55,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_s2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        3.0999999999999996
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        2.31,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_n2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        1.5399999999999998
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        2.31,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_e",
+      "kind": "dining_chair",
+      "position": [
+        3.05,
+        0,
+        2.32
+      ],
+      "rotationY": -1.5707963267948966,
+      "lookAt": [
+        1.55,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t1_w",
+      "kind": "dining_chair",
+      "position": [
+        0.050000000000000044,
+        0,
+        2.32
+      ],
+      "rotationY": 1.5707963267948966,
+      "lookAt": [
+        1.55,
+        2.32
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "pend_t1a",
+      "kind": "pendant_lamp",
+      "position": [
+        1.03,
+        2.72,
+        2.32
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "pend_t1b",
+      "kind": "pendant_lamp",
+      "position": [
+        2.0700000000000003,
+        2.72,
+        2.32
+      ],
+      "rotationY": -0.08
+    },
+    {
+      "id": "cup_t1a",
+      "kind": "cup_mug",
+      "position": [
+        1.1300000000000001,
+        0.77,
+        2.5
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "cup_t1b",
+      "kind": "cup_mug",
+      "position": [
+        1.9300000000000002,
+        0.77,
+        2.1599999999999997
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "jar_t1",
+      "kind": "jam_jar",
+      "position": [
+        1.73,
+        0.77,
+        2.4
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "tray_t1",
+      "kind": "tray_napkin",
+      "position": [
+        1.47,
+        0.77,
+        2.0999999999999996
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "t2",
+      "kind": "dining_table",
+      "position": [
+        1.55,
+        0,
+        -0.08
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "t2_s0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        0.7000000000000001
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        0.79,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_n0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        -0.86
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        0.79,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_s1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        0.7000000000000001
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        1.55,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_n1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        -0.86
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        1.55,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_s2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        0.7000000000000001
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        2.31,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_n2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        -0.86
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        2.31,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_e",
+      "kind": "dining_chair",
+      "position": [
+        3.05,
+        0,
+        -0.08
+      ],
+      "rotationY": -1.5707963267948966,
+      "lookAt": [
+        1.55,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t2_w",
+      "kind": "dining_chair",
+      "position": [
+        0.050000000000000044,
+        0,
+        -0.08
+      ],
+      "rotationY": 1.5707963267948966,
+      "lookAt": [
+        1.55,
+        -0.08
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "pend_t2a",
+      "kind": "pendant_lamp",
+      "position": [
+        1.03,
+        2.72,
+        -0.08
+      ],
+      "rotationY": 0.05
+    },
+    {
+      "id": "pend_t2b",
+      "kind": "pendant_lamp",
+      "position": [
+        2.0700000000000003,
+        2.72,
+        -0.08
+      ],
+      "rotationY": -0.16
+    },
+    {
+      "id": "cup_t2a",
+      "kind": "cup_mug",
+      "position": [
+        1.1300000000000001,
+        0.77,
+        0.09999999999999999
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "cup_t2b",
+      "kind": "cup_mug",
+      "position": [
+        1.9300000000000002,
+        0.77,
+        -0.24
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "jar_t2",
+      "kind": "jam_jar",
+      "position": [
+        1.73,
+        0.77,
+        0
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "tray_t2",
+      "kind": "tray_napkin",
+      "position": [
+        1.47,
+        0.77,
+        -0.3
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "t3",
+      "kind": "dining_table",
+      "position": [
+        1.55,
+        0,
+        -2.46
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "t3_s0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        -1.68
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        0.79,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_n0",
+      "kind": "dining_chair",
+      "position": [
+        0.79,
+        0,
+        -3.24
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        0.79,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_s1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        -1.68
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        1.55,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_n1",
+      "kind": "dining_chair",
+      "position": [
+        1.55,
+        0,
+        -3.24
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        1.55,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_s2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        -1.68
+      ],
+      "rotationY": 3.141592653589793,
+      "lookAt": [
+        2.31,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_n2",
+      "kind": "dining_chair",
+      "position": [
+        2.31,
+        0,
+        -3.24
+      ],
+      "rotationY": 0,
+      "lookAt": [
+        2.31,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_e",
+      "kind": "dining_chair",
+      "position": [
+        3.05,
+        0,
+        -2.46
+      ],
+      "rotationY": -1.5707963267948966,
+      "lookAt": [
+        1.55,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "t3_w",
+      "kind": "dining_chair",
+      "position": [
+        0.050000000000000044,
+        0,
+        -2.46
+      ],
+      "rotationY": 1.5707963267948966,
+      "lookAt": [
+        1.55,
+        -2.46
+      ],
+      "role": "faces table"
+    },
+    {
+      "id": "pend_t3a",
+      "kind": "pendant_lamp",
+      "position": [
+        1.03,
+        2.72,
+        -2.46
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "pend_t3b",
+      "kind": "pendant_lamp",
+      "position": [
+        2.0700000000000003,
+        2.72,
+        -2.46
+      ],
+      "rotationY": -0.24
+    },
+    {
+      "id": "cup_t3a",
+      "kind": "cup_mug",
+      "position": [
+        1.1300000000000001,
+        0.77,
+        -2.28
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "cup_t3b",
+      "kind": "cup_mug",
+      "position": [
+        1.9300000000000002,
+        0.77,
+        -2.62
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "jar_t3",
+      "kind": "jam_jar",
+      "position": [
+        1.73,
+        0.77,
+        -2.38
+      ],
+      "rotationY": 0.8999999999999999
+    },
+    {
+      "id": "tray_t3",
+      "kind": "tray_napkin",
+      "position": [
+        1.47,
+        0.77,
+        -2.68
+      ],
+      "rotationY": 0.15
+    },
+    {
+      "id": "host",
+      "kind": "book_stand",
+      "position": [
+        4.55,
+        0,
+        3.55
+      ],
+      "rotationY": -0.55
+    },
+    {
+      "id": "shelf_pass",
+      "kind": "wall_shelf",
+      "position": [
+        -0.15,
+        1.22,
+        -4.18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "shelf_wait",
+      "kind": "wall_shelf",
+      "position": [
+        4.55,
+        1.28,
+        -3.15
+      ],
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "id": "thermos_pass",
+      "kind": "thermos",
+      "position": [
+        -0.35,
+        1.38,
+        -4.1
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "jar_pass_a",
+      "kind": "jam_jar",
+      "position": [
+        0.05,
+        1.38,
+        -4.08
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "jar_pass_b",
+      "kind": "jam_jar",
+      "position": [
+        0.22,
+        1.38,
+        -4.12
+      ],
+      "rotationY": -0.3
+    },
+    {
+      "id": "cup_pass_a",
+      "kind": "cup_mug",
+      "position": [
+        -0.55,
+        1.38,
+        -4.06
+      ],
+      "rotationY": 0.9
+    },
+    {
+      "id": "cup_pass_b",
+      "kind": "cup_mug",
+      "position": [
+        -0.72,
+        1.38,
+        -4.1
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "tray_pass",
+      "kind": "tray_napkin",
+      "position": [
+        0.42,
+        1.38,
+        -4.08
+      ],
+      "rotationY": 0.1
+    },
+    {
+      "id": "pot_back",
+      "kind": "flowerpot",
+      "position": [
+        -5.35,
+        0,
+        -3.95
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "pot_front",
+      "kind": "flowerpot",
+      "position": [
+        -5.28,
+        0,
+        3.55
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "pot_right",
+      "kind": "flowerpot",
+      "position": [
+        4.85,
+        0,
+        2.05
+      ],
+      "rotationY": 0.5
+    },
+    {
+      "id": "pot_wait",
+      "kind": "flowerpot",
+      "position": [
+        4.72,
+        0.92,
+        -3.15
+      ],
+      "rotationY": 0.15,
+      "scale": 0.62
+    },
+    {
+      "id": "pot_sill",
+      "kind": "flowerpot",
+      "position": [
+        3.25,
+        1.12,
+        -4.12
+      ],
+      "rotationY": 0.4,
+      "scale": 0.55
+    }
+  ],
+  "shell": {
+    "floorColor": "#6a432c",
+    "plankA": "#c49662",
+    "plankB": "#b4834e",
+    "plankC": "#d0a56e",
+    "wallColor": "#efe6d6",
+    "wood": "#6b4423",
+    "woodDark": "#4a2e18",
+    "woodLight": "#c4a06a",
+    "stone": "#e4d6c4",
+    "brass": "#b08d57",
+    "ink": "#2c2018",
+    "accent": "#6b1d1d",
+    "runner": "#5a1818",
+    "ceiling": "#f3eee4",
+    "glass": "#cfe0d4",
+    "clearColor": "#e6ddd0",
+    "fogColor": "#e6ddd0",
+    "fogNear": 15,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 40,
+    "position": [
+      6.55,
+      4.45,
+      7.05
+    ],
+    "target": [
+      -0.25,
+      0.95,
+      -0.55
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        6.15,
+        2.65,
+        -0.15
+      ],
+      "target": [
+        -0.55,
+        0.95,
+        -0.35
+      ]
+    },
+    "close": {
+      "position": [
+        0.85,
+        1.48,
+        3.55
+      ],
+      "target": [
+        -1.85,
+        0.9,
+        0.35
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16771272,
+      "ground": 5914160,
+      "intensity": 0.38
+    },
+    "key": {
+      "color": 16773336,
+      "intensity": 0.86,
+      "position": [
+        7.2,
+        9.2,
+        4.4
+      ],
+      "shadowSpan": 12
+    },
+    "window": {
+      "color": 14019062,
+      "intensity": 0.28,
+      "position": [
+        2.4,
+        6.5,
+        -8.5
+      ],
+      "shadowSpan": 8
+    },
+    "fill": {
+      "color": 16768210,
+      "intensity": 0.16,
+      "position": [
+        -6,
+        5,
+        3
+      ]
+    }
+  }
+}
