@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "Bloom florist",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.0, "depth": 7.4, "height": 3.2 },
+    "notes": [
+      "Cutaway flower shop. Glazed shopfront on +Z, open on +X.",
+      "Zones: tiered display (focal), bouquet workbench at the back, wrapping counter along the left wall.",
+      "Botanicals are procedural silhouettes. Furniture GLBs are symlinks to existing bakes."
+    ]
+  },
+  "architecture": {
+    "shopfront": {
+      "z": 3.66,
+      "x0": -4.42,
+      "x1": 0.48,
+      "door": [-2.02, -1.12],
+      "sign": "BLOOM"
+    },
+    "display": {
+      "position": [0.55, 0, 0.35],
+      "rotationY": -0.6,
+      "tiers": [
+        { "w": 1.82, "h": 0.26, "d": 0.7 },
+        { "w": 1.22, "h": 0.22, "d": 0.52 },
+        { "w": 0.7, "h": 0.2, "d": 0.36 }
+      ]
+    }
+  },
+  "zones": {
+    "workbench": "work_table",
+    "wrapping": "wrap_counter",
+    "display": "tiered-display",
+    "shopfront": "facade"
+  },
+  "assets": {
+    "bar_counter": { "glb": "assets/bar_counter__532dcc87f672.glb", "targetHeight": 1.05 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "cash_register": { "glb": "assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.38 },
+    "pos_terminal": { "glb": "assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.15 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.46 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.68 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.15 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.46 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "tray_napkin": { "glb": "assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.11 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.75 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "museum_plinth": { "glb": "assets/museum_plinth__6bce39246b2c.glb", "targetHeight": 0.92 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.42 }
+  },
+  "instances": [
+    { "id": "wrap_counter", "kind": "bar_counter", "position": [-3.86, 0, 0], "rotationY": 1.5708, "scale": [0.8, 1, 0.55] },
+    { "id": "wrap_stool", "kind": "bar_stool", "position": [-2.78, 0, -0.35], "rotationY": -1.5708 },
+    { "id": "register", "kind": "cash_register", "position": [-3.86, 1.05, 1.28], "rotationY": 1.5708 },
+    { "id": "pos", "kind": "pos_terminal", "position": [-3.72, 1.05, 0.82], "rotationY": 1.5708, "scale": [1, 1, 0.75] },
+    { "id": "tray", "kind": "tray_napkin", "position": [-3.58, 1.05, 1.12], "rotationY": 0.4 },
+    { "id": "pendant_wrap", "kind": "pendant_lamp", "position": [-3.86, 2.16, -0.15], "rotationY": 0.2 },
+    { "id": "pendant_display", "kind": "pendant_lamp", "position": [0.55, 2.2, 0.42], "rotationY": 0 },
+    { "id": "pendant_bench", "kind": "pendant_lamp", "position": [1.35, 2.1, -2.2], "rotationY": -0.2 },
+    { "id": "work_table", "kind": "square_table", "position": [1.35, 0, -2.25], "rotationY": 0, "scale": [2.1, 1, 1.35] },
+    { "id": "bench_chair", "kind": "dining_chair", "position": [1.35, 0, -3.12], "rotationY": 0 },
+    { "id": "desk_lamp", "kind": "library_lamp", "position": [1.88, 0.75, -2.42], "rotationY": -0.5 },
+    { "id": "thermos", "kind": "thermos", "position": [1.55, 0.75, -2.55], "rotationY": 0.3 },
+    { "id": "mug", "kind": "cup_mug", "position": [0.74, 0.75, -2.08], "rotationY": 0.8 },
+    { "id": "jar_stem", "kind": "jam_jar", "position": [1.42, 0.75, -2.38], "rotationY": 0.4, "sprout": "rose-stem" },
+    { "id": "jar_sprig", "kind": "jam_jar", "position": [1.68, 0.75, -2.12], "rotationY": -0.3, "sprout": "fern-sprig" },
+    { "id": "back_shelf", "kind": "wall_shelf", "position": [1.35, 1.38, -3.48], "rotationY": 0, "scale": [1.85, 1, 1] },
+    { "id": "jar_shelf_a", "kind": "jam_jar", "position": [1.05, 1.58, -3.4], "rotationY": 0.2 },
+    { "id": "jar_shelf_b", "kind": "jam_jar", "position": [1.7, 1.58, -3.4], "rotationY": -0.4 },
+    { "id": "window_plinth", "kind": "museum_plinth", "position": [-3.4, 0, 2.72], "rotationY": 0.15, "scale": [1.35, 1, 1.35] },
+    { "id": "house_pot", "kind": "flowerpot", "position": [-3.95, 0, -2.7], "rotationY": 0.4 }
+  ],
+  "displayPlants": [
+    { "id": "tier_tulip", "tier": 0, "kind": "tulip", "vessel": "bucket", "local": [-0.55, 0.08], "rotationY": 0.3, "color": "#e07a4c", "accent": "#f2c14e" },
+    { "id": "tier_hydrangea", "tier": 0, "kind": "hydrangea", "vessel": "compote", "local": [0.06, -0.08], "rotationY": -0.2, "color": "#b7a4d6", "accent": "#f4f0fa", "vesselColor": "#f7f3ea" },
+    { "id": "tier_poppy", "tier": 0, "kind": "poppy", "vessel": "bottle", "local": [0.58, 0.06], "rotationY": 0.5, "color": "#d64545", "accent": "#f0a0a8", "vesselColor": "#f3efe4" },
+    { "id": "tier_ranunculus", "tier": 1, "kind": "ranunculus", "vessel": "cylinder", "local": [-0.32, -0.02], "rotationY": 0.4, "color": "#f0c84a", "accent": "#fff6d2", "vesselColor": "#efe8dc" },
+    { "id": "tier_fern", "tier": 1, "kind": "fern", "vessel": "dish", "local": [0.32, 0.02], "rotationY": -0.6, "color": "#2f8a44", "vesselColor": "#e7efe4" },
+    { "id": "tier_eucalyptus", "tier": 1, "kind": "eucalyptus", "vessel": "glass", "local": [0.02, 0.14], "rotationY": 0.1, "color": "#8eae96" },
+    { "id": "tier_sunflower", "tier": 2, "kind": "sunflower", "vessel": "crock", "local": [0.0, -0.02], "rotationY": 0.2, "color": "#e6a317", "accent": "#5a3818" }
+  ],
+  "botanicals": [
+    { "id": "door_rose", "kind": "rose", "vessel": "bucket", "position": [-2.45, 0, 2.15], "rotationY": 0.4, "color": "#b4233c", "accent": "#e7a0b0", "foot": [0.22, 0.2] },
+    { "id": "door_lily", "kind": "lily", "vessel": "bucket", "position": [-2.1, 0, 1.48], "rotationY": -0.3, "color": "#f7f4ef", "accent": "#f3d0d8", "foot": [0.22, 0.2] },
+    { "id": "door_palm", "kind": "palm", "vessel": "bucket", "position": [-2.85, 0, 1.52], "rotationY": 0.8, "color": "#2f8a44", "foot": [0.26, 0.24] },
+    { "id": "floor_peony", "kind": "peony", "vessel": "urn", "position": [-1.8, 0, 0.15], "rotationY": 0.5, "color": "#e7a0b4", "accent": "#f7e4ea", "vesselColor": "#e7e2d4", "foot": [0.28, 0.26] },
+    { "id": "corner_monstera", "kind": "monstera", "vessel": "none", "position": [-3.95, 0.36, -2.7], "rotationY": 0.6 },
+    { "id": "corner_dracaena", "kind": "dracaena", "vessel": "planter", "position": [3.4, 0, 0.2], "rotationY": -0.4, "vesselColor": "#d7c3a4", "foot": [0.28, 0.26] },
+    { "id": "floor_pampas", "kind": "pampas", "vessel": "vase", "position": [2.15, 0, 1.7], "rotationY": 0.2, "color": "#f0e4d0", "vesselColor": "#efe8dc", "scale": 0.85, "foot": [0.16, 0.15] },
+    { "id": "window_bird", "kind": "bird", "vessel": "cylinder", "position": [-3.4, 0.92, 2.72], "rotationY": 0.4, "color": "#e25a1c", "accent": "#3a6ea5", "vesselColor": "#f4efe6", "scale": 0.95 },
+    { "id": "counter_orchid", "kind": "orchid", "vessel": "glass", "position": [-3.95, 1.05, 0.4], "rotationY": 0.8, "color": "#f7f4f2", "accent": "#c44878" },
+    { "id": "counter_hyacinth", "kind": "hyacinth", "vessel": "cylinder", "position": [-3.72, 1.05, 0.02], "rotationY": -0.2, "color": "#7a4ea3", "accent": "#e6d4f2", "vesselColor": "#f7f3ea", "scale": 0.9 },
+    { "id": "wrap_tall", "kind": "wrapped", "vessel": "none", "position": [-3.86, 1.05, -1.05], "rotationY": 0.15, "color": "#c4405a", "accent": "#f2c9d2", "paper": "#c6a36a", "ribbon": "#c44868", "tissue": "#f6e4e0", "tall": true, "blooms": "rose" },
+    { "id": "wrap_short", "kind": "wrapped", "vessel": "none", "position": [-3.7, 1.05, -1.42], "rotationY": -0.4, "color": "#f2c14e", "accent": "#fff6d8", "paper": "#f7f4f2", "ribbon": "#3f6b50", "tissue": "#e7f0e4", "tall": false, "blooms": "tulip" },
+    { "id": "bench_calla", "kind": "calla", "vessel": "glass", "position": [1.15, 0.75, -2.0], "rotationY": 0.6, "color": "#f7f6f2", "accent": "#e2c15a" },
+    { "id": "bench_succulent", "kind": "succulent", "vessel": "dish", "position": [0.8, 0.75, -2.42], "rotationY": 0.2, "color": "#7eaa78", "accent": "#d5e8c8", "vesselColor": "#efeae0" },
+    { "id": "bench_breath", "kind": "babysbreath", "vessel": "bottle", "position": [1.95, 0.75, -1.98], "rotationY": -0.5, "color": "#f7f7f4", "vesselColor": "#f3efe4", "scale": 0.85 }
+  ],
+  "shell": {
+    "floorColor": "#e4d5c2",
+    "wallColor": "#f4efe6",
+    "woodColor": "#a87548",
+    "clearColor": "#d5e6dc",
+    "fogColor": "#d5e6dc",
+    "fogNear": 18,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 40,
+    "position": [5.7, 3.05, 5.45],
+    "target": [-0.55, 0.95, 0.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [3.65, 2.4, -3.28],
+      "target": [-1.3, 0.95, 1.15]
+    },
+    "close": {
+      "position": [2.85, 1.62, -1.2],
+      "target": [1.15, 0.7, -2.75]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ea", "ground": "#6a7a62", "intensity": 0.58 },
+    "key": { "color": "#fff3e2", "intensity": 1.22, "position": [3.2, 8.5, 6.8], "target": [-0.4, 0.6, -0.2] },
+    "fill": { "color": "#c9d8c4", "intensity": 0.3, "position": [-5.5, 4.2, 0.5] },
+    "points": [
+      { "color": "#ffc98a", "intensity": 0.85, "distance": 5.5, "position": [1.35, 2.05, -2.2] },
+      { "color": "#ffd2a4", "intensity": 1.05, "distance": 6.5, "position": [0.55, 2.15, 0.42] },
+      { "color": "#ffc98a", "intensity": 0.7, "distance": 5, "position": [-3.86, 2.05, -0.15] },
+      { "color": "#d7efe4", "intensity": 0.35, "distance": 5, "position": [-2.2, 1.7, 3.2] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "workbench close", "unlit"],
+    "must_read": [
+      "Glazed shopfront with door, mullions, awning and BLOOM sign.",
+      "Tiered display is the color focal point, with distinct plant silhouettes.",
+      "Bouquet workbench chair faces the table.",
+      "Wrapping counter holds paper rolls, finished bouquets and the register."
+    ]
+  }
+}
