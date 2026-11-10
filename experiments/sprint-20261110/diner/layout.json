@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "title": "Neighborhood diner",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 12.8, "depth": 9.8, "height": 3.16 },
+    "notes": [
+      "Retro neighborhood diner. Back-to-back booth bank on the left, two generous tables in the aisle, counter and pass along the right wall.",
+      "No freestanding partitions or screens. The pass is a heat-lamp shelf over the counter, not a room divider.",
+      "Checker tile floor, subway wainscot, menu board, and a small neon wordmark."
+    ]
+  },
+  "footprints": {
+    "diner_booth": { "nativeHeight": 0.973, "nativeX": 1.476, "nativeZ": 2.202 },
+    "dining_table": { "nativeHeight": 0.727, "nativeX": 1.8, "nativeZ": 0.938 }
+  },
+  "features": {
+    "noPartitions": true,
+    "neon": {
+      "text": "DINER",
+      "intensity": 0.46,
+      "color": "#ff4f73",
+      "accent": "#5dffe0",
+      "position": [-2.98, 2.68, -4.76],
+      "size": [2.55, 0.58]
+    },
+    "counter": {
+      "xFace": 4.55,
+      "xBack": 5.3,
+      "z0": -4.2,
+      "z1": 2.8,
+      "height": 1.05,
+      "overhang": 0.16
+    },
+    "pass": { "z0": -2.55, "z1": 0.65, "shelfY": 1.74 },
+    "menu": { "position": [6.22, 2.34, -0.85], "size": [2.5, 1.0] },
+    "window": { "z0": -4.25, "z1": 0.55, "y0": 1.12, "y1": 2.52 },
+    "door": { "z": 3.55, "width": 0.96, "height": 2.16 }
+  },
+  "assets": {
+    "diner_booth": { "glb": "../../../restaurant/assets/diner_booth__c976b6f9406d.glb", "targetHeight": 1.12 },
+    "dining_table": { "glb": "../../../restaurant/assets/long_dining__fb2f8f65156e.glb", "targetHeight": 0.75 },
+    "dining_chair": { "glb": "../../../restaurant/assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "bar_stool": { "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "pendant_lamp": { "glb": "../../../restaurant/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.46 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.32 },
+    "cash_register": { "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.36 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.32 },
+    "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.13 },
+    "straw_holder": { "glb": "../../../cafe/assets/straw_holder__252f730f1a04.glb", "targetHeight": 0.24 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.62 }
+  },
+  "instances": [
+    { "id": "booth_a_w", "kind": "diner_booth", "position": [-4.25, 0, -3.2], "rotationY": -1.5708 },
+    { "id": "booth_a_e", "kind": "diner_booth", "position": [-1.695, 0, -3.2], "rotationY": 1.5708 },
+    { "id": "booth_b_w", "kind": "diner_booth", "position": [-4.25, 0, -1.16], "rotationY": -1.5708 },
+    { "id": "booth_b_e", "kind": "diner_booth", "position": [-1.695, 0, -1.16], "rotationY": 1.5708 },
+
+    { "id": "table_rear", "kind": "dining_table", "position": [1.7, 0, -2.9], "rotationY": 1.5708, "scale": [1.12, 1, 1.24] },
+    { "id": "table_front", "kind": "dining_table", "position": [1.7, 0, 1.2], "rotationY": 1.5708, "scale": [1.12, 1, 1.24] },
+
+    { "id": "table_rear_w1", "kind": "dining_chair", "position": [0.72, 0, -3.35], "rotationY": 1.5708, "faces": "table_rear" },
+    { "id": "table_rear_w2", "kind": "dining_chair", "position": [0.72, 0, -2.45], "rotationY": 1.5708, "faces": "table_rear" },
+    { "id": "table_rear_e1", "kind": "dining_chair", "position": [2.68, 0, -3.35], "rotationY": -1.5708, "faces": "table_rear" },
+    { "id": "table_rear_e2", "kind": "dining_chair", "position": [2.68, 0, -2.45], "rotationY": -1.5708, "faces": "table_rear" },
+    { "id": "table_rear_s", "kind": "dining_chair", "position": [1.7, 0, -4.32], "rotationY": 0, "faces": "table_rear" },
+    { "id": "table_rear_n", "kind": "dining_chair", "position": [1.7, 0, -1.48], "rotationY": 3.1416, "faces": "table_rear" },
+
+    { "id": "table_front_w1", "kind": "dining_chair", "position": [0.72, 0, 0.75], "rotationY": 1.5708, "faces": "table_front" },
+    { "id": "table_front_w2", "kind": "dining_chair", "position": [0.72, 0, 1.65], "rotationY": 1.5708, "faces": "table_front" },
+    { "id": "table_front_e1", "kind": "dining_chair", "position": [2.68, 0, 0.75], "rotationY": -1.5708, "faces": "table_front" },
+    { "id": "table_front_e2", "kind": "dining_chair", "position": [2.68, 0, 1.65], "rotationY": -1.5708, "faces": "table_front" },
+    { "id": "table_front_s", "kind": "dining_chair", "position": [1.7, 0, -0.22], "rotationY": 0, "faces": "table_front" },
+    { "id": "table_front_n", "kind": "dining_chair", "position": [1.7, 0, 2.62], "rotationY": 3.1416, "faces": "table_front" },
+
+    { "id": "stool_1", "kind": "bar_stool", "position": [4.08, 0, -3.45], "rotationY": 1.5708, "faces": "counter" },
+    { "id": "stool_2", "kind": "bar_stool", "position": [4.08, 0, -2.2], "rotationY": 1.5708, "faces": "counter" },
+    { "id": "stool_3", "kind": "bar_stool", "position": [4.08, 0, -0.85], "rotationY": 1.5708, "faces": "counter" },
+    { "id": "stool_4", "kind": "bar_stool", "position": [4.08, 0, 0.55], "rotationY": 1.5708, "faces": "counter" },
+    { "id": "stool_5", "kind": "bar_stool", "position": [4.08, 0, 1.9], "rotationY": 1.5708, "faces": "counter" },
+
+    { "id": "pend_a_w", "kind": "pendant_lamp", "position": [-4.25, 1.92, -3.2], "rotationY": 0.1 },
+    { "id": "pend_a_e", "kind": "pendant_lamp", "position": [-1.695, 1.92, -3.2], "rotationY": -0.15 },
+    { "id": "pend_b_w", "kind": "pendant_lamp", "position": [-4.25, 1.92, -1.16], "rotationY": 0.2 },
+    { "id": "pend_b_e", "kind": "pendant_lamp", "position": [-1.695, 1.92, -1.16], "rotationY": 0.05 },
+    { "id": "pend_rear", "kind": "pendant_lamp", "position": [1.7, 1.92, -2.9], "rotationY": 0 },
+    { "id": "pend_front", "kind": "pendant_lamp", "position": [1.7, 1.92, 1.2], "rotationY": 0.2 },
+    { "id": "pend_bar_1", "kind": "pendant_lamp", "position": [5.0, 1.92, -2.4], "rotationY": 0.1 },
+    { "id": "pend_bar_2", "kind": "pendant_lamp", "position": [5.0, 1.92, 0.7], "rotationY": -0.1 },
+
+    { "id": "mug_a_w", "kind": "cup_mug", "position": [-4.12, 0.89, -3.02], "rotationY": 0.4 },
+    { "id": "mug_a_e", "kind": "cup_mug", "position": [-1.82, 0.89, -3.38], "rotationY": 1.2 },
+    { "id": "mug_b_w", "kind": "cup_mug", "position": [-4.38, 0.89, -1.28], "rotationY": -0.3 },
+    { "id": "mug_b_e", "kind": "cup_mug", "position": [-1.58, 0.89, -0.98], "rotationY": 0.8 },
+    { "id": "mug_rear_a", "kind": "cup_mug", "position": [1.56, 0.75, -2.72], "rotationY": 0.5 },
+    { "id": "mug_rear_b", "kind": "cup_mug", "position": [1.84, 0.75, -3.08], "rotationY": -0.6 },
+    { "id": "mug_front_a", "kind": "cup_mug", "position": [1.58, 0.75, 1.38], "rotationY": 0.9 },
+    { "id": "mug_front_b", "kind": "cup_mug", "position": [1.86, 0.75, 1.02], "rotationY": -0.4 },
+    { "id": "mug_bar_1", "kind": "cup_mug", "position": [4.78, 1.05, -2.85], "rotationY": 0.3 },
+    { "id": "mug_bar_2", "kind": "cup_mug", "position": [4.98, 1.05, -2.7], "rotationY": 1.1 },
+    { "id": "mug_bar_3", "kind": "cup_mug", "position": [4.7, 1.05, 0.15], "rotationY": -0.2 },
+
+    { "id": "urn_a", "kind": "thermos", "position": [4.92, 1.05, -1.55], "rotationY": 0.2 },
+    { "id": "urn_b", "kind": "thermos", "position": [5.12, 1.05, -1.28], "rotationY": -0.4 },
+    { "id": "sugar_a", "kind": "jam_jar", "position": [6.08, 1.46, -3.62], "rotationY": 0.4 },
+    { "id": "sugar_b", "kind": "jam_jar", "position": [6.08, 1.46, -3.38], "rotationY": -0.2 },
+    { "id": "straws", "kind": "straw_holder", "position": [4.85, 1.05, -0.35], "rotationY": 0.1 },
+    { "id": "register", "kind": "cash_register", "position": [4.95, 1.05, 2.28], "rotationY": -1.5708 },
+    { "id": "pass_shelf", "kind": "wall_shelf", "position": [6.08, 1.32, -3.5], "rotationY": -1.5708 },
+    { "id": "entry_plant", "kind": "flowerpot", "position": [-5.55, 0, 3.7], "rotationY": 0.5 }
+  ],
+  "shell": {
+    "floorA": "#f3ecdf",
+    "floorB": "#3c3834",
+    "wallColor": "#f4efe6",
+    "subway": "#f7f3ec",
+    "grout": "#c9bfb2",
+    "cherry": "#9d2f33",
+    "chrome": "#d5dbe1",
+    "laminate": "#e6dfd2",
+    "wood": "#6b4630",
+    "ceilingColor": "#f6f1e6",
+    "windowTint": "#c5d8e6",
+    "clearColor": "#d9d3c6",
+    "fogColor": "#d9d3c6",
+    "fogNear": 22,
+    "fogFar": 42
+  },
+  "camera": {
+    "fov": 46,
+    "position": [1.15, 3.02, 6.05],
+    "target": [0.15, 1.12, -1.7]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-2.7, 2.72, 5.15],
+      "target": [0.85, 1.12, -1.65]
+    },
+    "close": {
+      "position": [2.15, 1.82, 1.35],
+      "target": [5.7, 1.9, -0.95]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16773858, "ground": 6968132, "intensity": 0.46 },
+    "key": {
+      "color": 16774112,
+      "intensity": 1.22,
+      "position": [1.4, 9.4, 7.4],
+      "target": [0.2, 0.5, -1.3]
+    },
+    "fill": {
+      "color": 12965092,
+      "intensity": 0.32,
+      "position": [5.6, 4.6, 0.4],
+      "target": [1.5, 1.0, -1.0]
+    },
+    "points": [
+      { "color": 16738950, "intensity": 0.2, "position": [-2.9, 2.35, -3.9], "distance": 4.4, "decay": 2 },
+      { "color": 16761994, "intensity": 0.5, "position": [4.7, 2.35, -0.9], "distance": 8, "decay": 2 },
+      { "color": 16756848, "intensity": 0.28, "position": [5.5, 1.85, -0.9], "distance": 3.4, "decay": 2 }
+    ]
+  }
+}
