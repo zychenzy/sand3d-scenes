@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "title": "Podcast recording lounge v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.8, "depth": 6.6, "height": 3.05 },
+    "zones": [
+      {
+        "id": "conversation",
+        "blurb": "Four chairs pulled up to a desk-height oval table, each with a clamped boom mic and headphones."
+      },
+      {
+        "id": "control",
+        "blurb": "Mixing console, nearfield monitors, and the engineer chair facing the talent."
+      }
+    ],
+    "notes": [
+      "Conversation cluster sits on a burgundy rug under a ceiling cloud. Foam covers the left wall and the back wall.",
+      "A brass floor lamp and a warm table lamp light the set and the record shelves.",
+      "Seat yaw is derived from lookAt via orient.js. Bookcase faces local −Z at yaw 0; chairs, monitors, and speakers face local +Z."
+    ]
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "../../../lounge/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.9
+    },
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.36
+    },
+    "speaker": {
+      "glb": "../../../music/assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.32
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.92
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    },
+    "display_bookcase": {
+      "glb": "../../../library/assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 2.0
+    }
+  },
+  "instances": [
+    {
+      "id": "host_a",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "conversation",
+      "modelForward": "posZ",
+      "position": [-3.05, 0, -1.35],
+      "lookAt": [-1.05, -1.35],
+      "mouth": [-2.95, 1.02, -1.35]
+    },
+    {
+      "id": "host_b",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "conversation",
+      "modelForward": "posZ",
+      "position": [-3.02, 0, -0.35],
+      "lookAt": [-1.02, -0.35],
+      "mouth": [-2.92, 1.02, -0.35]
+    },
+    {
+      "id": "guest_far",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "conversation",
+      "modelForward": "posZ",
+      "position": [-1.05, 0, -1.38],
+      "lookAt": [-3.05, -1.35],
+      "mouth": [-1.15, 1.02, -1.37]
+    },
+    {
+      "id": "guest_near",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "conversation",
+      "modelForward": "posZ",
+      "position": [-1.02, 0, -0.32],
+      "lookAt": [-3.02, -0.35],
+      "mouth": [-1.12, 1.02, -0.33]
+    },
+    {
+      "id": "engineer",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [2.95, 0, 1.48],
+      "lookAt": [-2.05, -0.85],
+      "mouth": [2.859, 1.02, 1.438]
+    },
+    {
+      "id": "pendant",
+      "kind": "pendant_lamp",
+      "position": [-2.05, 1.98, -0.85],
+      "rotationY": 0
+    },
+    {
+      "id": "mon_l",
+      "kind": "monitor",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [1.63, 0.9, 0.979],
+      "lookAt": [2.95, 1.48]
+    },
+    {
+      "id": "mon_r",
+      "kind": "monitor",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [2.081, 0.9, 0.367],
+      "lookAt": [2.95, 1.48]
+    },
+    {
+      "id": "spk_l",
+      "kind": "speaker",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [1.05, 0.58, 0.15],
+      "lookAt": [2.95, 1.48]
+    },
+    {
+      "id": "spk_r",
+      "kind": "speaker",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [1.25, 0.58, 1.95],
+      "lookAt": [2.95, 1.48]
+    },
+    {
+      "id": "case",
+      "kind": "display_bookcase",
+      "modelForward": "negZ",
+      "position": [0.4, 0, -3.0],
+      "lookAt": [0.4, -1.0]
+    },
+    {
+      "id": "shelf_a",
+      "kind": "wall_shelf",
+      "position": [1.65, 1.3, -3.04],
+      "rotationY": 0
+    },
+    {
+      "id": "shelf_b",
+      "kind": "wall_shelf",
+      "position": [2.6, 1.3, -3.04],
+      "rotationY": 0
+    },
+    {
+      "id": "mug_a",
+      "kind": "cup_mug",
+      "position": [-2.05, 0.75, -1.5],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug_b",
+      "kind": "cup_mug",
+      "position": [-2.05, 0.75, -0.2],
+      "rotationY": -0.2
+    },
+    {
+      "id": "mug_c",
+      "kind": "cup_mug",
+      "position": [-1.72, 0.75, -0.85],
+      "rotationY": 0.8
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-3.72, 0, 1.62],
+      "rotationY": 0.2
+    }
+  ],
+  "mics": [
+    {
+      "id": "mic_host_a",
+      "seat": "host_a",
+      "mouth": [-2.95, 1.02, -1.35],
+      "capsule": [-2.58, 1.08, -1.35],
+      "base": [-2.62, 0.75, -1.52]
+    },
+    {
+      "id": "mic_host_b",
+      "seat": "host_b",
+      "mouth": [-2.92, 1.02, -0.35],
+      "capsule": [-2.55, 1.08, -0.35],
+      "base": [-2.6, 0.75, -0.18]
+    },
+    {
+      "id": "mic_guest_far",
+      "seat": "guest_far",
+      "mouth": [-1.15, 1.02, -1.37],
+      "capsule": [-1.52, 1.08, -1.36],
+      "base": [-1.48, 0.75, -1.55]
+    },
+    {
+      "id": "mic_guest_near",
+      "seat": "guest_near",
+      "mouth": [-1.12, 1.02, -0.33],
+      "capsule": [-1.49, 1.08, -0.34],
+      "base": [-1.46, 0.75, -0.15]
+    },
+    {
+      "id": "mic_engineer",
+      "seat": "engineer",
+      "mouth": [2.859, 1.02, 1.438],
+      "capsule": [2.606, 1.05, 1.319],
+      "base": [2.258, 0.9, 0.97]
+    }
+  ],
+  "built": {
+    "table": {
+      "position": [-2.05, 0, -0.85],
+      "radius": [0.62, 0.95],
+      "top": 0.75
+    },
+    "console": { "position": [2.0, 0, 0.78], "lookToward": [2.95, 1.48] },
+    "credenza": { "position": [2.15, 0, -2.96], "size": [2.2, 0.74, 0.42] },
+    "floorLamp": [-3.55, 0, 0.95],
+    "tableLamp": [1.45, 0.74, -2.78],
+    "phones": [
+      { "seat": "host_a", "position": [-2.32, 0.76, -1.55] },
+      { "seat": "host_b", "position": [-2.32, 0.76, -0.15] },
+      { "seat": "guest_far", "position": [-1.78, 0.76, -1.58] },
+      { "seat": "guest_near", "position": [-1.78, 0.76, -0.12] },
+      { "seat": "engineer", "position": [2.503, 0.91, 0.468] }
+    ]
+  },
+  "shell": {
+    "floorColor": "#5a3d2c",
+    "wallColor": "#e7d6c3",
+    "feltColor": "#2c2a32",
+    "woodColor": "#5c4030",
+    "ceilingColor": "#d4c6b4",
+    "rugColor": "#6e3344",
+    "rugEdge": "#4a2430",
+    "controlRug": "#2a2c33",
+    "clearColor": "#cbbbaa",
+    "fogColor": "#cbbbaa",
+    "fogNear": 11,
+    "fogFar": 28
+  },
+  "camera": {
+    "fov": 48,
+    "position": [4.7, 2.2, 3.55],
+    "target": [-1.35, 0.85, -0.7]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [3.7, 2.05, -2.35],
+      "target": [-1.2, 0.9, -0.55]
+    },
+    "close": {
+      "position": [-1.55, 1.32, -0.15],
+      "target": [-2.65, 1.05, -1.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775388, "ground": 5912628, "intensity": 0.46 },
+    "key": { "color": 16775392, "intensity": 1.05, "position": [4.2, 7.6, 3.6] },
+    "fill": { "color": 12173268, "intensity": 0.24, "position": [-4.2, 3.6, 1.4] },
+    "points": [
+      { "color": 16768424, "intensity": 0.95, "distance": 6.2, "decay": 2, "position": [-2.05, 2.15, -0.85] },
+      { "color": 16768266, "intensity": 1.15, "distance": 4.4, "decay": 2, "position": [1.45, 1.18, -2.7] },
+      { "color": 16768424, "intensity": 0.85, "distance": 5.2, "decay": 2, "position": [-3.55, 1.5, 0.95] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "mic close", "unlit"],
+    "must_read": [
+      "Four chairs sit at a 75 cm oval table and face the person across from them. The engineer faces the talent.",
+      "Each seat has a desk-clamped boom whose capsule points at mouth height, plus headphones on the table or console.",
+      "Foam covers both solid walls, a cloud hangs over the table, and both monitors sit fully on the mixing desk."
+    ]
+  }
+}
