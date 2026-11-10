@@ -1,0 +1,16 @@
+OK
+  bowl depth 0.92 m, wall angle 63.1°, radius 1.68 m
+  bowl mesh y -0.920 .. 0.000
+  bowl front-face agreement 100%
+  roll-in mouth ends at (-1.89, 0.00, -2.73), angle 40.1°
+  roll-in largest rise between samples 0.142 m
+  bowl coping samples 59, max step 0.313 m
+  quarter height 1.34 m, angle 76.8°, radius 1.74 m, flat meet z -2.91
+  quarter sagitta: arc y 0.220 vs straight ramp y 0.671
+  quarter front-face agreement 100%
+  run-up corridor x 4.9..6.55, z -2.91..6.05, length 8.96 m
+  stair rise 0.45 over run 1.12 (slope 0.402)
+  handrail slope 0.402 vs stair 0.402, radius 23 mm
+  gate width 2.04 m
+  closest bowl-to-quarter gap 0.59 m
+cameras OK
