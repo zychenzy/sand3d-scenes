@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "title": "Photography studio v1",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.8,
+      "depth": 7.4,
+      "height": 3.6
+    },
+    "notes": [
+      "Back-left seamless cyclorama is the shoot bay, framed by a goalpost truss.",
+      "Editing desk sits on the right, chair and monitor facing each other across the short axis of the desk.",
+      "Changing corner is the front-left nook: parted curtain, bench, mirror, garment rack.",
+      "Softboxes, C-stand, dolly, backdrop rail and dress form are procedural. Catalog furniture is symlinked, not copied."
+    ]
+  },
+  "studio": {
+    "coveRadius": 1.0,
+    "coveRight": 1.28,
+    "coveFront": -0.42,
+    "paperTop": 2.62
+  },
+  "assets": {
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "monitor": {
+      "glb": "assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.42
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.26
+    }
+  },
+  "instances": [
+    {
+      "id": "edit_desk",
+      "kind": "study_desk",
+      "position": [3.32, 0, 0.95],
+      "rotationY": 0,
+      "scale": [1.2, 1, 0.88]
+    },
+    {
+      "id": "edit_chair",
+      "kind": "dining_chair",
+      "position": [3.77, 0, 0.95],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "edit_monitor",
+      "kind": "monitor",
+      "position": [3.32, 0.76, 0.72],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "edit_lamp",
+      "kind": "library_lamp",
+      "position": [3.28, 0.76, 1.32],
+      "rotationY": -0.6
+    },
+    {
+      "id": "edit_mug",
+      "kind": "cup_mug",
+      "position": [3.48, 0.765, 0.48],
+      "rotationY": 0.4
+    },
+    {
+      "id": "changing_bench",
+      "kind": "museum_bench",
+      "position": [-4.48, 0, 2.15],
+      "rotationY": 0
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [4.35, 0, 2.2],
+      "rotationY": 0.5
+    }
+  ],
+  "shell": {
+    "floorColor": "#3e3c39",
+    "wallColor": "#d4cfc6",
+    "woodColor": "#6a5344",
+    "ceilingColor": "#2c3036",
+    "accentColor": "#7d3942",
+    "paperColor": "#f3efe6",
+    "clearColor": "#c2bdb4",
+    "fogColor": "#c2bdb4",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 46,
+    "position": [5.15, 2.35, 4.15],
+    "target": [-0.85, 1.15, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [0.4, 2.15, 4.7],
+      "target": [-2.4, 1.0, 0.2]
+    },
+    "close": {
+      "position": [0.35, 1.42, 0.62],
+      "target": [-1.15, 1.2, -1.45]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#fff3e6",
+      "ground": "#4a4742",
+      "intensity": 0.5
+    },
+    "key": {
+      "color": "#fff1e2",
+      "intensity": 1.05,
+      "position": [-1.15, 5.3, 1.7],
+      "target": [-3.5, 0.7, -2.5],
+      "shadowBox": 7.5,
+      "bias": -0.0004,
+      "normalBias": 0.022
+    },
+    "fill": {
+      "color": "#d5dced",
+      "intensity": 0.55,
+      "position": [3.8, 3.4, 2.6],
+      "target": [-0.4, 1.0, -0.8],
+      "castShadow": false
+    },
+    "points": [
+      {
+        "color": "#ffd7a4",
+        "intensity": 1.6,
+        "distance": 3.4,
+        "decay": 2,
+        "position": [3.28, 1.18, 1.22]
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Seamless cove reads as the lit subject wall, with a curved corner.",
+      "Softboxes and stands are hardware, not floating cubes.",
+      "Camera dolly points at the dress form on the sweep.",
+      "Edit chair faces the monitor; changing bench sits inside the curtain."
+    ]
+  }
+}
