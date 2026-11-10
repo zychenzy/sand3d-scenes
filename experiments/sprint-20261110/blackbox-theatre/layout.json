@@ -1,0 +1,646 @@
+{
+  "meta": {
+    "title": "Small blackbox theatre",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 10.2,
+      "depth": 10.8,
+      "height": 4.65
+    },
+    "stage": {
+      "x0": -2.2,
+      "x1": 2.85,
+      "z0": -5.18,
+      "z1": -1.7,
+      "top": 0.45,
+      "focus": [
+        0.3,
+        1.15,
+        -3.25
+      ]
+    },
+    "niche": {
+      "x0": -4.98,
+      "x1": -2.42,
+      "z0": -5.18,
+      "z1": -1.92,
+      "halfWallX": -3.4,
+      "halfWallH": 0.42,
+      "headerY": 2.18
+    },
+    "house": {
+      "aisleX": 0.305,
+      "rows": [
+        {
+          "z": -0.5,
+          "y": 0.0
+        },
+        {
+          "z": 0.92,
+          "y": 0.18
+        },
+        {
+          "z": 2.15,
+          "y": 0.38
+        }
+      ],
+      "xsLeft": [
+        -3.15,
+        -2.21,
+        -1.27,
+        -0.33
+      ],
+      "xsRight": [
+        0.94,
+        1.88,
+        2.82
+      ],
+      "toe": 0.42,
+      "toeMax": 0.22
+    },
+    "notes": [
+      "Cutaway keeps the back (-Z) and left (-X) walls. Stage is upstage, house downstage, prop niche in the upstage-left wing.",
+      "Theatre-chair GLB: occupant faces -Z at rotationY 0. Small toe-in yaws the outer seats toward stage.focus. Do not use pi.",
+      "Dining-chair GLB: occupant faces +Z at rotationY 0 (same convention as boardgame). Downstage set chair uses pi so it faces the table.",
+      "Prep chair uses -pi/2 so it faces the desk toward -X.",
+      "Shared GLBs are referenced with relative paths. Serve from the repo root."
+    ]
+  },
+  "assets": {
+    "theatre_chair": {
+      "glb": "../../../cinema/assets/theatre_chair__0e346addc570.glb",
+      "targetHeight": 1.05
+    },
+    "dining_chair": {
+      "glb": "../../../boardgame/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "square_table": {
+      "glb": "../../../boardgame/assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75
+    },
+    "study_desk": {
+      "glb": "../../../library/assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.38
+    },
+    "wall_shelf": {
+      "glb": "../../../library/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.55
+    },
+    "book_stand": {
+      "glb": "../../../library/assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.02
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.26
+    },
+    "speaker": {
+      "glb": "../../../cinema/assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.14
+    },
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.36
+    }
+  },
+  "instances": [
+    {
+      "id": "seat_r0_L0",
+      "kind": "theatre_chair",
+      "position": [
+        -3.15,
+        0.0,
+        -0.5
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "seat_r0_L1",
+      "kind": "theatre_chair",
+      "position": [
+        -2.21,
+        0.0,
+        -0.5
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "seat_r0_L2",
+      "kind": "theatre_chair",
+      "position": [
+        -1.27,
+        0.0,
+        -0.5
+      ],
+      "rotationY": -0.2179
+    },
+    {
+      "id": "seat_r0_L3",
+      "kind": "theatre_chair",
+      "position": [
+        -0.33,
+        0.0,
+        -0.5
+      ],
+      "rotationY": -0.0946
+    },
+    {
+      "id": "seat_r0_R0",
+      "kind": "theatre_chair",
+      "position": [
+        0.94,
+        0.0,
+        -0.5
+      ],
+      "rotationY": 0.096
+    },
+    {
+      "id": "seat_r0_R1",
+      "kind": "theatre_chair",
+      "position": [
+        1.88,
+        0.0,
+        -0.5
+      ],
+      "rotationY": 0.219
+    },
+    {
+      "id": "seat_r0_R2",
+      "kind": "theatre_chair",
+      "position": [
+        2.82,
+        0.0,
+        -0.5
+      ],
+      "rotationY": 0.22
+    },
+    {
+      "id": "seat_r1_L0",
+      "kind": "theatre_chair",
+      "position": [
+        -3.15,
+        0.18,
+        0.92
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "seat_r1_L1",
+      "kind": "theatre_chair",
+      "position": [
+        -2.21,
+        0.18,
+        0.92
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "seat_r1_L2",
+      "kind": "theatre_chair",
+      "position": [
+        -1.27,
+        0.18,
+        0.92
+      ],
+      "rotationY": -0.1512
+    },
+    {
+      "id": "seat_r1_L3",
+      "kind": "theatre_chair",
+      "position": [
+        -0.33,
+        0.18,
+        0.92
+      ],
+      "rotationY": -0.063
+    },
+    {
+      "id": "seat_r1_R0",
+      "kind": "theatre_chair",
+      "position": [
+        0.94,
+        0.18,
+        0.92
+      ],
+      "rotationY": 0.064
+    },
+    {
+      "id": "seat_r1_R1",
+      "kind": "theatre_chair",
+      "position": [
+        1.88,
+        0.18,
+        0.92
+      ],
+      "rotationY": 0.1521
+    },
+    {
+      "id": "seat_r1_R2",
+      "kind": "theatre_chair",
+      "position": [
+        2.82,
+        0.18,
+        0.92
+      ],
+      "rotationY": 0.22
+    },
+    {
+      "id": "seat_r2_L0",
+      "kind": "theatre_chair",
+      "position": [
+        -3.15,
+        0.38,
+        2.15
+      ],
+      "rotationY": -0.22
+    },
+    {
+      "id": "seat_r2_L1",
+      "kind": "theatre_chair",
+      "position": [
+        -2.21,
+        0.38,
+        2.15
+      ],
+      "rotationY": -0.1827
+    },
+    {
+      "id": "seat_r2_L2",
+      "kind": "theatre_chair",
+      "position": [
+        -1.27,
+        0.38,
+        2.15
+      ],
+      "rotationY": -0.1188
+    },
+    {
+      "id": "seat_r2_L3",
+      "kind": "theatre_chair",
+      "position": [
+        -0.33,
+        0.38,
+        2.15
+      ],
+      "rotationY": -0.0488
+    },
+    {
+      "id": "seat_r2_R0",
+      "kind": "theatre_chair",
+      "position": [
+        0.94,
+        0.38,
+        2.15
+      ],
+      "rotationY": 0.0495
+    },
+    {
+      "id": "seat_r2_R1",
+      "kind": "theatre_chair",
+      "position": [
+        1.88,
+        0.38,
+        2.15
+      ],
+      "rotationY": 0.1196
+    },
+    {
+      "id": "seat_r2_R2",
+      "kind": "theatre_chair",
+      "position": [
+        2.82,
+        0.38,
+        2.15
+      ],
+      "rotationY": 0.1834
+    },
+    {
+      "id": "set_table",
+      "kind": "square_table",
+      "position": [
+        0.3,
+        0.45,
+        -3.2
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "set_chair_ds",
+      "kind": "dining_chair",
+      "position": [
+        0.3,
+        0.45,
+        -2.46
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "set_chair_us",
+      "kind": "dining_chair",
+      "position": [
+        0.3,
+        0.45,
+        -3.94
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "set_lamp",
+      "kind": "library_lamp",
+      "position": [
+        0.02,
+        1.2,
+        -3.4
+      ],
+      "rotationY": 0.6
+    },
+    {
+      "id": "set_mug",
+      "kind": "cup_mug",
+      "position": [
+        0.52,
+        1.21,
+        -3.02
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "sill_pot",
+      "kind": "flowerpot",
+      "position": [
+        1.42,
+        1.3,
+        -4.58
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "mon_l",
+      "kind": "speaker",
+      "position": [
+        -1.85,
+        0.45,
+        -2.2
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "mon_r",
+      "kind": "speaker",
+      "position": [
+        2.35,
+        0.45,
+        -2.2
+      ],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "prep_desk",
+      "kind": "study_desk",
+      "position": [
+        -3.35,
+        0.0,
+        -3.2
+      ],
+      "rotationY": 0.0
+    },
+    {
+      "id": "prep_chair",
+      "kind": "dining_chair",
+      "position": [
+        -2.78,
+        0.0,
+        -3.2
+      ],
+      "rotationY": -1.5708
+    },
+    {
+      "id": "prep_lamp",
+      "kind": "library_lamp",
+      "position": [
+        -3.35,
+        0.77,
+        -2.9
+      ],
+      "rotationY": 1.4
+    },
+    {
+      "id": "prep_mug",
+      "kind": "cup_mug",
+      "position": [
+        -3.2,
+        0.77,
+        -3.45
+      ],
+      "rotationY": 0.8
+    },
+    {
+      "id": "prep_monitor",
+      "kind": "monitor",
+      "position": [
+        -3.35,
+        0.77,
+        -3.55
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "prep_shelf",
+      "kind": "wall_shelf",
+      "position": [
+        -4.9,
+        1.18,
+        -4.42
+      ],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "prep_stand",
+      "kind": "book_stand",
+      "position": [
+        -2.7,
+        0.0,
+        -2.15
+      ],
+      "rotationY": 0.5
+    },
+    {
+      "id": "niche_pot",
+      "kind": "flowerpot",
+      "position": [
+        -4.78,
+        0.0,
+        -4.98
+      ],
+      "rotationY": 0.3
+    },
+    {
+      "id": "crate_mug",
+      "kind": "cup_mug",
+      "position": [
+        -4.55,
+        0.84,
+        -4.3
+      ],
+      "rotationY": 1.1
+    }
+  ],
+  "shell": {
+    "floorColor": "#141216",
+    "wallColor": "#16141a",
+    "woodColor": "#6a4632",
+    "ceilingColor": "#100e12",
+    "accentColor": "#6a2432",
+    "carpetColor": "#3a242c",
+    "clearColor": "#121016",
+    "fogColor": "#121016",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+    "camera": {
+      "fov": 46,
+      "position": [
+        3.7,
+        3.25,
+        6.35
+      ],
+      "target": [
+        -1.35,
+        1.15,
+        -2.55
+      ]
+    },
+    "cameraPresets": {
+      "corner": {
+        "position": [
+          2.4,
+          2.15,
+          3.55
+        ],
+        "target": [
+          -1.8,
+          1.05,
+          -2.7
+        ]
+      },
+      "close": {
+      "position": [
+        0.3,
+        1.18,
+        0.12
+      ],
+      "target": [
+        0.32,
+        1.05,
+        -3.15
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 3814444,
+      "ground": 1314830,
+      "intensity": 0.78
+    },
+    "key": {
+      "color": 16769732,
+      "intensity": 1.15,
+      "position": [
+        3.4,
+        7.6,
+        3.6
+      ],
+      "target": [
+        0.2,
+        1.1,
+        -2.4
+      ]
+    },
+    "fill": {
+      "color": 6977688,
+      "intensity": 0.38,
+      "position": [
+        -5.5,
+        4.2,
+        -1.5
+      ]
+    },
+    "shadow": {
+      "extent": 9,
+      "far": 28,
+      "bias": -0.0004,
+      "normalBias": 0.04
+    },
+    "points": [
+      {
+        "color": 16760960,
+        "intensity": 1.15,
+        "position": [
+          0.02,
+          1.62,
+          -3.4
+        ],
+        "distance": 3.8,
+        "decay": 2
+      },
+      {
+        "color": 16770232,
+        "intensity": 4.5,
+        "position": [
+          -3.5,
+          2.05,
+          -2.7
+        ],
+        "distance": 5.5,
+        "decay": 2
+      },
+      {
+        "color": 10474730,
+        "intensity": 0.7,
+        "position": [
+          1.42,
+          1.72,
+          -4.55
+        ],
+        "distance": 3.2,
+        "decay": 2
+      },
+      {
+        "color": 16765600,
+        "intensity": 0.45,
+        "position": [
+          3.35,
+          1.45,
+          -2.05
+        ],
+        "distance": 3.0,
+        "decay": 2
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "aisle close",
+      "unlit default"
+    ],
+    "must_read": [
+      "Seat cushions face the stage (-Z); backs face the house (+Z).",
+      "Outer seats toe in toward the stage focus.",
+      "Set dining chairs face the table.",
+      "Prep chair faces the desk.",
+      "Overhead pipes, colored gels, traveler, and the prop niche all read in the default view."
+    ]
+  }
+}
