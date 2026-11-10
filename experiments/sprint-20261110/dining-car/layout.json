@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Railway dining car",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Cutaway restaurant carriage: galley, two long saloon tables, vestibule.",
+      "Saloon windows are separate openings on a 1.8 m pitch, not a glass band.",
+      "Dining tables are long along the carriage: one pedestal spine, wall brackets at the ends. Galley counter is wall-mounted. No four-leg squares."
+    ]
+  },
+  "assets": {
+    "train_seat": { "glb": "assets/train_seat.glb", "targetHeight": 1.0 },
+    "cup_mug": { "glb": "assets/cup_mug.glb", "targetHeight": 0.105 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp.glb", "targetHeight": 0.62 },
+    "flowerpot": { "glb": "assets/flowerpot.glb", "targetHeight": 0.17 },
+    "jam_jar": { "glb": "assets/jam_jar.glb", "targetHeight": 0.11 },
+    "thermos": { "glb": "assets/thermos.glb", "targetHeight": 0.26 },
+    "canister": { "glb": "assets/canister.glb", "targetHeight": 0.16 }
+  },
+  "shell": {
+    "clearColor": "#d9d2c6",
+    "fogColor": "#d9d2c6",
+    "fogNear": 16,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 42,
+    "position": [4.85, 2.28, 7.35],
+    "target": [-0.4, 0.95, -0.7]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.35, 2.2, -7.9],
+      "target": [-0.25, 0.95, 0.15]
+    },
+    "close": {
+      "position": [1.45, 1.42, -0.42],
+      "target": [-0.72, 0.78, -2.35]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16773084, "ground": 6044210, "intensity": 0.46 },
+    "key": {
+      "color": 16775398,
+      "intensity": 1.22,
+      "position": [-7.5, 9.5, 3.2],
+      "shadowExtent": 13
+    },
+    "fill": {
+      "color": 16767152,
+      "intensity": 0.26,
+      "position": [6.5, 4.5, -3]
+    }
+  }
+}
