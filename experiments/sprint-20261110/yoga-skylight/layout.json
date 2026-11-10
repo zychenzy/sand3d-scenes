@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Skylight yoga studio",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.2, "depth": 8.0, "height": 3.4 },
+    "zones": [
+      { "id": "practice", "kind": "practice-floor", "note": "Instructor platform and three student mats under and in front of the lantern, with walking gaps." },
+      { "id": "changing", "kind": "changing-niche", "note": "Curtained timber niche with bench, plus open cubbies for rolled mats and folded textiles." }
+    ],
+    "notes": [
+      "Cutaway drops the front and right walls. The glazed roof is sectioned on the near edge so rafters, ridge and baffle read in elevation.",
+      "Mats are spaced for a body plus a path, not a uniform grid.",
+      "GLBs are symlinks to existing Sandflow bakes. Cloth, mats, slats and the lantern are procedural."
+    ]
+  },
+  "architecture": {
+    "skylight": {
+      "x0": -1.2,
+      "x1": 3.5,
+      "z0": -3.35,
+      "z1": 1.55,
+      "ridgeZ": -0.85,
+      "ySoffit": 3.32,
+      "yBaffle": 3.16,
+      "yEave": 3.58,
+      "yRidge": 4.22
+    },
+    "ceiling": { "x0": -4.55, "x1": 4.15, "z0": -3.96 },
+    "niche": { "x0": -4.48, "x1": -3.22, "z0": -0.15, "z1": 1.85, "head": 2.14 },
+    "credenza": { "x0": -4.28, "x1": -1.78, "z0": -3.84, "z1": -3.42, "h": 0.78 },
+    "platform": { "x0": 0.42, "x1": 2.05, "z0": -3.58, "z1": -1.55, "h": 0.1 },
+    "altar": { "x": 1.22, "z": -3.68, "y": 1.16, "w": 1.5, "d": 0.24 },
+    "border": { "x0": -1.28, "x1": 3.62, "z0": -3.7, "z1": 3.58 },
+    "mat": { "w": 0.62, "l": 1.82, "t": 0.024 }
+  },
+  "mats": [
+    { "id": "instructor", "x": 1.22, "z": -2.58, "y": 0.1, "color": "#c46a58", "head": 1, "props": ["blocks"] },
+    { "id": "student_l", "x": -0.55, "z": 0.05, "y": 0, "color": "#6e8f78", "head": -1, "props": ["blanket"] },
+    { "id": "student_r", "x": 2.95, "z": -0.08, "y": 0, "color": "#d4a574", "head": -1, "props": [] },
+    { "id": "student_s", "x": 1.15, "z": 2.55, "y": 0, "color": "#8f6e86", "head": -1, "props": ["bolster"] }
+  ],
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "tint": "#f3e0c4"
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "tint": "#e7c2a4"
+    },
+    "flowerpot_small": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.2,
+      "tint": "#e7c2a4"
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.5
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26,
+      "tint": "#f4e6d4"
+    }
+  },
+  "instances": [
+    { "id": "bench_niche", "kind": "museum_bench", "position": [-4.22, 0.045, 0.95], "rotationY": 0 },
+    { "id": "pot_altar", "kind": "flowerpot_small", "position": [1.22, 1.2, -3.68], "rotationY": 0.2, "foliage": "succulent" },
+    { "id": "pot_floor", "kind": "flowerpot", "position": [3.9, 0, -3.28], "rotationY": 0.4, "foliage": "floor" },
+    { "id": "thermos", "kind": "thermos", "position": [-2.05, 0.78, -3.62], "rotationY": 0.3 },
+    { "id": "pendant_niche", "kind": "pendant_lamp", "position": [-3.55, 2.82, 0.72], "rotationY": 0 },
+    { "id": "pendant_store", "kind": "pendant_lamp", "position": [-3.15, 2.82, -2.2], "rotationY": 0.2 }
+  ],
+  "shell": {
+    "floorColor": "#e6cfae",
+    "wallColor": "#f3ece3",
+    "woodColor": "#8d5e3c",
+    "ceilingColor": "#f7f2ea",
+    "clearColor": "#efe4d4",
+    "fogColor": "#efe4d4",
+    "fogNear": 24,
+    "fogFar": 50
+  },
+  "camera": {
+    "fov": 50,
+    "position": [5.8, 2.55, 6.35],
+    "target": [0.1, 1.85, -0.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.15, 2.35, -1.55],
+      "target": [-0.2, 1.45, 0.15]
+    },
+    "close": {
+      "position": [-1.55, 1.42, -0.4],
+      "target": [-4.15, 0.92, 1.05]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ea", "ground": "#ead6ba", "intensity": 0.66 },
+    "key": {
+      "color": "#fff8ef",
+      "intensity": 1.65,
+      "position": [1.15, 12.0, 1.4],
+      "target": [1.15, 0.0, -0.4]
+    },
+    "fill": { "color": "#f3e6d4", "intensity": 0.26, "position": [-3.5, 3.4, 2.2] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "niche close", "unlit"],
+    "must_read": [
+      "Sectioned timber skylight is the focal structure over the practice floor.",
+      "Changing niche and cubby storage are a second zone, not a furniture scatter.",
+      "Four mats with walking gaps, instructor on a low platform facing the class."
+    ]
+  }
+}
