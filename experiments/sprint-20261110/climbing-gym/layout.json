@@ -1,0 +1,370 @@
+{
+  "meta": {
+    "title": "The Quarry — indoor bouldering gym",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 16.8,
+      "depth": 13.8,
+      "height": 5.65
+    },
+    "notes": [
+      "Faceted plywood boulder: slab, arete, vertical face, cave roof, steep wall, downclimb slab.",
+      "Crash pads extend 2.4 m past the furthest hold or volume. Thicker pads under overhangs.",
+      "Viewing benches face the wall from outside the fall zone. Reception and lockers sit under a low soffit."
+    ]
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "bar_counter": {
+      "glb": "assets/bar_counter__532dcc87f672.glb",
+      "targetHeight": 1.05
+    },
+    "bar_stool": {
+      "glb": "assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.78
+    },
+    "simple_chair": {
+      "glb": "assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.85
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.58
+    },
+    "pos_terminal": {
+      "glb": "assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.08
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.86
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.26
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_a",
+      "kind": "museum_bench",
+      "position": [
+        -1.85,
+        0,
+        1.82
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "bench_b",
+      "kind": "museum_bench",
+      "position": [
+        0.85,
+        0,
+        1.82
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "bench_c",
+      "kind": "museum_bench",
+      "position": [
+        3.4,
+        0,
+        2.12
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "counter",
+      "kind": "bar_counter",
+      "position": [
+        -4.15,
+        0,
+        4.55
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "stool_a",
+      "kind": "bar_stool",
+      "position": [
+        -5.45,
+        0,
+        5.72
+      ],
+      "rotationY": 0.25
+    },
+    {
+      "id": "stool_b",
+      "kind": "bar_stool",
+      "position": [
+        -3.05,
+        0,
+        5.66
+      ],
+      "rotationY": -0.2
+    },
+    {
+      "id": "chair",
+      "kind": "simple_chair",
+      "position": [
+        -4.7,
+        0,
+        3.02
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "pos",
+      "kind": "pos_terminal",
+      "position": [
+        -3.15,
+        1.05,
+        4.62
+      ],
+      "rotationY": 0.45
+    },
+    {
+      "id": "thermos_a",
+      "kind": "thermos",
+      "position": [
+        -4.75,
+        1.05,
+        4.78
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "thermos_b",
+      "kind": "thermos",
+      "position": [
+        -5.2,
+        1.05,
+        4.32
+      ],
+      "rotationY": -0.3
+    },
+    {
+      "id": "plant_counter",
+      "kind": "flowerpot",
+      "position": [
+        -5.85,
+        1.05,
+        4.22
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "plant_floor",
+      "kind": "flowerpot",
+      "position": [
+        5.25,
+        0,
+        2.25
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "shelf",
+      "kind": "wall_shelf",
+      "position": [
+        -8.18,
+        0.98,
+        3.35
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "pendant_a",
+      "kind": "pendant_lamp",
+      "position": [
+        -5.35,
+        2.62,
+        4.4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_b",
+      "kind": "pendant_lamp",
+      "position": [
+        -3.15,
+        2.62,
+        4.7
+      ],
+      "rotationY": 0.3
+    }
+  ],
+  "shell": {
+    "floorColor": "#9a948b",
+    "wallColor": "#d5cfc3",
+    "woodColor": "#6b4e32",
+    "ceilingColor": "#2a3036",
+    "accentColor": "#1e4f8e",
+    "clearColor": "#aeb6be",
+    "fogColor": "#aeb6be",
+    "fogNear": 24,
+    "fogFar": 52
+  },
+  "camera": {
+    "fov": 48,
+    "maxDistance": 40,
+    "position": [
+      6.2,
+      3.4,
+      8.1
+    ],
+    "target": [
+      -2.0,
+      1.8,
+      -2.6
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        5.15,
+        2.05,
+        3.45
+      ],
+      "target": [
+        -2.2,
+        2.15,
+        -4.15
+      ]
+    },
+    "close": {
+      "position": [
+        1.55,
+        1.62,
+        -0.75
+      ],
+      "target": [
+        0.4,
+        2.05,
+        -3.25
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#f3eee4",
+      "ground": "#3d4c5c",
+      "intensity": 0.58
+    },
+    "key": {
+      "color": "#fff1e2",
+      "intensity": 2.05,
+      "position": [
+        9.5,
+        11.5,
+        7.2
+      ],
+      "target": [
+        -0.8,
+        2.3,
+        -4.2
+      ],
+      "shadow": 18
+    },
+    "fill": {
+      "color": "#c5d4e6",
+      "intensity": 0.32,
+      "position": [
+        -8,
+        6.5,
+        3
+      ]
+    },
+    "points": [
+      {
+        "color": "#ffd2a0",
+        "intensity": 0.9,
+        "distance": 7.5,
+        "decay": 2,
+        "position": [
+          -5.35,
+          2.85,
+          4.4
+        ]
+      },
+      {
+        "color": "#ffd2a0",
+        "intensity": 0.9,
+        "distance": 7.5,
+        "decay": 2,
+        "position": [
+          -3.15,
+          2.85,
+          4.7
+        ]
+      },
+      {
+        "color": "#fff6e4",
+        "intensity": 0.75,
+        "distance": 11,
+        "decay": 2,
+        "position": [
+          -4.6,
+          4.82,
+          -1.7
+        ]
+      },
+      {
+        "color": "#fff6e4",
+        "intensity": 0.95,
+        "distance": 12,
+        "decay": 2,
+        "position": [
+          0.2,
+          4.72,
+          -1.7
+        ]
+      },
+      {
+        "color": "#fff6e4",
+        "intensity": 0.75,
+        "distance": 11,
+        "decay": 2,
+        "position": [
+          4,
+          4.82,
+          -1.7
+        ]
+      },
+      {
+        "color": "#ffe0b8",
+        "intensity": 0.7,
+        "distance": 8,
+        "decay": 2,
+        "position": [
+          5.4,
+          2.35,
+          1.05
+        ]
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "cave close",
+      "unlit"
+    ],
+    "must_read": [
+      "The faceted cave wall is the focal mass, not a furnished box.",
+      "Route colors stay grouped: yellow slab, green arete, blue face, orange cave, pink roof, white traverse.",
+      "Blue pads cover the fall line; benches and the desk sit outside the yellow line."
+    ]
+  }
+}
