@@ -118,13 +118,15 @@ function makeShell(layout) {
   g.add(ceil);
   addBox(g, W * 0.96, 0.1, 0.08, wood, -0.05, H - 0.12, D * 0.15);
 
-  addRug(g, -2.3, -0.75, 3.55, 2.95, s.rugColor, s.rugEdge);
-  addRug(g, 2.65, 0.72, 2.7, 2.55, s.controlRug, '#1c1e24');
+  addRug(g, -2.05, -0.85, 3.9, 2.7, s.rugColor, s.rugEdge);
+  addRug(g, 2.35, 0.85, 2.5, 2.3, s.controlRug, '#1c1e24');
 
   acousticWall(g, -W / 2 + 0.12);
-  diffuser(g, -D / 2 + 0.16);
+  backFoam(g, -D / 2 + 0.14);
+  diffuser(g, -D / 2 + 0.18);
   bassTrap(g, -W / 2 + 0.42, -D / 2 + 0.42);
-  cloud(g, -2.35, H, -0.95);
+  cloud(g, -2.05, H, -0.85, 3.2, 2.2);
+  cloud(g, 1.9, H, 0.28, 1.9, 1.35);
   door(g, -W / 2 + 0.1, 2.25);
   onAir(g, -W / 2 + 0.16, 1.72, 0.72);
   framedPrint(g, -W / 2 + 0.13, 2.05, -2.35);
@@ -137,25 +139,53 @@ function addRug(g, x, z, w, d, fill, edge) {
   rug.castShadow = false;
 }
 
-function foamTile(g, w, h, x, y, z, color) {
+function foamTile(g, w, h, x, y, z, color, axis) {
+  const rib = toon('#5c433c');
+  if (axis === 'z') {
+    addBox(g, w, h, 0.06, toon(color), x, y, z);
+    for (let i = 0; i < 4; i++) {
+      const yy = y - h * 0.3 + i * (h * 0.2);
+      addBox(g, w * 0.78, 0.015, 0.014, rib, x, yy, z + 0.034);
+    }
+    return;
+  }
   addBox(g, 0.06, h, w, toon(color), x, y, z);
-  const rib = toon('#5a4038');
   for (let i = 0; i < 4; i++) {
     const yy = y - h * 0.3 + i * (h * 0.2);
-    addBox(g, 0.014, 0.016, w * 0.78, rib, x + 0.034, yy, z);
+    addBox(g, 0.014, 0.015, w * 0.78, rib, x + 0.034, yy, z);
   }
 }
 
 function acousticWall(g, x) {
   const tiles = [
-    [0.56, 0.4, 1.4, -1.58, '#c4a394'],
-    [0.48, 0.46, 1.36, -0.98, '#8d6b60'],
-    [0.6, 0.38, 1.46, -0.38, '#b08978'],
-    [0.44, 0.42, 1.92, -1.42, '#a07b6c'],
-    [0.52, 0.36, 1.96, -0.82, '#d0b2a2'],
-    [0.4, 0.44, 1.9, -0.22, '#7d5e56'],
+    [0.62, 0.48, 1.25, -2.15, '#c4a394'],
+    [0.5, 0.55, 1.22, -1.5, '#8d6b60'],
+    [0.58, 0.42, 1.32, -0.9, '#b08978'],
+    [0.46, 0.5, 1.2, -0.28, '#a07b6c'],
+    [0.52, 0.4, 1.18, 0.35, '#7d5e56'],
+    [0.48, 0.44, 1.85, -2.05, '#d0b2a2'],
+    [0.55, 0.4, 1.9, -1.4, '#c4a394'],
+    [0.42, 0.46, 1.88, -0.82, '#8d6b60'],
+    [0.5, 0.38, 1.92, -0.22, '#b08978'],
+    [0.4, 0.42, 1.86, 0.42, '#a07b6c'],
   ];
-  for (const [w, h, y, z, color] of tiles) foamTile(g, w, h, x, y, z, color);
+  for (const [w, h, y, z, color] of tiles) foamTile(g, w, h, x, y, z, color, 'x');
+}
+
+function backFoam(g, z) {
+  const tiles = [
+    [0.55, 0.42, -3.55, 1.25, '#b08978'],
+    [0.48, 0.5, -2.95, 1.22, '#c4a394'],
+    [0.52, 0.4, -1.15, 1.28, '#8d6b60'],
+    [0.46, 0.48, -0.55, 1.2, '#a07b6c'],
+    [0.5, 0.38, -3.4, 1.85, '#d0b2a2'],
+    [0.42, 0.44, -2.85, 1.9, '#7d5e56'],
+    [0.55, 0.4, -1.05, 1.88, '#c4a394'],
+    [0.4, 0.42, -0.48, 1.86, '#b08978'],
+    [0.48, 0.5, 3.55, 1.35, '#8d6b60'],
+    [0.42, 0.44, 3.95, 1.85, '#c4a394'],
+  ];
+  for (const [w, h, x, y, color] of tiles) foamTile(g, w, h, x, y, z, color, 'z');
 }
 
 function diffuser(g, z) {
@@ -177,16 +207,17 @@ function bassTrap(g, x, z) {
   addBox(g, 0.4, 0.04, 0.4, toon('#5c4030'), x, 1.32, z);
 }
 
-function cloud(g, x, H, z) {
+function cloud(g, x, H, z, w, d) {
   const cloth = toon('#3a3844');
   const wood = toon('#5c4030');
-  addBox(g, 2.45, 0.045, 1.65, cloth, x, H - 0.42, z);
-  addBox(g, 2.55, 0.05, 0.05, wood, x, H - 0.42, z - 0.82);
-  addBox(g, 2.55, 0.05, 0.05, wood, x, H - 0.42, z + 0.82);
-  addBox(g, 0.05, 0.05, 1.65, wood, x - 1.25, H - 0.42, z);
-  addBox(g, 0.05, 0.05, 1.65, wood, x + 1.25, H - 0.42, z);
-  for (const [dx, dz] of [[-1.1, -0.7], [1.1, -0.7], [-1.1, 0.7], [1.1, 0.7]]) {
-    addCyl(g, 0.008, 0.008, 0.36, wood, x + dx, H - 0.2, z + dz, 6);
+  addBox(g, w, 0.05, d, cloth, x, H - 0.38, z);
+  addBox(g, w + 0.08, 0.045, 0.05, wood, x, H - 0.38, z - d / 2);
+  addBox(g, w + 0.08, 0.045, 0.05, wood, x, H - 0.38, z + d / 2);
+  addBox(g, 0.05, 0.045, d, wood, x - w / 2, H - 0.38, z);
+  addBox(g, 0.05, 0.045, d, wood, x + w / 2, H - 0.38, z);
+  const inset = 0.82;
+  for (const [dx, dz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    addCyl(g, 0.008, 0.008, 0.32, wood, x + dx * w * 0.38, H - 0.18, z + dz * d * inset * 0.42, 6);
   }
 }
 
@@ -241,64 +272,54 @@ function armBetween(g, a, b, r, mat) {
 }
 
 function boomMic(g, mic) {
-  const metal = toon('#c5c8cc');
-  const black = toon('#17181d');
-  const band = toon(mic.band || '#e0b15a');
+  const metal = toon('#b7bcc4');
+  const dark = toon('#3a3e46');
+  const meshTone = toon('#d2d7de', { emissive: '#c5ccd4', emissiveIntensity: 0.45 });
+  const bandMat = toon('#3e444c');
   const bx = mic.base[0];
-  const by = mic.base[1] || 0;
+  const by = mic.base[1];
   const bz = mic.base[2];
   const cap = new THREE.Vector3(mic.capsule[0], mic.capsule[1], mic.capsule[2]);
   const mouth = new THREE.Vector3(mic.mouth[0], mic.mouth[1], mic.mouth[2]);
   const aim = mouth.clone().sub(cap).normalize();
+  const clamp = new THREE.Vector3(bx, by, bz);
 
-  if (by < 0.2) {
-    addCyl(g, 0.13, 0.155, 0.03, black, bx, 0.016, bz, 18);
-    addCyl(g, 0.016, 0.022, 0.64, metal, bx, 0.34, bz, 10);
-    const standTop = new THREE.Vector3(bx, 0.68, bz);
-    const elbow = standTop.clone().lerp(cap, 0.45);
-    elbow.y = Math.max(elbow.y, cap.y + 0.06);
-    armBetween(g, standTop, elbow, 0.013, metal);
-    armBetween(g, elbow, cap, 0.01, metal);
-    addCyl(g, 0.02, 0.02, 0.02, metal, elbow.x, elbow.y, elbow.z, 8);
-  } else {
-    addCyl(g, 0.03, 0.036, 0.018, black, bx, by + 0.012, bz, 12);
-    const p0 = new THREE.Vector3(bx, by + 0.04, bz);
-    armBetween(g, p0, cap, 0.008, metal);
-    const grille = new THREE.Mesh(new THREE.SphereGeometry(0.022, 12, 10), toon('#2c3038'));
-    grille.position.copy(cap);
-    grille.castShadow = true;
-    g.add(grille);
-    const tag = new THREE.Mesh(new THREE.SphereGeometry(0.01, 8, 6), band);
-    tag.position.copy(cap.clone().addScaledVector(aim, -0.03));
-    g.add(tag);
-    return;
-  }
+  addBox(g, 0.07, 0.018, 0.09, metal, bx, by + 0.01, bz);
+  addBox(g, 0.02, 0.045, 0.02, metal, bx, by - 0.012, bz);
+  const knuckle = clamp.clone();
+  knuckle.y += 0.1;
+  armBetween(g, new THREE.Vector3(bx, by + 0.02, bz), knuckle, 0.012, metal);
+  const tail = cap.clone().addScaledVector(aim, -0.08);
+  const elbow = knuckle.clone().lerp(tail, 0.5);
+  elbow.y += 0.12;
+  armBetween(g, knuckle, elbow, 0.011, metal);
+  armBetween(g, elbow, tail, 0.009, metal);
+  addCyl(g, 0.016, 0.016, 0.02, metal, elbow.x, elbow.y, elbow.z, 10);
 
   const body = new THREE.Group();
-  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.018, 0.14, 12), black);
-  stem.castShadow = true;
-  body.add(stem);
-  const grille = new THREE.Mesh(new THREE.SphereGeometry(0.026, 14, 10), toon('#2c3038'));
-  grille.position.y = 0.086;
-  grille.castShadow = true;
-  body.add(grille);
-  const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.018, 12), band);
-  ring.position.y = 0.02;
-  body.add(ring);
+  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.11, 18), dark);
+  barrel.castShadow = true;
+  body.add(barrel);
+  const head = new THREE.Mesh(new THREE.CylinderGeometry(0.029, 0.028, 0.04, 18), meshTone);
+  head.position.y = 0.075;
+  head.castShadow = true;
+  body.add(head);
+  for (let i = 0; i < 3; i++) {
+    const stripe = new THREE.Mesh(new THREE.CylinderGeometry(0.0305, 0.0305, 0.005, 18), bandMat);
+    stripe.position.y = 0.064 + i * 0.012;
+    body.add(stripe);
+  }
   body.position.copy(cap);
   body.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), aim);
   g.add(body);
 
-  const pop = new THREE.Mesh(new THREE.TorusGeometry(0.048, 0.0045, 8, 18), toon('#e6e0d6'));
-  pop.position.copy(cap.clone().addScaledVector(aim, 0.1));
-  pop.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), aim);
+  const popPos = cap.clone().addScaledVector(aim, 0.13);
+  const pop = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.058, 0.008, 22), toon('#e4ddd2'));
+  pop.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), aim);
+  pop.position.copy(popPos);
   pop.castShadow = true;
   g.add(pop);
-
-  const yoke = new THREE.Mesh(new THREE.TorusGeometry(0.036, 0.004, 6, 16), metal);
-  yoke.position.copy(cap.clone().addScaledVector(aim, -0.02));
-  yoke.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), aim);
-  g.add(yoke);
+  armBetween(g, cap.clone().addScaledVector(aim, 0.09), popPos, 0.004, metal);
 }
 
 function mixingConsole(g, spec) {
@@ -412,13 +433,46 @@ function credenza(g, spec) {
   }
 }
 
-function sideTable(g, spec) {
+function ovalTable(g, spec) {
   const [x, , z] = spec.position;
-  const wood = toon('#6a4630');
-  const top = toon('#7a5340');
-  addCyl(g, 0.2, 0.2, 0.035, top, x, 0.56, z, 20);
-  addCyl(g, 0.035, 0.045, 0.5, wood, x, 0.28, z, 10);
-  addCyl(g, 0.14, 0.15, 0.03, wood, x, 0.03, z, 16);
+  const rx = spec.radius[0];
+  const rz = spec.radius[1];
+  const topY = spec.top;
+  const wood = toon('#6b4632');
+  const topMat = toon('#8b5a3c');
+  const top = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.05, 40), topMat);
+  top.scale.set(rx, 1, rz);
+  top.position.set(x, topY - 0.025, z);
+  top.castShadow = true;
+  top.receiveShadow = true;
+  g.add(top);
+  const apron = new THREE.Mesh(new THREE.CylinderGeometry(0.94, 0.94, 0.09, 32), wood);
+  apron.scale.set(rx, 1, rz);
+  apron.position.set(x, topY - 0.09, z);
+  apron.castShadow = true;
+  g.add(apron);
+  addCyl(g, 0.09, 0.11, 0.58, toon('#4a3024'), x, 0.32, z, 14);
+  addCyl(g, 0.32, 0.36, 0.04, toon('#4a3024'), x, 0.03, z, 20);
+}
+
+function floorLamp(g, x, z) {
+  const brass = toon('#c6a15a');
+  const shade = toon('#f2c27a', { emissive: '#ffb45a', emissiveIntensity: 0.85 });
+  const glow = toon('#ffe0a8', { emissive: '#ffd18a', emissiveIntensity: 1 });
+  addCyl(g, 0.18, 0.2, 0.03, brass, x, 0.02, z, 18);
+  addCyl(g, 0.018, 0.024, 1.28, brass, x, 0.68, z, 10);
+  addCyl(g, 0.14, 0.22, 0.18, shade, x, 1.4, z, 18);
+  addCyl(g, 0.08, 0.1, 0.02, glow, x, 1.33, z, 14);
+}
+
+function tableLamp(g, x, y, z) {
+  const brass = toon('#d4b06a');
+  const shade = toon('#f3c98a', { emissive: '#ffc56a', emissiveIntensity: 0.9 });
+  const glow = toon('#ffe6b0', { emissive: '#ffd89a', emissiveIntensity: 1 });
+  addCyl(g, 0.09, 0.1, 0.025, brass, x, y + 0.015, z, 16);
+  addCyl(g, 0.012, 0.016, 0.22, brass, x, y + 0.14, z, 10);
+  addCyl(g, 0.07, 0.11, 0.1, shade, x, y + 0.3, z, 16);
+  addCyl(g, 0.04, 0.05, 0.015, glow, x, y + 0.26, z, 12);
 }
 
 function bookRow(g, x0, y, z, count, along = 'x') {
@@ -457,23 +511,10 @@ function booksInCase(g, inst) {
   g.add(grp);
 }
 
-function pillows(g, sofa) {
-  const rot = sofa.rotationY || 0;
-  const c = Math.cos(rot);
-  const s = Math.sin(rot);
-  const colors = ['#6e3344', '#243044'];
-  [[0.58, 0.42, 0.16], [-0.58, 0.42, 0.12]].forEach((p, i) => {
-    const x = sofa.position[0] + p[0] * c + p[2] * s;
-    const z = sofa.position[2] - p[0] * s + p[2] * c;
-    const m = addBox(g, 0.32, 0.2, 0.12, toon(colors[i]), x, p[1], z);
-    m.rotation.y = rot + (i === 0 ? 0.15 : -0.1);
-  });
-}
-
-function tableProps(g) {
-  addBox(g, 0.26, 0.015, 0.2, toon('#f0e6d4'), -2.15, 0.37, -0.95);
-  addBox(g, 0.22, 0.012, 0.16, toon('#f7f1e6'), -2.15, 0.384, -0.95);
-  addBox(g, 0.012, 0.012, 0.14, toon('#2a2420'), -2.02, 0.39, -0.9);
+function tableProps(g, top) {
+  addBox(g, 0.26, 0.015, 0.2, toon('#f0e6d4'), -2.05, top + 0.01, -0.85);
+  addBox(g, 0.2, 0.012, 0.15, toon('#f7f1e6'), -2.05, top + 0.024, -0.85);
+  addBox(g, 0.012, 0.012, 0.14, toon('#2a2420'), -1.9, top + 0.03, -0.78);
 }
 
 function speakerStands(g, layout) {
@@ -516,7 +557,10 @@ function makeProcedural(layout) {
   mixingConsole(g, layout.built.console);
   speakerStands(g, layout);
   credenza(g, layout.built.credenza);
-  sideTable(g, layout.built.sideTable);
+  ovalTable(g, layout.built.table);
+  floorLamp(g, layout.built.floorLamp[0], layout.built.floorLamp[2]);
+  const shelfLamp = layout.built.tableLamp;
+  tableLamp(g, shelfLamp[0], shelfLamp[1], shelfLamp[2]);
   for (const mic of layout.mics) boomMic(g, mic);
   const bookcase = layout.instances.find((i) => i.id === 'case');
   booksInCase(g, bookcase);
@@ -524,12 +568,10 @@ function makeProcedural(layout) {
   bookRow(g, 1.4, 2.05, -3.02, 7);
   bookRow(g, 2.32, 1.52, -3.02, 8);
   bookRow(g, 2.34, 2.05, -3.02, 6);
-  pillows(g, layout.instances.find((i) => i.id === 'hosts'));
-  tableProps(g);
+  tableProps(g, layout.built.table.top);
   foliage(g, -3.72, 1.62);
-  headphones(g, 3.42, 0.78, 0.28);
-  pendantDrop(g, -2.1, -0.95);
-  addBox(g, 0.18, 0.012, 0.12, toon('#d7c4a4'), -3.22, 0.585, 0.55);
+  for (const phone of layout.built.phones) headphones(g, phone.position[0], phone.position[1], phone.position[2]);
+  pendantDrop(g, layout.built.table.position[0], layout.built.table.position[2]);
   return g;
 }
 
@@ -551,7 +593,7 @@ boot({
         for (const m of mats) if (m?.color) m.color.set('#6b4a32');
       });
     }
-    if (kind !== 'pendant_lamp' && kind !== 'library_lamp') return;
+    if (kind !== 'pendant_lamp') return;
     root.traverse((o) => {
       if (!o.isMesh) return;
       const n = (o.name || '').toLowerCase();
@@ -578,10 +620,7 @@ boot({
     const tex = new THREE.CanvasTexture(c);
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false });
     const size = {
-      sofa: 2.15,
       dining_chair: 0.72,
-      coffee_table: 1.55,
-      study_desk: 1.35,
       speaker: 0.85,
       display_bookcase: 1.05,
       flowerpot: 0.48,
@@ -599,7 +638,8 @@ boot({
     for (const [pos, s] of [
       [layout.built.console.position, 1.9],
       [layout.built.credenza.position, 2.3],
-      [layout.built.sideTable.position, 0.55],
+      [layout.built.table.position, 2.0],
+      [layout.built.floorLamp, 0.5],
     ]) {
       const disc = new THREE.Mesh(new THREE.PlaneGeometry(s, s * 0.62), mat);
       disc.rotation.x = -Math.PI / 2;

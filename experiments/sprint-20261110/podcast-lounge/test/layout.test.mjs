@@ -67,6 +67,25 @@ test('every mic points back at its seat from in front', () => {
   }
 });
 
+test('desk-height table, clamped mics, and both monitors on the desk', () => {
+  assert.equal(layout.assets.coffee_table, undefined);
+  assert.equal(layout.assets.library_lamp, undefined);
+  assert.equal(layout.built.table.top, 0.75);
+  for (const mic of layout.mics) {
+    assert.ok(mic.base[1] >= 0.65, `${mic.id} clamp is not on a desk`);
+  }
+  const seats = layout.instances.filter((i) => i.role === 'seat');
+  for (const seat of seats) {
+    assert.ok(layout.mics.some((m) => m.seat === seat.id), seat.id);
+    assert.ok(layout.built.phones.some((p) => p.seat === seat.id), seat.id);
+  }
+  const mons = layout.instances.filter((i) => i.kind === 'monitor');
+  assert.equal(mons.length, 2);
+  for (const mon of mons) {
+    assert.ok(mon.position[0] < 2.6 && mon.position[1] >= 0.85, mon.id);
+  }
+});
+
 test('props stay inside the cutaway', () => {
   const { width: W, depth: D } = layout.meta.room;
   for (const inst of layout.instances) {

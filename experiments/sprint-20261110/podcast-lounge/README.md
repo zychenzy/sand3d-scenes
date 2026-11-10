@@ -1,6 +1,6 @@
 # Podcast recording lounge
 
-Cutaway of a two-zone podcast room: a conversation set (sofa, two guest chairs, boom mics) and a control position (mixing console, monitors, engineer). Record shelving along the back wall is lit by a banker's lamp. Acoustic panels, a slat diffuser, and a ceiling cloud sit behind the talent.
+Cutaway of a two-zone podcast room: a conversation set (desk-height oval table, four chairs, clamped boom mics, headphones) and a control position (mixing console, two desk monitors, engineer). Record shelving along the back wall is lit by a warm table lamp, with a brass floor lamp by the set. Foam covers both solid walls; a slat diffuser and ceiling clouds sit over the talent and the console.
 
 Assets are referenced from existing scene folders. Microphones, the console, treatment, and shelving props are procedural because the baked catalog has no broadcast mic, boom, or mixer.
 

@@ -7,7 +7,7 @@
     "zones": [
       {
         "id": "conversation",
-        "blurb": "Host sofa and two guest chairs around a low table, each with a boom mic."
+        "blurb": "Four chairs pulled up to a desk-height oval table, each with a clamped boom mic and headphones."
       },
       {
         "id": "control",
@@ -15,35 +15,19 @@
       }
     ],
     "notes": [
-      "Conversation cluster sits on a burgundy rug against treated walls. Control zone is the charcoal rug on the right.",
-      "Lamp-lit record shelving runs along the back wall between the two zones.",
-      "Seat yaw is derived from lookAt via orient.js. Sofa and bookcase face local −Z at yaw 0; chairs, monitors, and speakers face local +Z."
+      "Conversation cluster sits on a burgundy rug under a ceiling cloud. Foam covers the left wall and the back wall.",
+      "A brass floor lamp and a warm table lamp light the set and the record shelves.",
+      "Seat yaw is derived from lookAt via orient.js. Bookcase faces local −Z at yaw 0; chairs, monitors, and speakers face local +Z."
     ]
   },
   "assets": {
-    "sofa": {
-      "glb": "../../../lounge/assets/sofa_solid__2172bb7e3b99.glb",
-      "targetHeight": 0.96
-    },
     "dining_chair": {
       "glb": "../../../lounge/assets/dining_chair__5e1f7a56da4a.glb",
       "targetHeight": 0.9
     },
-    "coffee_table": {
-      "glb": "../../../lounge/assets/coffee_table__29a509d8be0b.glb",
-      "targetHeight": 0.36
-    },
-    "study_desk": {
-      "glb": "../../../cowork/assets/study_desk__630f6d76cbcd.glb",
-      "targetHeight": 0.76
-    },
     "monitor": {
       "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
       "targetHeight": 0.36
-    },
-    "library_lamp": {
-      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
-      "targetHeight": 0.4
     },
     "speaker": {
       "glb": "../../../music/assets/speaker__2db67686cd88.glb",
@@ -72,14 +56,24 @@
   },
   "instances": [
     {
-      "id": "hosts",
-      "kind": "sofa",
+      "id": "host_a",
+      "kind": "dining_chair",
       "role": "seat",
       "zone": "conversation",
-      "modelForward": "negZ",
-      "position": [-3.58, 0, -0.95],
-      "lookAt": [-1.02, -0.93],
-      "mouths": [[-3.4, 0.98, -1.33], [-3.4, 0.98, -0.57]]
+      "modelForward": "posZ",
+      "position": [-3.05, 0, -1.35],
+      "lookAt": [-1.05, -1.35],
+      "mouth": [-2.95, 1.02, -1.35]
+    },
+    {
+      "id": "host_b",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "conversation",
+      "modelForward": "posZ",
+      "position": [-3.02, 0, -0.35],
+      "lookAt": [-1.02, -0.35],
+      "mouth": [-2.92, 1.02, -0.35]
     },
     {
       "id": "guest_far",
@@ -87,9 +81,9 @@
       "role": "seat",
       "zone": "conversation",
       "modelForward": "posZ",
-      "position": [-1.02, 0, -1.36],
-      "lookAt": [-3.4, -1.33],
-      "mouth": [-1.12, 1.0, -1.356]
+      "position": [-1.05, 0, -1.38],
+      "lookAt": [-3.05, -1.35],
+      "mouth": [-1.15, 1.02, -1.37]
     },
     {
       "id": "guest_near",
@@ -97,9 +91,9 @@
       "role": "seat",
       "zone": "conversation",
       "modelForward": "posZ",
-      "position": [-0.96, 0, -0.5],
-      "lookAt": [-3.4, -0.57],
-      "mouth": [-1.06, 1.0, -0.503]
+      "position": [-1.02, 0, -0.32],
+      "lookAt": [-3.02, -0.35],
+      "mouth": [-1.12, 1.02, -0.33]
     },
     {
       "id": "engineer",
@@ -107,66 +101,47 @@
       "role": "seat",
       "zone": "control",
       "modelForward": "posZ",
-      "position": [3.22, 0, 1.4],
-      "lookAt": [-2.35, -0.95],
-      "mouth": [3.14, 1.02, 1.366]
-    },
-    {
-      "id": "table",
-      "kind": "coffee_table",
-      "position": [-2.1, 0, -0.95],
-      "rotationY": 0
+      "position": [2.95, 0, 1.48],
+      "lookAt": [-2.05, -0.85],
+      "mouth": [2.859, 1.02, 1.438]
     },
     {
       "id": "pendant",
       "kind": "pendant_lamp",
-      "position": [-2.1, 1.98, -0.95],
+      "position": [-2.05, 1.98, -0.85],
       "rotationY": 0
     },
     {
-      "id": "script_desk",
-      "kind": "study_desk",
-      "zone": "control",
-      "position": [3.55, 0, -0.15],
-      "rotationY": 0.18
-    },
-    {
-      "id": "waveform_mon",
+      "id": "mon_l",
       "kind": "monitor",
       "zone": "control",
       "modelForward": "posZ",
-      "position": [3.42, 0.76, 0.05],
-      "lookAt": [3.22, 1.4]
+      "position": [1.63, 0.9, 0.979],
+      "lookAt": [2.95, 1.48]
     },
     {
-      "id": "lamp_shelf",
-      "kind": "library_lamp",
+      "id": "mon_r",
+      "kind": "monitor",
       "zone": "control",
-      "position": [1.55, 0.74, -2.82],
-      "rotationY": 0.4
-    },
-    {
-      "id": "lamp_desk",
-      "kind": "library_lamp",
-      "zone": "control",
-      "position": [3.72, 0.76, -0.42],
-      "rotationY": -0.6
+      "modelForward": "posZ",
+      "position": [2.081, 0.9, 0.367],
+      "lookAt": [2.95, 1.48]
     },
     {
       "id": "spk_l",
       "kind": "speaker",
       "zone": "control",
       "modelForward": "posZ",
-      "position": [1.42, 0.58, 0.28],
-      "lookAt": [3.22, 1.4]
+      "position": [1.05, 0.58, 0.15],
+      "lookAt": [2.95, 1.48]
     },
     {
       "id": "spk_r",
       "kind": "speaker",
       "zone": "control",
       "modelForward": "posZ",
-      "position": [1.48, 0.58, 1.62],
-      "lookAt": [3.22, 1.4]
+      "position": [1.25, 0.58, 1.95],
+      "lookAt": [2.95, 1.48]
     },
     {
       "id": "case",
@@ -190,19 +165,19 @@
     {
       "id": "mug_a",
       "kind": "cup_mug",
-      "position": [-2.02, 0.36, -1.48],
+      "position": [-2.05, 0.75, -1.5],
       "rotationY": 0.4
     },
     {
       "id": "mug_b",
       "kind": "cup_mug",
-      "position": [-2.22, 0.36, -0.38],
+      "position": [-2.05, 0.75, -0.2],
       "rotationY": -0.2
     },
     {
       "id": "mug_c",
       "kind": "cup_mug",
-      "position": [3.58, 0.76, -0.48],
+      "position": [-1.72, 0.75, -0.85],
       "rotationY": 0.8
     },
     {
@@ -215,49 +190,57 @@
   "mics": [
     {
       "id": "mic_host_a",
-      "seat": "hosts",
-      "band": "#e0b15a",
-      "mouth": [-3.4, 0.98, -1.33],
-      "capsule": [-2.98, 1.04, -1.33],
-      "base": [-2.75, 0, -1.68]
+      "seat": "host_a",
+      "mouth": [-2.95, 1.02, -1.35],
+      "capsule": [-2.58, 1.08, -1.35],
+      "base": [-2.62, 0.75, -1.52]
     },
     {
       "id": "mic_host_b",
-      "seat": "hosts",
-      "band": "#e0b15a",
-      "mouth": [-3.4, 0.98, -0.57],
-      "capsule": [-2.98, 1.04, -0.57],
-      "base": [-2.75, 0, -0.2]
+      "seat": "host_b",
+      "mouth": [-2.92, 1.02, -0.35],
+      "capsule": [-2.55, 1.08, -0.35],
+      "base": [-2.6, 0.75, -0.18]
     },
     {
       "id": "mic_guest_far",
       "seat": "guest_far",
-      "band": "#efe6d6",
-      "mouth": [-1.12, 1.0, -1.356],
-      "capsule": [-1.48, 1.04, -1.35],
-      "base": [-1.18, 0, -1.88]
+      "mouth": [-1.15, 1.02, -1.37],
+      "capsule": [-1.52, 1.08, -1.36],
+      "base": [-1.48, 0.75, -1.55]
     },
     {
       "id": "mic_guest_near",
       "seat": "guest_near",
-      "band": "#efe6d6",
-      "mouth": [-1.06, 1.0, -0.503],
-      "capsule": [-1.42, 1.04, -0.513],
-      "base": [-1.12, 0, -0.02]
+      "mouth": [-1.12, 1.02, -0.33],
+      "capsule": [-1.49, 1.08, -0.34],
+      "base": [-1.46, 0.75, -0.15]
     },
     {
-      "id": "mic_talkback",
+      "id": "mic_engineer",
       "seat": "engineer",
-      "band": "#c44b45",
-      "mouth": [3.14, 1.02, 1.366],
-      "capsule": [2.84, 1.02, 1.24],
-      "base": [2.64, 0.93, 1.12]
+      "mouth": [2.859, 1.02, 1.438],
+      "capsule": [2.606, 1.05, 1.319],
+      "base": [2.258, 0.9, 0.97]
     }
   ],
   "built": {
-    "console": { "position": [2.3, 0, 0.96], "lookToward": [3.22, 1.4] },
+    "table": {
+      "position": [-2.05, 0, -0.85],
+      "radius": [0.62, 0.95],
+      "top": 0.75
+    },
+    "console": { "position": [2.0, 0, 0.78], "lookToward": [2.95, 1.48] },
     "credenza": { "position": [2.15, 0, -2.96], "size": [2.2, 0.74, 0.42] },
-    "sideTable": { "position": [-3.22, 0, 0.55] }
+    "floorLamp": [-3.55, 0, 0.95],
+    "tableLamp": [1.45, 0.74, -2.78],
+    "phones": [
+      { "seat": "host_a", "position": [-2.32, 0.76, -1.55] },
+      { "seat": "host_b", "position": [-2.32, 0.76, -0.15] },
+      { "seat": "guest_far", "position": [-1.78, 0.76, -1.58] },
+      { "seat": "guest_near", "position": [-1.78, 0.76, -0.12] },
+      { "seat": "engineer", "position": [2.503, 0.91, 0.468] }
+    ]
   },
   "shell": {
     "floorColor": "#5a3d2c",
@@ -284,8 +267,8 @@
       "target": [-1.2, 0.9, -0.55]
     },
     "close": {
-      "position": [-0.15, 1.28, 0.72],
-      "target": [-2.55, 0.95, -0.95]
+      "position": [-1.55, 1.32, -0.15],
+      "target": [-2.65, 1.05, -1.15]
     }
   },
   "lights": {
@@ -293,17 +276,17 @@
     "key": { "color": 16775392, "intensity": 1.05, "position": [4.2, 7.6, 3.6] },
     "fill": { "color": 12173268, "intensity": 0.24, "position": [-4.2, 3.6, 1.4] },
     "points": [
-      { "color": 16768424, "intensity": 0.95, "distance": 6.2, "decay": 2, "position": [-2.1, 2.28, -0.95] },
-      { "color": 16768266, "intensity": 1.25, "distance": 4.4, "decay": 2, "position": [1.55, 1.2, -2.82] },
-      { "color": 16770592, "intensity": 0.7, "distance": 3.4, "decay": 2, "position": [3.72, 1.18, -0.42] }
+      { "color": 16768424, "intensity": 0.95, "distance": 6.2, "decay": 2, "position": [-2.05, 2.15, -0.85] },
+      { "color": 16768266, "intensity": 1.15, "distance": 4.4, "decay": 2, "position": [1.45, 1.18, -2.7] },
+      { "color": 16768424, "intensity": 0.85, "distance": 5.2, "decay": 2, "position": [-3.55, 1.5, 0.95] }
     ]
   },
   "acceptance": {
     "shots": ["toon default", "toon corner", "mic close", "unlit"],
     "must_read": [
-      "Host sofa faces the two guest chairs; every chair faces a person in the conversation or, for the engineer, the talent.",
-      "Each boom points at the mouth height of its seat.",
-      "Acoustic treatment is behind the talent, shelving is lamp-lit, and the console is a separate zone."
+      "Four chairs sit at a 75 cm oval table and face the person across from them. The engineer faces the talent.",
+      "Each seat has a desk-clamped boom whose capsule points at mouth height, plus headphones on the table or console.",
+      "Foam covers both solid walls, a cloud hangs over the table, and both monitors sit fully on the mixing desk."
     ]
   }
 }
