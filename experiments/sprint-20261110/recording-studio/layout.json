@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "Recording control room",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 9.6,
+      "depth": 7.4,
+      "height": 3.05
+    },
+    "notes": [
+      "Wide angled console faces the booth window. Mains flank that window on soffits and toe in to the engineer, who sits centered behind the console.",
+      "Nearfields sit on the meter bridge. Sofa is against the rear wall, facing the console.",
+      "Nearfields and mains are the same speaker mesh at two scales."
+    ]
+  },
+  "zones": {
+    "booth": {
+      "x0": -1.35,
+      "x1": 1.35,
+      "z0": -3.45,
+      "z1": -1.72,
+      "glassTop": 2.28,
+      "lid": 2.44,
+      "doorW": 0.78,
+      "doorH": 2.02
+    },
+    "desk": {
+      "x": 0,
+      "z": -0.25,
+      "w": 2.45,
+      "d": 1.15,
+      "top": 0.73
+    },
+    "racks": [
+      { "id": "rack_a", "x": 4.05, "z": -0.35, "rotY": 1.5708 },
+      { "id": "rack_b", "x": 4.05, "z": 0.55, "rotY": 1.5708 }
+    ],
+    "lounge": { "x": 3.5, "z": -2.98, "rotY": 3.1416 }
+  },
+  "assets": {
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.5
+    },
+    "monitor": {
+      "glb": "assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.34
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.48
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.36
+    },
+    "sofa_solid": {
+      "glb": "assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.78
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3
+    }
+  },
+  "instances": [
+    {
+      "id": "eng_chair",
+      "kind": "dining_chair",
+      "position": [0, 0, 0.98],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "vocal_bench",
+      "kind": "piano_bench",
+      "position": [0, 0, -3.02],
+      "rotationY": 0
+    },
+    {
+      "id": "nf_l",
+      "kind": "speaker",
+      "position": [-0.55, 0.93, -0.74],
+      "rotationY": -0.36,
+      "scale": 0.42
+    },
+    {
+      "id": "nf_r",
+      "kind": "speaker",
+      "position": [0.55, 0.93, -0.74],
+      "rotationY": 0.36,
+      "scale": 0.42
+    },
+    {
+      "id": "main_l",
+      "kind": "speaker",
+      "position": [-2.15, 1.12, -1.42],
+      "rotationY": -0.74,
+      "scale": 0.88
+    },
+    {
+      "id": "main_r",
+      "kind": "speaker",
+      "position": [2.15, 1.12, -1.42],
+      "rotationY": 0.74,
+      "scale": 0.88
+    },
+    {
+      "id": "mon_l",
+      "kind": "monitor",
+      "position": [-0.48, 0.745, -0.34],
+      "rotationY": 0
+    },
+    {
+      "id": "mon_r",
+      "kind": "monitor",
+      "position": [0.48, 0.745, -0.34],
+      "rotationY": 0
+    },
+    {
+      "id": "mug_desk",
+      "kind": "cup_mug",
+      "position": [0.72, 0.75, 0.18],
+      "rotationY": 0.3
+    },
+    {
+      "id": "pend_desk",
+      "kind": "pendant_lamp",
+      "position": [0, 2.42, -0.15],
+      "rotationY": 0
+    },
+    {
+      "id": "sofa",
+      "kind": "sofa_solid",
+      "position": [3.5, 0, -2.98],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "mug_lounge",
+      "kind": "cup_mug",
+      "position": [4.42, 0.46, -2.28],
+      "rotationY": 0.4
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-4.2, 0, 2.35],
+      "rotationY": 0.4
+    }
+  ],
+  "shell": {
+    "floorColor": "#5a4a3c",
+    "wallColor": "#7d8792",
+    "woodColor": "#6e5340",
+    "ceilingColor": "#8a939c",
+    "accentColor": "#5c3844",
+    "clearColor": "#243038",
+    "fogColor": "#243038",
+    "fogNear": 18,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 48,
+    "position": [0.55, 2.12, 5.65],
+    "target": [0.0, 1.02, -1.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.85, 2.3, 2.55],
+      "target": [0.05, 1.0, -1.35]
+    },
+    "close": {
+      "position": [0.35, 1.72, 2.05],
+      "target": [0.0, 0.98, -0.95]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 14147040, "ground": 6710616, "intensity": 0.7 },
+    "key": {
+      "color": 16770244,
+      "intensity": 1.35,
+      "position": [4.2, 8.2, 4.2],
+      "target": [0, 1.0, -0.8],
+      "shadow": {
+        "left": -8,
+        "right": 8,
+        "top": 8,
+        "bottom": -8,
+        "near": 0.4,
+        "far": 28,
+        "bias": -0.00035,
+        "normalBias": 0.028
+      }
+    },
+    "fill": {
+      "color": 11520176,
+      "intensity": 0.38,
+      "position": [-5.2, 4.2, 1.4]
+    },
+    "up": {
+      "color": 12111080,
+      "intensity": 0.28,
+      "position": [0.2, 0.2, 2.2],
+      "target": [0, 2.6, -1.6]
+    },
+    "spots": [
+      {
+        "color": 16766136,
+        "intensity": 3.1,
+        "distance": 9,
+        "angle": 0.62,
+        "penumbra": 0.4,
+        "position": [0.4, 2.75, 0.6],
+        "target": [0, 1.7, -3.4]
+      },
+      {
+        "color": 16764064,
+        "intensity": 2.1,
+        "distance": 8,
+        "angle": 0.5,
+        "penumbra": 0.5,
+        "position": [1.6, 2.5, 0.2],
+        "target": [-4.6, 1.45, 0.2]
+      }
+    ],
+    "points": [
+      { "id": "desk", "color": 16764048, "intensity": 0.45, "distance": 2.6, "decay": 2, "position": [0, 1.15, -0.45] },
+      { "id": "booth", "color": 13428192, "intensity": 0.85, "distance": 3.2, "decay": 2, "position": [0, 2.15, -2.6] },
+      { "id": "tally", "color": 16724736, "intensity": 0.28, "distance": 1.6, "decay": 2, "position": [0, 2.2, -1.6] },
+      { "id": "strip", "color": 16764080, "intensity": 0.35, "distance": 2.2, "decay": 2, "position": [0, 0.9, 0.15] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "desk close", "unlit"],
+    "must_read": [
+      "The wide console faces the booth window, with the engineer centered behind it.",
+      "Mains flank the window and toe in. Nearfields sit on the bridge.",
+      "The sofa is against the rear wall, facing the console."
+    ]
+  }
+}
