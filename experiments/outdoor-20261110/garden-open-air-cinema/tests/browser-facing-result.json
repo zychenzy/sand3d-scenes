@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "captured": "2026-11-10",
+  "views": ["default", "corner", "close", "unlit"],
+  "status": "ready — 32/32 chairs face the screen",
+  "mesh": { "count": 32, "facing": 32, "allFace": true, "minDot": 0.966, "flipped": [] },
+  "rays": {
+    "default": { "ok": true, "name": "screen-fabric", "dist": 22.87 },
+    "corner": { "ok": true, "name": "screen-fabric", "dist": 24.15 }
+  },
+  "analyticOk": true,
+  "analyticIssues": []
+}

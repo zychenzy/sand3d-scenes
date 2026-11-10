@@ -1,0 +1,309 @@
+{
+  "ok": true,
+  "chairCount": 32,
+  "facing": 32,
+  "minDot": 0.97,
+  "issues": [],
+  "rays": [
+    {
+      "name": "default",
+      "clear": true,
+      "hits": []
+    },
+    {
+      "name": "corner",
+      "clear": true,
+      "hits": []
+    }
+  ],
+  "feet": [
+    {
+      "id": "deck_r0_L0",
+      "stripe": "terracotta",
+      "rotationY": -0.6273,
+      "footZ": -2.64,
+      "backZ": -2.203,
+      "dot": 0.97,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_L1",
+      "stripe": "terracotta",
+      "rotationY": -0.53,
+      "footZ": -2.662,
+      "backZ": -2.196,
+      "dot": 0.979,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_L2",
+      "stripe": "teal",
+      "rotationY": -0.4014,
+      "footZ": -2.687,
+      "backZ": -2.19,
+      "dot": 0.988,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_L3",
+      "stripe": "teal",
+      "rotationY": -0.2443,
+      "footZ": -2.708,
+      "backZ": -2.184,
+      "dot": 0.995,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_R0",
+      "stripe": "ochre",
+      "rotationY": 0.2443,
+      "footZ": -2.708,
+      "backZ": -2.184,
+      "dot": 0.995,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_R1",
+      "stripe": "ochre",
+      "rotationY": 0.4014,
+      "footZ": -2.687,
+      "backZ": -2.19,
+      "dot": 0.988,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_R2",
+      "stripe": "navy",
+      "rotationY": 0.53,
+      "footZ": -2.662,
+      "backZ": -2.196,
+      "dot": 0.979,
+      "faces": true
+    },
+    {
+      "id": "deck_r0_R3",
+      "stripe": "navy",
+      "rotationY": 0.6273,
+      "footZ": -2.64,
+      "backZ": -2.203,
+      "dot": 0.97,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_L0",
+      "stripe": "teal",
+      "rotationY": -0.5181,
+      "footZ": -0.765,
+      "backZ": -0.296,
+      "dot": 0.98,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_L1",
+      "stripe": "teal",
+      "rotationY": -0.4306,
+      "footZ": -0.782,
+      "backZ": -0.291,
+      "dot": 0.986,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_L2",
+      "stripe": "ochre",
+      "rotationY": -0.3258,
+      "footZ": -0.798,
+      "backZ": -0.286,
+      "dot": 0.992,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_L3",
+      "stripe": "ochre",
+      "rotationY": -0.2093,
+      "footZ": -0.811,
+      "backZ": -0.283,
+      "dot": 0.997,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_R0",
+      "stripe": "navy",
+      "rotationY": 0.2093,
+      "footZ": -0.811,
+      "backZ": -0.283,
+      "dot": 0.997,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_R1",
+      "stripe": "navy",
+      "rotationY": 0.3258,
+      "footZ": -0.798,
+      "backZ": -0.286,
+      "dot": 0.992,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_R2",
+      "stripe": "terracotta",
+      "rotationY": 0.4306,
+      "footZ": -0.782,
+      "backZ": -0.291,
+      "dot": 0.986,
+      "faces": true
+    },
+    {
+      "id": "deck_r1_R3",
+      "stripe": "terracotta",
+      "rotationY": 0.5181,
+      "footZ": -0.765,
+      "backZ": -0.296,
+      "dot": 0.98,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_L0",
+      "stripe": "ochre",
+      "rotationY": -0.4034,
+      "footZ": 1.114,
+      "backZ": 1.61,
+      "dot": 0.988,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_L1",
+      "stripe": "ochre",
+      "rotationY": -0.3212,
+      "footZ": 1.101,
+      "backZ": 1.614,
+      "dot": 0.992,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_L2",
+      "stripe": "navy",
+      "rotationY": -0.229,
+      "footZ": 1.091,
+      "backZ": 1.617,
+      "dot": 0.996,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_L3",
+      "stripe": "navy",
+      "rotationY": -0.1326,
+      "footZ": 1.084,
+      "backZ": 1.619,
+      "dot": 0.999,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_R0",
+      "stripe": "terracotta",
+      "rotationY": 0.1326,
+      "footZ": 1.084,
+      "backZ": 1.619,
+      "dot": 0.999,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_R1",
+      "stripe": "terracotta",
+      "rotationY": 0.229,
+      "footZ": 1.091,
+      "backZ": 1.617,
+      "dot": 0.996,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_R2",
+      "stripe": "teal",
+      "rotationY": 0.3212,
+      "footZ": 1.101,
+      "backZ": 1.614,
+      "dot": 0.992,
+      "faces": true
+    },
+    {
+      "id": "deck_r2_R3",
+      "stripe": "teal",
+      "rotationY": 0.4034,
+      "footZ": 1.114,
+      "backZ": 1.61,
+      "dot": 0.988,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_L0",
+      "stripe": "navy",
+      "rotationY": -0.3574,
+      "footZ": 3.007,
+      "backZ": 3.512,
+      "dot": 0.99,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_L1",
+      "stripe": "navy",
+      "rotationY": -0.287,
+      "footZ": 2.997,
+      "backZ": 3.515,
+      "dot": 0.994,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_L2",
+      "stripe": "terracotta",
+      "rotationY": -0.2102,
+      "footZ": 2.989,
+      "backZ": 3.517,
+      "dot": 0.997,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_L3",
+      "stripe": "terracotta",
+      "rotationY": -0.1317,
+      "footZ": 2.984,
+      "backZ": 3.519,
+      "dot": 0.999,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_R0",
+      "stripe": "teal",
+      "rotationY": 0.1317,
+      "footZ": 2.984,
+      "backZ": 3.519,
+      "dot": 0.999,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_R1",
+      "stripe": "teal",
+      "rotationY": 0.2102,
+      "footZ": 2.989,
+      "backZ": 3.517,
+      "dot": 0.997,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_R2",
+      "stripe": "ochre",
+      "rotationY": 0.287,
+      "footZ": 2.997,
+      "backZ": 3.515,
+      "dot": 0.994,
+      "faces": true
+    },
+    {
+      "id": "deck_r3_R3",
+      "stripe": "ochre",
+      "rotationY": 0.3574,
+      "footZ": 3.007,
+      "backZ": 3.512,
+      "dot": 0.99,
+      "faces": true
+    }
+  ]
+}
