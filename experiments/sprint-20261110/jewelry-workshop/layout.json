@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Jeweler atelier",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.8, "depth": 8.2, "height": 3.3 },
+    "notes": [
+      "Two zones share one walnut, brass, and emerald palette: a bench atelier against the back wall, and a client salon on the burgundy rug.",
+      "The glass display counter is the threshold. Customers sit on the rug side; the jeweler sits on the aisle side.",
+      "Bench chairs face the benches (rotation pi). Salon and client chairs face the table or counter, not the room."
+    ]
+  },
+  "anchors": {
+    "benchTop": 0.78,
+    "benchA": { "x": -1.95, "z": -3.63, "w": 2.4, "d": 0.7 },
+    "benchB": { "x": 1.6, "z": -3.63, "w": 1.95, "d": 0.66 },
+    "chest": { "x": -0.14, "z": -3.73, "w": 0.88, "d": 0.5, "h": 1.2 },
+    "counter": { "x": -0.25, "z": 0.05, "w": 3.6, "d": 0.74, "h": 0.9 },
+    "stock": { "x": 3.5, "z": -3.75, "w": 1.02, "d": 0.46, "h": 1.62 },
+    "safe": { "x": -5.08, "z": -2.45 },
+    "windowZ": 0.72,
+    "table": { "x": 3.15, "z": 2.55 },
+    "plinth": { "x": -3.5, "z": 2.8 }
+  },
+  "assets": {
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.9 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.56 },
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.74 },
+    "display_bookcase": { "glb": "assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 2.06, "tint": "#6b4a32" },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.7 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.16 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.3, "tint": "#c4784a" },
+    "museum_plinth": { "glb": "assets/museum_plinth__6bce39246b2c.glb", "targetHeight": 1.02, "tint": "#d9d3c7" }
+  },
+  "instances": [
+    { "id": "chair_bench_a", "kind": "dining_chair", "position": [-2.05, 0, -2.88], "rotationY": 3.1416 },
+    { "id": "chair_bench_b", "kind": "dining_chair", "position": [1.45, 0, -2.88], "rotationY": 3.1416 },
+    { "id": "chair_jeweler", "kind": "dining_chair", "position": [-1.2, 0, -0.77], "rotationY": 0 },
+    { "id": "chair_client_l", "kind": "dining_chair", "position": [-1.4, 0, 0.87], "rotationY": 3.1416 },
+    { "id": "chair_client_r", "kind": "dining_chair", "position": [0.9, 0, 0.87], "rotationY": 3.1416 },
+    { "id": "chair_salon_s", "kind": "dining_chair", "position": [3.15, 0, 1.99], "rotationY": 0 },
+    { "id": "chair_salon_n", "kind": "dining_chair", "position": [3.15, 0, 3.11], "rotationY": 3.1416 },
+    { "id": "lamp_bench_a", "kind": "library_lamp", "position": [-1.15, 0.78, -3.78], "rotationY": 3.1416 },
+    { "id": "lamp_bench_b", "kind": "library_lamp", "position": [2.15, 0.78, -3.78], "rotationY": 3.1416 },
+    { "id": "pendant_counter_l", "kind": "pendant_lamp", "position": [-1.05, 2.02, 0.05], "rotationY": 0 },
+    { "id": "pendant_counter_r", "kind": "pendant_lamp", "position": [0.7, 2.02, 0.05], "rotationY": 0 },
+    { "id": "pendant_salon", "kind": "pendant_lamp", "position": [3.15, 2.08, 2.55], "rotationY": 0, "targetNote": "shade bottom; cord continues to the beam" },
+    { "id": "consult_table", "kind": "square_table", "position": [3.15, 0, 2.55], "rotationY": 0 },
+    { "id": "gem_case", "kind": "display_bookcase", "position": [-5.12, 0, -0.95], "rotationY": -1.5708 },
+    { "id": "wall_shelf", "kind": "wall_shelf", "position": [-5.16, 1.42, 2.35], "rotationY": -1.5708 },
+    { "id": "jar_bench_1", "kind": "jam_jar", "position": [-2.75, 0.78, -3.82], "rotationY": 0.4 },
+    { "id": "jar_bench_2", "kind": "jam_jar", "position": [-2.5, 0.78, -3.86], "rotationY": -0.2 },
+    { "id": "jar_shelf_1", "kind": "jam_jar", "position": [-5.08, 1.55, 2.16], "rotationY": 0.2 },
+    { "id": "jar_shelf_2", "kind": "jam_jar", "position": [-5.08, 1.55, 2.52], "rotationY": 0.8 },
+    { "id": "jar_shelf_3", "kind": "jam_jar", "position": [-5.08, 1.97, 2.34], "rotationY": 0.3 },
+    { "id": "pot_salon", "kind": "flowerpot", "position": [-4.7, 0, 3.55], "rotationY": 0.4 },
+    { "id": "pot_corner", "kind": "flowerpot", "position": [4.45, 0, 3.45], "rotationY": 1.1 },
+    { "id": "feature_plinth", "kind": "museum_plinth", "position": [-3.5, 0, 2.8], "rotationY": 0.15 }
+  ],
+  "shell": {
+    "floorColor": "#c9aa78",
+    "wallColor": "#f4efe6",
+    "woodColor": "#5c3b2c",
+    "ceilingColor": "#f7f1e6",
+    "clearColor": "#e6dcc8",
+    "fogColor": "#e6dcc8",
+    "fogNear": 16,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 42,
+    "position": [6.9, 3.05, 5.5],
+    "target": [-0.35, 1.1, -0.45]
+  },
+  "cameraPresets": {
+    "corner": { "position": [6.5, 2.75, -2.2], "target": [-0.4, 1.15, -0.7] },
+    "close": { "position": [-0.35, 1.5, -1.85], "target": [-2.05, 1.05, -3.55] }
+  },
+  "lights": {
+    "hemi": { "sky": 16775370, "ground": 6047286, "intensity": 0.5 },
+    "key": { "color": 16773340, "intensity": 1.12, "position": [8, 12, 7] },
+    "fill": { "color": 12964064, "intensity": 0.28, "position": [-7, 6, 4] },
+    "points": [
+      { "color": 16769712, "intensity": 0.7, "position": [-1.15, 1.2, -3.45], "distance": 3.4, "decay": 2 },
+      { "color": 16769712, "intensity": 0.65, "position": [2.15, 1.2, -3.45], "distance": 3.4, "decay": 2 },
+      { "color": 16769712, "intensity": 0.42, "position": [-1.05, 2.35, 0.05], "distance": 4.5, "decay": 2 },
+      { "color": 16769712, "intensity": 0.42, "position": [0.7, 2.35, 0.05], "distance": 4.5, "decay": 2 },
+      { "color": 16769712, "intensity": 0.38, "position": [3.15, 2.4, 2.55], "distance": 4.2, "decay": 2 },
+      { "color": 16773552, "intensity": 0.32, "position": [-0.25, 1.45, 0.05], "distance": 2.6, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "must_read": [
+      "A jeweler's atelier, not an empty shop box: benches, toolboards, material drawers, and a glass counter.",
+      "Bench chairs face the benches. Client chairs face the counter. Salon chairs face the consultation table.",
+      "Task lamps and pendants read as lit. Drawer labels AU, AG, GEM, WAX stay legible.",
+      "Circulation: rug salon in front of the counter, wood aisle behind it to the benches."
+    ]
+  }
+}
