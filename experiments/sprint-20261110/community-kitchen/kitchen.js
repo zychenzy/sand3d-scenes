@@ -294,21 +294,22 @@ function makeProcedural(layout) {
   buildCounter(g, counter, z, { sage, sageIn, stone, stoneEdge, splash, steel, steelDark, iron, handle, flame, water, cream, towel, towelBand });
   buildIsland(g, island, { oak, oakIn, oakDark, block, blockEdge, steel, handle, cream, soup, towel, towelBand });
   buildFridge(g, z.fridge, { steel, steelDark, handle, iron });
-  buildRack(g, 3.62, 1.15, { oak, steel, crust, cream });
-  buildBins(g, 3.82, -3.18, { sage, steelDark, handle });
+  // Baker's rack against the left wall, clear of the default camera.
+  buildRack(g, -4.96, -2.35, { oak, steel, crust, cream }, Math.PI / 2);
+  buildBins(g, 4.62, -3.22, { sage, steelDark, handle });
   buildLesson(g, layout, chalk);
   buildProps(g, layout, { tomato, leaf, lemon, onion, carrot, bread, crust, oil, cream, soup, steel, oak, oakDark });
   buildLights(g, layout, bulbMat, stripMat, H);
   buildHerb(g, layout, leaf);
 
-  // Circulation rug — stops short of the stools and the tasting table.
-  box(g, 1.15, 0.012, 2.05, rugMat, 0.08, 0.02, 1.2);
+  // Work mat in the stance in front of the range and sink.
+  box(g, 2.35, 0.012, 0.72, rugMat, 0.26, 0.028, -2.7);
 
   contactDisc(g, island.x, island.z, island.w * 0.46, island.d * 0.48, 0.45);
   contactDisc(g, z.fridge.x, z.fridge.z, 0.48, 0.42, 0.4);
   contactDisc(g, z.tasting.x, z.tasting.z, 0.7, 0.55, 0.35);
   contactDisc(g, -4.58, -3.42, 0.5, 0.32, 0.35);
-  contactDisc(g, 3.62, 1.15, 0.5, 0.32, 0.3);
+  contactDisc(g, -4.96, -2.35, 0.32, 0.5, 0.3);
   for (const inst of layout.instances) {
     if (inst.kind === 'bar_stool' || inst.kind === 'dining_chair') {
       contactDisc(g, inst.position[0], inst.position[2], 0.28, 0.28, 0.4);
@@ -528,24 +529,28 @@ function buildFridge(g, f, m) {
   box(g, f.w - 0.1, 0.04, 0.01, m.steelDark, f.x, f.h - 0.08, f.z + f.d / 2 + 0.02);
 }
 
-function buildRack(g, x, z, m) {
+function buildRack(g, x, z, m, rotY = 0) {
+  const rack = new THREE.Group();
   const w = 0.82;
   const d = 0.4;
   const h = 1.58;
   for (const dx of [-w / 2, w / 2]) {
     for (const dz of [-d / 2, d / 2]) {
-      box(g, 0.035, h, 0.035, m.oak, x + dx, h / 2, z + dz);
+      box(rack, 0.035, h, 0.035, m.oak, dx, h / 2, dz);
     }
   }
   for (let i = 0; i < 4; i++) {
     const y = 0.18 + i * 0.38;
-    box(g, w, 0.02, d, m.oak, x, y, z);
-    if (i === 1) box(g, 0.46, 0.02, 0.32, m.steel, x - 0.08, y + 0.03, z);
+    box(rack, w, 0.02, d, m.oak, 0, y, 0);
+    if (i === 1) box(rack, 0.46, 0.02, 0.32, m.steel, -0.08, y + 0.03, 0);
     if (i === 2) {
-      cyl(g, 0.1, 0.08, 0.08, m.cream, x + 0.12, y + 0.06, z, 12);
-      box(g, 0.22, 0.04, 0.12, m.crust, x - 0.16, y + 0.04, z + 0.04);
+      cyl(rack, 0.1, 0.08, 0.08, m.cream, 0.12, y + 0.06, 0, 12);
+      box(rack, 0.22, 0.04, 0.12, m.crust, -0.16, y + 0.04, 0.04);
     }
   }
+  rack.position.set(x, 0, z);
+  rack.rotation.y = rotY;
+  g.add(rack);
 }
 
 function buildBins(g, x, z, m) {
@@ -630,6 +635,16 @@ function buildProps(g, layout, m) {
   // Salt cellar.
   cyl(g, 0.03, 0.034, 0.05, m.cream, isl.x + 0.28, yI + 0.03, isl.z + 0.18, 10);
 
+  // One board and mixing bowl per stool, inset from that stool's edge.
+  const stations = [
+    { x: isl.x - 1.18, z: isl.z + 0.36, accent: 'tomato' },
+    { x: isl.x + 0.18, z: isl.z + 0.4, accent: 'leaf' },
+    { x: isl.x + 1.05, z: isl.z + 0.34, accent: 'onion' },
+    { x: isl.x - 1.22, z: isl.z + 0.05, accent: 'carrot' },
+    { x: isl.x + 1.22, z: isl.z - 0.02, accent: 'lemon' },
+  ];
+  for (const st of stations) stoolStation(g, st.x, yI, st.z, st.accent, m);
+
   // Prep counter, left of the range.
   box(g, 0.38, 0.018, 0.24, m.oak, -2.85, yC + 0.01, -3.32);
   put(g, new THREE.CapsuleGeometry(0.018, 0.12, 2, 6), m.carrot, -2.95, yC + 0.03, -3.28, [0, 0.8, Math.PI / 2]);
@@ -673,6 +688,24 @@ function buildProps(g, layout, m) {
 
 function bowl(g, x, y, z, r, mat) {
   cyl(g, r, r * 0.7, r * 0.55, mat, x, y + r * 0.28, z, 14);
+}
+
+function stoolStation(g, x, y, z, accent, m) {
+  box(g, 0.26, 0.016, 0.18, m.oak, x, y + 0.008, z, 0.08);
+  bowl(g, x - 0.02, y + 0.016, z - 0.01, 0.055, m.cream);
+  if (accent === 'tomato') {
+    put(g, new THREE.SphereGeometry(0.022, 8, 6), m.tomato, x + 0.07, y + 0.03, z + 0.03);
+    put(g, new THREE.SphereGeometry(0.018, 8, 6), m.tomato, x + 0.05, y + 0.028, z - 0.04);
+  } else if (accent === 'leaf') {
+    put(g, new THREE.SphereGeometry(0.02, 8, 6), m.leaf, x + 0.07, y + 0.03, z + 0.02);
+    put(g, new THREE.SphereGeometry(0.016, 8, 6), m.leaf, x + 0.05, y + 0.028, z - 0.03);
+  } else if (accent === 'onion') {
+    put(g, new THREE.SphereGeometry(0.028, 8, 6), m.onion, x + 0.07, y + 0.036, z);
+  } else if (accent === 'carrot') {
+    put(g, new THREE.CapsuleGeometry(0.012, 0.07, 2, 6), m.carrot, x + 0.06, y + 0.03, z, [0, 0.6, Math.PI / 2]);
+  } else {
+    put(g, new THREE.SphereGeometry(0.026, 8, 6), m.lemon, x + 0.07, y + 0.034, z + 0.01);
+  }
 }
 
 function buildLights(g, layout, bulbMat, stripMat) {
