@@ -9,34 +9,34 @@
       "height": 3.05
     },
     "notes": [
-      "Control room: engineer faces the console and the glass vocal booth on the back-left.",
-      "Machine racks stand on the right, faces toward the desk. Producer sofa sits behind the sweet spot.",
-      "Nearfields and mains are the same speaker mesh at two scales. Console, booth, racks and cables are procedural."
+      "Wide angled console faces the booth window. Mains flank that window on soffits and toe in to the engineer, who sits centered behind the console.",
+      "Nearfields sit on the meter bridge. Sofa is against the rear wall, facing the console.",
+      "Nearfields and mains are the same speaker mesh at two scales."
     ]
   },
   "zones": {
     "booth": {
-      "x0": -4.7,
-      "x1": -1.88,
-      "z0": -3.6,
-      "z1": -1.4,
-      "glassTop": 2.3,
-      "lid": 2.46,
+      "x0": -1.35,
+      "x1": 1.35,
+      "z0": -3.45,
+      "z1": -1.72,
+      "glassTop": 2.28,
+      "lid": 2.44,
       "doorW": 0.78,
       "doorH": 2.02
     },
     "desk": {
-      "x": -3.29,
-      "z": 0.02,
-      "w": 2.16,
-      "d": 1.04,
-      "top": 0.74
+      "x": 0,
+      "z": -0.25,
+      "w": 2.45,
+      "d": 1.15,
+      "top": 0.73
     },
     "racks": [
-      { "id": "rack_a", "x": 3.58, "z": -1.55, "rotY": 1.5708 },
-      { "id": "rack_b", "x": 3.58, "z": -0.82, "rotY": 1.5708 }
+      { "id": "rack_a", "x": 4.05, "z": -0.35, "rotY": 1.5708 },
+      { "id": "rack_b", "x": 4.05, "z": 0.55, "rotY": 1.5708 }
     ],
-    "lounge": { "x": 1.85, "z": 2.45, "rotY": -0.55 }
+    "lounge": { "x": 3.5, "z": -2.98, "rotY": 3.1416 }
   },
   "assets": {
     "speaker": {
@@ -45,7 +45,7 @@
     },
     "monitor": {
       "glb": "assets/monitor__b7429da7ef4a.glb",
-      "targetHeight": 0.36
+      "targetHeight": 0.34
     },
     "dining_chair": {
       "glb": "assets/dining_chair__5e1f7a56da4a.glb",
@@ -55,17 +55,13 @@
       "glb": "assets/piano_bench__10332493b3a6.glb",
       "targetHeight": 0.48
     },
-    "library_lamp": {
-      "glb": "assets/library_lamp__06accd4e0351.glb",
-      "targetHeight": 0.4
-    },
     "pendant_lamp": {
       "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
-      "targetHeight": 0.4
+      "targetHeight": 0.36
     },
     "sofa_solid": {
       "glb": "assets/sofa_solid__2172bb7e3b99.glb",
-      "targetHeight": 0.8
+      "targetHeight": 0.78
     },
     "cup_mug": {
       "glb": "assets/cup_mug__6da6f7f87b8d.glb",
@@ -73,138 +69,126 @@
     },
     "flowerpot": {
       "glb": "assets/flowerpot__4a270f247734.glb",
-      "targetHeight": 0.32
+      "targetHeight": 0.3
     }
   },
   "instances": [
     {
       "id": "eng_chair",
       "kind": "dining_chair",
-      "position": [-3.29, 0, 1.02],
+      "position": [0, 0, 0.98],
       "rotationY": 3.1416
     },
     {
       "id": "vocal_bench",
       "kind": "piano_bench",
-      "position": [-3.29, 0, -3.02],
+      "position": [0, 0, -3.02],
       "rotationY": 0
     },
     {
       "id": "nf_l",
       "kind": "speaker",
-      "position": [-4.08, 0.74, -0.22],
-      "rotationY": -0.28,
-      "scale": 0.58
+      "position": [-0.55, 0.93, -0.74],
+      "rotationY": -0.36,
+      "scale": 0.42
     },
     {
       "id": "nf_r",
       "kind": "speaker",
-      "position": [-2.47, 0.74, -0.22],
-      "rotationY": 0.28,
-      "scale": 0.58
+      "position": [0.55, 0.93, -0.74],
+      "rotationY": 0.36,
+      "scale": 0.42
     },
     {
       "id": "main_l",
       "kind": "speaker",
-      "position": [-0.05, 0.68, -3.22],
-      "rotationY": 0.42,
-      "scale": 0.82
+      "position": [-2.15, 1.12, -1.42],
+      "rotationY": -0.74,
+      "scale": 0.88
     },
     {
       "id": "main_r",
       "kind": "speaker",
-      "position": [1.65, 0.68, -3.18],
-      "rotationY": 0.62,
-      "scale": 0.82
+      "position": [2.15, 1.12, -1.42],
+      "rotationY": 0.74,
+      "scale": 0.88
     },
     {
       "id": "mon_l",
       "kind": "monitor",
-      "position": [-3.72, 0.74, -0.38],
+      "position": [-0.48, 0.745, -0.34],
       "rotationY": 0
     },
     {
       "id": "mon_r",
       "kind": "monitor",
-      "position": [-2.86, 0.74, -0.38],
+      "position": [0.48, 0.745, -0.34],
       "rotationY": 0
-    },
-    {
-      "id": "desk_lamp",
-      "kind": "library_lamp",
-      "position": [-2.32, 0.74, 0.38],
-      "rotationY": -0.4
     },
     {
       "id": "mug_desk",
       "kind": "cup_mug",
-      "position": [-4.02, 0.74, 0.3],
-      "rotationY": 0.4
+      "position": [0.72, 0.75, 0.18],
+      "rotationY": 0.3
     },
     {
       "id": "pend_desk",
       "kind": "pendant_lamp",
-      "position": [-3.29, 2.32, -0.05],
+      "position": [0, 2.42, -0.15],
       "rotationY": 0
-    },
-    {
-      "id": "pend_lounge",
-      "kind": "pendant_lamp",
-      "position": [1.7, 2.25, 2.35],
-      "rotationY": 0.4
     },
     {
       "id": "sofa",
       "kind": "sofa_solid",
-      "position": [1.85, 0, 2.45],
-      "rotationY": -0.55
+      "position": [3.5, 0, -2.98],
+      "rotationY": 3.1416
     },
     {
       "id": "mug_lounge",
       "kind": "cup_mug",
-      "position": [0.95, 0.46, 2.15],
-      "rotationY": 0.2
+      "position": [4.42, 0.46, -2.28],
+      "rotationY": 0.4
     },
     {
       "id": "plant",
       "kind": "flowerpot",
-      "position": [-4.25, 0, 3.05],
-      "rotationY": 0.5
+      "position": [-4.2, 0, 2.35],
+      "rotationY": 0.4
     }
   ],
   "shell": {
-    "floorColor": "#4a4038",
-    "wallColor": "#6a737c",
+    "floorColor": "#5a4a3c",
+    "wallColor": "#7d8792",
     "woodColor": "#6e5340",
-    "ceilingColor": "#7c868e",
+    "ceilingColor": "#8a939c",
     "accentColor": "#5c3844",
-    "clearColor": "#1c2228",
-    "fogColor": "#1c2228",
-    "fogNear": 16,
-    "fogFar": 34
+    "clearColor": "#243038",
+    "fogColor": "#243038",
+    "fogNear": 18,
+    "fogFar": 38
   },
   "camera": {
     "fov": 48,
-    "position": [5.35, 2.45, 4.55],
-    "target": [-2.15, 1.05, -1.35]
+    "position": [0.55, 2.12, 5.65],
+    "target": [0.0, 1.02, -1.2]
   },
   "cameraPresets": {
     "corner": {
-      "position": [-0.35, 2.15, 3.45],
-      "target": [-2.7, 1.05, -1.55]
+      "position": [4.85, 2.3, 2.55],
+      "target": [0.05, 1.0, -1.35]
     },
     "close": {
-      "position": [-1.2, 1.82, 2.4],
-      "target": [-3.05, 1.12, -1.85]
+      "position": [0.35, 1.72, 2.05],
+      "target": [0.0, 0.98, -0.95]
     }
   },
   "lights": {
-    "hemi": { "sky": 13227488, "ground": 6042408, "intensity": 0.5 },
+    "hemi": { "sky": 14147040, "ground": 6710616, "intensity": 0.7 },
     "key": {
       "color": 16770244,
-      "intensity": 1.42,
-      "position": [5.2, 8.4, 4.6],
-      "target": [-2.2, 0.9, -1.2],
+      "intensity": 1.35,
+      "position": [4.2, 8.2, 4.2],
+      "target": [0, 1.0, -0.8],
       "shadow": {
         "left": -8,
         "right": 8,
@@ -217,31 +201,49 @@
       }
     },
     "fill": {
-      "color": 10597808,
-      "intensity": 0.32,
-      "position": [-5.5, 3.6, 1.2]
+      "color": 11520176,
+      "intensity": 0.38,
+      "position": [-5.2, 4.2, 1.4]
     },
     "up": {
       "color": 12111080,
-      "intensity": 0.38,
-      "position": [0.2, 0.15, 2.4],
-      "target": [-1.2, 2.7, -1.4]
+      "intensity": 0.28,
+      "position": [0.2, 0.2, 2.2],
+      "target": [0, 2.6, -1.6]
     },
+    "spots": [
+      {
+        "color": 16766136,
+        "intensity": 3.1,
+        "distance": 9,
+        "angle": 0.62,
+        "penumbra": 0.4,
+        "position": [0.4, 2.75, 0.6],
+        "target": [0, 1.7, -3.4]
+      },
+      {
+        "color": 16764064,
+        "intensity": 2.1,
+        "distance": 8,
+        "angle": 0.5,
+        "penumbra": 0.5,
+        "position": [1.6, 2.5, 0.2],
+        "target": [-4.6, 1.45, 0.2]
+      }
+    ],
     "points": [
-      { "id": "desk", "color": 16766112, "intensity": 0.85, "distance": 4.2, "decay": 2, "position": [-3.29, 2.05, 0.05] },
-      { "id": "booth", "color": 12968191, "intensity": 0.95, "distance": 3.4, "decay": 2, "position": [-3.29, 2.18, -2.45] },
-      { "id": "tally", "color": 16724736, "intensity": 0.32, "distance": 1.7, "decay": 2, "position": [-2.43, 2.22, -1.28] },
-      { "id": "lamp", "color": 16769454, "intensity": 0.4, "distance": 1.8, "decay": 2, "position": [-2.32, 1.22, 0.38] },
-      { "id": "lounge", "color": 16766100, "intensity": 0.55, "distance": 3.6, "decay": 2, "position": [1.7, 2.05, 2.35] }
+      { "id": "desk", "color": 16764048, "intensity": 0.45, "distance": 2.6, "decay": 2, "position": [0, 1.15, -0.45] },
+      { "id": "booth", "color": 13428192, "intensity": 0.85, "distance": 3.2, "decay": 2, "position": [0, 2.15, -2.6] },
+      { "id": "tally", "color": 16724736, "intensity": 0.28, "distance": 1.6, "decay": 2, "position": [0, 2.2, -1.6] },
+      { "id": "strip", "color": 16764080, "intensity": 0.35, "distance": 2.2, "decay": 2, "position": [0, 0.9, 0.15] }
     ]
   },
   "acceptance": {
     "shots": ["toon default", "toon corner", "desk close", "unlit"],
     "must_read": [
-      "Glass vocal booth is the architectural focus, with a mic and a seat inside.",
-      "Mixing desk sits in front of the booth; the engineer chair faces the screens.",
-      "Acoustic treatment, monitor speakers, racks and cable looms are visible.",
-      "Producer sofa is a second zone and faces the console, not a KTV table."
+      "The wide console faces the booth window, with the engineer centered behind it.",
+      "Mains flank the window and toe in. Nearfields sit on the bridge.",
+      "The sofa is against the rear wall, facing the console."
     ]
   }
 }

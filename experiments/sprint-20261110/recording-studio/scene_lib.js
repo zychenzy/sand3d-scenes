@@ -273,6 +273,22 @@ export async function boot(opts) {
     }
     scene.add(up);
   }
+  if (layout.lights?.spots) {
+    for (const s of layout.lights.spots) {
+      const spot = new THREE.SpotLight(
+        s.color,
+        s.intensity ?? 2,
+        s.distance ?? 10,
+        s.angle ?? 0.6,
+        s.penumbra ?? 0.45,
+        s.decay ?? 1.4
+      );
+      spot.position.set(...s.position);
+      spot.target.position.set(...(s.target || [0, 1, 0]));
+      scene.add(spot);
+      scene.add(spot.target);
+    }
+  }
   if (layout.lights?.points) {
     for (const p of layout.lights.points) {
       const pl = new THREE.PointLight(p.color || 0xffd8a8, p.intensity ?? 0.5, p.distance ?? 12, p.decay ?? 2);

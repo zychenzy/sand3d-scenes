@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { boot, toon, addCable, retagEmissive, makeCutawayShell } from './scene_lib.js';
+import { boot, toon, addCable, makeCutawayShell } from './scene_lib.js';
 
 const foamA = () => toon('#5c3844');
 const foamB = () => toon('#3e4c5a');
@@ -221,46 +221,68 @@ function ceilingCloud(g, w, d, x, y, z, rotY) {
   g.add(grp);
 }
 
+function quadraticDiffuser(g, x, y, z, cols, rows, cell, axis) {
+  const mat = wood();
+  const depths = [1, 3, 5, 2, 4, 1, 3, 2, 5, 4, 1, 2];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const depth = 0.025 + depths[(r * 3 + c * 2) % depths.length] * 0.016;
+      const py = y + (r - (rows - 1) / 2) * cell;
+      if (axis === 'x') {
+        const pz = z + (c - (cols - 1) / 2) * cell;
+        box(g, depth, cell * 0.78, cell * 0.78, mat, x + depth / 2, py, pz);
+      } else {
+        const px = x + (c - (cols - 1) / 2) * cell;
+        box(g, cell * 0.78, cell * 0.78, depth, mat, px, py, z + depth / 2);
+      }
+    }
+  }
+}
+
 function acousticTreatment(g, layout) {
   const { width: W, depth: D, height: H } = layout.meta.room;
   const b = layout.zones.booth;
   const backZ = -D / 2 + 0.16;
   const leftX = -W / 2 + 0.16;
+  const cx = (b.x0 + b.x1) / 2;
 
-  framedPanel(g, 0.72, 1.45, b.x1 + 0.55, 1.55, backZ, '#5c3844', 'z');
-  slatDiffusor(g, -0.85, 0.95, 0.85, 2.35, backZ - 0.02);
-  framedPanel(g, 0.9, 1.2, 1.7, 1.75, backZ, '#3e4c5a', 'z');
-  framedPanel(g, 0.62, 1.65, 2.85, 1.25, backZ, '#4e3542', 'z');
-  framedPanel(g, 0.5, 0.72, 3.85, 2.05, backZ, '#3e4c5a', 'z');
+  quadraticDiffuser(g, -3.35, 1.45, backZ, 5, 6, 0.16, 'z');
+  quadraticDiffuser(g, cx, 2.62, backZ, 8, 3, 0.14, 'z');
+  framedPanel(g, 0.7, 1.15, 2.85, 1.85, backZ, '#5c3844', 'z');
+  slatDiffusor(g, b.x1 + 0.85, 2.55, 0.55, 1.55, backZ);
+  box(g, 0.38, 2.2, 0.38, foamDeep(), -W / 2 + 0.48, 1.1, -D / 2 + 0.48);
 
-  box(g, 0.42, 2.15, 0.42, foamDeep(), W / 2 - 0.7, 1.08, -D / 2 + 0.48);
+  framedPanel(g, 0.85, 1.15, leftX, 1.7, -1.55, '#4e3542', 'x');
+  quadraticDiffuser(g, leftX, 1.35, 1.55, 4, 5, 0.15, 'x');
+  wedgeField(g, leftX - 0.02, 2.15, 3.15, 0.4, 1.9, 'z');
 
-  framedPanel(g, 0.95, 1.25, leftX, 1.5, -0.15, '#5c3844', 'x');
-  framedPanel(g, 0.7, 0.85, leftX, 1.85, 1.15, '#3e4c5a', 'x');
-  wedgeField(g, leftX - 0.02, 1.7, 2.85, 0.45, 2.15, 'z');
+  const wash = box(g, 5.4, 0.05, 0.06, toon('#e8b48a', { emissive: '#ffb060', emissiveIntensity: 0.65 }), cx, 2.78, backZ + 0.02);
+  noShadow(wash);
+  const sideWash = box(g, 0.05, 0.05, 2.4, toon('#e8b48a', { emissive: '#ffb060', emissiveIntensity: 0.5 }), leftX + 0.02, 2.55, 0.2);
+  noShadow(sideWash);
 
-  box(g, W - 0.4, 0.08, 0.04, woodDark(), 0.2, 0.05, -D / 2 + 0.1);
-  box(g, 0.04, 0.08, D - b.z1 - 0.4, woodDark(), -W / 2 + 0.1, 0.05, (b.z1 + D / 2) / 2);
+  box(g, W - 0.5, 0.08, 0.04, woodDark(), 0.3, 0.05, -D / 2 + 0.1);
+  box(g, 0.04, 0.08, D - 0.5, woodDark(), -W / 2 + 0.1, 0.05, 0.2);
 
   const dk = layout.zones.desk;
-  box(g, dk.w + 0.45, 0.015, 2.15, toon('#5a4636'), dk.x, 0.008, 0.42);
-  box(g, dk.w + 0.55, 0.01, 0.04, woodDark(), dk.x, 0.012, 0.42 + 1.05);
-  box(g, dk.w + 0.55, 0.01, 0.04, woodDark(), dk.x, 0.012, 0.42 - 1.05);
+  box(g, dk.w + 0.7, 0.015, 2.35, toon('#5a4636'), dk.x, 0.008, 0.25);
+  box(g, dk.w + 0.85, 0.012, 0.045, woodDark(), dk.x, 0.014, 0.25 + 1.15);
+  box(g, dk.w + 0.85, 0.012, 0.045, woodDark(), dk.x, 0.014, 0.25 - 1.15);
 
-  ceilingCloud(g, 1.7, 1.05, dk.x + 0.1, H - 0.42, 0.55, -0.08);
-  ceilingCloud(g, 1.15, 0.72, dk.x + 0.85, H - 0.34, -0.55, 0.18);
+  ceilingCloud(g, 2.1, 1.15, dk.x, H - 0.48, 0.35, 0);
+  ceilingCloud(g, 1.2, 0.7, dk.x - 0.15, H - 0.36, -0.85, 0.08);
 
   const lounge = layout.zones.lounge;
-  box(g, 2.2, 0.012, 1.45, toon('#3a2c32'), lounge.x, 0.008, lounge.z - 0.15, lounge.rotY);
+  box(g, 1.9, 0.012, 1.15, toon('#3a2c32'), lounge.x, 0.008, lounge.z + 0.15, lounge.rotY);
 }
 
 function vocalBooth(g, layout, tex) {
   const b = layout.zones.booth;
   const { x0, x1, z0, z1, glassTop, lid, doorW, doorH } = b;
   const frame = black();
-  const glassMat = toon('#b7d0dc', {
+  const glassMat = toon('#c5dde8', {
     transparent: true,
-    opacity: 0.2,
+    opacity: 0.16,
     side: THREE.DoubleSide,
     depthWrite: false,
   });
@@ -269,88 +291,73 @@ function vocalBooth(g, layout, tex) {
   const cx = (x0 + x1) / 2;
   const cz = (z0 + z1) / 2;
 
-  box(g, w - 0.12, 0.02, d - 0.12, toon('#2a2428'), cx, 0.012, cz);
-  box(g, w + 0.04, 0.07, d + 0.04, toon('#1a1e24'), cx, lid, cz);
+  box(g, w - 0.1, 0.02, d - 0.1, toon('#2a2428'), cx, 0.012, cz);
+  box(g, w + 0.06, 0.08, d + 0.06, toon('#1a1e24'), cx, lid, cz);
   box(g, 0.08, glassTop, d, frame, x0, glassTop / 2, cz);
   box(g, w, glassTop, 0.08, frame, cx, glassTop / 2, z0);
+  const hingeZ = z1 - 0.06;
+  const open0 = hingeZ - doorW;
+  const rearLen = Math.max(0.2, open0 - z0);
+  box(g, 0.08, glassTop, rearLen, frame, x1, glassTop / 2, z0 + rearLen / 2);
+  const headerH = Math.max(0.08, glassTop - doorH);
+  box(g, 0.08, headerH, doorW, frame, x1, doorH + headerH / 2, open0 + doorW / 2);
+  box(g, 0.08, glassTop, 0.1, frame, x1, glassTop / 2, hingeZ + 0.02);
 
   const pad = toon('#241e22');
   const pad2 = toon('#34282e');
-  box(g, 0.85, 1.45, 0.07, pad, x0 + 0.78, 1.15, z0 + 0.12);
-  box(g, 0.7, 1.15, 0.09, pad2, cx + 0.15, 1.28, z0 + 0.14);
-  box(g, 0.07, 1.35, 0.8, pad2, x0 + 0.12, 1.2, z0 + 0.7);
-  box(g, 0.09, 1.05, 0.55, pad, x0 + 0.14, 1.15, z0 + 1.45);
-  box(g, 0.28, 1.75, 0.28, foamDeep(), x0 + 0.34, 0.88, z0 + 0.34);
+  box(g, 0.9, 1.4, 0.08, pad, cx - 0.55, 1.2, z0 + 0.12);
+  box(g, 0.9, 1.4, 0.08, pad2, cx + 0.55, 1.2, z0 + 0.14);
+  box(g, 0.08, 1.35, 0.7, pad, x0 + 0.12, 1.15, cz);
+  box(g, 0.08, 1.2, 0.55, pad2, x1 - 0.12, 1.2, cz - 0.35);
 
-  const hingeX = x1 - 0.16 - doorW;
-  const leftW = hingeX - (x0 + 0.08);
-  const leftPane = box(g, leftW, glassTop - 0.12, 0.02, glassMat, x0 + 0.08 + leftW / 2, glassTop / 2, z1);
+  const viewH = glassTop - 0.18;
+  const viewY = viewH / 2 + 0.12;
+  const gap = 0.06;
+  const paneW = (w - 0.24 - gap) / 2;
+  const leftPane = box(g, paneW, viewH, 0.02, glassMat, cx - gap / 2 - paneW / 2, viewY, z1);
+  const rightPane = box(g, paneW, viewH, 0.02, glassMat, cx + gap / 2 + paneW / 2, viewY, z1);
   noShadow(leftPane);
+  noShadow(rightPane);
   leftPane.renderOrder = 2;
-  const transomH = glassTop - doorH - 0.02;
-  const transom = box(g, doorW, transomH, 0.02, glassMat, hingeX + doorW / 2, doorH + transomH / 2, z1);
-  noShadow(transom);
-  transom.renderOrder = 2;
-
-  box(g, 0.05, glassTop, 0.06, frame, hingeX, glassTop / 2, z1);
-  box(g, 0.05, glassTop, 0.06, frame, x0 + 0.06, glassTop / 2, z1);
-  box(g, w, 0.06, 0.06, frame, cx, glassTop - 0.02, z1);
-  box(g, w, 0.08, 0.08, frame, cx, 0.04, z1);
+  rightPane.renderOrder = 2;
+  box(g, 0.05, viewH, 0.06, frame, cx, viewY, z1);
+  box(g, 0.05, viewH, 0.06, frame, x0 + 0.04, viewY, z1);
+  box(g, 0.05, viewH, 0.06, frame, x1 - 0.04, viewY, z1);
+  box(g, w, 0.06, 0.07, frame, cx, glassTop - 0.03, z1);
+  box(g, w, 0.08, 0.08, frame, cx, 0.05, z1);
 
   const door = new THREE.Group();
-  door.position.set(hingeX, 0, z1);
-  door.rotation.y = -0.78;
-  const pane = box(door, doorW - 0.1, doorH - 0.12, 0.018, glassMat, doorW / 2, doorH / 2, 0);
+  door.position.set(x1, 0, hingeZ);
+  door.rotation.y = -0.72;
+  const pane = box(door, 0.02, doorH - 0.12, doorW - 0.1, glassMat, 0.03, doorH / 2, -doorW / 2);
   noShadow(pane);
   pane.renderOrder = 2;
-  box(door, 0.05, doorH, 0.045, frame, 0.03, doorH / 2, 0);
-  box(door, 0.05, doorH, 0.045, frame, doorW - 0.03, doorH / 2, 0);
-  box(door, doorW, 0.05, 0.045, frame, doorW / 2, doorH - 0.03, 0);
-  box(door, doorW, 0.06, 0.045, frame, doorW / 2, 0.03, 0);
-  box(door, 0.09, 0.028, 0.045, toon('#c6a56a'), doorW - 0.14, 1.02, 0.03);
+  box(door, 0.05, doorH, 0.05, frame, 0.02, doorH / 2, -0.03);
+  box(door, 0.05, doorH, 0.05, frame, 0.02, doorH / 2, -doorW + 0.03);
+  box(door, 0.05, 0.05, doorW, frame, 0.02, doorH - 0.03, -doorW / 2);
+  box(door, 0.05, 0.06, doorW, frame, 0.02, 0.03, -doorW / 2);
+  box(door, 0.04, 0.03, 0.1, toon('#c6a56a'), 0.05, 1.02, -doorW + 0.16);
   g.add(door);
 
-  const rightH = glassTop - 0.1;
-  const mullionZ = z0 + d * 0.48;
-  const rearD = mullionZ - z0 - 0.08;
-  const frontD = z1 - mullionZ - 0.08;
-  const rearPane = box(g, 0.02, rightH, rearD, glassMat, x1, rightH / 2 + 0.04, z0 + 0.08 + rearD / 2);
-  const frontPane = box(g, 0.02, rightH, frontD, glassMat, x1, rightH / 2 + 0.04, mullionZ + 0.04 + frontD / 2);
-  noShadow(rearPane);
-  noShadow(frontPane);
-  rearPane.renderOrder = 2;
-  frontPane.renderOrder = 2;
-  box(g, 0.06, glassTop, 0.05, frame, x1, glassTop / 2, mullionZ);
-  box(g, 0.06, glassTop, 0.05, frame, x1, glassTop / 2, z0 + 0.04);
-  box(g, 0.06, glassTop, 0.05, frame, x1, glassTop / 2, z1 - 0.04);
-  box(g, 0.06, 0.05, d, frame, x1, glassTop - 0.02, cz);
-  box(g, 0.08, 0.08, d, frame, x1, 0.04, cz);
-
-  const signX = hingeX + doorW / 2;
-  const sign = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.16), tex.sign);
-  sign.position.set(signX, 2.14, z1 + 0.05);
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 0.15), tex.sign);
+  sign.position.set(cx, 2.12, z1 + 0.06);
   noShadow(sign);
   g.add(sign);
-  const lens = new THREE.Mesh(new THREE.SphereGeometry(0.045, 12, 10), toon('#ff3a3a', { emissive: '#ff2020', emissiveIntensity: 0.8 }));
-  lens.position.set(signX + 0.34, 2.16, z1 + 0.06);
+  const lens = new THREE.Mesh(new THREE.SphereGeometry(0.045, 12, 10), toon('#ff3a3a', { emissive: '#ff2020', emissiveIntensity: 0.85 }));
+  lens.position.set(cx + 0.4, 2.14, z1 + 0.07);
   noShadow(lens);
   g.add(lens);
 
-  const can = cyl(g, 0.09, 0.11, 0.08, metalDark(), cx, lid - 0.1, -2.45, 12);
-  noShadow(cyl(g, 0.07, 0.07, 0.012, toon('#d5e7ff', { emissive: '#c5dcff', emissiveIntensity: 0.7 }), cx, lid - 0.145, -2.45, 12));
-  can.castShadow = true;
+  cyl(g, 0.1, 0.12, 0.07, metalDark(), cx, lid - 0.1, cz, 12);
+  noShadow(cyl(g, 0.07, 0.07, 0.012, toon('#d5e7ff', { emissive: '#c5dcff', emissiveIntensity: 0.75 }), cx, lid - 0.14, cz, 12));
 
-  const plate = box(g, 0.04, 0.16, 0.22, metal(), x1 + 0.02, 0.36, -2.55);
-  plate.castShadow = true;
-  for (let i = 0; i < 4; i++) {
-    cyl(g, 0.012, 0.012, 0.03, toon(i % 2 ? '#8a3038' : '#1d2430'), x1 + 0.04, 0.32 + (i % 2) * 0.05, -2.64 + i * 0.045, 8);
-  }
-
-  vocalMic(g, cx, -2.28);
-  musicStand(g, cx + 0.48, -2.72, tex);
+  const grommet = [x1 + 0.04, 0.34, z0 + 0.42];
+  box(g, 0.04, 0.14, 0.22, metal(), grommet[0], grommet[1], grommet[2]);
+  vocalMic(g, cx, z1 - 0.62, grommet);
+  musicStand(g, cx + 0.42, z0 + 0.7, tex);
 }
 
-function vocalMic(g, x, z) {
+function vocalMic(g, x, z, grommet) {
   const metalM = toon('#8e959c');
   const dark = black();
   cyl(g, 0.12, 0.13, 0.03, dark, x, 0.02, z, 16);
@@ -373,12 +380,12 @@ function vocalMic(g, x, z) {
   noShadow(gauze);
   gauze.renderOrder = 2;
   g.add(gauze);
+  const end = grommet || [x + 0.8, 0.34, z];
   addCable(g, [
     [x, 0.04, z],
-    [x + 0.15, 0.03, z - 0.1],
-    [x + 0.7, 0.03, -2.55],
-    [-1.86, 0.05, -2.55],
-    [-1.86, 0.36, -2.55],
+    [x + 0.25, 0.03, z + 0.05],
+    [end[0] - 0.2, 0.03, end[2]],
+    end,
   ], 0.008, black());
 }
 
@@ -398,63 +405,88 @@ function musicStand(g, x, z, tex) {
 function mixingDesk(g, layout, tex) {
   const dsk = layout.zones.desk;
   const grp = new THREE.Group();
-  const { w, d, top } = dsk;
-  const oak = toon('#7a5640');
+  const { top } = dsk;
+  const oak = toon('#6b4a32');
   const oakD = woodDark();
-  const deck = toon('#262a30');
-  const pad = toon('#1c1e22');
+  const deck = toon('#1c2026');
+  const cheek = toon('#4a3428');
+  const led = toon('#ffc48a', { emissive: '#ffb060', emissiveIntensity: 0.7 });
+  const centerW = 1.2;
+  const centerD = 1.05;
 
-  for (const [lx, lz] of [[-w / 2 + 0.08, -d / 2 + 0.1], [w / 2 - 0.08, -d / 2 + 0.1], [-w / 2 + 0.08, d / 2 - 0.12], [w / 2 - 0.08, d / 2 - 0.12]]) {
-    box(grp, 0.055, top - 0.04, 0.055, metal(), lx, (top - 0.04) / 2, lz);
+  for (const sx of [-1, 1]) {
+    box(grp, 0.07, top - 0.08, centerD - 0.08, cheek, sx * (centerW / 2 - 0.02), (top - 0.08) / 2, -0.02);
+    box(grp, 0.05, top - 0.06, 0.05, metal(), sx * (centerW / 2 - 0.12), (top - 0.06) / 2, centerD / 2 - 0.12);
+    box(grp, 0.05, top - 0.06, 0.05, metal(), sx * (centerW / 2 - 0.12), (top - 0.06) / 2, -centerD / 2 + 0.16);
   }
-  box(grp, 0.05, top - 0.12, d - 0.16, oakD, -w / 2 + 0.03, (top - 0.12) / 2 + 0.02, 0);
-  box(grp, 0.05, top - 0.12, d - 0.16, oakD, w / 2 - 0.03, (top - 0.12) / 2 + 0.02, 0);
-  box(grp, w - 0.12, 0.08, 0.04, oakD, 0, top * 0.45, -d / 2 + 0.08);
-  box(grp, w, 0.045, d, oak, 0, top - 0.02, 0);
-  box(grp, w - 0.55, 0.018, 0.62, deck, 0, top + 0.006, -0.02);
-  box(grp, w - 0.7, 0.045, 0.12, pad, 0, top + 0.012, d / 2 - 0.12);
+  box(grp, centerW - 0.08, 0.05, centerD, deck, 0, top - 0.025, -0.02);
+  box(grp, centerW - 0.2, 0.02, 0.62, toon('#14181c'), 0, top + 0.008, 0.02);
+  box(grp, centerW - 0.28, 0.04, 0.1, toon('#121416'), 0, top + 0.015, centerD / 2 - 0.12);
 
-  const bridgeZ = -0.2;
-  box(grp, w - 0.62, 0.07, 0.08, oakD, 0, top + 0.05, bridgeZ);
-  for (let i = 0; i < 10; i++) {
-    const x = -0.62 + i * 0.14;
-    box(grp, 0.09, 0.05, 0.012, black(), x, top + 0.09, bridgeZ + 0.04);
-    const face = box(grp, 0.07, 0.034, 0.008, toon('#e0b15a', { emissive: '#e0b15a', emissiveIntensity: 0.35 }), x, top + 0.09, bridgeZ + 0.048);
+  const bridgeZ = -0.5;
+  const bridgeTop = top + 0.2;
+  box(grp, 1.82, 0.16, 0.3, oakD, 0, top + 0.08, bridgeZ);
+  box(grp, 1.74, 0.045, 0.36, deck, 0, bridgeTop - 0.02, bridgeZ);
+  const strip = box(grp, centerW - 0.16, 0.025, 0.03, led, 0, bridgeTop - 0.08, bridgeZ + 0.12);
+  noShadow(strip);
+  const frontStrip = box(grp, centerW - 0.3, 0.02, 0.025, led, 0, top + 0.03, centerD / 2 - 0.05);
+  noShadow(frontStrip);
+
+  for (let i = 0; i < 12; i++) {
+    const x = -0.5 + i * 0.09;
+    box(grp, 0.07, 0.04, 0.01, black(), x, bridgeTop + 0.01, bridgeZ + 0.08);
+    const face = box(grp, 0.05, 0.026, 0.008, toon('#e0b15a', { emissive: '#e0b15a', emissiveIntensity: 0.4 }), x, bridgeTop + 0.01, bridgeZ + 0.09);
     noShadow(face);
-    const needle = box(grp, 0.006, 0.026, 0.006, black(), x + ((i % 5) - 2) * 0.008, top + 0.09, bridgeZ + 0.054);
-    needle.rotation.z = ((i % 5) - 2) * 0.18;
   }
-  const tally = box(grp, 0.045, 0.028, 0.01, toon('#ff3b3b', { emissive: '#ff2020', emissiveIntensity: 0.7 }), 0.78, top + 0.09, bridgeZ + 0.05);
-  noShadow(tally);
 
-  const caps = [0.45, 0.72, 0.38, 0.86, 0.55, 0.63, 0.28, 0.78, 0.5, 0.9, 0.42, 0.66, 0.33, 0.74, 0.48, 0.6];
+  const caps = [0.42, 0.7, 0.35, 0.88, 0.55, 0.62, 0.28, 0.76, 0.5, 0.84, 0.4, 0.66];
   function fader(x, z, t, hot) {
-    box(grp, 0.012, 0.01, 0.09, metalDark(), x, top + 0.012, z);
+    box(grp, 0.012, 0.012, 0.1, metalDark(), x, top + 0.02, z);
     const capMat = hot === 'red' ? toon('#8d3034') : hot === 'amber' ? toon('#c4a15a') : black();
-    box(grp, 0.028, 0.02, 0.018, capMat, x, top + 0.02 + t * 0.045, z - 0.03 + t * 0.06);
+    box(grp, 0.03, 0.02, 0.02, capMat, x, top + 0.03 + t * 0.04, z - 0.03 + t * 0.06);
   }
-  for (let i = 0; i < 8; i++) fader(-0.78 + i * 0.058, 0.14, caps[i], i === 3 ? 'red' : null);
-  for (let i = 0; i < 8; i++) fader(0.32 + i * 0.058, 0.14, caps[i + 8], i === 6 ? 'amber' : null);
-  fader(-0.08, 0.14, 0.7, 'red');
-  fader(0.02, 0.14, 0.48, null);
-  fader(0.12, 0.14, 0.62, null);
+  for (let i = 0; i < 8; i++) fader(-0.42 + i * 0.055, 0.08, caps[i], i === 4 ? 'red' : null);
+  fader(0.12, 0.08, 0.72, 'red');
+  fader(0.2, 0.08, 0.48, null);
+  fader(0.28, 0.08, 0.6, 'amber');
+  for (let i = 0; i < 8; i++) {
+    cyl(grp, 0.016, 0.018, 0.014, i % 5 === 1 ? toon('#c6a56a') : metalDark(), -0.4 + i * 0.07, top + 0.03, -0.12, 8);
+  }
 
-  for (let row = 0; row < 2; row++) {
-    for (let i = 0; i < 12; i++) {
-      const x = -0.7 + i * 0.125;
-      const y = top + 0.02;
-      const z = -0.02 - row * 0.08;
-      cyl(grp, 0.016, 0.018, 0.012, i % 7 === 2 ? toon('#c6a56a') : metalDark(), x, y, z, 8);
+  for (const side of [-1, 1]) {
+    const wing = new THREE.Group();
+    wing.position.set(side * 0.64, 0, 0.16);
+    wing.rotation.y = side * 0.48;
+    const ww = 0.96;
+    const wd = 0.72;
+    const ox = side * 0.44;
+    box(wing, 0.06, top - 0.08, wd - 0.08, cheek, ox + side * (ww / 2 - 0.05), (top - 0.08) / 2, 0.06);
+    box(wing, ww, 0.05, wd, deck, ox, top - 0.02, 0.08);
+    box(wing, ww - 0.14, 0.016, wd * 0.62, toon('#14181c'), ox, top + 0.012, 0.02);
+    box(wing, 0.045, top - 0.08, 0.045, metal(), ox - side * 0.28, (top - 0.08) / 2, -0.16);
+    box(wing, 0.045, top - 0.08, 0.045, metal(), ox + side * 0.32, (top - 0.08) / 2, 0.28);
+    for (let k = 0; k < 5; k++) {
+      cyl(wing, 0.016, 0.018, 0.012, metalDark(), ox + side * (-0.28 + k * 0.14), top + 0.028, -0.02, 8);
     }
+    const wingLed = box(wing, ww - 0.18, 0.016, 0.02, led, ox, top + 0.02, 0.36);
+    wing.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    noShadow(wingLed);
+    grp.add(wing);
   }
+  const lamp = new THREE.Group();
+  cyl(lamp, 0.012, 0.012, 0.22, metalDark(), -0.5, top + 0.12, 0.28, 8);
+  box(lamp, 0.16, 0.02, 0.05, black(), -0.42, top + 0.24, 0.28);
+  const lampHead = box(lamp, 0.12, 0.012, 0.035, led, -0.42, top + 0.22, 0.28);
+  lamp.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  noShadow(lampHead);
+  grp.add(lamp);
 
-  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.28), tex.page);
+  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.26), tex.page);
   sheet.rotation.x = -Math.PI / 2;
-  sheet.position.set(-0.55, top + 0.03, 0.28);
+  sheet.position.set(-0.28, top + 0.03, 0.32);
   noShadow(sheet);
   grp.add(sheet);
-
-  headphones(grp, -w / 2 + 0.1, top + 0.02, d / 2 - 0.05, -0.5, true);
+  headphones(grp, -1.02, top + 0.04, 0.38, -0.6, false);
 
   grp.position.set(dsk.x, 0, dsk.z);
   g.add(grp);
@@ -496,17 +528,70 @@ function screenGlow(g, layout, tex) {
   }
 }
 
-function speakerStand(g, x, z, topY) {
-  const m = metalDark();
-  cyl(g, 0.16, 0.18, 0.04, m, x, 0.02, z, 12);
-  cyl(g, 0.025, 0.03, topY - 0.06, metal(), x, topY / 2, z, 8);
-  box(g, 0.42, 0.025, 0.28, m, x, topY - 0.01, z);
+function monitorSoffit(g, x, z, topY) {
+  const body = toon('#16181c');
+  box(g, 1.15, 0.1, 0.52, woodDark(), x, topY - 0.05, z);
+  box(g, 0.1, topY - 0.12, 0.42, body, x - 0.48, (topY - 0.12) / 2, z);
+  box(g, 0.1, topY - 0.12, 0.42, body, x + 0.48, (topY - 0.12) / 2, z);
+  box(g, 1.02, 0.1, 0.05, body, x, topY + 0.07, z - 0.24);
 }
 
 function subwoofer(g) {
-  box(g, 0.46, 0.42, 0.4, black(), 0.82, 0.21, -3.22);
-  box(g, 0.28, 0.28, 0.02, toon('#2a2e32'), 0.82, 0.24, -3.01);
-  cyl(g, 0.09, 0.09, 0.02, metalDark(), 0.82, 0.24, -3.0, 12);
+  box(g, 0.48, 0.4, 0.42, black(), -3.25, 0.2, -1.55);
+  box(g, 0.3, 0.3, 0.02, toon('#2a2e32'), -3.25, 0.22, -1.33);
+  cyl(g, 0.09, 0.09, 0.02, metalDark(), -3.25, 0.22, -1.32, 12);
+}
+
+function wallGuitar(g, x, y, z, tilt) {
+  const grp = new THREE.Group();
+  const body = toon('#b26a32');
+  const dark = toon('#2a2018');
+  const lower = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.17, 0.045, 14), body);
+  lower.rotation.z = Math.PI / 2;
+  grp.add(lower);
+  const upper = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.11, 0.04, 12), body);
+  upper.rotation.z = Math.PI / 2;
+  upper.position.y = 0.2;
+  grp.add(upper);
+  const neck = new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.48, 0.032), dark);
+  neck.position.y = 0.5;
+  grp.add(neck);
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.12, 0.028), body);
+  head.position.y = 0.8;
+  grp.add(head);
+  grp.position.set(x, y, z);
+  grp.rotation.z = tilt;
+  grp.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  g.add(grp);
+}
+
+function guitarRack(g) {
+  const x = -4.58;
+  box(g, 0.06, 0.08, 1.7, wood(), x, 1.62, 0.15);
+  box(g, 0.04, 0.55, 0.04, woodDark(), x, 1.3, -0.55);
+  box(g, 0.04, 0.55, 0.04, woodDark(), x, 1.3, 0.85);
+  wallGuitar(g, x + 0.06, 1.05, -0.35, 0.08);
+  wallGuitar(g, x + 0.06, 1.02, 0.35, -0.12);
+  wallGuitar(g, x + 0.06, 1.08, 0.95, 0.05);
+}
+
+function keyboardStand(g, x, z, rotY) {
+  const grp = new THREE.Group();
+  const stand = metalDark();
+  const keys = toon('#f3efe6');
+  box(grp, 0.04, 0.78, 0.04, stand, -0.28, 0.42, -0.12);
+  box(grp, 0.04, 0.78, 0.04, stand, 0.28, 0.42, 0.12);
+  box(grp, 0.7, 0.03, 0.03, stand, 0, 0.8, 0);
+  box(grp, 1.08, 0.07, 0.32, black(), 0, 0.9, 0);
+  box(grp, 0.98, 0.02, 0.12, keys, 0, 0.945, 0.06);
+  for (let i = 0; i < 12; i++) {
+    if (i % 7 === 2 || i % 7 === 5) continue;
+    box(grp, 0.018, 0.012, 0.07, black(), -0.42 + i * 0.07, 0.96, 0.02);
+  }
+  grp.position.set(x, 0, z);
+  grp.rotation.y = rotY;
+  grp.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  g.add(grp);
 }
 
 function equipmentRack(g, spec, variant) {
@@ -577,7 +662,7 @@ function equipmentRack(g, spec, variant) {
 function cableLooms(g, layout) {
   const desk = layout.zones.desk;
   const b = layout.zones.booth;
-  const end = [desk.x + desk.w / 2 - 0.02, 0.48, desk.z - 0.15];
+  const end = [desk.x + 0.85, 0.5, desk.z - 0.2];
   const jacket = black();
   const red = toon('#6e3438');
   const blue = toon('#2a3a52');
@@ -587,21 +672,21 @@ function cableLooms(g, layout) {
     addCable(g, [
       start,
       [start[0] - 0.15, 0.035, start[2]],
-      [1.4, 0.03, -0.95 + i * 0.08],
-      [0.1, 0.03, -0.7],
+      [2.4, 0.03, -0.15 + i * 0.08],
+      [1.5, 0.03, -0.35],
       [end[0] + 0.45, 0.035, end[2] + i * 0.04],
       end,
     ], 0.011, i === 0 ? jacket : blue);
   }
-  const grommet = [b.x1 + 0.04, 0.36, -2.55];
+  const grommet = [b.x1 + 0.04, 0.34, b.z0 + 0.42];
   const colors = [jacket, red, blue, jacket];
   colors.forEach((mat, i) => {
     const o = (i - 1.5) * 0.018;
     addCable(g, [
       [grommet[0], grommet[1], grommet[2] + o],
-      [grommet[0] + 0.25, 0.03, grommet[2] + o],
-      [-1.15, 0.03, -1.15 + o],
-      [-1.55, 0.03, -0.62 + o * 0.5],
+      [grommet[0] + 0.28, 0.03, grommet[2] + o],
+      [1.7, 0.03, -1.05 + o],
+      [1.35, 0.03, -0.55 + o],
       [end[0] + 0.08, 0.08, end[2] - 0.08 + o],
       [end[0] - 0.05, 0.62, end[2] - 0.05],
     ], 0.006, mat);
@@ -637,26 +722,20 @@ function makeProcedural(layout) {
   screenGlow(g, layout, tex);
   for (const inst of layout.instances) {
     if (inst.id === 'main_l' || inst.id === 'main_r') {
-      speakerStand(g, inst.position[0], inst.position[2], inst.position[1]);
+      monitorSoffit(g, inst.position[0], inst.position[2], inst.position[1]);
     }
   }
   subwoofer(g);
+  guitarRack(g);
+  keyboardStand(g, -2.35, 1.35, -1.69);
   layout.zones.racks.forEach((r, i) => equipmentRack(g, r, i));
   cableLooms(g, layout);
-  sideTable(g, 0.95, 2.15);
+  sideTable(g, 4.42, -2.28);
   return g;
 }
 
 boot({
   makeShell,
   makeProcedural,
-  decorate({ props }) {
-    retagEmissive(
-      props,
-      (color) => color.g > 0.28 && color.g > color.r * 1.2 && color.g > color.b * 1.05,
-      '#d8ff9a',
-      0.4
-    );
-  },
   readyText: 'ready — recording control room · drag orbit · U unlit · T toon',
 });

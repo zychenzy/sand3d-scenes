@@ -6,7 +6,9 @@ Closed in this scene with procedural geometry (no matching mesh in the local cat
 - Mixing desk (faders, knobs, meter bridge, armrest)
 - Mic stand, pop filter, lyric stand
 - 19-inch racks, patch stubs, and cable looms
-- Acoustic absorbers, slat diffusor, ceiling clouds
+- Acoustic absorbers, quadratic diffusors, slat diffusor, ceiling clouds
+- Angled console wings, meter-bridge shelf, LED strip, and desk lamp
+- Monitor soffits, wall guitar rack, and keyboard stand
 - DAW screen plates in front of the monitor meshes
 
 Still open:
@@ -16,5 +18,5 @@ Still open:
 - Nearfields and mains are the same wide speaker mesh at two scales. There is no dedicated studio-monitor bake.
 - The sofa bake is named "Basic Red Couch" but the material in this GLB is grey fabric.
 - Glass is transparent toon, not a reflection. The door is a hinged pane, not a closer with seals.
-- Banker's-lamp shade glow is a color retint of the green metal, plus a point light. The pendant bulbs are the mesh as baked.
+- The banker's lamp is gone. Desk light is a procedural warm LED strip and a small lamp head, plus a point light. The pendant bulb is the mesh as baked.
 - Cable tubes are styled looms, not dressed to a real patchbay pinout.

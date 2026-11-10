@@ -6,15 +6,15 @@ Units are metres. Back wall is -Z, left wall is -X. The +X and +Z sides are open
 
 ## Zones
 
-- **Vocal booth** (back-left): glass front and right wall, solid back and left, door opening into the booth, ON AIR tally, mic, pop filter, lyric stand, piano-bench seat.
-- **Mix position**: wood console with faders, knobs, meter bridge, two DAW screens, nearfield speakers, banker's lamp, notebook. Dining chair faces the screens (model yaw π, toward -Z).
-- **Mains**: two speakers on stands flanking a sub, toed toward the chair, with slat diffusor and framed absorbers on the wall behind them.
+- **Vocal booth** (centered on the back wall): glass window the console looks through, solid side and back walls, door on the right wall opening outward, ON AIR tally, mic, pop filter, lyric stand, piano-bench seat.
+- **Mix position**: wide angled console (~2.4 m) with faders, knobs, meter bridge, two DAW screens, nearfields on the bridge, and a dim warm LED strip plus a small desk lamp. Dining chair is centered behind the console (model yaw π, toward -Z and the booth).
+- **Mains**: two speakers on soffits, symmetric about the window and toed in toward the engineer. A sub sits off the center line. Quadratic diffusors and a warm wall-wash strip sit on the wall behind the window.
 - **Racks**: two equipment racks (power, pre, converter, patch, meters) with a floor loom back to the desk. A second loom leaves the booth pass-through.
-- **Lounge**: sofa turned toward the console, side table and mug, pendant overhead.
+- **Sides**: guitar rack on the left wall, a keyboard on a stand, producer sofa against the rear wall facing the console, side table and mug.
 
 ## Lighting
 
-Hard key from the front-right, cool fill from the left, a weak uplight so the ceiling underside is not a black slab, and practicals: desk pendant, booth can, red tally, green banker's lamp, lounge pendant. Emissive materials mark the lamp shade, screens, ON AIR sign, VU meters, and rack LEDs. Shadows are PCF hard.
+Hard key from the front-right, cool fill from the left, a weak uplight so the ceiling underside is not a black slab, warm spot washes on the back and left walls, and practicals: desk pendant, booth can, red tally, dim LED strip and desk lamp. Emissive materials mark the LED strips, wall wash, screens, ON AIR sign, VU meters, and rack LEDs. Shadows are PCF hard.
 
 ## Assets
 
