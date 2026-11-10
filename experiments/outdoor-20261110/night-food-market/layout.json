@@ -1,0 +1,988 @@
+{
+  "meta": {
+    "title": "East Asian night food market",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Compact open-air row: grill, noodles, tea, produce.",
+      "Customer aisle in front of the counters, communal tables beyond it, service lane and vendor back-zones behind.",
+      "Night readable: cool key, warm fill, no spotlights. Signs use real dish words."
+    ]
+  },
+  "build": {
+    "counterDepth": 0.58,
+    "counterTop": 0.95
+  },
+  "zones": {
+    "curbZ": 3.65,
+    "serviceLane": {
+      "x0": -6.6,
+      "x1": 6.2,
+      "z0": -5.72,
+      "z1": -4.4
+    },
+    "aisle": {
+      "x0": -6.55,
+      "x1": 6.25,
+      "z0": -1.95,
+      "z1": -0.38
+    },
+    "staffCut": {
+      "x0": -0.2,
+      "x1": 0.7,
+      "z0": -4.4,
+      "z1": -1.95
+    }
+  },
+  "stalls": [
+    {
+      "id": "grill",
+      "x": -5.15,
+      "frontZ": -2.4,
+      "w": 2.65,
+      "d": 1.78,
+      "awning": "#9a3040",
+      "valance": "#6e2230",
+      "yFront": 2.2,
+      "yBack": 2.58,
+      "top": "#5c6166",
+      "body": "#6a4a32",
+      "banner": "烤",
+      "bannerBg": "#7a2430",
+      "bannerFg": "#f6e3a4"
+    },
+    {
+      "id": "noodles",
+      "x": -1.65,
+      "frontZ": -2.4,
+      "w": 2.9,
+      "d": 1.78,
+      "awning": "#243e68",
+      "valance": "#8e2a34",
+      "yFront": 2.32,
+      "yBack": 2.68,
+      "top": "#c5c8cc",
+      "body": "#5c4030",
+      "banner": "麵",
+      "bannerBg": "#f4e4aa",
+      "bannerFg": "#7a1c1c"
+    },
+    {
+      "id": "drinks",
+      "x": 1.85,
+      "frontZ": -2.4,
+      "w": 2.3,
+      "d": 1.78,
+      "awning": "#d2a24a",
+      "valance": "#f3e2b4",
+      "yFront": 2.16,
+      "yBack": 2.52,
+      "top": "#e4dccb",
+      "body": "#6e5438",
+      "banner": "茶",
+      "bannerBg": "#1e4a3c",
+      "bannerFg": "#f3ecd4"
+    },
+    {
+      "id": "produce",
+      "x": 4.8,
+      "frontZ": -2.4,
+      "w": 2.5,
+      "d": 1.78,
+      "awning": "#2f6a45",
+      "valance": "#e7d7b0",
+      "yFront": 2.24,
+      "yBack": 2.6,
+      "top": "#b58350",
+      "body": "#6a4e34",
+      "banner": "菜",
+      "bannerBg": "#2a241c",
+      "bannerFg": "#f4efe2"
+    }
+  ],
+  "seating": [
+    {
+      "id": "table_long",
+      "kind": "long_table",
+      "x": -1.45,
+      "z": 1.02,
+      "rot": 0.14,
+      "scale": [
+        0.85,
+        1,
+        0.95
+      ],
+      "chairs": [
+        [
+          0.4,
+          -0.82
+        ],
+        [
+          -0.4,
+          -0.82
+        ],
+        [
+          0.4,
+          0.82
+        ],
+        [
+          -0.4,
+          0.82
+        ],
+        [
+          1.18,
+          0.0
+        ],
+        [
+          -1.18,
+          0.0
+        ]
+      ],
+      "cups": [
+        [
+          0.18,
+          0.12
+        ],
+        [
+          -0.32,
+          -0.08
+        ],
+        [
+          0.05,
+          -0.22
+        ]
+      ],
+      "tray": [
+        -0.08,
+        0.26
+      ]
+    },
+    {
+      "id": "table_sq_w",
+      "kind": "square_table",
+      "x": -4.85,
+      "z": 2.2,
+      "rot": -0.18,
+      "scale": [
+        1.12,
+        1,
+        1.12
+      ],
+      "chairs": [
+        [
+          0.0,
+          -0.76
+        ],
+        [
+          0.0,
+          0.76
+        ],
+        [
+          0.76,
+          0.0
+        ],
+        [
+          -0.76,
+          0.0
+        ]
+      ],
+      "cups": [
+        [
+          0.1,
+          0.08
+        ],
+        [
+          -0.12,
+          -0.06
+        ]
+      ]
+    },
+    {
+      "id": "table_sq_e",
+      "kind": "square_table",
+      "x": 3.15,
+      "z": 1.72,
+      "rot": 0.32,
+      "scale": [
+        1.12,
+        1,
+        1.12
+      ],
+      "chairs": [
+        [
+          0.0,
+          -0.76
+        ],
+        [
+          0.0,
+          0.76
+        ],
+        [
+          0.76,
+          0.0
+        ],
+        [
+          -0.76,
+          0.0
+        ]
+      ],
+      "cups": [
+        [
+          0.06,
+          -0.1
+        ]
+      ]
+    }
+  ],
+  "copy": {
+    "grillFront": [
+      "燒烤",
+      "GRILL"
+    ],
+    "noodleFront": [
+      "牛肉麵",
+      "NOODLES"
+    ],
+    "drinkFront": [
+      "茶飲",
+      "TEA"
+    ],
+    "produceFront": [
+      "蔬果",
+      "GREENS"
+    ],
+    "noodleMenu": [
+      "牛肉麵 80",
+      "牛雜湯 60",
+      "乾麵 45",
+      "滷蛋 15"
+    ],
+    "drinkMenu": [
+      "檸檬茶 45",
+      "紅茶 30",
+      "青草茶 35"
+    ],
+    "producePrices": [
+      "番茄 30",
+      "高麗菜 25",
+      "青蔥 20"
+    ],
+    "skewerCard": [
+      "串燒 40"
+    ],
+    "wall": [
+      "夜",
+      "市"
+    ]
+  },
+  "storage": [
+    {
+      "id": "gas_n1",
+      "type": "gas",
+      "zone": "serviceLane",
+      "x": -2.45,
+      "z": -5.28,
+      "color": "#5d7c8c"
+    },
+    {
+      "id": "gas_n2",
+      "type": "gas",
+      "zone": "serviceLane",
+      "x": -2.02,
+      "z": -5.18,
+      "color": "#e07a2f"
+    },
+    {
+      "id": "gas_n3",
+      "type": "gas",
+      "zone": "serviceLane",
+      "x": -1.58,
+      "z": -5.36,
+      "color": "#e6e2d8"
+    },
+    {
+      "id": "gas_g",
+      "type": "gas",
+      "zone": "serviceLane",
+      "x": -5.7,
+      "z": -5.25,
+      "color": "#5d7c8c"
+    },
+    {
+      "id": "bin_orange",
+      "type": "bin",
+      "zone": "serviceLane",
+      "x": -2.95,
+      "z": -5.48,
+      "color": "#e07a2f"
+    },
+    {
+      "id": "bin_blue",
+      "type": "bin",
+      "zone": "serviceLane",
+      "x": -0.95,
+      "z": -5.42,
+      "color": "#3f6f86"
+    },
+    {
+      "id": "crate_prod",
+      "type": "crate",
+      "zone": "serviceLane",
+      "x": 5.35,
+      "z": -5.2,
+      "count": 3
+    },
+    {
+      "id": "crate_prod2",
+      "type": "crate",
+      "zone": "serviceLane",
+      "x": 4.5,
+      "z": -5.45,
+      "count": 1
+    },
+    {
+      "id": "sack_g",
+      "type": "sack",
+      "zone": "vendor",
+      "stall": "grill",
+      "x": -5.9,
+      "z": -3.72
+    },
+    {
+      "id": "bucket_n",
+      "type": "bucket",
+      "zone": "vendor",
+      "stall": "noodles",
+      "x": -2.55,
+      "z": -3.62
+    },
+    {
+      "id": "chest_d",
+      "type": "chest",
+      "zone": "vendor",
+      "stall": "drinks",
+      "x": 2.45,
+      "z": -3.6
+    },
+    {
+      "id": "crate_vendor",
+      "type": "crate",
+      "zone": "vendor",
+      "stall": "produce",
+      "x": 5.45,
+      "z": -3.68,
+      "count": 2
+    },
+    {
+      "id": "hose",
+      "type": "hose",
+      "zone": "hose",
+      "color": "#e0b000",
+      "points": [
+        [
+          -2.15,
+          0.52,
+          -5.22
+        ],
+        [
+          -1.95,
+          0.18,
+          -4.72
+        ],
+        [
+          -1.78,
+          0.08,
+          -4.22
+        ],
+        [
+          -1.68,
+          0.26,
+          -3.72
+        ]
+      ]
+    }
+  ],
+  "assets": {
+    "long_table": {
+      "glb": "assets/long_dining__fb2f8f65156e.glb",
+      "targetHeight": 0.76,
+      "native": [
+        1.8,
+        0.674,
+        0.9376
+      ]
+    },
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75,
+      "native": [
+        1.2,
+        1.156,
+        1.2
+      ]
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "native": [
+        0.3615,
+        1.0,
+        0.5101
+      ]
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.13
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "straw_holder": {
+      "glb": "assets/straw_holder__252f730f1a04.glb",
+      "targetHeight": 0.22
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3
+    },
+    "tray_napkin": {
+      "glb": "assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.12
+    },
+    "bar_stool": {
+      "glb": "assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.72
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.26
+    }
+  },
+  "instances": [
+    {
+      "id": "table_long",
+      "kind": "long_table",
+      "position": [
+        -1.45,
+        0,
+        1.02
+      ],
+      "rotationY": 0.14,
+      "scale": [
+        0.85,
+        1,
+        0.95
+      ],
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c0",
+      "kind": "dining_chair",
+      "position": [
+        -1.1683,
+        0,
+        0.1522
+      ],
+      "rotationY": -0.3139,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c1",
+      "kind": "dining_chair",
+      "position": [
+        -1.9605,
+        0,
+        0.2638
+      ],
+      "rotationY": 0.5938,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c2",
+      "kind": "dining_chair",
+      "position": [
+        -0.9395,
+        0,
+        1.7762
+      ],
+      "rotationY": -2.5478,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c3",
+      "kind": "dining_chair",
+      "position": [
+        -1.7317,
+        0,
+        1.8878
+      ],
+      "rotationY": 2.8277,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c4",
+      "kind": "dining_chair",
+      "position": [
+        -0.2815,
+        0,
+        0.8553
+      ],
+      "rotationY": -1.4308,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_c5",
+      "kind": "dining_chair",
+      "position": [
+        -2.6185,
+        0,
+        1.1847
+      ],
+      "rotationY": 1.7108,
+      "faces": "table_long",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_long_cup0",
+      "kind": "cup_mug",
+      "position": [
+        -1.255,
+        0.76,
+        1.1137
+      ],
+      "rotationY": -0.2,
+      "on": "table_long",
+      "anchor": "table"
+    },
+    {
+      "id": "table_long_cup1",
+      "kind": "cup_mug",
+      "position": [
+        -1.778,
+        0.76,
+        0.9854
+      ],
+      "rotationY": 0.2,
+      "on": "table_long",
+      "anchor": "table"
+    },
+    {
+      "id": "table_long_cup2",
+      "kind": "cup_mug",
+      "position": [
+        -1.4312,
+        0.76,
+        0.7952
+      ],
+      "rotationY": 0.6,
+      "on": "table_long",
+      "anchor": "table"
+    },
+    {
+      "id": "table_long_tray",
+      "kind": "tray_napkin",
+      "position": [
+        -1.4929,
+        0.76,
+        1.2886
+      ],
+      "rotationY": 0.14,
+      "on": "table_long",
+      "anchor": "table"
+    },
+    {
+      "id": "table_sq_w",
+      "kind": "square_table",
+      "position": [
+        -4.85,
+        0,
+        2.2
+      ],
+      "rotationY": -0.18,
+      "scale": [
+        1.12,
+        1,
+        1.12
+      ],
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_w_c0",
+      "kind": "dining_chair",
+      "position": [
+        -4.7139,
+        0,
+        1.4523
+      ],
+      "rotationY": -0.1801,
+      "faces": "table_sq_w",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_w_c1",
+      "kind": "dining_chair",
+      "position": [
+        -4.9861,
+        0,
+        2.9477
+      ],
+      "rotationY": 2.9615,
+      "faces": "table_sq_w",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_w_c2",
+      "kind": "dining_chair",
+      "position": [
+        -4.1023,
+        0,
+        2.3361
+      ],
+      "rotationY": -1.7508,
+      "faces": "table_sq_w",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_w_c3",
+      "kind": "dining_chair",
+      "position": [
+        -5.5977,
+        0,
+        2.0639
+      ],
+      "rotationY": 1.3907,
+      "faces": "table_sq_w",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_w_cup0",
+      "kind": "cup_mug",
+      "position": [
+        -4.7659,
+        0.75,
+        2.2966
+      ],
+      "rotationY": -0.2,
+      "on": "table_sq_w",
+      "anchor": "table"
+    },
+    {
+      "id": "table_sq_w_cup1",
+      "kind": "cup_mug",
+      "position": [
+        -4.9573,
+        0.75,
+        2.1195
+      ],
+      "rotationY": 0.2,
+      "on": "table_sq_w",
+      "anchor": "table"
+    },
+    {
+      "id": "table_sq_e",
+      "kind": "square_table",
+      "position": [
+        3.15,
+        0,
+        1.72
+      ],
+      "rotationY": 0.32,
+      "scale": [
+        1.12,
+        1,
+        1.12
+      ],
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_e_c0",
+      "kind": "dining_chair",
+      "position": [
+        2.9109,
+        0,
+        0.9986
+      ],
+      "rotationY": 0.32,
+      "faces": "table_sq_e",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_e_c1",
+      "kind": "dining_chair",
+      "position": [
+        3.3891,
+        0,
+        2.4414
+      ],
+      "rotationY": -2.8215,
+      "faces": "table_sq_e",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_e_c2",
+      "kind": "dining_chair",
+      "position": [
+        3.8714,
+        0,
+        1.4809
+      ],
+      "rotationY": -1.2508,
+      "faces": "table_sq_e",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_e_c3",
+      "kind": "dining_chair",
+      "position": [
+        2.4286,
+        0,
+        1.9591
+      ],
+      "rotationY": 1.8908,
+      "faces": "table_sq_e",
+      "anchor": "ground"
+    },
+    {
+      "id": "table_sq_e_cup0",
+      "kind": "cup_mug",
+      "position": [
+        3.1755,
+        0.75,
+        1.6062
+      ],
+      "rotationY": -0.2,
+      "on": "table_sq_e",
+      "anchor": "table"
+    },
+    {
+      "id": "jar_1",
+      "kind": "jam_jar",
+      "position": [
+        -5.7,
+        0.95,
+        -2.66
+      ],
+      "rotationY": 0.2,
+      "on": "grill",
+      "anchor": "counter"
+    },
+    {
+      "id": "jar_2",
+      "kind": "jam_jar",
+      "position": [
+        -5.48,
+        0.95,
+        -2.64
+      ],
+      "rotationY": -0.4,
+      "on": "grill",
+      "anchor": "counter"
+    },
+    {
+      "id": "jar_3",
+      "kind": "jam_jar",
+      "position": [
+        -5.26,
+        0.95,
+        -2.68
+      ],
+      "rotationY": 0.8,
+      "on": "grill",
+      "anchor": "counter"
+    },
+    {
+      "id": "thermos_n",
+      "kind": "thermos",
+      "position": [
+        -0.72,
+        0.95,
+        -2.78
+      ],
+      "rotationY": 0.3,
+      "on": "noodles",
+      "anchor": "counter"
+    },
+    {
+      "id": "straw_d",
+      "kind": "straw_holder",
+      "position": [
+        2.32,
+        0.95,
+        -2.62
+      ],
+      "rotationY": 0.2,
+      "on": "drinks",
+      "anchor": "counter"
+    },
+    {
+      "id": "register_d",
+      "kind": "cash_register",
+      "position": [
+        1.4,
+        0.95,
+        -2.74
+      ],
+      "rotationY": 3.1416,
+      "on": "drinks",
+      "anchor": "counter"
+    },
+    {
+      "id": "stool_grill",
+      "kind": "bar_stool",
+      "position": [
+        -5.85,
+        0,
+        -3.48
+      ],
+      "rotationY": 0.12,
+      "anchor": "vendor",
+      "stall": "grill"
+    },
+    {
+      "id": "stool_noodle",
+      "kind": "bar_stool",
+      "position": [
+        -0.85,
+        0,
+        -3.48
+      ],
+      "rotationY": -0.08,
+      "anchor": "vendor",
+      "stall": "noodles"
+    },
+    {
+      "id": "pot_produce",
+      "kind": "flowerpot",
+      "position": [
+        5.85,
+        0,
+        -2.22
+      ],
+      "rotationY": 0.4,
+      "anchor": "ground"
+    },
+    {
+      "id": "pot_tree",
+      "kind": "flowerpot",
+      "position": [
+        7.15,
+        0,
+        0.45
+      ],
+      "rotationY": 0.2,
+      "anchor": "ground"
+    },
+    {
+      "id": "pot_left",
+      "kind": "flowerpot",
+      "position": [
+        -6.95,
+        0,
+        -1.15
+      ],
+      "rotationY": 1.1,
+      "anchor": "ground"
+    }
+  ],
+  "shell": {
+    "clearColor": "#1c2942",
+    "fogColor": "#1c2942",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 46,
+    "position": [
+      8.4,
+      5.15,
+      7.7
+    ],
+    "target": [
+      -0.35,
+      1.15,
+      -1.55
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        -7.55,
+        2.4,
+        -5.05
+      ],
+      "target": [
+        2.0,
+        1.05,
+        -3.45
+      ]
+    },
+    "close": {
+      "position": [
+        0.55,
+        1.38,
+        -1.48
+      ],
+      "target": [
+        -0.85,
+        1.22,
+        -3.25
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#8ea4c8",
+      "ground": "#6a5340",
+      "intensity": 0.7
+    },
+    "key": {
+      "color": "#d5e0f2",
+      "intensity": 0.88,
+      "position": [
+        6.5,
+        12.0,
+        8.0
+      ],
+      "shadow": {
+        "left": -14,
+        "right": 14,
+        "top": 14,
+        "bottom": -14,
+        "far": 46,
+        "bias": -0.0012,
+        "normalBias": 0.04,
+        "mapSize": 2048
+      }
+    },
+    "fills": [
+      {
+        "color": "#ffc49a",
+        "intensity": 0.34,
+        "position": [
+          -4.5,
+          5.2,
+          6.0
+        ]
+      },
+      {
+        "color": "#ffb080",
+        "intensity": 0.26,
+        "position": [
+          1.5,
+          4.5,
+          -8.5
+        ]
+      }
+    ]
+  }
+}
