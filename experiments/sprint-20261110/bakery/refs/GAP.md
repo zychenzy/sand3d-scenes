@@ -4,7 +4,8 @@ Closed in this scene with procedural geometry, because the catalog has no loaf, 
 
 - Bread wall and the low bread table (boules, bâtards, baguettes, tins, rolls, focaccia).
 - Pastry case (croissants, tarts, éclairs, macarons, slices) and the HEARTH / menu boards.
-- Deck oven, peel, flour sack, proofing bowls, ingredient shelf.
+- Deck oven, peel, flour sacks, dough tub, scale, proofing baskets, ingredient shelf.
+- Queue lane (floor mat and rope stanchions) and a third window table.
 - Window, banquette, tile floor, beadboard, and subway backsplash.
 
 Still weak:

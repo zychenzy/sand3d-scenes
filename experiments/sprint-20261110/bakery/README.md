@@ -4,7 +4,7 @@ Cutaway bakery: bread wall, pastry counter, open preparation bay, and a window c
 
 ## Open
 
-The page loads furniture from `cafe/`, `restaurant/`, `workshop/`, and `cowork/`, and three.js from `workshop/vendor/`. Serve the **repository root**:
+The page loads furniture from `cafe/`, `restaurant/`, and `workshop/`, and three.js from `workshop/vendor/`. Serve the **repository root**:
 
 ```bash
 python3 experiments/sprint-20261110/bakery/serve.py

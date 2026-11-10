@@ -341,11 +341,7 @@ function makeShell(layout) {
   addBox(g, 0.16, 0.22, D * 0.46, wood, -1.6, H - 0.28, -1.7);
   addBox(g, 0.16, 0.22, D * 0.46, wood, 2.4, H - 0.28, -1.7);
   addBox(g, 3.2, 0.18, 0.14, wood, -0.85, H - 0.32, 0.88);
-
-  addBox(g, 0.18, H - 0.1, 0.18, wood, 3.35, (H - 0.1) / 2, -0.85);
-  addBox(g, 0.26, 0.08, 0.26, woodL, 3.35, 0.08, -0.85);
-  addBox(g, 0.24, 0.1, 0.24, woodL, 3.35, H - 0.2, -0.85);
-  addBox(g, 0.12, 0.16, 2.7, wood, 3.35, H - 0.28, -2.25);
+  addBox(g, 4.4, 0.16, 0.14, wood, 0.4, H - 0.28, -2.55);
 
   const street = toon('#f0d8b4');
   addBox(g, 0.08, 2.2, 3.5, street, xw - 0.45, 1.7, 1.3);
@@ -459,34 +455,32 @@ function breadWall(g, layout) {
 
   const bays = [x0 + 0.5, x0 + 1.5, x0 + 2.5];
   const zf = z + 0.02;
-  boule(g, bays[1] - 0.16, ys[0] + 0.02, zf, 1.15, '#c98448', 'cross');
-  boule(g, bays[1] + 0.16, ys[0] + 0.02, zf + 0.04, 0.9, '#a86838', 'slash');
-  tinLoaf(g, bays[2] - 0.16, ys[0] + 0.02, zf, 0.15);
-  tinLoaf(g, bays[2] + 0.02, ys[0] + 0.02, zf - 0.02, -0.1);
-  tinLoaf(g, bays[2] + 0.2, ys[0] + 0.02, zf + 0.03, 0.05);
-  crate(g, bays[0], ys[0] + 0.02, zf, 0.7, 0.16, 0.28);
-  baguette(g, bays[0] - 0.1, ys[0] + 0.08, zf, 0.15, 0.42);
-  baguette(g, bays[0] + 0.08, ys[0] + 0.1, zf + 0.02, -0.1, 0.4);
+  bays.forEach((bx, i) => {
+    const a = i % 2 ? 'boule' : 'baguette';
+    const b = i % 2 ? 'baguette' : 'boule';
+    loafBasket(g, bx - 0.22, ys[0] + 0.02, zf, a);
+    loafBasket(g, bx + 0.22, ys[0] + 0.02, zf, b);
+    loafBasket(g, bx - 0.22, ys[1] + 0.02, zf, b);
+    loafBasket(g, bx + 0.22, ys[1] + 0.02, zf, a);
+  });
 
-  batard(g, bays[0] - 0.12, ys[1] + 0.02, zf, 0.4, 1, '#d09a52');
-  batard(g, bays[0] + 0.16, ys[1] + 0.02, zf + 0.03, -0.35, 0.85, '#c4844a');
-  focaccia(g, bays[1], ys[1] + 0.02, zf);
-  rolls(g, bays[1] + 0.22, ys[1] + 0.02, zf - 0.06);
-  crate(g, bays[2], ys[1] + 0.02, zf, 0.46, 0.1, 0.32);
-  rolls(g, bays[2] - 0.06, ys[1] + 0.08, zf);
-  rolls(g, bays[2] + 0.1, ys[1] + 0.08, zf + 0.04);
+  boule(g, bays[0] - 0.26, ys[2] + 0.02, zf, 0.9, '#f0d2a4', 'cross');
+  boule(g, bays[0], ys[2] + 0.02, zf + 0.03, 0.78, '#c98448', 'slash');
+  boule(g, bays[0] + 0.26, ys[2] + 0.02, zf, 0.85, '#a86838', 'cross');
+  baguette(g, bays[1] - 0.16, ys[2] + 0.05, zf, 0.85, 0.36);
+  baguette(g, bays[1] + 0.02, ys[2] + 0.08, zf + 0.03, 1.05, 0.34);
+  baguette(g, bays[1] + 0.18, ys[2] + 0.05, zf - 0.02, 0.65, 0.32);
+  batard(g, bays[2] - 0.18, ys[2] + 0.02, zf, 0.25, 0.95, '#e0b068');
+  batard(g, bays[2] + 0.06, ys[2] + 0.02, zf + 0.03, -0.3, 0.85, '#c4844a');
+  tinLoaf(g, bays[2] + 0.26, ys[2] + 0.02, zf, 0.15);
 
-  boule(g, bays[0] - 0.1, ys[2] + 0.02, zf, 1.05, '#f0d2a4', 'cross');
-  boule(g, bays[0] + 0.16, ys[2] + 0.02, zf + 0.04, 0.8, '#c98448', 'slash');
-  baguette(g, bays[1] - 0.08, ys[2] + 0.05, zf, 0.9, 0.38);
-  baguette(g, bays[1] + 0.1, ys[2] + 0.08, zf + 0.04, 1.05, 0.36);
-  batard(g, bays[2] - 0.08, ys[2] + 0.02, zf, 0.25, 1.0, '#e0b068');
-  rolls(g, bays[2] + 0.18, ys[2] + 0.02, zf + 0.02);
-
-  boule(g, bays[0] - 0.08, ys[3] + 0.02, zf, 1.0, '#f3e0b8', 'slash');
-  batard(g, bays[1], ys[3] + 0.02, zf, -0.2, 0.9, '#d7a15c');
-  tinLoaf(g, bays[2] - 0.08, ys[3] + 0.02, zf, 0.2);
-  rolls(g, bays[2] + 0.16, ys[3] + 0.02, zf);
+  boule(g, bays[0] - 0.16, ys[3] + 0.02, zf, 0.9, '#f3e0b8', 'slash');
+  boule(g, bays[0] + 0.12, ys[3] + 0.02, zf + 0.02, 0.75, '#d7a15c', 'cross');
+  focaccia(g, bays[1] - 0.12, ys[3] + 0.02, zf);
+  rolls(g, bays[1] + 0.18, ys[3] + 0.02, zf);
+  tinLoaf(g, bays[2] - 0.14, ys[3] + 0.02, zf, 0.2);
+  tinLoaf(g, bays[2] + 0.08, ys[3] + 0.02, zf - 0.02, -0.15);
+  rolls(g, bays[2] + 0.26, ys[3] + 0.02, zf);
 
   const tags = [
     [bays[0], 'BAGUETTE'],
@@ -497,59 +491,78 @@ function breadWall(g, layout) {
     painted(g, labelTex(text), 0.32, 0.08, x, ys[0] + 0.16, z + 0.22);
   });
 
-  crate(g, -3.35, 0.02, -2.82, 0.62, 0.22, 0.36);
-  baguette(g, -3.5, 0.12, -2.8, 0.25, 0.48);
-  baguette(g, -3.28, 0.14, -2.78, -0.15, 0.44);
-  baguette(g, -3.38, 0.18, -2.86, 0.05, 0.4);
+  crate(g, -3.55, 0.02, -2.82, 0.62, 0.22, 0.36);
+  baguette(g, -3.7, 0.12, -2.8, 0.25, 0.48);
+  baguette(g, -3.48, 0.14, -2.78, -0.15, 0.44);
+  baguette(g, -3.58, 0.18, -2.86, 0.05, 0.4);
+  loafBasket(g, -2.55, 0.02, -2.78, 'boule');
+}
+
+function loafBasket(g, x, y, z, kind) {
+  addCyl(g, 0.18, 0.14, 0.14, toon('#8a5a32'), x, y + 0.07, z, 14);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.175, 0.016, 6, 16), toon('#3a2418'));
+  rim.rotation.x = Math.PI / 2;
+  rim.position.set(x, y + 0.145, z);
+  rim.castShadow = true;
+  g.add(rim);
+  if (kind === 'baguette') {
+    baguette(g, x - 0.02, y + 0.12, z, 0.35, 0.36);
+    baguette(g, x + 0.04, y + 0.16, z + 0.02, -0.2, 0.34);
+    baguette(g, x, y + 0.2, z, 0.08, 0.32);
+  } else {
+    boule(g, x - 0.05, y + 0.12, z - 0.01, 0.82, '#e0b068', 'slash');
+    boule(g, x + 0.06, y + 0.12, z + 0.02, 0.72, '#c98448', 'cross');
+    boule(g, x, y + 0.2, z, 0.62, '#f3e0b8', false);
+  }
 }
 
 function croissant(g, x, y, z, rot) {
   const mesh = new THREE.Mesh(
-    new THREE.TorusGeometry(0.05, 0.016, 6, 14, Math.PI * 1.35),
+    new THREE.TorusGeometry(0.07, 0.024, 6, 14, Math.PI * 1.35),
     toon('#e2b15a')
   );
-  mesh.rotation.set(Math.PI / 2, rot, 0.2);
-  mesh.position.set(x, y, z);
+  mesh.rotation.set(Math.PI / 2, rot, 0.15);
+  mesh.position.set(x, y + 0.02, z);
   mesh.castShadow = true;
   g.add(mesh);
 }
 
 function tart(g, x, y, z, fruit) {
-  addCyl(g, 0.055, 0.05, 0.028, toon('#f0d2a0'), x, y + 0.014, z, 12);
+  addCyl(g, 0.075, 0.068, 0.04, toon('#f0d2a0'), x, y + 0.02, z, 14);
   const colors = { berry: '#a84858', citrus: '#e2a030', pistachio: '#7a9a58' };
   const c = toon(colors[fruit] || colors.berry);
-  [[0, 0], [0.02, 0.015], [-0.018, 0.01], [0.01, -0.02]].forEach((p) => {
-    const s = new THREE.Mesh(new THREE.SphereGeometry(0.012, 8, 6), c);
-    s.position.set(x + p[0], y + 0.034, z + p[1]);
+  [[0, 0], [0.028, 0.02], [-0.026, 0.012], [0.01, -0.028], [-0.01, -0.018]].forEach((p) => {
+    const s = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 6), c);
+    s.position.set(x + p[0], y + 0.048, z + p[1]);
     g.add(s);
   });
 }
 
 function eclair(g, x, y, z, rotY) {
   const grp = new THREE.Group();
-  grp.position.set(x, y + 0.02, z);
+  grp.position.set(x, y + 0.03, z);
   grp.rotation.y = rotY;
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.018, 0.09, 3, 8), toon('#f2d7b0'));
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.026, 0.12, 3, 8), toon('#f2d7b0'));
   body.rotation.z = Math.PI / 2;
   body.castShadow = true;
   grp.add(body);
-  addBox(grp, 0.09, 0.012, 0.032, toon('#4a2c22'), 0, 0.02, 0);
+  addBox(grp, 0.12, 0.016, 0.044, toon('#4a2c22'), 0, 0.028, 0);
   g.add(grp);
 }
 
 function cinnamon(g, x, y, z) {
-  const mesh = new THREE.Mesh(new THREE.TorusGeometry(0.038, 0.016, 6, 12), toon('#c98448'));
+  const mesh = new THREE.Mesh(new THREE.TorusGeometry(0.055, 0.022, 6, 12), toon('#c98448'));
   mesh.rotation.x = Math.PI / 2;
-  mesh.position.set(x, y + 0.016, z);
+  mesh.position.set(x, y + 0.024, z);
   mesh.castShadow = true;
   g.add(mesh);
-  addCyl(g, 0.012, 0.012, 0.01, toon('#f4efe4'), x, y + 0.03, z, 8);
+  addCyl(g, 0.016, 0.016, 0.012, toon('#f4efe4'), x, y + 0.04, z, 8);
 }
 
 function macaron(g, x, y, z, color) {
-  addCyl(g, 0.022, 0.022, 0.012, toon(color), x, y + 0.01, z, 10);
-  addCyl(g, 0.02, 0.02, 0.006, toon('#f4efe4'), x, y + 0.016, z, 8);
-  addCyl(g, 0.022, 0.022, 0.012, toon(color), x, y + 0.024, z, 10);
+  addCyl(g, 0.032, 0.032, 0.016, toon(color), x, y + 0.012, z, 10);
+  addCyl(g, 0.028, 0.028, 0.008, toon('#f4efe4'), x, y + 0.022, z, 8);
+  addCyl(g, 0.032, 0.032, 0.016, toon(color), x, y + 0.034, z, 10);
 }
 
 function cakeSlice(g, x, y, z, rotY) {
@@ -598,35 +611,37 @@ function pastryCase(g, layout) {
   const lid = addBox(g, w, 0.015, d, glass, x, y + 0.05 + h, z);
   noShadow(lid);
   lid.renderOrder = 4;
-  addBox(g, w - 0.08, 0.012, d - 0.08, pale, x, y + 0.28, z);
+  const mid = y + h * 0.5;
+  addBox(g, w - 0.1, 0.015, d - 0.1, pale, x, mid, z);
   const strip = addBox(
-    g, w - 0.2, 0.018, 0.035,
+    g, w - 0.16, 0.02, 0.04,
     toon('#fff1c9', { emissive: '#ffc56a', emissiveIntensity: 0.85 }),
     x, y + h + 0.02, z
   );
   noShadow(strip);
-  point(g, 0xffd8a0, 0.35, 1.8, x, y + 0.46, z - 0.05);
+  point(g, 0xffd8a0, 0.4, 2.2, x, y + h * 0.7, z);
 
-  const y0 = y + 0.08;
-  const y1 = y + 0.32;
-  croissant(g, x - 0.62, y0, z + 0.06, 0.4);
-  croissant(g, x - 0.48, y0, z - 0.05, -0.6);
-  croissant(g, x - 0.34, y0, z + 0.08, 1.1);
-  tart(g, x - 0.12, y0, z + 0.05, 'berry');
-  tart(g, x + 0.02, y0, z - 0.06, 'citrus');
-  tart(g, x + 0.16, y0, z + 0.04, 'pistachio');
-  eclair(g, x + 0.38, y0, z + 0.02, 0.2);
-  eclair(g, x + 0.38, y0, z - 0.08, 0.15);
-  cakeSlice(g, x + 0.62, y0, z, 0.8);
-
-  cinnamon(g, x - 0.55, y1, z + 0.02);
-  cinnamon(g, x - 0.4, y1, z - 0.06);
-  macaron(g, x - 0.18, y1, z + 0.05, '#d4687a');
-  macaron(g, x - 0.1, y1, z - 0.02, '#e6c56a');
-  macaron(g, x - 0.02, y1, z + 0.06, '#8aaa78');
-  macaron(g, x + 0.08, y1, z - 0.04, '#d4687a');
-  tart(g, x + 0.32, y1, z, 'berry');
-  cakeSlice(g, x + 0.58, y1, z + 0.02, -0.4);
+  const y0 = y + 0.1;
+  const y1 = mid + 0.04;
+  const fruits = ['berry', 'citrus', 'pistachio'];
+  const macs = ['#d4687a', '#e6c56a', '#8aaa78', '#f2d2c4'];
+  const cols = 9;
+  const span = w * 0.38;
+  const step = (2 * span) / (cols - 1);
+  for (let i = 0; i < cols; i++) {
+    const px = x - span + step * i;
+    const back = px + (i === cols - 1 ? -step * 0.45 : step * 0.45);
+    croissant(g, px, y0, z + 0.09, 0.25 + i * 0.17);
+    if (i === 0 || i === cols - 1) {
+      boule(g, back, y0, z - 0.07, 0.55, i === 0 ? '#e2b56a' : '#c98448', 'slash');
+    } else {
+      tart(g, back, y0, z - 0.07, fruits[i % 3]);
+    }
+    if (i % 2 === 0) cinnamon(g, px, y1, z + 0.08);
+    else eclair(g, px, y1, z + 0.08, 0.12);
+    if (i % 3 === 0) cakeSlice(g, back, y1, z - 0.07, i * 0.2);
+    else macaron(g, back, y1, z - 0.07, macs[i % macs.length]);
+  }
 }
 
 function oven(g, layout) {
@@ -670,7 +685,14 @@ function prepProps(g, layout) {
   pin.position.set(p.x + 0.18, y + 0.02, p.z + 0.08);
   pin.castShadow = true;
   g.add(pin);
-  addBox(g, 0.08, 0.012, 0.12, toon('#c0c4c8'), p.x + 0.28, y + 0.01, p.z - 0.12);
+  addBox(g, 0.08, 0.012, 0.12, toon('#c0c4c8'), p.x + 0.22, y + 0.01, p.z + 0.22);
+  doughTub(g, p.x + 0.53, y, p.z - 0.16);
+  kitchenScale(g, p.x + 0.47, y, p.z + 0.27);
+  addBox(g, 0.2, 0.14, 0.13, sack, p.x + 0.08, y + 0.07, p.z - 0.28);
+  addBox(g, 0.14, 0.05, 0.1, sack, p.x + 0.08, y + 0.16, p.z - 0.28);
+  painted(g, labelTex('FLOUR'), 0.12, 0.05, p.x + 0.08, y + 0.08, p.z - 0.2);
+  banneton(g, p.x - 0.2, y, p.z + 0.28);
+  banneton(g, p.x - 0.58, y, p.z - 0.22);
 
   const shelfZ = -3.86;
   addBox(g, 1.15, 0.04, 0.28, wood, 3.45, 1.45, shelfZ);
@@ -711,7 +733,33 @@ function prepProps(g, layout) {
   g.add(proof);
   addCyl(g, 0.09, 0.11, 0.08, toon('#b89060'), 3.78, 0.04, -3.05, 12);
 
-  point(g, 0xffe0b0, 0.45, 2.6, 4.58, 1.15, -2.02);
+  point(g, 0xffd2a0, 0.22, 2.2, p.x, 1.55, p.z);
+}
+
+function doughTub(g, x, y, z) {
+  addCyl(g, 0.13, 0.11, 0.14, toon('#d7d4cc'), x, y + 0.07, z, 16);
+  addCyl(g, 0.135, 0.135, 0.016, toon('#8a9094'), x, y + 0.145, z, 16);
+  const dough = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 10), toon('#f3ead4'));
+  dough.scale.y = 0.42;
+  dough.position.set(x, y + 0.12, z);
+  dough.castShadow = true;
+  g.add(dough);
+}
+
+function kitchenScale(g, x, y, z) {
+  addBox(g, 0.16, 0.028, 0.18, toon('#3e3a36'), x, y + 0.014, z);
+  addBox(g, 0.13, 0.012, 0.13, toon('#e4e2dc'), x, y + 0.034, z);
+  addBox(g, 0.045, 0.018, 0.03, toon('#2a2420'), x, y + 0.048, z - 0.055);
+}
+
+function banneton(g, x, y, z) {
+  addCyl(g, 0.085, 0.065, 0.07, toon('#c4a06a'), x, y + 0.035, z, 12);
+  addCyl(g, 0.09, 0.09, 0.012, toon('#6b4228'), x, y + 0.072, z, 12);
+  const dough = new THREE.Mesh(new THREE.SphereGeometry(0.055, 12, 8), toon('#f0e2c8'));
+  dough.scale.y = 0.55;
+  dough.position.set(x, y + 0.07, z);
+  dough.castShadow = true;
+  g.add(dough);
 }
 
 function breadTableGoods(g, layout) {
@@ -726,7 +774,7 @@ function breadTableGoods(g, layout) {
 
 function cafeDressing(g, layout) {
   const benchZ0 = -0.4;
-  const benchZ1 = 2.7;
+  const benchZ1 = 3.2;
   const wood = toon('#6b4228');
   const woodL = toon('#c4a06a');
   addBox(g, 0.42, 0.08, benchZ1 - benchZ0, woodL, -4.95, 0.42, (benchZ0 + benchZ1) / 2);
@@ -736,6 +784,7 @@ function cafeDressing(g, layout) {
     [-0.15, 0.85, '#b85a3a'],
     [0.85, 0.7, '#f0e2c8'],
     [1.7, 0.78, '#8c3d32'],
+    [2.75, 0.7, '#f0e2c8'],
   ];
   cushions.forEach(([z, len, col]) => {
     addBox(g, 0.36, 0.06, len, toon(col), -4.92, 0.49, z);
@@ -748,6 +797,7 @@ function cafeDressing(g, layout) {
   const plates = [
     [-4.14, 1.78],
     [-4.02, 0.08],
+    [-4.1, 2.88],
     [couple[0], couple[1]],
   ];
   plates.forEach(([x, z]) => addCyl(g, 0.11, 0.11, 0.012, toon('#f7f1e6'), x, 0.736, z, 16));
@@ -756,6 +806,7 @@ function cafeDressing(g, layout) {
   addBox(g, 2.6, 0.012, 0.7, runner, 1.15, 0.016, -0.55);
   addBox(g, 2.35, 0.008, 0.08, toon('#e6d2b0'), 1.15, 0.022, -0.28);
   addBox(g, 0.9, 0.012, 1.15, toon('#6b4228'), 0.9, 0.016, 3.4);
+  queueLane(g);
 
   const a = new THREE.Group();
   a.position.set(0.55, 0, 3.15);
@@ -777,9 +828,36 @@ function cafeDressing(g, layout) {
   addBox(g, 0.012, 0.1, 0.012, toon('#2a2420'), -1.15, 2.58, -3.87);
   addBox(g, 0.07, 0.012, 0.012, toon('#2a2420'), -1.12, 2.54, -3.87);
 
-  foliage(g, -4.62, 0.34, 3.38, 1.05);
+  foliage(g, -4.85, 0.34, 3.62, 1.05);
   foliage(g, -5.02, 0.98, 1.02, 0.45);
   foliage(g, 4.82, 0.34, -0.42, 0.9);
+}
+
+function queueLane(g) {
+  const mat = toon('#6e3a32');
+  addBox(g, 0.9, 0.012, 2.65, mat, 1.55, 0.02, 1.42);
+  addBox(g, 0.9, 0.006, 0.05, toon('#e6d2b0'), 1.55, 0.028, 0.14);
+  addBox(g, 0.9, 0.006, 0.05, toon('#e6d2b0'), 1.55, 0.028, 2.7);
+  const brass = toon('#c4a06a');
+  const rope = toon('#8c3d32');
+  const zs = [0.2, 1.1, 2.0, 2.68];
+  function post(x, z) {
+    addCyl(g, 0.05, 0.05, 0.02, brass, x, 0.01, z, 10);
+    addCyl(g, 0.015, 0.015, 0.84, toon('#2a2420'), x, 0.44, z, 8);
+    addCyl(g, 0.026, 0.026, 0.035, brass, x, 0.86, z, 8);
+  }
+  function ropeSeg(x, z1, z2) {
+    const len = z2 - z1;
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, len, 6), rope);
+    mesh.rotation.x = Math.PI / 2;
+    mesh.position.set(x, 0.7, (z1 + z2) / 2);
+    mesh.castShadow = true;
+    g.add(mesh);
+  }
+  [0.98, 2.12].forEach((x) => {
+    zs.forEach((z) => post(x, z));
+    for (let i = 0; i < zs.length - 1; i++) ropeSeg(x, zs[i], zs[i + 1]);
+  });
 }
 
 function foliage(g, x, y, z, s) {
@@ -833,7 +911,6 @@ function dressLamps(g, layout) {
     round_table: [0.5, 0.5],
     square_table: [0.42, 0.42],
     dining_chair: [0.22, 0.24],
-    bar_stool: [0.26, 0.26],
     flowerpot: [0.18, 0.18],
   };
   for (const inst of layout.instances) {
@@ -893,16 +970,6 @@ function decoratePrototype(kind, root) {
         m.color?.set('#fff3cc');
         if (m.emissive) m.emissive.set('#ffb04a');
         m.emissiveIntensity = 1.8;
-      }
-    });
-  }
-  if (kind === 'library_lamp') {
-    paintMeshes(root, (m, obj) => {
-      const n = (obj.name || '').toLowerCase();
-      if (n.includes('light') || n.includes('tube')) {
-        m.color?.set('#fff6d4');
-        if (m.emissive) m.emissive.set('#ffc56a');
-        m.emissiveIntensity = 1.6;
       }
     });
   }

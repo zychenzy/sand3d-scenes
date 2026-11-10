@@ -77,6 +77,8 @@ function send(method, params = {}) {
 
 await send('Runtime.enable');
 await send('Page.enable');
+await send('Network.enable');
+await send('Network.setCacheDisabled', { cacheDisabled: true });
 await send('Emulation.setDeviceMetricsOverride', {
   width: 1440, height: 900, deviceScaleFactor: 1, mobile: false,
 });
