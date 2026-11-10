@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "Indoor greenhouse / even-span glasshouse",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.8, "depth": 7.2, "height": 3.62 },
+    "zones": ["raised planted beds", "ridge staging", "potting bench", "sitting nook"],
+    "notes": [
+      "Even-span ridge-and-gutter cutaway: brick knee walls, pitched glass, ridge vents, right-hand colonnade. Not a flat mullion box and not a barrel vault.",
+      "Raised brick beds and a gravel spine path. Staging shelves hold tray plants. Catalog pots are work objects, not a cloned perimeter ring.",
+      "Path bench faces the island bed (−X). Nook dining-chair local +Z is the facing direction; rotationY -1.5708 faces −X into the tea table.",
+      "Potting bench is procedural (plank top, drawers, splash). Lamp, stool, jars and a few pots are catalog GLBs."
+    ]
+  },
+  "assets": {
+    "museum_bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "round_table": { "glb": "assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.64 },
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.5 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.74 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.66 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.28 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.14 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "straw_holder": { "glb": "assets/straw_holder__252f730f1a04.glb", "targetHeight": 0.22 }
+  },
+  "instances": [
+    { "id": "nook_bench", "kind": "museum_bench", "position": [-3.62, 0, 2.32], "rotationY": 0 },
+    { "id": "nook_table", "kind": "round_table", "position": [-2.52, 0, 2.32], "rotationY": 0.18 },
+    { "id": "nook_chair", "kind": "dining_chair", "position": [-1.58, 0, 2.32], "rotationY": -1.5708 },
+    { "id": "pendant_nook", "kind": "pendant_lamp", "position": [-2.52, 2.42, 2.32], "rotationY": 0.1 },
+    { "id": "mug_a", "kind": "cup_mug", "position": [-2.62, 0.64, 2.22], "rotationY": 0.5 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [-2.42, 0.64, 2.42], "rotationY": -0.7 },
+    { "id": "vase_table", "kind": "jam_jar", "position": [-2.48, 0.64, 2.28], "rotationY": 0.25 },
+
+    { "id": "path_bench", "kind": "museum_bench", "position": [1.28, 0, -0.28], "rotationY": -1.5708 },
+    { "id": "pendant_path", "kind": "pendant_lamp", "position": [1.18, 2.55, 0.35], "rotationY": -0.2 },
+
+    { "id": "potting_stool", "kind": "bar_stool", "position": [2.92, 0, -2.12], "rotationY": 0.18 },
+    { "id": "potting_lamp", "kind": "library_lamp", "position": [3.58, 0.93, -2.88], "rotationY": 3.1416 },
+    { "id": "potting_shelf", "kind": "wall_shelf", "position": [2.82, 1.38, -3.42], "rotationY": 0, "scale": [1.45, 1, 1] },
+    { "id": "pot_seed", "kind": "flowerpot", "position": [2.28, 0.93, -3.08], "rotationY": 0.35 },
+    { "id": "pot_cutting", "kind": "flowerpot", "position": [2.78, 0.93, -2.9], "rotationY": -0.45, "scale": [0.82, 0.62, 0.82] },
+    { "id": "pot_floor", "kind": "flowerpot", "position": [2.22, 0, -1.42], "rotationY": 0.7, "scale": [1.22, 1.28, 1.22] },
+    { "id": "jar_bench", "kind": "jam_jar", "position": [3.18, 0.93, -3.12], "rotationY": 0.28 },
+    { "id": "jar_bench_b", "kind": "jam_jar", "position": [3.36, 0.93, -2.94], "rotationY": -0.35 },
+    { "id": "brush", "kind": "straw_holder", "position": [2.52, 0.93, -3.18], "rotationY": 0.15 },
+    { "id": "mug_bench", "kind": "cup_mug", "position": [3.02, 0.93, -2.82], "rotationY": 1.05 },
+    { "id": "jar_shelf", "kind": "jam_jar", "position": [2.58, 1.51, -3.42], "rotationY": 0.4 },
+    { "id": "thermos_shelf", "kind": "thermos", "position": [3.05, 1.51, -3.42], "rotationY": -0.18 },
+    { "id": "jar_shelf_top", "kind": "jam_jar", "position": [2.88, 1.88, -3.42], "rotationY": 0.35, "scale": [1, 0.82, 1] }
+  ],
+  "shell": {
+    "floorColor": "#c4a07a",
+    "wallColor": "#d5eadc",
+    "woodColor": "#6b4632",
+    "clearColor": "#d3e4d0",
+    "fogColor": "#d3e4d0",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 44,
+    "position": [4.05, 2.72, 6.35],
+    "target": [-0.15, 1.02, -0.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [3.85, 1.92, 2.55],
+      "target": [-1.15, 1.18, -0.85]
+    },
+    "close": {
+      "position": [1.55, 1.38, 1.62],
+      "target": [-0.35, 0.78, -0.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775396, "ground": 5925448, "intensity": 0.5 },
+    "key": {
+      "color": 16773076,
+      "intensity": 1.22,
+      "position": [5.4, 7.6, 4.6],
+      "target": [-0.2, 0.45, -0.4],
+      "shadowIntensity": 0.84
+    },
+    "fill": { "color": 14024714, "intensity": 0.28, "position": [-6.0, 4.6, 1.8] },
+    "points": [
+      { "color": 16768168, "intensity": 0.8, "distance": 5.0, "decay": 2, "position": [-2.52, 2.58, 2.32] },
+      { "color": 16768168, "intensity": 0.72, "distance": 4.6, "decay": 2, "position": [1.18, 2.7, 0.35] },
+      { "color": 16767016, "intensity": 0.68, "distance": 3.3, "decay": 2, "position": [3.58, 1.28, -2.88] }
+    ],
+    "spots": [
+      {
+        "color": 16774632,
+        "intensity": 6.2,
+        "distance": 8,
+        "angle": 0.7,
+        "penumbra": 0.55,
+        "decay": 1.35,
+        "cookie": "leaves",
+        "position": [0.35, 3.55, 0.4],
+        "target": [-0.4, 0.2, -0.4]
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Pitched ridge-and-gutter glass, not a flat glass box and not a barrel vault.",
+      "Raised beds and a gravel path, with staging shelves, not pots standing on an empty floor.",
+      "A potting bench with tools and a sitting nook whose chair faces the table. Path bench faces the island.",
+      "Dappled light on the beds and path."
+    ]
+  }
+}
