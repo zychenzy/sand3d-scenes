@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "Meditation room",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.2, "depth": 6.8, "height": 3.48 },
+    "notes": [
+      "Cutaway contemplative room: stone floor and dado, timber posts, lattice, and a sculpted skylight over an open tatami meadow.",
+      "Three floor seats face the tokonoma with walking gaps between them. The tea niche is a separate zone on the left, with one cushion facing the low table.",
+      "Catalog has no zabuton, tea bowl, or lattice mesh. Those are procedural. The low table, flask, and flowerpot are shared sand3d GLBs via symlink."
+    ]
+  },
+  "platform": { "x": -1.7, "z": -2.05, "w": 3.95, "d": 3.1, "top": 0.18 },
+  "architecture": {
+    "wallT": 0.16,
+    "dadoH": 0.94,
+    "beamY": 2.64,
+    "skylight": {
+      "x": 0.25,
+      "z": -0.85,
+      "mouth": [2.55, 1.9],
+      "ceil": [2.15, 1.55],
+      "top": [1.5, 1.0],
+      "mouthY": 2.95,
+      "ceilY": 3.42,
+      "topY": 3.86,
+      "capY": 4.16
+    },
+    "tokonoma": { "x": 0.15, "w": 1.7, "sill": 0.36, "head": 2.36, "depth": 0.58 },
+    "teaNiche": { "z": 1.3, "w": 1.3, "head": 2.06, "depth": 0.5 },
+    "lattice": { "x": 2.42, "y": 2.02, "w": 2.42, "h": 1.84 }
+  },
+  "seats": [
+    { "id": "host", "zone": "meditation", "position": [0.2, 0.15], "rotationY": 0.0, "color": "#3e5c49", "zafu": "#314a3a" },
+    { "id": "left", "zone": "meditation", "position": [-0.95, 0.42], "rotationY": -0.22, "color": "#31425c", "zafu": "#28364c" },
+    { "id": "right", "zone": "meditation", "position": [1.4, 0.38], "rotationY": 0.18, "color": "#8d4e3c", "zafu": "#743f32" },
+    { "id": "tea", "zone": "tea", "position": [-2.45, 1.25], "rotationY": 1.5708, "color": "#cbb892", "zafu": "#b7a37e" }
+  ],
+  "assets": {
+    "coffee_table": { "glb": "assets/coffee_table__29a509d8be0b.glb", "targetHeight": 0.3 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.2 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.22 }
+  },
+  "instances": [
+    {
+      "id": "tea_table",
+      "kind": "coffee_table",
+      "position": [-3.45, 0, 1.25],
+      "rotationY": 0,
+      "scale": [0.78, 1, 0.52],
+      "color": "#6a4632"
+    },
+    {
+      "id": "alcove_pot",
+      "kind": "flowerpot",
+      "position": [-2.82, 0, 2.05],
+      "rotationY": 0.4,
+      "tint": "#c4a090"
+    },
+    {
+      "id": "water_flask",
+      "kind": "thermos",
+      "position": [-3.62, 0.3, 1.02],
+      "rotationY": 0.5,
+      "tint": "#6e675f"
+    }
+  ],
+  "shell": {
+    "floorColor": "#6a5b4c",
+    "wallColor": "#f3eadc",
+    "recessColor": "#e4d5c2",
+    "woodColor": "#5c3d2a",
+    "woodMid": "#8a5e40",
+    "woodLight": "#c6a67c",
+    "stoneColor": "#cbbda8",
+    "stoneDark": "#a89880",
+    "rushColor": "#d7c4a0",
+    "bindingColor": "#24352e",
+    "ceilingColor": "#f6f0e4",
+    "yardColor": "#b3a694",
+    "clearColor": "#e3dcd0",
+    "fogColor": "#e3dcd0",
+    "fogNear": 20,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 42,
+    "position": [5.35, 3.05, 5.15],
+    "target": [-0.45, 1.05, -0.35]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.55, 2.05, -2.35],
+      "target": [-0.15, 1.15, 0.2]
+    },
+    "close": {
+      "position": [1.35, 0.95, 1.7],
+      "target": [0.15, 0.32, 0.18]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#f4efe4", "ground": "#6a5a48", "intensity": 0.46 },
+    "key": {
+      "color": "#fff3e2",
+      "intensity": 2.25,
+      "position": [0.55, 9.4, -0.15],
+      "target": [0.2, 0.3, -0.7],
+      "mapSize": 2048,
+      "near": 0.4,
+      "far": 20,
+      "left": -7.5,
+      "right": 7.5,
+      "top": 7.5,
+      "bottom": -7.5,
+      "bias": -0.00018,
+      "normalBias": 0.03
+    },
+    "fill": { "color": "#d5e0d8", "intensity": 0.32, "position": [6.2, 3.4, 5.2] },
+    "spots": [
+      {
+        "color": "#fff1d2",
+        "intensity": 42,
+        "distance": 8,
+        "angle": 0.5,
+        "penumbra": 0.62,
+        "decay": 2,
+        "position": [0.25, 3.55, -0.85],
+        "target": [0.2, 0.12, -0.55]
+      }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Skylight, stone dado, and timber lattice read as architecture before any prop does.",
+      "Three meditation cushions face the tokonoma and are far enough apart to walk between.",
+      "Tea table, flask, bowls, and one cushion form a second zone against the left niche.",
+      "One flowerpot and the tokonoma branch are the only plants."
+    ]
+  }
+}
