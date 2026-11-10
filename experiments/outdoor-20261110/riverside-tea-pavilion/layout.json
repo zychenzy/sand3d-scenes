@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "title": "Riverside tea pavilion",
+    "units": "metres",
+    "style": "Toon hard",
+    "place": "Chinese riverside public tea garden",
+    "notes": [
+      "Open single-eave timber hall, not a double-eave temple pavilion.",
+      "Warm misty morning. Seating stays visible under the eaves.",
+      "Side creek carries a short stone bridge fragment."
+    ]
+  },
+  "shell": {
+    "clearColor": "#e6d3bf",
+    "fogColor": "#e6d3bf",
+    "fogNear": 12,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 40,
+    "near": 0.08,
+    "far": 180,
+    "minDistance": 0.55,
+    "maxDistance": 46,
+    "position": [4.6, 3.85, 12.5],
+    "target": [0.15, 1.2, 0.4]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-3.4, 2.6, 11.4],
+      "target": [-2.2, 1.0, 0.2]
+    },
+    "close": {
+      "position": [0.55, 1.42, 2.55],
+      "target": [-0.12, 0.74, 0.95]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#f3e4d2", "ground": "#6e5b48", "intensity": 0.74 },
+    "key": {
+      "color": "#ffd3a6",
+      "intensity": 1.12,
+      "position": [11, 14, 8],
+      "shadow": { "extent": 14, "mapSize": 2048, "bias": -0.0004, "normalBias": 0.04, "far": 64, "radius": 2.5 }
+    },
+    "fill": { "color": "#e6d5c2", "intensity": 0.38, "position": [-8, 7, 6] },
+    "fill2": { "color": "#c5d0cb", "intensity": 0.2, "position": [-2, 6, -12] }
+  },
+  "assets": {
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.34 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.32 }
+  },
+  "instances": [
+    { "id": "pot_counter", "kind": "flowerpot", "position": [5.85, 0, 3.32], "rotationY": 0.5 },
+    { "id": "pot_path", "kind": "flowerpot", "position": [-2.25, 0, 4.85], "rotationY": 1.1 },
+    { "id": "thermos", "kind": "thermos", "position": [5.58, 0.94, 2.35], "rotationY": -0.4 }
+  ],
+  "site": {
+    "landY": 0,
+    "waterY": -0.63,
+    "land": [
+      [-12, 11], [12, 11], [12, -3.55],
+      [8.2, -3.3], [5.4, -3.1], [3.3, -2.95],
+      [1.4, -2.55], [-0.2, -2.25], [-1.9, -1.95],
+      [-3.2, -1.7], [-4.05, -1.55],
+      [-4.1, -0.78], [-5.75, -0.78], [-5.75, -1.42],
+      [-6.3, -1.4],
+      [-6.38, 0.2], [-6.38, 1.05], [-8.2, 1.05], [-8.2, -1.55],
+      [-9.3, -1.9], [-12, -2.7]
+    ],
+    "water": [
+      [-12, -7.55], [12, -7.55], [12, -3.72],
+      [8.2, -3.48], [5.4, -3.28], [3.3, -3.12],
+      [1.4, -2.72], [-0.2, -2.42], [-1.9, -2.12],
+      [-3.2, -1.88], [-4.05, -1.72],
+      [-4.2, -0.94], [-5.65, -0.94], [-5.65, -1.55],
+      [-6.12, -1.55],
+      [-6.18, 0.35], [-6.18, 0.88], [-8.02, 0.88], [-8.02, -1.68],
+      [-9.45, -2.05], [-12, -2.88]
+    ],
+    "shoreWalls": [
+      [[12, -3.55], [8.2, -3.3], [5.4, -3.1], [3.3, -2.95], [1.4, -2.55], [-0.2, -2.25], [-1.9, -1.95], [-3.2, -1.7], [-4.05, -1.55], [-4.1, -0.78]],
+      [[-5.75, -0.78], [-5.75, -1.42], [-6.3, -1.4], [-6.38, 0.2], [-6.38, 1.05]],
+      [[-6.38, 1.05], [-8.2, 1.05]],
+      [[-8.2, 1.05], [-8.2, -1.55], [-9.3, -1.9], [-12, -2.7]]
+    ],
+    "farShore": { "x0": -12, "x1": 12, "z0": -13.4, "z1": -7.32, "y": -0.18 }
+  },
+  "pavilion": {
+    "center": [1.15, 1.4],
+    "stone": [6.2, 4.3],
+    "stoneTop": 0.16,
+    "deckTop": 0.22,
+    "postXs": [-2.15, 0, 2.15],
+    "postZs": [-1.4, 1.4],
+    "postSize": 0.15,
+    "postTop": 2.68,
+    "beam": 0.14,
+    "eave": [7.3, 5.2],
+    "eaveY": 2.56,
+    "lift": 0.32,
+    "ridgeY": 3.52,
+    "sag": 0.12
+  },
+  "steps": {
+    "x0": -5.62,
+    "x1": -4.22,
+    "zTop": -0.78,
+    "tread": 0.42,
+    "riser": 0.15,
+    "count": 3,
+    "landing": 0.62
+  },
+  "bridge": {
+    "start": [-5.7, 0.04, 0.35],
+    "end": [-8.85, 0.04, 0.05],
+    "rise": 0.64,
+    "width": 1.42,
+    "deckY": 0.04
+  },
+  "paths": {
+    "clearance": 0.58,
+    "main": [[1.5, 8.8], [1.55, 7.0], [1.42, 5.4], [1.28, 4.15], [1.2, 3.72]],
+    "side": [[0.55, 5.3], [-0.85, 4.7], [-2.15, 2.85], [-2.85, 1.95]]
+  },
+  "furniture": {
+    "seatHeight": 0.44,
+    "tableHeight": 0.74,
+    "counterHeight": 0.94,
+    "tables": [
+      { "id": "table_hall", "position": [-0.15, 0.22, 1.05], "size": 0.92, "service": "full" },
+      { "id": "table_bay", "position": [2.85, 0.22, 1.55], "size": 0.8, "service": "pot" },
+      { "id": "table_bank", "position": [-3.5, 0, 0.2], "size": 0.86, "service": "cups" }
+    ],
+    "chairs": [
+      { "id": "chair_hall_s", "faces": "table_hall", "position": [0, 0.22, 2.02], "rotationY": 0.1534 },
+      { "id": "chair_hall_w", "faces": "table_hall", "position": [-1.12, 0.22, 1.12], "rotationY": -1.4988 },
+      { "id": "chair_hall_n", "faces": "table_hall", "position": [-0.28, 0.22, 0.08], "rotationY": -3.0084 },
+      { "id": "chair_hall_e", "faces": "table_hall", "position": [0.78, 0.22, 0.72], "rotationY": 1.9118 },
+      { "id": "chair_bay_s", "faces": "table_bay", "position": [2.7, 0.22, 2.42], "rotationY": -0.1707 },
+      { "id": "chair_bay_e", "faces": "table_bay", "position": [3.75, 0.22, 1.38], "rotationY": 1.7575 },
+      { "id": "chair_bay_w", "faces": "table_bay", "position": [1.95, 0.22, 1.28], "rotationY": -1.8623 },
+      { "id": "chair_bank_s", "faces": "table_bank", "position": [-3.5, 0, 1.16], "rotationY": 0 },
+      { "id": "chair_bank_w", "faces": "table_bank", "position": [-4.42, 0, 0.32], "rotationY": -1.4411 },
+      { "id": "chair_bank_e", "faces": "table_bank", "position": [-2.58, 0, 0.48], "rotationY": 1.2754 },
+      { "id": "chair_view", "faces": "river", "position": [2.2, 0.22, -0.28], "rotationY": 0, "cushion": "#9a5a42" }
+    ],
+    "counter": {
+      "position": [5.7, 0, 1.85],
+      "rotationY": 1.5708,
+      "length": 2.35,
+      "depth": 0.7,
+      "height": 0.94,
+      "faces": [-1, 0]
+    }
+  },
+  "trees": [
+    { "id": "willow_hero", "position": [-4.2, 0, 4.65], "height": 6.4, "lean": [0.18, 0.42], "density": 8, "seed": 2, "leaf": "#5a6a44" },
+    { "id": "willow_far", "position": [-1.8, -0.18, -8.7], "height": 5.0, "lean": [0.28, -0.12], "density": 4, "seed": 5, "leaf": "#9aa288" },
+    { "id": "willow_right", "position": [6.6, -0.18, -7.7], "height": 4.4, "lean": [-0.4, 0.18], "density": 4, "seed": 9, "leaf": "#8b9474" },
+    { "id": "willow_young", "position": [-4.7, 0, 6.5], "height": 3.2, "lean": [0.18, -0.42], "density": 3, "seed": 3, "leaf": "#66784c" }
+  ],
+  "rocks": [
+    { "id": "scholar", "position": [-2.05, 0, 2.55], "scale": [0.48, 1.15, 0.4], "rot": 0.4, "seed": 4, "pieces": 4 },
+    { "id": "creek_east", "position": [-5.55, 0, -0.15], "scale": [0.55, 0.38, 0.46], "rot": 0.8, "seed": 6, "pieces": 3 },
+    { "id": "creek_west", "position": [-8.95, 0, -0.25], "scale": [0.5, 0.42, 0.48], "rot": 1.4, "seed": 8, "pieces": 3 },
+    { "id": "shallow", "position": [3.6, -0.5, -3.55], "scale": [0.72, 0.4, 0.58], "rot": 1.2, "seed": 11, "pieces": 3 },
+    { "id": "step_rock", "position": [-1.15, -0.2, -2.35], "scale": [0.46, 0.32, 0.4], "rot": 2.1, "seed": 13, "pieces": 2 }
+  ],
+  "bamboo": [
+    { "id": "grove", "origin": [8.4, 1.15], "count": 18, "spread": 2.3, "hMin": 2.6, "hMax": 5.6, "seed": 17, "leaf": "#5d6e48", "cast": true },
+    { "id": "far_grove", "origin": [3.2, -9.4], "count": 10, "spread": 3.2, "hMin": 2.2, "hMax": 4.2, "seed": 19, "leaf": "#a3ab90", "cast": false, "groundY": -0.18 }
+  ],
+  "reeds": [
+    { "position": [-4.3, -1.95], "seed": 21 },
+    { "position": [1.1, -3.25], "seed": 22 },
+    { "position": [6.4, -3.55], "seed": 23 },
+    { "position": [-7.2, 0.55], "seed": 24 }
+  ],
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "table close", "unlit"],
+    "must_read": [
+      "Open timber tea hall with tiled eaves, interior seating visible.",
+      "Grouped bamboo chairs around three tea tables, plus one river-facing chair.",
+      "Low steps to the water, willows, rocks, a side-creek bridge fragment, and a tea counter.",
+      "Warm misty morning, not a temple axis."
+    ]
+  }
+}
