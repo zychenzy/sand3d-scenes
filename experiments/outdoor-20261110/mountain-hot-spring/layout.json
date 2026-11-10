@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "title": "Mountain hot spring",
+    "units": "metres",
+    "style": "Toon hard",
+    "time": "blue hour",
+    "tuples": {
+      "bamboo": "[x, z, height, lean, rotY]",
+      "reeds": "[x, z, height, blades]",
+      "pines": "[x, z, scale, lean]",
+      "firs": "[x, z, height]",
+      "ferns": "[x, z, scale]",
+      "stones": "[x, z]",
+      "drainage": "[x, y, z] invert"
+    }
+  },
+  "shell": {
+    "clearColor": "#1a3358",
+    "fogColor": "#3a5a80",
+    "fogNear": 18,
+    "fogFar": 52
+  },
+  "camera": {
+    "fov": 36,
+    "position": [6.2, 4.15, 8.35],
+    "target": [-0.25, 0.18, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-2.35, 3.2, 7.15],
+      "target": [0.2, 0.08, -1.05]
+    },
+    "close": {
+      "position": [0.15, 1.72, 3.35],
+      "target": [-0.25, -0.42, -0.65]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#8eacd0", "ground": "#2a2822", "intensity": 0.46 },
+    "key": { "color": "#b7c9e4", "intensity": 0.96, "position": [11, 13.5, 10] },
+    "fill": { "color": "#7e8eae", "intensity": 0.16, "position": [-8, 6.5, -2] },
+    "points": [
+      { "color": "#ff9a42", "intensity": 0.28, "distance": 3.2, "decay": 2, "position": [-3.42, 1.86, 0.55] },
+      { "color": "#ffb15a", "intensity": 0.18, "distance": 2.4, "decay": 2, "position": [-5.9, 1.78, 0.15] },
+      { "color": "#ff8d3a", "intensity": 0.24, "distance": 3.0, "decay": 2, "position": [-2.2, 0.82, 2.95] },
+      { "color": "#ffaa55", "intensity": 0.16, "distance": 2.4, "decay": 2, "position": [1.22, 1.2, 2.48] }
+    ]
+  },
+  "terrace": {
+    "polygon": [[-8.6, -3.2], [8.4, -3.2], [8.4, 5.2], [-8.6, 5.2]]
+  },
+  "pool": {
+    "polygon": [
+      [-1.35, 1.55],
+      [-2.45, 0.35],
+      [-2.25, -1.05],
+      [-1.15, -2.05],
+      [0.55, -2.25],
+      [1.85, -1.55],
+      [2.55, -0.25],
+      [2.15, 1.05],
+      [0.85, 1.75],
+      [-0.25, 1.95]
+    ],
+    "lipY": 0.22,
+    "waterY": -0.06,
+    "floorY": -0.98,
+    "seatY": -0.48,
+    "seatWidth": 0.46,
+    "paveGap": 0.16,
+    "spillEdge": 7,
+    "entryEdge": 9,
+    "seatEdges": [1, 2, 3, 4, 5, 8],
+    "waterDeep": "#143238",
+    "waterShallow": "#3e6460",
+    "opacity": 0.55
+  },
+  "drainage": {
+    "halfWidth": 0.22,
+    "cutFrom": 1,
+    "cutTo": 9,
+    "points": [
+      [1.53, -0.05, 1.46],
+      [2.1, -0.09, 1.9],
+      [2.75, -0.13, 2.5],
+      [2.9, -0.17, 3.2],
+      [2.15, -0.21, 3.7],
+      [1.1, -0.25, 4.0],
+      [0.15, -0.3, 4.28],
+      [-0.55, -0.36, 4.7],
+      [-1.15, -0.42, 5.05],
+      [-1.25, -0.98, 5.48]
+    ]
+  },
+  "shelter": {
+    "x": -6.55,
+    "z": -0.75,
+    "w": 2.9,
+    "d": 2.6,
+    "floor": 0.18,
+    "eave": 2.2,
+    "ridge": 2.84,
+    "opening": [1, 0],
+    "openingWidth": 2.05,
+    "benchFacing": [1, 0],
+    "stoolFacing": [0, -1],
+    "seatAboveFloor": 0.42,
+    "stoolHeight": 0.22
+  },
+  "bridge": {
+    "x": 0.12,
+    "z": 4.28,
+    "length": 1.74,
+    "width": 1.08,
+    "deckY": 0.08,
+    "railHeight": 0.9
+  },
+  "deck": {
+    "x0": -1.55,
+    "x1": 1.45,
+    "z0": 2.18,
+    "z1": 3.52,
+    "y": 0.08
+  },
+  "steps": {
+    "x": 0.12,
+    "zTop": 5.22,
+    "count": 4,
+    "riser": 0.16,
+    "tread": 0.38,
+    "width": 1.16,
+    "topY": 0.0,
+    "railHeight": 0.9
+  },
+  "kakehi": {
+    "from": [-1.05, 0.5, -2.42],
+    "to": [-0.12, 0.28, -1.7]
+  },
+  "entry": {
+    "edge": 9,
+    "copingY": 0.05,
+    "treads": [
+      { "inset": 0.32, "top": -0.18 },
+      { "inset": 0.66, "top": -0.4 }
+    ]
+  },
+  "viewStool": { "x": -1.15, "z": 2.58, "facing": [0, -1] },
+  "bucket": { "x": 1.35, "z": 1.95, "height": 0.27 },
+  "lanterns": [
+    { "id": "eave", "type": "chochin", "x": -3.42, "y": 1.92, "z": 0.55, "color": "#ff9a42" },
+    { "id": "interior", "type": "chochin", "x": -5.9, "y": 1.84, "z": 0.15, "color": "#ffb15a" },
+    { "id": "toro", "type": "toro", "x": -2.2, "y": 0, "z": 2.95, "lightY": 0.82, "color": "#ff8d3a" },
+    { "id": "post", "type": "post", "x": 1.22, "y": 0.08, "z": 2.48, "lightY": 1.2, "color": "#ffaa55" }
+  ],
+  "mountains": [
+    { "x": -3.2, "z": -13.2, "rx": 10.5, "rz": 6.2, "h": 8.4, "base": 1.45, "color": "#2a3c54" },
+    { "x": 6.8, "z": -12.4, "rx": 7.6, "rz": 5.2, "h": 6.3, "base": 1.25, "color": "#243448" },
+    { "x": 0.4, "z": -19.2, "rx": 15.5, "rz": 7.2, "h": 7.2, "base": 1.7, "color": "#3a5574" }
+  ],
+  "anchors": [
+    { "id": "source-rock", "x": -0.7, "z": -2.62, "sx": 1.05, "sy": 0.62, "sz": 0.82, "rot": 0.5, "baseY": 0 },
+    { "id": "source-rock-b", "x": -1.45, "z": -2.48, "sx": 0.72, "sy": 0.42, "sz": 0.58, "rot": 1.2, "baseY": 0 },
+    { "id": "sub-deep", "x": 0.15, "z": -0.2, "sx": 0.58, "sy": 0.36, "sz": 0.46, "rot": 0.4, "baseY": -0.98 },
+    { "id": "sub-right", "x": 1.05, "z": -0.85, "sx": 0.48, "sy": 0.3, "sz": 0.4, "rot": 1.4, "baseY": -0.98 },
+    { "id": "breaker", "x": 1.25, "z": 0.05, "sx": 0.52, "sy": 1.08, "sz": 0.44, "rot": 0.35, "baseY": -0.98 },
+    { "id": "cascade-a", "x": -1.45, "z": 5.58, "sx": 0.7, "sy": 0.36, "sz": 0.52, "rot": 0.7, "baseY": -0.64 },
+    { "id": "cascade-b", "x": -0.9, "z": 5.75, "sx": 0.48, "sy": 0.26, "sz": 0.4, "rot": 1.5, "baseY": -0.64 },
+    { "id": "shelter-toe", "x": -4.05, "z": 2.15, "sx": 0.5, "sy": 0.28, "sz": 0.38, "rot": 0.25, "baseY": 0 }
+  ],
+  "stones": [
+    [-3.4, 1.15],
+    [-2.85, 1.38],
+    [-2.3, 1.52],
+    [-1.82, 1.5]
+  ],
+  "lowerStones": [
+    [0.05, 7.15],
+    [0.4, 7.7],
+    [-0.1, 8.2],
+    [0.35, 8.75]
+  ],
+  "bamboo": [
+    [-7.4, -2.8, 6.2, 0.04, 0.2],
+    [-6.9, -2.1, 4.8, -0.05, 1.1],
+    [-6.3, -3.2, 5.5, 0.03, 0.6],
+    [-5.7, -2.4, 3.6, 0.06, 2.2],
+    [-5.1, -3.3, 6.0, -0.04, 0.9],
+    [-4.6, -2.5, 4.4, 0.05, 1.7],
+    [-7.2, -1.5, 5.1, -0.03, 2.6],
+    [-6.2, -1.4, 3.3, 0.07, 0.4],
+    [-5.4, -1.7, 4.9, -0.02, 1.4],
+    [-4.4, -1.2, 5.7, 0.04, 2.0],
+    [5.7, -1.7, 5.8, 0.07, 0.4],
+    [6.5, -0.5, 4.1, -0.06, 1.3],
+    [5.3, 0.35, 6.2, 0.04, 0.7],
+    [6.9, 1.15, 3.4, 0.09, 2.0],
+    [5.9, 2.05, 4.7, -0.05, 1.6],
+    [7.2, -1.35, 5.1, 0.03, 0.9]
+  ],
+  "reeds": [
+    [2.7, 3.35, 1.7, 14],
+    [3.45, 4.55, 2.05, 16],
+    [1.9, 5.65, 1.5, 12],
+    [-2.35, 6.05, 1.9, 15],
+    [3.7, 2.35, 1.25, 10],
+    [-2.7, 3.45, 1.55, 12]
+  ],
+  "pines": [
+    [-4.2, -5.6, 1.35, 0.18],
+    [3.4, -5.2, 1.15, -0.12],
+    [-1.6, -6.9, 1.7, 0.22],
+    [1.3, -7.5, 1.85, -0.08],
+    [5.8, -5.9, 1.0, 0.1],
+    [-6.8, -5.1, 0.9, -0.16]
+  ],
+  "firs": [
+    [-7.2, -4.4, 2.2],
+    [-4.8, -5.2, 3.2],
+    [-2.7, -4.35, 1.7],
+    [2.7, -4.25, 2.1],
+    [5.3, -4.7, 2.9],
+    [-6.2, -6.5, 2.6],
+    [-3.5, -6.9, 3.5],
+    [3.9, -6.4, 2.4],
+    [6.5, -6.7, 1.8],
+    [0.35, -7.7, 2.7]
+  ],
+  "ferns": [
+    [-1.55, -2.45, 1.0],
+    [2.55, -1.7, 0.75],
+    [-3.9, 2.25, 0.7],
+    [3.05, 3.15, 0.85],
+    [-2.55, 3.15, 0.6],
+    [0.95, -2.55, 1.05],
+    [-4.3, 0.2, 0.55]
+  ],
+  "steam": [
+    { "x": -0.22, "z": -1.55, "h": 0.72, "w": 0.85, "opacity": 0.14 },
+    { "x": 0.05, "z": -1.35, "h": 0.55, "w": 0.62, "opacity": 0.1 },
+    { "x": -0.48, "z": -1.4, "h": 0.85, "w": 0.7, "opacity": 0.08 }
+  ],
+  "rockSeed": 20261110,
+  "assets": {
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.3 },
+    "thermos": { "glb": "assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.25 }
+  },
+  "instances": [
+    { "id": "entry-pot", "kind": "flowerpot", "position": [-4.2, 0, 2.08], "rotationY": 0.5 },
+    { "id": "deck-flask", "kind": "thermos", "position": [-0.78, 0.11, 2.78], "rotationY": -0.4 }
+  ],
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "pool close", "unlit"],
+    "must_read": [
+      "Irregular stone pool with water below the coping and a visible bottom.",
+      "Timber washing shelter open toward the pool.",
+      "Overflow falls away under a short plank bridge.",
+      "Bamboo and reeds screen the sides; mountains stay in view.",
+      "Blue hour with a few warm lanterns."
+    ]
+  }
+}
