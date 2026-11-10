@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Desert stargazing camp",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Twilight social camp: open striped shade tent with low seating and tea, separate telescope deck on a rock bench.",
+      "Terrain is a heightfield. Mesas, tent, telescope and plants are procedural. Mugs, thermos and napkin tray are sand3d GLBs."
+    ]
+  },
+  "assets": {
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "tray_napkin": {
+      "glb": "assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.12
+    }
+  },
+  "instances": [
+    {
+      "id": "tea_tray",
+      "kind": "tray_napkin",
+      "position": [
+        -3.72,
+        0.649983242994735,
+        0.46
+      ],
+      "rotationY": 0.35
+    },
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "position": [
+        -3.9000000000000004,
+        0.649983242994735,
+        0.52
+      ],
+      "rotationY": 0.5
+    },
+    {
+      "id": "mug_a",
+      "kind": "cup_mug",
+      "position": [
+        -3.58,
+        0.649983242994735,
+        0.54
+      ],
+      "rotationY": 0.7
+    },
+    {
+      "id": "mug_b",
+      "kind": "cup_mug",
+      "position": [
+        -3.72,
+        0.649983242994735,
+        0.3
+      ],
+      "rotationY": -0.5
+    },
+    {
+      "id": "mug_c",
+      "kind": "cup_mug",
+      "position": [
+        -3.54,
+        0.649983242994735,
+        0.4
+      ],
+      "rotationY": 1.5
+    }
+  ],
+  "shell": {
+    "clearColor": "#d2b0a0",
+    "fogColor": "#d2b0a0",
+    "fogNear": 24,
+    "fogFar": 70
+  },
+  "camera": {
+    "fov": 46,
+    "position": [
+      6.6,
+      3.7,
+      11.4
+    ],
+    "target": [
+      -0.2,
+      2.1,
+      -2.2
+    ],
+    "near": 0.08,
+    "far": 180
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 50,
+      "position": [
+        -7.4,
+        4.35,
+        8.8
+      ],
+      "target": [
+        1.15,
+        2.15,
+        -6.2
+      ]
+    },
+    "close": {
+      "fov": 36,
+      "position": [
+        6.85,
+        2.384169670556828,
+        1.05
+      ],
+      "target": [
+        4.28,
+        1.8841696705568276,
+        -1.42
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 9347272,
+      "ground": 8015416,
+      "intensity": 0.62
+    },
+    "key": {
+      "color": 16762016,
+      "intensity": 1.22,
+      "position": [
+        11,
+        9.5,
+        8
+      ],
+      "target": [
+        0.2,
+        1.1,
+        -0.4
+      ]
+    },
+    "fill": {
+      "color": 9348296,
+      "intensity": 0.5,
+      "position": [
+        -8,
+        6.5,
+        -2
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon default",
+      "toon corner",
+      "toon close",
+      "unlit"
+    ],
+    "must_read": [
+      "Sculpted sand and rock, not a flat floor.",
+      "Shade tent with cushions facing a tea table.",
+      "Separate deck with a tube, finder, eyepiece and three-leg tripod.",
+      "Low path markers, sparse varied desert plants, layered mesas.",
+      "Stars present but the camp stays visible."
+    ]
+  }
+}
