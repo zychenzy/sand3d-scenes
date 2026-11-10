@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Japanese pond garden",
+    "units": "metres",
+    "style": "Toon hard",
+    "site": { "width": 28, "depth": 24 },
+    "notes": [
+      "Quiet morning stroll garden. Irregular koi pond, arched timber bridge, stepping-stone loop, shaded tea bench, maples, reeds, moss, stone lantern.",
+      "Open terrain with a wooded hill. Not a walled room."
+    ]
+  },
+  "assets": {},
+  "instances": [],
+  "shell": {
+    "clearColor": "#d5dfd6",
+    "fogColor": "#d5dfd6",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 48,
+    "position": [0.45, 4.15, 10.6],
+    "target": [-0.7, 0.82, 0.45]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [8.8, 4.15, 5.1],
+      "target": [-1.3, 0.7, 0.05]
+    },
+    "close": {
+      "position": [-0.85, 1.58, 4.5],
+      "target": [-3.15, 0.7, 3.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#e7f0e8", "ground": "#667256", "intensity": 0.66 },
+    "key": {
+      "color": "#fff1d4",
+      "intensity": 1.16,
+      "position": [11.5, 10.2, 6.2],
+      "target": [-0.6, 0.4, 0.1],
+      "shadow": { "mapSize": 2048, "left": -18, "right": 18, "top": 18, "bottom": -18, "far": 46, "bias": -0.00035, "normalBias": 0.028 }
+    },
+    "fill": { "color": "#c5d4cc", "intensity": 0.38, "position": [-9, 6.5, -3] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Arched timber bridge is the focal point over an irregular pond.",
+      "Stone shore, stepping-stone loop, shaded bench facing the water, lantern, maples, reeds, moss.",
+      "Quiet morning light. Toon hard by default, unlit toggle works."
+    ]
+  }
+}
