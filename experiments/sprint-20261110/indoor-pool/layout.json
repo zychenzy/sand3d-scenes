@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "title": "Intimate indoor swimming hall",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.2, "depth": 14.8, "height": 4.6 },
+    "notes": [
+      "Short 3-lane hall, about 10 m by 5.4 m, shallow 1.2 m to deep 1.9 m.",
+      "Cutaway opens on +X and +Z. Back wall is -Z, glazed wall is -X.",
+      "Changing niche sits in the bay between the trusses at z 0.8 and z 2.8.",
+      "Lounge deck is the shallow (+Z) end. Daylight enters from the open cutaway; pendants warm only the dry deck."
+    ]
+  },
+  "pool": {
+    "x0": -2.7,
+    "x1": 2.7,
+    "z0": -5.55,
+    "z1": 4.35,
+    "surfaceY": -0.1,
+    "deep": 1.9,
+    "shallow": 1.2,
+    "lanes": 3,
+    "waterOpacity": 0.4
+  },
+  "niche": {
+    "x0": -6.25,
+    "x1": -4.6,
+    "z0": 0.8,
+    "z1": 2.8,
+    "h": 2.24
+  },
+  "trusses": {
+    "z": [-7.2, -5.2, -3.2, -1.2, 0.8, 2.8, 4.8, 6.8],
+    "xL": -4.32,
+    "xR": 4.32,
+    "yBot": 3.66,
+    "yEave": 3.94,
+    "yRidge": 4.42,
+    "roofCutX": 1.65,
+    "roofCutZ": 1.45
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "note": "Long axis is model Z. rotationY 0 runs the seat along world Z."
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.84
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.5
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28
+    }
+  },
+  "instances": [
+    {
+      "id": "bench_lounge_w",
+      "kind": "museum_bench",
+      "position": [-2.15, 0, 6.45],
+      "rotationY": 1.5708,
+      "scale": [1, 1, 1.12]
+    },
+    {
+      "id": "bench_lounge_e",
+      "kind": "museum_bench",
+      "position": [0.05, 0, 5.95],
+      "rotationY": 1.48,
+      "scale": [1, 1, 1]
+    },
+    {
+      "id": "bench_deck",
+      "kind": "museum_bench",
+      "position": [3.78, 0, -0.35],
+      "rotationY": 0.06,
+      "scale": [1, 1, 1.18]
+    },
+    {
+      "id": "bench_niche",
+      "kind": "museum_bench",
+      "position": [-5.62, 0, 2.05],
+      "rotationY": 0,
+      "scale": [1, 1, 1]
+    },
+    {
+      "id": "shelf_niche",
+      "kind": "wall_shelf",
+      "position": [-5.48, 0, 1.05],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_lounge",
+      "kind": "pendant_lamp",
+      "position": [-2.05, 3.16, 6.8],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_steps",
+      "kind": "pendant_lamp",
+      "position": [1.65, 3.16, 4.8],
+      "rotationY": 0.4
+    },
+    {
+      "id": "plant_corner",
+      "kind": "flowerpot",
+      "position": [-3.9, 0, -6.55],
+      "rotationY": 0.3
+    },
+    {
+      "id": "plant_niche",
+      "kind": "flowerpot",
+      "position": [-3.65, 0, 0.32],
+      "rotationY": 1.1
+    }
+  ],
+  "shell": {
+    "clearColor": "#d5ebe6",
+    "fogColor": "#d5ebe6",
+    "fogNear": 20,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 45,
+    "position": [7.15, 4.2, 9.85],
+    "target": [-0.2, 0.4, -0.85]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [5.7, 2.3, 6.35],
+      "target": [-2.6, 0.65, 1.15]
+    },
+    "close": {
+      "position": [-0.15, 1.22, 3.55],
+      "target": [-1.75, -1.15, -4.4]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15202034, "ground": 4090470, "intensity": 0.74 },
+    "key": {
+      "color": 16054260,
+      "intensity": 1.7,
+      "position": [9, 13, 10],
+      "shadow": 18,
+      "bias": -0.0004,
+      "normalBias": 0.04
+    },
+    "fill": { "color": 10473416, "intensity": 0.48, "position": [-7, 6, -5] },
+    "points": [
+      { "color": 9101270, "intensity": 12, "distance": 4.8, "decay": 2, "position": [0, -1.15, -3.5] },
+      { "color": 9101270, "intensity": 8, "distance": 3.6, "decay": 2, "position": [0.3, -0.72, 2.2] },
+      { "color": 16763274, "intensity": 18, "distance": 6.5, "decay": 2, "position": [-2.05, 3.4, 6.8] },
+      { "color": 16763274, "intensity": 14, "distance": 5.4, "decay": 2, "position": [1.65, 3.42, 4.8] },
+      { "color": 16765608, "intensity": 8, "distance": 3.6, "decay": 2, "position": [-5.35, 1.9, 1.8] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "must_read": [
+      "A recessed pool with a sloping floor, three lanes, and surface ropes.",
+      "Glazed dado-and-mullion walls and a timber truss roof, cut away on the right.",
+      "Shallow-end lounge benches and a screened changing niche with towels.",
+      "Warm pendants only over the dry deck; the water stays cool."
+    ]
+  }
+}
