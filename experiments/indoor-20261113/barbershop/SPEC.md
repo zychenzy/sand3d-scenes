@@ -17,7 +17,7 @@ Metres. Toon is the hard default (`MeshToonMaterial` + 4-stop gradient + hard sh
 | Counter top | 0.88 m |
 | Wash rim | 0.86 m; neck reach 0.48 m toward the basin |
 | Reception top | 0.96 m |
-| Runner | 1.12 m wide, clear of furniture |
+| Runner | 1.12 m wide, clear of furniture. The pole stands to its left. |
 | Loveseat back | 0.84 m |
 | Coffee table | 0.40 m, scaled in plan only |
 | Bench seat | 0.46 m |

@@ -105,11 +105,12 @@ pole = anchors["pole"]
 inside = run["x0"] < pole["x"] < run["x1"] and run["z0"] < pole["z"] < run["z1"]
 assert not inside
 
-# Each mirror has a warm practical.
-for s in stations:
-    assert any(
-        abs(p["position"][0] - s["x"]) < 0.25 and p["position"][1] > 1.6 and p["position"][2] < -2.6
-        for p in layout["lights"]["points"]
-    )
+# Globes on the mirrors are emissive meshes. A point light parked on that
+# wall quantizes into a circular blotch, so none sit within 1.2 m of it.
+back = -room["depth"] / 2
+for p in layout["lights"]["points"]:
+    assert p["position"][2] > back + 1.2, p["position"]
+assert "bulbMat" in js
+assert "mirror-" in js
 
 print(f"ok — {len(by_id)} linked assets, 3 chairs face the mirrors, runner is clear, seat {seat:.2f} m")

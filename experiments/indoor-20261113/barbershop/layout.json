@@ -37,7 +37,7 @@
     },
     "reception": { "x": -1.7, "z": 2.38, "top": 0.96, "w": 1.45, "d": 0.56 },
     "runner": { "x0": 0.0, "x1": 1.12, "z0": -1.38, "z1": 3.35 },
-    "pole": { "x": 1.62, "z": 2.72 }
+    "pole": { "x": -0.72, "z": 2.92 }
   },
   "assets": {
     "sofa": { "glb": "assets/sofa_solid__2172bb7e3b99.glb", "targetHeight": 0.84 },
@@ -57,7 +57,7 @@
     { "id": "shelf", "kind": "shelf", "position": [-4.95, 1.42, 3.15], "rotationY": 1.5707963267948966 },
     { "id": "cash", "kind": "cash", "position": [-2.05, 0.96, 2.32], "rotationY": 0 },
     { "id": "lamp", "kind": "lamp", "position": [-1.18, 0.96, 2.42], "rotationY": 0 },
-    { "id": "pendant", "kind": "pendant", "position": [2.85, 2.32, 1.85], "rotationY": 0, "castShadow": false },
+    { "id": "pendant", "kind": "pendant", "position": [3.15, 1.72, 1.95], "rotationY": 0, "castShadow": false },
     { "id": "pot", "kind": "pot", "position": [4.28, 0, 0.72], "rotationY": 0.4 },
     { "id": "jar_a", "kind": "jar", "position": [-3.0, 0.88, -3.58], "rotationY": 0.3 },
     { "id": "jar_c", "kind": "jar", "position": [1.52, 0.88, -3.58], "rotationY": -0.4 },
@@ -75,24 +75,21 @@
   },
   "camera": {
     "fov": 40,
-    "position": [5.15, 3.25, 7.15],
-    "target": [-0.45, 0.95, -0.55]
+    "position": [4.85, 2.28, 6.55],
+    "target": [-0.55, 1.28, -1.35]
   },
   "cameraPresets": {
     "corner": { "position": [6.35, 2.05, 0.15], "target": [-1.15, 1.0, -1.55] },
-    "close": { "position": [0.42, 1.38, -1.02], "target": [-0.7, 1.08, -2.95] }
+    "close": { "position": [0.28, 1.22, -0.55], "target": [-0.62, 1.02, -3.25] }
   },
   "lights": {
     "hemi": { "sky": "#fff1dc", "ground": "#3a3028", "intensity": 0.36 },
     "key": { "color": "#fff6e4", "intensity": 1.62, "position": [6.4, 11.2, 7.4] },
     "fill": { "color": "#9aafc2", "intensity": 0.16, "position": [-6.5, 4.8, 1.2] },
     "points": [
-      { "color": "#ffe0a4", "intensity": 0.95, "position": [-2.55, 2.2, -3.05], "distance": 3.4, "decay": 2 },
-      { "color": "#ffe0a4", "intensity": 0.95, "position": [-0.7, 2.2, -3.05], "distance": 3.4, "decay": 2 },
-      { "color": "#ffe0a4", "intensity": 0.95, "position": [1.15, 2.2, -3.05], "distance": 3.4, "decay": 2 },
-      { "color": "#f4f7ff", "intensity": 0.42, "position": [-4.3, 1.9, 0.52], "distance": 3.2, "decay": 2 },
-      { "color": "#ffd7a2", "intensity": 0.55, "position": [2.85, 2.45, 1.85], "distance": 4.2, "decay": 2 },
-      { "color": "#ffe6b8", "intensity": 0.28, "position": [-1.18, 1.5, 2.4], "distance": 2.4, "decay": 2 }
+      { "color": "#f4f7ff", "intensity": 0.16, "position": [-2.4, 1.7, 1.15], "distance": 4.5, "decay": 2 },
+      { "color": "#ffd7a2", "intensity": 0.28, "position": [3.15, 1.85, 1.95], "distance": 3.6, "decay": 2 },
+      { "color": "#ffe6b8", "intensity": 0.18, "position": [-1.18, 1.7, 2.15], "distance": 3.2, "decay": 2 }
     ]
   },
   "acceptance": {
