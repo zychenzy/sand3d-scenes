@@ -23,5 +23,6 @@ Hugging Face `Sandflow/sand3d-objaverse` search, renders opened before any bake:
 - The baked padlock is the flat nichgon body. A round body lock was not in the clean hits.
 - No catalog duplicator, bench vise, key blank, or pin tumbler. Those stay procedural.
 - Blank codes on the pegwall (KW1, SC1, Y1, M1, DE6) are row labels, not a full manufacturer board.
-- The wall shelf is a cafe shelf used for small stock. It is not a lock cabinet.
-- Contact darks are a shadow map with normal bias, not a screen-space AO pass.
+- The parts cubby is a simple pigeonhole with bins and cylinders. It is not a manufactured lock cabinet.
+- The work stools are four-leg shop seats with a low back. They are not a catalog stool.
+- Contact darks are a shadow map with a small radius, not a screen-space AO pass. The key light is overhead so furniture shadows fall on the floor.

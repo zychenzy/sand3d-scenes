@@ -190,14 +190,21 @@ function makeShell(layout) {
   addBox(g, 0.02, zh - 0.08, 0.022, frame, xw + 0.014, zy, zx);
   plate(g, 'KEYS', 0.42, 0.12, xw + 0.03, zy + 0.28, zx, Math.PI / 2, '#1e2a30', '#f4efe4', 256, 64, 46);
 
-  const soffit = addBox(g, W * 0.72, 0.06, D * 0.42, toon('#f7f3ea'), -0.7, H - 0.08, -D * 0.22);
-  soffit.castShadow = false;
+  const ceil = addBox(g, W, 0.08, D, toon('#f4eee2', { emissive: '#e7dcc8', emissiveIntensity: 0.65 }), 0, H - 0.04, 0);
+  ceil.name = 'shop-ceiling';
+  ceil.castShadow = false;
+  ceil.receiveShadow = false;
+  ceil.userData.noShadow = true;
   const tubeMat = toon('#fff6e4', { emissive: '#fff1c8', emissiveIntensity: 0.9 });
   const housing = toon('#d9d4c8');
-  for (const z of [-2.15, -0.35]) {
-    addBox(g, 1.35, 0.04, 0.16, housing, -0.4, H - 0.16, z);
-    const tube = addBox(g, 1.2, 0.02, 0.05, tubeMat, -0.4, H - 0.2, z);
+  for (const [x, z] of [[-1.35, -2.25], [2.15, -1.85], [-0.35, 0.15]]) {
+    const box = addBox(g, 1.15, 0.035, 0.14, housing, x, H - 0.12, z);
+    box.castShadow = false;
+    box.userData.noShadow = true;
+    const tube = addBox(g, 1.02, 0.018, 0.045, tubeMat, x, H - 0.15, z);
     tube.name = 'light_tube';
+    tube.castShadow = false;
+    tube.userData.noShadow = true;
   }
   return g;
 }
@@ -440,6 +447,76 @@ function partsCart(g, a) {
   }
 }
 
+function workStool(g, x, z, rotY) {
+  const grp = new THREE.Group();
+  grp.name = 'work-stool';
+  grp.position.set(x, 0, z);
+  grp.rotation.y = rotY || 0;
+  const wood = toon('#8a5a3c');
+  const steel = toon('#3e4650');
+  const seatY = 0.62;
+  const seat = addCyl(grp, 0.16, 0.155, 0.036, wood, 0, seatY, 0, 20);
+  seat.name = 'work-stool';
+  const span = 0.12;
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    addBox(grp, 0.026, seatY - 0.03, 0.026, steel, sx * span, (seatY - 0.03) / 2, sz * span);
+  }
+  addBox(grp, span * 2, 0.016, 0.016, steel, 0, 0.2, -span);
+  addBox(grp, span * 2, 0.016, 0.016, steel, 0, 0.2, span);
+  addBox(grp, 0.016, 0.016, span * 2, steel, -span, 0.2, 0);
+  addBox(grp, 0.016, 0.016, span * 2, steel, span, 0.2, 0);
+  addBox(grp, 0.016, 0.16, 0.016, steel, -0.09, seatY + 0.08, -0.13);
+  addBox(grp, 0.016, 0.16, 0.016, steel, 0.09, seatY + 0.08, -0.13);
+  addBox(grp, 0.2, 0.016, 0.016, steel, 0, seatY + 0.15, -0.13);
+  g.add(grp);
+}
+
+function partsCubby(g, a) {
+  const grp = new THREE.Group();
+  grp.name = 'parts-cubby';
+  grp.position.set(a.x, a.y, a.z);
+  const wood = toon('#6b4e3a');
+  const edge = toon('#3e2e24');
+  const card = toon('#d7c4a4');
+  const tin = toon('#8a929a');
+  addBox(grp, a.w, a.h, 0.014, wood, 0, a.h / 2, -a.d / 2 + 0.01);
+  addBox(grp, a.w, 0.028, a.d, edge, 0, a.h - 0.014, 0);
+  addBox(grp, a.w, 0.028, a.d, edge, 0, 0.014, 0);
+  addBox(grp, 0.022, a.h, a.d, edge, -a.w / 2 + 0.011, a.h / 2, 0);
+  addBox(grp, 0.022, a.h, a.d, edge, a.w / 2 - 0.011, a.h / 2, 0);
+  const cols = 3;
+  const rows = 3;
+  const innerW = a.w - 0.044;
+  const innerH = a.h - 0.056;
+  const cw = innerW / cols;
+  const ch = innerH / rows;
+  for (let c = 1; c < cols; c++) {
+    addBox(grp, 0.014, innerH, a.d - 0.02, edge, -innerW / 2 + c * cw, 0.028 + innerH / 2, 0.01);
+  }
+  for (let r = 1; r < rows; r++) {
+    addBox(grp, innerW, 0.014, a.d - 0.02, edge, 0, 0.028 + r * ch, 0.01);
+  }
+  const frontZ = a.d * 0.28;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const cx = -innerW / 2 + (c + 0.5) * cw;
+      const shelfY = 0.034 + r * ch;
+      if (r === 1) {
+        pinCylinder(grp, cx - 0.028, shelfY, frontZ);
+        pinCylinder(grp, cx + 0.028, shelfY, frontZ);
+      } else if (r === 0) {
+        addBox(grp, cw * 0.72, ch * 0.55, a.d * 0.62, card, cx, shelfY + ch * 0.28, frontZ);
+      } else {
+        const body = addBox(grp, cw * 0.42, ch * 0.48, 0.045, r === 2 && c === 1 ? tin : toon('#8d6a32'), cx, shelfY + ch * 0.26, frontZ);
+        body.name = 'cubby-lock';
+        addCyl(grp, 0.02, 0.02, 0.012, toon('#d5dbe2'), cx, shelfY + ch * 0.62, frontZ, 10);
+      }
+    }
+  }
+  g.add(grp);
+  plate(g, 'PARTS', 0.28, 0.06, a.x, a.y + a.h + 0.05, a.z + 0.02, 0, '#2a2420', '#f3eadc', 192, 64, 32);
+}
+
 function taskLamp(g, x, y, z) {
   const arm = toon('#3a424a');
   const shade = toon('#5c656e');
@@ -462,6 +539,10 @@ function makeProcedural(layout) {
   repairBench(g, layout.anchors.bench, layout.density);
   secureCounter(g, layout.anchors.counter);
   partsCart(g, layout.anchors.cart);
+  partsCubby(g, layout.anchors.cubby);
+  for (const stool of layout.workStools || []) {
+    workStool(g, stool.position[0], stool.position[2], stool.rotationY);
+  }
   taskLamp(g, layout.anchors.cutter.x - 0.28, layout.anchors.cutter.top, layout.anchors.cutter.z - 0.18);
   taskLamp(g, layout.anchors.bench.x - 0.2, layout.anchors.bench.h, layout.anchors.bench.z - 0.1);
   const bin = addCyl(g, 0.1, 0.09, 0.16, toon('#3a424a'), layout.anchors.cutter.x + 0.42, 0.08, layout.anchors.cutter.z + 0.28, 12);

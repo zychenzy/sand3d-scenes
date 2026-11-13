@@ -32,10 +32,15 @@ test('scripts parse, stay offline, and implement hard toon plus true unlit', () 
     assert.doesNotMatch(text, /https?:\/\//);
   }
   const lib = readFileSync(join(root, 'scene_lib.js'), 'utf8');
+  const shop = readFileSync(join(root, 'locksmith.js'), 'utf8');
   assert.match(lib, /MeshToonMaterial/);
   assert.match(lib, /MeshBasicMaterial/);
   assert.match(lib, /NearestFilter/);
   assert.match(lib, /NoToneMapping/);
+  assert.match(shop, /shop-ceiling/);
+  assert.match(shop, /work-stool/);
+  assert.match(shop, /parts-cubby/);
+  assert.doesNotMatch(shop, /bar_stool|wall_shelf/);
   for (const file of ['locksmith.js', 'scene_lib.js']) {
     const checked = spawnSync(process.execPath, ['--check', join(root, file)], { encoding: 'utf8' });
     assert.equal(checked.status, 0, checked.stderr);
@@ -45,11 +50,15 @@ test('scripts parse, stay offline, and implement hard toon plus true unlit', () 
 test('reused GLBs and three.js are symlinks; the baked padlock stays in this folder', () => {
   const shared = [
     'assets/dining_chair__5e1f7a56da4a.glb',
-    'assets/bar_stool__319fcb56afe8.glb',
     'assets/cash_register__870f6ebb115a.glb',
     'assets/pos_terminal__91c277a25bc3.glb',
-    'assets/wall_shelf__8732f5e14a30.glb',
   ];
+  for (const rel of [
+    'assets/bar_stool__319fcb56afe8.glb',
+    'assets/wall_shelf__8732f5e14a30.glb',
+  ]) {
+    assert.equal(existsSync(join(root, rel)), false, rel);
+  }
   for (const rel of shared) {
     const abs = join(root, rel);
     assert.equal(lstatSync(abs).isSymbolicLink(), true, rel);
@@ -79,10 +88,8 @@ test('reused GLBs and three.js are symlinks; the baked padlock stays in this fol
 test('target heights stay at shop scale', () => {
   const ranges = {
     dining_chair: [0.84, 0.96],
-    bar_stool: [0.7, 0.84],
     cash_register: [0.28, 0.42],
     pos_terminal: [0.14, 0.26],
-    wall_shelf: [0.8, 1.05],
     padlock: [0.1, 0.14],
   };
   for (const [kind, [lo, hi]] of Object.entries(ranges)) {
@@ -99,21 +106,31 @@ test('target heights stay at shop scale', () => {
 
 test('seats face the work and the register faces the customer', () => {
   const byId = Object.fromEntries(layout.instances.map((item) => [item.id, item]));
+  const stools = Object.fromEntries(layout.workStools.map((item) => [item.id, item]));
   const pi = Math.PI;
-  for (const id of ['chair_customer_l', 'chair_customer_r', 'stool_cutter', 'stool_bench']) {
+  for (const id of ['chair_customer_l', 'chair_customer_r']) {
     assert.ok(Math.abs(Math.abs(byId[id].rotationY) - pi) < 0.02, id);
   }
+  for (const id of ['stool_cutter', 'stool_bench']) {
+    assert.ok(Math.abs(Math.abs(stools[id].rotationY) - pi) < 0.02, id);
+    assert.equal(stools[id].footprint[0] < 0.5, true, id);
+  }
   assert.ok(Math.abs(byId.register.rotationY) < 0.05);
-  assert.ok(Math.abs(byId.parts_shelf.rotationY) < 0.05);
-  assert.ok(byId.parts_shelf.position[2] < -3);
+  assert.equal(layout.assets.bar_stool, undefined);
+  assert.equal(layout.assets.wall_shelf, undefined);
+  const cubby = layout.anchors.cubby;
+  const peg = layout.anchors.pegwall;
+  assert.ok(cubby.z < -3.2);
+  assert.ok(cubby.x - cubby.w / 2 > peg.x + peg.w / 2);
+  assert.ok(cubby.y >= 0.9);
   const counter = layout.anchors.counter;
   const cutter = layout.anchors.cutter;
   const bench = layout.anchors.bench;
   for (const id of ['chair_customer_l', 'chair_customer_r']) {
     assert.ok(byId[id].position[2] > counter.z + counter.d / 2, id);
   }
-  assert.ok(byId.stool_cutter.position[2] > cutter.z + cutter.d / 2);
-  assert.ok(byId.stool_bench.position[2] > bench.z + bench.d / 2);
+  assert.ok(stools.stool_cutter.position[2] > cutter.z + cutter.d / 2);
+  assert.ok(stools.stool_bench.position[2] > bench.z + bench.d / 2);
   assert.ok(byId.register.position[2] < counter.z);
   assert.ok(byId.register.position[2] > counter.z - counter.d / 2);
   assert.equal(layout.density.padlockCount, layout.instances.filter((i) => i.kind === 'padlock').length);
@@ -131,10 +148,15 @@ test('floor seats, anchors, and walking routes keep clearance', () => {
       assert.ok(g >= 0.4, `${anchors[i].id} to ${anchors[j].id} gap ${g.toFixed(2)}m`);
     }
   }
-  const seats = layout.instances.filter((item) => item.mount === 'floor').map((item) => {
+  const chairSeats = layout.instances.filter((item) => item.mount === 'floor').map((item) => {
     const fp = layout.assets[item.kind].footprint;
     return { id: item.id, box: aabb(item.position[0], item.position[2], fp[0], fp[1]) };
   });
+  const stoolSeats = layout.workStools.map((item) => ({
+    id: item.id,
+    box: aabb(item.position[0], item.position[2], item.footprint[0], item.footprint[1]),
+  }));
+  const seats = [...chairSeats, ...stoolSeats];
   for (let i = 0; i < seats.length; i++) {
     for (let j = i + 1; j < seats.length; j++) {
       const g = gap(seats[i].box, seats[j].box);
@@ -173,9 +195,12 @@ test('instances are unique, inside the shell, and every GLB loads as a file', ()
   assert.ok(layout.density.cylinderCols * layout.density.cylinderRows >= 12);
   assert.ok(layout.density.mortiseCount >= 4);
   const cam = layout.camera.position;
-  assert.ok(cam[0] > room.width / 2 && cam[2] > room.depth / 2, 'default camera stays outside the open corner');
+  const counter = layout.anchors.counter;
+  assert.ok(cam[0] > -room.width / 2 + 0.5, 'default camera stays out of the left wall');
+  assert.ok(cam[2] > counter.z + counter.d / 2, 'default camera stays on the customer side of the counter');
   const corner = layout.cameraPresets.corner.position;
-  assert.ok(corner[0] > room.width / 2, 'corner camera stays outside the open side');
+  assert.ok(corner[0] > counter.x + counter.w / 2 + 0.4, 'corner camera stays in the open aisle');
+  assert.ok(corner[2] > counter.z - counter.d, 'corner camera is not behind the back wall');
 });
 
 function chromeBin() {
@@ -242,8 +267,16 @@ test('runtime loads every GLB, reports no errors, and swaps toon and unlit', { t
         expression: `(() => {
           const scene = window.__scene;
           if (!scene || !scene.ready) return { ready: false, status: document.getElementById('status')?.textContent || '', errors: window.__errors || [] };
-          let keys = 0, cylinders = 0, mortise = 0, toon = 0, basic = 0, other = 0, bigKey = 0;
+          let keys = 0, cylinders = 0, mortise = 0, toon = 0, basic = 0, other = 0, bigKey = 0, stools = 0, cubby = 0;
+          let ceiling = null;
           scene.scene.traverse((o) => {
+            if (o.name === 'work-stool' && !o.isMesh) stools += 1;
+            if (o.name === 'parts-cubby') cubby += 1;
+            if (o.name === 'shop-ceiling' && o.isMesh) {
+              if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+              const bb = o.geometry.boundingBox;
+              ceiling = [bb.max.x - bb.min.x, bb.max.y - bb.min.y, bb.max.z - bb.min.z];
+            }
             if (o.isMesh && o.name === 'blank-key') {
               keys += 1;
               if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
@@ -267,7 +300,7 @@ test('runtime loads every GLB, reports no errors, and swaps toon and unlit', { t
             else unlitOther += 1;
           });
           scene.setMode('toon');
-          return { ready: true, errors: window.__errors || [], keys, cylinders, mortise, toon, basic, other, bigKey, unlitBasic, unlitOther };
+          return { ready: true, errors: window.__errors || [], keys, cylinders, mortise, toon, basic, other, bigKey, unlitBasic, unlitOther, stools, cubby, ceiling };
         })()`,
         returnByValue: true,
       });
@@ -277,6 +310,9 @@ test('runtime loads every GLB, reports no errors, and swaps toon and unlit', { t
     }
     assert.ok(info && info.ready, JSON.stringify(info));
     assert.deepEqual(info.errors, []);
+    assert.equal(info.stools, 2);
+    assert.ok(info.cubby >= 1, `cubby ${info.cubby}`);
+    assert.ok(info.ceiling && info.ceiling[0] > 9 && info.ceiling[2] > 7, JSON.stringify(info.ceiling));
     assert.ok(info.keys >= 35, `keys ${info.keys}`);
     assert.ok(info.cylinders >= 12, `cylinders ${info.cylinders}`);
     assert.ok(info.mortise >= 4, `mortise ${info.mortise}`);

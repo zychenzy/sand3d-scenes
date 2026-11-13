@@ -194,10 +194,16 @@ export function makeCutawayShell(layout, extra = {}) {
   const back = new THREE.Mesh(new THREE.BoxGeometry(W, H, 0.12), wallMat);
   back.position.set(0, H / 2, -D / 2);
   back.receiveShadow = true;
+  back.castShadow = false;
+  back.userData.noShadow = true;
+  back.userData.receiveShadow = true;
   g.add(back);
   const left = new THREE.Mesh(new THREE.BoxGeometry(0.12, H, D), wallMat);
   left.position.set(-W / 2, H / 2, 0);
   left.receiveShadow = true;
+  left.castShadow = false;
+  left.userData.noShadow = true;
+  left.userData.receiveShadow = true;
   g.add(left);
 
   if (extra.ceiling !== false) {
@@ -258,8 +264,11 @@ export async function boot(opts) {
   key.shadow.camera.right = 12;
   key.shadow.camera.top = 12;
   key.shadow.camera.bottom = -12;
-  key.shadow.bias = -0.0004;
-  key.shadow.normalBias = 0.035;
+  key.shadow.bias = -0.0006;
+  key.shadow.normalBias = 0.04;
+  key.shadow.radius = 3;
+  key.target.position.set(0, 0.6, -1.1);
+  scene.add(key.target);
   scene.add(key);
   const fillSpec = layout.lights?.fill || { color: 0xc5d0dc, intensity: 0.38, position: [-6, 7, 3] };
   const fill = new THREE.DirectionalLight(fillSpec.color, fillSpec.intensity);
@@ -353,6 +362,10 @@ export async function boot(opts) {
     const p = presets[camKey];
     camera.position.set(...p.position);
     controls.target.set(...p.target);
+    if (p.fov) {
+      camera.fov = p.fov;
+      camera.updateProjectionMatrix();
+    }
     controls.update();
   }
 
