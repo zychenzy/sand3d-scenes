@@ -8,7 +8,7 @@
     "room": { "width": 12.4, "depth": 9.4, "height": 3.22 },
     "notes": [
       "Dry finish tables sit off the back wall. A raised wash tub and ramp occupy the wet corner. A two-by-two drying kennel and a stand dryer sit on the left.",
-      "Customers face the handoff counter. Groomers face their tables. The bather faces the tub. Pet gates are open leaves folded onto the rails so the aisles stay clear.",
+      "Customers face the handoff counter. Groomers face their tables. The bather faces the tub. Work stools and waiting chairs are built for those seats. Pet gates are open leaves folded onto the rails so the aisles stay clear.",
       "No animal figures. No barber chair and no exam lamp."
     ]
   },
@@ -54,22 +54,15 @@
     { "id": "chair_guest_l", "face": "negZ", "station": "counter" },
     { "id": "chair_guest_r", "face": "negZ", "station": "counter" }
   ],
+  "seats": [
+    { "id": "chair_groom_a", "kind": "stool", "position": [-2.2, 0, -1.72], "rotationY": 3.1416, "foot": [0.42, 0.42] },
+    { "id": "chair_groom_b", "kind": "stool", "position": [0.72, 0, -1.72], "rotationY": 3.1416, "foot": [0.42, 0.42] },
+    { "id": "chair_bather", "kind": "stool", "position": [2.82, 0, -3.05], "rotationY": 1.5708, "foot": [0.42, 0.42] },
+    { "id": "chair_staff", "kind": "stool", "position": [-1.55, 0, 1.68], "rotationY": 0, "foot": [0.42, 0.42] },
+    { "id": "chair_guest_l", "kind": "waiting", "position": [-2.35, 0, 3.34], "rotationY": 3.1416, "foot": [0.48, 0.46] },
+    { "id": "chair_guest_r", "kind": "waiting", "position": [-0.85, 0, 3.34], "rotationY": 3.1416, "foot": [0.48, 0.46] }
+  ],
   "assets": {
-    "dining_chair": {
-      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
-      "targetHeight": 0.9,
-      "foot": [0.46, 0.5]
-    },
-    "simple_chair": {
-      "glb": "assets/simple_chair__a83a693ec68f.glb",
-      "targetHeight": 0.86,
-      "foot": [0.48, 0.5]
-    },
-    "museum_bench": {
-      "glb": "assets/museum_bench__0025f9484fc6.glb",
-      "targetHeight": 0.5,
-      "foot": [0.46, 1.28]
-    },
     "wall_shelf": {
       "glb": "assets/wall_shelf__8732f5e14a30.glb",
       "targetHeight": 0.58,
@@ -98,13 +91,6 @@
     }
   },
   "instances": [
-    { "id": "chair_groom_a", "kind": "simple_chair", "position": [-2.2, 0, -1.72], "rotationY": 3.1416 },
-    { "id": "chair_groom_b", "kind": "simple_chair", "position": [0.72, 0, -1.72], "rotationY": 3.1416 },
-    { "id": "chair_bather", "kind": "simple_chair", "position": [2.82, 0, -3.05], "rotationY": -1.5708 },
-    { "id": "chair_staff", "kind": "dining_chair", "position": [-1.55, 0, 1.68], "rotationY": 0 },
-    { "id": "chair_guest_l", "kind": "dining_chair", "position": [-2.15, 0, 3.78], "rotationY": 3.1416 },
-    { "id": "chair_guest_r", "kind": "dining_chair", "position": [-0.95, 0, 3.78], "rotationY": 3.1416 },
-    { "id": "bench_wait", "kind": "museum_bench", "position": [3.45, 0, 3.28], "rotationY": 1.5708 },
     { "id": "shelf_towels", "kind": "wall_shelf", "position": [-4.55, 1.48, -4.4], "rotationY": 0 },
     { "id": "lamp_desk", "kind": "library_lamp", "position": [-0.85, 1.04, 2.58], "rotationY": 0 },
     { "id": "pendant_a", "kind": "pendant_lamp", "position": [-2.2, 2.18, -2.62], "rotationY": 0 },
@@ -130,16 +116,16 @@
     "towel": "#c46b4a"
   },
   "camera": {
-    "fov": 42,
-    "position": [5.6, 4.15, 7.15],
-    "target": [0.2, 0.85, -0.85]
+    "fov": 56,
+    "position": [-0.8, 2.05, 6.8],
+    "target": [-1.1, 0.8, -0.6]
   },
   "cameraPresets": {
-    "corner": { "position": [-6.15, 3.45, 4.85], "target": [0.9, 0.85, -1.35] },
-    "close": { "position": [-0.7, 1.58, -1.85], "target": [-2.45, 1.12, -2.55] }
+    "corner": { "fov": 50, "position": [0.4, 1.85, 3.5], "target": [0.2, 0.9, -2.0] },
+    "close": { "fov": 28, "position": [-0.95, 1.26, -1.58], "target": [-2.28, 0.96, -2.68] }
   },
   "lights": {
-    "hemi": { "sky": 16775370, "ground": 10122224, "intensity": 0.7 },
+    "hemi": { "sky": 16775370, "ground": 14993828, "intensity": 0.7 },
     "key": { "color": 16773568, "intensity": 1.02, "position": [6.5, 12.5, 6.2] },
     "fill": { "color": 15128772, "intensity": 0.42, "position": [-7, 7.5, 3] },
     "points": [

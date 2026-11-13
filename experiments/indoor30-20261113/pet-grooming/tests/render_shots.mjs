@@ -112,7 +112,7 @@ async function shoot(send, logs, query) {
   const probe = await send('Runtime.evaluate', {
     expression: `(() => {
       const stats = window.__stats ? window.__stats() : null;
-      const names = ['table-a-top','table-b-top','tub-rim','counter-top','kennel-bank','dryer','chair_groom_a','chair_guest_l','bench_wait'];
+      const names = ['table-a-top','table-b-top','tub-rim','counter-top','kennel-bank','dryer','chair_groom_a','chair_guest_l','roof-deck'];
       const bounds = {};
       for (const name of names) bounds[name] = window.__bounds ? window.__bounds(name) : null;
       return { stats, bounds };
@@ -173,7 +173,7 @@ try {
     console.log(`wrote ${shot.file} (${buf.length} bytes) mode=${mode} loaded=${loaded.length}`);
   }
   const first = report[0];
-  if (!first.loaded || first.loaded.length !== 8) throw new Error(`expected 8 GLBs, got ${first.loaded}`);
+  if (!first.loaded || first.loaded.length !== 5) throw new Error(`expected 5 GLBs, got ${first.loaded}`);
   const stats = first.probe.stats;
   if (!stats || stats.maxTex > 512) throw new Error(`texture too large: ${JSON.stringify(stats)}`);
   if (!stats.meshes || stats.meshes < 40) throw new Error(`scene too empty: ${stats.meshes} meshes`);
@@ -185,9 +185,11 @@ try {
   const counterH = b['counter-top'] && b['counter-top'].max[1];
   if (!(counterH > 0.98 && counterH < 1.15)) throw new Error(`counter ${counterH}`);
   const chairH = boxHeight(b.chair_groom_a);
-  if (!(chairH > 0.75 && chairH < 1.05)) throw new Error(`groomer chair height ${chairH}`);
-  const benchH = boxHeight(b.bench_wait);
-  if (!(benchH > 0.4 && benchH < 0.7)) throw new Error(`bench height ${benchH}`);
+  if (!(chairH > 0.55 && chairH < 0.85)) throw new Error(`groomer stool height ${chairH}`);
+  const guestH = boxHeight(b.chair_guest_l);
+  if (!(guestH > 0.8 && guestH < 1.05)) throw new Error(`waiting chair height ${guestH}`);
+  const roof = b['roof-deck'] && b['roof-deck'].max[1];
+  if (!(roof > 3.05 && roof < 3.4)) throw new Error(`roof deck ${roof}`);
   if (report[3].mode !== 'UNLIT') throw new Error(`unlit shot stayed in ${report[3].mode}`);
   await writeFile('/tmp/pet-grooming-render-report.json', JSON.stringify({ report, logs }, null, 2));
   const bad = logs.filter((line) => /error|exception/i.test(line) && !/favicon/i.test(line));

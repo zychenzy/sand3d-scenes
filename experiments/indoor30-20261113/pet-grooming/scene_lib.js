@@ -181,11 +181,15 @@ export function makeCutawayShell(layout) {
   back.position.set(0, H / 2, -D / 2);
   back.receiveShadow = true;
   back.castShadow = false;
+  back.userData.noShadow = true;
+  back.userData.receiveShadow = true;
   g.add(back);
   const left = new THREE.Mesh(new THREE.BoxGeometry(0.12, H, D), wallMat);
   left.position.set(-W / 2, H / 2, 0);
   left.receiveShadow = true;
   left.castShadow = false;
+  left.userData.noShadow = true;
+  left.userData.receiveShadow = true;
   g.add(left);
   return g;
 }
@@ -263,15 +267,15 @@ export async function boot(opts) {
   const key = new THREE.DirectionalLight(keySpec.color, keySpec.intensity);
   key.position.set(...keySpec.position);
   key.castShadow = true;
-  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.mapSize.set(4096, 4096);
   key.shadow.camera.near = 2;
   key.shadow.camera.far = 40;
-  key.shadow.camera.left = -12;
-  key.shadow.camera.right = 12;
-  key.shadow.camera.top = 12;
-  key.shadow.camera.bottom = -12;
-  key.shadow.bias = -0.00055;
-  key.shadow.normalBias = 0.045;
+  key.shadow.camera.left = -7;
+  key.shadow.camera.right = 7;
+  key.shadow.camera.top = 7;
+  key.shadow.camera.bottom = -7;
+  key.shadow.bias = -0.00025;
+  key.shadow.normalBias = 0.04;
   scene.add(key);
   const fillSpec = layout.lights?.fill || { color: 0xe6d5c4, intensity: 0.42, position: [-6, 7, 3] };
   const fill = new THREE.DirectionalLight(fillSpec.color, fillSpec.intensity);
@@ -359,6 +363,10 @@ export async function boot(opts) {
     const p = presets[camKey];
     camera.position.set(...p.position);
     controls.target.set(...p.target);
+    if (p.fov) {
+      camera.fov = p.fov;
+      camera.updateProjectionMatrix();
+    }
     controls.update();
   }
 

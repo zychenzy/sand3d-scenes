@@ -374,6 +374,12 @@ function toolBoard(g, b) {
   clipper(grp, b.x - 0.02, b.y + b.h * 0.42, b.z + 0.04);
   comb(grp, b.x + b.w * 0.22, b.y + b.h * 0.4, b.z + 0.04);
   brush(grp, b.x + b.w * 0.28, b.y + b.h * 0.28, b.z + 0.04);
+  grp.traverse((obj) => {
+    if (!obj.isMesh) return;
+    obj.castShadow = false;
+    obj.userData.noShadow = true;
+    obj.userData.receiveShadow = true;
+  });
   g.add(grp);
 }
 
@@ -456,6 +462,40 @@ function addPosts(g, opening) {
   }
 }
 
+function workStool(parent, seat) {
+  const g = new THREE.Group();
+  g.name = seat.id;
+  g.position.set(seat.position[0], 0, seat.position[2]);
+  g.rotation.y = seat.rotationY || 0;
+  const seatH = 0.62;
+  addCyl(g, 0.19, 0.2, 0.055, toon('#2f8f86'), 0, seatH, 0, 18);
+  addCyl(g, 0.16, 0.16, 0.02, toon('#1f6f68'), 0, seatH + 0.03, 0, 16);
+  addBox(g, 0.2, 0.07, 0.035, toon('#1f6f68'), 0, seatH + 0.02, -0.15);
+  addCyl(g, 0.032, 0.038, seatH - 0.1, steel(), 0, (seatH - 0.1) / 2 + 0.05, 0, 10);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.012, 6, 18), steel());
+  ring.rotation.x = Math.PI / 2;
+  ring.position.set(0, 0.24, 0);
+  ring.castShadow = true;
+  g.add(ring);
+  addCyl(g, 0.15, 0.17, 0.028, ink(), 0, 0.04, 0, 16);
+  parent.add(g);
+}
+
+function waitingChair(parent, seat) {
+  const g = new THREE.Group();
+  g.name = seat.id;
+  g.position.set(seat.position[0], 0, seat.position[2]);
+  g.rotation.y = seat.rotationY || 0;
+  addBox(g, 0.46, 0.06, 0.42, toon('#efe2cc'), 0, 0.46, 0.02);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addCyl(g, 0.02, 0.022, 0.44, wood(), sx * 0.18, 0.22, sz * 0.15, 8);
+    }
+  }
+  addBox(g, 0.42, 0.34, 0.04, toon('#2f8f86'), 0, 0.74, -0.18);
+  parent.add(g);
+}
+
 function contact(g, x, z, rx, rz) {
   const mesh = new THREE.Mesh(
     new THREE.CircleGeometry(1, 16),
@@ -486,39 +526,44 @@ function makeShell(layout) {
   dress(addBox(g, W - 0.35, 0.08, 0.06, wood(), 0, 0.05, innerB));
   dress(addBox(g, 0.06, 0.08, D - 0.35, wood(), innerL, 0.05, 0));
 
-  const panels = woodMid();
-  const inset = toon('#f7f1e6');
-  const spanX = W - 1.4;
-  const nX = 8;
-  for (let i = 0; i < nX; i++) {
-    const x = -W / 2 + 0.7 + (i + 0.5) * (spanX / nX);
-    if (x > 2.3) continue;
-    addBox(g, spanX / nX - 0.08, 0.72, 0.03, panels, x, 0.5, innerB + 0.02);
-    addBox(g, spanX / nX - 0.18, 0.56, 0.015, inset, x, 0.5, innerB + 0.04);
-  }
-  const nZ = 6;
-  for (let i = 0; i < nZ; i++) {
-    const z = -D / 2 + 0.55 + (i + 0.5) * ((D - 1.1) / nZ);
-    addBox(g, 0.03, 0.72, (D - 1.1) / nZ - 0.08, panels, innerL + 0.02, 0.5, z);
-  }
+  const dado = woodMid();
+  dress(addBox(g, W - 0.28, 0.92, 0.045, dado, 0, 0.5, innerB + 0.015));
+  dress(addBox(g, 0.045, 0.92, D - 0.28, dado, innerL + 0.015, 0.5, 0));
+  dress(addBox(g, W - 0.24, 0.05, 0.04, wood(), 0, 0.98, innerB + 0.03));
+  dress(addBox(g, 0.04, 0.05, D - 0.24, wood(), innerL + 0.03, 0.98, 0));
   const wetTiles = toon('#e7f0ec');
-  for (let i = 0; i < 4; i++) {
-    const x = 2.55 + i * 0.85;
-    addBox(g, 0.78, 1.05, 0.02, wetTiles, x, 0.62, innerB + 0.05);
-  }
-  addBox(g, W - 0.4, 0.06, 0.05, wood(), 0, 1.02, innerB + 0.03);
-  addBox(g, 0.05, 0.06, D - 0.4, wood(), innerL + 0.03, 1.02, 0);
-  addBox(g, W - 0.5, 0.025, 0.03, brass(), 0, 2.35, innerB + 0.02);
-  addBox(g, 0.03, 0.025, D - 0.5, brass(), innerL + 0.02, 2.35, 0);
+  dress(addBox(g, 3.4, 1.05, 0.03, wetTiles, 3.7, 0.58, innerB + 0.03));
+  dress(addBox(g, W - 0.5, 0.02, 0.025, brass(), 0, 2.42, innerB + 0.02));
+  dress(addBox(g, 0.025, 0.02, D - 0.5, brass(), innerL + 0.02, 2.42, 0));
 
-  for (let i = 0; i < 4; i++) {
-    const x = -3.6 + i * 1.7;
-    addBox(g, 1.15, 0.55, 0.04, toon('#d5e4ea', { transparent: true, opacity: 0.55, depthWrite: false }), x, 2.75, innerB + 0.04);
-    addBox(g, 0.03, 0.6, 0.04, wood(), x - 0.58, 2.75, innerB + 0.05);
-  }
-
-  for (const z of [-2.55, 0.15]) {
-    addBox(g, W - 2.4, 0.07, 0.1, wood(), -0.4, H - 0.18, z);
+  const deckW = W + 2.6;
+  const deckD = D + 3.6;
+  const deckX = -W / 2 + deckW / 2;
+  const deckZ = -D / 2 + deckD / 2;
+  const deck = addBox(
+    g, deckW, 0.14, deckD,
+    toon(layout.shell.ceilingColor || '#f7f3ea', { emissive: '#f3eadc', emissiveIntensity: 0.22 }),
+    deckX, H - 0.04, deckZ,
+  );
+  deck.name = 'roof-deck';
+  deck.castShadow = false;
+  deck.userData.noShadow = true;
+  deck.receiveShadow = false;
+  const fascia = (mesh) => {
+    mesh.castShadow = false;
+    mesh.userData.noShadow = true;
+    mesh.receiveShadow = false;
+    return mesh;
+  };
+  fascia(addBox(g, deckW + 0.08, 0.22, 0.18, wood(), deckX, H - 0.12, -D / 2 + deckD));
+  fascia(addBox(g, 0.18, 0.22, deckD + 0.08, wood(), -W / 2 + deckW, H - 0.12, deckZ));
+  const returnWall = addBox(g, 0.12, H, 5.8, toon(layout.shell.wallColor || '#f6f1e8'), W / 2 - 0.06, H / 2, -D / 2 + 2.9);
+  returnWall.name = 'right-return';
+  returnWall.castShadow = false;
+  returnWall.userData.noShadow = true;
+  returnWall.userData.receiveShadow = true;
+  for (const z of [-1.55, 1.15]) {
+    addBox(g, W - 1.6, 0.08, 0.12, wood(), -0.35, H - 0.2, z);
   }
   const pier = layout.stations.pier;
   addBox(g, pier.w, pier.h, pier.d, toon('#f7f1e6'), pier.x, pier.h / 2, pier.z);
@@ -541,6 +586,10 @@ function makeProcedural(layout) {
   toolBoard(g, s.boardB);
   toolCart(g, s.cart);
   handoffCounter(g, s.counter);
+  for (const seat of layout.seats || []) {
+    if (seat.kind === 'stool') workStool(g, seat);
+    else waitingChair(g, seat);
+  }
   for (const barrier of layout.barriers) addBarrier(g, barrier);
   for (const opening of layout.openings) addPosts(g, opening);
 
@@ -549,10 +598,8 @@ function makeProcedural(layout) {
   contact(g, s.tub.x, s.tub.z, 0.7, 0.4);
   contact(g, s.kennel.x, s.kennel.z, 0.4, 0.8);
   contact(g, s.counter.x, s.counter.z, 1.15, 0.4);
-  for (const inst of layout.instances) {
-    if (inst.position[1] > 0.2) continue;
-    if (!inst.id.startsWith('chair') && !inst.id.startsWith('bench')) continue;
-    contact(g, inst.position[0], inst.position[2], 0.28, 0.28);
+  for (const seat of layout.seats || []) {
+    contact(g, seat.position[0], seat.position[2], seat.kind === 'stool' ? 0.22 : 0.26, seat.kind === 'stool' ? 0.22 : 0.26);
   }
 
   const matA = addBox(g, 0.7, 0.012, 0.5, toon('#c46b4a'), s.tableA.x, 0.02, -1.72);

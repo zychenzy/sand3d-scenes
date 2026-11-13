@@ -8,9 +8,6 @@ Existing sand3d bakes were inspected from their node names, materials, and textu
 
 Selected:
 
-- Dining chair for the receptionist and the two guests. Front is +Z at rotation 0, so guests use π and face the counter.
-- Metal dining chair for the two groomers and the bather. Same facing rule. Groomers face −Z into the tables. The bather uses −π/2 and faces the tub.
-- Museum bench as the waiting seat, turned so its long axis runs along X.
 - Wall shelf over the towel cubby.
 - Library lamp on the handoff counter. The shade points −Z, over the staff side.
 - Three pendant lamps, scaled to the shade and hung under the beams.
@@ -26,6 +23,7 @@ Rejected after inspection, not copied in:
 - Bar counter and cash register: a bar, and the register materials are near black.
 - Bar stool: black rubber foot.
 - Sofa: a domestic couch, not a salon waiting seat.
+- Wooden dining chair, metal cafe chair, and museum bench: rendered in the first pass. They read as dining, cafe, and gallery leftovers. Removed. Guests use a one-piece waiting chair. Groomers, the bather, and the receptionist use round work stools. No catalog stool or waiting chair was copied in.
 - Display bookcase and study desk: library furniture, and the bookcase ships with no materials.
 - POS terminal (`pos_terminal__91c277a25bc3`): rendered on the counter. The screen is a near-black slab and blocked the handoff. Removed after that shot.
 
@@ -37,6 +35,8 @@ Rejected after inspection, not copied in:
 - Towel cubbies and wall tool boards.
 - Handoff counter with a lower ledge, leash hooks, and a folded towel.
 - Spindle pet gates. The leaves are folded onto the rails so the 0.98 m and 0.95 m openings stay clear.
+- Round work stools with a foot ring, and two waiting chairs with a solid low back.
+- A roof deck with a wood fascia on the open edges, so the establishing views sit under a ceiling.
 
 ## Limits
 
@@ -46,3 +46,5 @@ Rejected after inspection, not copied in:
 - The toon ramp bottoms at 72/255 so shadows stay brown instead of black. Contact discs are fake AO. The vendored toon path has no GTAO.
 - Floor tiles are 128² canvas repeats. No photograph textures.
 - No animals, no barber chair, no mirror wall, no exam light.
+- The establishing camera sits outside the front opening, under the roof overhang, so the kennel and the tub share one frame. The waiting floor in front of the counter is still a wide tile field.
+- The right cutaway is closed by a return wall behind the tub. The front stays open.

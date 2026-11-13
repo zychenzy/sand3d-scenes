@@ -22,7 +22,7 @@ function near(a, b, tol = 0.05) {
 }
 
 function footOf(inst) {
-  const spec = layout.assets[inst.kind];
+  const spec = inst.kind === 'seat' ? inst : layout.assets[inst.kind];
   let [w, d] = spec.foot;
   const rot = inst.rotationY || 0;
   if (Math.abs(Math.abs(rot) - Math.PI / 2) < 0.2) [w, d] = [d, w];
@@ -79,9 +79,12 @@ test('human scale for tables, tub, counter, kennels, and room', () => {
   assert.ok(counter.ledge >= 0.45 && counter.ledge <= 0.65);
   assert.ok(kennel.h >= 1.2 && kennel.h <= 1.7);
   assert.equal(layout.meta.animals, 0);
-  assert.ok(layout.assets.dining_chair.targetHeight >= 0.8 && layout.assets.dining_chair.targetHeight <= 0.95);
-  assert.ok(layout.assets.simple_chair.targetHeight >= 0.8 && layout.assets.simple_chair.targetHeight <= 0.95);
-  assert.ok(layout.assets.museum_bench.targetHeight >= 0.42 && layout.assets.museum_bench.targetHeight <= 0.58);
+  assert.equal(layout.seats.filter((seat) => seat.kind === 'stool').length, 4);
+  assert.equal(layout.seats.filter((seat) => seat.kind === 'waiting').length, 2);
+  for (const seat of layout.seats) {
+    assert.ok(seat.foot[0] >= 0.36 && seat.foot[0] <= 0.55, seat.id);
+    assert.ok(seat.foot[1] >= 0.36 && seat.foot[1] <= 0.55, seat.id);
+  }
 });
 
 test('gate openings are walkable and aisle rectangles stay at least 0.85 m', () => {
@@ -115,10 +118,14 @@ test('floor instances keep a gap from stations and stay inside the shell', () =>
   const room = layout.meta.room;
   const stations = Object.entries(layout.stations).map(([id, s]) => ({ id, box: aabb(s.x, s.z, s.w, s.d) }));
   const ids = new Set();
-  for (const inst of layout.instances) {
+  const floorPieces = [
+    ...layout.instances,
+    ...layout.seats.map((seat) => ({ ...seat, kind: 'seat' })),
+  ];
+  for (const inst of floorPieces) {
     assert.equal(ids.has(inst.id), false, inst.id);
     ids.add(inst.id);
-    assert.ok(layout.assets[inst.kind], inst.kind);
+    if (inst.kind !== 'seat') assert.ok(layout.assets[inst.kind], inst.kind);
     const [x, y, z] = inst.position;
     assert.ok(Math.abs(x) < room.width / 2 - 0.12, inst.id);
     assert.ok(Math.abs(z) < room.depth / 2 - 0.12, inst.id);
@@ -136,7 +143,7 @@ test('floor instances keep a gap from stations and stay inside the shell', () =>
 });
 
 test('chairs face the workstation they serve', () => {
-  const byId = Object.fromEntries(layout.instances.map((inst) => [inst.id, inst]));
+  const byId = Object.fromEntries(layout.seats.map((seat) => [seat.id, seat]));
   for (const row of layout.facing) {
     const inst = byId[row.id];
     const station = layout.stations[row.station];
@@ -148,7 +155,7 @@ test('chairs face the workstation they serve', () => {
       near(rot, 0, 0.03);
       assert.ok(inst.position[2] < station.z, row.id);
     } else if (row.face === 'posX') {
-      near(rot, -Math.PI / 2, 0.03);
+      near(rot, Math.PI / 2, 0.03);
       assert.ok(inst.position[0] < station.x, row.id);
     }
   }

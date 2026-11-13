@@ -24,6 +24,6 @@ node --test experiments/indoor30-20261113/pet-grooming/tests/scene.test.mjs
 node experiments/indoor30-20261113/pet-grooming/tests/render_shots.mjs
 ```
 
-The layout test covers clearances, human scale, facing, and that GLBs and Three.js stay symlinks out of this folder. The render script loads every GLB, fails on console errors, checks table, tub, counter, chair, and bench heights, and writes the four shots.
+The layout test covers clearances, human scale, facing, and that GLBs and Three.js stay symlinks out of this folder. The render script loads every GLB, fails on console errors, checks table, tub, counter, stool, waiting-chair, and roof heights, and writes the four shots.
 
-GLBs and `vendor/` are symlinks into `cafe/`, `library/`, and `museum/`. Do not copy them.
+GLBs and `vendor/` are symlinks into `cafe/` and `library/`. Do not copy them. Work stools, waiting chairs, and the roof deck are procedural.
