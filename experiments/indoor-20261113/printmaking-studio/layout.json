@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "title": "Intaglio printmaking studio",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 12.4, "depth": 9.4, "height": 3.62 },
+    "notes": [
+      "Single-printer intaglio shop. The etching press is the nucleus: bed runs east-west, spoked wheel on the near side, crank stance kept empty.",
+      "Inking slab (glass on a raised table) sits east of the press with a 1.2 m aisle. Paper soaking, flat files, and portfolios stay on the back wall, clear of ink and of the ferric cart.",
+      "Two drying racks face the open front so hanging prints read from the default and corner cameras. Wash alcove is on the east wall, downstream of the paper.",
+      "Dining chair faces +Z at rotation 0 (back bars measured at local -Z). Bookcase back panel is local +Z, so rotation PI opens toward the room. Chalkboard is thin in local X; rotation -PI/2 turns the writing face toward +Z. Banker's lamp shade sits on local -Z; rotation PI aims it across the slab. Long table's long axis is X and its front legs are +Z."
+    ]
+  },
+  "assets": {
+    "square_table": {
+      "glb": "../../../workshop/assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.78,
+      "footprint": [0.788, 0.788],
+      "contact": true
+    },
+    "long_dining": {
+      "glb": "../../../restaurant/assets/long_dining__fb2f8f65156e.glb",
+      "targetHeight": 0.76,
+      "footprint": [1.877, 0.98],
+      "contact": true
+    },
+    "dining_chair": {
+      "glb": "../../../workshop/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "footprint": [0.31, 0.439],
+      "contact": true
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.75,
+      "footprint": [0.465, 0.465],
+      "contact": true
+    },
+    "display_bookcase": {
+      "glb": "../../../library/assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 1.95,
+      "footprint": [0.819, 0.39],
+      "contact": true
+    },
+    "chalkboard": {
+      "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb",
+      "targetHeight": 1.62,
+      "footprint": [0.551, 1.928],
+      "contact": true
+    },
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "footprint": [0.423, 1.513],
+      "contact": true
+    },
+    "flowerpot": {
+      "glb": "../../../workshop/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "footprint": [0.387, 0.387],
+      "contact": true
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4,
+      "footprint": [0.304, 0.304]
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46,
+      "footprint": [0.534, 0.534]
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.105,
+      "footprint": [0.082, 0.082]
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.092,
+      "footprint": [0.091, 0.091]
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.22,
+      "footprint": [0.066, 0.154]
+    },
+    "wall_shelf": {
+      "glb": "../../../library/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.62,
+      "footprint": [0.546, 0.223],
+      "hideMeshes": ["end_panel", "end_panel.001"]
+    }
+  },
+  "stations": {
+    "press": { "x": -0.85, "z": -1.35 },
+    "ink": {
+      "top": 0.881,
+      "glass": { "x": 2.27, "z": -1.15, "w": 0.95, "d": 0.55 }
+    }
+  },
+  "zones": [
+    { "id": "pressFoot", "x": -1.17, "z": -1.24, "w": 2.5, "d": 1.22, "contact": true },
+    { "id": "flatfiles", "x": 4.72, "z": -4.08, "w": 1.55, "d": 0.7, "contact": true },
+    { "id": "wash", "x": 5.68, "z": 1.5, "w": 0.58, "d": 1.4, "contact": true },
+    { "id": "rackA", "x": -4.85, "z": 1.42, "w": 1.9, "d": 0.58, "len": 1.82, "contact": true },
+    { "id": "rackB", "x": -5.05, "z": -1.75, "w": 1.55, "d": 0.5, "len": 1.48, "contact": true },
+    { "id": "cart", "x": 4.05, "z": -0.55, "w": 0.68, "d": 0.46, "contact": true },
+    { "id": "plateRack", "x": 5.75, "z": 0.28, "w": 0.26, "d": 0.62, "contact": true },
+    { "id": "homasote", "x": -3.15, "z": 0.48, "w": 0.68, "d": 0.52, "contact": true },
+    { "id": "bin", "x": 3.4, "z": -1.15, "w": 0.32, "d": 0.32, "contact": true }
+  ],
+  "clearance": {
+    "crank": { "x": -0.85, "z": -0.05, "w": 1.35, "d": 0.85 },
+    "entry": { "x": 0.4, "z": 2.55, "w": 1.55, "d": 3.5 }
+  },
+  "instances": [
+    { "id": "inking_table", "kind": "square_table", "position": [2.15, 0, -1.25], "scale": [2.05, 1.13, 1.35] },
+    { "id": "stool_ink", "kind": "bar_stool", "position": [2.2, 0, -0.18], "rotationY": 3.1416, "faces": "inking_table" },
+    { "id": "paper_table", "kind": "long_dining", "position": [2.35, 0, -3.2] },
+    { "id": "chair_paper", "kind": "dining_chair", "position": [1.85, 0, -2.18], "rotationY": 3.1416, "faces": "paper_table" },
+    { "id": "portfolios", "kind": "display_bookcase", "position": [-4.95, 0, -4.28], "rotationY": 3.1416 },
+    { "id": "edition_board", "kind": "chalkboard", "position": [-0.35, 0, -4.22], "rotationY": -1.5708 },
+    { "id": "sort_bench", "kind": "museum_bench", "position": [-4.85, 0, -0.55], "rotationY": 1.5708 },
+    { "id": "plant", "kind": "flowerpot", "position": [-5.55, 0, -3.45] },
+    { "id": "lamp_ink", "kind": "library_lamp", "position": [1.55, 0.881, -1.6], "rotationY": 3.1416 },
+    { "id": "pendant_ink", "kind": "pendant_lamp", "position": [2.27, 2.48, -1.15] },
+
+    { "id": "jar_black", "kind": "jam_jar", "position": [2.05, 0.902, -1.22], "rotationY": 0.4, "color": "#1a1c1e", "colorMeshes": ["body"] },
+    { "id": "jar_sienna", "kind": "jam_jar", "position": [2.28, 0.902, -1.32], "rotationY": 1.2, "scale": 0.92, "color": "#8a3e28", "colorMeshes": ["body"] },
+    { "id": "jar_prussian", "kind": "jam_jar", "position": [2.5, 0.902, -1.18], "rotationY": 0.2, "scale": 0.86, "color": "#1a3a66", "colorMeshes": ["body"] },
+    { "id": "jar_umber", "kind": "jam_jar", "position": [2.62, 0.902, -1.36], "rotationY": 2.1, "scale": 0.78, "color": "#6a4a2c", "colorMeshes": ["body"] },
+    { "id": "mug_sponge", "kind": "cup_mug", "position": [2.72, 0.881, -0.82], "rotationY": 0.6 },
+    { "id": "thermos", "kind": "thermos", "position": [1.62, 0.76, -3.48], "rotationY": 0.5 },
+    { "id": "mug_coffee", "kind": "cup_mug", "position": [3.02, 0.76, -3.46], "rotationY": -0.8 },
+
+    { "id": "shelf_wash", "kind": "wall_shelf", "position": [5.93, 1.6, 1.5], "rotationY": -1.5708 },
+    { "id": "jar_solvent", "kind": "jam_jar", "position": [5.9, 1.724, 1.28], "rotationY": 0.3, "color": "#c4842a", "colorMeshes": ["body"] },
+    { "id": "jar_degrease", "kind": "jam_jar", "position": [5.9, 1.724, 1.52], "rotationY": 1.4, "scale": 0.9, "color": "#3d6a48", "colorMeshes": ["body"] },
+    { "id": "mug_wash", "kind": "cup_mug", "position": [5.9, 1.724, 1.74], "rotationY": -0.4, "dress": "brushes" }
+  ],
+  "shell": {
+    "floorColor": "#8d6a45",
+    "wallColor": "#e4dfd6",
+    "clearColor": "#c5ced6",
+    "fogColor": "#c5ced6",
+    "fogNear": 16,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 42,
+    "position": [3.55, 2.48, 6.05],
+    "target": [-0.55, 0.88, -1.05]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-1.85, 1.72, 3.35],
+      "target": [3.85, 0.82, -0.2]
+    },
+    "close": {
+      "position": [0.05, 1.42, -0.2],
+      "target": [-0.95, 0.92, -1.28]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#d7e4ee", "ground": "#a68458", "intensity": 0.5 },
+    "key": {
+      "color": "#f4f7fb",
+      "intensity": 1.85,
+      "position": [-8.4, 6.1, 0.8],
+      "target": [-0.6, 0.85, -1.05],
+      "shadow": { "mapSize": 4096, "frustum": 9.5, "near": 0.5, "far": 26, "bias": -0.0004, "normalBias": 0.034 }
+    },
+    "fill": { "color": "#ffd8b0", "intensity": 0.38, "position": [6.2, 2.4, 5.8] },
+    "points": [
+      { "color": "#eef3ff", "intensity": 0.72, "distance": 5.6, "decay": 2, "position": [-0.85, 3.05, -1.35] },
+      { "color": "#ffc27a", "intensity": 0.95, "distance": 4.0, "decay": 2, "position": [2.27, 2.45, -1.15] },
+      { "color": "#ffe0b8", "intensity": 0.32, "distance": 3.4, "decay": 2, "position": [5.2, 2.35, 1.5] },
+      { "color": "#f3eadc", "intensity": 0.55, "distance": 3.4, "decay": 2, "position": [-0.15, 1.62, 0.35] },
+      { "color": "#f6efe4", "intensity": 0.42, "distance": 7.5, "decay": 2, "position": [1.8, 2.55, -2.4] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon_default", "toon_corner", "toon_close", "unlit_default"],
+    "must_read": [
+      "Etching press with spoked wheel, blankets, and a plate on the bed.",
+      "Glass inking slab with a rolled black film and brayers, separate from the paper table.",
+      "Hanging prints on two racks, plus flat files and a soaking tray.",
+      "Wash alcove and lidded ferric cart off the paper path.",
+      "Crank stance and the front entry aisle stay clear."
+    ]
+  }
+}
