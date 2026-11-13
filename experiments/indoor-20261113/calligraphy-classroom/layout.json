@@ -10,18 +10,13 @@
       "storage": "Paper case, brush case, wall shelf, and a side table along the left wall, clear of the writing aisle."
     },
     "notes": [
-      "Dining chair local +Z is the seat front (backrest toward -Z). rotationY 0 faces +Z. Students use rotationY π so their fronts face the teacher on the -Z wall. The teacher chair uses rotationY 0.",
-      "Student desks are procedural. Catalog study_desk is 0.37 m wide and school_desk is a 0.60 × 0.44 m metal top, so neither is a calligraphy desk.",
-      "The demonstration sheet is turned so the class reads 永 right-side up.",
-      "Target chair height is the mesh's native 1.0 m so the seat stays at about 0.42 m."
+      "Wood seats are procedural. Local +Z is the front (single back plank toward -Z). Students use rotationY π so that front faces the teacher. The teacher seat uses rotationY 0.",
+      "Student desks, the desk lamp, and the copy stand are procedural. The catalog dining chair is a ladder back and the library lamp is a red banker's lamp.",
+      "The demonstration sheet shows 永. Brushes, the inkstone, and the weight sit on the felt, clear of the character.",
+      "Seat depth is 0.48 m and the seat board is at 0.44 m."
     ]
   },
   "assets": {
-    "dining_chair": {
-      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
-      "targetHeight": 1.0,
-      "nativeSize": [0.362, 1.0, 0.511]
-    },
     "long_dining": {
       "glb": "assets/long_dining__fb2f8f65156e.glb",
       "targetHeight": 0.74,
@@ -42,16 +37,6 @@
       "targetHeight": 0.7,
       "nativeSize": [0.701, 0.8, 0.287]
     },
-    "library_lamp": {
-      "glb": "assets/library_lamp__06accd4e0351.glb",
-      "targetHeight": 0.42,
-      "nativeSize": [0.341, 0.451, 0.341]
-    },
-    "book_stand": {
-      "glb": "assets/book_stand__fb784262748d.glb",
-      "targetHeight": 1.02,
-      "nativeSize": [0.665, 1.2, 0.665]
-    },
     "flowerpot": {
       "glb": "assets/flowerpot__4a270f247734.glb",
       "targetHeight": 0.3,
@@ -70,14 +55,16 @@
   },
   "architecture": {
     "platform": { "minX": -2.55, "minZ": -4.26, "w": 5.2, "d": 1.92, "h": 0.08 },
+    "seat": { "w": 0.42, "d": 0.48, "h": 0.78, "seatH": 0.44 },
+    "modelBook": { "position": [1.78, 0.08, -3.38] },
     "teacher": {
       "table": [0, 0.08, -3.16],
       "top": 0.82,
-      "paper": [0.06, -0.02, 0.58, 0.4],
-      "inkstone": [-0.36, 0.14],
-      "weight": [0.1, -0.2],
-      "brush": [0.48, 0.22],
-      "lamp": [-0.5, -0.18]
+      "paper": [0.02, -0.02, 0.5, 0.36],
+      "inkstone": [-0.42, 0.16],
+      "weight": [0.02, -0.3],
+      "brush": [0.5, 0.16],
+      "lamp": [-0.52, -0.2]
     },
     "desks": [
       { "id": "d_a0", "x": -2.12, "z": -0.55, "w": 1.5, "d": 0.7, "h": 0.75, "variant": 0 },
@@ -88,10 +75,10 @@
       { "id": "d_b2", "x": 2.12, "z": 1.756, "w": 1.5, "d": 0.7, "h": 0.75, "variant": 0 }
     ],
     "kit": {
-      "paper": [0, 0.02, 0.5, 0.34],
-      "inkstone": [0.46, -0.12],
-      "weight": [0.02, -0.16],
-      "brush": [0.24, 0.1]
+      "paper": [0, 0, 0.46, 0.32],
+      "inkstone": [0.48, -0.14],
+      "weight": [0, -0.24],
+      "brush": [0.42, 0.12]
     },
     "cabinet": { "x": -5.03, "z": 0.75, "w": 0.4, "d": 1.4, "h": 0.84 },
     "window": { "z0": -0.15, "z1": 1.7, "sill": 0.98, "head": 2.42 },
@@ -113,21 +100,18 @@
   },
   "instances": [
     { "id": "demo_table", "kind": "long_dining", "position": [0, 0.08, -3.16], "rotationY": 0 },
-    { "id": "t_chair", "kind": "dining_chair", "role": "teacher", "position": [0, 0.08, -3.933], "rotationY": 0 },
-    { "id": "s_a0", "kind": "dining_chair", "role": "student", "position": [-2.12, 0, 0.016], "rotationY": 3.14159265 },
-    { "id": "s_a1", "kind": "dining_chair", "role": "student", "position": [0, 0, 0.016], "rotationY": 3.14159265 },
-    { "id": "s_a2", "kind": "dining_chair", "role": "student", "position": [2.12, 0, 0.016], "rotationY": 3.14159265 },
-    { "id": "s_b0", "kind": "dining_chair", "role": "student", "position": [-2.12, 0, 2.322], "rotationY": 3.14159265 },
-    { "id": "s_b1", "kind": "dining_chair", "role": "student", "position": [0, 0, 2.322], "rotationY": 3.14159265 },
-    { "id": "s_b2", "kind": "dining_chair", "role": "student", "position": [2.12, 0, 2.322], "rotationY": 3.14159265 },
+    { "id": "t_chair", "kind": "wood_seat", "role": "teacher", "procedural": true, "position": [0, 0.08, -3.933], "rotationY": 0 },
+    { "id": "s_a0", "kind": "wood_seat", "role": "student", "procedural": true, "position": [-2.12, 0, 0.016], "rotationY": 3.14159265 },
+    { "id": "s_a1", "kind": "wood_seat", "role": "student", "procedural": true, "position": [0, 0, 0.016], "rotationY": 3.14159265 },
+    { "id": "s_a2", "kind": "wood_seat", "role": "student", "procedural": true, "position": [2.12, 0, 0.016], "rotationY": 3.14159265 },
+    { "id": "s_b0", "kind": "wood_seat", "role": "student", "procedural": true, "position": [-2.12, 0, 2.322], "rotationY": 3.14159265 },
+    { "id": "s_b1", "kind": "wood_seat", "role": "student", "procedural": true, "position": [0, 0, 2.322], "rotationY": 3.14159265 },
+    { "id": "s_b2", "kind": "wood_seat", "role": "student", "procedural": true, "position": [2.12, 0, 2.322], "rotationY": 3.14159265 },
 
     { "id": "paper_case", "kind": "display_bookcase", "position": [-4.98, 0, -2.85], "rotationY": -1.57079633 },
     { "id": "brush_case", "kind": "display_bookcase", "position": [-4.98, 0, 2.45], "rotationY": -1.57079633 },
     { "id": "supply_table", "kind": "square_table", "position": [-4.08, 0, -0.85], "rotationY": 0.08 },
     { "id": "wall_shelf", "kind": "wall_shelf", "position": [-3.25, 1.4, -4.16], "rotationY": 0 },
-    { "id": "demo_lamp", "kind": "library_lamp", "position": [-0.5, 0.82, -3.34], "rotationY": 0.4 },
-    { "id": "model_stand", "kind": "book_stand", "position": [1.78, 0.08, -3.42], "rotationY": 2.35 },
-
     { "id": "jar_shelf", "kind": "jam_jar", "position": [-3.46, 1.56, -4.02], "rotationY": 0.3, "tint": "#a3453a" },
     { "id": "jar_shelf_b", "kind": "jam_jar", "position": [-3.02, 1.56, -4.02], "rotationY": -0.4, "tint": "#c4a06a" },
     { "id": "ink_tube", "kind": "straw_holder", "position": [-3.24, 1.98, -4.02], "rotationY": 0.2, "tint": "#3a342c" },
@@ -161,8 +145,8 @@
       "target": [-0.45, 1.08, -1.45]
     },
     "close": {
-      "position": [0.28, 1.52, -1.92],
-      "target": [0.08, 0.86, -3.2]
+      "position": [0.28, 1.78, -2.12],
+      "target": [0.02, 0.84, -3.18]
     }
   },
   "lights": {
@@ -173,7 +157,7 @@
       { "color": "#ffc48a", "intensity": 0.85, "position": [0.15, 2.35, -3.05], "distance": 6.2 },
       { "color": "#ffd2a6", "intensity": 0.48, "position": [-0.4, 2.28, 0.42], "distance": 5.8 },
       { "color": "#ffd2a6", "intensity": 0.42, "position": [1.2, 2.24, 1.9], "distance": 5.4 },
-      { "color": "#ffe1b0", "intensity": 0.55, "position": [-0.5, 1.28, -3.34], "distance": 2.6 },
+      { "color": "#ffe1b0", "intensity": 0.55, "position": [-0.52, 1.14, -3.36], "distance": 2.4 },
       { "color": "#d5e2f2", "intensity": 0.22, "position": [-4.7, 1.9, 0.75], "distance": 5.2 }
     ]
   }

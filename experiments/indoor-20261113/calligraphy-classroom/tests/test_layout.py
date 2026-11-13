@@ -102,7 +102,7 @@ def test_elbow_room_and_aisles():
         for a, b in zip(row, row[1:]):
             gap = (b["x"] - b["w"] / 2) - (a["x"] + a["w"] / 2)
             assert gap >= 0.55, gap
-    chair_hz = foot("dining_chair")[1] / 2
+    chair_hz = arch["seat"]["d"] / 2
     front = [d for d in desks if d["z"] < 0]
     back = [d for d in desks if d["z"] > 0]
     front_chair_back = by_id["s_a0"]["position"][2] + chair_hz
@@ -120,7 +120,7 @@ def test_elbow_room_and_aisles():
 
 
 def test_knees_tuck_without_hitting_the_wall():
-    chair_hz = foot("dining_chair")[1] / 2
+    chair_hz = arch["seat"]["d"] / 2
     for desk in arch["desks"]:
         chair = by_id["s_" + desk["id"].split("_", 1)[1]]
         assert abs(chair["position"][0] - desk["x"]) < 0.02
@@ -155,11 +155,10 @@ def test_tools_stay_on_the_writing_surface():
     px, pz, pw, ph = teacher["paper"]
     assert abs(px) + pw / 2 < hx - 0.1
     assert abs(pz) + ph / 2 < hz - 0.05
-    lamp = by_id["demo_lamp"]["position"]
-    table = teacher["table"]
-    assert abs(lamp[0] - (table[0] + teacher["lamp"][0])) < 1e-6
-    assert abs(lamp[1] - teacher["top"]) < 1e-6
-    assert abs(lamp[2] - (table[2] + teacher["lamp"][1])) < 1e-6
+    # Tools sit on the felt, outside the demonstration character.
+    assert abs(teacher["weight"][0] - px) + 0.04 < pw / 2 or abs(teacher["weight"][1]) > abs(pz) + ph / 2
+    assert abs(teacher["brush"][0]) > abs(px) + pw / 2
+    assert "deskLamp" in scene and "copyStand" in scene and "woodSeat" in scene
 
 
 def test_storage_and_cameras_inside():
@@ -172,7 +171,10 @@ def test_storage_and_cameras_inside():
     assert "corner" in layout["cameraPresets"] and "close" in layout["cameraPresets"]
     assert len(layout["lights"]["points"]) >= 4
     kinds = [i["kind"] for i in instances]
-    assert kinds.count("dining_chair") == 7
+    assert kinds.count("wood_seat") == 7
+    assert "dining_chair" not in kinds
+    assert "library_lamp" not in layout["assets"]
+    assert "book_stand" not in layout["assets"]
     assert kinds.count("display_bookcase") == 2
     assert "felt" in scene and "hangingScroll" in scene and "inkstone" in scene
 

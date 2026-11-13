@@ -7,14 +7,16 @@ Closed in this scene:
 - A low platform, a trestle demonstration table, a model-book stand, and hanging scrolls for 人, 永, and 天. The demonstration sheet is turned so the class reads 永 right-side up.
 - Paper case, brush case, wall shelf, and a side table clear of the writing aisle.
 - Toon is the default: four-step `gradientMap` on `MeshToonMaterial`, hard shadows, warm key plus lantern and desk-lamp pools. `U` and `?mode=unlit` swap every mesh to `MeshBasicMaterial`.
+- 人, 永, and 天 are regular-script skeletons: one bar under a dot for 永, a stem that continues into a left hook, and a 捺 that ends in a chisel foot. The demonstration sheet is clear of the brushes, inkstone, and weight.
+- Seats are single-plank wood chairs. The desk lamp is a small paper shade on a wood stem. The platform holds an open model book on a copy stand.
+- Upper walls carry posts and a plate under the beams. Floor boards run the length of the room in one wood tone, with a quiet grain.
 
 Still open:
 
-- 人, 永, and 天 are canvas stroke paths, not a calligrapher’s hand and not a real brush-pressure outline. At close range 永 reads as a regular-script skeleton.
-- Catalog desks were the wrong object (a 0.37 m study top, a metal school desk), so the writing desks, felt, inkstones, and brushes are procedural. Wood grain and felt weave are generated canvases.
-- The paper and brush cases are glass display carcasses. Stacks and pots sit on the shelf line; they are not volumes inside a rebate.
-- Jam jars and the straw holder stand in for ink bottles and a brush tube. They are tinted, not modeled as ceramic or bamboo.
-- The library lamp is a closed shade. The pool on the demonstration sheet comes from a point light, not light through the shade.
-- The book stand is a dark catalog prop. It reads more as a lectern mass than as an open model book.
-- Dining chairs, not studio stools. Seat height stays near 0.42 m, but the ladder back is western.
-- No people, no exterior past the lattice, and the front and right stay open on purpose. Large plaster walls stay mostly one toon band because their normals are flat.
+- The characters are filled polygons, not a calligrapher’s brush. The dot is still a little faceted, and the hook is small on the far wall in the establishing view.
+- Catalog desks were the wrong object, so the writing desks, felt, inkstones, and brushes are procedural. The inkstone well is a dark disc in a slab, not a carved Duan stone.
+- The paper and brush cases are glass display carcasses. Stacks sit on the shelf line.
+- Jam jars and the straw holder stand in for ink bottles and a brush tube.
+- The lamp pool is a point light beside the shade.
+- Seats have one back plank so the front stays readable. They are not round studio stools.
+- No people, and the front and right stay open. Plaster between the posts is still one toon band.

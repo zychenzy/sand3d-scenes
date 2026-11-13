@@ -320,6 +320,7 @@ export async function boot(opts) {
   scene.add(props);
   const bounds = {};
   for (const inst of layout.instances || []) {
+    if (inst.procedural) continue;
     const proto = prototypes[inst.kind];
     if (!proto) {
       setStatus(`missing kind ${inst.kind}`);
@@ -349,7 +350,7 @@ export async function boot(opts) {
   const contacts = new THREE.Group();
   contacts.name = 'contacts';
   for (const inst of layout.instances || []) {
-    if (CONTACT_SKIP.has(inst.kind)) continue;
+    if (inst.procedural || CONTACT_SKIP.has(inst.kind)) continue;
     const b = bounds[inst.id];
     if (!b) continue;
     const minY = b.min[1];

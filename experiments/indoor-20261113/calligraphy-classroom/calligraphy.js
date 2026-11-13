@@ -58,6 +58,42 @@ function woodMat(hex, rx, ry, seed) {
   return m;
 }
 
+function quietWood(hex, seed) {
+  const key = `quiet:${hex}:${seed}`;
+  if (texCache.has(key)) return texCache.get(key);
+  const c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 64;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = hex;
+  ctx.fillRect(0, 0, 256, 64);
+  const base = new THREE.Color(hex);
+  for (let i = 0; i < 18; i++) {
+    const y = (i * 17 + seed * 9) % 64;
+    const k = 0.9 + (i % 3) * 0.03;
+    ctx.strokeStyle = `rgba(${(base.r * 255 * k) | 0},${(base.g * 255 * k) | 0},${(base.b * 255 * k) | 0},0.16)`;
+    ctx.lineWidth = 0.6;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(256, y + 0.4);
+    ctx.stroke();
+  }
+  const tex = canvasTex(c);
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  texCache.set(key, tex);
+  return tex;
+}
+
+function floorMat(hex, seed) {
+  const map = quietWood(hex, seed).clone();
+  map.repeat.set(1, 3);
+  map.needsUpdate = true;
+  const m = toon(hex);
+  m.map = map;
+  return m;
+}
+
 function feltTexture() {
   if (texCache.has('felt')) return texCache.get('felt');
   const c = document.createElement('canvas');
@@ -117,49 +153,66 @@ function sampleStroke(pts, t) {
   return catmull(pts, t);
 }
 
-function inkPath(ctx, pts, w0, w1) {
-  ctx.strokeStyle = INK;
-  ctx.fillStyle = INK;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.globalAlpha = 0.94;
-  const steps = 28;
-  for (let i = 0; i < steps; i++) {
-    const t0 = i / steps;
-    const t1 = (i + 1) / steps;
-    const a = sampleStroke(pts, t0);
-    const b = sampleStroke(pts, t1);
-    ctx.lineWidth = Math.max(1.1, w0 + (w1 - w0) * ((t0 + t1) / 2));
-    ctx.beginPath();
-    ctx.moveTo(a[0], a[1]);
-    ctx.lineTo(b[0], b[1]);
-    ctx.stroke();
+function inkRibbon(ctx, pts, widthAt) {
+  const steps = 26;
+  const samples = [];
+  for (let i = 0; i <= steps; i++) samples.push(sampleStroke(pts, i / steps));
+  const left = [];
+  const right = [];
+  for (let i = 0; i <= steps; i++) {
+    const prev = samples[Math.max(0, i - 1)];
+    const next = samples[Math.min(steps, i + 1)];
+    let dx = next[0] - prev[0];
+    let dy = next[1] - prev[1];
+    const len = Math.hypot(dx, dy) || 1;
+    dx /= len;
+    dy /= len;
+    const w = Math.max(0.7, widthAt(i / steps));
+    const p = samples[i];
+    left.push([p[0] - dy * w, p[1] + dx * w]);
+    right.push([p[0] + dy * w, p[1] - dx * w]);
   }
-  ctx.globalAlpha = 1;
+  ctx.fillStyle = INK;
+  ctx.beginPath();
+  ctx.moveTo(left[0][0], left[0][1]);
+  for (let i = 1; i <= steps; i++) ctx.lineTo(left[i][0], left[i][1]);
+  for (let i = steps; i >= 0; i--) ctx.lineTo(right[i][0], right[i][1]);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function fillPoly(ctx, pts) {
+  ctx.fillStyle = INK;
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function heng(ctx, x0, y0, x1, y1) {
+  inkRibbon(ctx, [[x0, y0], [x1, y1]], (t) => (t < 0.12 ? 6.4 : 4.5 + (t > 0.9 ? 1.1 : 0)));
 }
 
 function drawRen(ctx) {
-  inkPath(ctx, [[54, 10], [34, 46], [16, 90]], 6.4, 1.6);
-  inkPath(ctx, [[56, 14], [74, 52], [92, 92]], 2.4, 9.5);
+  fillPoly(ctx, [[52, 6], [58, 14], [40, 46], [22, 80], [12, 96], [20, 90], [36, 62], [48, 22]]);
+  fillPoly(ctx, [[48, 20], [54, 16], [68, 36], [84, 62], [96, 80], [90, 90], [74, 68], [56, 36]]);
 }
 
 function drawTian(ctx) {
-  inkPath(ctx, [[34, 14], [70, 16]], 4.4, 4.4);
-  inkPath(ctx, [[12, 32], [90, 35]], 5.2, 5.2);
-  inkPath(ctx, [[48, 36], [30, 64], [14, 92]], 5.2, 1.5);
-  inkPath(ctx, [[52, 38], [72, 66], [92, 94]], 2.2, 10);
+  fillPoly(ctx, [[34, 8], [70, 6], [72, 14], [36, 16]]);
+  fillPoly(ctx, [[8, 30], [94, 28], [96, 36], [10, 38]]);
+  fillPoly(ctx, [[48, 34], [54, 36], [36, 58], [18, 84], [8, 98], [18, 90], [34, 66], [46, 44]]);
+  fillPoly(ctx, [[52, 38], [58, 36], [74, 56], [90, 76], [98, 86], [88, 96], [72, 74], [56, 50]]);
 }
 
 function drawYong(ctx) {
-  ctx.fillStyle = INK;
-  ctx.beginPath();
-  ctx.ellipse(64, 11, 4.6, 3.6, -0.5, 0, Math.PI * 2);
-  ctx.fill();
-  inkPath(ctx, [[14, 28], [86, 31]], 4.8, 4.8);
-  inkPath(ctx, [[46, 30], [44, 70]], 4.4, 4);
-  inkPath(ctx, [[44, 68], [30, 82]], 3.8, 1.4);
-  inkPath(ctx, [[44, 42], [24, 62], [8, 80]], 4.2, 1.4);
-  inkPath(ctx, [[52, 44], [74, 68], [94, 90]], 2.2, 10.5);
+  fillPoly(ctx, [[62, 1], [70, 2], [76, 9], [73, 17], [64, 19], [56, 12], [58, 4]]);
+  fillPoly(ctx, [[8, 32], [16, 26], [86, 26], [94, 32], [86, 38], [12, 38]]);
+  fillPoly(ctx, [[44, 34], [54, 34], [52, 88], [42, 88]]);
+  fillPoly(ctx, [[42, 80], [52, 82], [48, 92], [30, 99], [20, 91], [32, 87], [42, 84]]);
+  fillPoly(ctx, [[46, 42], [54, 40], [34, 54], [14, 68], [6, 74], [16, 70], [34, 56], [46, 46]]);
+  fillPoly(ctx, [[54, 48], [60, 44], [76, 58], [92, 72], [98, 80], [88, 86], [74, 70], [58, 54]]);
 }
 
 function drawSeal(ctx, x, y, s) {
@@ -196,7 +249,7 @@ function drawGlyph(ctx, kind, ox, oy, s) {
   if (kind === 'ren') drawRen(ctx);
   else if (kind === 'tian') drawTian(ctx);
   else if (kind === 'yong') drawYong(ctx);
-  else if (kind === 'stroke') inkPath(ctx, [[16, 46], [84, 50]], 7, 7);
+  else if (kind === 'stroke') heng(ctx, 16, 48, 84, 46);
   ctx.restore();
 }
 
@@ -223,9 +276,19 @@ function paperTexture(kind) {
     ctx.stroke();
   }
   if (kind === 'yong' || kind === 'ren' || kind === 'tian' || kind === 'stroke') {
-    drawGlyph(ctx, kind === 'stroke' ? 'stroke' : kind, 108, 100, 2.9);
-    if (kind !== 'stroke') drawSeal(ctx, 48, 420, 42);
+    drawGlyph(ctx, kind === 'stroke' ? 'stroke' : kind, 86, 64, 3.35);
+    if (kind !== 'stroke') drawSeal(ctx, 48, 448, 34);
   }
+  return canvasTex(c);
+}
+
+function glyphCard(kind) {
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 640;
+  const ctx = c.getContext('2d');
+  paperFibers(ctx, 512, 640);
+  drawGlyph(ctx, kind, 70, 80, 3.6);
   return canvasTex(c);
 }
 
@@ -245,8 +308,8 @@ function scrollTexture(kind) {
     ctx.fillStyle = 'rgba(120, 90, 50, 0.045)';
     ctx.fillRect(40 + ((i * 53) % 400), 92 + ((i * 37) % 772), 14, 1);
   }
-  drawGlyph(ctx, kind, 78, 200, 3.2);
-  drawSeal(ctx, 86, 690, 54);
+  drawGlyph(ctx, kind, 64, 168, 3.5);
+  drawSeal(ctx, 78, 740, 46);
   return canvasTex(c);
 }
 
@@ -270,34 +333,50 @@ function flatPaper(parent, w, h, y, kind) {
 
 function inkstone(parent, x, y, z, scale = 1) {
   const g = new THREE.Group();
-  addCyl(g, 0.078 * scale, 0.086 * scale, 0.026 * scale, toon(STONE), 0, 0.013 * scale, 0, 18);
-  addCyl(g, 0.03 * scale, 0.034 * scale, 0.01 * scale, toon('#0e0c0b'), 0.02 * scale, 0.024 * scale, -0.01 * scale, 14);
-  addCyl(g, 0.012 * scale, 0.012 * scale, 0.006 * scale, toon('#1a1614'), -0.03 * scale, 0.026 * scale, 0.02 * scale, 10);
+  const s = scale;
+  const body = toon('#3c3834');
+  addBox(g, 0.168 * s, 0.02 * s, 0.116 * s, body, 0, 0.01 * s, 0);
+  addBox(g, 0.07 * s, 0.004 * s, 0.09 * s, toon('#564f48'), -0.03 * s, 0.02 * s, -0.004 * s);
+  addCyl(g, 0.034 * s, 0.038 * s, 0.012 * s, toon('#1a1612'), 0.04 * s, 0.014 * s, 0.012 * s, 20);
+  addCyl(g, 0.02 * s, 0.022 * s, 0.008 * s, toon('#070605'), 0.04 * s, 0.02 * s, 0.012 * s, 16);
   g.position.set(x, y, z);
   parent.add(g);
 }
 
-function paperweight(parent, x, y, z, hex = '#3a342c') {
-  quiet(addBox(parent, 0.16, 0.016, 0.028, toon(hex), x, y + 0.008, z));
+function paperweight(parent, x, y, z) {
+  const g = new THREE.Group();
+  addSphere(g, 0.026, toon('#5d6b62'), 0, 0.014, 0, 1.45, 0.42, 0.95);
+  addSphere(g, 0.011, toon('#3c4c44'), 0.004, 0.028, 0.002, 1, 0.65, 0.9);
+  g.position.set(x, y, z);
+  parent.add(g);
 }
 
 function brush(parent, x, y, z, yaw) {
   const g = new THREE.Group();
-  const handle = addCyl(g, 0.008, 0.009, 0.2, toon(BAMBOO), 0.02, 0.012, 0, 8);
+  const handle = addCyl(g, 0.0065, 0.008, 0.15, toon(BAMBOO), 0.028, 0.011, 0, 10);
   handle.rotation.z = Math.PI / 2;
-  const ferrule = addCyl(g, 0.01, 0.01, 0.028, toon('#2a241c'), -0.09, 0.012, 0, 8);
+  for (const nx of [0.01, 0.055]) {
+    const node = addCyl(g, 0.0095, 0.0095, 0.005, toon('#d9c49a'), nx, 0.011, 0, 8);
+    node.rotation.z = Math.PI / 2;
+  }
+  const ferrule = addCyl(g, 0.01, 0.008, 0.02, toon('#8d6234'), -0.055, 0.011, 0, 10);
   ferrule.rotation.z = Math.PI / 2;
-  const hairs = addCone(g, 0.009, 0.055, toon('#1a120e'), -0.128, 0.012, 0, 8);
-  hairs.rotation.z = Math.PI / 2;
+  const belly = addCone(g, 0.011, 0.026, toon('#6a4a34'), -0.078, 0.011, 0, 10);
+  belly.rotation.z = Math.PI / 2;
+  const tip = addCone(g, 0.006, 0.036, toon('#140e0c'), -0.104, 0.011, 0, 8);
+  tip.rotation.z = Math.PI / 2;
   g.position.set(x, y, z);
   g.rotation.y = yaw;
   parent.add(g);
 }
 
 function brushRest(parent, x, y, z) {
-  addBox(parent, 0.07, 0.008, 0.028, toon(CELADON), x, y + 0.004, z);
-  addCyl(parent, 0.008, 0.01, 0.016, toon(CELADON), x - 0.02, y + 0.012, z, 8);
-  addCyl(parent, 0.008, 0.01, 0.016, toon(CELADON), x + 0.02, y + 0.012, z, 8);
+  const g = new THREE.Group();
+  addBox(g, 0.064, 0.008, 0.03, toon(CELADON), 0, 0.004, 0);
+  addCone(g, 0.011, 0.018, toon('#d7e6de'), -0.016, 0.014, 0, 6);
+  addCone(g, 0.009, 0.014, toon('#e4f0e8'), 0.016, 0.012, 0, 6);
+  g.position.set(x, y, z);
+  parent.add(g);
 }
 
 function brushPot(parent, x, y, z) {
@@ -325,11 +404,11 @@ function deskKit(parent, surface, kit, variant) {
   }
   parent.add(paper);
   inkstone(parent, kit.inkstone[0], surface, kit.inkstone[1], variant === 2 ? 0.92 : 1);
-  paperweight(parent, kit.weight[0], surface + 0.006, kit.weight[1], variant === 1 ? CINNABAR : '#3a342c');
+  paperweight(parent, kit.weight[0], surface + 0.004, kit.weight[1]);
   if (variant === 2) brushPot(parent, kit.brush[0], surface, kit.brush[1]);
   else {
-    brush(parent, kit.brush[0], surface, kit.brush[1], variant === 1 ? 0.7 : -0.55);
-    if (variant !== 3) brushRest(parent, kit.brush[0] - 0.02, surface, kit.brush[1] + 0.06);
+    brush(parent, kit.brush[0], surface, kit.brush[1], 0.22);
+    brushRest(parent, kit.brush[0] - 0.02, surface, kit.brush[1] + 0.08);
   }
   if (variant === 1) waterDish(parent, -0.42, surface, 0.12);
 }
@@ -394,6 +473,97 @@ function hangingScroll(parent, spec) {
   addCyl(g, 0.004, 0.004, 0.16, toon('#2a241c'), 0, spec.h / 2 + 0.1, 0, 6);
   g.position.set(spec.x, spec.y, spec.z);
   g.rotation.y = spec.rotY || 0;
+  parent.add(g);
+}
+
+function woodSeat(parent, inst) {
+  const g = new THREE.Group();
+  g.name = inst.id;
+  const w = 0.42;
+  const d = 0.48;
+  const seatH = 0.44;
+  const leg = 0.036;
+  const wood = woodMat('#c6a36e', 1.2, 2, (inst.position[0] + 3) * 4);
+  const dark = woodMat('#5c3e2a', 1, 2, 2);
+  const insetX = w / 2 - 0.05;
+  const insetZ = d / 2 - 0.05;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, leg, seatH - 0.02, leg, dark, sx * insetX, (seatH - 0.02) / 2, sz * insetZ);
+    }
+  }
+  addBox(g, 0.018, 0.018, d - 0.16, dark, -insetX, 0.16, 0);
+  addBox(g, 0.018, 0.018, d - 0.16, dark, insetX, 0.16, 0);
+  addBox(g, w - 0.12, 0.018, 0.018, dark, 0, 0.16, insetZ);
+  addBox(g, w, 0.038, d, wood, 0, seatH - 0.02, 0);
+  addBox(g, w - 0.03, 0.01, 0.018, woodMat('#d8bc90', 2, 1, 1), 0, seatH - 0.004, d / 2 - 0.012);
+  const postH = 0.34;
+  addBox(g, 0.03, postH, 0.03, dark, -insetX, seatH + postH / 2 - 0.02, -insetZ);
+  addBox(g, 0.03, postH, 0.03, dark, insetX, seatH + postH / 2 - 0.02, -insetZ);
+  addBox(g, w - 0.08, 0.09, 0.018, wood, 0, seatH + 0.22, -insetZ);
+  const shade = new THREE.Mesh(
+    new THREE.CircleGeometry(0.2, 18),
+    new THREE.MeshBasicMaterial({ color: 0x1c140e, transparent: true, opacity: 0.16, depthWrite: false }),
+  );
+  shade.rotation.x = -Math.PI / 2;
+  shade.position.y = 0.01;
+  shade.userData.noShade = true;
+  shade.castShadow = false;
+  g.add(shade);
+  g.position.set(inst.position[0], inst.position[1], inst.position[2]);
+  g.rotation.y = inst.rotationY || 0;
+  parent.add(g);
+}
+
+function deskLamp(parent, x, y, z) {
+  const g = new THREE.Group();
+  g.name = 'demo_lamp';
+  const wood = woodMat('#6a4630', 1, 1, 3);
+  addCyl(g, 0.052, 0.058, 0.014, wood, 0, 0.007, 0, 16);
+  addCyl(g, 0.016, 0.026, 0.028, toon('#f0e6d2'), 0, 0.026, 0, 12);
+  addCyl(g, 0.007, 0.007, 0.14, wood, 0, 0.11, 0, 8);
+  const shade = addCyl(
+    g, 0.062, 0.048, 0.08,
+    toon('#f4e6cc', { emissive: '#ffd9a8', emissiveIntensity: 0.45 }),
+    0, 0.2, 0, 8,
+  );
+  shade.userData.castShadow = false;
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2;
+    addBox(g, 0.004, 0.08, 0.004, toon('#c4a06a'), Math.cos(a) * 0.052, 0.2, Math.sin(a) * 0.052);
+  }
+  g.position.set(x, y, z);
+  parent.add(g);
+}
+
+function copyStand(parent, x, y, z) {
+  const g = new THREE.Group();
+  g.name = 'model_stand';
+  const wood = woodMat('#6d4a32', 1, 2, 6);
+  const dark = woodMat('#3e2a1c', 1, 2, 7);
+  addBox(g, 0.46, 0.028, 0.3, dark, 0, 0.016, 0);
+  addBox(g, 0.036, 0.02, 0.32, wood, -0.16, 0.036, 0.01);
+  addBox(g, 0.036, 0.02, 0.32, wood, 0.16, 0.036, 0.01);
+  addBox(g, 0.026, 0.48, 0.026, wood, -0.15, 0.28, -0.04);
+  addBox(g, 0.026, 0.48, 0.026, wood, 0.15, 0.28, -0.04);
+  addBox(g, 0.32, 0.022, 0.022, wood, 0, 0.5, -0.04);
+  const lectern = new THREE.Group();
+  lectern.position.set(0, 0.32, 0.02);
+  lectern.rotation.x = -1.02;
+  addBox(lectern, 0.34, 0.4, 0.014, wood, 0, 0, 0);
+  addBox(lectern, 0.34, 0.018, 0.028, dark, 0, -0.19, 0.012);
+  const page = toon(PAPER);
+  page.map = glyphCard('yong');
+  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(0.28, 0.32), page);
+  sheet.position.set(0, 0.01, 0.01);
+  quiet(sheet);
+  lectern.add(sheet);
+  addBox(lectern, 0.3, 0.012, 0.008, toon('#6e3030'), 0, -0.16, 0.012);
+  addBox(lectern, 0.012, 0.34, 0.016, toon('#6e3030'), -0.15, 0.01, 0.004);
+  addBox(lectern, 0.012, 0.34, 0.016, toon('#6e3030'), 0.15, 0.01, 0.004);
+  addBox(lectern, 0.014, 0.34, 0.02, toon('#4a2424'), 0, 0.01, 0);
+  g.add(lectern);
+  g.position.set(x, y, z);
   parent.add(g);
 }
 
@@ -516,25 +686,19 @@ function makeShell(layout) {
   const s = layout.shell;
   const arch = layout.architecture;
   const plaster = toon(s.wallColor);
-  const gap = toon(s.floorGap);
   const ink = toon(INK);
   const backZ = -D / 2;
   const leftX = -W / 2;
 
-  const slab = addBox(g, W, 0.06, D, gap, 0, -0.03, 0);
+  const slab = addBox(g, W, 0.06, D, toon('#b08968'), 0, -0.03, 0);
   slab.name = 'floor';
-  const plankD = 0.15;
-  const gapZ = 0.012;
-  const count = Math.floor((D - 0.28) / (plankD + gapZ));
-  const tones = ['#c6a36c', '#b8925c', '#d2ae76', '#c09a62', '#b68950'];
-  for (let i = 0; i < count; i++) {
-    const z = -D / 2 + 0.16 + i * (plankD + gapZ);
-    const hex = tones[i % tones.length];
-    const joint = ((i * 0.73) % 1.6) - 0.8;
-    const leftW = W / 2 + joint - 0.2;
-    const rightW = W - 0.3 - leftW;
-    addBox(g, leftW, 0.02, plankD, woodMat(hex, 3, 1, i), -W / 2 + 0.12 + leftW / 2, 0.012, z);
-    addBox(g, rightW, 0.02, plankD, woodMat(tones[(i + 2) % tones.length], 3, 1, i + 4), W / 2 - 0.12 - rightW / 2, 0.012, z);
+  const boardW = 0.28;
+  const gapX = 0.002;
+  const tones = ['#c7a674', '#c9a878', '#c5a472', '#c8a776', '#c6a570'];
+  const boards = Math.floor((W - 0.2) / (boardW + gapX));
+  for (let i = 0; i < boards; i++) {
+    const x = -W / 2 + 0.12 + boardW / 2 + i * (boardW + gapX);
+    addBox(g, boardW, 0.016, D - 0.2, floorMat(tones[i % tones.length], i), x, 0.01, 0);
   }
 
   const wallT = 0.12;
@@ -605,13 +769,30 @@ function makeShell(layout) {
     addBox(g, plat.w - 0.12, 0.006, 0.08, woodMat(i % 2 ? '#7a5340' : '#8a6248', 2, 1, i), px, plat.h + 0.004, zz);
   }
 
+  const plate = woodMat('#5a3c28', 3, 1, 8);
+  const stud = woodMat('#6d4a32', 1, 2, 9);
+  addBox(g, W - 0.24, 0.1, 0.06, plate, 0, 2.66, backZ + 0.1);
+  addBox(g, 0.06, 0.1, D - 0.3, plate, leftX + 0.1, 2.66, 0);
+  const backPosts = [-4.55, -3.35, -2.45, 1.15, 2.55, 3.85, 4.55];
+  backPosts.forEach((x, i) => {
+    addBox(g, 0.055, 1.68, 0.04, stud, x, 1.78, backZ + 0.1);
+    if (i % 2 === 0) addBox(g, 0.07, 0.035, 0.045, plate, x, 2.48, backZ + 0.1);
+  });
+  [-3.35, -2.35, 2.55, 3.55].forEach((z) => {
+    addBox(g, 0.04, 1.68, 0.05, stud, leftX + 0.1, 1.78, z);
+  });
+  addBox(g, 0.05, 0.08, winD + 0.08, plate, leftX + 0.11, 2.52, winZ);
+
   const ceil = toon(s.ceilingColor);
-  addBox(g, W * 0.78, 0.06, D * 0.72, ceil, -0.7, H - 0.05, -0.85);
-  const beamZs = [-3.45, -1.7, 0.35, 2.15];
+  addBox(g, W * 0.72, 0.05, D * 0.62, ceil, -0.55, H - 0.04, -1.15);
+  const beamZs = [-3.55, -1.85, 0.15, 2.05];
   beamZs.forEach((z, i) => {
-    const reach = i === 0 ? 4.95 : 3.55;
+    const reach = i === 0 ? 4.85 : 3.7;
     const len = reach - leftX;
-    addBox(g, len, 0.14, 0.1, woodMat('#5c3e2c', 3, 1, i), leftX + len / 2, H - 0.2, z);
+    addBox(g, len, 0.16, 0.11, woodMat('#4e3424', 3, 1, i), leftX + len / 2, H - 0.22, z);
+  });
+  [-2.15, 0.35, 2.55].forEach((x, i) => {
+    addBox(g, 0.09, 0.08, 5.6, woodMat('#6a4630', 1, 3, i + 2), x, H - 0.36, -0.7);
   });
 
   arch.columns.forEach(([x, z]) => column(g, x, z, H));
@@ -624,25 +805,32 @@ function makeProcedural(layout) {
   const arch = layout.architecture;
   for (const desk of arch.desks) writingDesk(g, desk, arch.kit);
 
+  for (const inst of layout.instances) {
+    if (inst.kind === 'wood_seat') woodSeat(g, inst);
+  }
+
   const teacher = arch.teacher;
   const top = teacher.top;
   const [tx, , tz] = teacher.table;
   const surface = top + 0.014;
-  const felt = addBox(g, 1.35, 0.01, 0.62, feltMat(), tx + 0.05, surface - 0.006, tz);
+  const felt = addBox(g, 1.35, 0.01, 0.62, feltMat(), tx + 0.02, surface - 0.006, tz);
   quiet(felt);
-  addBox(g, 1.39, 0.008, 0.66, toon(FELT_EDGE), tx + 0.05, surface - 0.012, tz);
+  addBox(g, 1.39, 0.008, 0.66, toon(FELT_EDGE), tx + 0.02, surface - 0.012, tz);
   const [ppx, ppz, pw, ph] = teacher.paper;
   const sheet = new THREE.Group();
   sheet.position.set(tx + ppx, 0, tz + ppz);
   flatPaper(sheet, pw, ph, surface + 0.004, 'yong');
   g.add(sheet);
-  inkstone(g, tx + teacher.inkstone[0], surface, tz + teacher.inkstone[1], 1.25);
-  paperweight(g, tx + teacher.weight[0], surface + 0.006, tz + teacher.weight[1], '#2a241c');
-  brush(g, tx + teacher.brush[0], surface, tz + teacher.brush[1], 0.85);
-  brush(g, tx + teacher.brush[0] + 0.16, surface, tz + teacher.brush[1] - 0.06, 0.4);
-  brushRest(g, tx + 0.18, surface, tz + 0.02);
-  waterDish(g, tx + 0.42, surface, tz - 0.12);
-  addCyl(g, 0.028, 0.03, 0.02, toon(CINNABAR), tx - 0.22, surface + 0.01, tz + 0.16, 12);
+  inkstone(g, tx + teacher.inkstone[0], surface, tz + teacher.inkstone[1], 1.15);
+  paperweight(g, tx + teacher.weight[0], surface + 0.002, tz + teacher.weight[1]);
+  brush(g, tx + teacher.brush[0], surface, tz + teacher.brush[1], 0.18);
+  brush(g, tx + teacher.brush[0] + 0.02, surface, tz + teacher.brush[1] - 0.1, 0.12);
+  brushRest(g, tx + 0.36, surface, tz + 0.28);
+  waterDish(g, tx + 0.52, surface, tz - 0.18);
+  addCyl(g, 0.022, 0.024, 0.016, toon(CINNABAR), tx - 0.58, surface + 0.008, tz - 0.06, 12);
+  deskLamp(g, tx + teacher.lamp[0], surface, tz + teacher.lamp[1]);
+  const stand = arch.modelBook;
+  copyStand(g, stand.position[0], stand.position[1], stand.position[2]);
 
   for (const spec of arch.scrolls) hangingScroll(g, spec);
   for (const [x, y, z] of arch.lanterns) lantern(g, x, y, z);
@@ -683,29 +871,14 @@ function onBeforeShade(kind, root) {
       paintMesh(obj, hex);
     });
   }
-  if (kind === 'library_lamp') {
-    root.traverse((obj) => {
-      if (!obj.isMesh) return;
-      const n = obj.name || '';
-      const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-      mats.forEach((m) => {
-        if (!m || !m.color) return;
-        if (/green_roof|end_cap/.test(n)) m.color.set('#6e2c2a');
-        if (/light_tube/.test(n)) {
-          m.color.set('#fff6dc');
-          m.userData.emissive = '#fff0c8';
-          m.userData.emissiveIntensity = 1.2;
-        }
-      });
-    });
-  }
 }
 
 function onReady(ctx) {
   ctx.scene.updateMatrixWorld(true);
   const issues = [];
   for (const inst of ctx.layout.instances) {
-    if (!ctx.props.getObjectByName(inst.id)) issues.push(`missing ${inst.id}`);
+    const host = inst.procedural ? ctx.procedural : ctx.props;
+    if (!host.getObjectByName(inst.id)) issues.push(`missing ${inst.id}`);
   }
   for (const desk of ctx.layout.architecture.desks) {
     if (!ctx.procedural.getObjectByName(desk.id)) issues.push(`missing ${desk.id}`);
@@ -713,8 +886,8 @@ function onReady(ctx) {
   const q = new THREE.Quaternion();
   const forward = new THREE.Vector3();
   for (const inst of ctx.layout.instances) {
-    if (inst.kind !== 'dining_chair') continue;
-    const obj = ctx.props.getObjectByName(inst.id);
+    if (inst.kind !== 'wood_seat') continue;
+    const obj = ctx.procedural.getObjectByName(inst.id);
     if (!obj) continue;
     forward.set(0, 0, 1).applyQuaternion(obj.getWorldQuaternion(q));
     const want = inst.role === 'teacher' ? 1 : -1;
