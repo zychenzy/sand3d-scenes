@@ -11,3 +11,5 @@ Furniture is reused by symlink from existing scene bakes. Programs are CC-BY fro
 - **Straw holder** — "Straw Holder" by KatH10, https://sketchfab.com/3d-models/252f730f1a044efdb801f84c7eaabbce, CC-BY-4.0. Symlink to `cafe/assets/straw_holder__252f730f1a04.glb`. Tinted and used as a brush tube on the wall shelf.
 
 Desks, felt mats, inkstones, brushes, rests, paperweights, water dishes, scrolls, lanterns, wood seats, the paper-shade desk lamp, the copy stand, wainscot, wall posts, beams, lattice window, cabinet, and the platform are procedural. Three.js r170 is the existing vendored build, symlinked from `greenhouse/vendor/`.
+
+- **Noto Serif SC** — subset of Noto Serif CJK / Source Han Serif, SIL Open Font License 1.1, © Google and Adobe. `fonts/NotoSerifSC-Regular-subset.woff2` contains only U+4EBA 人, U+5929 天, and U+6C38 永. The scrolls, the demonstration sheet, and the model book are `fillText` of those code points, rasterized offline into canvas textures.

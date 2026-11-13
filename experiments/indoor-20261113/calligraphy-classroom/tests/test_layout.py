@@ -177,6 +177,13 @@ def test_storage_and_cameras_inside():
     assert "book_stand" not in layout["assets"]
     assert kinds.count("display_bookcase") == 2
     assert "felt" in scene and "hangingScroll" in scene and "inkstone" in scene
+    assert "\\u6c38" in scene and "\\u4eba" in scene and "\\u5929" in scene
+    assert "fillPoly" not in scene and "drawYong" not in scene
+    font = ROOT / "fonts" / "NotoSerifSC-Regular-subset.woff2"
+    assert font.is_file() and font.stat().st_size > 400
+    assert "fonts.gstatic" not in scene and "https://" not in scene
+    x, y, z = layout["camera"]["position"]
+    assert -4.3 < x < 3.2 and y < 3.05 and -3.8 < z < 1.55
 
 
 if __name__ == "__main__":

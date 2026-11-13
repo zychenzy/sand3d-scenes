@@ -4,6 +4,8 @@ A cutaway practice room: six broad writing desks face a low platform, a demonstr
 
 Shared GLBs and the vendored Three.js runtime are symlinks. Do not copy them. Student desks are built in this scene because the catalog study desk is 0.37 m wide and the school desk is a 0.60 × 0.44 m metal top.
 
+人, 永, and 天 are Noto Serif SC (U+4EBA, U+6C38, U+5929) from `fonts/NotoSerifSC-Regular-subset.woff2`. The default camera sits under the roof.
+
 ## Open
 
 From the repo root, so the asset symlinks resolve:

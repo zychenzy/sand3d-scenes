@@ -7,13 +7,14 @@ Closed in this scene:
 - A low platform, a trestle demonstration table, a model-book stand, and hanging scrolls for 人, 永, and 天. The demonstration sheet is turned so the class reads 永 right-side up.
 - Paper case, brush case, wall shelf, and a side table clear of the writing aisle.
 - Toon is the default: four-step `gradientMap` on `MeshToonMaterial`, hard shadows, warm key plus lantern and desk-lamp pools. `U` and `?mode=unlit` swap every mesh to `MeshBasicMaterial`.
-- 人, 永, and 天 are regular-script skeletons: one bar under a dot for 永, a stem that continues into a left hook, and a 捺 that ends in a chisel foot. The demonstration sheet is clear of the brushes, inkstone, and weight.
+- 人 U+4EBA, 永 U+6C38, and 天 U+5929 are Noto Serif SC glyphs, rasterized from the vendored woff2 before the scene boots. The demonstration sheet is clear of the brushes, inkstone, and weight.
+- The default camera stands under the existing ceiling slab and looks across the class, so the frame is cropped by wall and ceiling. Both desk rows and the teaching platform stay in view. The back-right desk sits beside that camera and falls outside the establishing frame.
 - Seats are single-plank wood chairs. The desk lamp is a small paper shade on a wood stem. The platform holds an open model book on a copy stand.
 - Upper walls carry posts and a plate under the beams. Floor boards run the length of the room in one wood tone, with a quiet grain.
 
 Still open:
 
-- The characters are filled polygons, not a calligrapher’s brush. The dot is still a little faceted, and the hook is small on the far wall in the establishing view.
+- The glyphs are a Song/serif text face, not a 楷书 brush hand. Stroke endings are the font’s, and the sheet is a texture, not wet ink.
 - Catalog desks were the wrong object, so the writing desks, felt, inkstones, and brushes are procedural. The inkstone well is a dark disc in a slab, not a carved Duan stone.
 - The paper and brush cases are glass display carcasses. Stacks sit on the shelf line.
 - Jam jars and the straw holder stand in for ink bottles and a brush tube.

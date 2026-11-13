@@ -123,96 +123,18 @@ function feltMat() {
   return m;
 }
 
-function catmull(pts, t) {
-  const n = pts.length;
-  const x = t * (n - 1);
-  const i = Math.min(n - 2, Math.floor(x));
-  const u = x - i;
-  const p = (k) => pts[Math.max(0, Math.min(n - 1, k))];
-  const a = p(i - 1);
-  const b = p(i);
-  const c = p(i + 1);
-  const d = p(i + 2);
-  const u2 = u * u;
-  const u3 = u2 * u;
-  const f = (k) => 0.5 * (
-    (2 * b[k])
-    + (-a[k] + c[k]) * u
-    + (2 * a[k] - 5 * b[k] + 4 * c[k] - d[k]) * u2
-    + (-a[k] + 3 * b[k] - 3 * c[k] + d[k]) * u3
-  );
-  return [f(0), f(1)];
-}
+const GLYPH = { ren: '\u4eba', yong: '\u6c38', tian: '\u5929' };
 
-function sampleStroke(pts, t) {
-  if (pts.length < 3) {
-    const a = pts[0];
-    const b = pts[pts.length - 1];
-    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
-  }
-  return catmull(pts, t);
-}
-
-function inkRibbon(ctx, pts, widthAt) {
-  const steps = 26;
-  const samples = [];
-  for (let i = 0; i <= steps; i++) samples.push(sampleStroke(pts, i / steps));
-  const left = [];
-  const right = [];
-  for (let i = 0; i <= steps; i++) {
-    const prev = samples[Math.max(0, i - 1)];
-    const next = samples[Math.min(steps, i + 1)];
-    let dx = next[0] - prev[0];
-    let dy = next[1] - prev[1];
-    const len = Math.hypot(dx, dy) || 1;
-    dx /= len;
-    dy /= len;
-    const w = Math.max(0.7, widthAt(i / steps));
-    const p = samples[i];
-    left.push([p[0] - dy * w, p[1] + dx * w]);
-    right.push([p[0] + dy * w, p[1] - dx * w]);
-  }
+function drawGlyph(ctx, kind, cx, cy, px) {
+  const ch = GLYPH[kind];
+  if (!ch) return;
+  ctx.save();
   ctx.fillStyle = INK;
-  ctx.beginPath();
-  ctx.moveTo(left[0][0], left[0][1]);
-  for (let i = 1; i <= steps; i++) ctx.lineTo(left[i][0], left[i][1]);
-  for (let i = steps; i >= 0; i--) ctx.lineTo(right[i][0], right[i][1]);
-  ctx.closePath();
-  ctx.fill();
-}
-
-function fillPoly(ctx, pts) {
-  ctx.fillStyle = INK;
-  ctx.beginPath();
-  ctx.moveTo(pts[0][0], pts[0][1]);
-  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
-  ctx.closePath();
-  ctx.fill();
-}
-
-function heng(ctx, x0, y0, x1, y1) {
-  inkRibbon(ctx, [[x0, y0], [x1, y1]], (t) => (t < 0.12 ? 6.4 : 4.5 + (t > 0.9 ? 1.1 : 0)));
-}
-
-function drawRen(ctx) {
-  fillPoly(ctx, [[52, 6], [58, 14], [40, 46], [22, 80], [12, 96], [20, 90], [36, 62], [48, 22]]);
-  fillPoly(ctx, [[48, 20], [54, 16], [68, 36], [84, 62], [96, 80], [90, 90], [74, 68], [56, 36]]);
-}
-
-function drawTian(ctx) {
-  fillPoly(ctx, [[34, 8], [70, 6], [72, 14], [36, 16]]);
-  fillPoly(ctx, [[8, 30], [94, 28], [96, 36], [10, 38]]);
-  fillPoly(ctx, [[48, 34], [54, 36], [36, 58], [18, 84], [8, 98], [18, 90], [34, 66], [46, 44]]);
-  fillPoly(ctx, [[52, 38], [58, 36], [74, 56], [90, 76], [98, 86], [88, 96], [72, 74], [56, 50]]);
-}
-
-function drawYong(ctx) {
-  fillPoly(ctx, [[62, 1], [70, 2], [76, 9], [73, 17], [64, 19], [56, 12], [58, 4]]);
-  fillPoly(ctx, [[8, 32], [16, 26], [86, 26], [94, 32], [86, 38], [12, 38]]);
-  fillPoly(ctx, [[44, 34], [54, 34], [52, 88], [42, 88]]);
-  fillPoly(ctx, [[42, 80], [52, 82], [48, 92], [30, 99], [20, 91], [32, 87], [42, 84]]);
-  fillPoly(ctx, [[46, 42], [54, 40], [34, 54], [14, 68], [6, 74], [16, 70], [34, 56], [46, 46]]);
-  fillPoly(ctx, [[54, 48], [60, 44], [76, 58], [92, 72], [98, 80], [88, 86], [74, 70], [58, 54]]);
+  ctx.font = `${px}px "Noto Serif SC"`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(ch, cx, cy);
+  ctx.restore();
 }
 
 function drawSeal(ctx, x, y, s) {
@@ -242,17 +164,6 @@ function paperFibers(ctx, w, h) {
   }
 }
 
-function drawGlyph(ctx, kind, ox, oy, s) {
-  ctx.save();
-  ctx.translate(ox, oy);
-  ctx.scale(s, s);
-  if (kind === 'ren') drawRen(ctx);
-  else if (kind === 'tian') drawTian(ctx);
-  else if (kind === 'yong') drawYong(ctx);
-  else if (kind === 'stroke') heng(ctx, 16, 48, 84, 46);
-  ctx.restore();
-}
-
 function paperTexture(kind) {
   const c = document.createElement('canvas');
   c.width = 512;
@@ -275,9 +186,9 @@ function paperTexture(kind) {
     ctx.lineTo(m, 512 - m);
     ctx.stroke();
   }
-  if (kind === 'yong' || kind === 'ren' || kind === 'tian' || kind === 'stroke') {
-    drawGlyph(ctx, kind === 'stroke' ? 'stroke' : kind, 86, 64, 3.35);
-    if (kind !== 'stroke') drawSeal(ctx, 48, 448, 34);
+  if (kind === 'yong' || kind === 'ren' || kind === 'tian') {
+    drawGlyph(ctx, kind, 256, 228, 340);
+    drawSeal(ctx, 48, 448, 34);
   }
   return canvasTex(c);
 }
@@ -288,7 +199,7 @@ function glyphCard(kind) {
   c.height = 640;
   const ctx = c.getContext('2d');
   paperFibers(ctx, 512, 640);
-  drawGlyph(ctx, kind, 70, 80, 3.6);
+  drawGlyph(ctx, kind, 256, 300, 380);
   return canvasTex(c);
 }
 
@@ -308,7 +219,7 @@ function scrollTexture(kind) {
     ctx.fillStyle = 'rgba(120, 90, 50, 0.045)';
     ctx.fillRect(40 + ((i * 53) % 400), 92 + ((i * 37) % 772), 14, 1);
   }
-  drawGlyph(ctx, kind, 64, 168, 3.5);
+  drawGlyph(ctx, kind, 240, 390, 300);
   drawSeal(ctx, 78, 740, 46);
   return canvasTex(c);
 }
@@ -912,10 +823,23 @@ function onReady(ctx) {
   window.__audit = { issues, toonCount, basicCount, otherCount, shadingMode: ctx.shadingMode };
 }
 
-boot({
-  makeShell,
-  makeProcedural,
-  onBeforeShade,
-  onReady,
-  readyText: 'ready — calligraphy classroom · drag orbit · U unlit · T toon',
+const glyphFace = new FontFace('Noto Serif SC', 'url(./fonts/NotoSerifSC-Regular-subset.woff2)');
+glyphFace.load().then(async (face) => {
+  document.fonts.add(face);
+  await document.fonts.load('120px "Noto Serif SC"', '\u6c38\u4eba\u5929');
+  if (!document.fonts.check('120px "Noto Serif SC"', '\u6c38')) {
+    throw new Error('Noto Serif SC missing U+6C38');
+  }
+  boot({
+    makeShell,
+    makeProcedural,
+    onBeforeShade,
+    onReady,
+    readyText: 'ready — calligraphy classroom · drag orbit · U unlit · T toon',
+  });
+}).catch((err) => {
+  window.__errors = window.__errors || [];
+  window.__errors.push(String(err && err.stack || err));
+  const statusEl = document.getElementById('status');
+  if (statusEl) statusEl.textContent = 'font failed';
 });
