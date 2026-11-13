@@ -330,16 +330,21 @@ function gamingChair(g, x, z, yaw, accent, headsetOn) {
   const metal = toon('#c5ccd3');
   const dark = toon('#23282e');
   const caster = toon('#1c2126');
-  addCyl(grp, 0.042, 0.048, 0.03, metal, 0, 0.05, 0, 12);
+  const base = (mesh) => {
+    mesh.userData.noShadow = true;
+    return mesh;
+  };
+  base(addCyl(grp, 0.042, 0.048, 0.03, metal, 0, 0.05, 0, 12));
   for (let i = 0; i < 5; i++) {
     const a = (i / 5) * Math.PI * 2;
     const spoke = addBox(grp, 0.022, 0.012, 0.2, metal, Math.sin(a) * 0.1, 0.046, Math.cos(a) * 0.1);
     spoke.rotation.y = -a;
-    addCyl(grp, 0.02, 0.02, 0.018, caster, Math.sin(a) * 0.22, 0.014, Math.cos(a) * 0.22, 8);
+    base(spoke);
+    base(addCyl(grp, 0.02, 0.02, 0.018, caster, Math.sin(a) * 0.22, 0.014, Math.cos(a) * 0.22, 8));
   }
-  addCyl(grp, 0.026, 0.032, 0.2, metal, 0, 0.17, 0, 12);
-  addCyl(grp, 0.046, 0.046, 0.018, metal, 0, 0.28, 0, 12);
-  addBox(grp, 0.22, 0.02, 0.16, dark, 0, 0.33, 0.02);
+  base(addCyl(grp, 0.026, 0.032, 0.2, metal, 0, 0.17, 0, 12));
+  base(addCyl(grp, 0.046, 0.046, 0.018, metal, 0, 0.28, 0, 12));
+  base(addBox(grp, 0.22, 0.02, 0.16, dark, 0, 0.33, 0.02));
 
   const seat = new THREE.Group();
   seat.position.set(0, 0.36, 0.02);
@@ -511,13 +516,16 @@ function station(g, st, desk) {
   if (st.headset === 'desk') headset(g, x - 0.46, topY + 0.04, z + 0.02, 1.1);
   tower(g, x + 0.46, z - 0.02, st.accent);
   const drop = addCyl(g, 0.006, 0.006, 0.48, toon('#23282e'), x + 0.36, 0.28, z - 0.22, 6);
-  drop.castShadow = false;
-  addBox(g, 0.012, 0.012, 0.18, toon('#23282e'), x + 0.36, 0.045, z - 0.36);
+  drop.userData.noShadow = true;
+  const run = addBox(g, 0.012, 0.012, 0.18, toon('#23282e'), x + 0.36, 0.045, z - 0.36);
+  run.userData.noShadow = true;
   const spineX = x + desk.w / 2 + 0.03;
   const channel = toon('#b7c0c6');
-  addBox(g, 0.028, 0.5, 0.032, channel, spineX, 0.28, z - 0.04);
-  addBox(g, 0.01, 0.46, 0.012, toon('#2a3036'), spineX, 0.28, z - 0.02);
-  addBox(g, 0.028, 0.02, 0.28, channel, spineX, 0.04, z - 0.2);
+  for (const mesh of [
+    addBox(g, 0.028, 0.5, 0.032, channel, spineX, 0.28, z - 0.04),
+    addBox(g, 0.01, 0.46, 0.012, toon('#2a3036'), spineX, 0.28, z - 0.02),
+    addBox(g, 0.028, 0.02, 0.28, channel, spineX, 0.04, z - 0.2),
+  ]) mesh.userData.noShadow = true;
   if (st.id === 'adc') {
     addBox(g, 0.16, 0.008, 0.2, toon('#f4efe6'), x - 0.36, 0.755, z - 0.14);
     addBox(g, 0.14, 0.004, 0.16, toon('#e7d3a8'), x - 0.36, 0.761, z - 0.12);

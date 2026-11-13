@@ -27,18 +27,18 @@ node experiments/indoor-20261113/esports-room/tools/shoot.mjs
 
 | shot | bytes | mode | console errors | failed requests |
 | --- | ---: | --- | ---: | ---: |
-| `shots/toon_default.png` | 193741 | TOON | 0 | 0 |
-| `shots/toon_corner.png` | 224272 | TOON | 0 | 0 |
-| `shots/toon_close.png` | 179232 | TOON | 0 | 0 |
-| `shots/unlit_default.png` | 103941 | UNLIT | 0 | 0 |
+| `shots/toon_default.png` | 198933 | TOON | 0 | 0 |
+| `shots/toon_corner.png` | 219094 | TOON | 0 | 0 |
+| `shots/toon_close.png` | 177137 | TOON | 0 | 0 |
+| `shots/unlit_default.png` | 104149 | UNLIT | 0 | 0 |
 
 Favicon 404s are ignored. Scene status reached `ready`. GLB loads reported none in `window.__failed`.
 
 What the frames show:
 
-- Default: five chairs face the monitors. From behind, each back is a narrow waist, shoulder wings, and a separate headrest. Tape ticks and the near raceway mark the carpet. Replay reads NORTH PIT / 14:22. The coach desk corner is at the near right.
+- Default: the camera sits closer and lower, so the five stations and the replay wall fill the frame. SUP reads on the right. Chair backs still show the waist, wings, and posted headrest. The open carpet is only the strip under the chairs.
 - Corner: coach monitor reads COACH · ROUND TAPE. Keyboard rows, mouse, headset stand, and the chair's teal front bolster are on the sitter side. The player row is behind.
-- Close: MID reads SCRIM · LIVE. The red bolster, bucket seat, and armrest face that screen. The keyboard is staggered key rows, not a handful of blocks. The tower front is vented.
+- Close: MID reads SCRIM · LIVE. The red bolster, bucket seat, and armrest face that screen. The carpet beside the chair is even. The key light is overhead, so the desk shadow stays under the top instead of cutting across the floor.
 - Unlit: same default camera, flat basic materials, no toon steps. Replay and station screens still draw from their maps.
 
 ## Not claimed

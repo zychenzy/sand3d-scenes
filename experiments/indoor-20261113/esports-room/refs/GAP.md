@@ -22,5 +22,5 @@ Known limits:
 - Cable "management" is a channel and a spine, not a braided loom.
 - Screens do not animate. There is no bloom pass.
 - From behind, the back is a narrow lumbar, a wider shoulder yoke with short wings, and a headrest on two posts. It is still hard-edged toon, not a stitched product chair.
-- The daylight shadow is an 8192 hard map fitted to the pit. The old block fringe on the carpet is gone. A hard edge is still a hard edge in the close shot; it is not a soft penumbra.
-- The open carpet carries tape ticks at each station and a floor raceway along the left and the near edge. The walk between the chairs and that raceway stays open. The default frame still shows a lot of that floor, now marked.
+- The key light sits overhead, so the close carpet stays even and the desk shadow falls under the top. Chair bases do not speckle the floor. It is still a hard shadow, not a soft penumbra.
+- The default camera is in close on the row. The five stations and the replay wall fill the frame. The coach desk and round-tape monitor are the corner shot. The aisle in front of the chairs is still empty.
