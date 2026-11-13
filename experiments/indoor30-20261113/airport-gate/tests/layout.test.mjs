@@ -134,6 +134,7 @@ assert.equal(layout.lights.hemi.ground, '#8d98a2');
 assert.ok(layout.lights.key.intensity <= 1.15);
 assert.ok(layout.instances.some((item) => item.kind === 'pos_terminal'));
 assert.ok(layout.instances.filter((item) => item.kind === 'monitor').length >= 2);
-assert.ok(layout.instances.filter((item) => item.kind === 'bar_stool').length >= 3);
+assert.ok(layout.instances.filter((item) => item.kind === 'bar_stool').length >= 2);
+assert.ok(!layout.instances.some((item) => item.id === 'stool_a'));
 
 console.log(`airport-gate layout ok — ranks ${rankClearances(layout).map((g) => g.clear.toFixed(2)).join('/')} aisle ${aisle.toFixed(2)} window ${walk.toFixed(2)}`);

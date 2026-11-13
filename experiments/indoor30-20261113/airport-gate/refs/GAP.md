@@ -13,7 +13,7 @@ No beam seat, gate podium, stanchion, or flight ribbon exists in those bakes. `s
 
 - Curved desktop monitor on the podium. Not a gate CRT.
 - Cafe POS terminal as the scanner head. It reads as a tilted reader after yawing the screen toward the queue. It is not a boarding-pass scanner.
-- Cafe bar stool at the work ledge. The seat was tinted off pure black. The base is still a cafe pedestal.
+- Two cafe bar stools remain at the work ledge. The seat was tinted off pure black. The base is still a cafe pedestal. The third stool, which lined up behind the south seat bank, was removed.
 - Flowerpot, with block foliage added in the scene. One cup on the ledge, retinted off the original yellow.
 
 ## Still open

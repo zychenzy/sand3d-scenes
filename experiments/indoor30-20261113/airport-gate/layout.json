@@ -142,16 +142,15 @@
     { "id": "agent_mon_b", "kind": "monitor", "position": [-5.88, 1.06, -3.42], "rotationY": -1.15 },
     { "id": "scan_head_std", "kind": "pos_terminal", "position": [-6.18, 0.96, -1.72], "rotationY": 1.5708 },
     { "id": "scan_head_acc", "kind": "pos_terminal", "position": [-6.18, 0.96, -0.48], "rotationY": 1.5708 },
-    { "id": "stool_a", "kind": "bar_stool", "position": [6.28, 0, -2.35], "rotationY": 1.5708 },
     { "id": "stool_b", "kind": "bar_stool", "position": [6.28, 0, -0.35], "rotationY": 1.5708 },
     { "id": "stool_c", "kind": "bar_stool", "position": [6.28, 0, 1.45], "rotationY": 1.5708 },
     { "id": "planter", "kind": "flowerpot", "position": [-2.55, 0, 3.55], "rotationY": 0.4 },
     { "id": "ledge_cup", "kind": "cup_mug", "position": [6.78, 1.06, 0.85], "rotationY": 0.6 }
   ],
   "camera": {
-    "fov": 48,
-    "position": [2.45, 1.56, 1.55],
-    "target": [-1.45, 1.12, 0.45]
+    "fov": 42,
+    "position": [3.8, 1.52, 0.85],
+    "target": [-4.2, 1.08, -1.25]
   },
   "cameraPresets": {
     "corner": {
