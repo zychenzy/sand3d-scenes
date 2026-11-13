@@ -378,25 +378,79 @@ function addRacks(g, racks, shell) {
   });
 }
 
+function addWorkbench(g, spec, shell) {
+  const { x, z, w, d, top } = spec;
+  const wood = toon(shell.woodColor);
+  const slab = toon('#9a6238');
+  const leg = 0.065;
+  const legH = top - 0.08;
+  const inset = 0.055;
+  if (spec.recess) {
+    const ww = spec.wellW;
+    const wd = spec.wellD;
+    const railX = (w - ww) / 2;
+    const railZ = (d - wd) / 2;
+    const y = top - 0.035;
+    addBox(g, railX, 0.07, d, slab, x - (ww + railX) / 2, y, z);
+    addBox(g, railX, 0.07, d, slab, x + (ww + railX) / 2, y, z);
+    addBox(g, ww, 0.07, railZ, slab, x, y, z - (wd + railZ) / 2);
+    addBox(g, ww, 0.07, railZ, slab, x, y, z + (wd + railZ) / 2);
+    const bed = addBox(
+      g, ww - 0.06, 0.016, wd - 0.05,
+      toon('#fff8ee', { emissive: '#fff4e0', emissiveIntensity: 1.3 }),
+      x, top - 0.052, z,
+    );
+    tagShadow(bed, false);
+  } else {
+    addBox(g, w, 0.07, d, slab, x, top - 0.035, z);
+  }
+  const apronH = 0.1;
+  const apronY = top - 0.12;
+  addBox(g, w - 0.02, apronH, 0.028, wood, x, apronY, z + d / 2 - 0.02);
+  addBox(g, w - 0.02, apronH, 0.028, wood, x, apronY, z - d / 2 + 0.02);
+  addBox(g, 0.028, apronH, d - 0.08, wood, x - w / 2 + 0.02, apronY, z);
+  addBox(g, 0.028, apronH, d - 0.08, wood, x + w / 2 - 0.02, apronY, z);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(
+        g, leg, legH, leg, wood,
+        x + sx * (w / 2 - inset - leg / 2),
+        legH / 2,
+        z + sz * (d / 2 - inset - leg / 2),
+      );
+    }
+  }
+  addBox(g, w - 0.28, 0.018, d - 0.18, toon('#6a432c'), x, 0.2, z);
+}
+
+function addStool(g, x, z, shell) {
+  const wood = toon(shell.woodColor);
+  const seatY = 0.62;
+  addCyl(g, 0.155, 0.16, 0.042, toon('#9a6238'), x, seatY, z, 16);
+  const legH = seatY - 0.03;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, 0.034, legH, 0.034, wood, x + sx * 0.1, legH / 2, z + sz * 0.1);
+    }
+  }
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.008, 6, 18), toon('#5c564f'));
+  ring.rotation.x = Math.PI / 2;
+  ring.position.set(x, 0.22, z);
+  ring.castShadow = false;
+  g.add(ring);
+}
+
 function addLightTable(g, zone, shell) {
   const { x, z, top } = zone;
-  const wood = toon('#d9c4a2');
-  const box = addBox(g, 1.04, 0.05, 0.56, wood, x, top + 0.025, z);
-  box.castShadow = true;
-  const panel = addBox(
-    g, 0.96, 0.014, 0.48,
-    toon('#fff8ee', { emissive: '#fff4e0', emissiveIntensity: 1.35 }),
-    x, top + 0.054, z,
-  );
-  tagShadow(panel, false);
+  addWorkbench(g, { ...zone, recess: true }, shell);
   const paper = addBox(
     g, 0.66, 0.004, 0.38,
     toon('#f3ead2', { map: cartoon(), polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }),
-    x - 0.02, top + 0.064, z - 0.01,
+    x - 0.02, top - 0.038, z - 0.01,
   );
   tagShadow(paper, false);
 
-  const y = top + 0.074;
+  const y = top - 0.028;
   const see = { opacity: 0.62, glow: 0.48 };
   addFlatGlass(g, rect(0.12, 0.065), GLASS.amber, x - 0.22, y, z + 0.1, see);
   addFlatGlass(g, rect(0.1, 0.06), GLASS.gold, x - 0.08, y, z + 0.1, see);
@@ -416,11 +470,12 @@ function addLightTable(g, zone, shell) {
     n.castShadow = false;
   });
 
-  foilRoll(g, shell, x + 0.9, top, z + 0.32, 0.5);
-  foilRoll(g, shell, x + 0.78, top, z + 0.4, -0.4);
+  foilRoll(g, shell, x + zone.w / 2 - 0.22, top - 0.04, z + zone.d / 2 - 0.16, 0.4);
+  foilRoll(g, shell, x + zone.w / 2 - 0.34, top - 0.04, z + 0.12, -0.5);
 }
 
 function addSolder(g, zone, vent, shell) {
+  addWorkbench(g, zone, shell);
   const y = zone.top;
   const ix = zone.ironX;
   const z = zone.z + 0.02;
@@ -504,6 +559,7 @@ function addSolder(g, zone, vent, shell) {
 }
 
 function addCutting(g, zone, shell) {
+  addWorkbench(g, zone, shell);
   const { x, z, top } = zone;
   const y = top + 0.01;
   addFlatGlass(g, rect(0.22, 0.14), GLASS.amber, x - 0.06, y, z + 0.02, { opacity: 0.84, glow: 0.3 });
@@ -611,21 +667,67 @@ function addStorage(g, layout, shell) {
   g.add(board);
 }
 
+function addWallPanel(g, shell) {
+  const x = 0.95;
+  const y0 = 1.18;
+  const z = -3.84;
+  const w = 0.58;
+  const h = 0.7;
+  const wood = toon(shell.woodColor);
+  addBox(g, w, 0.04, 0.04, wood, x, y0, z);
+  addBox(g, w, 0.04, 0.04, wood, x, y0 + h, z);
+  addBox(g, 0.04, h, 0.04, wood, x - w / 2 + 0.02, y0 + h / 2, z);
+  addBox(g, 0.04, h, 0.04, wood, x + w / 2 - 0.02, y0 + h / 2, z);
+  const glow = addBox(
+    g, w - 0.1, h - 0.1, 0.012,
+    toon('#fff6e8', { emissive: '#fff1d4', emissiveIntensity: 0.85 }),
+    x, y0 + h / 2, z - 0.012,
+  );
+  tagShadow(glow, false);
+  const grp = new THREE.Group();
+  grp.position.set(x, y0 + h / 2, z);
+  addUprightGlass(grp, disk(0, 0, 0.09), GLASS.ruby, 0.012, { glow: 0.55, opacity: 0.9 });
+  const colors = [GLASS.gold, GLASS.emerald, GLASS.cobalt, GLASS.amber, GLASS.teal, GLASS.violet];
+  for (let i = 0; i < 6; i++) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 3;
+    addUprightGlass(grp, petal(0, 0, a, 0.11, 0.2, 0.38), colors[i], 0.01, { glow: 0.45, opacity: 0.88 });
+  }
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.008, 6, 20), toon(shell.leadColor));
+  ring.position.z = 0.02;
+  ring.castShadow = false;
+  grp.add(ring);
+  g.add(grp);
+}
+
 function makeShell(layout) {
   const room = layout.meta.room;
   const g = makeCutawayShell(layout, {
-    ceilingW: room.width * 0.98,
-    ceilingD: room.depth * 0.62,
-    ceilingX: -0.15,
-    ceilingZ: -1.35,
+    ceilingW: room.width,
+    ceilingD: room.depth,
+    ceilingX: 0,
+    ceilingZ: 0,
   });
   const { width: W, depth: D, height: H } = room;
   const wood = toon(layout.shell.woodColor);
   const trim = toon(layout.shell.trimColor);
-  addBox(g, W - 0.16, 0.11, 0.05, wood, 0, 0.055, -D / 2 + 0.1);
-  addBox(g, 0.05, 0.11, D - 0.16, wood, -W / 2 + 0.1, 0.055, 0);
-  addBox(g, W - 0.28, 0.035, 0.03, trim, 0, 1.02, -D / 2 + 0.09);
-  addBox(g, 0.03, 0.035, D - 0.4, trim, -W / 2 + 0.09, 1.02, -0.2);
+  const dado = toon(layout.shell.dadoColor || '#e3d2b8');
+  const dadoH = 0.98;
+  const backZ = -D / 2 + 0.09;
+  const leftX = -W / 2 + 0.09;
+  const backPanel = addBox(g, W - 0.2, dadoH, 0.03, dado, 0, dadoH / 2, backZ);
+  const leftPanel = addBox(g, 0.03, dadoH, D - 0.2, dado, leftX, dadoH / 2, 0);
+  backPanel.userData.noCast = true;
+  leftPanel.userData.noCast = true;
+  addBox(g, W - 0.16, 0.045, 0.045, wood, 0, dadoH + 0.02, backZ);
+  addBox(g, 0.045, 0.045, D - 0.16, wood, leftX, dadoH + 0.02, 0);
+  for (let x = -W / 2 + 0.7; x < W / 2 - 0.3; x += 1.25) {
+    const stile = addBox(g, 0.035, dadoH, 0.02, wood, x, dadoH / 2, backZ + 0.01);
+    stile.userData.noCast = true;
+  }
+  for (let z = -D / 2 + 0.8; z < D / 2 - 0.4; z += 1.35) {
+    const stile = addBox(g, 0.02, dadoH, 0.035, wood, leftX + 0.01, dadoH / 2, z);
+    stile.userData.noCast = true;
+  }
   const path = layout.zones.path;
   const mat = addBox(
     g, path.w, 0.012, path.d,
@@ -633,8 +735,13 @@ function makeShell(layout) {
     path.x, 0.006, path.z,
   );
   mat.castShadow = false;
-  const beamA = addBox(g, W * 0.72, 0.07, 0.08, trim, -0.35, H - 0.18, -2.55);
-  const beamB = addBox(g, W * 0.72, 0.07, 0.08, trim, -0.35, H - 0.18, -0.85);
+  const fascia = toon(layout.shell.trimColor);
+  const front = addBox(g, W, 0.2, 0.1, fascia, 0, H - 0.16, D / 2 - 0.05);
+  const right = addBox(g, 0.1, 0.2, D, fascia, W / 2 - 0.05, H - 0.16, 0);
+  front.userData.noCast = true;
+  right.userData.noCast = true;
+  const beamA = addBox(g, W * 0.86, 0.06, 0.08, trim, 0, H - 0.2, -2.2);
+  const beamB = addBox(g, W * 0.86, 0.06, 0.08, trim, 0, H - 0.2, -0.4);
   beamA.userData.noCast = true;
   beamB.userData.noCast = true;
   return g;
@@ -645,8 +752,10 @@ function makeProcedural(layout) {
   g.name = 'procedural';
   const shell = layout.shell;
   addWindow(g, layout.zones.window, shell);
+  addWallPanel(g, shell);
   addRacks(g, layout.zones.racks, shell);
   addLightTable(g, layout.zones.lightTable, shell);
+  for (const stool of layout.zones.stools) addStool(g, stool.x, stool.z, shell);
   addSolder(g, layout.zones.solder, layout.zones.vent, shell);
   addCutting(g, layout.zones.cutting, shell);
   addStorage(g, layout, shell);

@@ -14,8 +14,8 @@ python3 -m http.server 8793 --bind 127.0.0.1
 ```
 
 - http://127.0.0.1:8793/experiments/indoor30-20261113/stained-glass/
-- `?cam=corner` solder bench, foil, vent hood
-- `?cam=detail` light-table glass
+- `?cam=corner` solder bench, stool, foil, vent hood
+- `?cam=detail` light-table glass in the recessed well
 - `?mode=unlit`
 - `T` toon · `U` unlit · `?hud=0` hides the overlay
 

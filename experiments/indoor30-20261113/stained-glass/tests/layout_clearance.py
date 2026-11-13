@@ -13,11 +13,6 @@ HTML = (ROOT / "index.html").read_text()
 
 # World-axis extents in metres, from node-transformed GLB bounds.
 NATIVE = {
-    "long_dining": (1.8000, 0.7273, 0.9376),
-    "piano_bench": (0.9018, 0.4726, 0.4351),
-    "study_desk": (0.3691, 0.6490, 1.1000),
-    "simple_chair": (0.4752, 0.8500, 0.5010),
-    "square_table": (1.2000, 1.1840, 1.2000),
     "wall_shelf": (0.7012, 0.8000, 0.2873),
     "easel": (0.7070, 1.7000, 0.8000),
     "pendant_lamp": (0.2463, 0.4490, 0.2463),
@@ -78,6 +73,10 @@ check("NearestFilter" in LIB, "toon gradient is not hard-stepped")
 check("MeshBasicMaterial" in LIB, "unlit path is missing")
 check("ExtrudeGeometry" in SCENE, "coloured glass is not extruded sheet")
 check("transparent: true" in SCENE, "coloured glass is opaque")
+check("function addWorkbench" in SCENE, "workbench silhouette missing")
+check("function addStool" in SCENE, "work stool missing")
+check("simple_chair" not in SCENE and "long_dining" not in SCENE, "dining table or cafe chair leaked back")
+check("ceilingD: room.depth" in SCENE, "ceiling does not span the room")
 check(SCENE.count("foil-roll") >= 1 or "foilRoll" in SCENE, "foil rolls missing")
 for banned in ("glory", "blowpipe", "lehr", "furnace", "marver"):
     check(banned not in SCENE.lower(), f"hot-shop term {banned} leaked into the cold shop")
@@ -100,8 +99,7 @@ for iid, box in boxes.items():
     check(box[3] < H + 0.02, f"{iid} pokes through the ceiling {box}")
     check(box[2] > -0.02, f"{iid} is below the floor {box}")
 
-skip_kinds = {("jam_jar", "study_desk"), ("jam_jar", "square_table"), ("jam_jar", "wall_shelf"),
-              ("library_lamp", "study_desk")}
+skip_kinds = {("jam_jar", "wall_shelf")}
 ids = list(instances)
 for i, a in enumerate(ids):
     for b in ids[i + 1:]:
@@ -112,12 +110,10 @@ for i, a in enumerate(ids):
             fails.append(f"overlap {a} and {b}")
 
 zones = LAYOUT["zones"]
-table = instances["light_table"]
-check(abs(table["position"][0] - zones["lightTable"]["x"]) < 0.02, "light table drifted from its zone")
-check(abs(table["position"][2] - zones["lightTable"]["z"]) < 0.02, "light table z drifted")
-check(abs(LAYOUT["assets"]["long_dining"]["targetHeight"] - zones["lightTable"]["top"]) < 0.01, "light table height")
-desk = instances["solder_desk"]
-check(abs(desk["position"][0] - zones["solder"]["x"]) < 0.02, "solder desk drifted")
+for key in ("lightTable", "solder", "cutting"):
+    bench = zones[key]
+    check(bench["w"] >= 1.0 and bench["d"] >= 0.6 and 0.74 <= bench["top"] <= 0.95, f"{key} is not a workbench")
+check(len(zones["stools"]) >= 2, "need a stool at the light table and the solder bench")
 check(abs(zones["vent"]["x"] - zones["solder"]["ironX"]) < 0.15, "vent is not over the iron")
 check(abs(zones["vent"]["z"] - zones["solder"]["z"]) < 0.25, "vent is not at the solder bench")
 
@@ -140,9 +136,10 @@ check(len(zones["racks"]) >= 2, "need two sheet racks")
 for rk in zones["racks"]:
     check(rk["x"] < -W / 2 + 0.7, f"rack is not against the left wall {rk}")
 
-solder_front = boxes["solder_desk"][5]
-cut_back = boxes["cut_table"][4]
-check(cut_back - solder_front > 0.9, "cutting bench is inside the solder station")
+solder = zones["solder"]
+cutting = zones["cutting"]
+gap = (cutting["z"] - cutting["d"] / 2) - (solder["z"] + solder["d"] / 2)
+check(gap > 0.9, f"cutting bench is inside the solder station ({gap:.2f} m)")
 
 shots = ["toon_default.png", "toon_corner.png", "toon_detail.png", "unlit_default.png"]
 for name in shots:
