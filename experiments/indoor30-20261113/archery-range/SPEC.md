@@ -15,7 +15,7 @@ Four lanes on 1.80 m centres (the indoor minimum is 0.80 m, previously 0.70 m). 
 - Waiting line: target-side edge 3.00 m behind the shooting line.
 - Equipment line: 4.00 m behind the waiting line.
 
-Ground quivers sit on the lane shoulder, behind the shooting line and in front of the waiting line, outside the corridor. Bow rack, hip quivers, and preparation benches are behind the waiting line. Spectator benches and the scoring table are behind the equipment line. Two clear paths: a cross aisle just behind the waiting line, and an entrance along the open side.
+Ground quivers sit on the lane shoulder, behind the shooting line and in front of the waiting line, outside the corridor. Bow rack, hip quivers, and preparation benches are behind the waiting line. Spectator benches and the scoring table are behind the equipment line. Two clear paths: a cross aisle just behind the waiting line, and an entrance along the east wall. The east wall is closed, with the same pad run as the west wall.
 
 ## Light
 

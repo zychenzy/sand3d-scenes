@@ -145,8 +145,9 @@ function makeShell() {
   const cx = (R.x0 + R.x1) / 2;
   const cz = (R.z0 + R.z1) / 2;
   const H = R.h;
+  const t = 0.16;
 
-  const apron = addBox(g, W + 3.2, 0.04, D + 2.4, toon('#cfc8ba'), cx + 0.4, -0.06, cz);
+  const apron = addBox(g, W + t * 2, 0.04, D + t * 2, toon('#cfc8ba'), cx, -0.06, cz);
   apron.userData.noCast = true;
   apron.receiveShadow = true;
 
@@ -169,23 +170,20 @@ function makeShell() {
     flat(g, 0.42, RANGE.lineW, C.equip, -4.1 + i * 0.62, L.equip + RANGE.lineW / 2, 0.012);
   }
 
-  const t = 0.16;
   const back = addBox(g, W + t * 2, H, t, toon(C.plaster), cx, H / 2, R.z0 - t / 2);
   back.userData.noCast = true;
   const west = addBox(g, t, H, D + t, toon(C.plaster), R.x0 - t / 2, H / 2, cz);
   west.userData.noCast = true;
-  const south = addBox(g, W + t, H, t, toon(C.plaster), cx - 0.1, H / 2, R.z1 + t / 2);
+  const east = addBox(g, t, H, D + t, toon(C.plaster), R.x1 + t / 2, H / 2, cz);
+  east.userData.noCast = true;
+  const south = addBox(g, W + t, H, t, toon(C.plaster), cx, H / 2, R.z1 + t / 2);
   south.userData.noCast = true;
-
-  const cut0 = 0.7;
-  const eastA = addBox(g, t, H, cut0 - R.z0, toon(C.plaster), R.x1 + t / 2, H / 2, (R.z0 + cut0) / 2);
-  eastA.userData.noCast = true;
-  addBox(g, t + 0.02, H, 0.08, toon(C.poche), R.x1 + 0.02, H / 2, cut0);
 
   addBox(g, W, 0.1, 0.06, toon(C.rail), cx, 0.05, R.z0 + 0.04);
   addBox(g, 0.06, 0.1, D - 0.2, toon(C.rail), R.x0 + 0.04, 0.05, cz);
+  addBox(g, 0.06, 0.1, D - 0.2, toon(C.rail), R.x1 - 0.04, 0.05, cz);
 
-  function pads(fixed, a0, a1, alongX) {
+  function pads(fixed, a0, a1, alongX, inward = 1) {
     const span = a1 - a0;
     const n = Math.max(1, Math.floor(span / 0.92));
     const step = span / n;
@@ -193,17 +191,22 @@ function makeShell() {
       const c = a0 + (i + 0.5) * step;
       const color = toon(i % 2 ? C.pad : '#245743');
       const body = alongX
-        ? addBox(g, step - 0.04, 2.05, 0.05, color, c, 1.12, fixed)
-        : addBox(g, 0.05, 2.05, step - 0.04, color, fixed, 1.12, c);
+        ? addBox(g, step - 0.008, 2.05, 0.05, color, c, 1.12, fixed)
+        : addBox(g, 0.05, 2.05, step - 0.008, color, fixed, 1.12, c);
       body.userData.noCast = true;
-      if (alongX) addBox(g, step - 0.1, 1.92, 0.012, toon(C.padLite), c, 1.12, fixed + 0.03);
-      else addBox(g, 0.012, 1.92, step - 0.1, toon(C.padLite), fixed + 0.03, 1.12, c);
+      const face = fixed + 0.03 * inward;
+      if (alongX) addBox(g, step - 0.04, 1.92, 0.012, toon(C.padLite), c, 1.12, face);
+      else addBox(g, 0.012, 1.92, step - 0.04, toon(C.padLite), face, 1.12, c);
     }
   }
-  pads(R.x0 + 0.05, 0.2, L.wait - 0.2, false);
-  pads(R.z0 + 0.06, R.x0 + 0.4, R.x1 - 0.4, true);
+  pads(R.x0 + 0.025, 0.02, L.wait - 0.2, false, 1);
+  pads(R.x1 - 0.025, 0.02, L.wait - 0.2, false, -1);
+  pads(R.z0 + 0.06, R.x0 + 0.02, R.x1 - 0.02, true, 1);
   addBox(g, W - 0.3, 0.06, 0.08, toon(C.rail), cx, 2.18, R.z0 + 0.08);
-  addBox(g, 0.08, 0.06, L.wait - 0.4, toon(C.rail), R.x0 + 0.08, 2.18, (0.2 + L.wait) / 2);
+  const pad0 = 0.02;
+  const pad1 = L.wait - 0.2;
+  addBox(g, 0.08, 0.06, pad1 - pad0, toon(C.rail), R.x0 + 0.08, 2.18, (pad0 + pad1) / 2);
+  addBox(g, 0.08, 0.06, pad1 - pad0, toon(C.rail), R.x1 - 0.08, 2.18, (pad0 + pad1) / 2);
 
   const ceil = addBox(g, W, 0.08, D, toon(C.ceiling), cx, H + 0.02, cz);
   ceil.userData.noCast = true;
@@ -224,14 +227,14 @@ function makeShell() {
     }
   }
 
-  curtain(g, -4.7, 4.7, 0.35, 4.55, 0.4, 0.09, C.net);
+  curtain(g, -5.22, 5.22, 0.35, 4.55, 0.4, 0.09, C.net);
   for (let y = 0.7; y < 4.4; y += 0.55) {
-    const band = addBox(g, 9.4, 0.012, 0.01, toon('#6a7580'), 0, y, 0.405);
+    const band = addBox(g, 10.44, 0.012, 0.01, toon('#6a7580'), 0, y, 0.405);
     band.userData.noCast = true;
   }
-  const skirt = addBox(g, 9.5, 0.32, 0.04, toon(C.skirt), 0, 0.2, 0.34);
+  const skirt = addBox(g, 10.48, 0.32, 0.04, toon(C.skirt), 0, 0.2, 0.34);
   skirt.userData.noCast = true;
-  addBox(g, 9.6, 0.08, 0.1, toon(C.oak), 0, 4.58, 0.4);
+  addBox(g, 10.52, 0.08, 0.1, toon(C.oak), 0, 4.58, 0.4);
 
   return g;
 }
