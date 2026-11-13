@@ -12,7 +12,9 @@ The two larger washers (0.86 × 0.78 × 1.28 m) are a neighbourhood “big machi
 
 Washers and dryers are different cabinets. A washer is white enamel with a navy cap, soap slots, and one door into a smooth dark drum with three short wall lifters. A dryer is taller steel with two doors, a perforated drum back, and a warm drum on the running pockets. The drum is a recessed open cylinder set behind dark glass and a metal ring. The glass and ring swing on a hinge. From the head-on close camera a fully swung door is an edge-on wire, so the open dryer (column index 3, lower pocket) stays ajar. The open washer (standard index 3) swings into the aisle, short of the 1.48 m clearance.
 
-Folded textiles are a short pile plus a rolled hem, not stacked slabs with stripe maps. Overhead, a DRYERS panel and a WASHERS panel replace the blank teal soffit bars that the old default camera cropped into green strips. The key shadow is a 4096 hard map on a tighter frustum, and the thin table lips do not cast.
+Folded textiles are two offset thicknesses of the same cloth, with a darker hem on the near edge and a crease on the top face. They are not cylinders and they do not use a page-stripe map. The outline is still made of boxes, so a side view can look blocky.
+
+The default camera sits in the open front, far enough back and left that the WASHERS panel (facing into the room) and the DRYERS panel both read, along with both machine banks. The blank teal soffit bars stay removed. The wall clock is a disc with 12, 3, 6, and 9 and two hands. The floor tote is an open wire basket with two arched handles and cloth inside. The key shadow is a 4096 hard map on a tighter frustum, and the thin table lips do not cast.
 
 ## Detergent
 

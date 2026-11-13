@@ -16,18 +16,20 @@ Last shoot, console and network clean aside from the ignored favicon 404. `windo
 
 Second pass after the screenshot review. Shadow map is 4096 over a tighter frustum, thin table lips no longer cast, and the striped steel and cloth maps are gone.
 
+Third pass. Default camera is pulled back and left so both banks and both signs are in frame.
+
 | Shot | Bytes | Read |
 | --- | ---: | --- |
-| `shots/toon_default.png` | 568997 | DRYERS sign fully in frame. Washer bank left, two-pocket dryers right, folding counter, carts, chairs. No green soffit strips. |
-| `shots/toon_corner.png` | 588472 | Dryer bank, SOAP vendor, attendant desk, lamp, shelf, WEST END price board, chairs, floor mat. |
-| `shots/toon_close.png` | 458719 | Perforated dryer drums behind dark glass and a metal ring. One lower door ajar. Rolled folds on the table, not page stripes. |
-| `shots/unlit_default.png` | 354070 | Same framing as default. Flat color, no shadows. Warm drums still read because unlit uses emissive as the color. |
+| `shots/toon_default.png` | 648715 | WASHERS and DRYERS both readable. Washer bank on the left, dryer bank on the right, clock, mesh tote, ceiling intact. |
+| `shots/toon_corner.png` | 595129 | Dryer bank, clock, SOAP vendor, attendant desk, price board, mesh tote with handles. |
+| `shots/toon_close.png` | 463089 | Perforated dryer drums, metal rings, clock numerals 12/3/6/9. Fold piles show a hem and two thicknesses. |
+| `shots/unlit_default.png` | 460192 | Same framing as default. Flat color, no shadows. Both signs still read. Warm drums still read. |
 
 ## Limits still visible
 
 - Dryer drums are a recessed cylinder, a ring of holes, and three wall lifters. They are not a fully perforated tumbling drum.
 - The open dryer door stays ajar so the head-on close shot still shows the ring.
-- Folded stacks are rolled hems on a soft pile. From the corner they can still look blocky.
-- The floor tote reads as a plain box. Carts are basket frames, not a dense wire mesh.
-- The center of the default frame is the open aisle. The window bench and the WASHERS sign sit outside that frame.
-- Large washers sit toward the window and are easy to crop from the default frame.
+- Fold piles are two offset thicknesses with a hem. The silhouette is still rectilinear, so a side view can look blocky.
+- The window bench is at the storefront and is easy to miss at the left edge of the default frame. The window chairs and side table are in that frame.
+- Carts are basket frames, not a dense wire mesh.
+- Large washers sit toward the window and are partly behind the standard bank in the default frame.

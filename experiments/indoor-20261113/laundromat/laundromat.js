@@ -453,23 +453,114 @@ function cart(g, spec, mats) {
   }
 }
 
+function foldTopMap(base, hem) {
+  const key = `fold|${base}|${hem}`;
+  if (labelCache.has(key)) return labelCache.get(key);
+  const c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, 256, 256);
+  for (let i = 0; i < 40; i++) {
+    ctx.fillStyle = i % 2 ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+    ctx.beginPath();
+    ctx.ellipse((i * 47) % 256, (i * 29) % 256, 18, 8, i * 0.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.fillStyle = 'rgba(0,0,0,0.16)';
+  ctx.fillRect(18, 118, 220, 10);
+  ctx.fillStyle = hem;
+  ctx.fillRect(0, 210, 256, 46);
+  ctx.fillStyle = 'rgba(255,255,255,0.18)';
+  ctx.fillRect(0, 210, 256, 6);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  labelCache.set(key, t);
+  return t;
+}
+
 function foldedTextile(g, x, y, z, rot, mats, kind) {
   const cloth = kind === 'blue' ? mats.blue : kind === 'clay' ? mats.clay : mats.towel;
-  const hem = kind === 'blue' ? mats.towel : kind === 'clay' ? mats.towelBand : mats.hem;
+  const hem = kind === 'blue' ? mats.blueHem : kind === 'clay' ? mats.clayHem : mats.hem;
+  const topColor = kind === 'blue' ? '#6d8ea6' : kind === 'clay' ? '#c4896a' : '#f4efe6';
+  const hemColor = kind === 'blue' ? '#4d6a82' : kind === 'clay' ? '#a56d52' : '#ddd0c0';
   const root = new THREE.Group();
   root.position.set(x, y, z);
   root.rotation.y = rot || 0;
   g.add(root);
   const quiet = { cast: false };
-  const fold = (ox, oy, oz, w, d, thick) => {
-    box(root, w * 0.9, thick * 0.45, d * 0.5, cloth, ox, oy + thick * 0.4, oz - d * 0.08, 0, quiet);
-    put(root, new THREE.CylinderGeometry(thick * 0.72, thick * 0.72, w * 0.94, 14), hem, ox, oy + thick * 0.5, oz + d * 0.22, [0, 0, Math.PI / 2], quiet);
-    put(root, new THREE.SphereGeometry(thick * 0.62, 10, 8), cloth, ox, oy + thick * 0.55, oz - d * 0.02, null, quiet);
-    put(root, new THREE.SphereGeometry(thick * 0.5, 8, 6), cloth, ox - w * 0.4, oy + thick * 0.42, oz, null, quiet);
-    put(root, new THREE.SphereGeometry(thick * 0.5, 8, 6), cloth, ox + w * 0.4, oy + thick * 0.42, oz, null, quiet);
+  const pile = (ox, oz, yaw, scale) => {
+    const p = new THREE.Group();
+    p.position.set(ox, 0, oz);
+    p.rotation.y = yaw;
+    p.scale.setScalar(scale);
+    root.add(p);
+    box(p, 0.32, 0.05, 0.22, cloth, 0, 0.025, 0, 0, quiet);
+    box(p, 0.28, 0.036, 0.15, cloth, 0.008, 0.062, 0.02, 0, quiet);
+    box(p, 0.27, 0.018, 0.03, hem, 0.008, 0.078, 0.09, 0, quiet);
+    const top = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.3, 0.2),
+      toon('#ffffff', { map: foldTopMap(topColor, hemColor), side: THREE.DoubleSide }),
+    );
+    top.rotation.x = -Math.PI / 2;
+    top.position.set(0.006, 0.084, 0.01);
+    top.userData.noShadow = true;
+    p.add(top);
   };
-  fold(0, 0, 0, 0.32, 0.22, 0.06);
-  fold(0.02, 0.05, -0.01, 0.24, 0.18, 0.05);
+  pile(0, 0, 0.08, 1);
+  pile(0.015, -0.01, -0.28, 0.8);
+}
+
+function clockFaceMap() {
+  const key = 'clock-face';
+  if (labelCache.has(key)) return labelCache.get(key);
+  const c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#f4efe6';
+  ctx.beginPath();
+  ctx.arc(128, 128, 122, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#1c2428';
+  ctx.lineWidth = 12;
+  ctx.stroke();
+  ctx.fillStyle = '#1c2428';
+  ctx.font = '700 42px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('12', 128, 40);
+  ctx.fillText('3', 210, 132);
+  ctx.fillText('6', 128, 218);
+  ctx.fillText('9', 46, 132);
+  ctx.lineWidth = 4;
+  ctx.lineCap = 'round';
+  for (let i = 0; i < 12; i++) {
+    const theta = (i / 12) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(128 + Math.sin(theta) * 92, 128 - Math.cos(theta) * 92);
+    ctx.lineTo(128 + Math.sin(theta) * 106, 128 - Math.cos(theta) * 106);
+    ctx.stroke();
+  }
+  const hand = (hour, len, width) => {
+    const theta = (hour / 12) * Math.PI * 2;
+    ctx.lineWidth = width;
+    ctx.beginPath();
+    ctx.moveTo(128, 128);
+    ctx.lineTo(128 + Math.sin(theta) * len, 128 - Math.cos(theta) * len);
+    ctx.stroke();
+  };
+  hand(10, 58, 8);
+  hand(2, 86, 5);
+  ctx.fillStyle = '#8a3a32';
+  ctx.beginPath();
+  ctx.arc(128, 128, 7, 0, Math.PI * 2);
+  ctx.fill();
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  labelCache.set(key, t);
+  return t;
 }
 
 function makeProcedural(layout) {
@@ -512,6 +603,8 @@ function makeProcedural(layout) {
     mat: toon('#3c4448'),
     clay: toon('#c4896a'),
     blue: toon('#6d8ea6'),
+    blueHem: toon('#4d6a82'),
+    clayHem: toon('#a56d52'),
     leg: toon('#ece8e0'),
     edge: toon('#c6a36a'),
     lam: toon('#ffffff', { map: tex().laminate }),
@@ -681,21 +774,23 @@ function makeProcedural(layout) {
   box(g, 0.62, 0.78, 0.02, mats.board, 5.62, 1.72, -0.42, -Math.PI / 2);
 
   function wallSign(text, x, y, z, w, h, rotY) {
-    const mat = toon('#ffffff', { map: signMap(text, '#1e4e4a', '#f6f1e6') });
+    const mat = toon('#ffffff', { map: signMap(text, '#1e4e4a', '#f6f1e6'), side: THREE.DoubleSide });
+    const nx = Math.sin(rotY);
+    const nz = Math.cos(rotY);
     const face = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
-    face.position.set(x, y, z);
+    face.position.set(x + nx * 0.025, y, z + nz * 0.025);
     face.rotation.y = rotY;
     face.userData.noShadow = true;
     g.add(face);
-    const back = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.02), toon('#163632'));
-    back.position.set(x + Math.sin(rotY) * 0.016, y, z - Math.cos(rotY) * 0.016);
+    const back = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.018), toon('#163632'));
+    back.position.set(x, y, z);
     back.rotation.y = rotY;
     back.userData.noShadow = true;
     g.add(back);
   }
   wallSign('DRYERS', dryMid, dry.h + 0.28, frontZ + 0.04, 1.45, 0.22, 0);
   const washMidZ = (std.z0 + big.z0 + bigLen) / 2;
-  wallSign('WASHERS', wash.wallX + 0.05, 2.15, washMidZ, 1.15, 0.2, -Math.PI / 2);
+  wallSign('WASHERS', wash.wallX + 0.38, 2.24, washMidZ, 1.7, 0.34, 0.85);
 
   const mat = new THREE.Mesh(new THREE.PlaneGeometry(1.25, 0.8), mats.mat);
   mat.rotation.x = -Math.PI / 2;
@@ -703,19 +798,36 @@ function makeProcedural(layout) {
   mat.userData.noShadow = true;
   g.add(mat);
   const tote = new THREE.Group();
-  tote.position.set(0.95, 0, 1.7);
-  tote.rotation.y = -0.35;
+  tote.position.set(1.15, 0, 1.82);
+  tote.rotation.y = 0.7;
   g.add(tote);
-  box(tote, 0.4, 0.28, 0.24, mats.bag, 0, 0.16, 0);
-  box(tote, 0.36, 0.035, 0.2, mats.hem, 0, 0.31, 0, 0, { cast: false });
-  for (const hx of [-0.09, 0.09]) {
-    box(tote, 0.012, 0.11, 0.012, mats.steelDark, hx, 0.36, -0.06, 0, { cast: false });
-    box(tote, 0.012, 0.11, 0.012, mats.steelDark, hx, 0.36, 0.06, 0, { cast: false });
-    box(tote, 0.012, 0.012, 0.14, mats.steelDark, hx, 0.41, 0, 0, { cast: false });
+  const tw = 0.46;
+  const td = 0.3;
+  const quiet = { cast: false };
+  box(tote, tw, 0.025, td, mats.bag, 0, 0.1, 0, 0, quiet);
+  box(tote, tw, 0.03, 0.022, mats.hem, 0, 0.38, td / 2, 0, quiet);
+  box(tote, tw, 0.03, 0.022, mats.hem, 0, 0.38, -td / 2, 0, quiet);
+  box(tote, 0.022, 0.03, td, mats.hem, -tw / 2, 0.38, 0, 0, quiet);
+  box(tote, 0.022, 0.03, td, mats.hem, tw / 2, 0.38, 0, 0, quiet);
+  for (const side of [-1, 1]) {
+    for (let i = 0; i < 5; i++) {
+      box(tote, 0.01, 0.26, 0.01, mats.wire, side * (tw / 2), 0.24, -td / 2 + 0.04 + i * (td / 5), 0, quiet);
+    }
+    box(tote, 0.01, 0.01, td - 0.04, mats.wire, side * (tw / 2), 0.18, 0, 0, quiet);
+    box(tote, 0.01, 0.01, td - 0.04, mats.wire, side * (tw / 2), 0.3, 0, 0, quiet);
   }
-  put(g, new THREE.CylinderGeometry(0.16, 0.16, 0.03, 24), mats.clockFace, dryMid - 0.2, 2.62, dry.wallZ + 0.05, [Math.PI / 2, 0, 0]);
-  box(g, 0.012, 0.09, 0.012, mats.clockHand, dryMid - 0.2, 2.62, dry.wallZ + 0.07);
-  box(g, 0.05, 0.012, 0.012, mats.clockHand, dryMid - 0.16, 2.6, dry.wallZ + 0.07);
+  for (const end of [-1, 1]) {
+    for (let i = 0; i < 4; i++) {
+      box(tote, 0.01, 0.26, 0.01, mats.wire, -tw / 2 + 0.07 + i * (tw / 4.2), 0.24, end * (td / 2), 0, quiet);
+    }
+  }
+  foldedTextile(tote, 0.02, 0.12, 0, 0.15, mats, 'blue');
+  put(tote, new THREE.TorusGeometry(0.12, 0.012, 8, 18, Math.PI), mats.chrome, 0, 0.39, -0.05, null, quiet);
+  put(tote, new THREE.TorusGeometry(0.12, 0.012, 8, 18, Math.PI), mats.chrome, 0, 0.39, 0.05, null, quiet);
+
+  const clockMat = toon('#ffffff', { map: clockFaceMap() });
+  put(g, new THREE.CircleGeometry(0.2, 40), clockMat, dryMid - 1.15, 2.55, dry.wallZ + 0.06, null, { noShadow: true });
+  put(g, new THREE.TorusGeometry(0.2, 0.012, 8, 32), mats.clockHand, dryMid - 1.15, 2.55, dry.wallZ + 0.07, null, { cast: false });
 
   for (const p of layout.lights.points) {
     if (p.fixture !== 'fluorescent') continue;

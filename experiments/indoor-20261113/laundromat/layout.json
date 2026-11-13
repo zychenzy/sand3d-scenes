@@ -113,9 +113,9 @@
     "fogFar": 34
   },
   "camera": {
-    "fov": 50,
-    "position": [1.2, 1.64, 3.15],
-    "target": [-1.05, 1.16, -1.45]
+    "fov": 54,
+    "position": [3.15, 1.82, 4.95],
+    "target": [-2.4, 1.2, -0.35]
   },
   "cameraPresets": {
     "corner": {
