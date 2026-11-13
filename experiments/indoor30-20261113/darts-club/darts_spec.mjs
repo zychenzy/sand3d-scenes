@@ -159,8 +159,8 @@ export function plan(room) {
     target: [x, SPEC.bullHeight, boardFaceZ],
   }));
   const camera = {
-    default: { position: [-0.7, 1.68, 3.85], target: [-0.35, 1.42, -3.7] },
-    corner: { position: [-4.55, 1.66, 3.42], target: [0.55, 1.22, -1.55] },
+    default: { position: [-0.85, 1.5, 4.55], target: [-0.9, 1.22, -2.5] },
+    corner: { position: [-5.7, 1.68, 5.35], target: [-1, 1.14, -0.6] },
     close: { position: [-1.0, 1.8, boardFaceZ + 0.92], target: [-1.0, 1.8, boardFaceZ] },
   };
   camera.detail = camera.close;
@@ -193,17 +193,5 @@ export const SCORES = [
   [40, 32],
 ];
 
-/** Darts stuck in the sisal, offsets in metres from the bull, +Y up. */
-export const STUCK = [
-  [{ dx: 0.05, dy: -0.09, color: "#c4382e" }],
-  [
-    { dx: -0.014, dy: 0.102, color: "#c4382e" },
-    { dx: 0.001, dy: 0.108, color: "#1f7a48" },
-    { dx: 0.014, dy: 0.098, color: "#efe6d2" },
-  ],
-  [
-    { dx: 0.09, dy: 0.02, color: "#24527a" },
-    { dx: -0.11, dy: -0.07, color: "#c4382e" },
-  ],
-  [{ dx: 0.003, dy: 0.004, color: "#efe6d2" }],
-];
+/** Nothing is staged in the sisal. Slim darts live in the case on the table. */
+export const STUCK = [[], [], [], []];

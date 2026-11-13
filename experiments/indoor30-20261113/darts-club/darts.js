@@ -198,28 +198,33 @@ function plaqueTexture() {
 
 function makeDart(color) {
   const g = new THREE.Group();
-  const point = new THREE.Mesh(new THREE.ConeGeometry(0.003, 0.02, 8), toon("#d9d3c6"));
-  point.rotation.x = Math.PI / 2;
-  point.position.z = 0.01;
+  const point = new THREE.Mesh(new THREE.ConeGeometry(0.00105, 0.014, 6), toon("#d7d1c6"));
+  point.rotation.x = -Math.PI / 2;
+  point.position.z = -0.003;
   g.add(point);
-  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0055, 0.042, 10), toon(color));
+  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0024, 0.0031, 0.04, 8), toon(color));
   barrel.rotation.x = Math.PI / 2;
-  barrel.position.z = 0.04;
+  barrel.position.z = 0.02;
   g.add(barrel);
-  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.0018, 0.0018, 0.038, 8), toon("#3a342e"));
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.00085, 0.00085, 0.024, 6), toon("#2a261f"));
   shaft.rotation.x = Math.PI / 2;
-  shaft.position.z = 0.078;
+  shaft.position.z = 0.05;
   g.add(shaft);
-  const flight = new THREE.Mesh(new THREE.BoxGeometry(0.034, 0.0022, 0.042), toon(color));
-  flight.position.z = 0.112;
-  g.add(flight);
-  const flight2 = new THREE.Mesh(new THREE.BoxGeometry(0.0022, 0.032, 0.04), toon(color));
-  flight2.position.z = 0.112;
-  g.add(flight2);
+  const vaneGeo = new THREE.BoxGeometry(0.007, 0.0004, 0.016);
+  const vaneMat = toon(color);
+  for (let i = 0; i < 4; i += 1) {
+    const vane = new THREE.Mesh(vaneGeo, vaneMat);
+    const ang = (i * Math.PI) / 2;
+    vane.rotation.z = ang;
+    vane.position.set(Math.cos(ang) * 0.0032, Math.sin(ang) * 0.0032, 0.066);
+    g.add(vane);
+  }
   g.traverse((o) => {
     if (o.isMesh) {
-      o.castShadow = true;
+      o.castShadow = false;
       o.receiveShadow = false;
+      o.userData.noCast = true;
+      o.userData.noReceive = true;
     }
   });
   return g;
@@ -402,9 +407,8 @@ function makeRoom(layout) {
 
     for (const dart of STUCK[i]) {
       const d = makeDart(dart.color);
-      d.position.set(x + dart.dx, SPEC.bullHeight + dart.dy, p.boardFaceZ + 0.002);
-      d.rotation.y = (dart.dx - dart.dy) * 0.35;
-      d.scale.setScalar(1.35);
+      d.position.set(x + dart.dx, SPEC.bullHeight + dart.dy, p.boardFaceZ + 0.004);
+      d.rotation.y = dart.yaw ?? 0.22;
       g.add(d);
     }
 
@@ -467,21 +471,33 @@ function makeRoom(layout) {
       SPEC.ocheLength,
       SPEC.ocheHeight,
       SPEC.ocheDepth,
-      oak,
+      toon("#4a3428"),
       x,
       SPEC.ocheHeight / 2,
       p.ocheBackZ - SPEC.ocheDepth / 2,
     );
     oche.name = "oche";
+    const lip = addBox(
+      g,
+      SPEC.ocheLength - 0.02,
+      0.007,
+      0.01,
+      toon("#f0e2c4"),
+      x,
+      SPEC.ocheHeight - 0.004,
+      p.ocheBackZ + 0.002,
+    );
+    lip.userData.noCast = true;
+    lip.userData.noReceive = true;
     const paint = addBox(
       g,
-      SPEC.ocheLength + 0.08,
-      0.006,
-      0.07,
+      SPEC.ocheLength,
+      0.004,
+      0.05,
       red,
       x,
-      0.03,
-      p.ocheBackZ - 0.045,
+      0.022,
+      p.ocheBackZ + 0.032,
     );
     paint.userData.noCast = true;
     paint.userData.noReceive = true;
@@ -496,17 +512,11 @@ function makeRoom(layout) {
 
   for (let i = 0; i < p.centers.length - 1; i += 1) {
     const x = (p.centers[i] + p.centers[i + 1]) / 2;
-    const rail = addBox(
-      g,
-      0.05,
-      0.07,
-      p.ocheBackZ - p.boardFaceZ - 0.16,
-      oak,
-      x,
-      0.05,
-      (p.boardFaceZ + p.ocheBackZ) / 2 - 0.04,
-    );
+    const z0 = p.boardFaceZ + 0.38;
+    const z1 = p.ocheBackZ - 0.46;
+    const rail = addBox(g, 0.035, 0.028, z1 - z0, oak, x, 0.026, (z0 + z1) / 2);
     rail.name = "divider";
+    rail.userData.noCast = true;
   }
 
   p.stands.forEach((stand, i) => {
@@ -542,7 +552,7 @@ function makeRoom(layout) {
   for (let i = 0; i < 3; i += 1) {
     const d = makeDart(["#c4382e", "#1f7a48", "#24527a"][i]);
     d.rotation.y = Math.PI / 2;
-    d.position.set(-0.05 + i * 0.012, 0.045, 0);
+    d.position.set(-0.02, 0.042, -0.032 + i * 0.028);
     caseG.add(d);
   }
   caseG.position.set(p.table.x + 0.02, p.table.top, p.table.z - 0.2);
