@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "Linden Veterinary reception",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.2, "depth": 8.6, "height": 3.28 },
+    "notes": [
+      "Reception and waiting only. Cat alcove is sight-screened from the dog bench. No animals.",
+      "simple_chair forward is +Z at rotationY 0; backrest sits on -Z. Seat height lands near 0.44 m at targetHeight 0.90.",
+      "museum_bench is backless. Length is local Z. Sitting forward is local +X, so rotationY π faces -X.",
+      "monitor screen faces local -Z. POS screen faces local +Z.",
+      "Walk-on scale is 70 mm high with a clear approach. Exam 1 is a glimpse through an open door."
+    ]
+  },
+  "build": {
+    "desk": { "cx": -3.15, "cz": -2.85, "w": 3.2, "d": 0.66, "h": 1.07 },
+    "access": { "cx": -1.02, "cz": -2.88, "w": 1.1, "d": 0.7, "h": 0.84 },
+    "screen": { "x": -3.32, "z0": -0.55, "z1": 2.2, "h": 1.42, "t": 0.05 },
+    "portal": { "cx": -2.15, "cz": 4.08, "clear": 1.58, "h": 2.2 },
+    "scale": { "cx": 1.85, "cz": -1.2, "w": 1.02, "d": 0.64, "h": 0.07 },
+    "catScale": { "w": 0.2, "d": 0.15, "h": 0.116 },
+    "exam": {
+      "wallZ": -2.42,
+      "wallX0": 2.35,
+      "wallX1": 5.6,
+      "doorX0": 3.65,
+      "doorX1": 4.75,
+      "table": { "cx": 4.55, "cz": -3.38, "w": 1.28, "d": 0.6, "h": 0.86 }
+    },
+    "perches": [
+      { "cx": -5.22, "cz": -0.15, "y": 0.5, "w": 0.42, "d": 0.62 },
+      { "cx": -5.22, "cz": 0.7, "y": 0.96, "w": 0.42, "d": 0.7 },
+      { "cx": -5.22, "cz": 1.45, "y": 1.34, "w": 0.42, "d": 0.56 }
+    ],
+    "carriers": [
+      { "id": "carrier_perch", "x": -5.2, "y": 0.98, "z": 0.7, "rot": 1.5708, "w": 0.5, "h": 0.3, "d": 0.34 },
+      { "id": "carrier_cat_floor", "x": -5.08, "y": 0, "z": 2.2, "rot": 1.5708, "w": 0.48, "h": 0.3, "d": 0.33 },
+      { "id": "carrier_dog", "x": 1.9, "y": 0, "z": 3.55, "rot": -1.5708, "w": 0.52, "h": 0.33, "d": 0.36, "open": true }
+    ],
+    "bowls": { "cx": 4.28, "cz": 0.28, "w": 0.42, "d": 0.28 },
+    "pathways": [
+      { "id": "entrance", "cx": -2.15, "cz": 3.45, "w": 1.45, "d": 1.5 },
+      { "id": "spine", "cx": 0.15, "cz": 1.3, "w": 1.2, "d": 3.2 },
+      { "id": "queue", "cx": -2.6, "cz": -1.7, "w": 4.0, "d": 1.15 },
+      { "id": "turn", "cx": -1.05, "cz": -0.65, "w": 1.35, "d": 1.15 },
+      { "id": "cat_entry", "cx": -4.4, "cz": 3.2, "w": 1.7, "d": 1.3 },
+      { "id": "exam_approach", "cx": 4.15, "cz": -1.35, "w": 1.15, "d": 1.7 },
+      { "id": "scale_approach", "cx": 1.85, "cz": -0.35, "w": 1.05, "d": 0.9 }
+    ]
+  },
+  "assets": {
+    "simple_chair": {
+      "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.9,
+      "forward": [0, 0, 1],
+      "native": [0.475, 0.85, 0.501]
+    },
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "forward": [1, 0, 0],
+      "native": [0.418, 0.456, 1.5]
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.7,
+      "forward": [0, 0, 1],
+      "native": [0.464, 0.75, 0.464]
+    },
+    "coffee_table": {
+      "glb": "../../../ktv/assets/coffee_table__29a509d8be0b.glb",
+      "targetHeight": 0.38,
+      "forward": [0, 0, 1],
+      "native": [0.655, 0.276, 1.2]
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.55,
+      "forward": [0, 0, 1],
+      "native": [0.246, 0.449, 0.246]
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.38,
+      "forward": [0, 0, -1],
+      "native": [0.341, 0.451, 0.341]
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.36,
+      "forward": [0, 0, 1],
+      "native": [0.25, 0.207, 0.25]
+    },
+    "flowerpot_desk": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.18,
+      "forward": [0, 0, 1],
+      "native": [0.25, 0.207, 0.25]
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.11,
+      "forward": [0, 0, 1],
+      "native": [0.081, 0.061, 0.2]
+    },
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.36,
+      "forward": [0, 0, -1],
+      "native": [0.6, 0.347, 0.098]
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.13,
+      "forward": [0, 0, 1],
+      "native": [0.094, 0.12, 0.094]
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "forward": [0, 0, 1],
+      "native": [0.075, 0.09, 0.075]
+    },
+    "tray_napkin": {
+      "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.11,
+      "forward": [0, 0, 1],
+      "native": [0.28, 0.235, 0.218]
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 1.02,
+      "forward": [0, 0, 1],
+      "native": [0.701, 0.8, 0.287]
+    }
+  },
+  "instances": [
+    { "id": "cat_chair_a", "kind": "simple_chair", "position": [-4.2, 0, -0.05], "rotationY": -1.5708 },
+    { "id": "cat_chair_b", "kind": "simple_chair", "position": [-4.2, 0, 0.85], "rotationY": -1.5708 },
+    { "id": "dog_chair_n", "kind": "simple_chair", "position": [3.25, 0, 0.35], "rotationY": 0 },
+    { "id": "dog_chair_s", "kind": "simple_chair", "position": [1.85, 0, 1.45], "rotationY": 1.5708 },
+    { "id": "dog_bench", "kind": "museum_bench", "position": [3.4, 0, 2.75], "rotationY": 1.5708 },
+    { "id": "dog_table", "kind": "coffee_table", "position": [3.25, 0, 1.45], "rotationY": 1.5708 },
+    { "id": "staff_stool", "kind": "bar_stool", "position": [-3.25, 0, -3.75], "rotationY": 0 },
+
+    { "id": "pend_dog", "kind": "pendant_lamp", "position": [3.25, 2.73, 1.45], "rotationY": 0.2 },
+    { "id": "pend_cat", "kind": "pendant_lamp", "position": [-4.55, 2.73, 0.45], "rotationY": -0.2 },
+    { "id": "pend_desk", "kind": "pendant_lamp", "position": [-3.15, 2.73, -2.15], "rotationY": 0.1 },
+
+    { "id": "lamp_desk", "kind": "library_lamp", "position": [-4.15, 1.07, -2.98], "rotationY": 0 },
+    { "id": "monitor_desk", "kind": "monitor", "position": [-2.85, 1.07, -2.95], "rotationY": 0 },
+    { "id": "pos_desk", "kind": "pos_terminal", "position": [-1.85, 1.07, -2.88], "rotationY": 3.1416 },
+    { "id": "treat_jar", "kind": "jam_jar", "position": [-3.65, 1.07, -2.7], "rotationY": 0.4 },
+    { "id": "cup_desk", "kind": "cup_mug", "position": [-3.3, 1.07, -2.68], "rotationY": 0.8 },
+    { "id": "forms_tray", "kind": "tray_napkin", "position": [-0.85, 0.84, -2.78], "rotationY": 0.15 },
+
+    { "id": "pot_cat", "kind": "flowerpot", "position": [-5.18, 0, -1.2], "rotationY": 0.5 },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [4.35, 0, 3.25], "rotationY": -0.4 },
+    { "id": "pot_desk", "kind": "flowerpot_desk", "position": [-4.55, 1.07, -2.78], "rotationY": 0.3 },
+
+    { "id": "retail_shelf", "kind": "wall_shelf", "position": [1.5, 0, -3.9], "rotationY": 0 }
+  ],
+  "facing": [
+    { "id": "cat_chair_a", "towardPoint": [-5.22, 0, -0.15] },
+    { "id": "cat_chair_b", "towardPoint": [-5.22, 0, 0.7] },
+    { "id": "dog_chair_n", "toward": "dog_table" },
+    { "id": "dog_chair_s", "toward": "dog_table" },
+    { "id": "dog_bench", "toward": "dog_table" },
+    { "id": "staff_stool", "towardPoint": [-3.15, 0, -2.52] },
+    { "id": "monitor_desk", "toward": "staff_stool" },
+    { "id": "pos_desk", "towardPoint": [-1.85, 0, -3.6] }
+  ],
+  "shell": {
+    "clearColor": "#d5e3da",
+    "fogColor": "#d5e3da",
+    "fogNear": 16,
+    "fogFar": 38,
+    "floor": "#d7d1c4",
+    "floorB": "#cfc6b6",
+    "runner": "#c5d7c9",
+    "catFloor": "#e4d3c4",
+    "dogMat": "#b7c0b4",
+    "wall": "#f3f0e8",
+    "wainscot": "#d5e3d8",
+    "rail": "#c4b49a",
+    "oak": "#8d6a45",
+    "oakDeep": "#6b4e34",
+    "laminate": "#f7f4ee",
+    "sage": "#2f6f62",
+    "sageDeep": "#1f4d44",
+    "navy": "#24343c",
+    "clay": "#c46a4a",
+    "steel": "#c5ced4",
+    "rubber": "#3e4a46",
+    "examWall": "#e4eef1",
+    "ceiling": "#f6f3ec",
+    "carrierSage": "#d7e6dc",
+    "carrierCream": "#f4efe4",
+    "carrierSlate": "#3e5560"
+  },
+  "lights": {
+    "hemi": { "sky": "#f7f4ee", "ground": "#b9c6b8", "intensity": 0.74 },
+    "key": {
+      "color": "#fff2e2",
+      "intensity": 1.22,
+      "position": [4.6, 7.4, 6.6],
+      "target": [0.2, 0.8, -0.6],
+      "shadow": {
+        "mapSize": 2048,
+        "near": 0.5,
+        "far": 26,
+        "left": -9,
+        "right": 9,
+        "top": 9,
+        "bottom": -9,
+        "bias": -0.00022,
+        "normalBias": 0.042
+      }
+    },
+    "fill": { "color": "#d7e6f4", "intensity": 0.34, "position": [-6.2, 4.8, 1.5] },
+    "points": [
+      { "color": "#ffd7a6", "intensity": 0.55, "distance": 4.5, "position": [3.25, 2.45, 1.45] },
+      { "color": "#ffd7a6", "intensity": 0.42, "distance": 3.8, "position": [-4.55, 2.45, 0.45] },
+      { "color": "#ffe0b8", "intensity": 0.5, "distance": 3.4, "position": [-3.15, 2.35, -2.4] },
+      { "color": "#d5e8f6", "intensity": 0.7, "distance": 3.2, "position": [4.55, 2.5, -3.2] }
+    ]
+  },
+  "camera": {
+    "fov": 42,
+    "position": [2.15, 2.25, 6.7],
+    "target": [-0.85, 1.02, -1.05]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.9, 2.15, 6.15],
+      "target": [-1.4, 1.0, -0.45]
+    },
+    "close": {
+      "position": [-3.85, 1.18, 1.95],
+      "target": [-5.2, 1.0, 0.45]
+    },
+    "detail": {
+      "position": [-3.85, 1.18, 1.95],
+      "target": [-5.2, 1.0, 0.45]
+    }
+  }
+}
