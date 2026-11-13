@@ -170,9 +170,9 @@
     "flowerpot": { "radius": 0.12 }
   },
   "camera": {
-    "fov": 48,
-    "position": [0.85, 2.48, 6.85],
-    "target": [-0.7, 1.05, -1.15]
+    "fov": 52,
+    "position": [3.7, 1.92, 3.55],
+    "target": [-1.9, 1.25, -1.5]
   },
   "cameraPresets": {
     "corner": {
@@ -180,8 +180,8 @@
       "target": [-2.8, 1.02, 0.85]
     },
     "detail": {
-      "position": [-3.64, 1.16, -2.62],
-      "target": [-3.64, 1.0, -3.75]
+      "position": [-3.64, 1.38, -2.58],
+      "target": [-3.64, 1.2, -3.75]
     }
   },
   "lights": {

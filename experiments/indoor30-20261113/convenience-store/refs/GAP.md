@@ -31,10 +31,13 @@ Selected bakes, already in `cafe/assets`, referenced and not copied:
 
 ## Still open
 
-- Shelf goods are unbranded silhouettes (bottle, can, carton, bag, cup, jar, bar, pint). They do not carry printed type.
+- Shelf goods are unbranded silhouettes (bottle, can, carton, bag, cup, jar, bar, pint, tub, twin pack, roll). They do not carry printed type.
 - Cooler doors do not swing. Glass is a tinted pane in front of a pale interior.
 - The jam-jar bake is a dark red glass. It is one condiment on the hot counter, not a cooler door.
 - The POS bake is 0.65 m on its long axis at a 0.20 m height. This scene fits it to 0.18 × 0.14 × 0.16 m so it sits on the counter. The screen mesh is tinted teal.
 - The stool cushion bake is pure black rubber. It is tinted to a dark green-grey so the seat is not a hole. The mesh file is unchanged.
 - No articulated freezer, no ice well, no newspaper rack.
-- Night window is dark glass on the left wall. There is no street outside it.
+- The night window is a framed pane with a night card (lamp glow and a few distant lights) and a pale interior streak. It is not a street model.
+- The ceiling is a finished soffit over the plan. The open front and right stay cut away.
+- Wall treatment is a back-wall header, a price rail (COLD / SNACK / HOT / OPEN), and two unbranded posters. No logos.
+- The hot counter is a roller well under a hood. Doors still do not swing, and nothing on the shelves is a printed brand.
