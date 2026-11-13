@@ -1,0 +1,1934 @@
+{
+  "summary": {
+    "scenes": 80,
+    "canonicalFourCommitted": 55,
+    "missingAny": 0,
+    "byOrigin": {
+      "committed": 223,
+      "alias": 13,
+      "captured": 84
+    }
+  },
+  "scenes": [
+    {
+      "id": "boardgame",
+      "path": "boardgame/",
+      "version": "original",
+      "title": "Board-game room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "cafe",
+      "path": "cafe/",
+      "version": "original",
+      "title": "Cafe",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "alias",
+          "filename": "toon_bar_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "cinema",
+      "path": "cinema/",
+      "version": "original",
+      "title": "Small cinema (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "cowork",
+      "path": "cowork/",
+      "version": "original",
+      "title": "Cowork / study room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-boardgame",
+      "path": "experiments/prior-upgrade-20261110/boardgame/",
+      "version": "prior-upgrade",
+      "title": "The Night Board \u2014 board-game club room",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-cafe",
+      "path": "experiments/prior-upgrade-20261110/cafe/",
+      "version": "prior-upgrade",
+      "title": "Pike House cafe",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-cinema",
+      "path": "experiments/prior-upgrade-20261110/cinema/",
+      "version": "prior-upgrade",
+      "title": "Small cinema (prior-upgrade)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-cowork",
+      "path": "experiments/prior-upgrade-20261110/cowork/",
+      "version": "prior-upgrade",
+      "title": "Shared study / cowork (prior-upgrade 20261110)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-greenhouse",
+      "path": "experiments/prior-upgrade-20261110/greenhouse/",
+      "version": "prior-upgrade",
+      "title": "Indoor greenhouse (prior upgrade)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-gym",
+      "path": "experiments/prior-upgrade-20261110/gym/",
+      "version": "prior-upgrade",
+      "title": "Bag-and-iron training gym (prior upgrade)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-ktv",
+      "path": "experiments/prior-upgrade-20261110/ktv/",
+      "version": "prior-upgrade",
+      "title": "KTV room \u2014 prior-upgrade 20261110",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-library",
+      "path": "experiments/prior-upgrade-20261110/library/",
+      "version": "prior-upgrade",
+      "title": "Library reading room \u2014 prior-upgrade 20261110",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-lounge",
+      "path": "experiments/prior-upgrade-20261110/lounge/",
+      "version": "prior-upgrade",
+      "title": "Billiards lounge (prior upgrade)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-museum",
+      "path": "experiments/prior-upgrade-20261110/museum/",
+      "version": "prior-upgrade",
+      "title": "North Hall gallery (prior-upgrade)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-music",
+      "path": "experiments/prior-upgrade-20261110/music/",
+      "version": "prior-upgrade",
+      "title": "Rehearsal hall (prior upgrade 2026-11-10)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-restaurant",
+      "path": "experiments/prior-upgrade-20261110/restaurant/",
+      "version": "prior-upgrade",
+      "title": "Hinoki dining (prior-upgrade 2026-11-10)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-stretch-studio",
+      "path": "experiments/prior-upgrade-20261110/stretch-studio/",
+      "version": "prior-upgrade",
+      "title": "Clerestory stretch studio",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "prior-train",
+      "path": "experiments/prior-upgrade-20261110/train/",
+      "version": "prior-upgrade",
+      "title": "Dining coach (prior-upgrade)",
+      "shots": {
+        "default": {
+          "origin": "alias",
+          "filename": "train_default.png"
+        },
+        "corner": {
+          "origin": "alias",
+          "filename": "train_corner.png"
+        },
+        "close": {
+          "origin": "alias",
+          "filename": "train_close.png"
+        },
+        "unlit": {
+          "origin": "alias",
+          "filename": "train_unlit.png"
+        }
+      }
+    },
+    {
+      "id": "prior-workshop",
+      "path": "experiments/prior-upgrade-20261110/workshop/",
+      "version": "prior-upgrade",
+      "title": "Wheelhouse pottery / maker workshop",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-aquarium-hall",
+      "path": "experiments/sprint-20261110/aquarium-hall/",
+      "version": "sprint",
+      "title": "Aquarium visitor hall",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-arcade",
+      "path": "experiments/sprint-20261110/arcade/",
+      "version": "sprint",
+      "title": "Retro arcade (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-architecture-office",
+      "path": "experiments/sprint-20261110/architecture-office/",
+      "version": "sprint",
+      "title": "Architecture studio (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-archive-room",
+      "path": "experiments/sprint-20261110/archive-room/",
+      "version": "sprint",
+      "title": "Archive research room",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-art-studio",
+      "path": "experiments/sprint-20261110/art-studio/",
+      "version": "sprint",
+      "title": "North-light artist studio",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-bakery",
+      "path": "experiments/sprint-20261110/bakery/",
+      "version": "sprint",
+      "title": "Hearth \u2014 neighborhood bakery",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-billiards-club",
+      "path": "experiments/sprint-20261110/billiards-club/",
+      "version": "sprint",
+      "title": "Billiards club (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-blackbox-theatre",
+      "path": "experiments/sprint-20261110/blackbox-theatre/",
+      "version": "sprint",
+      "title": "Small blackbox theatre",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-boardgame-cafe",
+      "path": "experiments/sprint-20261110/boardgame-cafe/",
+      "version": "sprint",
+      "title": "Meeple & Bean \u2014 social boardgame cafe",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-bookstore",
+      "path": "experiments/sprint-20261110/bookstore/",
+      "version": "sprint",
+      "title": "Quill & Spine \u2014 independent bookshop",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-cafe-atrium",
+      "path": "experiments/sprint-20261110/cafe-atrium/",
+      "version": "sprint",
+      "title": "Atrium coffee",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-ceramics",
+      "path": "experiments/sprint-20261110/ceramics/",
+      "version": "sprint",
+      "title": "Ceramics workshop",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-chess-club",
+      "path": "experiments/sprint-20261110/chess-club/",
+      "version": "sprint",
+      "title": "Chess clubhouse (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-chocolatier",
+      "path": "experiments/sprint-20261110/chocolatier/",
+      "version": "sprint",
+      "title": "Maison Cacao \u2014 chocolatier atelier",
+      "shots": {
+        "default": {
+          "origin": "alias",
+          "filename": "chocolatier_default.png"
+        },
+        "corner": {
+          "origin": "alias",
+          "filename": "chocolatier_corner.png"
+        },
+        "close": {
+          "origin": "alias",
+          "filename": "chocolatier_close.png"
+        },
+        "unlit": {
+          "origin": "alias",
+          "filename": "chocolatier_unlit.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-climbing-gym",
+      "path": "experiments/sprint-20261110/climbing-gym/",
+      "version": "sprint",
+      "title": "The Quarry \u2014 indoor bouldering gym",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-community-kitchen",
+      "path": "experiments/sprint-20261110/community-kitchen/",
+      "version": "sprint",
+      "title": "Community kitchen classroom",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-conservatory",
+      "path": "experiments/sprint-20261110/conservatory/",
+      "version": "sprint",
+      "title": "Indoor conservatory",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-dance-studio",
+      "path": "experiments/sprint-20261110/dance-studio/",
+      "version": "sprint",
+      "title": "Dance rehearsal studio",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-diner",
+      "path": "experiments/sprint-20261110/diner/",
+      "version": "sprint",
+      "title": "Neighborhood diner",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-dining-car",
+      "path": "experiments/sprint-20261110/dining-car/",
+      "version": "sprint",
+      "title": "Railway dining car",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-fashion-showroom",
+      "path": "experiments/sprint-20261110/fashion-showroom/",
+      "version": "sprint",
+      "title": "Fashion design showroom",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-florist",
+      "path": "experiments/sprint-20261110/florist/",
+      "version": "sprint",
+      "title": "Bloom florist",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-gallery",
+      "path": "experiments/sprint-20261110/gallery/",
+      "version": "sprint",
+      "title": "Contemporary annex",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-glass-studio",
+      "path": "experiments/sprint-20261110/glass-studio/",
+      "version": "sprint",
+      "title": "Artisan glass studio",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-hotel-lobby",
+      "path": "experiments/sprint-20261110/hotel-lobby/",
+      "version": "sprint",
+      "title": "The Marlowe \u2014 boutique hotel lobby",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-indoor-pool",
+      "path": "experiments/sprint-20261110/indoor-pool/",
+      "version": "sprint",
+      "title": "Indoor swimming hall",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-jazz-club",
+      "path": "experiments/sprint-20261110/jazz-club/",
+      "version": "sprint",
+      "title": "Jazz club (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-jewelry-workshop",
+      "path": "experiments/sprint-20261110/jewelry-workshop/",
+      "version": "sprint",
+      "title": "Jeweler atelier (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-karaoke-suite",
+      "path": "experiments/sprint-20261110/karaoke-suite/",
+      "version": "sprint",
+      "title": "Karaoke suite",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-makerspace",
+      "path": "experiments/sprint-20261110/makerspace/",
+      "version": "sprint",
+      "title": "Maker workshop (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-meditation-room",
+      "path": "experiments/sprint-20261110/meditation-room/",
+      "version": "sprint",
+      "title": "Meditation room",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-metro-hall",
+      "path": "experiments/sprint-20261110/metro-hall/",
+      "version": "sprint",
+      "title": "North Quay concourse",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-mountain-lodge",
+      "path": "experiments/sprint-20261110/mountain-lodge/",
+      "version": "sprint",
+      "title": "Alpine lodge common room",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-orbital-lounge",
+      "path": "experiments/sprint-20261110/orbital-lounge/",
+      "version": "sprint",
+      "title": "Orbital lounge (Three.js)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-photo-studio",
+      "path": "experiments/sprint-20261110/photo-studio/",
+      "version": "sprint",
+      "title": "Photography studio (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-planetarium",
+      "path": "experiments/sprint-20261110/planetarium/",
+      "version": "sprint",
+      "title": "Star Chamber planetarium",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-podcast-lounge",
+      "path": "experiments/sprint-20261110/podcast-lounge/",
+      "version": "sprint",
+      "title": "Podcast recording lounge",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-ramen-bar",
+      "path": "experiments/sprint-20261110/ramen-bar/",
+      "version": "sprint",
+      "title": "Ramen bar",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-reading-library",
+      "path": "experiments/sprint-20261110/reading-library/",
+      "version": "sprint",
+      "title": "Reading library",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-record-store",
+      "path": "experiments/sprint-20261110/record-store/",
+      "version": "sprint",
+      "title": "Afterglow Records",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-recording-studio",
+      "path": "experiments/sprint-20261110/recording-studio/",
+      "version": "sprint",
+      "title": "Recording control room",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-science-lab",
+      "path": "experiments/sprint-20261110/science-lab/",
+      "version": "sprint",
+      "title": "Science discovery lab",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-screening-room",
+      "path": "experiments/sprint-20261110/screening-room/",
+      "version": "sprint",
+      "title": "Boutique screening room",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-ship-salon",
+      "path": "experiments/sprint-20261110/ship-salon/",
+      "version": "sprint",
+      "title": "Passenger ship salon (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-squash-court",
+      "path": "experiments/sprint-20261110/squash-court/",
+      "version": "sprint",
+      "title": "Ash Court \u2014 boutique singles squash",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-station-lounge",
+      "path": "experiments/sprint-20261110/station-lounge/",
+      "version": "sprint",
+      "title": "Northgate waiting hall",
+      "shots": {
+        "default": {
+          "origin": "alias",
+          "filename": "station-lounge_toon_default.png"
+        },
+        "corner": {
+          "origin": "alias",
+          "filename": "station-lounge_toon_corner.png"
+        },
+        "close": {
+          "origin": "alias",
+          "filename": "station-lounge_toon_close.png"
+        },
+        "unlit": {
+          "origin": "alias",
+          "filename": "station-lounge_unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-study-loft",
+      "path": "experiments/sprint-20261110/study-loft/",
+      "version": "sprint",
+      "title": "Quiet shared study loft",
+      "shots": {
+        "default": {
+          "origin": "captured",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "captured",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "captured",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "captured",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-tea-house",
+      "path": "experiments/sprint-20261110/tea-house/",
+      "version": "sprint",
+      "title": "Contemporary tea house",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-textile-studio",
+      "path": "experiments/sprint-20261110/textile-studio/",
+      "version": "sprint",
+      "title": "Weaving & sewing studio",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "sprint-yoga-skylight",
+      "path": "experiments/sprint-20261110/yoga-skylight/",
+      "version": "sprint",
+      "title": "Skylight yoga studio",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "greenhouse",
+      "path": "greenhouse/",
+      "version": "original",
+      "title": "Indoor greenhouse (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "gym",
+      "path": "gym/",
+      "version": "original",
+      "title": "Gym / training room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "ktv",
+      "path": "ktv/",
+      "version": "original",
+      "title": "KTV room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "library",
+      "path": "library/",
+      "version": "original",
+      "title": "Library reading room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "lounge",
+      "path": "lounge/",
+      "version": "original",
+      "title": "Billiards lounge (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "museum",
+      "path": "museum/",
+      "version": "original",
+      "title": "Museum gallery (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "music",
+      "path": "music/",
+      "version": "original",
+      "title": "Music rehearsal room (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "restaurant",
+      "path": "restaurant/",
+      "version": "original",
+      "title": "Japanese restaurant (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "stretch-studio",
+      "path": "stretch-studio/",
+      "version": "original",
+      "title": "Yoga / stretch studio (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "train",
+      "path": "train/",
+      "version": "original",
+      "title": "Dining coach cutaway (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    },
+    {
+      "id": "workshop",
+      "path": "workshop/",
+      "version": "original",
+      "title": "Art / ceramics workshop (Three.js + sand3d)",
+      "shots": {
+        "default": {
+          "origin": "committed",
+          "filename": "toon_default.png"
+        },
+        "corner": {
+          "origin": "committed",
+          "filename": "toon_corner.png"
+        },
+        "close": {
+          "origin": "committed",
+          "filename": "toon_close.png"
+        },
+        "unlit": {
+          "origin": "committed",
+          "filename": "unlit_default.png"
+        }
+      }
+    }
+  ]
+}
