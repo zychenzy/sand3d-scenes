@@ -131,22 +131,31 @@ export function approachBox(cx, end) {
   return { x0: cx - side, x1: cx + side, z0, z1 };
 }
 
+export function galleryEast() {
+  return TABLE_X[TABLE_X.length - 1] + BAY.width / 2;
+}
+
 export function baskets() {
   const s = BASKET_TARGET_H / BASKET_RAW.h;
   const radius = (BASKET_RAW.w * s) / 2;
-  return TABLE_X.map((cx, i) => ({
+  const spots = [
+    [8.42, -1.82, 0.4],
+    [9.02, -1.62, -0.2],
+    [8.58, -1.18, 0.15],
+  ];
+  return spots.map(([x, z, rotationY], i) => ({
     id: `basket_${i + 1}`,
     kind: 'ball_basket',
-    x: cx + BAY.width / 2 - BAY.barrierT / 2 - 0.08 - radius,
+    x,
     y: 0,
-    z: BAY.length / 2 - BAY.barrierT / 2 - 0.08 - radius,
-    rotationY: 0.35 * (i - 1),
+    z,
+    rotationY,
     radius,
   }));
 }
 
 export function ballCart() {
-  return { id: 'ball_cart', kind: 'wire_cart', x: 9.42, y: 0, z: 3.05, rotationY: 0.15 };
+  return { id: 'ball_cart', kind: 'wire_cart', x: 9.18, y: 0, z: -2.72, rotationY: -0.55 };
 }
 
 export function paddles() {
@@ -155,9 +164,9 @@ export function paddles() {
     list.push({
       id: `paddle_${i + 1}`,
       kind: i % 2 ? 'paddle_wood' : 'paddle_red',
-      x: 10.3,
-      y: 1.2,
-      z: -0.2 + i * 0.2,
+      x: 10.38,
+      y: 1.28,
+      z: -3.08 + i * 0.16,
       rotationY: -Math.PI / 2,
     });
   }
@@ -198,9 +207,9 @@ export function glbInstances() {
     { id: 'duty_mug', kind: 'cup_mug', x: 9.72, y: 0.74, z: -4.12, rotationY: 0.5 },
     { id: 'duty_plant', kind: 'flowerpot', x: 9.28, y: 0.74, z: -4.48, rotationY: 0.2 },
     { id: 'results_board', kind: 'chalkboard', x: 8.22, y: 0, z: -4.62, rotationY: Math.PI / 2 },
-    { id: 'shelf_a', kind: 'wall_shelf', x: 10.4, y: 1.22, z: -2.55, rotationY: -Math.PI / 2 },
-    { id: 'shelf_b', kind: 'wall_shelf', x: 10.4, y: 1.22, z: -1.7, rotationY: -Math.PI / 2 },
-    { id: 'shelf_mug', kind: 'cup_mug', x: 10.22, y: 1.78, z: -2.55, rotationY: 0.8 },
+    { id: 'shelf_a', kind: 'wall_shelf', x: 10.4, y: 1.35, z: 3.45, rotationY: -Math.PI / 2 },
+    { id: 'shelf_b', kind: 'wall_shelf', x: 10.4, y: 1.35, z: 4.25, rotationY: -Math.PI / 2 },
+    { id: 'shelf_mug', kind: 'cup_mug', x: 10.22, y: 1.91, z: 3.45, rotationY: 0.8 },
     { id: 'pendant_a', kind: 'pendant_lamp', x: 9.2, y: 3.85, z: -1.2, rotationY: 0 },
     { id: 'pendant_b', kind: 'pendant_lamp', x: 9.35, y: 3.85, z: 2.35, rotationY: 0.4 },
   ];
@@ -256,12 +265,18 @@ export function layoutReport() {
     const dot = (b.gaze[0] * to[0] + b.gaze[1] * to[1]) / len;
     if (dot < 0.95) issues.push('bench not facing table');
   }
+  const east = galleryEast();
   for (const basket of baskets()) {
+    if (basket.x - basket.radius < east) issues.push('basket inside a bay');
     for (const cx of TABLE_X) {
       if (overlaps(
-        { x0: basket.x - 0.05, x1: basket.x + 0.05, z0: basket.z - 0.05, z1: basket.z + 0.05 },
+        { x0: basket.x - basket.radius, x1: basket.x + basket.radius, z0: basket.z - basket.radius, z1: basket.z + basket.radius },
         approachBox(cx, 'south'),
       )) issues.push('basket in south approach');
+      if (overlaps(
+        { x0: basket.x - basket.radius, x1: basket.x + basket.radius, z0: basket.z - basket.radius, z1: basket.z + basket.radius },
+        approachBox(cx, 'north'),
+      )) issues.push('basket in north approach');
       if (overlaps(
         { x0: basket.x - basket.radius, x1: basket.x + basket.radius, z0: basket.z - basket.radius, z1: basket.z + basket.radius },
         tableBox(cx),

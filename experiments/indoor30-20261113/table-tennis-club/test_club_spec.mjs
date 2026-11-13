@@ -81,10 +81,11 @@ test('scorer benches face their own table from the side of the net', () => {
   }
 });
 
-test('baskets stay in the corners and paddles stay in the gallery', () => {
+test('baskets and paddles stay in the gallery off the courts', () => {
   assert.equal(baskets().length, 3);
+  const east = TABLE_X[2] + BAY.width / 2;
   for (const basket of baskets()) {
-    assert.ok(basket.z > TABLE.length / 2 + 2);
+    assert.ok(basket.x - basket.radius > east, basket.id);
     assert.ok(basket.radius < 0.35);
   }
   const blades = paddles();

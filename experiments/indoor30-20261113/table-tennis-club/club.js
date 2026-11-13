@@ -212,10 +212,10 @@ function makeShell() {
   sign.userData.noCast = true;
   g.add(sign);
 
-  for (let i = 0; i < 14; i += 1) {
-    addBox(g, 0.07, 1.35, 0.025, toon(i % 2 ? TIMBER : TIMBER_DARK), 10.5, 1.55, -0.45 + i * 0.13);
+  for (let i = 0; i < 12; i += 1) {
+    addBox(g, 0.07, 1.15, 0.025, toon(i % 2 ? TIMBER : TIMBER_DARK), 10.5, 1.42, -3.38 + i * 0.13);
   }
-  addBox(g, 0.08, 0.05, 1.85, toon(CAP), 10.42, 1.18, 0.5);
+  addBox(g, 0.08, 0.05, 1.6, toon(CAP), 10.42, 0.92, -2.64);
 
   return g;
 }
