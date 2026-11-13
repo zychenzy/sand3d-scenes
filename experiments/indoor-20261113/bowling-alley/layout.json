@@ -265,79 +265,84 @@
   ],
   "shell": {
     "clearColor": "#c9c3b6",
-    "fogColor": "#c9c3b6",
-    "fogNear": 34,
-    "fogFar": 72
+    "fogColor": "#d5cfc2",
+    "fogNear": 48,
+    "fogFar": 96
   },
   "camera": {
-    "fov": 50,
+    "fov": 40,
     "position": [
-      2.55,
-      2.2,
-      11.6
+      5.15,
+      5.2,
+      7.15
     ],
     "target": [
-      -0.35,
-      0.82,
-      -6.2
+      -0.4,
+      0.4,
+      -8.4
     ]
   },
   "cameraPresets": {
     "corner": {
-      "fov": 46,
+      "fov": 58,
       "position": [
-        1.25,
-        2.28,
-        -2.35
+        4.4,
+        1.38,
+        3.35
       ],
       "target": [
-        -0.35,
-        0.72,
-        4.9
+        -1.7,
+        1.15,
+        6.05
       ]
     },
     "close": {
-      "fov": 38,
+      "fov": 42,
       "position": [
-        -0.12,
-        1.16,
-        -16.55
+        -0.35,
+        1.92,
+        -14.55
       ],
       "target": [
         -0.872,
-        0.28,
-        -18.7
+        1.2,
+        -18.85
       ]
     }
   },
   "lights": {
     "hemi": {
-      "sky": 16774374,
-      "ground": 2371640,
-      "intensity": 0.5
+      "sky": 16774628,
+      "ground": 11773068,
+      "intensity": 0.74
     },
     "key": {
-      "color": 16773340,
-      "intensity": 1.42,
+      "color": 16773180,
+      "intensity": 1.05,
       "position": [
-        5.2,
-        14.5,
-        7.5
+        7.2,
+        9.4,
+        6.8
       ],
       "target": [
-        -0.3,
-        0.4,
-        -8
+        -0.4,
+        0.15,
+        -6.5
       ],
-      "shadow": 24
+      "shadow": 18,
+      "mapSize": 4096,
+      "near": 0.6,
+      "far": 42,
+      "bias": -0.00022,
+      "normalBias": 0.045
     },
     "fill": {
-      "color": 10396736,
-      "intensity": 0.26,
+      "color": 16769080,
+      "intensity": 0.48,
       "position": [
-        -9,
-        7.5,
-        1
+        -7.5,
+        5.2,
+        -2
       ]
     }
   },

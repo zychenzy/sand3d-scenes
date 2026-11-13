@@ -16,7 +16,7 @@ const DECK = 0.086;
 const INK = '#1c140f';
 const PIN = '#f3eee4';
 const PIN_RED = '#c4312e';
-const GUTTER = '#14110f';
+const GUTTER = '#3a342e';
 const MAPLE = '#e2b36a';
 const WALNUT = '#6e4630';
 const WALNUT_DEEP = '#5a3828';
@@ -105,8 +105,8 @@ function paintApproach() {
   const canvas = paintBoards(
     780,
     1024,
-    ['#7b5136', '#6a432c', '#8a5c3c', '#5e3b28', '#7a4e32'],
-    '#543424',
+    ['#b18458', '#966840', '#c4986c', '#7d5436', '#a87448'],
+    '#6b4630',
   );
   return srgbTexture(canvas, false);
 }
@@ -117,34 +117,47 @@ function paintCarpet() {
   canvas.width = S;
   canvas.height = S;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = TEAL;
+  ctx.fillStyle = '#23474c';
   ctx.fillRect(0, 0, S, S);
-  ctx.strokeStyle = '#143238';
+  ctx.strokeStyle = 'rgba(232, 214, 176, 0.28)';
   ctx.lineWidth = 2;
-  for (let i = 0; i < 18; i += 1) {
+  const step = S / 2;
+  for (let i = 0; i <= 2; i += 1) {
     ctx.beginPath();
-    ctx.moveTo(0, i * 30);
-    ctx.lineTo(S, i * 30 + 8);
+    ctx.moveTo(i * step, 0);
+    ctx.lineTo(i * step, S);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, i * step);
+    ctx.lineTo(S, i * step);
     ctx.stroke();
   }
-  const step = S / 4;
-  const diamond = (cx, cy, r, color) => {
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - r);
-    ctx.lineTo(cx + r, cy);
-    ctx.lineTo(cx, cy + r);
-    ctx.lineTo(cx - r, cy);
-    ctx.closePath();
-    ctx.fill();
-  };
-  for (let y = 0; y < 4; y += 1) {
-    for (let x = 0; x < 4; x += 1) {
-      const cx = x * step + step / 2;
-      const cy = y * step + step / 2;
-      diamond(cx, cy, step * 0.3, '#b24a32');
-      diamond(cx, cy, step * 0.12, '#e6d3a1');
+  ctx.fillStyle = '#a85a42';
+  for (let y = 0; y < 2; y += 1) {
+    for (let x = 0; x < 2; x += 1) {
+      ctx.beginPath();
+      ctx.arc(x * step + step / 2, y * step + step / 2, 7, 0, Math.PI * 2);
+      ctx.fill();
     }
+  }
+  const tex = srgbTexture(canvas, true);
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  return tex;
+}
+
+function paintDado() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 128;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#6d4632';
+  ctx.fillRect(0, 0, 128, 256);
+  for (let x = 0; x < 128; x += 12) {
+    ctx.fillStyle = (x / 12) % 2 === 0 ? '#7d5440' : '#5c3a2a';
+    ctx.fillRect(x, 0, 9, 256);
+    ctx.fillStyle = 'rgba(40, 22, 12, 0.35)';
+    ctx.fillRect(x + 8, 0, 2, 256);
   }
   const tex = srgbTexture(canvas, true);
   tex.wrapS = THREE.RepeatWrapping;
@@ -239,7 +252,7 @@ function paintMaskNumber(n) {
 }
 
 let blobTex;
-function shadowBlob(g, x, z, w, d, opacity = 0.4) {
+function shadowBlob(g, x, z, w, d, opacity = 0.32, y = 0.028) {
   if (!blobTex) {
     const canvas = document.createElement('canvas');
     canvas.width = 128;
@@ -262,7 +275,7 @@ function shadowBlob(g, x, z, w, d, opacity = 0.4) {
   });
   const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, d), mat);
   mesh.rotation.x = -Math.PI / 2;
-  mesh.position.set(x, 0.012, z);
+  mesh.position.set(x, y, z);
   mesh.userData.keepMaterial = true;
   mesh.userData.noCast = true;
   mesh.userData.noReceive = true;
@@ -274,9 +287,11 @@ function addDeck(g, width, depth, x, z, texture, tint, y = DECK) {
   const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, depth), toon(tint, { map: texture }));
   mesh.rotation.x = -Math.PI / 2;
   mesh.position.set(x, y, z);
-  mesh.receiveShadow = false;
+  mesh.receiveShadow = true;
   mesh.userData.noCast = true;
-  mesh.userData.noReceive = true;
+  mesh.material.polygonOffset = true;
+  mesh.material.polygonOffsetFactor = 1.5;
+  mesh.material.polygonOffsetUnits = 2;
   mesh.name = 'deck';
   g.add(mesh);
   return mesh;
@@ -311,10 +326,10 @@ function makePin() {
   const group = new THREE.Group();
   const body = new THREE.Mesh(
     new THREE.LatheGeometry(pts, 14),
-    toon(PIN, { emissive: PIN, emissiveIntensity: 0.46 }),
+    toon(PIN, { emissive: PIN, emissiveIntensity: 0.18 }),
   );
   group.add(body);
-  const stripe = toon(PIN_RED, { emissive: PIN_RED, emissiveIntensity: 0.4 });
+  const stripe = toon(PIN_RED, { emissive: PIN_RED, emissiveIntensity: 0.22 });
   for (const [y, r] of [[0.268, 0.03], [0.302, 0.026]]) {
     const band = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.014, 12), stripe);
     band.position.y = y;
@@ -368,7 +383,7 @@ function addHood(g, pair, ballProto) {
   const depth = PLACED.hood.z1 - PLACED.hood.z0;
   const body = addBox(g, PLACED.hood.width, 0.4, depth, toon(CREAM), x, DECK + 0.2, zc);
   body.name = `return_${pair.index + 1}`;
-  addBox(g, PLACED.hood.width + 0.04, 0.045, depth + 0.04, toon(BLACK), x, DECK + 0.42, zc);
+  addBox(g, PLACED.hood.width + 0.04, 0.045, depth + 0.04, toon('#3a342e'), x, DECK + 0.42, zc);
   addBox(g, 0.045, 0.4, depth, toon(OXBLOOD), x - PLACED.hood.width / 2 + 0.02, DECK + 0.2, zc);
   addBox(g, 0.045, 0.4, depth, toon(OXBLOOD), x + PLACED.hood.width / 2 - 0.02, DECK + 0.2, zc);
   const colors = pair.index === 0 ? [BALLS[0], BALLS[1], BALLS[2]] : [BALLS[3], BALLS[4], BALLS[5]];
@@ -379,7 +394,7 @@ function addHood(g, pair, ballProto) {
     ball.rotation.y = i * 0.6;
     g.add(ball);
   });
-  shadowBlob(g, x, zc, PLACED.hood.width * 0.9, depth * 0.85, 0.28);
+  shadowBlob(g, x, zc, PLACED.hood.width * 0.9, depth * 0.85, 0.26, DECK + 0.004);
 }
 
 function addConsole(g, pair, scoreMap) {
@@ -388,7 +403,7 @@ function addConsole(g, pair, scoreMap) {
   const w = PLACED.consoleWidth;
   const d = PLACED.consoleDepth;
   const h = PLACED.consoleHeight;
-  const body = addBox(g, w, h - 0.04, d, toon('#2a2624'), x, (h - 0.04) / 2, z);
+  const body = addBox(g, w, h - 0.04, d, toon('#4a433c'), x, (h - 0.04) / 2, z);
   body.name = `console_${pair.index + 1}`;
   addBox(g, w + 0.03, 0.04, d + 0.03, toon('#8d5a38'), x, h - 0.02, z);
   const screen = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.78, 0.26), toon('#d6ff6a', {
@@ -445,98 +460,199 @@ function addCubbies(g) {
 }
 
 function addMasking(g) {
-  const zWall = -LANE.deckRear - 0.28;
-  const width = house.total + 0.7;
-  addBox(g, width, 3.5, 0.22, toon(POCHE), 0, 1.75, zWall);
-  const valance = addBox(g, width, 1.55, 0.16, toon(OXBLOOD), 0, 2.55, zWall + 0.12);
+  const zWall = -LANE.deckRear - 0.36;
+  const width = house.total + 0.9;
+  const back = addBox(g, width, 3.55, 0.2, toon('#6e6560'), 0, 1.78, zWall);
+  back.userData.noCast = true;
+  const valance = addBox(g, width, 1.15, 0.18, toon('#9a3340'), 0, 2.72, zWall + 0.16);
   valance.name = 'masking';
-  addBox(g, width, 0.035, 0.18, toon(GOLD), 0, 1.8, zWall + 0.14);
-  addBox(g, width, 0.025, 0.18, toon(GOLD), 0, 3.28, zWall + 0.14);
+  addBox(g, width - 0.2, 0.045, 0.2, toon(GOLD), 0, 2.18, zWall + 0.2);
+  addBox(g, width - 0.2, 0.03, 0.2, toon(GOLD), 0, 3.26, zWall + 0.2);
+  const hoodLight = toon('#fff1d2', { emissive: '#fff1d2', emissiveIntensity: 0.9 });
+  const hood = addBox(g, width - 0.4, 0.035, 0.1, hoodLight, 0, 2.08, zWall + 0.28);
+  hood.userData.noCast = true;
   for (const lane of house.lanes) {
     const plate = new THREE.Mesh(
-      new THREE.PlaneGeometry(0.42, 0.52),
-      toon(GOLD, { map: paintMaskNumber(lane.number) }),
+      new THREE.PlaneGeometry(0.64, 0.76),
+      toon('#fff6df', {
+        map: paintMaskNumber(lane.number),
+        emissive: '#e2c27a',
+        emissiveIntensity: 0.42,
+        emissiveMap: paintMaskNumber(lane.number),
+      }),
     );
-    plate.position.set(lane.cx, 2.5, zWall + 0.21);
+    plate.position.set(lane.cx, 2.46, zWall + 0.27);
     plate.name = `mask_${lane.number}`;
     g.add(plate);
-    const pit = addBox(
+    const curtain = addBox(
       g,
-      lane.width * 0.92,
-      1.55,
-      0.04,
-      toon('#0c0a09'),
+      lane.width * 0.9,
+      1.35,
+      0.05,
+      toon('#5c5558'),
       lane.cx,
-      DECK + 0.78,
-      -LANE.deckRear - 0.02,
+      DECK + 0.72,
+      -LANE.deckRear - 0.04,
     );
-    pit.userData.noCast = true;
+    curtain.userData.noCast = true;
+    for (const side of [-0.28, 0, 0.28]) {
+      const fold = addBox(
+        g,
+        0.035,
+        1.32,
+        0.02,
+        toon(side === 0 ? '#4a444c' : '#726b70'),
+        lane.cx + side,
+        DECK + 0.72,
+        -LANE.deckRear + 0.01,
+      );
+      fold.userData.noCast = true;
+    }
+    const door = addCyl(g, 0.16, 0.16, 0.04, toon('#6a5648'), lane.cx, DECK + 0.28, -LANE.deckRear + 0.02, 16);
+    door.rotation.x = Math.PI / 2;
+    door.userData.noCast = true;
+    const rake = addBox(g, lane.width * 0.82, 0.045, 0.07, toon('#8a8278'), lane.cx, DECK + 0.96, -LANE.foulToHeadPin - 0.48);
+    rake.name = `rake_${lane.number}`;
+    const sweep = addBox(g, lane.width * 0.62, 0.028, 0.045, toon('#6e665e'), lane.cx, DECK + 0.58, -LANE.foulToHeadPin - 0.7);
+    sweep.userData.noCast = true;
+    const spot = new THREE.PointLight(0xfff6e8, 0.85, 6.5, 1.4);
+    spot.position.set(lane.cx, 2.35, -17.4);
+    g.add(spot);
   }
 }
 
 function addWalls(g) {
-  const plaster = toon(IVORY);
-  const wainscot = toon(WALNUT_DEEP);
+  const plaster = toon('#f4efe6');
   const rail = toon(GOLD);
-  const h = 3.5;
-  const z0 = -LANE.deckRear - 0.4;
-  const z1 = LANE.approach;
+  const h = 3.42;
+  const z0 = -LANE.deckRear - 0.45;
+  const z1 = LANE.approach + 0.15;
   const zc = (z0 + z1) / 2;
   const len = z1 - z0;
-  const leftX = house.x0 - 0.12;
+  const leftX = house.x0 - 0.16;
   addBox(g, 0.16, h, len, plaster, leftX, h / 2, zc);
-  addBox(g, 0.02, 1.12, len, wainscot, leftX + 0.09, 0.56, zc);
-  addBox(g, 0.04, 0.04, len, rail, leftX + 0.1, 1.14, zc);
-  const cutL = addBox(g, 0.16, h, 0.08, toon(POCHE), leftX, h / 2, z1);
+  const dadoTex = paintDado();
+  dadoTex.repeat.set(len / 1.1, 1);
+  const dado = new THREE.Mesh(new THREE.PlaneGeometry(len, 1.08), toon('#ffffff', { map: dadoTex }));
+  dado.rotation.y = Math.PI / 2;
+  dado.position.set(leftX + 0.09, 0.56, zc);
+  dado.userData.noCast = true;
+  g.add(dado);
+  addBox(g, 0.05, 0.045, len, rail, leftX + 0.11, 1.12, zc);
+  addBox(g, 0.04, 0.08, len, toon('#4a3428'), leftX + 0.1, 0.04, zc);
+  for (let z = z0 + 1.6; z < z1; z += 3.6) {
+    addBox(g, 0.1, h, 0.16, toon('#5c4034'), leftX + 0.12, h / 2, z);
+  }
+  addBox(g, 0.03, 0.035, len, toon('#c4b49a'), leftX + 0.1, 2.62, zc);
+  const panels = [-16.2, -12.2, -8.2, -4.2, -0.2, 2.6];
+  panels.forEach((z, i) => {
+    const frame = addBox(g, 0.02, 0.7, 1.52, toon('#e2c27a'), leftX + 0.07, 2.05, z);
+    frame.userData.noCast = true;
+    const panel = addBox(g, 0.028, 0.52, 1.22, toon(i % 2 === 0 ? '#8d3a42' : '#6e3038'), leftX + 0.1, 2.05, z);
+    panel.userData.noCast = true;
+  });
+  const cutL = addBox(g, 0.16, h, 0.08, toon('#3f3834'), leftX, h / 2, z1);
   cutL.name = 'cut-left';
 
-  const rightX = house.x1 + 0.12;
-  addBox(g, 0.16, h, len, plaster, rightX, h / 2, zc);
-  addBox(g, 0.02, 1.12, len, wainscot, rightX - 0.09, 0.56, zc);
-  addBox(g, 0.04, 0.04, len, rail, rightX - 0.1, 1.14, zc);
-  const cutR = addBox(g, 0.16, h, 0.08, toon(POCHE), rightX, h / 2, z1);
-  cutR.name = 'cut-right';
+  const rightX = house.x1 + 0.18;
+  const knee = 0.4;
+  addBox(g, 0.12, knee, len, toon('#5c4034'), rightX, knee / 2, zc);
+  const cap = addBox(g, 0.18, 0.07, len, toon('#3f3834'), rightX, knee + 0.03, zc);
+  cap.name = 'cut-right';
 
   const bayX = house.x0 - PLACED.bay;
   const bayZ0 = LANE.approach;
   const bayZ1 = PLACED.entryZ - 0.05;
   const bayLen = bayZ1 - bayZ0;
   addBox(g, 0.14, h, bayLen, plaster, bayX, h / 2, (bayZ0 + bayZ1) / 2);
-  addBox(g, 0.02, 1.12, bayLen, wainscot, bayX + 0.08, 0.56, (bayZ0 + bayZ1) / 2);
-  addBox(g, 0.14, h, 0.08, toon(POCHE), bayX, h / 2, bayZ1);
+  addBox(g, 0.04, 1.08, bayLen, toon('#6d4632'), bayX + 0.08, 0.56, (bayZ0 + bayZ1) / 2);
+  addBox(g, 0.14, h, 0.08, toon('#3f3834'), bayX, h / 2, bayZ1);
 }
 
-function addSoffit(g) {
-  const z0 = LANE.approach - 0.15;
-  const z1 = PLACED.entryZ;
-  const x0 = house.x0 - 2.3;
-  const x1 = house.x1 + 0.85;
-  const slab = addBox(g, x1 - x0, 0.12, z1 - z0, toon('#2e2926'), (x0 + x1) / 2, 3.14, (z0 + z1) / 2);
-  slab.userData.noCast = true;
-  slab.name = 'soffit';
-  const fascia = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 0.62), toon(GOLD, { map: paintWord() }));
-  fascia.position.set(0.2, 2.55, z1 + 0.02);
-  fascia.name = 'wordmark';
-  g.add(fascia);
-  addBox(g, x1 - x0, 0.12, 0.06, toon(POCHE), (x0 + x1) / 2, 3.14, z1);
+function addCanopy(g) {
+  const z0 = 5.05;
+  const z1 = 7.95;
+  const x0 = house.x0 - 0.05;
+  const x1 = house.x1 + 0.2;
+  const beam = toon('#6d4e36');
+  const slat = toon('#b08a62');
+  for (const z of [z0, (z0 + z1) / 2, z1]) {
+    const b = addBox(g, x1 - x0, 0.07, 0.06, beam, (x0 + x1) / 2, 2.95, z);
+    b.userData.noCast = true;
+  }
+  for (let z = z0 + 0.14; z < z1; z += 0.24) {
+    const m = addBox(g, x1 - x0 - 0.08, 0.02, 0.07, slat, (x0 + x1) / 2, 2.88, z);
+    m.userData.noCast = true;
+  }
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 0.34), toon('#fff6df', { map: paintWord() }));
+  sign.position.set(house.x0 + 0.05, 2.48, -6.1);
+  sign.rotation.y = Math.PI / 2;
+  sign.name = 'wordmark';
+  g.add(sign);
+}
+
+function addEntryWall(g) {
+  const z = PLACED.entryZ + 0.04;
+  const x0 = house.x0 - PLACED.bay + 0.1;
+  const x1 = house.x1 + 0.55;
+  const h = 3.15;
+  const mid = (x0 + x1) / 2;
+  const span = x1 - x0;
+  const wall = addBox(g, span, h, 0.14, toon('#f4efe6'), mid, h / 2, z);
+  wall.name = 'entry-wall';
+  const dadoTex = paintDado();
+  dadoTex.repeat.set(span / 1.1, 1);
+  const dado = new THREE.Mesh(new THREE.PlaneGeometry(span, 1.05), toon('#ffffff', { map: dadoTex }));
+  dado.rotation.y = Math.PI;
+  dado.position.set(mid, 0.54, z - 0.08);
+  dado.userData.noCast = true;
+  g.add(dado);
+  addBox(g, span, 0.04, 0.04, toon(GOLD), mid, 1.1, z - 0.09);
+  for (const x of [-2.2, 0.4, 2.4]) {
+    const frame = addBox(g, 1.15, 0.62, 0.02, toon('#e2c27a'), x, 2.05, z - 0.08);
+    frame.userData.noCast = true;
+    const panel = addBox(g, 0.96, 0.44, 0.02, toon('#8d3a42'), x, 2.05, z - 0.1);
+    panel.userData.noCast = true;
+  }
+  const cap = addBox(g, span, 0.08, 0.2, toon('#3f3834'), mid, h + 0.02, z);
+  cap.name = 'entry-cut';
+  cap.userData.noCast = true;
 }
 
 function addTruss(g) {
-  const metal = toon('#2a2624');
-  const glow = toon('#f7f1e2', { emissive: '#f7f1e2', emissiveIntensity: 1.05 });
-  for (const z of [-3.2, -8.1, -13, -17.4]) {
-    addBox(g, house.total + 0.4, 0.06, 0.08, metal, 0, 3.32, z);
-    const tube = addBox(g, house.total - 0.3, 0.025, 0.05, glow, 0, 3.26, z);
+  const metal = toon('#7a7168');
+  const glow = toon('#fff6e4', { emissive: '#fff6e4', emissiveIntensity: 1.2 });
+  const zs = [-2.6, -7.4, -12.2, -17.0];
+  const roofW = 1.15;
+  const roofZ0 = -LANE.deckRear - 0.2;
+  const roofZ1 = LANE.approach - 0.3;
+  const roof = addBox(
+    g,
+    roofW,
+    0.07,
+    roofZ1 - roofZ0,
+    toon('#f4efe6'),
+    house.x0 + roofW / 2 - 0.05,
+    3.38,
+    (roofZ0 + roofZ1) / 2,
+  );
+  roof.userData.noCast = true;
+  roof.name = 'ceiling';
+  const edge = addBox(g, 0.06, 0.12, roofZ1 - roofZ0, toon('#4a433c'), house.x0 + roofW - 0.02, 3.34, (roofZ0 + roofZ1) / 2);
+  edge.name = 'ceiling-cut';
+  edge.userData.noCast = true;
+  zs.forEach((z) => {
+    const beam = addBox(g, house.total + 0.9, 0.06, 0.08, metal, 0.15, 3.22, z);
+    beam.userData.noCast = true;
+    const tube = addBox(g, house.total - 0.2, 0.055, 0.1, glow, 0.15, 3.12, z);
     tube.userData.noCast = true;
-    const spot = new THREE.PointLight(0xfff4e2, 0.22, 9, 2);
-    spot.position.set(0, 3.05, z);
+    const spot = new THREE.PointLight(0xfff3dc, 0.42, 12, 1.5);
+    spot.position.set(0, 2.7, z);
     g.add(spot);
-  }
-  for (const pair of house.pairs) {
-    const spot = new THREE.PointLight(0xfff8ee, 0.55, 7, 2);
-    spot.position.set(pair.cx, 2.7, -17.2);
-    g.add(spot);
-  }
+  });
+  const wash = new THREE.PointLight(0xffe7c4, 0.55, 16, 1.4);
+  wash.position.set(2.4, 2.8, 3.4);
+  g.add(wash);
 }
 
 function makeShell() {
@@ -545,11 +661,11 @@ function makeShell() {
   const laneMap = paintLane();
   const approachMap = paintApproach();
   const carpetMap = paintCarpet();
-  carpetMap.repeat.set(8, 3.2);
+  carpetMap.repeat.set(3.2, 1.4);
 
   const slabW = house.total + PLACED.bay * 2 + 0.8;
   const slabD = LANE.deckRear + PLACED.entryZ + 1.2;
-  const slab = addBox(g, slabW, 0.16, slabD, toon(POCHE), (house.x0 - PLACED.bay + house.x1 + PLACED.bay) / 2, -0.08, (-LANE.deckRear + PLACED.entryZ) / 2);
+  const slab = addBox(g, slabW, 0.16, slabD, toon('#b7aa98'), (house.x0 - PLACED.bay + house.x1 + PLACED.bay) / 2, -0.08, (-LANE.deckRear + PLACED.entryZ) / 2);
   slab.userData.noCast = true;
   slab.receiveShadow = true;
 
@@ -557,7 +673,7 @@ function makeShell() {
     const deck = addDeck(g, lane.width, LANE.deckRear, lane.cx, -LANE.deckRear / 2, laneMap, MAPLE);
     deck.name = `lane_${lane.number}`;
   }
-  addDeck(g, house.total, LANE.approach, 0, LANE.approach / 2, approachMap, '#7a5136');
+  addDeck(g, house.total, LANE.approach, 0, LANE.approach / 2, approachMap, '#ffffff');
   const riser = addBox(g, house.total, DECK - 0.02, 0.04, toon(WALNUT_DEEP), 0, (DECK + 0.02) / 2, LANE.approach);
   riser.userData.noCast = true;
 
@@ -621,7 +737,9 @@ function makeShell() {
       const x = side < 0 ? lane.x0 - 0.02 : lane.x1 + 0.02;
       const z0 = -LANE.foulToHeadPin + 0.2;
       const z1 = -LANE.deckRear + 0.02;
-      const kick = addBox(g, 0.04, 0.58, z0 - z1, toon(BLACK), x, DECK + 0.29, (z0 + z1) / 2);
+      const kick = addBox(g, 0.04, 0.56, z0 - z1, toon('#4e4740'), x, DECK + 0.28, (z0 + z1) / 2);
+      const cap = addBox(g, 0.055, 0.022, z0 - z1, toon(MAPLE), x, DECK + 0.57, (z0 + z1) / 2);
+      cap.userData.noCast = true;
       kick.name = `kick_${lane.number}`;
     }
   }
@@ -649,7 +767,8 @@ function makeShell() {
 
   addMasking(g);
   addWalls(g);
-  addSoffit(g);
+  addCanopy(g);
+  addEntryWall(g);
   addTruss(g);
   addRack(g, ballProto);
   addCubbies(g);

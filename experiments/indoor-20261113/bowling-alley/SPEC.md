@@ -20,7 +20,7 @@ Two natural pairs. Each pair is gutter, lane, gutter, a 300 mm return cap, gutte
 
 ## Rooms
 
-The lane hall is a tall volume with the ceiling cut away and a lighting truss left in place. The concourse has a lower soffit. The +Z end is open. The right wall of the lane hall stops at the foul-line end so the shoe desk is outside the approaches. The left wall continues into a rack bay.
+The lane hall is a tall volume. The roof is cut away over the lanes; a narrow plaster strip stays along the left wall, with its cut edge left dark, and a lighting truss runs the full width. The right lane wall is only a knee, so the four lanes stay visible from the open side. The concourse has a walnut slat canopy over the chairs, not a solid soffit. A small NORTHLANE plaque sits on the left wall. The entry end is a plaster wall with a wood dado. The left wall continues into a rack bay.
 
 Seating is one theatre chair per lane, on that lane’s center, behind the approach, rotation 0 so the sitter faces −Z. A scoring console for each pair sits on the return center, still behind the approach, with its graphic on the +Z face. Monitors on those consoles use rotation π so the glass faces the sitters. The cross aisle, from z 6.50 to 8.05 across the lane block, contains no floor furniture.
 
@@ -28,4 +28,4 @@ The waiting bench is in the left bay. Shoe-desk stools stand on the customer sid
 
 ## Light
 
-Hard toon, no bloom, no outline. A warm key from the concourse side, a cool fill, and a dim hemisphere. Emissive tubes on the truss and a brighter wash over each pin deck. The lane and approach planes do not take the key shadow; a long deck was breaking into acne. Contact blobs mark the furniture. Unlit drops the lights and the toon ramp and keeps the same colors, maps, and emissive reads.
+Hard toon, four steps, no bloom, no outline. The hemisphere ground is a warm tan so the shadow step stays readable. A warm key sits off the open right side, with a 4096 shadow map tightened to the house, a small bias, and polygon offset on the decks. Lanes and the approach receive that shadow and do not cast it. Contact blobs stay under the chairs, consoles, hoods, bench, stools, and desk. Emissive tubes on the truss are the bright band; a pin light and a larger numbered plate sit over each deck. The pit, gutters, and truss are warm gray rather than black. Unlit swaps in MeshBasicMaterial: same maps, no toon ramp, no cast shadows, and the tubes and score faces still read because their emissive is strong.

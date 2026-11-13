@@ -16,11 +16,11 @@ Headless Chrome, WebGL via SwiftShader, 1600×1000. No console errors and no fai
 
 ## What the frames show
 
-- Default toon: open concourse, NORTHLANE soffit, four chairs aimed down the lanes, two returns with balls, gutters, arrows receding to four pin triangles and numbered masking.
-- Corner: from a few metres down the lane, chair fronts toward the camera, monitor backs toward the lanes, both returns with three balls each, approach dots, and the rack-bay bench.
-- Close: lane 2’s full triangle, red neck stripes, kickbacks, and the dark pit.
-- Unlit: the same default camera with flat color, maps, and emissive score and lamp reads, and without the toon ramp or cast shadows.
+- Default toon: from the open right, above the approach. All four lanes, both returns, the approach boards, the pin triangles, and masking numbers 1–4 are in one view. The NORTHLANE plaque is a small plate on the left wall. The roof is a strip along that wall; the truss tubes stay in the open cut.
+- Corner: from the right side of the approach. Chair fronts face the camera, consoles and monitor backs sit toward the lanes, the quiet carpet and the entry-wall dado are behind the chairs, and the approach dots are in the foreground.
+- Close: lanes 1–3 at the pit. Number plates, curtain folds, ball doors, the rake and sweep bars, red neck stripes, and maple-capped kickbacks.
+- Unlit: the same default camera. Flat color and maps, no toon ramp and no cast shadows. Tubes and the numbered plates still read.
 
 ## Known visual limits
 
-See `refs/GAP.md`. The monitor glass stays black. Lane decks are unshadowed on purpose. The right-hand return in the corner frame is close to the frame edge.
+See `refs/GAP.md`. The monitor glass stays black. The default frame still has empty ground and sky on the open right. The close frame crops lane 4’s number. The corner’s upper middle is the open roof cut.
