@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "slug": "airport-gate",
+    "title": "Gate B12 departure holdroom",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 14.4, "depth": 10.2, "height": 3.62 },
+    "apronDepth": 2.05,
+    "zones": ["gate-podium", "boarding-queue", "holdroom-seating", "charging-ledge", "apron-slot"],
+    "distinctFrom": ["station-lounge", "hotel-lobby"],
+    "notes": [
+      "Holdroom only. The apron is a shallow slot beyond the glass, not a terminal airfield.",
+      "Connected beam seats face the flight ribbons. They do not face each other.",
+      "Accessible route is a straight 1.7 m lane to the wide scanner. The standard lane is 0.9 m."
+    ]
+  },
+  "shell": {
+    "wallThickness": 0.12,
+    "sill": 0.84,
+    "windowHead": 2.52,
+    "floorColor": "#d5dbe1",
+    "carpetColor": "#35586f",
+    "wallColor": "#e7eef3",
+    "baseColor": "#2c343c",
+    "ceilingColor": "#f4f7f8",
+    "metalColor": "#c5ced6",
+    "shellColor": "#46515c",
+    "cushionColor": "#5c6772",
+    "beamColor": "#8e99a3",
+    "podiumColor": "#f3f6f8",
+    "topColor": "#2b333b",
+    "tealColor": "#1a7384",
+    "glassColor": "#c5d4e0",
+    "apronColor": "#7f8a92",
+    "fuselageColor": "#e4e9ed",
+    "bridgeColor": "#9aa6b0",
+    "clearColor": "#d5dee6",
+    "fogColor": "#d5dee6",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "seating": {
+    "pitch": 0.52,
+    "depth": 0.64,
+    "seatHeight": 0.45,
+    "backHeight": 0.96,
+    "bayLength": 0.92,
+    "facing": "-X",
+    "rotationY": -1.570796,
+    "banks": [
+      { "id": "r1a", "rank": 1, "x": 0.3, "z": -2.35, "seats": 4, "display": "fids-a" },
+      { "id": "r2a", "rank": 2, "x": 2.54, "z": -2.35, "seats": 4, "display": "fids-a", "armPower": true },
+      { "id": "r3a", "rank": 3, "x": 4.78, "z": -2.35, "seats": 4, "display": "fids-a" },
+      { "id": "r1b", "rank": 1, "x": 0.3, "z": 1.3, "seats": 3, "display": "fids-b", "accessibleBay": true },
+      { "id": "r2b", "rank": 2, "x": 2.54, "z": 1.25, "seats": 4, "display": "fids-b" },
+      { "id": "r3b", "rank": 3, "x": 4.78, "z": 1.3, "seats": 3, "display": "fids-b" }
+    ]
+  },
+  "displays": [
+    {
+      "id": "fids-a",
+      "x": -1.88,
+      "z": -2.35,
+      "y": 2.02,
+      "width": 1.9,
+      "height": 0.56,
+      "faces": "+X",
+      "header": "B12  DEPARTURES",
+      "rows": ["SK 1427   CPH   14:40   ON TIME", "AY  832   HEL   15:05   BOARDING", "BA  456   LHR   15:25   GATE"]
+    },
+    {
+      "id": "fids-b",
+      "x": -1.88,
+      "z": 1.28,
+      "y": 2.02,
+      "width": 1.72,
+      "height": 0.56,
+      "faces": "+X",
+      "header": "B12  DEPARTURES",
+      "rows": ["LH  908   FRA   15:10   ON TIME", "KL  604   AMS   15:40   GATE", "AF  114   CDG   16:05   ON TIME"]
+    }
+  ],
+  "podium": { "x": -5.95, "z": -3.72, "w": 0.58, "d": 1.42, "h": 1.06 },
+  "door": { "x": -7.08, "z": -1.15, "w": 1.9, "h": 2.18 },
+  "scanners": [
+    { "id": "scan-std", "x": -6.18, "z": -1.72, "footprint": 0.42 },
+    { "id": "scan-acc", "x": -6.18, "z": -0.48, "footprint": 0.42 }
+  ],
+  "lanes": {
+    "standard": { "x0": -5.05, "x1": -4.13, "z0": -4.45, "z1": -2.55, "minWidth": 0.85 },
+    "accessible": { "x0": -4.9, "x1": -3.15, "z0": 0.2, "z1": 4.35, "minWidth": 1.5 }
+  },
+  "ledge": { "x": 6.84, "z0": -3.35, "z1": 2.15, "h": 1.06, "d": 0.42 },
+  "paths": [
+    {
+      "id": "entry-cross-aisle",
+      "minClear": 0.72,
+      "allow": [],
+      "points": [[1.42, 4.55], [1.42, -0.55], [-1.15, -0.55]]
+    },
+    {
+      "id": "accessible-to-scanner",
+      "minClear": 0.75,
+      "allow": ["scan-acc"],
+      "points": [[-4.02, 4.15], [-4.02, 0.35], [-5.55, -0.42]]
+    },
+    {
+      "id": "standard-to-scanner",
+      "minClear": 0.42,
+      "allow": ["scan-std"],
+      "points": [[-4.59, -4.2], [-4.59, -2.6], [-5.85, -1.72]]
+    }
+  ],
+  "assets": {
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.4,
+      "tints": { "curved_screen": "#d7e6ee" }
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.18,
+      "tints": { "screen": "#d7e6ee", "housing": "#5c656d" }
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.76,
+      "tints": { "cushioned_top": "#4c5864" }
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1,
+      "tints": { "body": "#d5dbe2", "sleeve": "#3c4a55", "lid": "#eef2f5" }
+    }
+  },
+  "instances": [
+    { "id": "agent_mon_a", "kind": "monitor", "position": [-6.02, 1.06, -4.05], "rotationY": -1.5708 },
+    { "id": "agent_mon_b", "kind": "monitor", "position": [-5.88, 1.06, -3.42], "rotationY": -1.15 },
+    { "id": "scan_head_std", "kind": "pos_terminal", "position": [-6.18, 0.96, -1.72], "rotationY": 1.5708 },
+    { "id": "scan_head_acc", "kind": "pos_terminal", "position": [-6.18, 0.96, -0.48], "rotationY": 1.5708 },
+    { "id": "stool_a", "kind": "bar_stool", "position": [6.28, 0, -2.35], "rotationY": 1.5708 },
+    { "id": "stool_b", "kind": "bar_stool", "position": [6.28, 0, -0.35], "rotationY": 1.5708 },
+    { "id": "stool_c", "kind": "bar_stool", "position": [6.28, 0, 1.45], "rotationY": 1.5708 },
+    { "id": "planter", "kind": "flowerpot", "position": [-2.55, 0, 3.55], "rotationY": 0.4 },
+    { "id": "ledge_cup", "kind": "cup_mug", "position": [6.78, 1.06, 0.85], "rotationY": 0.6 }
+  ],
+  "camera": {
+    "fov": 46,
+    "position": [5.55, 2.72, 6.35],
+    "target": [-1.5, 1.12, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-2.55, 1.8, 1.85],
+      "target": [-6.15, 1.02, -1.85],
+      "fov": 42
+    },
+    "detail": {
+      "position": [3.15, 1.85, 2.55],
+      "target": [6.45, 0.98, -0.55],
+      "fov": 44
+    },
+    "close": {
+      "position": [3.15, 1.85, 2.55],
+      "target": [6.45, 0.98, -0.55],
+      "fov": 44
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#eef3f8", "ground": "#8d98a2", "intensity": 0.74 },
+    "key": {
+      "color": "#fff3e6",
+      "intensity": 0.92,
+      "position": [2.2, 9.4, 7.2],
+      "target": [-0.4, 0.7, -1.1]
+    },
+    "fill": { "color": "#f4f7fa", "intensity": 0.32, "position": [7.2, 4.2, 2.4] },
+    "window": { "color": "#d7e4f2", "intensity": 0.4, "position": [0.4, 3.6, -9.5] }
+  }
+}
