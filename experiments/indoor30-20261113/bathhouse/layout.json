@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "title": "Public bathhouse changing and wash hall",
+    "units": "metres",
+    "style": "Toon hard",
+    "zones": ["entry", "changing", "wash", "bath-entry"],
+    "notes": [
+      "One gender hall of a neighbourhood sento: getabako and bandai, timber lockers and benches, then a tiled wash aisle. The soaking tub is only a framed glimpse.",
+      "Cutaway is +X and +Z. Solid wall is -X. The wash bay steps in so the stools stay within reach of the taps.",
+      "Unoccupied. No lane pool, no lounge chairs, no daybeds."
+    ]
+  },
+  "room": { "x0": -3.7, "x1": 3.7, "z0": -6.15, "z1": 6.0, "h": 3.38, "wall": 0.12 },
+  "levels": { "timberTop": 0.045, "tileTop": 0.0 },
+  "ergo": {
+    "benchSeat": 0.44,
+    "benchDepth": 0.36,
+    "kneeGap": 0.8,
+    "lockerDepth": 0.4,
+    "lockerHeight": 1.86,
+    "stoolHeight": 0.3,
+    "stoolDiameter": 0.3,
+    "stoolToWall": 0.58,
+    "stationPitch": 0.9,
+    "faucetHeight": 0.76,
+    "bucketHeight": 0.24,
+    "bucketRadius": 0.12,
+    "bucketTowardWall": 0.06,
+    "bucketForward": 0.42,
+    "aisleMin": 1.15,
+    "counterHeight": 1.05,
+    "platformHeight": 0.36,
+    "mirrorCenter": 1.22,
+    "mirrorHeight": 0.46
+  },
+  "lockers": { "x0": -3.7, "x1": -3.3, "z0": 0.58, "z1": 3.9, "bays": 8, "h": 1.86 },
+  "bench": { "z": 2.24, "length": 3.05 },
+  "shoes": { "x0": -3.7, "x1": -3.28, "z0": 5.08, "z1": 5.9, "h": 0.92, "cols": 3, "rows": 2 },
+  "desk": { "x0": -2.7, "x1": -1.05, "z0": 4.38, "z1": 5.16, "top": 1.05 },
+  "platform": { "x0": -3.58, "x1": -2.64, "z0": 4.42, "z1": 5.12, "h": 0.36 },
+  "wash": {
+    "x0": -2.05,
+    "x1": 2.05,
+    "z0": -5.4,
+    "z1": 0.36,
+    "stationsZ": [-4.48, -3.58, -2.68, -1.78, -0.88]
+  },
+  "opening": { "x0": -1.12, "x1": 1.12, "z": 0.36, "head": 2.16 },
+  "bath": {
+    "zWall": -5.4,
+    "zBack": -6.15,
+    "openX0": -0.7,
+    "openX1": 0.7,
+    "sill": 0.32,
+    "head": 2.06,
+    "waterY": 0.4
+  },
+  "screens": [
+    { "x": -1.28, "z": -5.06, "rot": 0.04, "w": 0.7, "h": 1.66, "d": 0.04 },
+    { "x": 1.28, "z": -5.06, "rot": -0.04, "w": 0.7, "h": 1.66, "d": 0.04 }
+  ],
+  "noren": { "z": -5.32, "rodY": 1.84, "hemY": 0.78, "panelW": 0.4, "centers": [-0.94, -0.52, 0.52, 0.94] },
+  "route": {
+    "radius": 0.46,
+    "points": [[0.95, 5.6], [0.95, 4.3], [0.2, 2.3], [0.0, 0.2], [0.0, -2.6], [0.0, -4.55], [0.0, -5.15]]
+  },
+  "assets": {
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.36,
+      "nativeHeight": 0.4,
+      "frontYaw": 1.5708,
+      "note": "Vintage register. Local +Z is the key bank after glTF Y-up. rotationY π/2 faces the customer aisle (+X)."
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.64,
+      "nativeHeight": 0.6,
+      "note": "Cafe oak shelf reused as the towel shelf on the changing-room pier. Depth is local Z; rotationY 0 faces +Z."
+    }
+  },
+  "instances": [
+    {
+      "id": "bandai_register",
+      "kind": "cash_register",
+      "position": [-1.85, 1.058, 4.78],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "towel_shelf",
+      "kind": "wall_shelf",
+      "position": [-2.48, 1.16, 0.54],
+      "rotationY": 0
+    }
+  ],
+  "shell": {
+    "clearColor": "#e4ddd2",
+    "fogColor": "#e4ddd2",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 48,
+    "position": [2.7, 1.95, 7.15],
+    "target": [-1.35, 0.86, 2.05]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [0.15, 1.78, -0.35],
+      "target": [0.05, 0.85, -4.85]
+    },
+    "close": {
+      "position": [-0.15, 1.08, -2.05],
+      "target": [-1.5, 0.48, -2.72]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16773590, "ground": 6972782, "intensity": 0.62 },
+    "key": {
+      "color": 16774376,
+      "intensity": 1.28,
+      "position": [7.2, 9.2, 6.4],
+      "shadow": 8.2,
+      "bias": -0.00018,
+      "normalBias": 0.05
+    },
+    "fill": { "color": 12967142, "intensity": 0.42, "position": [-5.5, 4.8, -3.2] },
+    "points": [
+      { "color": 16766104, "intensity": 3.2, "distance": 6.5, "decay": 2, "position": [-0.4, 2.85, 4.7] },
+      { "color": 16766104, "intensity": 2.8, "distance": 6.2, "decay": 2, "position": [-1.1, 2.85, 2.15] },
+      { "color": 14282730, "intensity": 2.4, "distance": 5.5, "decay": 2, "position": [0.0, 2.9, -1.7] },
+      { "color": 14282730, "intensity": 1.6, "distance": 5.2, "decay": 2, "position": [0.0, 2.9, -3.7] }
+    ]
+  }
+}
