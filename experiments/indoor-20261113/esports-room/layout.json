@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "North Pit esports training room",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 13.2, "depth": 8.8, "height": 3.15 },
+    "notes": [
+      "Cutaway: back wall -Z, left wall -X, open +X and +Z. Daylight enters from the open corner; ceiling slots are dim practicals and do not cast.",
+      "Five player stations face the replay wall. Chair local +Z is the seat front. rotationY π turns that front toward -Z, at the curved monitor.",
+      "Coach sits on the same axis, behind the row and to the right, so the replay stays in the coach's view over the players.",
+      "A shared floor raceway and an under-desk tray are the cable path. Circulation is the aisle in front of the chairs, not the 0.34 m slots between desks.",
+      "Distinct from the arcade (no cabinets, no neon) and from the cowork office (no study desks, dining chairs, or chalkboard)."
+    ]
+  },
+  "shell": {
+    "floorColor": "#cfc6b8",
+    "pitColor": "#6e6862",
+    "runnerColor": "#b7aa96",
+    "wallColor": "#e4ddd2",
+    "wainscotColor": "#3c4650",
+    "ceilingColor": "#efe8dc",
+    "trimColor": "#4a4038",
+    "clearColor": "#d8d2c6",
+    "fogColor": "#d8d2c6",
+    "fogNear": 18,
+    "fogFar": 38
+  },
+  "lights": {
+    "hemi": { "sky": 16774374, "ground": 9276264, "intensity": 0.74 },
+    "key": { "color": 16773084, "intensity": 1.48, "position": [7.2, 9.2, 6.4] },
+    "fill": { "color": 13226464, "intensity": 0.42, "position": [-6.4, 4.8, 1.6] },
+    "points": [
+      { "color": 16771524, "intensity": 0.38, "position": [-0.9, 2.35, -2.6], "distance": 7.2, "decay": 2 },
+      { "color": 16766106, "intensity": 0.32, "position": [-5.85, 2.35, 0.55], "distance": 3.4, "decay": 2 },
+      { "color": 16773072, "intensity": 0.16, "position": [-1.1, 2.85, -1.5], "distance": 4.5, "decay": 2 },
+      { "color": 16773072, "intensity": 0.14, "position": [4.6, 2.85, -0.2], "distance": 3.6, "decay": 2 }
+    ]
+  },
+  "camera": {
+    "fov": 50,
+    "position": [4.9, 1.95, 4.45],
+    "target": [0.2, 1.0, -1.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [6.15, 1.45, -0.15],
+      "target": [4.7, 0.72, -0.7]
+    },
+    "close": {
+      "position": [-0.02, 1.02, -1.02],
+      "target": [-0.96, 0.64, -2.02]
+    }
+  },
+  "build": {
+    "desk": { "w": 1.38, "d": 0.72, "top": 0.75, "z": -1.98 },
+    "monitorZ": -2.16,
+    "chairDepth": 0.58,
+    "chairWidth": 0.56,
+    "stations": [
+      { "id": "top", "x": -4.4, "role": "TOP", "accent": "#c4a574", "chairZ": -1.46, "chairYaw": 3.1416, "chairPull": 0, "headset": "stand", "mug": true },
+      { "id": "jg", "x": -2.68, "role": "JG", "accent": "#3f6f68", "chairZ": -1.46, "chairYaw": 3.1416, "chairPull": 0.24, "headset": "headrest", "mug": false },
+      { "id": "mid", "x": -0.96, "role": "MID", "accent": "#8a4e5a", "chairZ": -1.46, "chairYaw": 2.97, "chairPull": 0, "headset": "stand", "mug": true },
+      { "id": "adc", "x": 0.76, "role": "ADC", "accent": "#4d6a8a", "chairZ": -1.46, "chairYaw": 3.1416, "chairPull": 0.06, "headset": "desk", "mug": true },
+      { "id": "sup", "x": 2.48, "role": "SUP", "accent": "#a6846a", "chairZ": -1.46, "chairYaw": -2.95, "chairPull": 0, "headset": "stand", "mug": false }
+    ],
+    "coach": { "x": 5.2, "deskZ": -0.55, "chairZ": 0.18, "yaw": 3.1416, "w": 1.4, "d": 0.7 },
+    "replay": { "x": -0.9, "y": 1.78, "z": -4.26, "w": 3.2, "h": 1.72 },
+    "bench": { "x": -1.15, "z": 2.42, "w": 2.4, "d": 0.52 },
+    "credenza": { "x": -6.22, "z": 0.5, "w": 0.46, "d": 1.62, "h": 0.78 },
+    "draft": { "x": 3.55, "y": 1.62, "z": -4.22, "w": 0.92, "h": 1.2 },
+    "pot": { "x": -5.65, "z": 2.35, "w": 0.32, "d": 0.32 }
+  },
+  "clear": [
+    { "id": "aisle", "min": [-5.05, -0.55], "max": [3.35, 1.95] },
+    { "id": "coach_walk", "min": [3.45, 0.62], "max": [6.25, 3.55] },
+    { "id": "forecourt", "min": [-3.6, 2.85], "max": [3.4, 4.15] }
+  ],
+  "assets": {
+    "monitor": { "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb", "targetHeight": 0.4 },
+    "speaker": { "glb": "../../../ktv/assets/speaker__2db67686cd88.glb", "targetHeight": 0.2 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.1 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.26 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.7 },
+    "pendant_lamp": { "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.48 }
+  },
+  "instances": [
+    { "id": "mon_top", "kind": "monitor", "screen": "top", "position": [-4.4, 0.75, -2.16], "rotationY": 3.1416 },
+    { "id": "mon_jg", "kind": "monitor", "screen": "jg", "position": [-2.68, 0.75, -2.16], "rotationY": 3.1416 },
+    { "id": "mon_mid", "kind": "monitor", "screen": "mid", "position": [-0.96, 0.75, -2.16], "rotationY": 3.1416 },
+    { "id": "mon_adc", "kind": "monitor", "screen": "adc", "position": [0.76, 0.75, -2.16], "rotationY": 3.1416 },
+    { "id": "mon_sup", "kind": "monitor", "screen": "sup", "position": [2.48, 0.75, -2.16], "rotationY": 3.1416 },
+    { "id": "mon_coach", "kind": "monitor", "screen": "coach", "position": [5.2, 0.75, -0.78], "rotationY": 3.1416 },
+    { "id": "spk_l", "kind": "speaker", "position": [-3.15, 1.02, -4.02], "rotationY": 0.28 },
+    { "id": "spk_r", "kind": "speaker", "position": [1.15, 1.02, -4.02], "rotationY": -0.35 },
+    { "id": "mug_top", "kind": "cup_mug", "position": [-3.92, 0.75, -2.22], "rotationY": 0.4 },
+    { "id": "mug_mid", "kind": "cup_mug", "position": [-0.48, 0.75, -2.22], "rotationY": -0.3 },
+    { "id": "mug_adc", "kind": "cup_mug", "position": [1.24, 0.75, -2.18], "rotationY": 0.8 },
+    { "id": "mug_nook", "kind": "cup_mug", "position": [-6.05, 0.78, 0.95], "rotationY": 0.6 },
+    { "id": "thermos", "kind": "thermos", "position": [-6.18, 0.78, 0.15], "rotationY": 0.2 },
+    { "id": "pot", "kind": "flowerpot", "position": [-5.65, 0, 2.35], "rotationY": 0.4 },
+    { "id": "shelf", "kind": "wall_shelf", "position": [-6.34, 1.38, 0.5], "rotationY": 1.5708 },
+    { "id": "pendant", "kind": "pendant_lamp", "position": [-5.9, 2.58, 0.55], "rotationY": 0.2 }
+  ]
+}
