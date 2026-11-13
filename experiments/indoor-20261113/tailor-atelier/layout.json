@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "title": "Marlow bespoke atelier",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.4, "depth": 7.4, "height": 3.32 },
+    "notes": [
+      "Standing cutting table is 3.2 x 1.5 m at 0.92 m. Seated sewing tables are 0.76 m.",
+      "This dining-chair mesh faces local -Z (the sitter looks toward -Z at rotationY 0). Sewing chairs use -π/2 so they look +X at the machine.",
+      "Vintage machine long axis is Z. Needle end is +Z (operator's left when the sitter faces +X). Handwheel is -Z.",
+      "East aisle between the cutting table and the sewing chairs stays wider than 0.9 m.",
+      "Dress forms stand on the fitting platform and face generally +Z, into the room."
+    ]
+  },
+  "shell": {
+    "clearColor": "#d5dde6",
+    "fogColor": "#d5dde6",
+    "fogNear": 16,
+    "fogFar": 34,
+    "floor": "#c6a36a",
+    "plaster": "#f3eadc",
+    "wood": "#6a4630",
+    "ceiling": "#f7f2ea"
+  },
+  "lights": {
+    "hemi": { "sky": "#e7eef6", "ground": "#8a6240", "intensity": 0.48 },
+    "key": { "color": "#f4f7ff", "intensity": 1.55, "position": [-7.4, 8.2, 1.1], "target": [0.0, 0.4, 0.2] },
+    "fill": { "color": "#ffd4ae", "intensity": 0.38, "position": [6.2, 3.4, 5.2] },
+    "shadow": { "mapSize": 2048, "frustum": 11, "near": 0.4, "far": 30, "bias": -0.0012, "normalBias": 0.045 }
+  },
+  "camera": { "fov": 42, "position": [4.85, 2.48, 5.15], "target": [-0.35, 0.88, 0.15] },
+  "cameraPresets": {
+    "corner": { "position": [-0.35, 1.58, 3.35], "target": [-3.2, 0.8, 0.55] },
+    "close": { "position": [1.15, 1.42, 1.85], "target": [0.15, 0.96, 0.42] }
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "footprint": [0.311, 0.439],
+      "contact": true
+    },
+    "sewing_machine": {
+      "glb": "assets/sewing_machine__4f6c74f9f904.glb",
+      "targetHeight": 0.32,
+      "footprint": [0.22, 0.44],
+      "contact": false
+    },
+    "iron": {
+      "glb": "assets/iron__3937687366b9.glb",
+      "targetHeight": 0.12,
+      "footprint": [0.16, 0.32],
+      "contact": false
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46,
+      "footprint": [0.32, 0.32],
+      "contact": false
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34,
+      "footprint": [0.26, 0.26],
+      "contact": true
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "footprint": [0.09, 0.09],
+      "contact": false
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.42,
+      "footprint": [0.66, 0.22],
+      "hideMeshes": ["end_panel", "end_panel.001"],
+      "contact": false
+    }
+  },
+  "stations": [
+    { "id": "cutting_table", "kind": "cutting_table", "position": [-0.55, 0, 0.48], "size": [3.2, 0.92, 1.5], "rotationY": 0, "floor": true },
+    { "id": "sew_table_a", "kind": "sew_table", "position": [3.55, 0, -0.55], "size": [0.66, 0.76, 1.26], "rotationY": 0, "floor": true, "cloth": "#1c2a44" },
+    { "id": "sew_table_b", "kind": "sew_table", "position": [3.55, 0, 1.7], "size": [0.66, 0.76, 1.26], "rotationY": 0, "floor": true, "cloth": "#6e2432" },
+    { "id": "fitting_platform", "kind": "fitting_platform", "position": [-3.15, 0, -2.5], "size": [2.6, 0.12, 1.7], "rotationY": 0, "floor": true },
+    { "id": "form_toile", "kind": "dress_form", "position": [-3.55, 0.13, -2.42], "size": [0.48, 1.68, 0.4], "rotationY": 0.35, "floor": true, "standsOn": "fitting_platform", "variant": "toile" },
+    { "id": "form_jacket", "kind": "dress_form", "position": [-2.15, 0.13, -2.12], "size": [0.58, 1.7, 0.46], "rotationY": -0.28, "floor": true, "standsOn": "fitting_platform", "variant": "jacket" },
+    { "id": "fitting_stool", "kind": "fitting_stool", "position": [-4.15, 0.13, -1.88], "size": [0.34, 0.48, 0.34], "rotationY": 0.4, "floor": true, "standsOn": "fitting_platform" },
+    { "id": "fabric_rack", "kind": "fabric_rack", "position": [1.15, 0, -3.2], "size": [4.8, 2.2, 0.55], "rotationY": 0, "floor": true },
+    { "id": "notions", "kind": "notions", "position": [4.38, 0, -2.05], "size": [0.4, 1.38, 0.88], "rotationY": 0, "floor": true },
+    { "id": "press_board", "kind": "press_board", "position": [-3.42, 0, 0.7], "size": [0.36, 0.9, 1.48], "rotationY": 0.18, "floor": true },
+    { "id": "pattern_roll", "kind": "pattern_roll", "position": [-1.7, 0, -0.72], "size": [0.32, 0.92, 0.32], "rotationY": 0, "floor": true },
+    { "id": "scrap_bin", "kind": "scrap_bin", "position": [3.55, 0, 0.58], "size": [0.42, 0.38, 0.42], "rotationY": 0, "floor": true },
+    { "id": "thread_frame", "kind": "thread_frame", "position": [4.4, 0, 0.58], "size": [0.18, 1.75, 2.55], "rotationY": 0, "floor": true },
+    { "id": "mirror", "kind": "mirror", "position": [-3.15, 0.13, -3.18], "size": [2.05, 1.9, 0.24], "rotationY": 0, "floor": true, "standsOn": "fitting_platform" }
+  ],
+  "instances": [
+    { "id": "chair_sew_a", "kind": "dining_chair", "position": [2.62, 0, -0.55], "rotationY": -1.5708, "faces": "sew_table_a", "faceMax": 1.3 },
+    { "id": "chair_sew_b", "kind": "dining_chair", "position": [2.62, 0, 1.7], "rotationY": -1.5708, "faces": "sew_table_b", "faceMax": 1.3 },
+    { "id": "chair_client", "kind": "dining_chair", "position": [-3.15, 0, -0.82], "rotationY": 0, "faces": "fitting_platform", "faceMax": 2.2 },
+    { "id": "machine_a", "kind": "sewing_machine", "position": [3.55, 0.76, -0.55], "rotationY": 0, "on": "sew_table_a" },
+    { "id": "machine_b", "kind": "sewing_machine", "position": [3.55, 0.76, 1.7], "rotationY": 0, "on": "sew_table_b" },
+    { "id": "iron_main", "kind": "iron", "position": [-3.477, 0.9, 1.014], "rotationY": 0.18, "on": "press_board" },
+    { "id": "pendant_table", "kind": "pendant_lamp", "position": [-0.15, 2.42, 0.48], "rotationY": 0 },
+    { "id": "pendant_fit", "kind": "pendant_lamp", "position": [-3.15, 2.38, -2.45], "rotationY": 0.4 },
+    { "id": "mug", "kind": "cup_mug", "position": [-1.65, 0.92, 1.02], "rotationY": 0.6 },
+    { "id": "pot", "kind": "flowerpot", "position": [-4.22, 0, -1.22], "rotationY": 0.2 },
+    { "id": "pattern_shelf", "kind": "wall_shelf", "position": [4.5, 1.62, -2.05], "rotationY": -1.5708 }
+  ],
+  "paths": [
+    { "id": "east_aisle", "clearance": 0.42, "points": [[1.72, 2.85], [1.72, 1.15], [1.72, -0.15], [1.72, -1.28]] },
+    { "id": "north_cross", "clearance": 0.22, "points": [[1.72, -1.28], [0.2, -1.28], [-1.5, -1.28]] },
+    { "id": "fitting_approach", "clearance": 0.18, "points": [[-1.5, -1.28], [-3.05, -1.35]] },
+    { "id": "press_lane", "clearance": 0.22, "points": [[1.72, 2.15], [-0.4, 2.15], [-2.55, 1.95]] }
+  ]
+}
