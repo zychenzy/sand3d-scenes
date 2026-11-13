@@ -109,6 +109,7 @@ try {
       function find(name){ let n=null; scene.traverse(o=>{ if(!n && o.name===name) n=o; }); return n; }
       const props = find('props');
       const names = props.children.map(c => c.name);
+      if (find('stool_staff')) names.push('stool_staff');
       const chair = find('chair_wait_a');
       chair.updateWorldMatrix(true, true);
       let back=null, seat=null;

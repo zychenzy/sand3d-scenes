@@ -75,7 +75,6 @@ def test_instances_inside():
         "wheel_truing",
         "wheel_rack_a",
         "pump",
-        "stool_staff",
         "chair_wait_a",
         "chair_wait_b",
         "register",
@@ -95,13 +94,11 @@ def test_seats_face_the_work():
         fx, fz = forward_visual(yaw)
         dot = (fx * dx + fz * dz) / math.hypot(dx, dz)
         assert dot > 0.7, (chair_id, round(dot, 3))
-    staff = by_id["stool_staff"]
-    assert abs(abs(staff["rotationY"]) - math.pi) < 0.05
-    sx, _, sz = staff["position"]
-    tx, tz = staff["faces"]
-    assert tz > sz
-    # Counter is on the +X side of the waiting chairs.
+    # Shop stool is the staff perch at the counter return, off the customer runner.
     counter = LAYOUT["anchors"]["counter"]
+    stool = LAYOUT["anchors"]["stool"]
+    assert stool[0] < counter["x"] - 0.8
+    assert abs(stool[2] - counter["z"]) < 0.8
     assert counter["x"] > by_id["chair_wait_a"]["position"][0] + 1.5
 
 
@@ -117,10 +114,12 @@ def test_customer_route():
     assert runner["x0"] <= x0 <= runner["x1"]
     assert runner["z0"] <= z1 and z0 <= runner["z1"]
     half = route["width"] / 2
-    for inst in LAYOUT["instances"]:
-        x, _, z = inst["position"]
+    blocked = [(inst["id"], inst["position"]) for inst in LAYOUT["instances"]]
+    blocked.append(("stool_staff", LAYOUT["anchors"]["stool"]))
+    for name, pos in blocked:
+        x, _, z = pos
         if z1 - 0.3 <= z <= z0 + 0.2 and abs(x - x0) < half:
-            raise AssertionError(f"{inst['id']} sits in the customer route")
+            raise AssertionError(f"{name} sits in the customer route")
     stand = LAYOUT["anchors"]["stand"]
     clamp = LAYOUT["anchors"]["clamp"]
     assert abs(stand["x"] - x0) > 1.4

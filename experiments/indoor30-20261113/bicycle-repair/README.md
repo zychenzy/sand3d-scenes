@@ -2,7 +2,7 @@
 
 Cutaway shop for a full-size bike on a repair stand, a second bike parked off the aisle, a spoked wheel in a truing stand, a wall rack of wheels, a pegboard, open parts bins, a floor pump, and a service counter. The orange runner is the customer route from the open front to the counter. The rubber mat is the work bay.
 
-Catalog chairs, the stool, the register, the thermos, the plant, and the counter pendant are referenced from `library/` and `cafe/`. Three.js is the shared `workshop/vendor` copy. The four shop GLBs in `assets/` were baked here from Sandflow programs. They are not copies of other scenes.
+Catalog chairs, the register, the thermos, the plant, and the counter pendant are referenced from `library/` and `cafe/`. The staff perch is a shop stool built in this scene. Three.js is the shared `workshop/vendor` copy. The four shop GLBs in `assets/` were baked here from Sandflow programs. They are not copies of other scenes.
 
 ## Open
 

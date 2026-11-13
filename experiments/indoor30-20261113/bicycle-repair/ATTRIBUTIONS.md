@@ -12,10 +12,9 @@ Baked here:
 Referenced, not copied:
 
 - **Wooden Dining Chair** (`objaverse-5e1f7a56da4a4dab8ad64efd46ed9d9f`) — by vikki0612, CC-BY-4.0. `library/assets/dining_chair__5e1f7a56da4a.glb`
-- **bar_stool** — "Bar stool lowpoly" by vaporclaws, [Sketchfab](https://sketchfab.com/3d-models/319fcb56afe845caae5464b129c99633), CC-BY-4.0. `cafe/assets/bar_stool__319fcb56afe8.glb`
 - **pendant_lamp** — "Modern ceiling lamp" by krolzuzannapl, [Sketchfab](https://sketchfab.com/3d-models/1b528c6ab04e42f990105db142cd71bd), CC-BY-4.0. `cafe/assets/pendant_lamp__1b528c6ab04e.glb`
 - **cash_register** — cafe bake, Sandflow/sand3d-objaverse, CC-BY. `cafe/assets/cash_register__870f6ebb115a.glb`
 - **thermos** — "Thermos" by Platon_Debik, [Sketchfab](https://sketchfab.com/3d-models/c85ee7b8828b44998bb1cec3971424ec), CC-BY-4.0. `cafe/assets/thermos__c85ee7b8828b.glb`
 - **flowerpot** — "Flowerpot" by thespaceman, [Sketchfab](https://sketchfab.com/3d-models/4a270f2477344b55b359e2913f5530f2), CC-BY-4.0. `cafe/assets/flowerpot__4a270f247734.glb`
 
-The stand, pegboard, bins, counter, rack frame, and floor are original geometry in `bicycle.js`.
+The stand, pegboard, bins, counter, rack frame, shop stool, and floor are original geometry in `bicycle.js`. The catalog stool is a cafe tulip pedestal, so the staff perch is a four-leg shop stool.

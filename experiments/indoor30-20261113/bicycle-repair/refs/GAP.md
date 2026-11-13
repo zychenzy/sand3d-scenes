@@ -24,3 +24,4 @@ Still procedural, because the catalog has no mesh for them:
 - Contact shadows are warm discs. Walls do not receive the shadow map, so plaster does not pick up acne.
 - The toon ramp's darkest stop is about 0.42. Unlit mode is basic materials with the shadow map disabled.
 - The counter pendant is a cafe shade. A second pendant over the bench was removed because it covered the pegboard.
+- The only catalog stool is the cafe tulip pedestal (`cafe/assets/bar_stool__319fcb56afe8.glb`). The staff seat is a four-leg shop stool in `bicycle.js`, not that pedestal.

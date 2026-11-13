@@ -416,6 +416,35 @@ function bin(g, x, y, z, color, text) {
   tag.userData.noCast = true;
 }
 
+function shopStool(g, layout) {
+  const [x, , z] = layout.anchors.stool;
+  const stool = new THREE.Group();
+  stool.name = 'stool_staff';
+  const seatY = 0.58;
+  const wood = toon('#9a6236');
+  const rim = toon('#6a4324');
+  const steel = toon('#5c6770');
+  const dark = toon('#2c3136');
+  addCyl(stool, 0.158, 0.172, 0.04, wood, x, seatY, z, 24);
+  addCyl(stool, 0.145, 0.145, 0.012, rim, x, seatY + 0.022, z, 24);
+  const feet = [];
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+    const top = [x + Math.cos(a) * 0.09, seatY - 0.02, z + Math.sin(a) * 0.09];
+    const foot = [x + Math.cos(a) * 0.16, 0.015, z + Math.sin(a) * 0.16];
+    rod(stool, top, foot, 0.013, steel, 8);
+    addCyl(stool, 0.02, 0.022, 0.014, dark, foot[0], 0.008, foot[2], 8);
+    feet.push(foot);
+  }
+  for (let i = 0; i < 4; i++) {
+    const a = feet[i];
+    const b = feet[(i + 1) % 4];
+    rod(stool, [a[0], 0.2, a[2]], [b[0], 0.2, b[2]], 0.007, steel, 6);
+  }
+  g.add(stool);
+  addContact(g, x, z, 0.4, 0.4, 0.14);
+}
+
 function serviceCounter(g, layout) {
   const c = layout.anchors.counter;
   const wood = toon('#5c3a24');
@@ -453,8 +482,9 @@ function makeProcedural(layout) {
   tireRack(g, layout);
   partsBins(g, layout);
   serviceCounter(g, layout);
+  shopStool(g, layout);
   for (const inst of layout.instances) {
-    if (inst.kind === 'dining_chair' || inst.kind === 'bar_stool') {
+    if (inst.kind === 'dining_chair') {
       addContact(g, inst.position[0], inst.position[2], 0.36, 0.36, 0.14);
     }
   }
