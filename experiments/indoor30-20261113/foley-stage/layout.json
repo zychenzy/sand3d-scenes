@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "title": "Foley stage",
+    "units": "metres",
+    "style": "Toon hard stepped",
+    "room": { "width": 14, "depth": 12, "height": 4.5 },
+    "zones": [
+      { "id": "pits", "blurb": "Three recessed footstep pits — gravel, wood, sand — with a metre of clear aisle between them." },
+      { "id": "water", "blurb": "A small galvanized basin off the aisle for splash and wade passes." },
+      { "id": "props", "blurb": "Rolling door rig, stair unit, cloth rail, and a prop table of handled objects." },
+      { "id": "shoes", "blurb": "Wall racks of character shoes with a change bench and a clear lane in front." },
+      { "id": "control", "blurb": "Acoustically separated cue booth: double glass, isolated floor, picture monitor facing the mixer." }
+    ],
+    "notes": [
+      "Cutaway on +X and +Z. Back wall is -Z, left wall is -X.",
+      "Shotgun capsules use local +Z as the grille. Pit and water mics point down at the surface. The door mic points at the latch.",
+      "Chairs, the monitor, the cue speaker, and the stool face local +Z at yaw 0. The cue desk's long side is local +X."
+    ]
+  },
+  "shell": {
+    "floor": "#e6d3b4",
+    "wall": "#e7dfd4",
+    "trim": "#c4a27c",
+    "ceiling": "#f3ece2",
+    "baffleA": "#d2c2ae",
+    "baffleB": "#c5d0c4",
+    "baffleC": "#e0d3c2",
+    "pitWell": "#ddd4c6",
+    "rim": "#b8895a",
+    "gravel": "#a39e94",
+    "sand": "#e0c27a",
+    "woodA": "#c4894f",
+    "woodB": "#a56b3c",
+    "woodC": "#d7a36a",
+    "water": "#3d8f99",
+    "booth": "#d5d8d4",
+    "glass": "#c9e0da",
+    "pipe": "#aeb6ba",
+    "metal": "#8d969c",
+    "tape": "#e4d7a4",
+    "gasket": "#7d8a86",
+    "clearColor": "#d7d2c8",
+    "fogColor": "#d7d2c8",
+    "fogNear": 20,
+    "fogFar": 42
+  },
+  "pits": [
+    { "id": "gravel", "label": "GRAVEL", "center": [-3.2, 0.15], "size": [1.4, 2.3], "depth": 0.15 },
+    { "id": "wood", "label": "WOOD", "center": [-0.65, 0.15], "size": [1.4, 2.3], "depth": 0.15 },
+    { "id": "sand", "label": "SAND", "center": [1.9, 0.15], "size": [1.4, 2.3], "depth": 0.15 }
+  ],
+  "basin": { "center": [4.35, -2.05], "size": [1.16, 0.58] },
+  "control": {
+    "min": [-6.55, -5.92],
+    "max": [-2.2, -3.72],
+    "window": { "x0": -6.1, "x1": -2.75, "y0": 1.02, "y1": 2.18 },
+    "panes": [-3.69, -3.75],
+    "door": { "z0": -4.95, "z1": -4.05 }
+  },
+  "door": {
+    "keep": { "minX": 5.02, "maxX": 6.08, "minZ": 1.74, "maxZ": 2.96 }
+  },
+  "built": {
+    "stairs": { "center": [5.5, 3.95], "size": [0.9, 0.86], "keep": { "minX": 5.02, "maxX": 5.98, "minZ": 3.5, "maxZ": 4.42 } },
+    "cloth": { "keep": { "minX": 0.35, "maxX": 1.55, "minZ": -2.9, "maxZ": -2.15 } },
+    "thunder": { "keep": { "minX": -6.75, "maxX": -6.05, "minZ": -3.9, "maxZ": -2.95 } },
+    "crate": { "keep": { "minX": -6.75, "maxX": -6.05, "minZ": -2.85, "maxZ": -2.15 } },
+    "screen": { "x0": -1.45, "x1": 2.15, "y0": 1.18, "y1": 2.72, "z": -5.86 },
+    "tableTop": 0.75
+  },
+  "pathways": [
+    { "id": "booth-to-wood", "clearance": 0.38, "except": ["wood"], "points": [[-1.65, -4.15], [-0.65, -2.7], [-0.65, -1.25]] },
+    { "id": "aisle-gravel-wood", "clearance": 0.4, "except": [], "points": [[-1.95, -0.55], [-1.95, 1.05]] },
+    { "id": "aisle-wood-sand", "clearance": 0.4, "except": [], "points": [[0.62, -0.55], [0.62, 1.05]] },
+    { "id": "shoe-lane", "clearance": 0.38, "except": [], "points": [[-4.4, -0.9], [-4.4, 2.15]] },
+    { "id": "to-basin", "clearance": 0.32, "except": [], "points": [[3.15, -1.4], [3.4, -1.42]] },
+    { "id": "to-door", "clearance": 0.32, "except": [], "points": [[3.3, 0.35], [4.15, 1.15]] }
+  ],
+  "shoes": {
+    "x": -6.55,
+    "bays": [-1.15, 0.75, 2.65],
+    "shelves": [0.34, 0.8, 1.26, 1.72],
+    "pairOffsets": [-0.26, 0.26],
+    "pairGap": 0.14,
+    "yaw": 1.5708,
+    "tints": ["#5c4032", "#2e2a28", "#8d6844", "#d9d3c8", "#7a3030", "#3d4a38", "#c4b49a", "#6a4a32", "#4a4038", "#a87850", "#eeeae2", "#3f5160"],
+    "floorPairs": [{ "x": -6.42, "y": 0.18, "z": -2.5, "yaw": 1.2 }]
+  },
+  "mics": [
+    { "id": "mic_gravel", "role": "pit", "pit": "gravel", "suspend": true, "capsule": [-2.7, 0.88, 0.45], "aim": [-2.7, 0.02, 0.2], "anchor": [-2.7, 3.56, 0.45] },
+    { "id": "mic_wood", "role": "pit", "pit": "wood", "suspend": true, "capsule": [-0.4, 0.88, 0.48], "aim": [-0.4, 0.02, 0.18], "anchor": [-0.4, 3.56, 0.48] },
+    { "id": "mic_sand", "role": "pit", "pit": "sand", "suspend": true, "capsule": [1.7, 0.88, 0.45], "aim": [1.7, 0.02, 0.18], "anchor": [1.7, 3.56, 0.45] },
+    { "id": "mic_water", "role": "water", "suspend": true, "capsule": [4.35, 1.08, -1.5], "aim": [4.35, 0.16, -2.05], "anchor": [4.35, 3.5, -1.5] },
+    { "id": "mic_door", "role": "door", "suspend": true, "capsule": [5.9, 1.05, 2.57], "anchor": [5.9, 3.5, 2.57] },
+    { "id": "mic_stairs", "role": "stairs", "suspend": true, "capsule": [5.05, 0.98, 3.4], "aim": [5.5, 0.3, 3.95], "anchor": [5.05, 3.48, 3.4] },
+    { "id": "mic_talkback", "role": "talkback", "suspend": false, "capsule": [-4.05, 1.05, -4.45], "aim": [-4.4, 1.15, -5.3], "anchor": [-4.05, 0.78, -4.45] }
+  ],
+  "assets": {
+    "study_desk": { "glb": "../../../cowork/assets/study_desk__630f6d76cbcd.glb", "targetHeight": 0.75 },
+    "dining_chair": { "glb": "../../../cowork/assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.9 },
+    "monitor": { "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb", "targetHeight": 0.46 },
+    "library_lamp": { "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.38 },
+    "speaker": { "glb": "../../../music/assets/speaker__2db67686cd88.glb", "targetHeight": 0.26 },
+    "square_table": { "glb": "../../../workshop/assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.74 },
+    "pendant_lamp": { "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.42 },
+    "bar_stool": { "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.68 },
+    "museum_bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.12 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.22 },
+    "tray": { "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.12 },
+    "shotgun_mic": { "glb": "assets/shotgun_mic.glb", "targetHeight": 0.058, "fit": "center" },
+    "foley_shoe": { "glb": "assets/foley_shoe.glb", "targetHeight": 0.098 },
+    "foley_shoe_r": { "glb": "assets/foley_shoe_r.glb", "targetHeight": 0.098 },
+    "stage_door": { "glb": "assets/stage_door.glb", "targetHeight": 2.14 },
+    "water_basin": { "glb": "assets/water_basin.glb", "targetHeight": 0.274 }
+  },
+  "instances": [
+    {
+      "id": "engineer",
+      "kind": "dining_chair",
+      "role": "seat",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [-4.4, 0, -5.38],
+      "lookAt": [-4.4, -4.15]
+    },
+    {
+      "id": "cue_desk",
+      "kind": "study_desk",
+      "zone": "control",
+      "position": [-4.4, 0, -4.5],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "picture_mon",
+      "kind": "monitor",
+      "role": "monitor",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [-4.4, 0.76, -4.28],
+      "lookAt": [-4.4, -5.38]
+    },
+    {
+      "id": "desk_lamp",
+      "kind": "library_lamp",
+      "zone": "control",
+      "position": [-3.85, 0.76, -4.55],
+      "rotationY": 0.4
+    },
+    {
+      "id": "cue_speaker",
+      "kind": "speaker",
+      "role": "cue",
+      "zone": "control",
+      "modelForward": "posZ",
+      "position": [-5.55, 0.52, -4.4],
+      "lookAt": [-4.4, -5.38]
+    },
+    {
+      "id": "desk_mug",
+      "kind": "cup_mug",
+      "zone": "control",
+      "position": [-3.95, 0.76, -4.58],
+      "rotationY": 0.5
+    },
+    {
+      "id": "prop_table",
+      "kind": "square_table",
+      "zone": "props",
+      "position": [3.1, 0, 3.2],
+      "rotationY": 0.12,
+      "scale": [1.15, 1, 1.15]
+    },
+    {
+      "id": "prop_stool",
+      "kind": "bar_stool",
+      "zone": "props",
+      "modelForward": "posZ",
+      "position": [3.1, 0, 4.2],
+      "lookAt": [3.1, 3.2]
+    },
+    {
+      "id": "prop_tray",
+      "kind": "tray",
+      "zone": "props",
+      "position": [2.92, 0.75, 3.08],
+      "rotationY": 0.3
+    },
+    {
+      "id": "prop_jar",
+      "kind": "jam_jar",
+      "zone": "props",
+      "position": [3.28, 0.75, 3.04],
+      "rotationY": 0.5
+    },
+    {
+      "id": "prop_thermos",
+      "kind": "thermos",
+      "zone": "props",
+      "position": [3.24, 0.75, 3.38],
+      "rotationY": -0.4
+    },
+    {
+      "id": "prop_mug",
+      "kind": "cup_mug",
+      "zone": "props",
+      "position": [2.88, 0.75, 3.36],
+      "rotationY": 1.2
+    },
+    {
+      "id": "shoe_bench",
+      "kind": "museum_bench",
+      "zone": "shoes",
+      "position": [-5.15, 0, 0.55],
+      "rotationY": 0
+    },
+    { "id": "pend_shoes", "kind": "pendant_lamp", "position": [-5.15, 2.82, 0.55] },
+    { "id": "pend_aisle", "kind": "pendant_lamp", "position": [-1.95, 2.88, 0.15] },
+    { "id": "pend_props", "kind": "pendant_lamp", "position": [3.1, 2.82, 3.2] },
+    {
+      "id": "door",
+      "kind": "stage_door",
+      "zone": "props",
+      "position": [5.55, 0, 2.35],
+      "rotationY": 0.9639
+    },
+    {
+      "id": "basin",
+      "kind": "water_basin",
+      "zone": "water",
+      "position": [4.35, 0, -2.05],
+      "rotationY": 0.15
+    }
+  ],
+  "camera": { "fov": 46, "position": [8.5, 4.2, 7.7], "target": [-0.35, 0.95, -0.55] },
+  "cameraPresets": {
+    "corner": { "position": [-0.6, 4.05, 7.35], "target": [0.6, 0.9, -1.15] },
+    "close": { "position": [0.72, 1.08, 1.22], "target": [-0.35, 0.42, 0.28] }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ea", "ground": "#b3a894", "intensity": 0.72 },
+    "key": { "color": "#fff3e2", "intensity": 1.35, "position": [9, 12.5, 8] },
+    "fill": { "color": "#d5e4f2", "intensity": 0.48, "position": [-8, 7, 3] },
+    "shadow": { "mapSize": 2048, "extent": 11, "near": 0.5, "far": 36, "bias": -0.00025, "normalBias": 0.045 },
+    "points": [
+      { "color": "#ffe0b8", "intensity": 0.45, "distance": 6, "position": [-3.2, 2.6, 0.15] },
+      { "color": "#ffe0b8", "intensity": 0.4, "distance": 6, "position": [-0.65, 2.6, 0.15] },
+      { "color": "#ffe0b8", "intensity": 0.4, "distance": 6, "position": [1.9, 2.6, 0.15] },
+      { "color": "#d7e6f4", "intensity": 0.55, "distance": 5, "position": [-4.4, 2.4, -4.7] },
+      { "color": "#ffd8a8", "intensity": 0.35, "distance": 4.5, "position": [3.1, 2.4, 3.2] }
+    ]
+  }
+}
