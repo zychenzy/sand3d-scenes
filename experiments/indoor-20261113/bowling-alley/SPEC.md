@@ -20,7 +20,7 @@ Two natural pairs. Each pair is gutter, lane, gutter, a 300 mm return cap, gutte
 
 ## Rooms
 
-The lane hall is a tall volume. The roof over the lanes is open to the truss; a plaster strip stays along the left wall. Both lane walls run the length of the lanes, with a dark cut along the right wall’s top. The concourse has a slat ceiling over the chairs and a low dado at the entry. Lane cards and a small NORTHLANE plaque sit on the left wall. The left side continues into a rack bay.
+The lane hall is a tall volume. The roof over the lanes is open to the truss; a plaster strip stays along the left wall. Both lane walls run the length of the lanes, with a dark cut along the right wall’s top. The right wall and the left entry wing carry the same wood dado and a short run of lane cards. The concourse has a slat ceiling over the chairs and a low dado at the entry. Lane cards and a small NORTHLANE plaque sit on the left wall. The left side continues into a rack bay.
 
 Seating is one theatre chair per lane, on that lane’s center, behind the approach, rotation 0 so the sitter faces −Z. A scoring console for each pair sits on the return center, still behind the approach, with its graphic on the +Z face. Monitors on those consoles use rotation π so the glass faces the sitters. The cross aisle, from z 6.50 to 8.05 across the lane block, contains no floor furniture.
 

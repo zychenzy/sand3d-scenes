@@ -2,7 +2,7 @@
 
 No bowling pin, ball, lane, or pinsetter in the catalog. Pins are a lathe with two neck stripes. Balls are spheres with three finger holes. The rack, cubbies, masking, and consoles are procedural.
 
-The monitor bake’s screen is an untextured black panel, so the pair scores are painted on the console face that sits toward the sitters. The TV bake has no picture; the frame is tinted and it reads as a lobby panel, not a live score.
+The monitor bake’s screen is an untextured black panel, so the pair scores are painted on the console face that sits toward the sitters. The lobby TV has a dark painted score in front of the glass.
 
 Gutter depth is the specified 1⅞ in. At house scale that slot is shallow; the dark channel and the maple lip are what make it read. The return cap is 300 mm and the hood is 620 mm. Those are house divisions, not USBC lane widths. The hood stays off both lane approaches.
 
@@ -12,4 +12,4 @@ Lanes and the approach receive the key shadow. The map is 4096 and the frustum i
 
 There is no full pinsetter, ball track under the cap, foul judge, bumper, or bowler. The pit shows a curtain, a ball door, a rake bar, and a sweep bar per lane. Speakers are the catalog box on a masking shelf, not a cluster of horns. The counter is a shortened bar bake used as the shoe desk. Shoes in the cubbies are pairs of blocks.
 
-Four lanes, not a full commercial house. The ceiling over the lanes is open to the truss. The concourse ceiling is a slat soffit. The corner frame still shows a long plain plaster wall above the dado on the left. The carpet is a quiet grid, not a woven pattern. The monitor glass stays an untextured black bake.
+Four lanes, not a full commercial house. The ceiling over the lanes is open to the truss. The concourse ceiling is a slat soffit. The right lane wall and the entry wing carry a wood dado and a few lane cards; the plaster between the cards is still plain. The close camera stays high so the outer head pins stay in front of the kickbacks. The carpet is a quiet grid, not a woven pattern. The pair-monitor glass stays an untextured black bake.

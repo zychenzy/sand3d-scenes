@@ -232,6 +232,29 @@ function paintNumeral(n, fill) {
   return srgbTexture(canvas, true);
 }
 
+function paintLobby() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 768;
+  canvas.height = 432;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#121816';
+  ctx.fillRect(0, 0, 768, 432);
+  ctx.strokeStyle = GOLD;
+  ctx.lineWidth = 10;
+  ctx.strokeRect(14, 14, 740, 404);
+  ctx.fillStyle = GOLD;
+  ctx.font = '650 54px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('NORTHLANE', 384, 78);
+  ctx.fillStyle = '#d6ff6a';
+  ctx.font = '700 36px Georgia, serif';
+  ctx.fillText('1    148     X  X  9', 384, 180);
+  ctx.fillText('2    167     9  /  X', 384, 240);
+  ctx.fillText('3    132     8  9  /', 384, 300);
+  ctx.fillText('4    155     X  7  /', 384, 360);
+  return srgbTexture(canvas, true);
+}
+
 function paintWord() {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
@@ -610,6 +633,34 @@ function addWalls(g) {
   cap.name = 'cut-right';
   const floorLip = addBox(g, 0.55, 0.04, len, toon('#c4b6a4'), rightX + 0.28, 0.02, zc);
   floorLip.userData.noCast = true;
+  const rightDadoTex = paintDado();
+  rightDadoTex.repeat.set(len / 1.1, 1);
+  const rightDado = new THREE.Mesh(new THREE.PlaneGeometry(len, 1.08), toon('#ffffff', { map: rightDadoTex }));
+  rightDado.rotation.y = -Math.PI / 2;
+  rightDado.position.set(rightX - 0.11, 0.56, zc);
+  rightDado.userData.noCast = true;
+  g.add(rightDado);
+  addBox(g, 0.04, 0.045, len, rail, rightX - 0.13, 1.12, zc);
+  const rightCards = [
+    [-16.4, 'LANE 4', ['PINS TO THE LEFT']],
+    [-11.6, 'SPARE', ['PICK UP THE TEN']],
+    [-6.6, 'STRIKE', ['ALL TEN DOWN']],
+    [-1.4, 'OPEN PLAY', ['WALK-INS WELCOME']],
+    [2.8, 'NORTHLANE', ['FOUR LANES']],
+  ];
+  rightCards.forEach(([z, title, lines], i) => {
+    const frame = addBox(g, 0.02, 0.58, 1.22, toon('#e2c27a'), rightX - 0.1, 1.92, z);
+    frame.userData.noCast = true;
+    const card = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.02, 0.42),
+      toon('#fff6df', { map: paintCard(title, lines, i % 2 ? '#6e3038' : '#8d3a42') }),
+    );
+    card.rotation.y = -Math.PI / 2;
+    card.position.set(rightX - 0.13, 1.92, z);
+    card.userData.noCast = true;
+    card.name = `right_card_${i + 1}`;
+    g.add(card);
+  });
 
   const bayX = house.x0 - PLACED.bay;
   const bayZ0 = LANE.approach;
@@ -618,6 +669,12 @@ function addWalls(g) {
   addBox(g, 0.14, h, bayLen, plaster, bayX, h / 2, (bayZ0 + bayZ1) / 2);
   addBox(g, 0.04, 1.08, bayLen, toon('#6d4632'), bayX + 0.08, 0.56, (bayZ0 + bayZ1) / 2);
   addBox(g, 0.14, h, 0.08, toon('#3f3834'), bayX, h / 2, bayZ1);
+  const lobby = new THREE.Mesh(new THREE.PlaneGeometry(0.82, 0.44), toon('#121816', { map: paintLobby() }));
+  lobby.rotation.y = Math.PI / 2;
+  lobby.position.set(-5.22, 1.22, 6.85);
+  lobby.userData.noCast = true;
+  lobby.name = 'lobby-screen';
+  g.add(lobby);
   [['OPEN', ['BOWLING']], ['LEAGUE', ['THU  7PM']]].forEach(([title, lines], i) => {
     const card = new THREE.Mesh(
       new THREE.PlaneGeometry(1.15, 0.5),
@@ -669,6 +726,28 @@ function addEntryWall(g) {
   dado.userData.noCast = true;
   g.add(dado);
   addBox(g, span, 0.04, 0.04, toon(GOLD), mid, 1.08, z - 0.09);
+  const wingX0 = x0;
+  const wingX1 = -0.9;
+  const wingTop = 3.05;
+  const wingBase = 1.22;
+  const wing = addBox(g, wingX1 - wingX0, wingTop - wingBase, 0.14, toon('#f4efe6'), (wingX0 + wingX1) / 2, (wingBase + wingTop) / 2, z);
+  wing.name = 'entry-wing';
+  [
+    [-4.7, 'NORTHLANE', ['FOUR LANES']],
+    [-3.15, 'LANE 1', ['LEFT OF THE PAIR']],
+    [-1.6, 'HOUSE BALLS', ['RACK ON THE LEFT']],
+  ].forEach(([x, title, lines], i) => {
+    const frame = addBox(g, 1.15, 0.52, 0.02, toon('#e2c27a'), x, 2.15, z - 0.08);
+    frame.userData.noCast = true;
+    const card = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.98, 0.38),
+      toon('#fff6df', { map: paintCard(title, lines, i % 2 ? '#6e3038' : '#8d3a42') }),
+    );
+    card.rotation.y = Math.PI;
+    card.position.set(x, 2.15, z - 0.1);
+    card.userData.noCast = true;
+    g.add(card);
+  });
   const cap = addBox(g, span, 0.08, 0.2, toon('#3f3834'), mid, h + 0.02, z);
   cap.name = 'entry-cut';
   cap.userData.noCast = true;
