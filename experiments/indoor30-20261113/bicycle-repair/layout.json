@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Bicycle repair",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.4, "depth": 8.4, "height": 3.2 },
+    "notes": [
+      "Cutaway bicycle workshop. Repair stand and pegboard on the back wall, wheel rack on the left, parts bins in the back right, service counter facing the customer runner.",
+      "The runner is the customer route from the open front to the counter. The rubber mat is the work bay. Those two floors do not overlap.",
+      "Gold bike is clamped in the stand, bars toward the aisle. Green bike is parked off the runner, bars toward the entrance. Saddles stay with their own bars."
+    ]
+  },
+  "anchors": {
+    "bench": { "x": -1.55, "z": -3.72, "w": 3.15, "d": 0.64, "h": 0.9 },
+    "stand": { "x": -1.67, "z": -2.08 },
+    "clamp": { "x": -1.67, "y": 1.0, "z": -2.35 },
+    "truing": { "x": -4.2, "z": -2.7 },
+    "rack": { "x": -4.55, "z0": -1.2, "z1": 2.25 },
+    "bins": { "x": 3.2, "z": -3.55, "w": 1.75, "d": 0.42, "h": 1.55 },
+    "counter": { "x": 2.45, "z": 1.42, "w": 2.35, "d": 0.72, "h": 0.94 },
+    "stool": [1.02, 0, 1.02],
+    "mat": { "x0": -4.7, "x1": 0.45, "z0": -4.0, "z1": -1.5 },
+    "runner": { "x0": -0.15, "x1": 3.85, "z0": 1.75, "z1": 4.15 }
+  },
+  "route": {
+    "width": 1.15,
+    "points": [[2.2, 3.95], [2.2, 2.15]]
+  },
+  "assets": {
+    "bike_stand": {
+      "glb": "assets/mountain_bike__a4c57cc4d44f.glb",
+      "targetHeight": 1.02,
+      "role": "clamped gold mountain bike"
+    },
+    "bike_parked": {
+      "glb": "assets/mountain_bike__e3cd36c670cd.glb",
+      "targetHeight": 1.0,
+      "role": "parked green mountain bike"
+    },
+    "wheel": {
+      "glb": "assets/bicycle_wheel__bc0bc9de84b9.glb",
+      "targetHeight": 0.7,
+      "role": "spoked bicycle wheel"
+    },
+    "pump": {
+      "glb": "assets/floor_pump__0fa79af038a3.glb",
+      "targetHeight": 0.64,
+      "role": "floor pump"
+    },
+    "dining_chair": {
+      "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.9
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.34
+    },
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.3
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    }
+  },
+  "instances": [
+    {
+      "id": "bike_stand",
+      "kind": "bike_stand",
+      "position": [-1.45, 0.2, -2.35],
+      "rotationY": 1.5708,
+      "faces": [0.2, -2.35],
+      "note": "Bars are local +Z. Yaw pi/2 points the bars toward +X, the saddle toward the rack."
+    },
+    {
+      "id": "bike_parked",
+      "kind": "bike_parked",
+      "position": [-2.15, 0, 0.4],
+      "rotationY": 3.1416,
+      "faces": [-3.45, 2.4],
+      "note": "Bars are local -Z. Yaw pi points the bars toward +Z, the entrance."
+    },
+    { "id": "wheel_truing", "kind": "wheel", "position": [-4.2, 0.86, -2.7], "rotationY": 0 },
+    { "id": "wheel_rack_a", "kind": "wheel", "position": [-4.55, 0, -0.7], "rotationY": 0 },
+    { "id": "wheel_rack_b", "kind": "wheel", "position": [-4.55, 0, 0.15], "rotationY": 0 },
+    { "id": "wheel_rack_c", "kind": "wheel", "position": [-4.55, 0, 1.0], "rotationY": 0 },
+    { "id": "wheel_rack_d", "kind": "wheel", "position": [-4.55, 0, 1.85], "rotationY": 0 },
+    { "id": "pump", "kind": "pump", "position": [0.15, 0, -1.82], "rotationY": -0.6 },
+    { "id": "chair_wait_a", "kind": "dining_chair", "position": [-2.05, 0, 2.55], "rotationY": 1.5708, "faces": [2.45, 2.55] },
+    { "id": "chair_wait_b", "kind": "dining_chair", "position": [-2.05, 0, 3.4], "rotationY": 1.5708, "faces": [2.45, 3.4] },
+    { "id": "pendant_counter", "kind": "pendant_lamp", "position": [3.2, 2.22, 1.55], "rotationY": 0.2 },
+    { "id": "register", "kind": "cash_register", "position": [3.05, 0.94, 1.28], "rotationY": 0.15 },
+    { "id": "thermos", "kind": "thermos", "position": [-0.45, 0.9, -3.7], "rotationY": 0.6 },
+    { "id": "plant", "kind": "flowerpot", "position": [-4.55, 0, 3.45], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#c8b79a",
+    "wallColor": "#f3ecdf",
+    "ceilingColor": "#f7f1e6",
+    "clearColor": "#e7e0d4",
+    "fogColor": "#e7e0d4",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 40,
+    "position": [1.25, 2.22, 5.7],
+    "target": [0.15, 0.82, -1.55]
+  },
+  "cameraPresets": {
+    "corner": { "position": [3.7, 2.1, 4.65], "target": [-1.3, 0.9, -1.55] },
+    "close": { "position": [-3.4, 1.2, -0.7], "target": [-1.05, 0.8, -2.5], "fov": 52 }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff2e4", "ground": "#8a735c", "intensity": 0.62 },
+    "key": { "color": "#fff6ea", "intensity": 1.02, "position": [6.5, 9.5, 5.5] },
+    "fill": { "color": "#d7e4f2", "intensity": 0.36, "position": [-5.5, 4.5, 2.5] },
+    "points": [
+      { "id": "bench", "color": "#ffd7a8", "intensity": 0.55, "position": [-1.55, 2.15, -2.6], "distance": 4.2, "decay": 2 },
+      { "id": "counter", "color": "#ffe1b8", "intensity": 0.42, "position": [2.45, 2.05, 1.42], "distance": 3.6, "decay": 2 },
+      { "id": "rack", "color": "#fff0dc", "intensity": 0.22, "position": [-4.2, 1.8, 0.5], "distance": 3.2, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "must_read": [
+      "A bicycle repair shop: clamped bike, pegboard, wheel rack, parts bins, floor pump, service counter.",
+      "Customer runner from the open front reaches the counter without crossing the work mat.",
+      "Waiting chairs face the counter. Staff stool faces the runner. Bike bars point with their saddles."
+    ]
+  }
+}
