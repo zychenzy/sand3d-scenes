@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "title": "Leathercraft atelier",
+    "units": "metres",
+    "style": "Toon hard, north light",
+    "room": { "width": 11.4, "depth": 8.8, "height": 3.4 },
+    "notes": [
+      "Bag-making room: standing clicker bench, stitching pony you sit on, seated edge-burnish bench, hides on a rail, hardware drawers, finished samples.",
+      "The pony is the stitching seat. Its jaws pinch a small bag seam. The dining chair faces the burnish bench. A four-leg work stool perches beside the clicker, clear of the standing zone.",
+      "Shared GLBs are root references. Clicker, pony, work stool, hides, bags, and drawers are procedural."
+    ]
+  },
+  "zones": {
+    "clicker": { "x": -2.35, "z": -0.85, "w": 2.15, "d": 0.76, "h": 0.92 },
+    "clickerStand": { "x": -2.35, "z": -0.02, "w": 1.45, "d": 0.62 },
+    "clickerEnd": { "x": -3.35, "z": -0.85 },
+    "pony": { "x": 0.55, "z": 1.05, "rot": 0.22, "seat": 0.5, "jaw": 0.98, "w": 0.72, "d": 0.62 },
+    "ponyTable": { "x": 1.28, "z": 1.22, "w": 0.46, "d": 0.34, "h": 0.64 },
+    "workStool": { "x": -3.78, "z": -0.48, "rot": 2.29, "h": 0.63, "w": 0.36, "d": 0.36 },
+    "burnish": { "x": 2.85, "z": -0.7, "w": 1.5, "d": 0.64, "h": 0.76 },
+    "cabinet": { "x": 3.85, "z": -3.9, "w": 1.42, "d": 0.48, "h": 0.96 },
+    "niche": { "x": -1.65, "z": -4.22, "w": 1.7, "h": 2.02, "d": 0.28 },
+    "hides": { "x": -5.4, "y": 2.18, "z0": -3.35, "z1": -0.55 },
+    "window": { "z": 1.25, "y": 1.9, "w": 2.35, "h": 1.28 },
+    "offcuts": { "x": -4.45, "z": -3.55 },
+    "patterns": { "x": -4.35, "z": 0.15 },
+    "samplesPeg": { "x": 1.15, "z": -4.18, "y": 1.55 }
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "../../../workshop/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.88,
+      "footprint": [0.34, 0.48]
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42,
+      "footprint": [0.32, 0.3]
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46,
+      "footprint": [0.26, 0.26]
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.14,
+      "footprint": [0.12, 0.12]
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "footprint": [0.36, 0.36]
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "footprint": [0.1, 0.1]
+    }
+  },
+  "instances": [
+    {
+      "id": "chair_burnish",
+      "kind": "dining_chair",
+      "position": [2.85, 0, 0.08],
+      "rotationY": 3.1416,
+      "faces": "burnish"
+    },
+    {
+      "id": "lamp_burnish",
+      "kind": "library_lamp",
+      "position": [2.28, 0.76, -0.9],
+      "rotationY": 0.7
+    },
+    {
+      "id": "lamp_pony",
+      "kind": "library_lamp",
+      "position": [1.4, 0.64, 1.1],
+      "rotationY": 2.2
+    },
+    {
+      "id": "pend_clicker",
+      "kind": "pendant_lamp",
+      "position": [-2.35, 2.22, -0.85],
+      "rotationY": 0
+    },
+    {
+      "id": "pend_pony",
+      "kind": "pendant_lamp",
+      "position": [0.55, 2.28, 0.7],
+      "rotationY": 0.4
+    },
+    {
+      "id": "pend_burnish",
+      "kind": "pendant_lamp",
+      "position": [2.85, 2.18, -0.55],
+      "rotationY": 0
+    },
+    {
+      "id": "jar_burnish",
+      "kind": "jam_jar",
+      "position": [2.32, 0.76, -0.58],
+      "rotationY": 0.4
+    },
+    {
+      "id": "jar_clicker",
+      "kind": "jam_jar",
+      "position": [-1.48, 0.92, -0.62],
+      "rotationY": -0.3
+    },
+    {
+      "id": "jar_niche",
+      "kind": "jam_jar",
+      "position": [-1.15, 1.42, -4.05],
+      "rotationY": 0.2
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-4.85, 0, 3.55],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug",
+      "kind": "cup_mug",
+      "position": [1.14, 0.64, 1.32],
+      "rotationY": 0.6
+    }
+  ],
+  "shell": {
+    "floorColor": "#ffffff",
+    "floorRepeat": [4, 8],
+    "wallColor": "#f3eadf",
+    "wainscotColor": "#6b4632",
+    "woodColor": "#8a5a38",
+    "beamColor": "#4a3024",
+    "ceilingColor": "#f7f1e8",
+    "clearColor": "#e7d7c4",
+    "fogColor": "#e7d7c4",
+    "fogNear": 18,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 38,
+    "position": [2.05, 1.78, 3.72],
+    "target": [-0.55, 0.98, -0.72]
+  },
+  "cameraPresets": {
+    "corner": { "position": [3.15, 1.58, 2.4], "target": [-0.85, 0.98, -0.65] },
+    "close": { "position": [1.08, 1.4, 2.32], "target": [0.5, 0.68, 1.08], "fov": 34 }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff3e4", "ground": "#6a4a38", "intensity": 0.52 },
+    "key": {
+      "color": "#fff6e8",
+      "intensity": 1.22,
+      "position": [-8.4, 6.6, 1.28],
+      "target": [-0.6, 0.15, 0.35],
+      "shadowExtent": 6.6,
+      "mapSize": 4096,
+      "shadowNear": 1.2,
+      "shadowFar": 22,
+      "bias": -0.00055,
+      "normalBias": 0.018
+    },
+    "fill": { "color": "#f0d8c0", "intensity": 0.22, "position": [4.5, 4.2, 6.5] },
+    "points": [
+      { "color": "#ffe2b8", "intensity": 3.4, "position": [-2.35, 2.55, -0.85], "distance": 5.2, "decay": 2 },
+      { "color": "#ffe2b8", "intensity": 2.8, "position": [0.55, 2.6, 0.7], "distance": 4.6, "decay": 2 },
+      { "color": "#ffe2b8", "intensity": 3.2, "position": [2.85, 2.5, -0.55], "distance": 4.8, "decay": 2 },
+      { "color": "#ffd9a0", "intensity": 1.8, "position": [2.35, 1.15, -0.7], "distance": 2.6, "decay": 2 },
+      { "color": "#ffd9a0", "intensity": 1.5, "position": [1.15, 1.12, 0.7], "distance": 2.4, "decay": 2 },
+      { "color": "#ffc98a", "intensity": 1.4, "position": [-1.65, 1.85, -3.85], "distance": 2.8, "decay": 2 }
+    ]
+  }
+}
