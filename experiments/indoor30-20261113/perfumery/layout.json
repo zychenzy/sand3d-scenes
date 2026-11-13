@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "title": "Artisan perfumery blending atelier",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.4, "depth": 8.8, "height": 3.35 },
+    "notes": [
+      "A nose's blending room: semicircular scent organ, compounding bench, consultation table, formula archive, and a brass extract hood.",
+      "Not a science lab and not a cafe. No flasks, burners, microscopes, espresso, or menu boards.",
+      "Dining-chair front is +Z at rotation 0. The nose faces the organ (-Z). Consultation chairs face the table."
+    ]
+  },
+  "anchors": {
+    "bench": { "x": -0.9, "z": -1.42, "w": 1.64, "d": 0.6, "top": 0.76 },
+    "table": { "x": 3.35, "z": 1.35 },
+    "drawers": { "x": 1.95, "z": -3.72, "w": 1.22, "d": 0.46, "h": 0.92 },
+    "plinth": { "x": -4.6, "z": 2.7 },
+    "organ": {
+      "cx": -0.9,
+      "cz": -0.55,
+      "half": 1.2217,
+      "tiers": [
+        { "id": "low", "r": 1.95, "y": 0.8, "count": 19 },
+        { "id": "mid", "r": 2.35, "y": 1.18, "count": 17 },
+        { "id": "high", "r": 2.72, "y": 1.56, "count": 15 }
+      ]
+    },
+    "paths": {
+      "entry_to_nose": [[1.15, 3.55], [1.15, 0.25], [-0.9, 0.25], [-0.9, 0.15]],
+      "consult": [[2.35, 3.45], [2.35, 1.35]],
+      "archive": [[2.62, 0.35], [2.62, -2.95]]
+    }
+  },
+  "assets": {
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.9, "source": "shared" },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4, "source": "shared" },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.52, "source": "shared" },
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.74, "source": "shared" },
+    "display_bookcase": { "glb": "assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 1.86, "tint": "#6a4632", "source": "shared" },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.12, "source": "shared" },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.28, "tint": "#c4784a", "source": "shared" },
+    "museum_plinth": { "glb": "assets/museum_plinth__6bce39246b2c.glb", "targetHeight": 0.9, "tint": "#e4dcd2", "source": "shared" },
+    "flacon_rect": { "glb": "assets/flacon_rect.glb", "targetHeight": 0.175, "source": "baked" },
+    "flacon_round": { "glb": "assets/flacon_round.glb", "targetHeight": 0.16, "source": "baked" },
+    "flacon_shoulder": { "glb": "assets/flacon_shoulder.glb", "targetHeight": 0.185, "source": "baked" },
+    "flacon_oval": { "glb": "assets/flacon_oval.glb", "targetHeight": 0.15, "source": "baked" },
+    "flacon_atomizer": { "glb": "assets/flacon_atomizer.glb", "targetHeight": 0.19, "source": "baked" },
+    "balance_scale": { "glb": "assets/balance_scale.glb", "targetHeight": 0.2, "source": "baked" },
+    "pipette": { "glb": "assets/pipette.glb", "targetHeight": 0.175, "source": "baked" }
+  },
+  "instances": [
+    { "id": "chair_nose", "kind": "dining_chair", "position": [-0.9, 0, -0.55], "rotationY": 3.1416 },
+    { "id": "chair_client", "kind": "dining_chair", "position": [3.35, 0, 2.18], "rotationY": 3.1416 },
+    { "id": "chair_consult", "kind": "dining_chair", "position": [3.35, 0, 0.52], "rotationY": 0 },
+    { "id": "consult_table", "kind": "square_table", "position": [3.35, 0, 1.35], "rotationY": 0 },
+    { "id": "lamp_bench", "kind": "library_lamp", "position": [-0.18, 0.76, -1.64], "rotationY": 3.1416 },
+    { "id": "pendant_consult", "kind": "pendant_lamp", "position": [3.35, 2.08, 1.35], "rotationY": 0 },
+    { "id": "pendant_aisle", "kind": "pendant_lamp", "position": [1.45, 2.12, 0.4], "rotationY": 0.4 },
+    { "id": "archive_a", "kind": "display_bookcase", "position": [3.55, 0, -3.9], "rotationY": 3.1416 },
+    { "id": "archive_b", "kind": "display_bookcase", "position": [4.55, 0, -3.9], "rotationY": 3.1416 },
+    { "id": "jar_drawer", "kind": "jam_jar", "position": [1.42, 0.96, -3.56], "rotationY": 0.4 },
+    { "id": "jar_drawer_b", "kind": "jam_jar", "position": [2.48, 0.96, -3.54], "rotationY": -0.2 },
+    { "id": "pot_window", "kind": "flowerpot", "position": [-5.05, 0, 3.45], "rotationY": 0.6 },
+    { "id": "hero_plinth", "kind": "museum_plinth", "position": [-4.55, 0, 2.55], "rotationY": 0.2 },
+    { "id": "balance", "kind": "balance_scale", "position": [-0.52, 0.76, -1.44], "rotationY": 0.18 },
+    { "id": "pipette_a", "kind": "pipette", "position": [-1.5, 0.76, -1.5], "rotationY": 0.2 },
+    { "id": "pipette_b", "kind": "pipette", "position": [-1.44, 0.76, -1.46], "rotationY": -0.15 },
+    { "id": "pipette_c", "kind": "pipette", "position": [-1.38, 0.76, -1.52], "rotationY": 0.35 },
+    { "id": "pipette_d", "kind": "pipette", "position": [-1.32, 0.76, -1.47], "rotationY": -0.05 }
+  ],
+  "shell": {
+    "floorColor": "#c9ae86",
+    "wallColor": "#f4efe6",
+    "woodColor": "#6a4632",
+    "ceilingColor": "#f7f3ec",
+    "clearColor": "#e7dcc8",
+    "fogColor": "#e7dcc8",
+    "fogNear": 22,
+    "fogFar": 48
+  },
+  "camera": {
+    "fov": 40,
+    "position": [5.15, 2.9, 6.2],
+    "target": [-0.7, 1.05, -0.85]
+  },
+  "cameraPresets": {
+    "corner": { "position": [-2.7, 2.6, 6.2], "target": [-0.35, 1.05, -0.75], "fov": 42 },
+    "detail": { "position": [-0.02, 1.46, -0.72], "target": [-0.95, 0.9, -1.5], "fov": 34 },
+    "close": { "position": [-0.02, 1.46, -0.72], "target": [-0.95, 0.9, -1.5], "fov": 34 }
+  },
+  "lights": {
+    "hemi": { "sky": 16774372, "ground": 9075042, "intensity": 0.64 },
+    "key": { "color": 16774378, "intensity": 1.18, "position": [7.2, 11.2, 7.6] },
+    "fill": { "color": 12967132, "intensity": 0.38, "position": [-7.2, 6.2, 2.4] },
+    "points": [
+      { "color": 16769480, "intensity": 0.55, "position": [-0.4, 1.25, -1.4], "distance": 3.2, "decay": 2 },
+      { "color": 16769480, "intensity": 0.42, "position": [-0.9, 1.95, -1.35], "distance": 3.6, "decay": 2 },
+      { "color": 16769480, "intensity": 0.36, "position": [3.35, 2.15, 1.35], "distance": 4.2, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon detail", "unlit default"],
+    "must_read": [
+      "A perfumer's organ in a semicircle, not a lab bench or a cafe counter.",
+      "The nose's chair faces the organ. Both consultation chairs face the table.",
+      "Balance, pipettes, and blotters sit on the blending bench. An extract hood hangs over it.",
+      "A clear path runs from the open front to the nose and branches to the table and the archive."
+    ]
+  }
+}
