@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "title": "Court 2 — basketball practice hall",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 25.1, "depth": 32.4, "height": 7.5 },
+    "floor": { "length": 32, "width": 19 },
+    "court": { "length": 28, "width": 15, "runoff": 2, "ceiling": 7.5 },
+    "notes": [
+      "FIBA 28 m × 15 m practice hall with a 2 m clear runoff. Goals are wall-mounted so the runoff stays open.",
+      "Both team benches and the scorer’s table sit on the open sideline, facing the court, outside the 2 m line.",
+      "Storage, a tie-up bench, a wall pad, and a ball rack are on the far sideline, also outside the runoff."
+    ]
+  },
+  "zones": {
+    "benches": [
+      { "id": "bench_home", "x": 9.86, "z": 6.2, "len": 7.2, "depth": 0.62, "seatToward": "negX", "color": "#1e4f86" },
+      { "id": "bench_away", "x": 9.86, "z": -6.2, "len": 7.2, "depth": 0.62, "seatToward": "negX", "color": "#8d3542" }
+    ],
+    "table": { "id": "scorer_table", "x": 10.2, "z": 0, "w": 2.3, "d": 0.68, "h": 0.76 },
+    "cart": { "id": "ball_cart", "x": 10.7, "z": 1.9, "w": 0.98, "d": 0.74, "h": 1.05 },
+    "tieBench": { "id": "tie_bench", "x": -10.42, "z": 7.25, "len": 2.8, "depth": 0.46, "seatToward": "posX", "color": "#b8894e" },
+    "wallPad": { "id": "wall_pad", "x": -12.08, "y": 1.15, "z": -4.35, "len": 2.2, "h": 1.35, "d": 0.12 },
+    "ballRack": { "id": "ball_rack", "x": -10.85, "z": -7.9, "w": 0.52, "d": 1.45, "h": 0.95 },
+    "looseBalls": [
+      { "x": 0.55, "z": 10.7 },
+      { "x": -0.85, "z": 6.1 }
+    ],
+    "shelfBalls": [
+      { "x": -10.12, "y": 0.62, "z": 1.32 },
+      { "x": -10.12, "y": 0.62, "z": 1.68 },
+      { "x": -10.12, "y": 1.1, "z": 1.5 },
+      { "x": -10.12, "y": 0.62, "z": 2.95 },
+      { "x": -10.12, "y": 1.1, "z": 3.25 }
+    ],
+    "pinnies": [
+      { "x": -10.12, "y": 1.55, "z": 1.4 },
+      { "x": -10.12, "y": 1.55, "z": 3.05 }
+    ],
+    "cones": [
+      { "x": -11.35, "z": 5.15 },
+      { "x": -11.15, "z": 5.55 }
+    ]
+  },
+  "assets": {
+    "simple_chair": { "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.85 },
+    "display_bookcase": { "glb": "../../../museum/assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 2.0 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.8 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.28 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.28 }
+  },
+  "instances": [
+    { "id": "coach_home", "kind": "simple_chair", "position": [10.62, 0, 2.15], "rotationY": -1.5707963267948966, "facing": "negX" },
+    { "id": "coach_away", "kind": "simple_chair", "position": [10.62, 0, -2.15], "rotationY": -1.5707963267948966, "facing": "negX" },
+    { "id": "case_a", "kind": "display_bookcase", "position": [-9.93, 0, 1.5], "rotationY": -1.5707963267948966, "openToward": "posX" },
+    { "id": "case_b", "kind": "display_bookcase", "position": [-9.93, 0, 3.15], "rotationY": -1.5707963267948966, "openToward": "posX" },
+    { "id": "shelf_a", "kind": "wall_shelf", "position": [-10.22, 0, -2.35], "rotationY": -1.5707963267948966, "openToward": "posX" },
+    { "id": "shelf_b", "kind": "wall_shelf", "position": [-10.22, 0, -0.85], "rotationY": -1.5707963267948966, "openToward": "posX" },
+    { "id": "entry_plant", "kind": "flowerpot", "position": [-11.35, 0, -6.35], "rotationY": 0.4 },
+    { "id": "water", "kind": "thermos", "position": [10.32, 0.76, -0.42], "rotationY": 0.6 },
+    { "id": "mug_a", "kind": "cup_mug", "position": [10.08, 0.76, 0.38], "rotationY": 0.2 },
+    { "id": "mug_b", "kind": "cup_mug", "position": [10.28, 0.76, 0.55], "rotationY": -0.4 }
+  ],
+  "shell": {
+    "floorColor": "#e2ba86",
+    "wallColor": "#f4efe6",
+    "clearColor": "#e4ddd2",
+    "fogColor": "#e4ddd2",
+    "fogNear": 26,
+    "fogFar": 58
+  },
+  "camera": {
+    "fov": 52,
+    "position": [11.45, 1.78, -1.7],
+    "target": [-0.35, 1.4, 10.4]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 52,
+      "position": [6.6, 1.9, 13.35],
+      "target": [-2.2, 1.7, 3.2]
+    },
+    "detail": {
+      "fov": 58,
+      "position": [0.45, 2.9, 9.0],
+      "target": [0.0, 2.2, 12.7]
+    },
+    "close": {
+      "fov": 58,
+      "position": [0.45, 2.9, 9.0],
+      "target": [0.0, 2.2, 12.7]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff8ee", "ground": "#e6d2b6", "intensity": 0.78 },
+    "key": {
+      "color": "#fff6ea",
+      "intensity": 1.25,
+      "position": [6, 15, 4],
+      "target": [0, 1.6, 6],
+      "shadow": 12
+    },
+    "fill": { "color": "#e4eef2", "intensity": 0.38, "position": [-8, 8, 8] },
+    "points": [
+      { "color": "#fff1d4", "intensity": 0, "distance": 4, "position": [0.2, 6.55, -10] },
+      { "color": "#fff1d4", "intensity": 0, "distance": 4, "position": [0.2, 6.55, -5] },
+      { "color": "#fff1d4", "intensity": 0, "distance": 4, "position": [0.2, 6.55, 0] },
+      { "color": "#fff1d4", "intensity": 0, "distance": 4, "position": [0.2, 6.55, 5] },
+      { "color": "#fff1d4", "intensity": 0, "distance": 4, "position": [0.2, 6.55, 10] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon detail", "unlit"],
+    "must_read": [
+      "Full FIBA court with keys, free-throw circles, no-charge arcs, and 6.75 m three-point lines.",
+      "Two wall-mounted goals, rims at 3.05 m, backboards 1.20 m in from each endline.",
+      "Home and away benches face the court from outside a clear 2 m runoff, with a ball cart and storage beyond that line."
+    ]
+  }
+}
