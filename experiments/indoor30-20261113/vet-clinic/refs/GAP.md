@@ -17,12 +17,16 @@ Closed in this scene:
 - One carrier sits on the middle perch. Two sit on the floor, cat side and dog side. The dog carrier door is open. No animals.
 - Walk-on platform is 70 mm with a clear approach off the entrance spine. Exam 1 is a glimpse, not a lab.
 - Entrance clear width is 1.58 m, with a flat threshold rather than a step.
-- Floor is linoleum, not a wood photo. Desk grain is a fine repeat. Walls do not cast shadow maps. Contact discs sit under the floor furniture.
+- Floor is linoleum, not a wood photo. Desk grain is a fine repeat. Plaster walls and the ceiling neither cast nor receive shadow maps, so the alcove edge stays even. Furniture and the floor still take the hard key shadow. Contact discs sit under the floor furniture.
+- The appointment board is a six-row day list (time, species visit, room). The chart rack beside it is manila folders, not a color grid.
+- Waiting chairs stay the shared metal cafe chairs. The other shared seats are a dining chair, a theatre chair, a train seat, and a lounge sofa. None of those is a clinic waiting chair, so no extra cafe furniture was added. The sage benches are the museum bench with the vinyl recolor.
 
 Still open:
 
-- Carriers, the walk-on scale, and the exam table are procedural. A CC-BY carrier or floor scale is not in the baked set.
+- Carriers, the walk-on scale, and the exam table are procedural. The perch carrier now has a grated door and a raised handle, but it is still local geometry. A CC-BY carrier or floor scale is not in the baked set.
+- The front and right of the room stay open so the cutaway can be seen. The corner frame still shows a narrow band of that opening beside the entrance. The ceiling itself is closed.
+- The center aisle is the 1.2 m spine and stays clear. The dog carrier, the second sage bench, and the low table sit beside it.
 - The wall shelf is a generic two-tier shelf. Product boxes in front of it are local.
 - The banker's lamp is the library bake. Its green shade is a task lamp, not a clinic brand.
 - Contact shadows are discs, not bent-normal AO.
-- The appointment board lists species slots, not a real day sheet.
+- The appointment board is a painted day list, not a live schedule.

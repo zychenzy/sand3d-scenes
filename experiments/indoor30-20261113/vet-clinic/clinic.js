@@ -77,32 +77,44 @@ function signTex(title, sub, bg, fg) {
 
 function boardTex() {
   return canvasTex('board', (g, w, h) => {
-    g.fillStyle = '#f7f4ee';
+    g.fillStyle = '#efe2c8';
     g.fillRect(0, 0, w, h);
-    g.fillStyle = '#2f6f62';
-    g.fillRect(0, 0, w, 70);
+    g.fillStyle = '#1f4d44';
+    g.fillRect(0, 0, w, 96);
     g.fillStyle = '#f7f4ee';
-    g.font = '700 36px Georgia, serif';
+    g.font = '700 52px Georgia, serif';
     g.textAlign = 'left';
-    g.fillText('TODAY  ·  OPEN', 24, 46);
+    g.textBaseline = 'middle';
+    g.fillText('APPOINTMENTS', 36, 50);
+    g.font = '500 28px Georgia, serif';
+    g.textAlign = 'right';
+    g.fillText('today', w - 36, 50);
+    g.textAlign = 'left';
     const rows = [
-      ['09:20', 'feline consult'],
-      ['10:05', 'canine weigh'],
-      ['11:00', 'exam 1'],
-      ['11:40', 'feline consult'],
+      ['09:20', 'feline consult', 'alcove'],
+      ['10:05', 'canine weigh', 'scale'],
+      ['11:00', 'exam 1', 'exam'],
+      ['11:40', 'feline consult', 'alcove'],
+      ['13:10', 'canine consult', 'dogs'],
+      ['14:30', 'vaccine', 'exam'],
     ];
     rows.forEach((row, i) => {
-      const y = 120 + i * 78;
-      g.fillStyle = i % 2 ? '#e7f0ea' : '#f7f4ee';
-      g.fillRect(16, y - 28, w - 32, 64);
+      const y = 156 + i * 78;
+      g.fillStyle = i % 2 ? '#e7f0ea' : '#f6efe2';
+      g.fillRect(22, y - 32, w - 44, 68);
+      g.fillStyle = '#1f4d44';
+      g.font = '700 36px ui-monospace, monospace';
+      g.fillText(row[0], 44, y + 2);
       g.fillStyle = '#24343c';
-      g.font = '600 32px Georgia, serif';
-      g.fillText(row[0], 36, y + 8);
-      g.font = '500 28px Georgia, serif';
+      g.font = '600 34px Georgia, serif';
+      g.fillText(row[1], 250, y + 2);
       g.fillStyle = '#2f6f62';
-      g.fillText(row[1], 180, y + 8);
+      g.font = '500 28px Georgia, serif';
+      g.textAlign = 'right';
+      g.fillText(row[2], w - 48, y + 2);
+      g.textAlign = 'left';
     });
-  }, 640, 460);
+  }, 1280, 640);
 }
 
 function digitTex() {
@@ -176,19 +188,20 @@ function makeShell(layout) {
   const wall = mat(S.wall);
   const wain = mat(S.wainscot);
   const rail = mat(S.rail);
-  addBox(g, room.width, H, 0.14, wall, 0, H / 2, -hd + 0.07, { noCast: true, name: 'back-wall' });
-  addBox(g, 0.14, H, room.depth, wall, -hw + 0.07, H / 2, 0, { noCast: true, name: 'left-wall' });
-  addBox(g, room.width - 0.14, 1.05, 0.02, wain, 0.07, 0.525, -hd + 0.15, { noCast: true });
-  addBox(g, 0.02, 1.05, room.depth - 0.14, wain, -hw + 0.16, 0.525, 0.07, { noCast: true });
-  addBox(g, room.width - 0.14, 0.04, 0.04, rail, 0.07, 1.07, -hd + 0.16, { noCast: true });
-  addBox(g, 0.04, 0.04, room.depth - 0.14, rail, -hw + 0.18, 1.07, 0.07, { noCast: true });
-  addBox(g, room.width, 0.08, room.depth, mat(S.ceiling), 0, H - 0.04, 0, { noCast: true, name: 'ceiling' });
+  const plaster = { noCast: true, noReceive: true };
+  addBox(g, room.width, H, 0.14, wall, 0, H / 2, -hd + 0.07, { ...plaster, name: 'back-wall' });
+  addBox(g, 0.14, H, room.depth, wall, -hw + 0.07, H / 2, 0, { ...plaster, name: 'left-wall' });
+  addBox(g, room.width - 0.14, 1.05, 0.02, wain, 0.07, 0.525, -hd + 0.15, plaster);
+  addBox(g, 0.02, 1.05, room.depth - 0.14, wain, -hw + 0.16, 0.525, 0.07, plaster);
+  addBox(g, room.width - 0.14, 0.04, 0.04, rail, 0.07, 1.07, -hd + 0.16, plaster);
+  addBox(g, 0.04, 0.04, room.depth - 0.14, rail, -hw + 0.18, 1.07, 0.07, plaster);
+  addBox(g, room.width, 0.08, room.depth, mat(S.ceiling), 0, H - 0.04, 0, { ...plaster, name: 'ceiling' });
 
   const b = layout.build;
   const runner = mat(S.runner);
   addBox(g, 1.15, 0.012, 5.2, runner, b.portal.cx + 0.45, 0.008, 0.9, { noCast: true, name: 'runner' });
   addBox(g, 2.55, 0.012, 4.15, mat(S.catFloor), -4.25, 0.008, 0.85, { noCast: true, name: 'cat-floor' });
-  addBox(g, 3.3, 0.012, 2.7, mat(S.dogMat), 3.55, 0.01, 1.45, { noCast: true, name: 'dog-mat' });
+  addBox(g, 4.1, 0.012, 3.4, mat(S.dogMat), 3.2, 0.01, 0.95, { noCast: true, noReceive: true, name: 'dog-mat' });
 
   const portal = b.portal;
   const jambW = 0.08;
@@ -208,7 +221,7 @@ function makeShell(layout) {
   addBox(g, segL, 2.55, 0.1, examWall, exam.wallX0 + segL / 2, 1.275, exam.wallZ, { name: 'exam-wall-l' });
   addBox(g, segR, 2.55, 0.1, examWall, exam.doorX1 + segR / 2, 1.275, exam.wallZ, { name: 'exam-wall-r' });
   addBox(g, exam.doorX1 - exam.doorX0, 0.18, 0.1, oak, (exam.doorX0 + exam.doorX1) / 2, 2.46, exam.wallZ);
-  addBox(g, 2.9, 2.4, 0.08, examWall, 4.15, 1.2, -hd + 0.12, { noCast: true, name: 'exam-back' });
+  addBox(g, 2.9, 2.4, 0.08, examWall, 4.15, 1.2, -hd + 0.12, { noCast: true, noReceive: true, name: 'exam-back' });
 
   return g;
 }
@@ -230,6 +243,19 @@ function deskBlock(g, S, spec, topMat, openKnee) {
   addBox(g, Math.min(0.7, w * 0.35), 0.18, 0.012, mat(S.sage), cx, h - 0.24, cz + d / 2 + 0.008);
 }
 
+function grateDoor(parent, S, w, h, x, y, z) {
+  addBox(parent, w, 0.016, 0.016, mat(S.navy), x, y + h / 2, z);
+  addBox(parent, w, 0.016, 0.016, mat(S.navy), x, y - h / 2, z);
+  addBox(parent, 0.016, h, 0.016, mat(S.navy), x - w / 2, y, z);
+  addBox(parent, 0.016, h, 0.016, mat(S.navy), x + w / 2, y, z);
+  for (let i = -2; i <= 2; i++) {
+    addBox(parent, 0.007, h * 0.86, 0.008, mat('#d5dee4'), x + i * w * 0.16, y, z + 0.008);
+  }
+  for (let j = -1; j <= 1; j++) {
+    addBox(parent, w * 0.86, 0.007, 0.008, mat('#d5dee4'), x, y + j * h * 0.22, z + 0.008);
+  }
+}
+
 function carrierMesh(g, S, spec) {
   const colors = { carrier_perch: S.carrierSage, carrier_cat_floor: S.carrierCream, carrier_dog: S.carrierSlate };
   const body = colors[spec.id] || S.carrierCream;
@@ -238,17 +264,29 @@ function carrierMesh(g, S, spec) {
   grp.position.set(spec.x, spec.y, spec.z);
   grp.rotation.y = spec.rot || 0;
   const { w, h, d } = spec;
-  addBox(grp, w, h, d, mat(body), 0, h / 2, 0);
-  addBox(grp, w * 0.92, h * 0.55, 0.02, mat('#dfe7ea'), 0, h * 0.58, d / 2 + 0.01, { name: 'vent-panel' });
-  for (let i = -1; i <= 1; i++) {
-    addBox(grp, 0.012, h * 0.42, 0.012, mat(S.navy), i * w * 0.22, h * 0.58, d / 2 + 0.02);
-  }
-  addBox(grp, w * 0.7, 0.02, 0.08, mat(S.navy), 0, h * 0.32, d / 2 + 0.02);
+  addBox(grp, w * 1.04, 0.028, d * 1.04, mat(S.navy), 0, 0.014, 0, { name: 'carrier-base' });
+  addBox(grp, w, h * 0.72, d, mat(body), 0, 0.028 + h * 0.36, 0, { name: 'carrier-body' });
+  addBox(grp, w * 0.9, h * 0.16, d * 0.82, mat(body), 0, 0.028 + h * 0.8, 0, { name: 'carrier-lid' });
+  addBox(grp, w * 0.62, h * 0.55, 0.008, mat('#1c2826'), 0, h * 0.42, d / 2 - 0.006, { name: 'door-void' });
   if (spec.open) {
-    addBox(grp, 0.02, h * 0.72, d * 0.7, mat(body), w / 2 + 0.04, h * 0.4, 0.02, { rotY: 0.7, name: 'door' });
+    const door = new THREE.Group();
+    door.name = 'door';
+    door.position.set(w * 0.34, 0, d / 2);
+    door.rotation.y = -1.05;
+    grateDoor(door, S, w * 0.62, h * 0.58, -w * 0.31, h * 0.42, 0.01);
+    grp.add(door);
+  } else {
+    grateDoor(grp, S, w * 0.7, h * 0.58, 0, h * 0.42, d / 2 + 0.01);
+    addBox(grp, 0.055, 0.022, 0.028, mat(S.clay), w * 0.22, h * 0.2, d / 2 + 0.02, { name: 'latch' });
   }
-  addCyl(grp, 0.012, 0.012, w * 0.55, mat(S.steel), 0, h + 0.06, 0, 8, { rotZ: Math.PI / 2, name: 'handle' });
-  addBox(grp, 0.08, 0.03, 0.05, mat(S.clay), w * 0.28, h * 0.35, d / 2 + 0.03, { name: 'latch' });
+  addBox(grp, 0.02, 0.085, 0.02, mat(S.navy), -w * 0.16, h * 0.98, 0, { name: 'handle-post' });
+  addBox(grp, 0.02, 0.085, 0.02, mat(S.navy), w * 0.16, h * 0.98, 0, { name: 'handle-post' });
+  addBox(grp, w * 0.38, 0.02, 0.026, mat(S.navy), 0, h * 0.98 + 0.04, 0, { name: 'handle' });
+  for (const side of [-1, 1]) {
+    for (let k = -1; k <= 1; k++) {
+      addBox(grp, 0.01, 0.045, 0.012, mat(S.navy), side * (w / 2 + 0.004), h * 0.48, k * d * 0.2);
+    }
+  }
   g.add(grp);
 }
 
@@ -273,15 +311,15 @@ function makeProcedural(layout) {
   const word = signTex('LINDEN', 'veterinary reception', S.sageDeep, '#f7f4ee');
   addBox(g, 1.15, 0.28, 0.02, mat('#ffffff', { map: word }), b.desk.cx + 0.2, 0.72, b.desk.cz + b.desk.d / 2 + 0.02, { noCast: true });
 
-  addBox(g, 2.4, 1.15, 0.12, mat(S.oak), -3.55, 1.85, -4.12);
-  for (let i = 0; i < 8; i++) {
-    const col = ['#c46a4a', '#2f6f62', '#e2c15a', '#3e5560'][i % 4];
-    const colx = -4.5 + (i % 4) * 0.3;
-    const rowy = i < 4 ? 1.52 : 1.98;
-    addBox(g, 0.22, 0.3, 0.035, mat(col), colx, rowy, -4.05);
+  addBox(g, 2.08, 1.14, 0.05, mat('#6b4e34'), -2.35, 2.08, -4.2, { noCast: true, noReceive: true, name: 'board-frame' });
+  addBox(g, 1.94, 1.0, 0.02, mat('#ffffff', { map: boardTex() }), -2.35, 2.08, -4.16, { noCast: true, noReceive: true, name: 'appointments' });
+  const rackX = -4.55;
+  addBox(g, 0.78, 0.72, 0.1, mat(S.oakDeep), rackX, 1.58, -4.16, { noCast: true, noReceive: true, name: 'chart-rack' });
+  for (let i = 0; i < 4; i++) {
+    const x = rackX - 0.27 + i * 0.18;
+    addBox(g, 0.12, 0.52, 0.016, mat('#e4d2a4'), x, 1.54, -4.1, { noCast: true, noReceive: true });
+    addBox(g, 0.07, 0.045, 0.01, mat(S.sageDeep), x, 1.78, -4.085, { noCast: true, noReceive: true });
   }
-  const board = boardTex();
-  addBox(g, 0.72, 0.52, 0.02, mat('#ffffff', { map: board }), -1.15, 1.85, -4.14, { noCast: true });
 
   const screen = b.screen;
   const sz = (screen.z1 - screen.z0) / 2;

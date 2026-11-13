@@ -35,7 +35,7 @@
     "carriers": [
       { "id": "carrier_perch", "x": -5.2, "y": 0.98, "z": 0.7, "rot": 1.5708, "w": 0.5, "h": 0.3, "d": 0.34 },
       { "id": "carrier_cat_floor", "x": -5.08, "y": 0, "z": 2.2, "rot": 1.5708, "w": 0.48, "h": 0.3, "d": 0.33 },
-      { "id": "carrier_dog", "x": 1.9, "y": 0, "z": 3.55, "rot": -1.5708, "w": 0.52, "h": 0.33, "d": 0.36, "open": true }
+      { "id": "carrier_dog", "x": 1.35, "y": 0, "z": 2.15, "rot": 0, "w": 0.52, "h": 0.33, "d": 0.36, "open": true }
     ],
     "bowls": { "cx": 4.28, "cz": 0.28, "w": 0.42, "d": 0.28 },
     "pathways": [
@@ -137,13 +137,14 @@
   "instances": [
     { "id": "cat_chair_a", "kind": "simple_chair", "position": [-4.2, 0, -0.05], "rotationY": -1.5708 },
     { "id": "cat_chair_b", "kind": "simple_chair", "position": [-4.2, 0, 0.85], "rotationY": -1.5708 },
-    { "id": "dog_chair_n", "kind": "simple_chair", "position": [3.25, 0, 0.35], "rotationY": 0 },
-    { "id": "dog_chair_s", "kind": "simple_chair", "position": [1.85, 0, 1.45], "rotationY": 1.5708 },
-    { "id": "dog_bench", "kind": "museum_bench", "position": [3.4, 0, 2.75], "rotationY": 1.5708 },
-    { "id": "dog_table", "kind": "coffee_table", "position": [3.25, 0, 1.45], "rotationY": 1.5708 },
+    { "id": "dog_chair_n", "kind": "simple_chair", "position": [3.15, 0, -0.2], "rotationY": 0 },
+    { "id": "dog_chair_s", "kind": "simple_chair", "position": [1.95, 0, 0.7], "rotationY": 1.5708 },
+    { "id": "dog_bench", "kind": "museum_bench", "position": [3.15, 0, 1.65], "rotationY": 1.5708 },
+    { "id": "dog_bench_side", "kind": "museum_bench", "position": [4.85, 0, 0.45], "rotationY": 3.1416 },
+    { "id": "dog_table", "kind": "coffee_table", "position": [3.15, 0, 0.7], "rotationY": 1.5708 },
     { "id": "staff_stool", "kind": "bar_stool", "position": [-3.25, 0, -3.75], "rotationY": 0 },
 
-    { "id": "pend_dog", "kind": "pendant_lamp", "position": [3.25, 2.73, 1.45], "rotationY": 0.2 },
+    { "id": "pend_dog", "kind": "pendant_lamp", "position": [3.15, 2.73, 0.7], "rotationY": 0.2 },
     { "id": "pend_cat", "kind": "pendant_lamp", "position": [-4.55, 2.73, 0.45], "rotationY": -0.2 },
     { "id": "pend_desk", "kind": "pendant_lamp", "position": [-3.15, 2.73, -2.15], "rotationY": 0.1 },
 
@@ -166,6 +167,7 @@
     { "id": "dog_chair_n", "toward": "dog_table" },
     { "id": "dog_chair_s", "toward": "dog_table" },
     { "id": "dog_bench", "toward": "dog_table" },
+    { "id": "dog_bench_side", "toward": "dog_table" },
     { "id": "staff_stool", "towardPoint": [-3.15, 0, -2.52] },
     { "id": "monitor_desk", "toward": "staff_stool" },
     { "id": "pos_desk", "towardPoint": [-1.85, 0, -3.6] }
@@ -226,14 +228,15 @@
     ]
   },
   "camera": {
-    "fov": 42,
-    "position": [2.15, 2.25, 6.7],
-    "target": [-0.85, 1.02, -1.05]
+    "fov": 66,
+    "position": [0.9, 1.8, 4.7],
+    "target": [0.4, 0.85, 0.2]
   },
   "cameraPresets": {
     "corner": {
-      "position": [4.9, 2.15, 6.15],
-      "target": [-1.4, 1.0, -0.45]
+      "position": [4.55, 1.68, 3.4],
+      "target": [-0.4, 0.9, 0.1],
+      "fov": 60
     },
     "close": {
       "position": [-3.85, 1.18, 1.95],
