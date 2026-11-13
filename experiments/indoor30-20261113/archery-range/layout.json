@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Gold Line — 18 m indoor archery range",
+    "units": "metres",
+    "style": "Toon hard",
+    "faceZ": 1.2,
+    "faceLocalZ": 0.179,
+    "buttAnchorZ": 1.021,
+    "centerY": 1.3,
+    "room": { "width": 10.4, "depth": 28.43, "height": 4.85 },
+    "notes": [
+      "Four lanes on 1.80 m centres. White faces sit 18.00 m from the target-side edge of the shooting line.",
+      "Waiting line 3.00 m behind that edge. Equipment line 4.00 m behind the waiting line.",
+      "Arrow corridors stay empty. Bows, quivers and benches are behind the waiting line."
+    ]
+  },
+  "assets": {
+    "indoor_butt": { "glb": "./assets/indoor_butt.glb", "targetHeight": 2.0378 },
+    "ground_quiver": { "glb": "./assets/ground_quiver.glb", "targetHeight": 0.835 },
+    "recurve_walnut": { "glb": "./assets/recurve_walnut.glb", "targetHeight": 1.7 },
+    "recurve_ink": { "glb": "./assets/recurve_ink.glb", "targetHeight": 1.7 },
+    "recurve_forest": { "glb": "./assets/recurve_forest.glb", "targetHeight": 1.7 },
+    "recurve_honey": { "glb": "./assets/recurve_honey.glb", "targetHeight": 1.7 },
+    "hip_quiver": { "glb": "./assets/hip_quiver.glb", "targetHeight": 0.501 },
+    "museum_bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.45 },
+    "square_table": { "glb": "../../../boardgame/assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.76 },
+    "dining_chair": { "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "library_lamp": { "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.42 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.26 },
+    "pendant_lamp": { "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.55 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.58 },
+    "chalkboard": { "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb", "targetHeight": 1.2 }
+  },
+  "instances": [
+    { "id": "butt_1", "kind": "indoor_butt", "position": [-2.7, 0, 1.021] },
+    { "id": "butt_2", "kind": "indoor_butt", "position": [-0.9, 0, 1.021] },
+    { "id": "butt_3", "kind": "indoor_butt", "position": [0.9, 0, 1.021] },
+    { "id": "butt_4", "kind": "indoor_butt", "position": [2.7, 0, 1.021] },
+
+    { "id": "ground_1", "kind": "ground_quiver", "position": [-1.88, 0, 19.78] },
+    { "id": "ground_2", "kind": "ground_quiver", "position": [-0.08, 0, 19.78] },
+    { "id": "ground_3", "kind": "ground_quiver", "position": [1.72, 0, 19.78] },
+    { "id": "ground_4", "kind": "ground_quiver", "position": [3.52, 0, 19.78] },
+
+    { "id": "bow_walnut", "kind": "recurve_walnut", "position": [-4.22, 0, 23.72], "rotationY": 1.5708 },
+    { "id": "bow_honey", "kind": "recurve_honey", "position": [-4.22, 0, 24.32], "rotationY": 1.5708 },
+    { "id": "bow_forest", "kind": "recurve_forest", "position": [-4.22, 0, 24.92], "rotationY": 1.5708 },
+    { "id": "bow_ink", "kind": "recurve_ink", "position": [-4.22, 0, 25.52], "rotationY": 1.5708 },
+
+    { "id": "hip_1", "kind": "hip_quiver", "position": [-3.78, 0.98, 23.5], "rotationY": 1.5708 },
+    { "id": "hip_2", "kind": "hip_quiver", "position": [-3.78, 0.98, 24.1], "rotationY": 1.5708 },
+    { "id": "hip_3", "kind": "hip_quiver", "position": [-3.78, 0.98, 24.7], "rotationY": 1.5708 },
+    { "id": "hip_4", "kind": "hip_quiver", "position": [-3.78, 0.98, 25.3], "rotationY": 1.5708 },
+
+    { "id": "bench_l", "kind": "museum_bench", "position": [-3.2, 0, 27.42], "rotationY": 1.5708 },
+    { "id": "bench_r", "kind": "museum_bench", "position": [-1.2, 0, 27.42], "rotationY": 1.5708 },
+    { "id": "score_table", "kind": "square_table", "position": [2.45, 0, 27.15] },
+    { "id": "score_chair_w", "kind": "dining_chair", "position": [1.58, 0, 27.15], "rotationY": 1.5708 },
+    { "id": "score_chair_e", "kind": "dining_chair", "position": [3.32, 0, 27.15], "rotationY": -1.5708 },
+    { "id": "score_lamp", "kind": "library_lamp", "position": [2.78, 0.76, 27.02], "rotationY": -0.6 },
+    { "id": "prep_thermos", "kind": "thermos", "position": [-2.35, 0.8, 24.42] },
+    { "id": "prep_mug_a", "kind": "cup_mug", "position": [-2.05, 0.8, 24.68] },
+    { "id": "prep_mug_b", "kind": "cup_mug", "position": [0.42, 0.8, 24.4] },
+    { "id": "plant_west", "kind": "flowerpot", "position": [-4.65, 0, 26.35] },
+    { "id": "plant_south", "kind": "flowerpot", "position": [0.7, 0, 27.72] },
+    { "id": "pendant_prep", "kind": "pendant_lamp", "position": [-0.3, 3.95, 24.55] },
+    { "id": "pendant_score", "kind": "pendant_lamp", "position": [2.45, 3.95, 27.15] },
+    { "id": "shelf_tabs", "kind": "wall_shelf", "position": [-4.88, 1.35, 26.15], "rotationY": 1.5708 },
+    { "id": "board_scores", "kind": "chalkboard", "position": [-4.95, 0, 27.35] }
+  ],
+  "shell": {
+    "clearColor": "#d5d0c6",
+    "fogColor": "#d5d0c6",
+    "fogNear": 30,
+    "fogFar": 56
+  },
+  "camera": {
+    "fov": 50,
+    "position": [5.55, 1.78, 26.85],
+    "target": [-1.15, 1.05, 8.5]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 52,
+      "position": [4.15, 1.66, 22.55],
+      "target": [-2.3, 0.95, 26.9]
+    },
+    "close": {
+      "fov": 36,
+      "position": [2.15, 1.5, 3.25],
+      "target": [0.9, 1.32, 1.2]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16776178, "ground": 14536680, "intensity": 0.84 },
+    "key": {
+      "color": 16774884,
+      "intensity": 1.22,
+      "position": [1.6, 4.42, 17.4],
+      "target": [-0.2, 0.6, 9.5],
+      "shadow": 18
+    },
+    "fill": { "color": 14607338, "intensity": 0.36, "position": [-5.5, 4.2, 22] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Four butts with vertical three-spot faces on one line.",
+      "Shooting line, 3 m line and waiting line are parallel and clear.",
+      "Bow rack, hip quivers, prep benches and waiting benches sit behind the waiting line."
+    ]
+  }
+}
