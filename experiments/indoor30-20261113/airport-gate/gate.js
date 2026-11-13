@@ -15,19 +15,23 @@ const QUEUE_BELTS = [
 ];
 
 function drawRibbon(ctx, w, h, display) {
-  ctx.fillStyle = '#e6eef3';
+  ctx.fillStyle = '#f4f8fb';
   ctx.fillRect(0, 0, w, h);
-  ctx.fillStyle = '#1a7384';
-  ctx.fillRect(0, 0, w, Math.round(h * 0.22));
-  ctx.fillStyle = '#f5fafc';
-  ctx.font = `600 ${Math.round(h * 0.11)}px sans-serif`;
-  ctx.fillText(display.header, 28, Math.round(h * 0.15));
-  ctx.fillStyle = '#1b2830';
-  ctx.font = `${Math.round(h * 0.09)}px sans-serif`;
+  ctx.fillStyle = '#145e6e';
+  ctx.fillRect(0, 0, w, Math.round(h * 0.3));
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `700 ${Math.round(h * 0.17)}px sans-serif`;
+  ctx.fillText(display.header, 40, Math.round(h * 0.2));
+  const cols = [40, w * 0.34, w * 0.5, w * 0.66];
   display.rows.forEach((row, i) => {
-    const y = Math.round(h * (0.4 + i * 0.18));
-    ctx.fillStyle = row.includes('BOARDING') ? '#1a7384' : '#1b2830';
-    ctx.fillText(row, 28, y);
+    const parts = row.split(/\s{2,}/);
+    const y = Math.round(h * (0.48 + i * 0.16));
+    ctx.font = `700 ${Math.round(h * 0.125)}px sans-serif`;
+    parts.forEach((part, j) => {
+      const status = part === 'BOARDING' || part === 'ON TIME' || part === 'GATE';
+      ctx.fillStyle = status ? '#0f6a78' : '#121920';
+      ctx.fillText(part, cols[j] || 40, y);
+    });
   });
 }
 
@@ -95,10 +99,12 @@ boot({
     addWalls(shell, { addBox, mats, W, D, H, x0, x1, z0, wallT, door: layout.door, innerX0 });
     addWindow(shell, { addBox, addCyl, mats, W, H, z0, wallT, S, x0, x1 });
     addApron(shell, { addBox, addCyl, mats, THREE, W, H, z0, S, layout, x0, x1 });
-    addCeiling(shell, { addBox, mats, H });
+    addCeiling(shell, { addBox, mats, H, x0, x1, z0, D });
     addDoorHead(shell, { addBox, canvasTexture, toon, mats, layout, H });
+    addBridgeThroat(shell, { addBox, mats, toon, door: layout.door });
+    addWallDressing(shell, { addBox, mats, toon, canvasTexture, THREE, W, D, H, x0, x1, door: layout.door });
 
-    for (const bank of layout.seating.banks) addSeatBank(props, bank, layout, { addBox, mats, addContact });
+    for (const bank of layout.seating.banks) addSeatBank(props, bank, layout, { addBox, addCyl, mats, addContact });
     for (const display of layout.displays) addRibbon(props, display, { addBox, THREE, canvasTexture, toon, mats, H });
     addPodium(props, layout.podium, { addBox, addCyl, mats, canvasTexture, toon });
     for (const scanner of layout.scanners) addScanner(props, scanner, { addBox, addCyl, mats });
@@ -138,9 +144,6 @@ function addWalls(shell, ctx) {
   addBox(shell, 0.9, H, wallT, mats.wall, x0 + 0.45, H / 2, z0 + D - wallT / 2);
   addBox(shell, 0.9, H, wallT, mats.wall, x1 - 0.45, H / 2, z0 + D - wallT / 2);
   addBox(shell, W, 0.08, 0.08, mats.base, 0, 0.04, z0 + D - 0.04, { cast: false });
-
-  addBox(shell, 1.15, 2.4, 1.35, mats.bridge, west - 0.72, 1.2, door.z, { receive: true });
-  addBox(shell, 0.06, door.h - 0.12, door.w * 0.28, mats.shell, west - 0.06, (door.h - 0.12) / 2, door.z - door.w * 0.34);
 }
 
 function addWindow(shell, ctx) {
@@ -192,14 +195,101 @@ function addApron(shell, ctx) {
 }
 
 function addCeiling(shell, ctx) {
-  const { addBox, mats, H } = ctx;
-  addBox(shell, 12.6, 0.08, 6.8, mats.ceiling, 0.2, H - 0.08, -1.15, { cast: false });
-  for (let z = -4.35; z <= 1.9; z += 0.85) {
-    addBox(shell, 12.2, 0.28, 0.05, mats.ceiling, 0.15, H - 0.32, z, { cast: false });
+  const { addBox, mats, H, x0, x1, z0, D } = ctx;
+  const span = (x1 - x0) + 0.6;
+  const depth = D + 0.3;
+  const zc = z0 + D / 2;
+  addBox(shell, span, 0.1, depth, mats.ceiling, 0, H - 0.05, zc, { cast: false });
+  const zFascia = z0 + D + 0.08;
+  addBox(shell, span, 0.38, 0.14, mats.metal, 0, H - 0.26, zFascia, { cast: false });
+  for (let z = z0 + 0.85; z <= z0 + D - 0.7; z += 0.95) {
+    addBox(shell, span - 0.8, 0.16, 0.04, mats.ceiling, 0, H - 0.2, z, { cast: false });
   }
-  for (let z = -3.95; z <= 1.5; z += 1.7) {
-    addBox(shell, 8.4, 0.03, 0.08, mats.led, 0.2, H - 0.5, z, { cast: false, receive: false });
+  for (let z = z0 + 1.3; z <= z0 + D - 1.4; z += 1.7) {
+    addBox(shell, span * 0.62, 0.02, 0.06, mats.led, 0.15, H - 0.34, z, { cast: false, receive: false });
   }
+}
+
+function addBridgeThroat(shell, ctx) {
+  const { addBox, mats, toon, door } = ctx;
+  const mouth = door.x - 0.02;
+  const length = 2.35;
+  const far = mouth - length;
+  const mid = mouth - length / 2;
+  const innerW = door.w - 0.28;
+  const crown = 2.22;
+  const rib = toon('#4e585f');
+  const liner = toon('#c5d0d8');
+  const end = toon('#8b969f');
+  addBox(shell, length, 0.05, innerW - 0.08, end, mid, 0.03, door.z, { cast: false });
+  addBox(shell, length, 0.014, 0.14, mats.yellow, mid, 0.065, door.z, { cast: false, receive: false });
+  addBox(shell, length, crown, 0.06, liner, mid, crown / 2, door.z - innerW / 2, { cast: false });
+  addBox(shell, length, crown, 0.06, liner, mid, crown / 2, door.z + innerW / 2, { cast: false });
+  addBox(shell, length, 0.07, innerW + 0.1, liner, mid, crown - 0.02, door.z, { cast: false });
+  addBox(shell, 0.08, crown, innerW - 0.1, end, far, crown / 2, door.z, { cast: false });
+  for (let i = 1; i <= 3; i += 1) {
+    const x = mouth - i * 0.52;
+    addBox(shell, 0.07, 0.08, innerW + 0.02, rib, x, crown - 0.1, door.z, { cast: false });
+    addBox(shell, 0.07, crown - 0.08, 0.07, rib, x, (crown - 0.08) / 2, door.z - innerW / 2 + 0.02, { cast: false });
+    addBox(shell, 0.07, crown - 0.08, 0.07, rib, x, (crown - 0.08) / 2, door.z + innerW / 2 - 0.02, { cast: false });
+  }
+  addBox(shell, 0.12, door.h + 0.06, 0.1, mats.metal, mouth + 0.05, door.h / 2, door.z - door.w / 2, { cast: false });
+  addBox(shell, 0.12, door.h + 0.06, 0.1, mats.metal, mouth + 0.05, door.h / 2, door.z + door.w / 2, { cast: false });
+  addBox(shell, 0.12, 0.1, door.w + 0.1, mats.metal, mouth + 0.05, door.h + 0.02, door.z, { cast: false });
+  addBox(shell, 0.05, door.h - 0.28, 0.28, mats.shell, mouth - 0.2, (door.h - 0.28) / 2, door.z - door.w * 0.36, { cast: false });
+  addBox(shell, 1.1, 0.025, 0.1, mats.led, mouth - 0.55, crown - 0.1, door.z, { cast: false, receive: false });
+  addBox(shell, 0.7, 0.025, 0.1, mats.led, mouth - 1.5, crown - 0.1, door.z, { cast: false, receive: false });
+}
+
+function addWallDressing(shell, ctx) {
+  const { addBox, mats, toon, canvasTexture, THREE, x0, x1, door } = ctx;
+  const east = x1 - 0.14;
+  const west = x0 + 0.16;
+  const joint = toon('#7d8b96');
+  for (const y of [1.45, 2.05, 3.05]) {
+    addBox(shell, 0.02, 0.025, 9.4, joint, east, y, -0.15, { cast: false, receive: false });
+  }
+  for (let z = -4.4; z <= 4.4; z += 1.7) {
+    addBox(shell, 0.02, 2.15, 0.025, joint, east, 2.35, z, { cast: false, receive: false });
+  }
+  const glazeZ0 = -3.2;
+  const glazeZ1 = 2.45;
+  const glazeZC = (glazeZ0 + glazeZ1) / 2;
+  const glazeL = glazeZ1 - glazeZ0;
+  const glazeY = 2.2;
+  const glazeH = 1.7;
+  const pane = toon('#6e8ea3', { transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false });
+  addBox(shell, 0.05, glazeH, glazeL, toon('#9aafbf'), east + 0.02, glazeY, glazeZC, { cast: false });
+  addBox(shell, 0.02, glazeH - 0.08, glazeL - 0.08, pane, east - 0.03, glazeY, glazeZC, { cast: false, receive: false });
+  addBox(shell, 0.03, 0.05, glazeL, mats.metal, east - 0.03, glazeY + glazeH / 2, glazeZC, { cast: false });
+  addBox(shell, 0.03, 0.05, glazeL, mats.metal, east - 0.03, glazeY - glazeH / 2, glazeZC, { cast: false });
+  for (let z = glazeZ0; z <= glazeZ1; z += 0.95) {
+    addBox(shell, 0.035, glazeH, 0.045, mats.metal, east - 0.035, glazeY, z, { cast: false });
+  }
+  addBox(shell, 0.02, 0.04, 8.6, mats.teal, east - 0.02, 1.32, -0.35, { cast: false });
+
+  for (const y of [1.05, 2.2]) {
+    addBox(shell, 0.015, 0.02, 3.3, joint, west, y, -3.55, { cast: false, receive: false });
+    addBox(shell, 0.015, 0.02, 3.6, joint, west, y, 1.7, { cast: false, receive: false });
+  }
+  const tex = canvasTexture((c, w, h) => {
+    c.fillStyle = '#f7fafc';
+    c.fillRect(0, 0, w, h);
+    c.fillStyle = '#145e6e';
+    c.fillRect(0, 0, w, 150);
+    c.fillStyle = '#ffffff';
+    c.font = '700 92px sans-serif';
+    c.fillText('GATE B12', 36, 100);
+    c.fillStyle = '#142028';
+    c.font = '700 48px sans-serif';
+    c.fillText('SK 1427   CPH   ON TIME', 36, 230);
+    c.fillStyle = '#0f6a78';
+    c.fillText('AY 832    HEL   BOARDING', 36, 310);
+    c.fillStyle = '#142028';
+    c.fillText('BA 456    LHR   15:25', 36, 390);
+  }, 1024, 512);
+  const plate = toon('#f7fafc', { map: tex, emissive: '#e7eef3', emissiveIntensity: 0.35 });
+  addBox(shell, 0.03, 0.78, 1.15, plate, west + 0.02, 1.62, door.z + door.w / 2 + 0.85, { cast: false });
 }
 
 function addDoorHead(shell, ctx) {
@@ -218,33 +308,40 @@ function addDoorHead(shell, ctx) {
 }
 
 function addSeatBank(props, bank, layout, ctx) {
-  const { addBox, mats, addContact } = ctx;
+  const { addBox, addCyl, mats, addContact } = ctx;
   const seating = layout.seating;
   const bounds = bankBounds(bank, seating);
   const seatLen = bank.seats * seating.pitch;
   const beamLen = bounds.z1 - bounds.z0 - 0.06;
   const beamZ = (bounds.z0 + bounds.z1) / 2;
-  addBox(props, 0.07, 0.05, beamLen, mats.beam, bank.x + 0.04, 0.2, beamZ);
-  const legZs = [bounds.z0 + 0.1, (bounds.z0 + bounds.z0 + seatLen) / 2, bounds.z1 - 0.1];
+  addBox(props, 0.08, 0.045, beamLen, mats.beam, bank.x, 0.18, beamZ);
+  const legZs = [bounds.z0 + 0.12, bounds.z0 + seatLen / 2, bounds.z1 - 0.12];
   for (const lz of legZs) {
-    addBox(props, 0.05, 0.2, 0.055, mats.metal, bank.x + 0.04, 0.1, lz);
-    addBox(props, 0.32, 0.028, 0.07, mats.metal, bank.x, 0.018, lz);
+    addCyl(props, 0.022, 0.028, 0.16, mats.metal, bank.x - 0.1, 0.08, lz, 10);
+    addCyl(props, 0.022, 0.028, 0.16, mats.metal, bank.x + 0.12, 0.08, lz, 10);
+    addBox(props, 0.3, 0.018, 0.05, mats.metal, bank.x, 0.012, lz);
   }
+  const gap = seating.pitch * 0.18;
   for (let i = 0; i < bank.seats; i += 1) {
     const z = bounds.z0 + seating.pitch * (i + 0.5);
-    const xBack = bounds.x1 - 0.04;
-    addBox(props, 0.36, 0.055, seating.pitch * 0.78, mats.cushion, bank.x - 0.04, seating.seatHeight, z);
-    addBox(props, 0.07, 0.045, seating.pitch * 0.72, mats.cushion, bounds.x0 + 0.08, seating.seatHeight - 0.02, z);
-    addBox(props, 0.05, 0.4, seating.pitch * 0.8, mats.shell, xBack, 0.7, z);
-    addBox(props, 0.04, 0.14, seating.pitch * 0.58, mats.shell, xBack + 0.012, seating.backHeight, z);
-    addBox(props, 0.028, 0.16, seating.pitch * 0.68, mats.cushion, xBack - 0.03, 0.6, z);
+    const backW = seating.pitch - gap;
+    addBox(props, 0.36, 0.065, backW * 0.92, mats.cushion, bank.x - 0.1, seating.seatHeight, z);
+    const nose = addCyl(props, 0.032, 0.032, backW * 0.84, mats.cushion, bounds.x0 + 0.04, seating.seatHeight - 0.008, z, 12);
+    nose.rotation.x = Math.PI / 2;
+    const back = addBox(props, 0.038, 0.38, backW * 0.84, mats.shell, bank.x + 0.05, 0.66, z);
+    back.rotation.z = -0.32;
+    addBox(props, 0.03, 0.1, backW * 0.72, mats.cushion, bank.x + 0.01, 0.52, z);
+    const head = addBox(props, 0.036, 0.09, backW * 0.46, mats.shell, bank.x + 0.12, 0.86, z);
+    head.rotation.z = -0.28;
+    const crown = addCyl(props, 0.02, 0.02, backW * 0.42, mats.shell, bank.x + 0.145, 0.91, z, 10);
+    crown.rotation.x = Math.PI / 2;
   }
   for (let i = 0; i <= bank.seats; i += 1) {
     const z = bounds.z0 + seating.pitch * i;
-    addBox(props, 0.28, 0.032, 0.038, mats.metal, bank.x - 0.02, 0.63, z);
-    addBox(props, 0.032, 0.18, 0.038, mats.metal, bank.x + 0.1, 0.54, z);
+    addBox(props, 0.18, 0.026, 0.03, mats.metal, bank.x - 0.04, 0.56, z);
+    addCyl(props, 0.012, 0.014, 0.12, mats.metal, bank.x + 0.04, 0.5, z, 8);
     if (bank.armPower && i === 1) {
-      addBox(props, 0.045, 0.012, 0.02, mats.led, bank.x - 0.08, 0.652, z, { cast: false });
+      addBox(props, 0.04, 0.01, 0.018, mats.led, bank.x - 0.08, 0.578, z, { cast: false });
     }
   }
   addContact(bank.x, 0.014, bank.z, 0.42, seatLen * 0.42);
@@ -256,8 +353,8 @@ function addSeatBank(props, bank, layout, ctx) {
 
 function addRibbon(props, display, ctx) {
   const { addBox, THREE, canvasTexture, toon, mats, H } = ctx;
-  const tex = canvasTexture((c, w, h) => drawRibbon(c, w, h, display), 1024, 320);
-  const face = toon('#e6eef3', { map: tex, emissive: '#d5e4ec', emissiveIntensity: 0.4 });
+  const tex = canvasTexture((c, w, h) => drawRibbon(c, w, h, display), 2048, 768);
+  const face = toon('#f4f8fb', { map: tex, emissive: '#eef3f6', emissiveIntensity: 0.55 });
   const plane = new THREE.Mesh(new THREE.PlaneGeometry(display.width, display.height), face);
   plane.rotation.y = Math.PI / 2;
   plane.position.set(display.x, display.y, display.z);

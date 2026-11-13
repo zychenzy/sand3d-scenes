@@ -60,7 +60,8 @@ for (const inst of layout.instances) {
 assert.match(runtime, /MeshToonMaterial/);
 assert.match(runtime, /MeshBasicMaterial/);
 assert.match(runtime, /NearestFilter/);
-assert.match(runtime, /PCFHardShadowMap/);
+assert.match(runtime, /PCFSoftShadowMap/);
+assert.match(runtime, /shadow\.radius/);
 const stops = runtime.match(/const STOPS = \[([^\]]+)\]/);
 assert.ok(stops, 'stepped gradient stops');
 const stopVals = stops[1].split(',').map((n) => Number(n.trim()));

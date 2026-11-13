@@ -249,7 +249,7 @@ export async function boot({ build }) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFHardShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
   const clear = shellColors.clearColor || '#d5dee6';
@@ -282,8 +282,9 @@ export async function boot({ build }) {
   key.shadow.camera.right = 12;
   key.shadow.camera.top = 12;
   key.shadow.camera.bottom = -12;
-  key.shadow.bias = -0.00045;
-  key.shadow.normalBias = 0.045;
+  key.shadow.bias = -0.00025;
+  key.shadow.normalBias = 0.08;
+  key.shadow.radius = 3;
   key.target.position.set(...keySpec.target);
   scene.add(key.target);
   scene.add(key);

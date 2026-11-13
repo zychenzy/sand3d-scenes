@@ -7,7 +7,7 @@ const outDir = process.env.SHOT_DIR || '/opt/cursor/artifacts';
 const shots = [
   ['airport-gate_toon_default', `${base}?hud=0`],
   ['airport-gate_toon_corner', `${base}?hud=0&cam=corner`],
-  ['airport-gate_toon_detail', `${base}?hud=0&cam=detail`],
+  ['airport-gate_toon_close', `${base}?hud=0&cam=close`],
   ['airport-gate_unlit_default', `${base}?hud=0&mode=unlit`],
 ];
 

@@ -61,23 +61,23 @@
       "id": "fids-a",
       "x": -1.88,
       "z": -2.35,
-      "y": 2.02,
+      "y": 2.08,
       "width": 1.9,
-      "height": 0.56,
+      "height": 0.64,
       "faces": "+X",
       "header": "B12  DEPARTURES",
-      "rows": ["SK 1427   CPH   14:40   ON TIME", "AY  832   HEL   15:05   BOARDING", "BA  456   LHR   15:25   GATE"]
+      "rows": ["SK 1427  CPH  14:40  ON TIME", "AY 832  HEL  15:05  BOARDING", "BA 456  LHR  15:25  GATE"]
     },
     {
       "id": "fids-b",
       "x": -1.88,
       "z": 1.28,
-      "y": 2.02,
+      "y": 2.08,
       "width": 1.72,
-      "height": 0.56,
+      "height": 0.64,
       "faces": "+X",
       "header": "B12  DEPARTURES",
-      "rows": ["LH  908   FRA   15:10   ON TIME", "KL  604   AMS   15:40   GATE", "AF  114   CDG   16:05   ON TIME"]
+      "rows": ["LH 908  FRA  15:10  ON TIME", "KL 604  AMS  15:40  GATE", "AF 114  CDG  16:05  ON TIME"]
     }
   ],
   "podium": { "x": -5.95, "z": -3.72, "w": 0.58, "d": 1.42, "h": 1.06 },
@@ -149,25 +149,25 @@
     { "id": "ledge_cup", "kind": "cup_mug", "position": [6.78, 1.06, 0.85], "rotationY": 0.6 }
   ],
   "camera": {
-    "fov": 46,
-    "position": [5.55, 2.72, 6.35],
-    "target": [-1.5, 1.12, -1.15]
+    "fov": 48,
+    "position": [2.45, 1.56, 1.55],
+    "target": [-1.45, 1.12, 0.45]
   },
   "cameraPresets": {
     "corner": {
-      "position": [-2.55, 1.8, 1.85],
-      "target": [-6.15, 1.02, -1.85],
-      "fov": 42
+      "position": [-0.7, 1.38, 1.35],
+      "target": [-6.2, 0.9, -1.2],
+      "fov": 36
     },
     "detail": {
-      "position": [3.15, 1.85, 2.55],
-      "target": [6.45, 0.98, -0.55],
-      "fov": 44
+      "position": [1.85, 0.92, 0.15],
+      "target": [4.85, 0.78, -2.25],
+      "fov": 32
     },
     "close": {
-      "position": [3.15, 1.85, 2.55],
-      "target": [6.45, 0.98, -0.55],
-      "fov": 44
+      "position": [1.85, 0.92, 0.15],
+      "target": [4.85, 0.78, -2.25],
+      "fov": 32
     }
   },
   "lights": {

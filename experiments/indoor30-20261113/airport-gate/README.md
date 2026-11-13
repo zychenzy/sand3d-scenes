@@ -14,7 +14,9 @@ python3 -m http.server 8771 --bind 127.0.0.1
 
 http://127.0.0.1:8771/experiments/indoor30-20261113/airport-gate/
 
-`T` toon (hard 4-step, default) · `U` unlit (`MeshBasicMaterial`, shadow map off) · `?mode=unlit` · `?cam=corner` · `?cam=detail` · `?hud=0`
+`T` toon (hard 4-step, default) · `U` unlit (`MeshBasicMaterial`, shadow map off) · `?mode=unlit` · `?cam=corner` · `?cam=close` · `?hud=0`
+
+The toon ramp stays four hard steps. Shadow maps are soft (`PCFSoftShadowMap`, radius 3) so thin posts and seat legs do not stair-step. Unlit turns the shadow map off.
 
 ## Check
 
@@ -24,4 +26,4 @@ node experiments/indoor30-20261113/airport-gate/tests/layout.test.mjs
 
 The test checks repo-root asset paths, seat facing, rank and cross-aisle clearances, the accessible lane, scanner approach paths, ribbon size, and that unlit is basic-material.
 
-Shots in `shots/`: `airport-gate_toon_default`, `airport-gate_toon_corner`, `airport-gate_toon_detail`, `airport-gate_unlit_default`.
+Shots in `shots/`: `airport-gate_toon_default`, `airport-gate_toon_corner`, `airport-gate_toon_close`, `airport-gate_unlit_default`.

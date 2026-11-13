@@ -18,8 +18,10 @@ No beam seat, gate podium, stanchion, or flight ribbon exists in those bakes. `s
 
 ## Still open
 
-- The apron is a cropped fuselage and a short bridge throat. It does not show a docked airliner, a taxiway, or a terminal exterior.
-- Flight ribbons are canvas panels, not split-flap or LCD glass.
+- The apron is a cropped fuselage. The jet-bridge is a ribbed throat at the door, not a docked airliner, taxiway, or terminal exterior.
+- Flight ribbons and the gate-wall plate are canvas panels, not split-flap or LCD glass. Type is columned so it can be read from the holdroom cameras.
+- Beam seats are still procedural shells: a pan, a reclined back, and a headrest on the shared beam. They are not a catalog beam-seat mesh.
+- The band above the charging ledge is a mullioned panel, not exterior glazing. A grey spandrel remains between the ledge and that band.
 - The floor access mark is a simple symbol, not a standard wheelchair pictogram.
 - No passengers, luggage fleet, or PA speaker that matches a ceiling horn.
-- Hard shadow steps remain on stanchion posts and seat legs. The toon ramp starts at 104/255 so the shadow band is not black; the unlit pass confirms the dark seats are the material, not crushed lighting.
+- The toon ramp still starts at 104/255. Shadow maps are softened for thin posts and legs; the four toon steps stay hard. Unlit is `MeshBasicMaterial` with the shadow map off.
