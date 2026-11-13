@@ -80,24 +80,24 @@ function floorTex() {
   const tex = canvasTex((g, w, h) => {
     const n = 8;
     const pw = w / n;
-    const bases = ['#c9a56c', '#d7b483', '#c09a62', '#e0c094', '#c6a272', '#d2ae78', '#b8925c', '#dcc09a'];
+    const bases = ['#c6a67a', '#ccae84', '#c2a274', '#d0b48a', '#c8aa7e', '#c4a478', '#cbb084', '#c9ac80'];
     for (let i = 0; i < n; i++) {
       const rnd = lcg(40 + i * 13);
       g.fillStyle = bases[i];
       g.fillRect(i * pw, 0, pw, h);
       for (let k = 0; k < 28; k++) {
         const x = i * pw + 4 + rnd() * (pw - 8);
-        g.strokeStyle = 'rgba(92,58,28,0.45)';
-        g.globalAlpha = 0.2 + rnd() * 0.35;
+        g.strokeStyle = 'rgba(120,86,52,0.35)';
+        g.globalAlpha = 0.12 + rnd() * 0.16;
         g.lineWidth = 1;
         g.beginPath();
         g.moveTo(x, 0);
         for (let y = 0; y <= h; y += 36) g.lineTo(x + (rnd() - 0.5) * 2, y);
         g.stroke();
       }
-      g.globalAlpha = 0.7;
-      g.fillStyle = '#5c3e28';
-      g.fillRect((i + 1) * pw - 1.5, 0, 2, h);
+      g.globalAlpha = 0.28;
+      g.fillStyle = '#8d6a46';
+      g.fillRect((i + 1) * pw - 1, 0, 1.5, h);
     }
     g.globalAlpha = 1;
   }, 1024, 1024);
@@ -604,7 +604,15 @@ function makeShell(layout) {
   addBox(g, 0.035, 0.77, 0.03, walnut, fieldX - 1.22, fieldY, fieldZ);
   addBox(g, 0.035, 0.77, 0.03, walnut, fieldX + 1.22, fieldY, fieldZ);
 
-  const soffit = addBox(g, W * 0.9, 0.08, 3.5, plaster, -0.2, H - 0.06, -2.05);
+  const ceiling = new THREE.Mesh(
+    new THREE.PlaneGeometry(W, D),
+    toon('#f4efe6', { emissive: '#f4efe6', emissiveIntensity: 0.45 }),
+  );
+  ceiling.rotation.x = Math.PI / 2;
+  ceiling.position.y = H - 0.015;
+  flat(ceiling);
+  g.add(ceiling);
+  const soffit = addBox(g, W * 0.9, 0.08, 3.5, plaster, -0.2, H - 0.1, -2.05);
   flat(soffit);
   const beamA = addBox(g, W * 0.72, 0.1, 0.12, walnutDark, -0.4, H - 0.18, -3.05);
   flat(beamA);

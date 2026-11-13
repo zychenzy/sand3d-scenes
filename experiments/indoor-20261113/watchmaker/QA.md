@@ -12,8 +12,8 @@ The floor is one board texture, about 12 cm to the plank, with grain along the l
 
 ## Shots
 
-- `shots/toon_default.png` — sign reads WATCH REPAIR. The bench, wooden stool, counter, two customer chairs, waiting bench, regulator, and the full longcase are in frame. The clock panel is a tight row of five dials. The parts cabinet is cut on the left. Wall plaster has no rectangular bands. Shadows stay soft.
-- `shots/toon_corner.png` — the same sign reads WATCH REPAIR. The five dials, cabinet, jars, bench, and stool are in frame. The longcase is the regulator’s neighbor and is cropped by the right edge of this camera.
+- `shots/toon_default.png` — sign reads WATCH REPAIR. The parts cabinet, bench, wooden stool, counter, two customer chairs, waiting bench, regulator, and the full longcase are in frame. The clock panel is a row of five dials. The ceiling is closed. Floor seams are quieter than the clocks and the oak counter. Shadows stay soft.
+- `shots/toon_corner.png` — inside the shop, under the ceiling, with no open sky. The sign reads WATCH REPAIR. The longcase, waiting bench, five dials, cabinet, bench, and stool are in frame.
 - `shots/toon_close.png` — the baize holds two parts trays, oil cups, screwdrivers, tweezers, a dust blower, the movement, the loupe, and tags reading 2824, 7S26, and 6497. The belly bite is the near semicircle. The loupe shadow is soft.
 - `shots/unlit_default.png` — same camera as the default, `MeshBasicMaterial`. No shadow map. Slate, maple, walnut, oak, and the white dials still separate. The sign and the clock numerals remain readable.
 
@@ -25,4 +25,4 @@ The floor is one board texture, about 12 cm to the plank, with grain along the l
 
 ## Still limited
 
-Individual wheels inside the movement are a few millimetres. The close shot shows the plate, a bridge, and the stem, not a full gear train. Drawer abbreviations are short codes. Screws in the trays are slightly enlarged so the close camera can see them. The default frame crops the left edge of the parts cabinet. See `refs/GAP.md`.
+Individual wheels inside the movement are a few millimetres. The close shot shows the plate, a bridge, and the stem, not a full gear train. Drawer abbreviations are short codes. Screws in the trays are slightly enlarged so the close camera can see them. The corner waiting bench is close to the camera, so its near edge is large. See `refs/GAP.md`.

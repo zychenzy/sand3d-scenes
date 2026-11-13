@@ -129,12 +129,12 @@
     "fogFar": 28
   },
   "camera": {
-    "fov": 46,
-    "position": [1.35, 2.28, 3.45],
-    "target": [0.05, 1.12, -1.55]
+    "fov": 50,
+    "position": [1.05, 2.32, 3.72],
+    "target": [-0.35, 1.14, -1.65]
   },
   "cameraPresets": {
-    "corner": { "position": [3.45, 1.92, 0.2], "target": [-1.25, 1.22, -2.45] },
+    "corner": { "position": [3.85, 1.62, 1.35], "target": [-0.15, 1.18, -2.05] },
     "close": { "position": [-0.78, 1.46, -2.64], "target": [-1.22, 1.03, -3.13] }
   },
   "lights": {
