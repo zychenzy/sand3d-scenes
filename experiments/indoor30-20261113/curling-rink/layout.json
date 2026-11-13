@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "title": "Sheet 2 — indoor curling rink",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.10, "depth": 47.00, "height": 5.04 },
+    "notes": [
+      "One WCF sheet, 45.720 m by 4.750 m, home end at +Z.",
+      "Warm lounge is a wider volume on +X at the home end, stepped up off the ice.",
+      "Sixteen stones: six and seven still in the home racks, three in play."
+    ]
+  },
+  "signage": {
+    "near": { "w": 1.36, "h": 0.42, "x": 1.85, "y": 2.18, "z": 20.70, "facing": "posZ" },
+    "far": { "w": 1.36, "h": 0.42, "x": 0.0, "y": 1.72, "z": -23.28, "facing": "posZ" },
+    "plate": { "w": 0.16, "h": 0.16, "x": 3.12, "y": 1.62, "z": 17.15 }
+  },
+  "assets": {
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.45
+    },
+    "sofa_solid": {
+      "glb": "../../../lounge/assets/sofa_solid__2172bb7e3b99.glb",
+      "targetHeight": 0.82
+    },
+    "round_table": {
+      "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.68
+    },
+    "dining_chair": {
+      "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.36
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.30
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.50
+    }
+  },
+  "instances": [
+    { "id": "bench_a", "kind": "museum_bench", "position": [4.227, 0.18, 16.70], "rotationY": 0, "footprint": [0.4942, 1.7763] },
+    { "id": "bench_b", "kind": "museum_bench", "position": [4.227, 0.18, 20.15], "rotationY": 0, "footprint": [0.4942, 1.7763] },
+    { "id": "sofa", "kind": "sofa_solid", "position": [5.742, 0.18, 11.05], "rotationY": -1.5708, "footprint": [1.5857, 0.9752] },
+    { "id": "table", "kind": "round_table", "position": [4.62, 0.18, 11.05], "rotationY": 0.2, "footprint": [0.9764, 0.9764] },
+    { "id": "chair", "kind": "dining_chair", "position": [4.62, 0.18, 11.90], "rotationY": 3.1416, "footprint": [0.3109, 0.4387] },
+    { "id": "mug_a", "kind": "cup_mug", "position": [4.48, 0.86, 10.90], "rotationY": 0.4, "footprint": [0.1088, 0.1088] },
+    { "id": "mug_b", "kind": "cup_mug", "position": [4.76, 0.86, 11.16], "rotationY": -0.6, "footprint": [0.1088, 0.1088] },
+    { "id": "plant_end", "kind": "flowerpot", "position": [5.90, 0.18, 22.15], "rotationY": 0.4, "footprint": [0.4407, 0.4407] },
+    { "id": "plant_entry", "kind": "flowerpot", "position": [5.85, 0.18, 9.62], "rotationY": -0.3, "footprint": [0.4407, 0.4407] },
+    { "id": "thermos", "kind": "thermos", "position": [6.08, 1.05, 14.70], "rotationY": 0.2, "footprint": [0.085, 0.085] },
+    { "id": "pendant_table", "kind": "pendant_lamp", "position": [4.62, 2.72, 11.05], "rotationY": 0, "footprint": [0.5808, 0.5808] },
+    { "id": "pendant_a", "kind": "pendant_lamp", "position": [4.227, 2.72, 16.70], "rotationY": 0.2, "footprint": [0.5808, 0.5808] },
+    { "id": "pendant_b", "kind": "pendant_lamp", "position": [4.227, 2.72, 20.15], "rotationY": -0.15, "footprint": [0.5808, 0.5808] }
+  ],
+  "shell": {
+    "clearColor": "#d5dee4",
+    "fogColor": "#d5dee4",
+    "fogNear": 34,
+    "fogFar": 82
+  },
+  "camera": {
+    "fov": 42,
+    "near": 0.08,
+    "far": 130,
+    "position": [-1.7, 2.22, 24.85],
+    "target": [0.4, 0.48, 8.6]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 48,
+      "position": [4.95, 1.55, 12.60],
+      "target": [0.25, 0.42, 18.10]
+    },
+    "detail": {
+      "fov": 48,
+      "position": [-2.55, 1.78, 24.40],
+      "target": [0.85, 0.85, 17.45]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775922, "ground": 12967124, "intensity": 0.78 },
+    "key": {
+      "color": 16775396,
+      "intensity": 1.32,
+      "position": [-7.5, 13.5, 24.0],
+      "target": [1.1, 0.5, 12.0],
+      "shadow": 15,
+      "bias": -0.0012,
+      "normalBias": 0.07
+    },
+    "fill": { "color": 14019050, "intensity": 0.30, "position": [-8.0, 6.0, 16.0] },
+    "points": [
+      { "color": 16769104, "intensity": 0.42, "distance": 5.5, "decay": 2, "position": [4.7, 2.85, 11.05] },
+      { "color": 16769104, "intensity": 0.32, "distance": 4.2, "decay": 2, "position": [4.3, 2.85, 16.70] },
+      { "color": 16769104, "intensity": 0.32, "distance": 4.2, "decay": 2, "position": [4.3, 2.85, 20.15] }
+    ]
+  }
+}
