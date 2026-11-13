@@ -171,7 +171,7 @@ try {
     if (buf.length < 20_000) throw new Error(`${shot.file} too small ${buf.length}`);
     await writeFile(resolve(shotsDir, shot.file), buf);
     const unlit = shot.query.includes('unlit');
-    if (state.loaded !== 7) throw new Error(`loaded ${state.loaded}`);
+    if (state.loaded !== 4) throw new Error(`loaded ${state.loaded}`);
     if (state.other !== 0) throw new Error(`other materials ${state.other}`);
     if (unlit) {
       if (state.shading !== 'unlit') throw new Error(state.shading);

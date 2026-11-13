@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { boot, toon, addBox, addCyl, labelTexture } from './scene_lib.js';
 
 // Cedar Lane branch. Public lobby is +Z. Sorting hall is -Z.
-// Clerks sit on the staff side and face +Z (dining-chair yaw 0).
+// Clerks use work stools on the staff side; the open side of each stool faces +Z.
 // The counter, door, and floor change are the staff/public boundary.
 // PO boxes are letter-module doors on the public left wall.
 // Pigeonholes, trolleys, and the packing desk are the visible workroom.
@@ -83,8 +83,19 @@ function makeShell(layout) {
     name: 'staff-floor', cast: false,
   });
 
-  for (const z of [3.15, 1.35, -0.85, -3.55]) {
-    addBox(g, W - 1.6, 0.08, 0.12, m.woodDark, -0.35, H - 0.16, z);
+  const deckT = 0.14;
+  const overhangX = 2.8;
+  const overhangZ = 2.4;
+  const deckW = W + overhangX;
+  const deckD = D + overhangZ;
+  const deckX = overhangX / 2;
+  const deckZ = overhangZ / 2;
+  const soffit = toon(s.ceilingColor, { emissive: 0xf4ecdf, emissiveIntensity: 0.32 });
+  addBox(g, deckW, deckT, deckD, soffit, deckX, H - deckT / 2, deckZ, { cast: false, name: 'roof-deck' });
+  addBox(g, 0.14, 0.32, deckD, m.woodDark, deckX + deckW / 2 - 0.07, H - 0.24, deckZ, { cast: false, name: 'roof-fascia-x' });
+  addBox(g, deckW, 0.32, 0.14, m.woodDark, deckX, H - 0.24, deckZ + deckD / 2 - 0.07, { cast: false, name: 'roof-fascia-z' });
+  for (const z of [2.2, -0.15, -2.5]) {
+    addBox(g, W - 1.2, 0.045, 0.07, m.wood, -0.2, H - deckT - 0.035, z, { cast: false });
   }
 
   const clerestoryY = H - 0.72;
@@ -95,6 +106,61 @@ function makeShell(layout) {
     addBox(g, 1.22, 0.05, 0.05, m.wood, x, clerestoryY - 0.24, -D / 2 + 0.13, { cast: false });
   }
   return g;
+}
+
+function addStool(g, spec, m) {
+  const grp = new THREE.Group();
+  grp.name = spec.id;
+  const seat = 0.64;
+  addBox(grp, 0.36, 0.045, 0.34, m.wood, 0, seat, 0.01);
+  addBox(grp, 0.32, 0.16, 0.028, m.woodDark, 0, seat + 0.08, -0.15);
+  for (const [x, z] of [[-0.13, -0.1], [0.13, -0.1], [-0.13, 0.12], [0.13, 0.12]]) {
+    addCyl(grp, 0.02, 0.022, seat - 0.02, m.steel, x, (seat - 0.02) / 2, z, 8);
+  }
+  addCyl(grp, 0.012, 0.012, 0.3, m.steel, 0, 0.28, 0.01, 8, { rotZ: Math.PI / 2 });
+  grp.position.set(spec.x, 0, spec.z);
+  g.add(grp);
+}
+
+function addWaitBench(g, spec, m) {
+  const grp = new THREE.Group();
+  grp.name = 'wait-bench';
+  const y = 0.44;
+  for (let i = 0; i < 3; i++) {
+    addBox(grp, spec.length, 0.028, 0.08, m.wood, 0, y + i * 0.012, -0.1 + i * 0.1);
+  }
+  for (const x of [-spec.length / 2 + 0.12, spec.length / 2 - 0.12]) {
+    addBox(grp, 0.06, y, 0.32, m.woodDark, x, y / 2, 0);
+  }
+  grp.position.set(spec.x, 0, spec.z);
+  g.add(grp);
+}
+
+function addTerminal(g, spec, m) {
+  const grp = new THREE.Group();
+  grp.name = spec.id;
+  addBox(grp, 0.22, 0.05, 0.16, m.top, 0, 0.03, 0);
+  addBox(grp, 0.16, 0.018, 0.1, m.ink, 0, 0.06, 0.015);
+  for (let row = 0; row < 2; row++) {
+    for (let col = 0; col < 3; col++) {
+      addBox(grp, 0.02, 0.008, 0.018, m.brass, -0.045 + col * 0.045, 0.074, -0.005 + row * 0.038, { cast: false });
+    }
+  }
+  addBox(grp, 0.028, 0.07, 0.028, m.steel, 0, 0.1, -0.02);
+  const screen = new THREE.Group();
+  addBox(screen, 0.18, 0.125, 0.02, m.ink, 0, 0, 0);
+  addBox(screen, 0.145, 0.092, 0.008, toon('#d7f0e4', { emissive: 0xd7f0e4, emissiveIntensity: 0.7 }), 0, 0.004, -0.012, { cast: false });
+  screen.position.set(0, 0.2, -0.015);
+  screen.rotation.x = -0.42;
+  grp.add(screen);
+  grp.position.set(spec.x, spec.y, spec.z);
+  g.add(grp);
+}
+
+function addMailSack(g, x, z, m, tint) {
+  addBox(g, 0.46, 0.38, 0.36, m.canvas, x, 0.2, z, { name: 'mail-sack' });
+  addBox(g, 0.22, 0.1, 0.16, m.canvas, x, 0.4, z);
+  addBox(g, 0.2, 0.016, 0.14, toon(tint), x, 0.32, z + 0.12, { cast: false });
 }
 
 function addCounter(g, layout, m) {
@@ -108,9 +174,9 @@ function addCounter(g, layout, m) {
   addBox(grp, span, 0.035, 0.025, m.brass, cx, c.top + 0.012, c.z + c.topDepth / 2);
   addBox(grp, span, 0.1, 0.04, m.woodDark, cx, 0.08, c.z + c.depth / 2 - 0.02);
 
-  const clerks = layout.instances.filter((i) => i.id.startsWith('clerk_'));
+  const clerks = layout.build.clerks;
   clerks.forEach((clerk, n) => {
-    const x = clerk.position[0];
+    const x = clerk.x;
     addBox(grp, 0.86, 0.5, 0.025, m.glass, x, 1.4, c.z + c.depth / 2 + 0.02, { cast: false, name: `window-${n}` });
     addBox(grp, 0.92, 0.03, 0.03, m.brass, x, 1.66, c.z + c.depth / 2 + 0.03, { cast: false });
     addBox(grp, 0.92, 0.03, 0.03, m.brass, x, 1.14, c.z + c.depth / 2 + 0.03, { cast: false });
@@ -121,7 +187,7 @@ function addCounter(g, layout, m) {
     num.name = `wicket-${n}`;
   });
 
-  addBox(grp, span, 0.16, 0.08, m.band, cx, 2.02, c.z + 0.22);
+  addBox(grp, span, 0.16, 0.08, m.band, cx, 2.02, c.z + 0.22, { cast: false });
   plaque(grp, span * 0.62, 0.22, 'CEDAR LANE', cx, 2.28, c.z + 0.24, 0, '#f4ecdf', '#4e3424', { px: 36, name: 'wordmark' });
   plaque(grp, 0.7, 0.18, 'POST', cx + span * 0.36, 2.02, c.z + 0.28, 0, '#8d2e2a', '#f6f1e8', { px: 28, tw: 128, th: 64 });
 
@@ -382,6 +448,11 @@ function makeProcedural(layout) {
   addQueue(g, layout, m);
   addPacking(g, layout, m);
   addLobbyFit(g, layout, m);
+  for (const clerk of layout.build.clerks) addStool(g, clerk, m);
+  addWaitBench(g, layout.build.waitBench, m);
+  for (const term of layout.build.terminals) addTerminal(g, term, m);
+  addMailSack(g, -1.55, -2.35, m, MAIL[0]);
+  addMailSack(g, 0.15, -2.85, m, MAIL[1]);
   return g;
 }
 

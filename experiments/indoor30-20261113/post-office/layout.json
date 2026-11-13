@@ -9,8 +9,9 @@
     "focal": "Three public windows, with the sorting pigeonholes and a mail trolley visible behind them",
     "notes": [
       "Public lobby is +Z (open cut). Sorting hall is -Z. Left wall is -X. Right side is the open cut.",
-      "Dining-chair yaw 0 faces +Z, toward the public. Clerks sit on the staff side of the counter.",
-      "Museum bench is long on local Z. rotationY π/2 lays it on world X in the lobby, clear of the box bay and the queue.",
+      "A roof deck and fascia close the cut. The soffit and the shallow beams do not cast, so the key still reaches the walls.",
+      "Work stools face +Z toward the public. A low rail is the back, on the staff side of the seat.",
+      "The lobby bench is a slat seat, clear of the box bay and the queue.",
       "Study desk is long on local Z with the pedestal at +Z. rotationY π/2 lays the top along world X in the packing corner.",
       "PO box doors and pigeonhole cells stay at letter scale. The parcel scale is a floor platform, not a kitchen scale.",
       "No archive stacks, no reading tables, no curbside mailbox scaled up."
@@ -20,8 +21,8 @@
     "counterTop": 1.05,
     "counterDepth": 0.62,
     "counterTopDepth": 0.76,
-    "chairDepth": 0.439,
-    "chairFacing": "+Z at rotationY 0",
+    "stoolDepth": 0.36,
+    "stoolFacing": "+Z, low rail on -Z",
     "parcelPlatform": [0.52, 0.09, 0.44],
     "poDoor": [0.148, 0.128],
     "pigeonCell": [0.15, 0.105, 0.25],
@@ -32,7 +33,7 @@
     "counter": { "x0": -3.85, "x1": 3.5, "z": -0.05, "depth": 0.62, "topDepth": 0.76, "top": 1.05 },
     "staffDoor": { "x0": -5.2, "x1": -4.28, "z": -0.05 },
     "queue": { "x0": -0.22, "x1": 1.0, "zPosts": [1.18, 2.4, 3.62] },
-    "scale": { "x": 2.95, "z": 0.92, "platform": [0.52, 0.09, 0.44] },
+    "scale": { "x": 1.42, "z": 0.58, "platform": [0.52, 0.09, 0.44] },
     "boxes": {
       "x": -6.16,
       "depth": 0.42,
@@ -56,19 +57,20 @@
       { "id": "canvas-trolley", "x": 1.45, "z": -3.15, "rotY": 0.15 },
       { "id": "wire-trolley", "x": -5.05, "z": -2.85, "rotY": 0.0 }
     ],
-    "packing": { "x": 2.85, "z": -4.45 }
+    "packing": { "x": 2.85, "z": -4.45 },
+    "clerks": [
+      { "id": "clerk_a", "x": -2.2, "z": -0.74 },
+      { "id": "clerk_b", "x": -0.05, "z": -0.74 },
+      { "id": "clerk_c", "x": 2.05, "z": -0.74 }
+    ],
+    "waitBench": { "x": -2.05, "z": 3.35, "length": 1.35 },
+    "terminals": [
+      { "id": "register_a", "x": -2.2, "y": 1.05, "z": -0.2 },
+      { "id": "register_b", "x": -0.05, "y": 1.05, "z": -0.2 },
+      { "id": "register_c", "x": 2.05, "y": 1.05, "z": -0.2 }
+    ]
   },
   "assets": {
-    "dining_chair": {
-      "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb",
-      "targetHeight": 0.86,
-      "faces": "local +Z. rotationY 0 looks at the public lobby"
-    },
-    "museum_bench": {
-      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
-      "targetHeight": 0.46,
-      "faces": "long axis local Z. rotationY π/2 puts the length on world X"
-    },
     "study_desk": {
       "glb": "../../../library/assets/study_desk__630f6d76cbcd.glb",
       "targetHeight": 0.76,
@@ -82,29 +84,17 @@
       "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
       "targetHeight": 0.52
     },
-    "pos_terminal": {
-      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
-      "targetHeight": 0.15,
-      "faces": "screen leans toward local +Z after the bake; rotationY π turns it to the clerk"
-    },
     "flowerpot": {
       "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
       "targetHeight": 0.28
     }
   },
   "instances": [
-    { "id": "clerk_a", "kind": "dining_chair", "position": [-2.2, 0, -0.74], "rotationY": 0, "note": "faces +Z, window A" },
-    { "id": "clerk_b", "kind": "dining_chair", "position": [-0.05, 0, -0.74], "rotationY": 0, "note": "faces +Z, window B" },
-    { "id": "clerk_c", "kind": "dining_chair", "position": [2.05, 0, -0.74], "rotationY": 0, "note": "faces +Z, window C" },
-    { "id": "bench_wait", "kind": "museum_bench", "position": [-3.35, 0, 4.28], "rotationY": 1.5708, "note": "lobby perch, clear of the box bay" },
     { "id": "pack_desk", "kind": "study_desk", "position": [2.85, 0, -4.45], "rotationY": 1.5708, "scale": [1.35, 1, 1.08], "note": "packing top, pedestal toward +X" },
     { "id": "pack_lamp", "kind": "library_lamp", "position": [3.15, 0.76, -4.45], "rotationY": -0.6 },
-    { "id": "pos_a", "kind": "pos_terminal", "position": [-2.2, 1.05, -0.16], "rotationY": 3.1416 },
-    { "id": "pos_b", "kind": "pos_terminal", "position": [-0.05, 1.05, -0.16], "rotationY": 3.1416 },
-    { "id": "pos_c", "kind": "pos_terminal", "position": [2.05, 1.05, -0.16], "rotationY": 3.1416 },
-    { "id": "pend_a", "kind": "pendant_lamp", "position": [-2.15, 2.96, 2.15], "rotationY": 0 },
-    { "id": "pend_b", "kind": "pendant_lamp", "position": [0.35, 2.96, 2.45], "rotationY": 0.4 },
-    { "id": "pend_c", "kind": "pendant_lamp", "position": [2.55, 2.96, 1.85], "rotationY": -0.2 },
+    { "id": "pend_a", "kind": "pendant_lamp", "position": [-2.15, 2.98, 2.15], "rotationY": 0 },
+    { "id": "pend_b", "kind": "pendant_lamp", "position": [0.35, 2.98, 2.45], "rotationY": 0.4 },
+    { "id": "pend_c", "kind": "pendant_lamp", "position": [2.55, 2.98, 1.85], "rotationY": -0.2 },
     { "id": "entry_pot", "kind": "flowerpot", "position": [-5.55, 0, 4.72], "rotationY": 0.4 }
   ],
   "shell": {
@@ -123,14 +113,14 @@
     "fogFar": 48
   },
   "camera": {
-    "fov": 46,
-    "position": [6.35, 4.35, 6.55],
-    "target": [-0.35, 0.95, -1.55]
+    "fov": 50,
+    "position": [4.05, 2.22, 4.7],
+    "target": [-1.6, 1.08, -0.35]
   },
   "cameraPresets": {
     "corner": {
-      "position": [6.35, 1.7, -1.15],
-      "target": [-1.15, 0.9, -0.55]
+      "position": [4.15, 1.52, -1.05],
+      "target": [-1.35, 1.05, -2.15]
     },
     "detail": {
       "position": [3.15, 1.78, -2.25],

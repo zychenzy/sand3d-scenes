@@ -52,36 +52,37 @@ test('entry stays offline and on the shared vendor', () => {
 });
 
 test('clerks face the public and sit on the staff side of the counter', () => {
-  const clerks = layout.instances.filter((i) => i.id.startsWith('clerk_'));
+  const clerks = layout.build.clerks;
   assert.equal(clerks.length, 3);
   const c = layout.build.counter;
   const topStaff = c.z - c.topDepth / 2;
-  const half = layout.scale.chairDepth / 2;
+  const half = layout.scale.stoolDepth / 2;
   for (const clerk of clerks) {
-    assert.equal(clerk.kind, 'dining_chair');
-    assert.ok(Math.abs(clerk.rotationY) < 0.05, clerk.id);
-    assert.ok(clerk.position[0] > c.x0 && clerk.position[0] < c.x1, clerk.id);
-    const front = clerk.position[2] + half;
+    assert.ok(clerk.x > c.x0 && clerk.x < c.x1, clerk.id);
+    const front = clerk.z + half;
     assert.ok(front < topStaff - 0.04, `${clerk.id} front ${front} vs top ${topStaff}`);
-    assert.equal(clerk.position[1], 0);
   }
-  const xs = clerks.map((i) => i.position[0]).sort((a, b) => a - b);
+  const xs = clerks.map((i) => i.x).sort((a, b) => a - b);
   assert.ok(xs[1] - xs[0] > 1.4 && xs[2] - xs[1] > 1.4);
+  assert.match(scene, /addStool/);
+  assert.doesNotMatch(scene, /dining_chair/);
+  assert.equal(layout.assets.dining_chair, undefined);
 });
 
-test('pos terminals sit on the counter and face the clerks', () => {
-  const terminals = layout.instances.filter((i) => i.kind === 'pos_terminal');
+test('registers sit on the counter and face the clerks', () => {
+  const terminals = layout.build.terminals;
   assert.equal(terminals.length, 3);
   const top = layout.build.counter.top;
   for (const pos of terminals) {
-    assert.equal(pos.position[1], top);
-    assert.ok(Math.abs(Math.abs(pos.rotationY) - Math.PI) < 0.02, pos.id);
-    const clerk = layout.instances.find((i) => i.id === pos.id.replace('pos_', 'clerk_'));
+    assert.equal(pos.y, top);
+    const clerk = layout.build.clerks.find((c) => c.id.endsWith(pos.id.slice(-2)));
     assert.ok(clerk, pos.id);
-    assert.ok(Math.abs(pos.position[0] - clerk.position[0]) < 0.05);
-    assert.ok(pos.position[2] < layout.build.counter.z + 0.05);
+    assert.ok(Math.abs(pos.x - clerk.x) < 0.05);
+    assert.ok(pos.z < layout.build.counter.z);
+    assert.ok(pos.z > layout.build.counter.z - layout.build.counter.topDepth / 2);
   }
-  assert.equal(layout.assets.pos_terminal.targetHeight, 0.15);
+  assert.match(scene, /addTerminal/);
+  assert.equal(layout.assets.pos_terminal, undefined);
 });
 
 test('queue, scale, boxes, and pigeonholes are at operational sizes', () => {
@@ -102,17 +103,18 @@ test('queue, scale, boxes, and pigeonholes are at operational sizes', () => {
 });
 
 test('pathways stay clear between clerks, trolleys, bench, and boxes', () => {
-  const clerks = layout.instances.filter((i) => i.id.startsWith('clerk_'));
+  const clerks = layout.build.clerks;
   for (const trolley of layout.build.trolleys) {
     for (const clerk of clerks) {
-      const d = dist([clerk.position[0], clerk.position[2]], [trolley.x, trolley.z]);
+      const d = dist([clerk.x, clerk.z], [trolley.x, trolley.z]);
       assert.ok(d > 1.15, `${clerk.id} ${trolley.id} ${d.toFixed(2)}`);
     }
   }
-  const bench = layout.instances.find((i) => i.id === 'bench_wait');
-  assert.equal(bench.kind, 'museum_bench');
-  assert.ok(Math.abs(bench.rotationY - Math.PI / 2) < 0.02);
-  assert.ok(bench.position[2] > layout.build.boxes.z0 + 2.5);
+  const bench = layout.build.waitBench;
+  assert.match(scene, /addWaitBench/);
+  assert.equal(layout.assets.museum_bench, undefined);
+  assert.ok(bench.z > layout.build.boxes.z0 + 2.5);
+  assert.ok(bench.x + bench.length / 2 < layout.build.queue.x0 - 0.3);
   const desk = layout.instances.find((i) => i.id === 'pack_desk');
   assert.ok(desk.position[2] < -3.8);
   assert.ok(Math.abs(desk.rotationY - Math.PI / 2) < 0.02);
@@ -123,7 +125,10 @@ test('pathways stay clear between clerks, trolleys, bench, and boxes', () => {
 
 test('cameras and lights leave the default view open', () => {
   assert.equal(layout.camera.position.length, 3);
-  assert.ok(layout.camera.position[0] > 6 && layout.camera.position[2] > 5);
+  assert.ok(layout.camera.position[1] > 1.5 && layout.camera.position[1] < 2.8);
+  assert.ok(layout.camera.position[2] > 2.4 && layout.camera.position[2] < 5.2);
+  assert.ok(layout.camera.position[0] < 5);
+  assert.match(scene, /roof-deck/);
   assert.ok(layout.cameraPresets.corner && layout.cameraPresets.detail);
   assert.ok(layout.lights.shadow.normalBias >= 0.03);
   assert.ok(layout.lights.hemi.intensity >= 0.6);

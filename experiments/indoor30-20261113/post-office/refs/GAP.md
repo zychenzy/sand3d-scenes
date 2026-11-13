@@ -10,11 +10,12 @@ Hugging Face `Sandflow/sand3d-objaverse`, dataset viewer search:
 - "platform scale" hits a kitchen scale (`objaverse-deee2ca3da`, "Kitchen Scales" by frezer2011) plus unrelated ships. A kitchen scale brought up to parcel size is the failure the brief rules out. The floor scale here is built at 0.52 × 0.44 m.
 - "Mail Cart" by MrTheFly (`objaverse-c39d0d6a2fa3430bbbe3e915e639bf63`, entry `trolley`) is the right object class. `sand3d` 1.6 does not install on this machine's Python 3.12 (it requires 3.11 or 3.13, plus `bpy`), so that program was not baked. The two trolleys are original meshes at hamper size (0.58 × 0.92 m bed).
 - Shopping trolleys, hotdog carts, and the cafe bar counter were rejected. The bar bake is an L-shaped return about 1.8 × 0.89 × 0.40 m; raising it to a 1.05 m counter makes the top more than 2 m deep.
-- Office-chair hits exist. The wood dining chair already baked in `library/` is the clerk seat, yaw 0 toward the lobby.
+- Office-chair hits exist. The baked dining chair reads as a dining chair at the counter, and the museum bench reads as a gallery seat. Both were set aside. The clerks use a square work stool with a low rail, and the lobby seat is a slat bench. Neither is a catalog GLB.
+- The cafe POS terminal (`pos_terminal__91c277a25bc3`) stays a black lump from the staff side of the counter. No other register bake is in the shared catalog, so each window uses an original keypad deck and a tilted screen. That GLB is not referenced.
 
 ## Selected bakes
 
-Chair, bench, study desk, desk lamp, pendant, POS terminal, and one flowerpot. All are existing root GLBs with no embedded images, referenced by relative path. See `ATTRIBUTIONS.md`.
+Study desk, desk lamp, pendant, and one flowerpot. All are existing root GLBs with no embedded images, referenced by relative path. See `ATTRIBUTIONS.md`.
 
 ## Still open
 
