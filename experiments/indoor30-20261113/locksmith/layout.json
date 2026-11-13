@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Neighborhood locksmith",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 9.2, "depth": 7.4, "height": 3.15 },
+    "keyLength": 0.148,
+    "notes": [
+      "Neighborhood key shop: blank pegwall, duplicator, cylinder trays, a small rekey bench, and a secure handoff counter.",
+      "Customer chairs face the counter. Four-leg work stools face the cutter and the bench. The register faces the customer.",
+      "The ceiling is the full room plane. The parts cubby is a pigeonhole on the back wall, not a cafe shelf.",
+      "Distinct from a watchmaker (no loupe, gears, or green shade) and from an escape room (no puzzles, clocks, or crushed dark)."
+    ]
+  },
+  "anchors": {
+    "counter": { "x": -0.25, "z": 0.62, "w": 3.2, "d": 0.66, "h": 1.06 },
+    "cutter": { "x": -0.35, "z": -2.48, "w": 0.5, "d": 0.36, "top": 0.9 },
+    "bench": { "x": 3.05, "z": -2.72, "w": 1.6, "d": 0.64, "h": 0.86 },
+    "pegwall": { "x": -2.7, "z": -3.52, "w": 1.9, "d": 0.06, "h": 1.28, "y": 0.92 },
+    "cart": { "x": 1.05, "z": -1.55, "w": 0.46, "d": 0.36, "h": 0.72 },
+    "cubby": { "x": -0.62, "z": -3.5, "w": 0.72, "d": 0.24, "h": 0.96, "y": 1.12 },
+    "window": { "z0": 0.15, "z1": 1.7, "y0": 0.95, "y1": 2.35 }
+  },
+  "density": {
+    "keyRows": 5,
+    "keysPerRow": 7,
+    "cylinderCols": 6,
+    "cylinderRows": 2,
+    "padlockCount": 6,
+    "mortiseCount": 4
+  },
+  "routes": {
+    "customer": [[0.1, 3.15], [-0.15, 2.4], [1.7, 1.85]],
+    "clerk": [[-0.2, -0.1], [-2.2, -1.15], [-2.7, -3.0], [-1.2, -1.85], [1.6, -1.95], [2.35, -2.05]]
+  },
+  "workStools": [
+    { "id": "stool_cutter", "position": [-0.35, 0, -1.78], "rotationY": 3.1416, "faces": "cutter", "footprint": [0.38, 0.4] },
+    { "id": "stool_bench", "position": [3.05, 0, -1.88], "rotationY": 3.1416, "faces": "bench", "footprint": [0.38, 0.4] }
+  ],
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.9,
+      "footprint": [0.48, 0.52]
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.34,
+      "footprint": [0.28, 0.32]
+    },
+    "pos_terminal": {
+      "glb": "assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.18,
+      "footprint": [0.2, 0.2]
+    },
+    "padlock": {
+      "glb": "assets/padlock__c9f0cf0cbbe6.glb",
+      "targetHeight": 0.12,
+      "footprint": [0.09, 0.04]
+    }
+  },
+  "instances": [
+    { "id": "chair_customer_l", "kind": "dining_chair", "position": [-0.9, 0, 1.58], "rotationY": 3.1416, "mount": "floor", "faces": "counter" },
+    { "id": "chair_customer_r", "kind": "dining_chair", "position": [0.45, 0, 1.58], "rotationY": 3.1416, "mount": "floor", "faces": "counter" },
+    { "id": "register", "kind": "cash_register", "position": [0.42, 1.06, 0.44], "rotationY": 0, "mount": "surface", "faces": "customer" },
+    { "id": "pos", "kind": "pos_terminal", "position": [1.02, 1.06, 0.46], "rotationY": 0.2, "mount": "surface", "faces": "customer" },
+    { "id": "lock_a", "kind": "padlock", "position": [0.92, 0.73, -1.64], "rotationY": 0.15, "mount": "surface" },
+    { "id": "lock_b", "kind": "padlock", "position": [1.1, 0.73, -1.62], "rotationY": -0.2, "mount": "surface" },
+    { "id": "lock_c", "kind": "padlock", "position": [0.94, 0.73, -1.48], "rotationY": 0.35, "mount": "surface" },
+    { "id": "lock_d", "kind": "padlock", "position": [1.12, 0.73, -1.46], "rotationY": -0.1, "mount": "surface" },
+    { "id": "lock_e", "kind": "padlock", "position": [-1.12, 1.09, 0.78], "rotationY": 0, "mount": "surface" },
+    { "id": "lock_f", "kind": "padlock", "position": [-0.9, 1.09, 0.78], "rotationY": 0.12, "mount": "surface" }
+  ],
+  "shell": {
+    "floorColor": "#c8bfae",
+    "wallColor": "#f4f0e6",
+    "woodColor": "#6a5344",
+    "ceilingColor": "#f7f3ea",
+    "clearColor": "#e7e0d4",
+    "fogColor": "#e7e0d4",
+    "fogNear": 22,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 50,
+    "position": [2.35, 1.82, 2.55],
+    "target": [0.1, 1.12, -1.5]
+  },
+  "cameraPresets": {
+    "corner": { "position": [4.15, 1.88, 2.35], "target": [-0.25, 1.1, -1.55], "fov": 52 },
+    "detail": { "position": [1.05, 1.4, -1.55], "target": [-0.7, 1.08, -2.6], "fov": 36 },
+    "close": { "position": [1.05, 1.4, -1.55], "target": [-0.7, 1.08, -2.6], "fov": 36 }
+  },
+  "lights": {
+    "hemi": { "sky": 16775394, "ground": 11513775, "intensity": 0.82 },
+    "key": { "color": 16774368, "intensity": 0.88, "position": [1.4, 8.4, 1.8] },
+    "fill": { "color": 14277081, "intensity": 0.55, "position": [-2.8, 4.8, 1.6] },
+    "points": [
+      { "color": 16773552, "intensity": 0.1, "position": [-1.35, 2.55, -2.25], "distance": 3.2, "decay": 2 },
+      { "color": 16773552, "intensity": 0.08, "position": [2.15, 2.55, -1.85], "distance": 3.0, "decay": 2 },
+      { "color": 16773552, "intensity": 0.08, "position": [-0.35, 2.5, 0.15], "distance": 2.8, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon detail", "unlit default"],
+    "must_read": [
+      "A locksmith: key-blank pegwall, duplicator with vises, cylinder trays, rekey bench, secure handoff grille.",
+      "Customer chairs face the counter. Work stools face the cutter and the bench. Register faces the customer.",
+      "Hard stepped toon by default. Unlit is MeshBasic, not a flat toon."
+    ]
+  }
+}
