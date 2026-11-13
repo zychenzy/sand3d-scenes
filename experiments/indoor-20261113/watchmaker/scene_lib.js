@@ -180,7 +180,8 @@ export async function boot(opts) {
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.setSize(innerWidth, innerHeight);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFHardShadowMap;
+    // Soft filtered PCF. Hard nearest-neighbour sampling stair-steps thin tool shadows.
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     const clear = (layout.shell && layout.shell.clearColor) || '#d9d3c6';
     renderer.setClearColor(clear, 1);
@@ -210,16 +211,22 @@ export async function boot(opts) {
     const key = new THREE.DirectionalLight(keySpec.color, keySpec.intensity);
     key.position.set(...keySpec.position);
     key.castShadow = true;
-    key.shadow.mapSize.set(2048, 2048);
-    const ext = keySpec.shadowExtent ?? 12;
-    key.shadow.camera.near = 0.5;
-    key.shadow.camera.far = 36;
+    // The map covers the room, not a 22 m pad, so a tool shadow is several texels wide.
+    key.shadow.mapSize.set(keySpec.mapSize || 4096, keySpec.mapSize || 4096);
+    const ext = keySpec.shadowExtent ?? 6.2;
+    key.shadow.camera.near = keySpec.shadowNear ?? 1.2;
+    key.shadow.camera.far = keySpec.shadowFar ?? 24;
     key.shadow.camera.left = -ext;
     key.shadow.camera.right = ext;
     key.shadow.camera.top = ext;
     key.shadow.camera.bottom = -ext;
-    key.shadow.bias = keySpec.bias ?? -0.0004;
-    key.shadow.normalBias = keySpec.normalBias ?? 0.03;
+    // normalBias is in metres and kills acne on flat receivers. bias stays small so
+    // the shadow does not detach from the lamp and the stool.
+    key.shadow.bias = keySpec.bias ?? -0.00015;
+    key.shadow.normalBias = keySpec.normalBias ?? 0.025;
+    const aim = keySpec.target || [-0.6, 0.9, -1.4];
+    key.target.position.set(aim[0], aim[1], aim[2]);
+    scene.add(key.target);
     scene.add(key);
     const fillSpec = layout.lights.fill;
     const fill = new THREE.DirectionalLight(fillSpec.color, fillSpec.intensity);

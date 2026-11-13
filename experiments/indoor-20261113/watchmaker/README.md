@@ -2,7 +2,7 @@
 
 A cutaway interior for one room: a raised bench, a parts cabinet, a clock wall, and a customer handoff counter. It is a repair shop, not a jewelry salon. There are no gems, hammers, or display cases of rings.
 
-Shading defaults to toon (`MeshToonMaterial` and a five-stop gradient). `U` switches to unlit (`MeshBasicMaterial`). `T` returns to toon. `?mode=unlit` and `?cam=corner` or `?cam=close` set the same from the URL. `?shot=1` hides the HUD for captures.
+Shading defaults to toon (`MeshToonMaterial` and a five-stop gradient). `U` switches to unlit (`MeshBasicMaterial`). `T` returns to toon. `?mode=unlit` and `?cam=corner` or `?cam=close` set the same from the URL. `?shot=1` hides the HUD for captures. The key light casts a soft shadow from a 4096 map fitted to the room. Walls receive that shadow and do not cast it.
 
 ## Run
 
@@ -22,7 +22,7 @@ The room is 9.6 × 7.6 × 3.22 m. The back wall is −Z and the left wall is −
 
 | Place | Height | Who it is for |
 | --- | --- | --- |
-| Maple bench, green baize, belly bite | top 1.02 m | The maker, on the round stool, facing the bench |
+| Maple bench, green baize, belly bite | top 1.02 m | The maker, on a wooden stool whose seat is at 0.74 m |
 | Oak handoff counter | top 0.74 m | Two ladder-back chairs facing the counter |
 | Waiting bench | seat about 0.46 m | The open side of the room, clear of the counter |
 

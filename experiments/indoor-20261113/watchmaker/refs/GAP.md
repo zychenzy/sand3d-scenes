@@ -10,13 +10,14 @@ Closed here with procedural geometry, because the catalog has no watchmaker benc
 
 Still weak:
 
-- The loupe, movement, and wristwatches are enlarged stylized solids. A real 30 mm calibre would disappear in the establishing view.
+- The loupe and the movement are near real size (about 42 mm across the plate). Gears read in the close camera. They are still simple solids, not a finished calibre.
+- Wristwatches on the counter are about 38 mm. They read as a row of watches in the establishing view and are not enlarged to cushion scale.
 - Drawer abbreviations are on the faces. They read as a labeled grid in the corner view; individual words need a closer orbit than the four shipped cameras.
-- No catalog GLB for a watchmaker’s stool. The seat is the cafe bar stool (round, backless), which is the right height for the raised bench and the wrong species of wood.
+- The maker’s seat is shaped geometry: a wooden stool, seat at 0.74 m under the 1.02 m bench, with a foot ring. There is no catalog GLB for that stool.
 - The waiting bench is the museum bench (oak seat, black steel legs). It is a seat, not a period settle.
 - The order lectern is the library book stand. A calibre book is parented on the slope; the stand itself is a dark podium.
 - Rinse jars are the cafe jam jar, scaled as bench bottles. The parts rack is the small cafe etagere.
 - The timing instrument is a box and a canvas, not a Witschi machine. There is no lathe, cleaning machine, or staking set.
 - Clock dials share one numeral texture. Hands differ. No seconds bit except the regulator’s pendulum, which does not swing.
-- Contact shadows are discs. The vendored toon path has no ambient-occlusion pass. Flat walls are kept out of the shadow map so the task lights do not stamp blotches on the plaster.
+- The key light uses a 4096 soft PCF shadow map fit to the room, with a small depth bias and 3 cm of normal bias, so the bench receives a shadow without the old hard-map stair steps. Walls receive that shadow. They do not cast. Ceiling beams are kept out of the map so they do not stripe the plaster. Contact discs remain under the feet. There is no ambient-occlusion pass in the vendored toon path.
 - The wooden pedestal used as a mantel stand shipped as a solid column, not a glass vitrine.

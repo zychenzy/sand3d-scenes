@@ -13,7 +13,7 @@
     ],
     "anchors": {
       "bench": { "x": -1.2, "z": -3.15, "w": 2.4, "d": 0.68, "top": 1.02, "bite": 0.27 },
-      "stool": { "x": -1.2, "z": -2.46 },
+      "stool": { "x": -1.2, "z": -2.52, "seat": 0.74 },
       "counter": { "x": -0.55, "z": -0.15, "w": 2.2, "d": 0.62, "top": 0.74 },
       "cabinet": { "x": -4.52, "z": -1.7, "span": 1.36, "depth": 0.4, "h": 1.5 },
       "longcase": { "x": 2.35, "z": -3.38 },
@@ -23,17 +23,12 @@
     },
     "notes": [
       "Cutaway: back wall -Z, left wall -X, open front +Z and open right +X.",
-      "Dining chairs and the round stool face +Z at rotationY 0. Customers and the maker face the work, so their yaw is pi.",
+      "Dining chairs face +Z at rotationY 0. Customers face the counter, so their yaw is pi. The maker's stool is shaped wood, seat 0.74 under the 1.02 bench.",
       "The raised bench is 1.02. The handoff counter is 0.74 so the dining-chair seats meet it. Knee space is the belly bite, not a drawer run.",
       "GLBs are repo-root relative paths into cafe/, library/, museum/, restaurant/, and cowork/. Serve the repository root."
     ]
   },
   "assets": {
-    "bar_stool": {
-      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
-      "nativeHeight": 0.75,
-      "targetHeight": 0.8
-    },
     "dining_chair": {
       "glb": "../../../restaurant/assets/dining_chair__5e1f7a56da4a.glb",
       "nativeHeight": 1.0,
@@ -101,7 +96,6 @@
     }
   },
   "instances": [
-    { "id": "maker_stool", "kind": "bar_stool", "position": [-1.2, 0, -2.46], "rotationY": 3.1416, "lookAt": [-1.2, -3.15] },
     { "id": "bench_lamp", "kind": "library_lamp", "position": [-1.95, 1.02, -3.32], "rotationY": 3.1416 },
     { "id": "bench_etagere", "kind": "parts_etagere", "position": [-2.05, 1.02, -3.34], "rotationY": 0.2 },
     { "id": "pendant", "kind": "pendant_lamp", "position": [-1.2, 2.18, -2.95], "rotationY": 0.2 },
@@ -136,28 +130,32 @@
   },
   "camera": {
     "fov": 40,
-    "position": [5.2, 2.85, 5.85],
-    "target": [-0.55, 1.05, -1.35]
+    "position": [2.95, 2.18, 2.75],
+    "target": [-0.65, 1.12, -2.05]
   },
   "cameraPresets": {
-    "corner": { "position": [4.15, 2.2, 0.55], "target": [-1.5, 1.15, -2.15] },
-    "close": { "position": [-0.2, 1.92, -2.2], "target": [-1.15, 1.05, -3.18] }
+    "corner": { "position": [3.45, 1.92, 0.2], "target": [-1.25, 1.22, -2.45] },
+    "close": { "position": [-0.95, 1.55, -2.58], "target": [-1.2, 1.03, -3.16] }
   },
   "lights": {
     "hemi": { "sky": 15921908, "ground": 4217412, "intensity": 0.32 },
     "key": {
       "color": 16774624,
-      "intensity": 1.08,
-      "position": [6.5, 9.2, 5.4],
-      "shadowExtent": 11,
-      "bias": -0.00045,
-      "normalBias": 0.028
+      "intensity": 1.02,
+      "position": [5.2, 8.2, 4.2],
+      "target": [-0.8, 0.85, -1.7],
+      "shadowExtent": 5.4,
+      "shadowNear": 2,
+      "shadowFar": 20,
+      "mapSize": 4096,
+      "bias": -0.00012,
+      "normalBias": 0.03
     },
     "fill": { "color": 12967132, "intensity": 0.2, "position": [-6.5, 4.2, 1.5] },
     "points": [
-      { "color": 16764810, "intensity": 0.85, "position": [-1.35, 1.4, -2.72], "distance": 1.55, "decay": 2 },
-      { "color": 16769968, "intensity": 0.48, "position": [-0.4, 1.35, 0.05], "distance": 1.7, "decay": 2 },
-      { "color": 16769184, "intensity": 0.34, "position": [-1.2, 2.35, -2.7], "distance": 2.2, "decay": 2 }
+      { "color": 16764810, "intensity": 0.62, "position": [-1.15, 1.48, -2.78], "distance": 1.05, "decay": 2 },
+      { "color": 16769968, "intensity": 0.36, "position": [-0.35, 1.22, 0.2], "distance": 1.15, "decay": 2 },
+      { "color": 16769184, "intensity": 0.22, "position": [-1.15, 2.05, -2.45], "distance": 1.35, "decay": 2 }
     ]
   },
   "acceptance": {

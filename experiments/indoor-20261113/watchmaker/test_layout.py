@@ -42,7 +42,7 @@ def main():
         check(-half_w <= x <= half_w, inst['id'] + ' x out of room')
         check(-half_d <= z <= half_d, inst['id'] + ' z out of room')
         check(-0.01 <= y <= room['height'], inst['id'] + ' y out of room')
-        if inst['kind'] in ('dining_chair', 'bar_stool'):
+        if inst['kind'] in ('dining_chair',):
             check('lookAt' in inst, inst['id'] + ' missing lookAt')
             if 'lookAt' in inst:
                 fx, fz = forward(inst.get('rotationY') or 0)
@@ -69,13 +69,14 @@ def main():
     check(abs(by_id['bench_lamp']['position'][1] - bench['top']) < 0.001, 'bench lamp not on the bench')
     check(abs(by_id['counter_lamp']['position'][1] - counter['top']) < 0.001, 'counter lamp not on the counter')
     check(abs(by_id['bench_etagere']['position'][1] - bench['top']) < 0.001, 'parts rack not on the bench')
-    check(abs(by_id['maker_stool']['position'][0] - anchors['stool']['x']) < 0.001, 'stool anchor drift')
-    check(abs(by_id['maker_stool']['position'][2] - anchors['stool']['z']) < 0.001, 'stool z drift')
+    stool = anchors['stool']
+    gap = bench['top'] - stool['seat']
+    check(0.22 <= gap <= 0.32, 'stool seat is not a working height under the bench (gap %.2f)' % gap)
 
     front = bench['z'] + bench['d'] / 2
-    stool_z = by_id['maker_stool']['position'][2]
+    stool_z = stool['z']
     check(stool_z > front + 0.15, 'stool is not on the room side of the bench')
-    check(stool_z < front + 0.7, 'stool is too far from the bench to use the bite')
+    check(stool_z < front + 0.55, 'stool is too far from the bench to use the bite')
 
     customer_edge = counter['z'] + counter['d'] / 2
     for cid in ('chair_customer_l', 'chair_customer_r'):
@@ -101,6 +102,10 @@ def main():
     lib = open(os.path.join(HERE, 'scene_lib.js'), encoding='utf-8').read()
     check('MeshToonMaterial' in lib and 'MeshBasicMaterial' in lib, 'toon/unlit pair missing')
     check("shadingMode = 'toon'" in lib, 'toon is not the default')
+    check('PCFSoftShadowMap' in lib, 'key shadow is still a hard nearest map')
+    src = open(os.path.join(HERE, 'watchmaker.js'), encoding='utf-8').read()
+    check('function makerStool' in src, 'wooden maker stool missing')
+    check('bar_stool' not in json.dumps(layout['assets']), 'cafe bar stool is still the maker seat')
 
     if errors:
         print('FAIL')

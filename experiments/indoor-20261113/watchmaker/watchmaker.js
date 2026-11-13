@@ -3,53 +3,107 @@ import { boot, toon, addBox, addCyl } from './scene_lib.js';
 
 const LABEL = ['BAL', 'H/S', 'ESC', 'P/W', 'SCR', 'SPR', 'STM', 'CAN', 'CRN', 'BRG', 'CLK', 'HND', 'MS', 'CAP', 'RCH', 'GS'];
 
-function canvasTex(draw, w, h) {
+function lcg(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s = (Math.imul(1664525, s) + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
+
+function canvasTex(draw, w, h, crisp) {
   const canvas = document.createElement('canvas');
   canvas.width = w;
   canvas.height = h;
   draw(canvas.getContext('2d'), w, h);
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.wrapT = THREE.RepeatWrapping;
+  tex.anisotropy = 8;
+  if (crisp) {
+    tex.wrapS = THREE.ClampToEdgeWrapping;
+    tex.wrapT = THREE.ClampToEdgeWrapping;
+    tex.minFilter = THREE.LinearFilter;
+    tex.magFilter = THREE.LinearFilter;
+    tex.generateMipmaps = false;
+  } else {
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+  }
   return tex;
 }
 
-function grain(base, line, rows) {
+/** Fine longitudinal grain. Strokes stay a few pixels wide so the repeat reads as timber, not stripes. */
+function grain(base, line, seed) {
+  const rnd = lcg(seed);
   return canvasTex((g, w, h) => {
     g.fillStyle = base;
     g.fillRect(0, 0, w, h);
-    g.strokeStyle = line;
-    for (let i = 0; i < rows; i++) {
-      const y = (i * 47) % h;
-      g.globalAlpha = 0.18 + (i % 4) * 0.06;
-      g.lineWidth = 1 + (i % 3);
+    for (let i = 0; i < 140; i++) {
+      const y = (i + 0.5) * (h / 140);
+      g.strokeStyle = line;
+      g.globalAlpha = 0.15 + rnd() * 0.35;
+      g.lineWidth = rnd() < 0.12 ? 2 : 1;
       g.beginPath();
       g.moveTo(0, y);
-      g.bezierCurveTo(w * 0.3, y + 8, w * 0.7, y - 6, w, y + 3);
+      for (let x = 0; x <= w; x += 28) g.lineTo(x, y + (rnd() - 0.5) * 2.4);
       g.stroke();
     }
+    for (let i = 0; i < 700; i++) {
+      g.fillStyle = line;
+      g.globalAlpha = 0.1 + rnd() * 0.2;
+      g.fillRect(rnd() * w, rnd() * h, 1 + rnd(), 1);
+    }
     g.globalAlpha = 1;
-  }, 256, 256);
+  }, 512, 512);
 }
 
-const mapleMap = grain('#f0e0c4', '#c4a36a', 70);
-const oakMap = grain('#c4894e', '#7a4e28', 48);
-const walnutMap = grain('#6a4330', '#3a2418', 40);
-mapleMap.repeat.set(1.4, 0.7);
-oakMap.repeat.set(1.2, 0.6);
-walnutMap.repeat.set(1.6, 0.8);
+const mapleMap = grain('#f0e0c4', '#b08958', 3);
+const oakMap = grain('#c4894e', '#6e4524', 5);
+const walnutMap = grain('#6a4330', '#2e1c12', 9);
+mapleMap.repeat.set(5, 3);
+oakMap.repeat.set(4, 2.4);
+walnutMap.repeat.set(4, 2.4);
 
 const plasterMap = canvasTex((g, w, h) => {
-  g.fillStyle = '#f3ecdf';
+  const rnd = lcg(21);
+  g.fillStyle = '#f3eee6';
   g.fillRect(0, 0, w, h);
-  for (let i = 0; i < 180; i++) {
-    g.fillStyle = i % 2 ? 'rgba(90,70,50,0.05)' : 'rgba(255,255,255,0.18)';
-    g.fillRect((i * 53) % w, (i * 97) % h, 18, 10);
+  for (let i = 0; i < 2800; i++) {
+    const shade = rnd();
+    g.fillStyle = shade > 0.55 ? 'rgba(255,252,247,0.45)' : 'rgba(110,92,74,0.07)';
+    g.fillRect(rnd() * w, rnd() * h, 1, 1);
   }
 }, 256, 256);
-plasterMap.repeat.set(3, 2);
+plasterMap.repeat.set(10, 6);
+
+function floorTex() {
+  const tex = canvasTex((g, w, h) => {
+    const n = 8;
+    const pw = w / n;
+    const bases = ['#c9a56c', '#d7b483', '#c09a62', '#e0c094', '#c6a272', '#d2ae78', '#b8925c', '#dcc09a'];
+    for (let i = 0; i < n; i++) {
+      const rnd = lcg(40 + i * 13);
+      g.fillStyle = bases[i];
+      g.fillRect(i * pw, 0, pw, h);
+      for (let k = 0; k < 28; k++) {
+        const x = i * pw + 4 + rnd() * (pw - 8);
+        g.strokeStyle = 'rgba(92,58,28,0.45)';
+        g.globalAlpha = 0.2 + rnd() * 0.35;
+        g.lineWidth = 1;
+        g.beginPath();
+        g.moveTo(x, 0);
+        for (let y = 0; y <= h; y += 36) g.lineTo(x + (rnd() - 0.5) * 2, y);
+        g.stroke();
+      }
+      g.globalAlpha = 0.7;
+      g.fillStyle = '#5c3e28';
+      g.fillRect((i + 1) * pw - 1.5, 0, 2, h);
+    }
+    g.globalAlpha = 1;
+  }, 1024, 1024);
+  return tex;
+}
+const floorMap = floorTex();
 
 const maple = toon('#ffffff', { map: mapleMap });
 const oak = toon('#ffffff', { map: oakMap });
@@ -92,34 +146,61 @@ function drawerLabel(text) {
   return mat;
 }
 
-let dialMap;
-function clockDialMap() {
-  if (dialMap) return dialMap;
-  dialMap = canvasTex((g, w, h) => {
-    g.fillStyle = '#f7f2e8';
+const dialCache = new Map();
+function clockDialMap(hours, minutes) {
+  const key = `${hours}:${minutes}`;
+  if (dialCache.has(key)) return dialCache.get(key);
+  const map = canvasTex((g, w, h) => {
+    const cx = w / 2;
+    const cy = h / 2;
+    const r = w * 0.46;
+    g.fillStyle = '#f6f1e6';
     g.beginPath();
-    g.arc(w / 2, h / 2, w / 2 - 1, 0, Math.PI * 2);
+    g.arc(cx, cy, r, 0, Math.PI * 2);
     g.fill();
-    g.fillStyle = '#1a1a1a';
+    g.strokeStyle = '#1c1916';
+    g.lineWidth = 14;
+    g.beginPath();
+    g.arc(cx, cy, r * 0.9, 0, Math.PI * 2);
+    g.stroke();
+    g.fillStyle = '#1c1916';
     g.textAlign = 'center';
     g.textBaseline = 'middle';
-    g.font = '700 36px Liberation Sans, sans-serif';
+    g.font = '700 84px Liberation Sans, sans-serif';
     for (let n = 1; n <= 12; n++) {
       const a = (n / 12) * Math.PI * 2 - Math.PI / 2;
-      g.fillText(String(n), w / 2 + Math.cos(a) * (w * 0.34), h / 2 + Math.sin(a) * (h * 0.34));
+      g.fillText(String(n), cx + Math.cos(a) * r * 0.66, cy + Math.sin(a) * r * 0.66 + 3);
     }
     for (let i = 0; i < 60; i++) {
       const a = (i / 60) * Math.PI * 2 - Math.PI / 2;
-      const inner = i % 5 === 0 ? w * 0.42 : w * 0.45;
-      g.strokeStyle = '#1a1a1a';
-      g.lineWidth = i % 5 === 0 ? 3 : 1;
+      const major = i % 5 === 0;
+      g.strokeStyle = '#1c1916';
+      g.lineWidth = major ? 8 : 3;
+      const inner = major ? r * 0.76 : r * 0.83;
       g.beginPath();
-      g.moveTo(w / 2 + Math.cos(a) * inner, h / 2 + Math.sin(a) * inner);
-      g.lineTo(w / 2 + Math.cos(a) * (w * 0.48), h / 2 + Math.sin(a) * (h * 0.48));
+      g.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
+      g.lineTo(cx + Math.cos(a) * r * 0.88, cy + Math.sin(a) * r * 0.88);
       g.stroke();
     }
-  }, 256, 256);
-  return dialMap;
+    const minuteAngle = (minutes / 60) * Math.PI * 2;
+    const hourAngle = ((hours % 12) / 12) * Math.PI * 2 + minuteAngle / 12;
+    const paintHand = (angle, len, width) => {
+      g.save();
+      g.translate(cx, cy);
+      g.rotate(angle);
+      g.fillStyle = '#141414';
+      g.fillRect(-width / 2, 8, width, -len);
+      g.restore();
+    };
+    paintHand(hourAngle, r * 0.46, 18);
+    paintHand(minuteAngle, r * 0.7, 11);
+    g.fillStyle = '#b8904a';
+    g.beginPath();
+    g.arc(cx, cy, 14, 0, Math.PI * 2);
+    g.fill();
+  }, 512, 512, true);
+  dialCache.set(key, map);
+  return map;
 }
 
 function receiveOnly(mesh) {
@@ -133,40 +214,26 @@ function flat(mesh) {
   return mesh;
 }
 
-function hand(parent, length, width, clockwiseFrom12, z) {
-  const m = new THREE.Mesh(new THREE.BoxGeometry(width, length, 0.005), ink);
-  m.geometry.translate(0, length * 0.42, 0);
-  m.rotation.z = -clockwiseFrom12;
-  m.position.z = z;
-  m.userData.noShadow = true;
-  parent.add(m);
-  return m;
-}
-
 function dialFace(parent, radius, z, hours, minutes) {
-  const face = new THREE.Mesh(new THREE.CircleGeometry(radius, 32), toon('#ffffff', { map: clockDialMap() }));
+  const face = new THREE.Mesh(
+    new THREE.CircleGeometry(radius, 48),
+    toon('#ffffff', { map: clockDialMap(hours, minutes) }),
+  );
   face.position.z = z;
-  face.userData.noShadow = true;
+  flat(face);
   parent.add(face);
-  const minuteAngle = (minutes / 60) * Math.PI * 2;
-  const hourAngle = ((hours % 12) / 12) * Math.PI * 2 + minuteAngle / 12;
-  hand(parent, radius * 0.5, radius * 0.06, hourAngle, z + 0.006);
-  hand(parent, radius * 0.74, radius * 0.035, minuteAngle, z + 0.01);
-  const pin = new THREE.Mesh(new THREE.CircleGeometry(radius * 0.045, 12), brass);
-  pin.position.z = z + 0.014;
-  pin.userData.noShadow = true;
-  parent.add(pin);
+  return face;
 }
 
 function roundClock(g, x, y, z, radius, hours, minutes) {
   const grp = new THREE.Group();
-  const back = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.06, 28), walnut);
-  back.rotation.x = Math.PI / 2;
+  const back = new THREE.Mesh(new THREE.CircleGeometry(radius, 36), walnut);
+  back.position.z = -0.015;
   grp.add(back);
-  const bezel = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.96, 0.018, 8, 28), brass);
-  bezel.position.z = 0.03;
+  const bezel = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.97, Math.max(0.012, radius * 0.055), 8, 40), brass);
+  bezel.position.z = 0.008;
   grp.add(bezel);
-  dialFace(grp, radius * 0.82, 0.036, hours, minutes);
+  dialFace(grp, radius * 0.88, 0.016, hours, minutes);
   grp.position.set(x, y, z);
   g.add(grp);
   return grp;
@@ -242,34 +309,34 @@ function benchTopGeo(w, d, bite) {
 
 function movement(g, x, y, z) {
   const grp = new THREE.Group();
-  addCyl(grp, 0.055, 0.055, 0.012, brass, 0, 0.008, 0, 24);
-  addCyl(grp, 0.028, 0.028, 0.008, brassDark, -0.012, 0.016, 0.004, 16);
-  addCyl(grp, 0.018, 0.018, 0.008, steel, 0.02, 0.016, -0.008, 14);
-  const balance = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.0025, 6, 16), steel);
+  addCyl(grp, 0.021, 0.021, 0.004, brass, 0, 0.003, 0, 24);
+  addCyl(grp, 0.011, 0.011, 0.003, brassDark, -0.005, 0.006, 0.002, 16);
+  addCyl(grp, 0.007, 0.007, 0.003, steel, 0.008, 0.006, -0.004, 14);
+  const balance = new THREE.Mesh(new THREE.TorusGeometry(0.006, 0.001, 6, 16), steel);
   balance.rotation.x = Math.PI / 2;
-  balance.position.set(0.018, 0.02, 0.012);
+  balance.position.set(0.007, 0.008, 0.004);
+  flat(balance);
   grp.add(balance);
-  addBox(grp, 0.04, 0.006, 0.012, steelDark, -0.004, 0.02, -0.01);
-  addBox(grp, 0.012, 0.006, 0.03, steelDark, 0.02, 0.02, 0);
-  addCyl(grp, 0.006, 0.006, 0.02, steel, 0.058, 0.01, 0, 8).rotation.z = Math.PI / 2;
+  const bridge = addBox(grp, 0.016, 0.002, 0.005, steelDark, -0.002, 0.007, -0.004);
+  flat(bridge);
+  const stem = addCyl(grp, 0.0022, 0.0022, 0.012, steel, 0.026, 0.004, 0, 8);
+  stem.rotation.z = Math.PI / 2;
   grp.position.set(x, y, z);
   g.add(grp);
 }
 
 function partsTray(g, x, y, z) {
   const grp = new THREE.Group();
-  addBox(grp, 0.28, 0.02, 0.16, walnutDark, 0, 0.01, 0);
-  const cols = 4;
-  const rows = 2;
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const px = -0.105 + c * 0.07;
-      const pz = -0.04 + r * 0.08;
-      addBox(grp, 0.06, 0.012, 0.06, paper, px, 0.022, pz);
+  addBox(grp, 0.16, 0.01, 0.1, walnutDark, 0, 0.005, 0);
+  for (let r = 0; r < 2; r++) {
+    for (let c = 0; c < 4; c++) {
+      const px = -0.06 + c * 0.04;
+      const pz = -0.025 + r * 0.05;
+      addBox(grp, 0.034, 0.006, 0.04, paper, px, 0.012, pz);
       if ((c + r) % 2 === 0) {
         for (let k = 0; k < 3; k++) {
-          const screw = addCyl(grp, 0.004, 0.004, 0.006, k === 1 ? brass : steelDark, px - 0.012 + k * 0.012, 0.03, pz, 6);
-          screw.userData.noShadow = true;
+          const screw = addCyl(grp, 0.0016, 0.0016, 0.002, k === 1 ? brass : steelDark, px - 0.006 + k * 0.006, 0.016, pz, 6);
+          flat(screw);
         }
       }
     }
@@ -279,116 +346,143 @@ function partsTray(g, x, y, z) {
 }
 
 function screwdrivers(g, x, y, z) {
-  const block = addBox(g, 0.1, 0.035, 0.06, walnut, x, y + 0.02, z);
-  block.userData.keep = true;
+  addBox(g, 0.07, 0.018, 0.04, walnut, x, y + 0.01, z);
   const handles = ['#8d2e2e', '#1f3d6e', '#1c1c1c', '#8d2e2e', '#1f3d6e'];
   handles.forEach((color, i) => {
-    const h = addCyl(g, 0.007, 0.008, 0.09, toon(color), x - 0.032 + i * 0.016, y + 0.07, z, 8);
-    h.rotation.z = -0.35;
-    h.rotation.x = 0.15;
-    const blade = addCyl(g, 0.002, 0.002, 0.04, steel, x - 0.02 + i * 0.016, y + 0.12, z - 0.01, 6);
-    blade.rotation.z = -0.35;
-    blade.userData.noShadow = true;
+    const h = addCyl(g, 0.004, 0.0045, 0.055, toon(color), x - 0.024 + i * 0.012, y + 0.04, z, 8);
+    h.rotation.z = -0.4;
+    const blade = addCyl(g, 0.0012, 0.0012, 0.028, steel, x - 0.016 + i * 0.012, y + 0.07, z - 0.006, 6);
+    blade.rotation.z = -0.4;
+    flat(blade);
   });
 }
 
 function oilCups(g, x, y, z) {
-  for (let i = 0; i < 4; i++) {
-    addCyl(g, 0.012, 0.014, 0.012, brass, x + i * 0.032, y + 0.008, z, 10);
-    const oil = addCyl(g, 0.008, 0.008, 0.004, toon(i % 2 ? '#d6e07a' : '#e7e2c8'), x + i * 0.032, y + 0.014, z, 8);
-    oil.userData.noShadow = true;
+  for (let i = 0; i < 3; i++) {
+    addCyl(g, 0.007, 0.008, 0.008, brass, x + i * 0.02, y + 0.004, z, 10);
+    const oil = addCyl(g, 0.0045, 0.0045, 0.002, toon(i === 1 ? '#d6e07a' : '#e7e2c8'), x + i * 0.02, y + 0.008, z, 8);
+    flat(oil);
   }
 }
 
 function loupeStand(g, x, y, z) {
-  const baseX = x + 0.2;
-  addCyl(g, 0.022, 0.026, 0.01, brassDark, baseX, y + 0.005, z, 12);
-  addCyl(g, 0.0045, 0.0045, 0.13, brass, baseX, y + 0.075, z, 8);
-  const arm = addCyl(g, 0.0045, 0.0045, 0.2, brass, x + 0.1, y + 0.142, z, 8);
+  const baseX = x + 0.09;
+  addCyl(g, 0.012, 0.014, 0.006, brassDark, baseX, y + 0.003, z, 12);
+  addCyl(g, 0.0025, 0.0025, 0.07, brass, baseX, y + 0.04, z, 8);
+  const arm = addCyl(g, 0.0032, 0.0032, 0.09, brass, x + 0.045, y + 0.076, z, 8);
   arm.rotation.z = Math.PI / 2;
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.006, 8, 24), ink);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.011, 0.0022, 8, 20), ink);
   ring.rotation.x = Math.PI / 2;
-  ring.position.set(x, y + 0.136, z);
+  ring.position.set(x, y + 0.074, z);
   g.add(ring);
   const lens = new THREE.Mesh(
-    new THREE.CircleGeometry(0.022, 20),
+    new THREE.CircleGeometry(0.009, 18),
     toon('#e8f3f8', { transparent: true, opacity: 0.78, side: THREE.DoubleSide, emissive: '#d7ebf5', emissiveIntensity: 0.3 }),
   );
   lens.rotation.x = -Math.PI / 2;
-  lens.position.set(x, y + 0.137, z);
-  lens.userData.noShadow = true;
+  lens.position.set(x, y + 0.075, z);
+  flat(lens);
   g.add(lens);
 }
 
 function handLoupe(g, x, y, z) {
-  const cone = addCyl(g, 0.014, 0.028, 0.045, ink, x, y + 0.02, z, 14);
+  const cone = addCyl(g, 0.006, 0.012, 0.028, ink, x, y + 0.008, z, 12);
   cone.rotation.z = Math.PI / 2;
-  cone.rotation.y = 0.4;
-  cone.userData.noShadow = true;
+  cone.rotation.y = 0.5;
+  flat(cone);
 }
 
 function timingMachine(g, x, y, z) {
-  addBox(g, 0.28, 0.1, 0.2, charcoal, x, y + 0.05, z);
-  addBox(g, 0.22, 0.012, 0.14, slateDeep, x, y + 0.104, z - 0.01);
+  addBox(g, 0.18, 0.07, 0.12, charcoal, x, y + 0.035, z);
   const screenMap = canvasTex((ctx, w, h) => {
     ctx.fillStyle = '#102418';
     ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = '#7dffb0';
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.moveTo(10, h * 0.55);
-    for (let i = 0; i <= 24; i++) {
-      const px = 10 + i * ((w - 20) / 24);
-      const py = h * 0.55 + Math.sin(i * 0.85) * 28 + (i % 6 === 0 ? -18 : 0);
+    ctx.moveTo(12, h * 0.62);
+    for (let i = 0; i <= 20; i++) {
+      const px = 12 + i * ((w - 24) / 20);
+      const py = h * 0.62 + Math.sin(i * 0.9) * 22;
       ctx.lineTo(px, py);
     }
     ctx.stroke();
     ctx.fillStyle = '#d8ffe8';
-    ctx.font = '700 42px Liberation Sans, sans-serif';
-    ctx.fillText('+4 s/d', 18, 52);
-    ctx.font = '600 28px Liberation Sans, sans-serif';
-    ctx.fillText('2824', 18, h - 24);
-  }, 256, 160);
+    ctx.font = '700 48px Liberation Sans, sans-serif';
+    ctx.fillText('+4 s/d', 16, 48);
+    ctx.font = '600 32px Liberation Sans, sans-serif';
+    ctx.fillText('2824', 16, h - 18);
+  }, 256, 160, true);
   const screen = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.2, 0.09),
+    new THREE.PlaneGeometry(0.14, 0.06),
     toon('#ffffff', { map: screenMap, emissive: '#9dffc4', emissiveIntensity: 0.35 }),
   );
-  screen.position.set(x, y + 0.112, z - 0.008);
-  screen.rotation.x = -0.55;
-  screen.userData.noShadow = true;
+  screen.position.set(x, y + 0.078, z + 0.01);
+  screen.rotation.x = -1.05;
+  flat(screen);
   g.add(screen);
 }
 
 function tweezers(g, x, y, z) {
-  const a = addBox(g, 0.012, 0.004, 0.12, steel, x, y + 0.006, z);
-  a.rotation.y = 0.15;
-  a.userData.noShadow = true;
-  const b = addBox(g, 0.012, 0.004, 0.12, steel, x + 0.012, y + 0.006, z);
-  b.rotation.y = -0.12;
-  b.userData.noShadow = true;
+  const a = addBox(g, 0.006, 0.002, 0.09, steel, x, y + 0.003, z);
+  a.rotation.y = 0.12;
+  flat(a);
+  const b = addBox(g, 0.006, 0.002, 0.09, steel, x + 0.008, y + 0.003, z);
+  b.rotation.y = -0.1;
+  flat(b);
+}
+
+function pegwood(g, x, y, z) {
+  for (let i = 0; i < 4; i++) {
+    const stick = addCyl(g, 0.0015, 0.002, 0.07, toon('#e6d2a4'), x + i * 0.008, y + 0.004, z, 6);
+    stick.rotation.z = Math.PI / 2;
+    stick.rotation.y = -0.4 + i * 0.15;
+    flat(stick);
+  }
 }
 
 function dustBlower(g, x, y, z) {
-  addCyl(g, 0.022, 0.018, 0.04, toon('#d8d2c8'), x, y + 0.02, z, 12);
-  const nozzle = addCyl(g, 0.006, 0.004, 0.04, steelDark, x + 0.03, y + 0.03, z, 8);
+  addCyl(g, 0.012, 0.01, 0.022, toon('#d8d2c8'), x, y + 0.011, z, 12);
+  const nozzle = addCyl(g, 0.003, 0.002, 0.02, steelDark, x + 0.016, y + 0.016, z, 8);
   nozzle.rotation.z = Math.PI / 2;
-  nozzle.userData.noShadow = true;
+  flat(nozzle);
 }
 
-function wristwatch(g, x, y, z, strap) {
+function serviceTag(g, x, y, z, text, rot) {
+  const map = canvasTex((ctx, w, h) => {
+    ctx.fillStyle = '#f3ead2';
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = '#8d7044';
+    ctx.lineWidth = 10;
+    ctx.strokeRect(8, 8, w - 16, h - 16);
+    ctx.fillStyle = '#1c1814';
+    ctx.font = '700 72px Liberation Sans, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, w / 2, h / 2);
+  }, 256, 128, true);
+  const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.048, 0.026), toon('#ffffff', { map }));
+  tag.rotation.x = -Math.PI / 2;
+  tag.rotation.z = rot || 0;
+  tag.position.set(x, y, z);
+  flat(tag);
+  g.add(tag);
+}
+
+function wristwatch(g, x, y, z, strap, hours, minutes) {
   const grp = new THREE.Group();
-  const cushion = new THREE.Mesh(new THREE.SphereGeometry(0.09, 16, 10), charcoal);
-  cushion.scale.set(1.2, 0.28, 0.85);
-  grp.add(cushion);
-  addBox(grp, 0.04, 0.014, 0.09, strap, -0.07, 0.035, 0);
-  addBox(grp, 0.04, 0.014, 0.09, strap, 0.07, 0.035, 0);
-  addCyl(grp, 0.042, 0.042, 0.014, steel, 0, 0.045, 0, 20);
-  const face = new THREE.Mesh(new THREE.CircleGeometry(0.03, 18), toon('#ffffff', { map: clockDialMap() }));
+  addBox(grp, 0.016, 0.004, 0.04, strap, -0.026, 0.006, 0);
+  addBox(grp, 0.016, 0.004, 0.04, strap, 0.026, 0.006, 0);
+  addCyl(grp, 0.018, 0.018, 0.007, steel, 0, 0.009, 0, 20);
+  const face = new THREE.Mesh(
+    new THREE.CircleGeometry(0.013, 18),
+    toon('#ffffff', { map: clockDialMap(hours, minutes) }),
+  );
   face.rotation.x = -Math.PI / 2;
-  face.position.y = 0.054;
-  face.userData.noShadow = true;
+  face.position.y = 0.0135;
+  flat(face);
   grp.add(face);
-  const crown = addCyl(grp, 0.008, 0.008, 0.014, brass, 0.05, 0.045, 0, 8);
+  const crown = addCyl(grp, 0.003, 0.003, 0.005, brass, 0.021, 0.009, 0, 8);
   crown.rotation.z = Math.PI / 2;
   grp.position.set(x, y, z);
   g.add(grp);
@@ -406,7 +500,7 @@ function jobSlips(g, x, y, z) {
       ctx.textBaseline = 'middle';
       ctx.fillText(text, w / 2, h / 2);
     }, 256, 96);
-    const slip = new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.06), toon('#ffffff', { map }));
+    const slip = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.032), toon('#ffffff', { map }));
     slip.rotation.x = -Math.PI / 2;
     slip.position.set(x + i * 0.02, y + i * 0.004, z + i * 0.07);
     slip.rotation.z = -0.08 + i * 0.05;
@@ -417,22 +511,39 @@ function jobSlips(g, x, y, z) {
 
 function signBoard(g, x, y, z) {
   const map = canvasTex((ctx, w, h) => {
-    ctx.fillStyle = '#2c3844';
+    ctx.fillStyle = '#24303a';
     ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = '#c6a15e';
-    ctx.lineWidth = 10;
-    ctx.strokeRect(12, 12, w - 24, h - 24);
-    ctx.fillStyle = '#f4efe4';
-    ctx.font = '700 64px Liberation Sans, sans-serif';
+    ctx.lineWidth = 22;
+    ctx.strokeRect(18, 18, w - 36, h - 36);
+    ctx.fillStyle = '#f6f1e6';
+    ctx.font = '700 108px Liberation Sans, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('WATCH REPAIR', w / 2, h / 2 + 4);
-  }, 512, 160);
+  }, 1280, 280, true);
+  addBox(g, 2.05, 0.4, 0.03, walnutDark, x, y, z - 0.02);
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(1.92, 0.34), toon('#ffffff', { map }));
+  face.position.set(x, y, z);
+  flat(face);
+  g.add(face);
+}
+
+/** Wooden bench stool. Seat sits ~28 cm under a 1.02 m top so the forearms land on the baize. */
+function makerStool(g, x, z, seatH) {
   const grp = new THREE.Group();
-  addBox(grp, 0.04, 0.36, 1.15, toon('#ffffff', { map }), 0, 0, 0);
-  addBox(grp, 0.02, 0.4, 0.03, brassDark, 0.02, 0, -0.52);
-  addBox(grp, 0.02, 0.4, 0.03, brassDark, 0.02, 0, 0.52);
-  grp.position.set(x, y, z);
+  addCyl(grp, 0.155, 0.15, 0.04, walnut, 0, seatH, 0, 24);
+  addCyl(grp, 0.045, 0.055, 0.035, walnutDark, 0, seatH - 0.035, 0, 16);
+  const legH = seatH - 0.05;
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+    addCyl(grp, 0.016, 0.02, legH, walnut, Math.cos(a) * 0.085, legH / 2, Math.sin(a) * 0.085, 8);
+  }
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.007, 8, 28), brassDark);
+  ring.rotation.x = Math.PI / 2;
+  ring.position.y = 0.24;
+  grp.add(ring);
+  grp.position.set(x, 0, z);
   g.add(grp);
 }
 
@@ -456,24 +567,22 @@ function makeShell(layout) {
 
   const slab = addBox(g, W, 0.08, D, toon('#b89662'), 0, -0.04, 0);
   slab.userData.noShadow = true;
-  slab.userData.receiveShadow = true;
 
-  const plankColors = [toon('#d2b07a'), toon('#c4a06a'), toon('#dfc08a'), toon('#b99258')];
-  const n = Math.ceil((W - 0.3) / 0.18);
-  for (let i = 0; i < n; i++) {
-    const x = -W / 2 + 0.2 + i * 0.18;
-    const plank = addBox(g, 0.17, 0.012, D - 0.28, plankColors[i % plankColors.length], x, 0.006, 0);
-    receiveOnly(plank);
-  }
+  floorMap.repeat.set(W - 0.28, D - 0.28);
+  const boards = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.28, D - 0.28), toon('#ffffff', { map: floorMap }));
+  boards.rotation.x = -Math.PI / 2;
+  boards.position.y = 0.008;
+  receiveOnly(boards);
+  g.add(boards);
   const border = toon('#6e4c30');
   receiveOnly(addBox(g, W - 0.16, 0.016, 0.08, border, 0, 0.01, innerB + 0.02));
   receiveOnly(addBox(g, W - 0.16, 0.016, 0.08, border, 0, 0.01, D / 2 - 0.06));
   receiveOnly(addBox(g, 0.08, 0.016, D - 0.2, border, innerL + 0.02, 0.01, 0));
 
   const back = addBox(g, W, H, 0.12, plaster, 0, H / 2, -D / 2);
-  flat(back);
+  receiveOnly(back);
   const left = addBox(g, 0.12, H, D, plaster, -W / 2, H / 2, 0);
-  flat(left);
+  receiveOnly(left);
 
   const trimZ = innerB + 0.05;
   const trimX = innerL + 0.05;
@@ -494,15 +603,17 @@ function makeShell(layout) {
   addBox(g, 0.035, 1.12, 0.03, walnut, 0.46, 2.02, fieldZ);
 
   const soffit = addBox(g, W * 0.9, 0.08, 3.5, plaster, -0.2, H - 0.06, -2.05);
-  soffit.userData.noShadow = true;
-  addBox(g, W * 0.72, 0.1, 0.12, walnutDark, -0.4, H - 0.18, -3.05);
-  addBox(g, W * 0.55, 0.08, 0.1, walnutDark, -0.6, H - 0.16, -0.55);
+  flat(soffit);
+  const beamA = addBox(g, W * 0.72, 0.1, 0.12, walnutDark, -0.4, H - 0.18, -3.05);
+  flat(beamA);
+  const beamB = addBox(g, W * 0.55, 0.08, 0.1, walnutDark, -0.6, H - 0.16, -0.55);
+  flat(beamB);
 
   const ao = toon('#241c16', { transparent: true, opacity: 0.2, depthWrite: false });
   flat(addBox(g, W - 0.3, 0.08, 0.08, ao, 0, 0.04, innerB + 0.04));
   flat(addBox(g, 0.08, 0.08, D - 0.3, ao, innerL + 0.04, 0.04, 0));
 
-  const mat = addBox(g, 0.7, 0.012, 0.7, baizeDeep, -1.2, 0.016, -2.46);
+  const mat = addBox(g, 0.55, 0.008, 0.55, baizeDeep, -1.2, 0.012, -2.52);
   receiveOnly(mat);
   return g;
 }
@@ -546,15 +657,32 @@ function makeProcedural(layout) {
     }
   }
 
-  movement(g, bench.x - 0.06, top, bench.z + 0.02);
-  partsTray(g, bench.x - 0.55, top, bench.z + 0.1);
-  screwdrivers(g, bench.x + 0.42, top, bench.z + 0.08);
-  oilCups(g, bench.x - 0.72, top, bench.z - 0.12);
-  loupeStand(g, bench.x - 0.02, top, bench.z + 0.02);
-  handLoupe(g, bench.x - 0.28, top, bench.z + 0.2);
-  tweezers(g, bench.x - 0.36, top, bench.z - 0.08);
-  dustBlower(g, bench.x + 0.28, top, bench.z + 0.16);
-  timingMachine(g, bench.x + 0.82, top, bench.z - 0.06);
+  const stool = layout.meta.anchors.stool;
+  makerStool(g, stool.x, stool.z, stool.seat);
+
+  const cloth = top + 0.014;
+  movement(g, bench.x - 0.02, cloth, bench.z + 0.01);
+  loupeStand(g, bench.x - 0.02, cloth, bench.z + 0.01);
+  partsTray(g, bench.x - 0.58, top, bench.z + 0.04);
+  partsTray(g, bench.x + 0.5, top, bench.z - 0.06);
+  screwdrivers(g, bench.x + 0.28, top, bench.z + 0.18);
+  oilCups(g, bench.x - 0.52, top, bench.z - 0.16);
+  handLoupe(g, bench.x - 0.22, top, bench.z + 0.24);
+  tweezers(g, bench.x + 0.12, top, bench.z + 0.22);
+  pegwood(g, bench.x + 0.16, top, bench.z - 0.16);
+  dustBlower(g, bench.x - 0.46, top, bench.z + 0.2);
+  timingMachine(g, bench.x + 0.78, top, bench.z - 0.02);
+  serviceTag(g, bench.x - 0.1, cloth + 0.002, bench.z + 0.14, '2824', -0.15);
+  serviceTag(g, bench.x + 0.08, cloth + 0.002, bench.z + 0.08, '7S26', 0.25);
+  serviceTag(g, bench.x + 0.55, top + 0.014, bench.z + 0.02, '6497', 0.35);
+  for (let i = 0; i < 4; i++) {
+    addCyl(g, 0.016, 0.016, 0.018, i % 2 ? steelDark : brassDark, bench.x - 0.72 + i * 0.045, top + 0.01, bench.z - 0.22, 12);
+  }
+  addBox(g, 0.02, 0.02, 0.62, walnut, -4.62, 1.78, -2.9);
+  for (let i = 0; i < 5; i++) {
+    const strap = addBox(g, 0.01, 0.14, 0.028, i % 2 ? strapBrown : strapBlack, -4.6, 1.68, -3.14 + i * 0.12);
+    flat(strap);
+  }
 
   const cabX = cabinet.x;
   addBox(g, cabinet.depth, cabinet.h, cabinet.span, walnut, cabX, cabinet.h / 2, cabinet.z);
@@ -582,12 +710,11 @@ function makeProcedural(layout) {
   }
 
   const clocks = [
-    [-2.25, 2.12, 0.2, 10, 10],
-    [-1.7, 1.82, 0.15, 2, 42],
-    [-1.05, 2.22, 0.26, 7, 15],
-    [-0.4, 1.9, 0.14, 4, 55],
+    [-2.15, 2.08, 0.16, 10, 10],
+    [-1.15, 2.02, 0.28, 7, 35],
+    [-0.28, 2.12, 0.13, 2, 50],
   ];
-  const wallZ = -layout.meta.room.depth / 2 + 0.12;
+  const wallZ = -layout.meta.room.depth / 2 + 0.24;
   for (const [x, y, radius, hh, mm] of clocks) roundClock(g, x, y, wallZ, radius, hh, mm);
   regulator(g, 1.15, wallZ + 0.02);
   longcase(g, layout.meta.anchors.longcase.x, layout.meta.anchors.longcase.z);
@@ -604,18 +731,27 @@ function makeProcedural(layout) {
     addBox(g, 0.28, 0.1, 0.5, oak, dx, 0.42, counter.z);
     addCyl(g, 0.012, 0.012, 0.02, brass, dx, 0.42, counter.z + 0.22, 8);
   }
-  wristwatch(g, counter.x - 0.55, ct + 0.05, counter.z - 0.02, strapBrown);
-  wristwatch(g, counter.x - 0.12, ct + 0.05, counter.z + 0.04, strapBlack);
-  wristwatch(g, counter.x + 0.28, ct + 0.05, counter.z - 0.04, strapBrown);
-  jobSlips(g, counter.x + 0.62, ct + 0.012, counter.z - 0.08);
-  handLoupe(g, counter.x + 0.55, ct, counter.z + 0.12);
-  addCyl(g, 0.04, 0.045, 0.03, brass, counter.x - 0.9, ct + 0.02, counter.z + 0.12, 16);
-  addCyl(g, 0.012, 0.012, 0.02, brassDark, counter.x - 0.9, ct + 0.04, counter.z + 0.12, 8);
+  const pad = addBox(g, 0.52, 0.008, 0.1, charcoal, counter.x - 0.22, ct + 0.008, counter.z - 0.02);
+  flat(pad);
+  const stock = [
+    [-0.42, strapBrown, 10, 8],
+    [-0.32, strapBlack, 2, 40],
+    [-0.22, strapBrown, 7, 15],
+    [-0.12, strapBlack, 4, 55],
+    [-0.02, strapBrown, 11, 5],
+  ];
+  for (const [dx, strap, hh, mm] of stock) {
+    wristwatch(g, counter.x + dx, ct + 0.012, counter.z - 0.02, strap, hh, mm);
+  }
+  jobSlips(g, counter.x + 0.48, ct + 0.01, counter.z - 0.06);
+  handLoupe(g, counter.x + 0.42, ct, counter.z + 0.1);
+  addCyl(g, 0.022, 0.026, 0.016, brass, counter.x - 0.85, ct + 0.012, counter.z + 0.1, 16);
+  addCyl(g, 0.006, 0.006, 0.012, brassDark, counter.x - 0.85, ct + 0.024, counter.z + 0.1, 8);
 
-  signBoard(g, -4.7, 2.18, -1.7);
+  signBoard(g, -1.15, 1.3, -layout.meta.room.depth / 2 + 0.26);
   addCyl(g, 0.007, 0.007, 0.42, ink, -1.2, 2.9, -2.95, 6);
 
-  contact(g, bench.x, -2.46, 0.28, 0.28);
+  contact(g, bench.x, -2.52, 0.22, 0.22);
   contact(g, -1.15, 0.58, 0.22, 0.22);
   contact(g, 0.05, 0.58, 0.22, 0.22);
   contact(g, 2.55, 0.75, 0.85, 0.28);

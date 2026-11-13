@@ -6,7 +6,6 @@ Three.js r170 (`workshop/vendor/three.module.js`, `OrbitControls.js`, `GLTFLoade
 
 | Use in this room | File | Credit |
 | --- | --- | --- |
-| Maker stool | `cafe/assets/bar_stool__319fcb56afe8.glb` | “Bar stool lowpoly” by vaporclaws, CC-BY-4.0 |
 | Customer chairs | `restaurant/assets/dining_chair__5e1f7a56da4a.glb` | “Wooden Dining Chair” by vikki0612, CC-BY-4.0 |
 | Waiting bench | `museum/assets/museum_bench__0025f9484fc6.glb` | “Bench” by RookeyJerry, CC-BY-4.0 |
 | Bench lamp and counter lamp | `library/assets/library_lamp__06accd4e0351.glb` | “Library Desk Lamp” by oriolescolarcano, CC-BY-4.0 |
@@ -23,4 +22,4 @@ Three.js r170 (`workshop/vendor/three.module.js`, `OrbitControls.js`, `GLTFLoade
 
 Catalog models come from [Sandflow/sand3d-objaverse](https://huggingface.co/datasets/Sandflow/sand3d-objaverse). Longer credits live in `cafe/ATTRIBUTIONS.md`, `library/ATTRIBUTIONS.md`, `museum/ATTRIBUTIONS.md`, `restaurant/ATTRIBUTIONS.md`, and `cowork/ATTRIBUTIONS.md`.
 
-Original to this scene, built in `watchmaker.js`: the bench and its bite, baize, wing drawers, movement, parts tray, screwdrivers, oil cups, loupes, tweezers, dust blower, timing box, parts cabinet, counter, wristwatches, job slips, wall clocks, regulator, longcase, mantel clock, sign, wainscot, and floor.
+Original to this scene, built in `watchmaker.js`: the bench and its bite, baize, wing drawers, the wooden maker’s stool, movement, parts trays, screwdrivers, oil cups, loupes, tweezers, pegwood, dust blower, timing box, service tags, parts cabinet, counter, wristwatches, job slips, wall clocks, regulator, longcase, mantel clock, sign, wainscot, and floor.
