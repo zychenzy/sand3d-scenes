@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "title": "Cobbler workshop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.2, "depth": 7.6, "height": 3.15 },
+    "notes": [
+      "One-room shoe repair shop. Back wall and left wall only; the street side is the open cutaway.",
+      "Repair bench and stitch horse are seated at dining-chair height. The sole finisher is a standing wheel, with its chair facing the wheel.",
+      "Handoff counter is standing height. Customers wait on the museum bench; they do not sit at the counter.",
+      "Serve from the repository root so shared GLB and vendor paths resolve."
+    ]
+  },
+  "zones": {
+    "repair": { "x": -0.9, "z": -3.18, "w": 2.8, "d": 0.7, "h": 0.78, "rot": 0 },
+    "stitch": { "x": 1.62, "z": -0.18, "w": 1.08, "d": 0.56, "h": 0.76, "rot": 0.08 },
+    "finisher": { "x": -4.55, "z": -1.05, "w": 0.7, "d": 0.56, "h": 1.18, "rot": 0 },
+    "counter": { "x": 0.15, "z": 2.22, "w": 2.5, "d": 0.66, "h": 1.04, "rot": 0 },
+    "lasts": { "x": -3.2, "z": -3.66, "w": 2.15, "d": 0.18, "h": 0.62, "y": 1.28 },
+    "tickets": { "x": 2.55, "z": -3.64, "w": 1.46, "d": 0.2, "h": 1.02, "y": 1.18 },
+    "rail": { "x": 3.62, "z": -2.55, "w": 0.22, "d": 1.15, "h": 1.72 },
+    "foreground": { "x": -2.45, "z": 2.72, "w": 0.72, "d": 0.58, "h": 0.42 },
+    "window": { "x": -3.35, "z": -3.72, "w": 1.7, "h": 0.62, "y": 2.28 }
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "../../../workshop/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.88,
+      "role": "Seated work chair. Local front is +Z (front_leg). Rejected as a stool: the catalog stool is a cafe pedestal."
+    },
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "tint": "#8d6a45",
+      "role": "Customer waiting bench. Long axis is local Z; rotation pi/2 lays it along X. Tinted oak so the pale gallery bake does not read as painted metal."
+    },
+    "library_lamp": {
+      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42,
+      "role": "Banker's lamp. Shade sits on local -Z, so rotation pi throws it toward the cobbler."
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.46,
+      "role": "Shade hangs below the ceiling cap. Kept under 0.5 m so the shade is not a disc blocking the room."
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.11,
+      "role": "Wax, polish, and peg jar. Left at jar scale so it does not read as a canister."
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "role": "Cobbler's mug on the stitch horse."
+    },
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.3,
+      "role": "Handoff till. Keys and brass_front are local +Z, so rotation 0 faces the customer."
+    },
+    "flowerpot": {
+      "glb": "../../../workshop/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.28,
+      "role": "One corner plant. Not a work tool."
+    }
+  },
+  "instances": [
+    { "id": "chair_repair", "kind": "dining_chair", "position": [-0.55, 0, -2.26], "rotationY": 3.1416, "faces": "repair" },
+    { "id": "chair_stitch", "kind": "dining_chair", "position": [1.55, 0, 0.55], "rotationY": 3.0616, "faces": "stitch" },
+    { "id": "chair_finisher", "kind": "dining_chair", "position": [-3.48, 0, -1.05], "rotationY": -1.5708, "faces": "finisher" },
+    { "id": "waiting_bench", "kind": "museum_bench", "position": [3.15, 0, 1.48], "rotationY": 1.5708 },
+    { "id": "lamp_bench", "kind": "library_lamp", "position": [-1.85, 0.78, -3.1], "rotationY": 3.1416 },
+    { "id": "pend_stitch", "kind": "pendant_lamp", "position": [1.62, 2.52, -0.18], "rotationY": 0 },
+    { "id": "pend_counter", "kind": "pendant_lamp", "position": [0.15, 2.46, 2.22], "rotationY": 0 },
+    { "id": "jar_wax", "kind": "jam_jar", "position": [0.12, 0.78, -3.0], "rotationY": 0.4 },
+    { "id": "jar_polish", "kind": "jam_jar", "position": [0.3, 0.78, -3.16], "rotationY": -0.2 },
+    { "id": "jar_pegs", "kind": "jam_jar", "position": [-0.06, 0.78, -3.16], "rotationY": 0.8 },
+    { "id": "mug", "kind": "cup_mug", "position": [1.22, 0.76, -0.28], "rotationY": 0.5 },
+    { "id": "till", "kind": "cash_register", "position": [-0.72, 1.04, 2.16], "rotationY": 0 },
+    { "id": "plant", "kind": "flowerpot", "position": [-4.62, 0, 3.22], "rotationY": 0.6 }
+  ],
+  "shell": {
+    "floorColor": "#c4a06e",
+    "floorAlt": "#b08a56",
+    "wallColor": "#f3eadf",
+    "woodColor": "#6a4630",
+    "ceilingColor": "#f6f0e6",
+    "trimColor": "#4e3426",
+    "clearColor": "#e7dcc8",
+    "fogColor": "#e7dcc8",
+    "fogNear": 16,
+    "fogFar": 38
+  },
+  "camera": {
+    "fov": 40,
+    "position": [6.55, 2.72, 5.55],
+    "target": [-0.15, 1.05, -0.95]
+  },
+  "cameraPresets": {
+    "corner": { "position": [6.9, 2.65, 1.35], "target": [-0.85, 1.05, -1.45] },
+    "close": { "position": [2.42, 1.2, 0.28], "target": [1.58, 0.86, -0.08] }
+  },
+  "lights": {
+    "hemi": { "sky": 16775392, "ground": 9075272, "intensity": 0.72 },
+    "key": {
+      "color": 16774628,
+      "intensity": 1.02,
+      "position": [4.8, 7.6, 5.2],
+      "target": [-0.4, 0.6, -0.8],
+      "shadow": { "mapSize": 2048, "near": 0.5, "far": 28, "left": -8, "right": 8, "top": 8, "bottom": -8, "bias": -0.00022, "normalBias": 0.05 }
+    },
+    "window": { "color": 16775800, "intensity": 0.4, "position": [-3.2, 4.4, -6.2], "target": [-1.2, 1.2, -1.5] },
+    "fill": { "color": 14735320, "intensity": 0.24, "position": [-6.2, 3.6, 2.4], "target": [0, 1, 0] },
+    "points": [
+      { "color": 16768960, "intensity": 0.42, "distance": 3.2, "position": [-1.85, 1.32, -2.88] },
+      { "color": 16768960, "intensity": 0.36, "distance": 4.2, "position": [1.62, 2.2, -0.18] },
+      { "color": 16768960, "intensity": 0.34, "distance": 4.0, "position": [0.15, 2.15, 2.22] },
+      { "color": 16770240, "intensity": 0.22, "distance": 2.4, "position": [-4.05, 1.15, -1.05] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "passages": [
+      "Finisher chair to stitch horse stays wider than 0.9 m.",
+      "Stitch chair back to the counter's shop edge stays wider than 0.9 m.",
+      "Customer side of the counter keeps a 0.9 m standing apron.",
+      "Waiting bench does not meet the counter."
+    ],
+    "must_read": [
+      "Shoe lasts, a stitched welt, a wheel finisher, a repair bench, peg tools, ticket pigeonholes, and a handoff counter.",
+      "Work chairs face the bench, the stitch horse, and the finisher wheel.",
+      "The till faces the customer. The bench lamp shade faces the cobbler."
+    ]
+  }
+}
