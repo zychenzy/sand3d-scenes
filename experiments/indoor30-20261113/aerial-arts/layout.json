@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "title": "Span Room — aerial arts studio",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 18, "depth": 13.2, "height": 7.25 },
+    "notes": [
+      "Full-height aerial bay with a dead-hung steel grid. Silks and lyras hang on the beam crossings.",
+      "Each point has its own 34 cm crash mat. The ochre line, east bench, and west warmup sit outside those mats.",
+      "West bay is a lower soffit for storage and warmup. It is not a mirrored dance or yoga room."
+    ]
+  },
+  "shell": {
+    "clearColor": "#d5dde3",
+    "fogColor": "#d5dde3",
+    "fogNear": 22,
+    "fogFar": 56
+  },
+  "camera": {
+    "fov": 60,
+    "position": [0.2, 2.45, 11.35],
+    "target": [-0.2, 2.65, -2.35],
+    "maxDistance": 36
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 52,
+      "position": [5.15, 1.92, 4.85],
+      "target": [-1.4, 2.7, -2.45]
+    },
+    "close": {
+      "fov": 34,
+      "position": [-2.42, 1.95, -0.22],
+      "target": [-3.55, 3.55, -2.55]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ec", "ground": "#ead8c2", "intensity": 0.84 },
+    "key": {
+      "color": "#fff1e2",
+      "intensity": 1.18,
+      "position": [3.4, 14.6, 10.4],
+      "target": [-0.3, 1.5, -2.2],
+      "shadow": {
+        "mapSize": 4096,
+        "left": -12,
+        "right": 12,
+        "top": 12,
+        "bottom": -12,
+        "near": 2,
+        "far": 40,
+        "bias": -0.00018,
+        "normalBias": 0.06
+      }
+    },
+    "window": {
+      "color": "#d7e7f8",
+      "intensity": 0.46,
+      "position": [0.2, 8.2, -14],
+      "target": [0, 3.4, -1]
+    },
+    "fill": {
+      "color": "#f3e4d2",
+      "intensity": 0.26,
+      "position": [-7.5, 6.2, 5.5]
+    },
+    "points": [
+      { "color": "#ffd7a6", "intensity": 0.42, "distance": 6.5, "decay": 2, "position": [-7.15, 3.05, -2.4] },
+      { "color": "#ffd7a6", "intensity": 0.32, "distance": 5.5, "decay": 2, "position": [8.15, 3.15, 2.3] }
+    ]
+  },
+  "architecture": {
+    "wall": 0.16,
+    "outer": { "x0": -9, "x1": 9, "z0": -6.6, "z1": 6.6, "h": 7.25 },
+    "beamBottom": 6.52,
+    "beamDepth": 0.38,
+    "beamFlange": 0.16,
+    "beamWeb": 0.028,
+    "rigZ": -2.55,
+    "ewZ": [-5.15, -2.55, 0.4],
+    "nsX": [-5.36, -3.55, -0.55, 2.45, 5.45, 7.55],
+    "beamX0": -5.36,
+    "beamX1": 7.7,
+    "nsZ0": -6.36,
+    "mat": { "w": 2.1, "d": 2.7, "h": 0.34, "lift": 0.012 },
+    "soffit": { "x1": -5.5, "y": 3.36, "z0": -6.6, "z1": 3.15 },
+    "canopy": { "x0": 7.82, "y": 3.5, "z0": 0.15, "z1": 3.9 },
+    "lineZ": -0.78,
+    "posts": [
+      { "x": -5.36, "z": -5.15, "r": 0.07 },
+      { "x": -5.36, "z": 0.4, "r": 0.07 },
+      { "x": 7.55, "z": -5.15, "r": 0.07 },
+      { "x": 7.55, "z": 0.4, "r": 0.07 }
+    ],
+    "cubby": { "x0": -8.84, "x1": -8.16, "z0": -6.28, "z1": -4.46, "h": 1.92 },
+    "roller": { "x": -7.35, "z": -1.95, "hx": 0.46, "hz": 0.1 }
+  },
+  "stations": [
+    { "id": "silk-crimson", "kind": "silk", "x": -3.55, "z": -2.55, "color": "#a33b45", "deep": "#7c2a34", "phase": 0.35 },
+    { "id": "lyra-low", "kind": "lyra", "x": -0.55, "z": -2.55, "radius": 0.5, "bottom": 1.22, "tape": "#e4ddd0", "vStrap": false },
+    { "id": "silk-teal", "kind": "silk", "x": 2.45, "z": -2.55, "color": "#1f7c76", "deep": "#145650", "phase": 2.15 },
+    { "id": "lyra-high", "kind": "lyra", "x": 5.45, "z": -2.55, "radius": 0.5, "bottom": 1.78, "tape": "#e0b15a", "vStrap": true }
+  ],
+  "paths": [
+    { "id": "approach", "width": 0.9, "pts": [[0.1, 5.1], [0.1, -0.2]] },
+    { "id": "aisle-west", "width": 0.72, "pts": [[-2.05, -0.35], [-2.05, -4.35]] },
+    { "id": "aisle-mid", "width": 0.72, "pts": [[0.95, -0.35], [0.95, -4.35]] },
+    { "id": "aisle-east", "width": 0.72, "pts": [[3.95, -0.35], [3.95, -4.35]] },
+    { "id": "warmup", "width": 0.7, "pts": [[-5.95, 2.45], [-5.95, -3.35]] },
+    { "id": "back", "width": 0.9, "pts": [[-4.4, -5.05], [6.6, -5.05]] },
+    { "id": "wait", "width": 0.65, "pts": [[6.7, 2.4], [7.15, 1.15], [7.15, 0.55]] }
+  ],
+  "assets": {
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "hx": 0.2,
+      "hz": 0.74,
+      "floor": true
+    },
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.74,
+      "hx": 0.38,
+      "hz": 0.38,
+      "floor": true
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.86,
+      "hx": 0.18,
+      "hz": 0.24,
+      "floor": true
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.58,
+      "hx": 0.16,
+      "hz": 0.16,
+      "floor": false
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "hx": 0.2,
+      "hz": 0.2,
+      "floor": true
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26,
+      "hx": 0.06,
+      "hz": 0.06,
+      "on": "warmup_table"
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.08,
+      "hx": 0.05,
+      "hz": 0.05,
+      "on": "warmup_table"
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.92,
+      "hx": 0.16,
+      "hz": 0.42,
+      "floor": false
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4,
+      "hx": 0.14,
+      "hz": 0.14,
+      "on": "warmup_table"
+    }
+  },
+  "instances": [
+    { "id": "wait_bench", "kind": "museum_bench", "position": [7.95, 0, 0.62], "rotationY": 0 },
+    { "id": "warmup_table", "kind": "square_table", "position": [-7.35, 0, -5.4], "rotationY": 0 },
+    { "id": "warmup_chair", "kind": "dining_chair", "position": [-6.68, 0, -5.4], "rotationY": -1.5708 },
+    { "id": "desk_lamp", "kind": "library_lamp", "position": [-7.46, 0.74, -5.58], "rotationY": 3.1416 },
+    { "id": "thermos", "kind": "thermos", "position": [-7.16, 0.74, -5.24], "rotationY": 0.4 },
+    { "id": "mug", "kind": "cup_mug", "position": [-7.56, 0.74, -5.22], "rotationY": 0.2 },
+    { "id": "grip_shelf", "kind": "wall_shelf", "position": [-8.7, 1.38, -0.2], "rotationY": 1.5708 },
+    { "id": "pot_warm", "kind": "flowerpot", "position": [-8.32, 0, 2.15], "rotationY": 0.3 },
+    { "id": "pot_wait", "kind": "flowerpot", "position": [8.46, 0, 3.35], "rotationY": -0.2 },
+    { "id": "pendant_warm_a", "kind": "pendant_lamp", "position": [-7.25, 2.78, -3.15], "rotationY": 0 },
+    { "id": "pendant_warm_b", "kind": "pendant_lamp", "position": [-6.45, 2.78, 0.55], "rotationY": 0 },
+    { "id": "pendant_wait", "kind": "pendant_lamp", "position": [8.15, 2.92, 0.85], "rotationY": 0 }
+  ]
+}
