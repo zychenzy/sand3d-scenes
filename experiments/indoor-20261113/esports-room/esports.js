@@ -289,26 +289,33 @@ function makeShell(layout) {
   const pit = layout.build;
   const desk = pit.desk;
   const xs = pit.stations.map((st) => st.x);
-  const pitW = (Math.max(...xs) - Math.min(...xs)) + desk.w + 0.35;
+  const pitW = (Math.max(...xs) - Math.min(...xs)) + desk.w + 0.55;
   const pitX = (Math.max(...xs) + Math.min(...xs)) / 2;
-  addBox(g, pitW, 0.02, 2.15, toon(s.pitColor), pitX, 0.01, desk.z + 0.15);
+  const carpet = addBox(g, pitW + 1.15, 0.018, 3.45, toon(s.pitColor), pitX + 0.45, 0.012, -0.72);
+  carpet.userData.noShadow = true;
+  const bind = toon('#8d8478');
+  addBox(g, pitW + 1.23, 0.012, 0.04, bind, pitX + 0.45, 0.016, 0.98);
+  addBox(g, pitW + 1.23, 0.012, 0.04, bind, pitX + 0.45, 0.016, -2.42);
+
+  const lane = addBox(g, 7.4, 0.006, 1.7, toon('#b7ae9f'), -1.55, 0.005, 2.15);
+  lane.userData.noShadow = true;
 
   const coach = pit.coach;
-  addBox(g, 1.55, 0.018, 4.3, toon(s.runnerColor), coach.x, 0.012, 1.15);
+  const runner = addBox(g, 1.7, 0.016, 3.6, toon(s.runnerColor), coach.x, 0.014, 0.85);
+  runner.userData.noShadow = true;
 
-  const litCeil = toon('#f4efe6', { emissive: '#e7dfd2', emissiveIntensity: 0.72 });
-  const soffit = addBox(g, W * 0.78, 0.07, D * 0.42, litCeil, -0.55, H - 0.06, -1.85);
-  quiet(soffit);
-  const fasciaZ = addBox(g, W, 0.1, 0.1, wallMat, 0, H - 0.08, D / 2 - 0.08);
+  const litCeil = toon('#f7f2ea', { emissive: '#efe6d8', emissiveIntensity: 0.82 });
+  quiet(addBox(g, W, 0.05, D, litCeil, 0, H - 0.025, 0));
+  const fasciaZ = addBox(g, W, 0.08, 0.08, wallMat, 0, H - 0.08, D / 2 - 0.06);
   quiet(fasciaZ);
-  const fasciaX = addBox(g, 0.1, 0.1, D, wallMat, W / 2 - 0.08, H - 0.08, 0);
+  const fasciaX = addBox(g, 0.08, 0.08, D, wallMat, W / 2 - 0.06, H - 0.08, 0);
   quiet(fasciaX);
   const pier = addBox(g, 0.16, H, 0.16, wallMat, W / 2 - 0.28, H / 2, D / 2 - 0.28);
   pier.userData.noShadow = true;
 
-  const lampMat = toon('#fff6e8', { emissive: '#fff1d4', emissiveIntensity: 0.55 });
-  quiet(addBox(g, 1.8, 0.025, 0.14, lampMat, -1.2, H - 0.12, -1.55));
-  quiet(addBox(g, 1.1, 0.025, 0.12, lampMat, coach.x - 0.2, H - 0.12, -0.15));
+  const lampMat = toon('#fff6e8', { emissive: '#fff1d4', emissiveIntensity: 0.7 });
+  quiet(addBox(g, 2.4, 0.02, 0.1, lampMat, -1.1, H - 0.1, -1.7));
+  quiet(addBox(g, 1.35, 0.02, 0.08, lampMat, coach.x - 0.15, H - 0.1, -0.35));
   return g;
 }
 
@@ -317,32 +324,52 @@ function gamingChair(g, x, z, yaw, accent, headsetOn) {
   grp.position.set(x, 0, z);
   grp.rotation.y = yaw;
   grp.name = 'chair';
-  const shell = toon('#3a4148');
-  const seat = toon('#4e5862');
-  const lip = toon('#7b868f');
-  const stitch = toon(accent);
-  const metal = toon('#9aa1a8');
-  const caster = toon('#2c3136');
+  const shell = toon('#2e353d');
+  const cushion = toon('#5c6772');
+  const bolster = toon(accent);
+  const metal = toon('#c5ccd3');
+  const dark = toon('#23282e');
+  const caster = toon('#1c2126');
+  addCyl(grp, 0.042, 0.048, 0.03, metal, 0, 0.05, 0, 12);
   for (let i = 0; i < 5; i++) {
     const a = (i / 5) * Math.PI * 2;
-    const spoke = addBox(grp, 0.26, 0.022, 0.038, metal, Math.sin(a) * 0.13, 0.045, Math.cos(a) * 0.13);
+    const spoke = addBox(grp, 0.022, 0.012, 0.2, metal, Math.sin(a) * 0.1, 0.046, Math.cos(a) * 0.1);
     spoke.rotation.y = -a;
-    addCyl(grp, 0.032, 0.032, 0.028, caster, Math.sin(a) * 0.25, 0.02, Math.cos(a) * 0.25, 8);
+    addCyl(grp, 0.02, 0.02, 0.018, caster, Math.sin(a) * 0.22, 0.014, Math.cos(a) * 0.22, 8);
   }
-  addCyl(grp, 0.032, 0.04, 0.26, metal, 0, 0.19, 0, 10);
-  addBox(grp, 0.48, 0.07, 0.46, seat, 0, 0.46, 0.02);
-  addBox(grp, 0.42, 0.022, 0.05, lip, 0, 0.495, 0.23);
-  addBox(grp, 0.055, 0.09, 0.4, stitch, -0.22, 0.5, 0.02);
-  addBox(grp, 0.055, 0.09, 0.4, stitch, 0.22, 0.5, 0.02);
-  addBox(grp, 0.46, 0.58, 0.07, shell, 0, 0.86, -0.2);
-  addBox(grp, 0.07, 0.46, 0.075, stitch, -0.2, 0.84, -0.18);
-  addBox(grp, 0.07, 0.46, 0.075, stitch, 0.2, 0.84, -0.18);
-  addBox(grp, 0.26, 0.1, 0.08, shell, 0, 1.2, -0.18);
-  addBox(grp, 0.045, 0.2, 0.045, metal, -0.26, 0.58, 0.04);
-  addBox(grp, 0.045, 0.2, 0.045, metal, 0.26, 0.58, 0.04);
-  addBox(grp, 0.055, 0.022, 0.26, toon('#2e343a'), -0.26, 0.69, 0.08);
-  addBox(grp, 0.055, 0.022, 0.26, toon('#2e343a'), 0.26, 0.69, 0.08);
-  if (headsetOn) headset(grp, 0, 1.28, -0.16, 0.7);
+  addCyl(grp, 0.026, 0.032, 0.2, metal, 0, 0.17, 0, 12);
+  addCyl(grp, 0.046, 0.046, 0.018, metal, 0, 0.28, 0, 12);
+  addBox(grp, 0.22, 0.02, 0.16, dark, 0, 0.33, 0.02);
+
+  const seat = new THREE.Group();
+  seat.position.set(0, 0.36, 0.02);
+  seat.rotation.x = -0.05;
+  grp.add(seat);
+  addBox(seat, 0.36, 0.048, 0.34, cushion, 0, 0.045, 0);
+  const lip = addCyl(seat, 0.024, 0.024, 0.32, cushion, 0, 0.03, 0.15, 12);
+  lip.rotation.z = Math.PI / 2;
+  const leftBolster = addBox(seat, 0.045, 0.05, 0.28, bolster, -0.18, 0.07, -0.01);
+  leftBolster.rotation.z = 0.16;
+  const rightBolster = addBox(seat, 0.045, 0.05, 0.28, bolster, 0.18, 0.07, -0.01);
+  rightBolster.rotation.z = -0.16;
+
+  const back = new THREE.Group();
+  back.position.set(0, 0.44, -0.15);
+  back.rotation.x = -0.08;
+  grp.add(back);
+  addBox(back, 0.38, 0.58, 0.045, shell, 0, 0.3, 0);
+  addBox(back, 0.3, 0.46, 0.028, cushion, 0, 0.28, 0.03);
+  addBox(back, 0.04, 0.44, 0.04, bolster, -0.18, 0.28, 0.02);
+  addBox(back, 0.04, 0.44, 0.04, bolster, 0.18, 0.28, 0.02);
+  const lumbar = addCyl(back, 0.035, 0.035, 0.24, bolster, 0, 0.16, 0.05, 12);
+  lumbar.rotation.z = Math.PI / 2;
+  addBox(back, 0.2, 0.075, 0.05, cushion, 0, 0.62, 0.02);
+
+  for (const sx of [-1, 1]) {
+    addBox(grp, 0.016, 0.12, 0.016, metal, sx * 0.22, 0.48, 0.02);
+    addBox(grp, 0.042, 0.016, 0.15, dark, sx * 0.22, 0.55, 0.04);
+  }
+  if (headsetOn) headset(grp, 0, 1.16, -0.2, 0.4);
   g.add(grp);
 }
 
@@ -352,13 +379,19 @@ function headset(parent, x, y, z, yaw) {
   h.rotation.y = yaw;
   const band = toon('#2c333a');
   const cup = toon('#2f6a62');
-  addBox(h, 0.15, 0.012, 0.016, band, 0, 0.09, 0);
-  addBox(h, 0.014, 0.07, 0.016, band, -0.07, 0.055, 0);
-  addBox(h, 0.014, 0.07, 0.016, band, 0.07, 0.055, 0);
-  const left = addCyl(h, 0.04, 0.04, 0.026, cup, -0.082, 0.02, 0, 10);
-  left.rotation.z = Math.PI / 2;
-  const right = addCyl(h, 0.04, 0.04, 0.026, cup, 0.082, 0.02, 0, 10);
-  right.rotation.z = Math.PI / 2;
+  const pad = toon('#1c2228');
+  for (let i = -2; i <= 2; i++) {
+    const a = i * 0.38;
+    const seg = addBox(h, 0.042, 0.01, 0.012, band, Math.sin(a) * 0.068, 0.055 + Math.cos(a) * 0.028, 0);
+    seg.rotation.z = -a;
+  }
+  for (const sx of [-1, 1]) {
+    addBox(h, 0.01, 0.042, 0.01, band, sx * 0.072, 0.032, 0);
+    const ear = addCyl(h, 0.03, 0.034, 0.018, cup, sx * 0.08, 0.016, 0, 12);
+    ear.rotation.z = Math.PI / 2;
+    const cushion = addCyl(h, 0.024, 0.024, 0.008, pad, sx * 0.092, 0.016, 0, 10);
+    cushion.rotation.z = Math.PI / 2;
+  }
   parent.add(h);
 }
 
@@ -368,73 +401,141 @@ function headsetStand(parent, x, y, z) {
   headset(parent, x, y + 0.16, z, 0.4);
 }
 
+const KEY_GEO = new THREE.BoxGeometry(0.016, 0.006, 0.012);
+
+function keycap(parent, mat, x, y, z) {
+  const m = new THREE.Mesh(KEY_GEO, mat);
+  m.position.set(x, y, z);
+  m.castShadow = false;
+  m.receiveShadow = true;
+  m.userData.noShadow = true;
+  parent.add(m);
+}
+
 function keyboardMouse(parent, x, z, y) {
-  addBox(parent, 0.36, 0.008, 0.22, toon('#2a3038'), x + 0.16, y + 0.004, z + 0.02);
-  addBox(parent, 0.42, 0.018, 0.14, toon('#3a4148'), x - 0.02, y + 0.012, z);
-  for (let i = 0; i < 8; i++) {
-    addBox(parent, 0.035, 0.008, 0.1, toon(i % 3 === 0 ? '#4e5862' : '#2e343a'), x - 0.16 + i * 0.042, y + 0.024, z, );
+  const deck = toon('#2c3238');
+  const cap = toon('#e4e8ec');
+  const alt = toon('#b7c0c8');
+  const space = toon('#f2f4f6');
+  addBox(parent, 0.46, 0.005, 0.26, toon('#3a4148'), x + 0.02, y + 0.003, z);
+  addBox(parent, 0.32, 0.01, 0.132, deck, x - 0.03, y + 0.008, z - 0.01);
+  addBox(parent, 0.3, 0.007, 0.028, toon('#6a5344'), x - 0.03, y + 0.01, z + 0.078);
+  const rows = [
+    { dz: -0.048, n: 14, stagger: 0 },
+    { dz: -0.028, n: 13, stagger: 0.008 },
+    { dz: -0.008, n: 12, stagger: 0.016 },
+    { dz: 0.012, n: 11, stagger: 0.024 },
+  ];
+  const pitch = 0.02;
+  for (const row of rows) {
+    const span = (row.n - 1) * pitch;
+    for (let i = 0; i < row.n; i++) {
+      keycap(parent, i === 0 || i === row.n - 1 ? alt : cap, x - 0.03 - span / 2 + i * pitch + row.stagger, y + 0.016, z + row.dz);
+    }
   }
-  addBox(parent, 0.055, 0.02, 0.09, toon('#d7d2c8'), x + 0.22, y + 0.016, z + 0.01);
+  keycap(parent, alt, x - 0.15, y + 0.016, z + 0.034);
+  const bar = addBox(parent, 0.088, 0.006, 0.012, space, x - 0.03, y + 0.016, z + 0.034);
+  bar.castShadow = false;
+  bar.userData.noShadow = true;
+  keycap(parent, alt, x + 0.08, y + 0.016, z + 0.034);
+
+  addBox(parent, 0.1, 0.004, 0.12, toon('#2a3036'), x + 0.22, y + 0.004, z + 0.005);
+  const mouse = new THREE.Mesh(new THREE.SphereGeometry(0.02, 12, 8), toon('#eeeae2'));
+  mouse.scale.set(0.8, 0.5, 1.2);
+  mouse.position.set(x + 0.22, y + 0.014, z + 0.004);
+  mouse.castShadow = true;
+  mouse.receiveShadow = true;
+  parent.add(mouse);
+  addBox(parent, 0.005, 0.004, 0.07, toon('#23282e'), x + 0.15, y + 0.008, z - 0.045);
 }
 
 function tower(parent, x, z, accent) {
-  addBox(parent, 0.2, 0.44, 0.42, toon('#343b44'), x, 0.22, z);
-  addBox(parent, 0.012, 0.32, 0.28, toon('#4a5562'), x + 0.1, 0.24, z + 0.02);
-  const led = addBox(parent, 0.012, 0.012, 0.04, toon(accent, { emissive: accent, emissiveIntensity: 0.8 }), x + 0.108, 0.36, z + 0.12);
+  const body = toon('#2c333b');
+  const front = toon('#46505c');
+  addBox(parent, 0.18, 0.018, 0.05, toon('#1c2126'), x, 0.016, z - 0.12);
+  addBox(parent, 0.18, 0.018, 0.05, toon('#1c2126'), x, 0.016, z + 0.12);
+  addBox(parent, 0.17, 0.38, 0.36, body, x, 0.23, z);
+  addBox(parent, 0.012, 0.32, 0.28, front, x + 0.086, 0.24, z + 0.01);
+  for (let i = 0; i < 6; i++) {
+    const slot = addBox(parent, 0.014, 0.006, 0.2, toon('#1a1f24'), x + 0.094, 0.14 + i * 0.04, z + 0.01);
+    slot.castShadow = false;
+  }
+  addBox(parent, 0.006, 0.3, 0.012, toon('#8d96a0'), x + 0.088, 0.24, z + 0.15);
+  const led = addBox(parent, 0.01, 0.01, 0.01, toon(accent, { emissive: accent, emissiveIntensity: 0.7 }), x + 0.092, 0.36, z + 0.12);
   quiet(led);
-  addCyl(parent, 0.012, 0.012, 0.42, toon('#23282e'), x + 0.02, 0.42, z - 0.12, 6);
+  addCyl(parent, 0.008, 0.008, 0.01, toon('#d7dbe0'), x + 0.04, 0.425, z + 0.1, 8);
+}
+
+function deskFrame(g, x, z, w, d, topY) {
+  const metal = toon('#3a424a');
+  const foot = toon('#2a3036');
+  for (const sx of [-1, 1]) {
+    const lx = x + sx * (w / 2 - 0.1);
+    addBox(g, 0.05, 0.02, d - 0.06, foot, lx, 0.016, z);
+    addBox(g, 0.035, topY - 0.08, 0.035, metal, lx, (topY - 0.06) / 2, z - d / 2 + 0.1);
+    addBox(g, 0.035, 0.025, d - 0.14, metal, lx, topY - 0.045, z + 0.02);
+  }
+  addBox(g, w - 0.28, 0.025, 0.025, metal, x, 0.14, z - d / 2 + 0.1);
+  const tray = toon('#c5ccd2');
+  const tz = z - d / 2 + 0.2;
+  addBox(g, w * 0.62, 0.01, 0.14, tray, x, 0.5, tz);
+  addBox(g, w * 0.62, 0.035, 0.01, tray, x, 0.52, tz - 0.065);
+  addBox(g, w * 0.62, 0.035, 0.01, tray, x, 0.52, tz + 0.065);
 }
 
 function station(g, st, desk) {
   const { x } = st;
   const z = desk.z;
-  const top = toon('#c8b69a');
-  const leg = toon('#2c3238');
-  const edge = toon(st.accent);
-  addBox(g, desk.w, 0.045, desk.d, top, x, 0.728, z);
-  addBox(g, desk.w - 0.04, 0.012, 0.012, edge, x, 0.702, z + desk.d / 2);
+  const topY = 0.75;
+  addBox(g, desk.w, 0.026, desk.d, toon('#d2c0a4'), x, topY - 0.013, z);
+  addBox(g, desk.w, 0.012, 0.018, toon('#4a4038'), x, topY - 0.03, z + desk.d / 2 - 0.008);
+  addBox(g, desk.w - 0.08, 0.008, 0.01, toon(st.accent), x, topY - 0.038, z + desk.d / 2 - 0.006);
   const plate = addPlane(
     g, 0.22, 0.04,
     toon('#2a3036', { map: roleTex(st.role, st.accent), emissive: st.accent, emissiveIntensity: 0.12 }),
-    x, 0.69, z + desk.d / 2 + 0.004,
+    x, 0.66, z + desk.d / 2 + 0.004,
   );
   quiet(plate);
-  const ix = desk.w / 2 - 0.08;
-  const iz = desk.d / 2 - 0.08;
-  for (const sx of [-1, 1]) {
-    for (const sz of [-1, 1]) addBox(g, 0.05, 0.7, 0.05, leg, x + sx * ix, 0.35, z + sz * iz);
-  }
-  addBox(g, desk.w * 0.72, 0.035, 0.14, toon('#b7bdc4'), x, 0.58, z - desk.d / 2 + 0.16);
-  addBox(g, 0.03, 0.5, 0.03, toon('#23282e'), x + 0.08, 0.32, z - 0.28);
-  keyboardMouse(g, x, z + 0.16, 0.75);
-  if (st.headset === 'stand') headsetStand(g, x - 0.48, 0.75, z + 0.08);
-  if (st.headset === 'desk') headset(g, x - 0.42, 0.8, z + 0.05, 1.2);
-  tower(g, x + 0.42, z - 0.06, st.accent);
-  const spineX = x + desk.w / 2 + 0.04;
-  const channel = toon('#aeb6bd');
-  addBox(g, 0.04, 0.56, 0.045, channel, spineX, 0.3, z + 0.02);
-  addBox(g, 0.012, 0.52, 0.016, toon('#2a3036'), spineX, 0.3, z + 0.02);
-  addBox(g, 0.04, 0.03, 0.34, channel, spineX, 0.045, z - 0.16);
+  deskFrame(g, x, z, desk.w, desk.d, topY);
+  const grommet = addCyl(g, 0.028, 0.028, 0.008, toon('#2a3036'), x + 0.28, topY + 0.002, z - 0.22, 12);
+  grommet.castShadow = false;
+  keyboardMouse(g, x - 0.02, z + 0.16, topY);
+  if (st.headset === 'stand') headsetStand(g, x - 0.5, topY, z - 0.16);
+  if (st.headset === 'desk') headset(g, x - 0.46, topY + 0.04, z + 0.02, 1.1);
+  tower(g, x + 0.46, z - 0.02, st.accent);
+  const drop = addCyl(g, 0.006, 0.006, 0.48, toon('#23282e'), x + 0.36, 0.28, z - 0.22, 6);
+  drop.castShadow = false;
+  addBox(g, 0.012, 0.012, 0.18, toon('#23282e'), x + 0.36, 0.045, z - 0.36);
+  const spineX = x + desk.w / 2 + 0.03;
+  const channel = toon('#b7c0c6');
+  addBox(g, 0.028, 0.5, 0.032, channel, spineX, 0.28, z - 0.04);
+  addBox(g, 0.01, 0.46, 0.012, toon('#2a3036'), spineX, 0.28, z - 0.02);
+  addBox(g, 0.028, 0.02, 0.28, channel, spineX, 0.04, z - 0.2);
   if (st.id === 'adc') {
-    addBox(g, 0.2, 0.012, 0.26, toon('#f4efe6'), x - 0.28, 0.756, z - 0.12);
-    addBox(g, 0.18, 0.008, 0.22, toon('#e7d3a8'), x - 0.28, 0.766, z - 0.1);
+    addBox(g, 0.16, 0.008, 0.2, toon('#f4efe6'), x - 0.36, 0.755, z - 0.14);
+    addBox(g, 0.14, 0.004, 0.16, toon('#e7d3a8'), x - 0.36, 0.761, z - 0.12);
+  }
+  if (st.mug) {
+    const mx = st.id === 'top' ? 0.48 : st.id === 'mid' ? 0.48 : 0.48;
+    addCyl(g, 0.045, 0.045, 0.006, toon('#6a5344'), x + mx, topY + 0.004, z - 0.22, 12);
   }
   gamingChair(g, x, st.chairZ + (st.chairPull || 0), st.chairYaw, st.accent, st.headset === 'headrest');
 }
 
 function coachDesk(g, coach) {
   const { x, deskZ, w, d } = coach;
-  addBox(g, w, 0.045, d, toon('#c8b69a'), x, 0.728, deskZ);
-  addBox(g, w - 0.06, 0.012, 0.012, toon('#3f6f68'), x, 0.702, deskZ + d / 2);
-  const ix = w / 2 - 0.08;
-  const iz = d / 2 - 0.08;
-  for (const sx of [-1, 1]) {
-    for (const sz of [-1, 1]) addBox(g, 0.05, 0.7, 0.05, toon('#2c3238'), x + sx * ix, 0.35, deskZ + sz * iz);
-  }
-  addBox(g, w * 0.7, 0.035, 0.14, toon('#b7bdc4'), x, 0.58, deskZ - d / 2 + 0.16);
-  addBox(g, 0.28, 0.015, 0.36, toon('#f4efe6'), x - 0.28, 0.756, deskZ + 0.08);
-  for (let i = 0; i < 4; i++) addBox(g, 0.2, 0.004, 0.008, toon('#8a4e5a'), x - 0.28, 0.768, deskZ - 0.02 + i * 0.05);
-  headsetStand(g, x + 0.48, 0.75, deskZ + 0.05);
+  const topY = 0.75;
+  addBox(g, w, 0.026, d, toon('#d2c0a4'), x, topY - 0.013, deskZ);
+  addBox(g, w, 0.012, 0.016, toon('#4a4038'), x, topY - 0.03, deskZ + d / 2 - 0.008);
+  addBox(g, w - 0.1, 0.008, 0.01, toon('#3f6f68'), x, topY - 0.038, deskZ + d / 2 - 0.006);
+  deskFrame(g, x, deskZ, w, d, topY);
+  keyboardMouse(g, x + 0.06, deskZ + 0.12, topY);
+  addBox(g, 0.26, 0.008, 0.32, toon('#f4efe6'), x - 0.32, topY + 0.004, deskZ + 0.06);
+  for (let i = 0; i < 4; i++) addBox(g, 0.18, 0.003, 0.006, toon('#8a4e5a'), x - 0.32, topY + 0.01, deskZ - 0.02 + i * 0.045);
+  headsetStand(g, x + 0.5, topY, deskZ - 0.12);
+  tower(g, x + 0.48, deskZ - 0.08, '#3f6f68');
+  const drop = addCyl(g, 0.006, 0.006, 0.48, toon('#23282e'), x + 0.38, 0.28, deskZ - 0.28, 6);
+  drop.castShadow = false;
   gamingChair(g, x, coach.chairZ, coach.yaw, '#3f6f68', false);
 }
 
@@ -442,56 +543,58 @@ function bench(g, spec) {
   const { x, z, w, d } = spec;
   const grp = new THREE.Group();
   grp.position.set(x, 0, z);
-  addBox(grp, w, 0.08, d, toon('#4e5862'), 0, 0.46, 0);
-  addBox(grp, w - 0.1, 0.025, 0.045, toon('#7b868f'), 0, 0.5, -d / 2 + 0.04);
-  addBox(grp, w, 0.28, 0.07, toon('#3a4148'), 0, 0.64, d / 2 - 0.04);
-  addBox(grp, w * 0.7, 0.04, 0.03, toon('#3f6f68'), 0, 0.7, d / 2 - 0.02);
+  const pad = toon('#4a5560');
+  const metal = toon('#8d96a0');
+  addBox(grp, w, 0.045, d * 0.86, pad, 0, 0.44, -0.01);
+  const front = addCyl(grp, 0.02, 0.02, w * 0.92, pad, 0, 0.43, d * 0.32, 10);
+  front.rotation.z = Math.PI / 2;
+  addBox(grp, w * 0.92, 0.22, 0.035, toon('#3a424a'), 0, 0.58, -d / 2 + 0.04);
+  addBox(grp, w * 0.55, 0.012, 0.012, toon('#3f6f68'), 0, 0.66, -d / 2 + 0.055);
   for (const sx of [-1, 1]) {
-    for (const sz of [-1, 1]) {
-      addBox(grp, 0.05, 0.42, 0.05, toon('#6a5344'), sx * (w / 2 - 0.08), 0.21, sz * (d / 2 - 0.06));
-    }
+    const leg = addBox(grp, 0.025, 0.4, 0.025, metal, sx * (w / 2 - 0.08), 0.2, 0);
+    leg.rotation.x = 0;
+    addBox(grp, 0.03, 0.02, d * 0.7, metal, sx * (w / 2 - 0.08), 0.016, 0);
   }
   g.add(grp);
 }
 
 function credenza(g, spec) {
   const { x, z, w, d, h } = spec;
-  addBox(g, w, h, d, toon('#4a4038'), x, h / 2, z);
-  addBox(g, w + 0.02, 0.03, d + 0.02, toon('#c8b69a'), x, h - 0.01, z);
-  addBox(g, 0.012, h * 0.55, d * 0.7, toon('#2e343a'), x + w / 2 + 0.001, h * 0.42, z);
+  addBox(g, w, h * 0.42, d, toon('#4a4038'), x, h * 0.21, z);
+  addBox(g, w, h * 0.42, d, toon('#3c342e'), x, h * 0.68, z);
+  addBox(g, w + 0.02, 0.028, d + 0.02, toon('#d2c0a4'), x, h - 0.01, z);
+  addBox(g, w * 0.7, 0.008, 0.012, toon('#c5ccd2'), x, h * 0.32, z + d / 2 + 0.002);
+  addBox(g, w * 0.7, 0.008, 0.012, toon('#c5ccd2'), x, h * 0.62, z + d / 2 + 0.002);
 }
 
 function acoustic(g, layout) {
   const { depth: D, width: W, height: H } = layout.meta.room;
   const z = -D / 2 + 0.1;
-  const panels = [
-    [-5.55, 1.85, 0.7, 0.9, '#3f6f68'],
-    [-5.7, 1.05, 0.42, 0.48, '#5c6168'],
-    [-4.85, 1.15, 0.55, 0.7, '#a6846a'],
-    [-4.15, 1.9, 0.48, 0.62, '#d4c8b4'],
-    [-4.55, 2.45, 0.9, 0.32, '#3f6f68'],
-    [1.85, 2.35, 0.7, 0.42, '#a6846a'],
-    [2.55, 1.7, 0.48, 0.7, '#5c6168'],
-    [4.55, 2.15, 0.8, 0.7, '#3f6f68'],
-    [5.45, 1.35, 0.55, 0.55, '#d4c8b4'],
-    [4.9, 1.15, 0.4, 0.4, '#a6846a'],
+  const felt = [
+    [-5.15, 1.72, 0.78, 1.35, '#3f6f68'],
+    [-4.15, 1.72, 0.78, 1.35, '#5c6168'],
+    [-3.2, 2.15, 0.62, 0.55, '#cbbfae'],
+    [1.95, 1.85, 0.7, 1.15, '#5c6168'],
+    [4.85, 1.85, 0.85, 1.2, '#3f6f68'],
   ];
-  for (const [x, y, w, h, color] of panels) {
-    const panel = addBox(g, w, h, 0.06, toon(color), x, y, z + 0.03);
+  for (const [x, y, w, h, color] of felt) {
+    const panel = addBox(g, w, h, 0.055, toon(color), x, y, z + 0.03);
     panel.userData.noShadow = true;
+    const frame = addBox(g, w + 0.02, 0.015, 0.02, toon('#4a4038'), x, y - h / 2 - 0.02, z + 0.04);
+    frame.userData.noShadow = true;
   }
-  slats(g, 1.55, 1.55, z + 0.02, 1.15, 1.45, 0);
+  slats(g, -5.85, 1.7, z + 0.02, 0.7, 1.45, 0);
+  slats(g, 2.85, 1.7, z + 0.02, 0.85, 1.4, 0);
   const xw = -W / 2 + 0.1;
-  const trap = addBox(g, 0.1, 1.7, 0.55, toon('#3f6f68'), -W / 2 + 0.18, 1.7, -D / 2 + 0.5);
+  const trap = addBox(g, 0.12, 1.85, 0.42, toon('#3f6f68'), -W / 2 + 0.16, 1.55, -D / 2 + 0.42);
   trap.userData.noShadow = true;
-  const sideA = addBox(g, 0.07, 1.15, 0.42, toon('#5c6168'), xw + 0.02, 2.15, -1.6);
-  sideA.userData.noShadow = true;
-  const sideB = addBox(g, 0.06, 0.7, 0.5, toon('#a6846a'), xw + 0.02, 1.7, 2.55);
-  sideB.userData.noShadow = true;
-  slats(g, xw + 0.02, 1.85, -3.15, 1.05, 1.35, Math.PI / 2);
-  const cloudMat = toon('#ddd4c6');
-  quiet(addBox(g, 2.4, 0.04, 0.9, cloudMat, -2.4, H - 0.28, -1.7));
-  quiet(addBox(g, 1.8, 0.04, 0.7, cloudMat, 0.6, H - 0.34, -1.35));
+  const side = addBox(g, 0.055, 1.2, 0.7, toon('#5c6168'), xw + 0.02, 1.9, -1.55);
+  side.userData.noShadow = true;
+  slats(g, xw + 0.02, 1.75, -3.2, 0.9, 1.25, Math.PI / 2);
+  const baffle = toon('#c9beae');
+  for (const [bx, bz] of [[-3.3, -1.85], [-1.2, -1.55], [1.15, -1.85]]) {
+    quiet(addBox(g, 1.35, 0.08, 0.42, baffle, bx, H - 0.42, bz));
+  }
 }
 
 function slats(parent, x, y, z, w, h, yaw) {
@@ -510,16 +613,19 @@ function slats(parent, x, y, z, w, h, yaw) {
 
 function raceway(g, layout) {
   const xs = layout.build.stations.map((st) => st.x);
-  const x0 = Math.min(...xs) - 0.2;
-  const x1 = Math.max(...xs) + 0.2;
-  const z = -2.48;
-  addBox(g, x1 - x0, 0.045, 0.09, toon('#d5d0c6'), (x0 + x1) / 2, 0.03, z);
-  for (const x of xs) {
-    addBox(g, 0.028, 0.52, 0.028, toon('#2a3036'), x + 0.08, 0.3, -2.28);
-  }
-  addBox(g, 0.06, 0.55, 0.16, toon('#3c4650'), -6.42, 0.4, z);
+  const x0 = Math.min(...xs) - 0.35;
+  const x1 = layout.build.coach.x + 0.55;
+  const z = -2.55;
+  const trunk = toon('#d9d4ca');
+  addBox(g, x1 - x0, 0.035, 0.07, trunk, (x0 + x1) / 2, 0.028, z);
+  addBox(g, x1 - x0, 0.008, 0.012, toon('#8d96a0'), (x0 + x1) / 2, 0.046, z + 0.02);
+  addBox(g, 0.08, 0.5, 0.14, toon('#3c4650'), -6.42, 0.36, z);
   for (let i = 0; i < 4; i++) {
-    addBox(g, 0.012, 0.04, 0.04, toon(i === 1 ? '#3f6f68' : '#1c2228'), -6.38, 0.28 + i * 0.08, z);
+    addBox(g, 0.01, 0.028, 0.03, toon(i === 1 ? '#3f6f68' : '#1c2228'), -6.375, 0.24 + i * 0.07, z + 0.02);
+  }
+  addBox(g, 0.28, 0.04, 0.06, toon('#2a3036'), -5.55, 0.05, z);
+  for (let i = 0; i < 4; i++) {
+    addBox(g, 0.03, 0.012, 0.012, toon('#1c2228'), -5.66 + i * 0.06, 0.07, z + 0.02);
   }
 }
 

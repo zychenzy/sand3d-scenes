@@ -3,8 +3,8 @@
 Closed in this scene because the catalog has no equivalent:
 
 - Esports desks, cable tray, floor raceway, and the spines in the desk gaps.
-- High-back chairs. Local +Z is the seat front (lip and bolsters). `rotationY` near π faces the monitor. One chair is pulled out, one is yawed, one wears the headset.
-- Keyboards, mice, headset stands, towers, and the coach's note card.
+- Bucket chairs: gas lift, five-star base, waterfall seat, side bolsters, a single tall back with a headrest cap. Local +Z is the seat front. `rotationY` near π faces the monitor. Dining and theatre chairs in the kit are the wrong type, and the layout test rejects the dining chair.
+- Keyboards are four staggered rows of small caps plus a short spacebar, on a desk mat with a mouse. Towers are mid-cases with a vented front, feet, and a drop cable into the tray.
 - Replay wall and the draft board. Large flat shapes so the four-stop toon gradient does not wipe the UI.
 - Acoustic panels, corner trap, wood-slat diffusers, ceiling clouds.
 - Analyst bench. Seat lip faces −Z, toward the replay.
@@ -21,5 +21,5 @@ Known limits:
 - The pendant's stem is the asset's own. It does not grow a new cord.
 - Cable "management" is a channel and a spine, not a braided loom.
 - Screens do not animate. There is no bloom pass.
-- The default camera shows the pit and the replay. The coach desk, chair front, and round-tape monitor are the corner shot. Only the coach desk's edge enters the wide frame.
-- Chair and desk geometry is blocky on purpose under hard toon. It is not a soft-shaded product render.
+- The default frame keeps all five stations and the replay readable. The coach enters as the near desk corner and the round notes. The full coach chair, keyboard, and round-tape monitor are the corner shot.
+- Hard toon still facets the chair and the monitor arm. The arm is the curved-monitor GLB, not a generated stand. The chair is one shell now, not a stack of loose boards, and it is still not a soft product render.

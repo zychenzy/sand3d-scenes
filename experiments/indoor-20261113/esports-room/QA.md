@@ -27,19 +27,19 @@ node experiments/indoor-20261113/esports-room/tools/shoot.mjs
 
 | shot | bytes | mode | console errors | failed requests |
 | --- | ---: | --- | ---: | ---: |
-| `shots/toon_default.png` | 149892 | TOON | 0 | 0 |
-| `shots/toon_corner.png` | 153547 | TOON | 0 | 0 |
-| `shots/toon_close.png` | 129960 | TOON | 0 | 0 |
-| `shots/unlit_default.png` | 76246 | UNLIT | 0 | 0 |
+| `shots/toon_default.png` | 187169 | TOON | 0 | 0 |
+| `shots/toon_corner.png` | 218406 | TOON | 0 | 0 |
+| `shots/toon_close.png` | 173005 | TOON | 0 | 0 |
+| `shots/unlit_default.png` | 97484 | UNLIT | 0 | 0 |
 
 Favicon 404s are ignored. Scene status reached `ready`. GLB loads reported none in `window.__failed`.
 
 What the frames show:
 
-- Default: five stations on the pit mat, chair backs toward the camera and screens toward the replay wall, draft board on the right, raceway spines in the gaps, nook and bench on the left. Ceiling is lit plaster, not a black lid.
-- Corner: coach desk with the round-tape monitor, note card, and the chair's teal front bolster in the foreground. The player row continues behind it.
-- Close: MID screen reads "MID / SCRIM · LIVE". The red-bolster chair front, arm, keyboard, and mug sit on the sitter side of that screen.
-- Unlit: same default camera, flat basic materials, replay and station screens still drawn from their maps.
+- Default: five high-back chairs face the monitors, replay reads NORTH PIT / 14:22, draft board is on the right, felt panels and wood slats flank the wall, and the coach desk corner with the round notes sits in the near right. The floor in front of the row is the dark pit carpet.
+- Corner: coach monitor reads COACH · ROUND TAPE. Keyboard rows, mouse, headset stand, and the chair's teal front bolster are on the sitter side. The player row is behind.
+- Close: MID reads SCRIM · LIVE. The red bolster, bucket seat, and armrest face that screen. The keyboard is staggered key rows, not a handful of blocks. The tower front is vented.
+- Unlit: same default camera, flat basic materials, no toon steps. Replay and station screens still draw from their maps.
 
 ## Not claimed
 
