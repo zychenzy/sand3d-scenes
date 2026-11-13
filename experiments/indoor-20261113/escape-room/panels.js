@@ -125,6 +125,48 @@ export function tideChart(digits) {
   });
 }
 
+export function chalkSlate(digits) {
+  return canvas(1280, 860, (ctx, w, h) => {
+    ctx.fillStyle = '#1c3330';
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#24403c';
+    for (let i = 0; i < 18; i++) {
+      ctx.globalAlpha = 0.35;
+      ctx.fillRect((i * 97) % w, 40 + (i * 53) % (h - 80), 46, 3);
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#f4efe4';
+    font(ctx, 68, 700, SERIF);
+    ctx.textAlign = 'left';
+    ctx.fillText("Keeper's copy", 64, 100);
+    font(ctx, 30, 500, SANS);
+    ctx.fillStyle = '#d5dece';
+    ctx.fillText('Copied off the chart. Do not invent a fourth mark.', 64, 158);
+
+    ROWS.forEach((row, i) => {
+      const y = 300 + i * 175;
+      ctx.strokeStyle = '#c9d2c4';
+      ctx.globalAlpha = 0.35;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(64, y + 48);
+      ctx.lineTo(w - 64, y + 48);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = row.color;
+      ctx.fillRect(64, y - 28, 22, 64);
+      ctx.fillStyle = '#f7f3ea';
+      font(ctx, 52, 650, SANS);
+      ctx.textAlign = 'left';
+      ctx.fillText(row.name, 112, y);
+      ctx.textAlign = 'right';
+      font(ctx, 100, 700, SERIF);
+      ctx.fillStyle = row.color;
+      ctx.fillText(String(digits[row.key]), w - 72, y + 8);
+    });
+  });
+}
+
 export function keeperSlate(digits) {
   return canvas(1280, 860, (ctx, w, h) => {
     ctx.fillStyle = '#f3ecdc';

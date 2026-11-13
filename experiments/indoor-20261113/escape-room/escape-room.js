@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { boot, toon, addBox, addCyl } from './scene_lib.js';
 import {
-  tideChart, keeperSlate, deskLog, jarTag, dialFace, seaView, floorRose, mapSheet, tideStaff,
+  tideChart, chalkSlate, deskLog, jarTag, dialFace, seaView, floorRose, mapSheet, tideStaff,
 } from './panels.js';
 
 const ORDER = ['anchor', 'gull', 'lantern'];
@@ -95,19 +95,19 @@ function foliage(parent, x, z, y0) {
 }
 
 function deck(g, W, D) {
-  const tones = ['#c9a67c', '#b48960', '#8f6848', '#6d4c34'].map((c) => toon(c));
-  const plankW = 0.125;
-  const lengths = [1.45, 1.9, 2.2, 1.65];
+  const tones = ['#c6a57e', '#bf9d78', '#c9a984', '#b99674'].map((c) => toon(c));
+  const plankW = 0.18;
+  const lengths = [1.7, 2.15, 2.45, 1.9];
   let row = 0;
-  for (let z = -D / 2 + 0.2; z < D / 2 - 0.16; z += plankW) {
-    let x = -W / 2 + 0.18 + (row % 3) * 0.55;
+  for (let z = -D / 2 + 0.22; z < D / 2 - 0.18; z += plankW) {
+    let x = -W / 2 + 0.2 + (row % 3) * 0.48;
     let i = 0;
     while (x < W / 2 - 0.18) {
       const len = lengths[(row + i) % lengths.length];
       const x1 = Math.min(x + len, W / 2 - 0.16);
       const w = x1 - x;
-      if (w > 0.22) {
-        addBox(g, w - 0.014, 0.018, plankW - 0.014, tones[(row + i * 2) % tones.length], (x + x1) / 2, 0.009, z, { shadow: 'receive' });
+      if (w > 0.28) {
+        addBox(g, w - 0.006, 0.016, plankW - 0.006, tones[(row + i) % tones.length], (x + x1) / 2, 0.008, z, { shadow: 'receive' });
       }
       x = x1;
       i += 1;
@@ -140,10 +140,11 @@ function makeShell(layout) {
 
   addBox(g, W, 0.08, D, toon('#3a261c'), 0, -0.04, 0, { shadow: 'receive' });
   deck(g, W, D);
-  addBox(g, W - 0.08, 0.028, 0.09, deep, 0, 0.018, -D / 2 + 0.07, { shadow: 'none' });
-  addBox(g, W - 0.08, 0.028, 0.09, deep, 0, 0.018, D / 2 - 0.07, { shadow: 'none' });
-  addBox(g, 0.09, 0.028, D - 0.1, deep, -W / 2 + 0.07, 0.018, 0, { shadow: 'none' });
-  addBox(g, 0.09, 0.028, D - 0.1, deep, W / 2 - 0.07, 0.018, 0, { shadow: 'none' });
+  const border = wood('#9a7858');
+  addBox(g, W - 0.08, 0.02, 0.08, border, 0, 0.014, -D / 2 + 0.07, { shadow: 'none' });
+  addBox(g, W - 0.08, 0.02, 0.08, border, 0, 0.014, D / 2 - 0.07, { shadow: 'none' });
+  addBox(g, 0.08, 0.02, D - 0.1, border, -W / 2 + 0.07, 0.014, 0, { shadow: 'none' });
+  addBox(g, 0.08, 0.02, D - 0.1, border, W / 2 - 0.07, 0.014, 0, { shadow: 'none' });
 
   const rug = addBox(g, 2.35, 0.02, 1.85, toon(s.rug), -1.15, 0.02, -0.5, { shadow: 'receive' });
   rug.userData.shadow = 'receive';
@@ -214,11 +215,16 @@ function makeShell(layout) {
   addBox(g, 0.045, 0.035, D - 0.45, brassMat, innerL + 0.02, 2.48, 0.1);
   addBox(g, W - 0.4, 0.7, 0.02, warm, 0, 1.72, innerB + 0.012, { shadow: 'receive' });
 
-  for (const z of [-2.85, -0.85, 1.15]) {
-    addBox(g, W - 0.8, 0.12, 0.14, deep, -0.2, H - 0.18, z, { shadow: 'cast' });
+  const ceil = plaster(s.ceilingColor || '#f3efe6');
+  addBox(g, W, 0.1, D, ceil, 0, H - 0.05, 0, { shadow: 'receive' });
+  addBox(g, W + 0.06, 0.18, 0.14, deep, 0, H - 0.12, D / 2 - 0.04, { shadow: 'cast' });
+  addBox(g, 0.14, 0.18, D + 0.04, deep, W / 2 - 0.04, H - 0.12, 0, { shadow: 'cast' });
+  const beamY = H - 0.22;
+  for (const z of [-2.7, -0.7, 1.3]) {
+    addBox(g, W - 0.5, 0.16, 0.14, deep, -0.1, beamY, z, { shadow: 'cast' });
   }
-  addBox(g, 0.14, 0.12, 2.2, deep, -1.2, H - 0.22, 0.15, { shadow: 'cast' });
-  addBox(g, 0.14, 0.12, 1.6, deep, 2.4, H - 0.22, -1.7, { shadow: 'cast' });
+  addBox(g, 0.14, 0.16, D - 0.7, deep, -1.15, beamY, 0.1, { shadow: 'cast' });
+  addBox(g, 0.14, 0.16, 2.4, deep, 2.35, beamY, -1.4, { shadow: 'cast' });
 
   const buoy = new THREE.Group();
   const ringB = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.055, 10, 24), toon('#f4efe6'));
@@ -499,6 +505,28 @@ function porthole(parent, x, y, z) {
   parent.add(g);
 }
 
+function hangingSlate(parent, x, z, tex) {
+  const g = new THREE.Group();
+  const w = 1.36;
+  const h = 0.92;
+  const d = 0.07;
+  addBox(g, w, h, d, wood('#4a3426'), 0, 0, 0, { shadow: 'cast' });
+  addBox(g, w - 0.1, h - 0.1, 0.02, toon('#16302e'), 0, 0, d / 2);
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.16, h - 0.16), art(tex, { glow: 0.16 }));
+  face.position.z = d / 2 + 0.016;
+  face.userData.shadow = 'none';
+  g.add(face);
+  addBox(g, w + 0.04, 0.055, 0.09, wood('#5c4030'), 0, -h / 2 - 0.01, 0.02, { shadow: 'cast' });
+  const chalks = ['#f4efe4', '#1e4e86', '#d15a42', '#e2a23a'];
+  chalks.forEach((c, i) => {
+    addCyl(g, 0.012, 0.012, 0.09, toon(c), -0.28 + i * 0.16, -h / 2 - 0.01, 0.05, 8, { rotZ: Math.PI / 2 });
+  });
+  addBox(g, 0.08, 0.06, 0.08, wood('#3e291f'), -0.42, h / 2 - 0.02, -d / 2 - 0.02);
+  addBox(g, 0.08, 0.06, 0.08, wood('#3e291f'), 0.42, h / 2 - 0.02, -d / 2 - 0.02);
+  g.position.set(x, 1.52, z);
+  parent.add(g);
+}
+
 function staff(parent, x, z, tex) {
   const g = new THREE.Group();
   addBox(g, 0.18, 1.45, 0.045, wood('#3e291f'), 0, 1.15, 0, { shadow: 'cast' });
@@ -570,7 +598,7 @@ function makeProcedural(layout) {
   lightBar.userData.shadow = 'cast';
   addBox(g, 0.5, 0.018, 0.04, toon('#fff4d4', { emissive: '#fff4d4', emissiveIntensity: 0.85 }), a.easel.x, 1.75, a.easel.z + 0.17, { shadow: 'none' });
 
-  sheet(g, keeperSlate(digits), a.slate.x, 0.95, a.slate.z + 0.22, 0.92, 0.58);
+  hangingSlate(g, a.slate.x, -3.76, chalkSlate(digits));
   sheet(g, deskLog(digits), -1.42, 0.785, -0.95, 0.34, 0.22, 0.15, -1.48, false);
   sheet(g, mapSheet(), a.table.x, 0.745, a.table.z - 0.02, 0.32, 0.22, 0.1, -1.5, false);
   sheet(g, mapSheet(), -3.15, 1.72, -3.78, 0.78, 0.48, 0, 0, true);
@@ -605,7 +633,7 @@ function makeProcedural(layout) {
   pegRail(g, -5.12, 1.48, 3.25, Math.PI / 2);
   binoculars(g, -4.92, 1.04, 0.85, 0.7);
 
-  seaChest(g, 2.65, 1.52, -0.2);
+  seaChest(g, 2.72, 1.05, 0.35);
   bollard(g, -0.95, 1.82);
   chartChest(g, -2.35, -2.55, digits, colors);
   chartRolls(g, -2.95, -1.85);
@@ -654,6 +682,8 @@ boot({
     ORDER.forEach((key) => {
       if (rig.dials[key]) rig.dials[key].color = api.layout.meta.puzzle.colors[key];
     });
+    const stand = api.props.getObjectByName('slate');
+    if (stand) stand.visible = false;
   },
   onPick(hits, api) {
     for (const hit of hits) {

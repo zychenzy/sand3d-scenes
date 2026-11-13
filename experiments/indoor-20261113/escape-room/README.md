@@ -2,7 +2,7 @@
 
 A cutaway harbor office where the chart, the keeper’s slate, the tide staff, the brass wheels, and three combination cabinets all carry the same three marks. Daylight comes through the left window. A runner and a brass strip run from the entry rose to the mechanical panel.
 
-Not a library, and not a black box. Walls are plaster over teal beadboard. The readable focal point is the chart on the easel. The jars, the log, and the chart chest sit on the furniture someone would actually use.
+Not a library, and not a black box. Walls are plaster over teal beadboard, and a plaster ceiling closes the roof. The readable focal point is the chart on the easel. The keeper’s copy is a slate on the back wall. The jars, the log, and the chart chest sit on the furniture someone would actually use.
 
 ## Open
 

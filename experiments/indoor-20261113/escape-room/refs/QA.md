@@ -28,12 +28,21 @@ The shooter records console errors and network responses. It fails if a response
 
 What the frames are for:
 
-- Default: chart, slate, three cabinets, open lantern door, panel, desk, and the floor path in one view.
+- Default: chart, wall slate, three cabinets, open lantern door, the full wheel panel, the clue table, the entry chest, and the floor path in one view.
 - Corner: window desk, bench, and the long axis of the room.
 - Close: the chart type is large enough to read.
 - Unlit: the same default camera with lights ignored, so the palette has to carry the room.
 
 Findings from the rendered pass belong in the notes below this line once the shots exist.
+
+## Render notes, visual pass
+
+Shot again on 2026-11-13 after the floor, ceiling, framing, and slate pass. Same harness: headless Chrome, SwiftShader, 1600×1000, HUD hidden, `node shoot.mjs`. Zero console errors, zero failed responses, every request on `127.0.0.1:8813`. Default, corner, and close stayed on TOON. The fourth frame stayed on UNLIT (`MeshBasicMaterial`).
+
+- `toon_default`: quieter oak floor, plaster ceiling with hung beams, wall slate, cabinet bank, clue table, and the wheel panel (4, 8, 2) including the gear. The entry chest sits fully in the lower right. The compass rose is clipped along the bottom edge.
+- `toon_corner`: ceiling reads as a finished soffit. Slate text, cabinet doors, and all three wheels are in one view. The open right side is the cutaway wall.
+- `toon_close`: “TIDE LOCK”, Anchor 4, Gull 8, and Lantern 2 stay readable on the easel. The tide staff is on the left wall.
+- `unlit_default`: same camera. Floor, beadboard, cabinet colors, chart, and the dark slate still read from material color and the canvas maps. No lighting model.
 
 ## Render notes, refinement
 

@@ -28,4 +28,4 @@ Sources are Hugging Face `Sandflow/sand3d-objaverse` programs, CC-BY-4.0, plus t
 
 Three.js r170 (MIT) is `workshop/vendor/`, used read-only.
 
-Cabinets, dials, the mechanical panel, the chart, the slate sheet, the tide staff, the key, the compass, the bell, the chests, the bollard, the window view, and the plants are local geometry in `escape-room.js` and `panels.js`. They are not external models. The book stand GLB was inspected and not placed: it reads as a dark podium and was blocking the slate.
+Cabinets, dials, the mechanical panel, the chart, the wall slate, the tide staff, the key, the compass, the bell, the chests, the bollard, the window view, and the plants are local geometry in `escape-room.js` and `panels.js`. They are not external models. The chalkboard GLB stays in the layout and is hidden at runtime: its bake is a brown floor stand, and the readable slate is the local board. The book stand GLB was inspected and not placed: it reads as a dark podium and was blocking the slate.

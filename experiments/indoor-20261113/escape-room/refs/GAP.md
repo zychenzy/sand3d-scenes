@@ -1,5 +1,12 @@
 # Gaps
 
+Visual pass after the second review:
+
+- Floor boards use a narrow oak range and hairline gaps, so the staggered pattern sits under the runner, desks, and cabinets instead of reading as deck stripes.
+- A plaster ceiling closes the roof. Beams hang under it, and a timber fascia finishes the open +X and +Z edges. Sky still shows through the cutaway wall.
+- The entry camera includes the wheel panel, the cabinet bank, the clue table, and the entry chest. The compass rose is still clipped at the bottom edge of that frame.
+- The keeper’s copy is a wall-hung slate: dark board, oak frame, chalk rail. The brown floor-stand GLB stays in the layout for the facing test and is hidden at runtime, because its silhouette is a wooden stand with a printed sheet.
+
 Refinement after the first review:
 
 - The entry camera sits closer, and the floor is staggered oak boards plus a runner, so the foreground is the route instead of one beige plane.
@@ -20,7 +27,7 @@ Still open:
 - No combination cabinet, dial, or telegraph GLB in the catalog. The bank, the wheels, the chests, the bollard, and the bell are shaped stand-ins (lathe, torus, cambered lid), not scanned hardware.
 - `display_bookcase` and `museum_vitrine` were inspected and left out. The bookcase has no materials and reads as a blank slab. The vitrine reads as a solid brown box, not glass. Using either as a “cabinet” would look like an empty crate.
 - The book stand was removed after the refinement pass. It stayed a dark column and sat in the aisle in front of the slate.
-- The chalkboard bake is a brown board on a floor stand, and its face is local +X. A paper sheet carries the readable copy. It is not a black chalkboard.
+- The chalkboard GLB is a brown floor stand. It is hidden. The readable slate is local geometry on the back wall, not a second easel poster.
 - The thermos GLB includes a loose cap beside the bottle. On the window desk the cap can sit near the edge.
 - The cash register is small and very dark. It reads at close range and as a silhouette in the wide shot.
 - Contact shadows are painted discs. Unlit shading drops emissive glow, so the lamp and the indicator gems stay their base colors and do not bloom.
