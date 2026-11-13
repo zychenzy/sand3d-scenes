@@ -1,6 +1,6 @@
 # Bespoke tailor atelier
 
-A working Savile Row-style workroom. The customer fitting alcove is a darker mirror room off the front-left aisle; the three brass-framed panels are planar reflections, and a low board marks where the customer stands. The tailor's fitting platform is a raised dais with a basted process jacket and a finished suit, both shaped rather than boxed. The cutting table is standing height. One sewing bay sits on the back right. Suits hang on the rear left wall; cloth books stand on the back wall. Oxblood runners mark the paths between those rooms. Floorboards are about 12 cm wide.
+A working Savile Row-style workroom, enclosed so the fitting mirror and the corner camera look at the shop rather than the sky. The customer fitting alcove is a darker mirror room; the three brass-framed panels are planar reflections, and a low board marks where the customer stands. The tailor's fitting platform is a raised dais with a basted process jacket and a finished suit, both shaped rather than boxed. The cutting table is standing height, with a walnut stool at the left end. One sewing bay sits on the back right. Suits hang on the rear left wall; cloth bolts sit in walnut cabinets on the back wall. Oxblood runners mark the paths between those rooms. Floorboards are about 12 cm wide.
 
 This is not the weaving studio (no looms, bolt racks, or dye wall) and not the fashion showroom (no display court, consultation pair, or stone pause).
 

@@ -123,7 +123,8 @@
       "id": "cut_stool",
       "kind": "bar_stool",
       "position": [-1.5, 0, 0.95],
-      "rotationY": 0.4
+      "rotationY": 0.4,
+      "hideVisual": true
     },
     {
       "id": "companion_bench",
@@ -148,13 +149,15 @@
       "id": "bookcase_a",
       "kind": "display_bookcase",
       "position": [-3.35, 0, -3.82],
-      "rotationY": 3.141592653589793
+      "rotationY": 3.141592653589793,
+      "hideVisual": true
     },
     {
       "id": "bookcase_b",
       "kind": "display_bookcase",
       "position": [-2.45, 0, -3.82],
-      "rotationY": 3.141592653589793
+      "rotationY": 3.141592653589793,
+      "hideVisual": true
     },
     {
       "id": "lectern",
@@ -219,13 +222,13 @@
   },
   "camera": {
     "fov": 46,
-    "position": [5.45, 2.55, 6.2],
-    "target": [-0.35, 0.98, -0.4]
+    "position": [3.85, 1.92, 3.35],
+    "target": [-1.15, 1.08, -0.35]
   },
   "cameraPresets": {
     "corner": {
-      "position": [2.85, 1.7, 4.55],
-      "target": [-4.7, 1.16, 1.35]
+      "position": [0.35, 1.52, 2.62],
+      "target": [-3.9, 1.05, 0.85]
     },
     "close": {
       "position": [0.9, 1.36, 1.92],

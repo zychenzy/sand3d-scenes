@@ -263,6 +263,10 @@ export async function boot(opts) {
       else node.scale.multiplyScalar(inst.scale[0]);
     } else if (inst.scale) node.scale.multiplyScalar(inst.scale);
     node.name = inst.id;
+    if (inst.hideVisual) {
+      node.visible = false;
+      node.traverse((child) => { child.visible = false; });
+    }
     props.add(node);
   }
 

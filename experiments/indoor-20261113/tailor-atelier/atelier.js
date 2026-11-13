@@ -302,6 +302,23 @@ function windowBack(g, x0, x1, y0, y1, D) {
   addBox(g, w - 0.12, 0.03, 0.035, wood, cx, cy, z + 0.03);
 }
 
+function windowRight(g, z0, z1, y0, y1, W) {
+  const wood = toon(WOOD.walnut);
+  const paneMat = toon('#d5e6f0', { emissive: '#d7e7f2', emissiveIntensity: 0.5 });
+  const x = W / 2 - 0.08;
+  const cz = (z0 + z1) / 2;
+  const cy = (y0 + y1) / 2;
+  const d = z1 - z0;
+  const h = y1 - y0;
+  const pane = addBox(g, 0.015, h - 0.1, d - 0.1, paneMat, x, cy, cz);
+  pane.userData.noShadow = true;
+  addBox(g, 0.05, 0.055, d, wood, x - 0.02, y0, cz);
+  addBox(g, 0.05, 0.055, d, wood, x - 0.02, y1, cz);
+  addBox(g, 0.05, h, 0.05, wood, x - 0.02, cy, z0);
+  addBox(g, 0.05, h, 0.05, wood, x - 0.02, cy, z1);
+  addBox(g, 0.035, h - 0.12, 0.03, wood, x - 0.03, cy, cz);
+}
+
 function windowLeft(g, z0, z1, y0, y1, W) {
   const wood = toon(WOOD.walnut);
   const paneMat = toon('#d5e6f0', { emissive: '#d7e7f2', emissiveIntensity: 0.5 });
@@ -379,10 +396,23 @@ export function makeShell(layout) {
   addBox(g, alcoveW - 0.16, 0.06, a.z1 - a.z0 - 0.16, toon('#1b2823'), midX, 2.58, (a.z0 + a.z1) / 2);
   addBox(g, 0.08, 0.1, a.z1 - a.doorZ0, wood, a.x1, 2.32, (a.doorZ0 + a.z1) / 2);
 
-  const ceil = addBox(g, W - 0.5, 0.08, D * 0.58, toon(s.ceilingColor), -0.15, H - 0.04, -D * 0.18);
+  const ceil = addBox(g, W + 0.2, 0.08, D + 0.2, toon(s.ceilingColor), 0, H - 0.04, 0);
   ceil.castShadow = false;
-  addBox(g, W - 1.1, 0.1, 0.08, wood, -0.2, H - 0.16, -2.7);
-  addBox(g, W - 1.1, 0.1, 0.08, wood, -0.2, H - 0.16, -0.55);
+  addBox(g, W - 1.2, 0.08, 0.07, wood, -0.15, H - 0.14, -2.7);
+  addBox(g, W - 1.2, 0.08, 0.07, wood, -0.15, H - 0.14, -0.55);
+  addBox(g, W - 1.2, 0.08, 0.07, wood, -0.15, H - 0.14, 1.55);
+  // Front and right walls finish the cutaway. The corner camera and the fitting
+  // mirror were looking out those openings onto the clear color.
+  const frontZ = D / 2 - 0.06;
+  addBox(g, W, H, 0.12, plaster, 0, H / 2, frontZ);
+  addBox(g, W - 0.24, 0.04, 0.04, wood, 0, dado, frontZ - 0.08);
+  addBox(g, W - 0.3, 0.035, 0.03, wood, 0, 2.82, frontZ - 0.08);
+  const rightX = W / 2 - 0.06;
+  addBox(g, 0.12, H, D, plaster, rightX, H / 2, 0);
+  addBox(g, 0.04, 0.04, D - 0.24, wood, rightX - 0.08, dado, 0);
+  addBox(g, 0.03, 0.035, D - 0.3, wood, rightX - 0.08, 2.82, 0);
+  windowRight(g, -2.15, -0.35, 1.55, 2.35, W);
+  windowRight(g, 1.15, 2.85, 1.62, 2.48, W);
 
   return g;
 }
@@ -771,26 +801,76 @@ function hangTrousers(g, x, z) {
   trouserSide(grp, 1, mat, 1.46, 0.62);
 }
 
+function clothCabinet(g, x, z) {
+  const grp = new THREE.Group();
+  grp.position.set(x, 0, z);
+  g.add(grp);
+  const walnut = toon(WOOD.walnut);
+  const dark = toon(WOOD.dark);
+  const w = 0.84;
+  const d = 0.36;
+  const h = 1.98;
+  addBox(grp, w + 0.04, 0.09, d + 0.03, dark, 0, 0.045, 0.01);
+  addBox(grp, 0.04, h - 0.16, d, walnut, -w / 2 + 0.02, 0.09 + (h - 0.16) / 2, 0.01);
+  addBox(grp, 0.04, h - 0.16, d, walnut, w / 2 - 0.02, 0.09 + (h - 0.16) / 2, 0.01);
+  addBox(grp, w - 0.04, h - 0.16, 0.025, toon('#3a2418'), 0, 0.09 + (h - 0.16) / 2, -d / 2 + 0.02);
+  addBox(grp, w + 0.06, 0.07, d + 0.05, walnut, 0, h - 0.035, 0.01);
+  addBox(grp, w + 0.02, 0.025, d + 0.01, toon(WOOD.brassDeep), 0, h - 0.08, 0.02);
+  for (const y of [0.08, 0.52, 1.0, 1.48]) {
+    addBox(grp, w - 0.08, 0.022, d - 0.05, walnut, 0, y, 0.02);
+  }
+}
+
+function tailorStool(g, x, z, rot) {
+  const grp = new THREE.Group();
+  grp.position.set(x, 0, z);
+  grp.rotation.y = rot;
+  g.add(grp);
+  const walnut = toon(WOOD.walnut);
+  const dark = toon(WOOD.dark);
+  const seat = new THREE.Mesh(new THREE.CylinderGeometry(0.155, 0.17, 0.05, 18), walnut);
+  seat.position.y = 0.66;
+  addMesh(grp, seat);
+  const dish = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.125, 0.012, 16), dark);
+  dish.position.y = 0.688;
+  addMesh(grp, dish);
+  const spread = 0.11;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.028, 0.64, 8), walnut);
+      leg.position.set(sx * spread, 0.32, sz * spread);
+      leg.rotation.z = -sx * 0.08;
+      leg.rotation.x = sz * 0.08;
+      addMesh(grp, leg);
+    }
+  }
+  addBox(grp, 0.2, 0.022, 0.022, dark, 0, 0.2, spread);
+  addBox(grp, 0.2, 0.022, 0.022, dark, 0, 0.2, -spread);
+  addBox(grp, 0.022, 0.022, 0.2, dark, spread, 0.2, 0);
+  addBox(grp, 0.022, 0.022, 0.2, dark, -spread, 0.2, 0);
+}
+
 function fillCase(g, x, z, seed) {
   const grp = new THREE.Group();
   grp.position.set(x, 0, z);
-  grp.rotation.y = Math.PI;
   g.add(grp);
-  const scale = 1.98 / 2;
-  const tops = [0.029, 0.514, 1.0, 1.486].map((y) => (y + 0.025) * scale);
   const mats = [
     cloth(TEX.navy), cloth(TEX.charcoal), cloth(TEX.herring), cloth(TEX.tweed),
     cloth(TEX.flannel), toon('#c8b48a'), toon('#6e2430'), toon('#2c3338'),
   ];
-  tops.forEach((y, si) => {
-    const count = si === 0 ? 6 : 8;
-    for (let i = 0; i < count; i++) {
-      if (si === 2 && i === 6) continue;
-      const bw = 0.05 + ((i + seed) % 3) * 0.012;
-      const bh = 0.3 + ((i + si + seed) % 4) * 0.018;
-      const bx = -0.3 + i * (si === 0 ? 0.09 : 0.075);
-      const m = addBox(grp, bw, bh, 0.18, mats[(i + si * 2 + seed) % mats.length], bx, y + bh / 2 + 0.004, -0.03);
-      if (si === 1 && i === 3) m.rotation.z = 0.14;
+  const shelfTop = [0.091, 0.531, 1.011, 1.491];
+  shelfTop.forEach((top, si) => {
+    const bolts = si % 2 === 0 ? 3 : 4;
+    const step = bolts === 3 ? 0.22 : 0.17;
+    const bw = bolts === 3 ? 0.18 : 0.15;
+    for (let i = 0; i < bolts; i++) {
+      const bh = 0.065 + ((i + si + seed) % 3) * 0.012;
+      const bx = -((bolts - 1) * step) / 2 + i * step;
+      addBox(
+        grp, bw, bh, 0.16,
+        mats[(i + si * 2 + seed) % mats.length],
+        bx, top + bh / 2 + 0.004, 0.03,
+      );
     }
   });
 }
@@ -1240,7 +1320,11 @@ export function makeProcedural(layout) {
   suitRail(g, z.rail);
   dressForm(g, z.toile.x, z.toile.z, 0.4, 'toile', 0);
 
-  for (let i = 0; i < z.books.xs.length; i++) fillCase(g, z.books.xs[i], z.books.z, i + 1);
+  for (let i = 0; i < z.books.xs.length; i++) {
+    clothCabinet(g, z.books.xs[i], z.books.z);
+    fillCase(g, z.books.xs[i], z.books.z, i + 1);
+  }
+  tailorStool(g, -1.5, 0.95, 0.4);
   openBook(g, z.lectern.x, 0.86, z.lectern.z + 0.46);
   mirrors(g);
   curtain(g, z.alcove);
