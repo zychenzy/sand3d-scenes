@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "title": "Bookbinding atelier",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.4, "depth": 7.6, "height": 3.15 },
+    "stations": {
+      "sewing": { "x": -2.05, "z": -3.22, "spanX": 2.2, "spanZ": 0.7, "top": 0.75 },
+      "lying": { "on": "sewing", "x": -1.28, "z": -3.05, "spanX": 0.62, "spanZ": 0.26, "top": 0.75 },
+      "press": { "x": 1.2, "z": -3.12, "spanX": 0.74, "spanZ": 0.56, "h": 1.7 },
+      "guillotine": { "x": 3.35, "z": -2.95, "spanX": 1.45, "spanZ": 0.78, "top": 0.9 },
+      "drawers": { "x": -4.7, "z": -1.35, "spanX": 0.62, "spanZ": 1.42, "h": 1.04 },
+      "rack": { "x": 1.65, "z": 0.2, "spanX": 1.15, "spanZ": 0.46, "h": 1.52 },
+      "forward": { "x": -1.55, "z": 1.95, "spanX": 1.85, "spanZ": 0.68, "top": 0.76 },
+      "packing": { "x": 3.5, "z": 1.15, "spanX": 1.05, "spanZ": 0.55, "top": 0.74 },
+      "stove": { "x": -3.82, "z": -2.5, "spanX": 0.42, "spanZ": 0.36, "h": 0.84 },
+      "leather": { "x": -4.22, "z": -3.66 }
+    },
+    "notes": [
+      "Hand bindery, not a reading room and not a printshop. Sewing frames and a lying press share the seated bench. A standing press, board-shear guillotine, flat-file paper drawers, and a drying rack are separate stations.",
+      "Paste lives on the forwarding bench, away from the paper drawers. Seats face the station they serve.",
+      "Catalog meshes are referenced from cafe/, cowork/, and workshop/. Bindery machines are procedural."
+    ]
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "../../../workshop/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.9
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.68
+    },
+    "library_lamp": {
+      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.38
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.4
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.12
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34
+    }
+  },
+  "instances": [
+    {
+      "id": "chair_sew_a",
+      "kind": "dining_chair",
+      "position": [-2.7, 0, -2.22],
+      "rotationY": 3.1416,
+      "faces": [-2.7, -3.22]
+    },
+    {
+      "id": "chair_sew_b",
+      "kind": "dining_chair",
+      "position": [-1.35, 0, -2.22],
+      "rotationY": 3.1416,
+      "faces": [-1.35, -3.22]
+    },
+    {
+      "id": "stool_press",
+      "kind": "bar_stool",
+      "position": [1.2, 0, -2.08],
+      "rotationY": 3.1416,
+      "faces": [1.2, -3.12]
+    },
+    {
+      "id": "stool_cut",
+      "kind": "bar_stool",
+      "position": [4.55, 0, -2.35],
+      "rotationY": -2.0344,
+      "faces": [3.35, -2.95]
+    },
+    {
+      "id": "chair_forward",
+      "kind": "dining_chair",
+      "position": [-1.55, 0, 2.95],
+      "rotationY": 3.1416,
+      "faces": [-1.55, 1.95]
+    },
+    {
+      "id": "chair_pack",
+      "kind": "dining_chair",
+      "position": [3.5, 0, 2.0],
+      "rotationY": 3.1416,
+      "faces": [3.5, 1.15]
+    },
+    {
+      "id": "lamp_sew_a",
+      "kind": "library_lamp",
+      "position": [-3.02, 0.75, -3.46],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "lamp_sew_b",
+      "kind": "library_lamp",
+      "position": [-1.12, 0.75, -3.5],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "lamp_forward",
+      "kind": "library_lamp",
+      "position": [-0.85, 0.76, 1.72],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "lamp_pack",
+      "kind": "library_lamp",
+      "position": [3.15, 0.74, 0.98],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "pend_sew",
+      "kind": "pendant_lamp",
+      "position": [-2.15, 2.18, -2.7],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pend_forward",
+      "kind": "pendant_lamp",
+      "position": [-1.55, 2.18, 1.7],
+      "rotationY": -0.15
+    },
+    {
+      "id": "pend_cut",
+      "kind": "pendant_lamp",
+      "position": [3.4, 2.32, -2.45],
+      "rotationY": 0.1
+    },
+    {
+      "id": "jar_paste",
+      "kind": "jam_jar",
+      "position": [-2.28, 0.76, 2.12],
+      "rotationY": 0.4
+    },
+    {
+      "id": "jar_glue",
+      "kind": "jam_jar",
+      "position": [-2.12, 0.76, 1.78],
+      "rotationY": -0.3
+    },
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "position": [-2.32, 0.76, 1.78],
+      "rotationY": 0.2
+    },
+    {
+      "id": "mug",
+      "kind": "cup_mug",
+      "position": [-3.02, 0.75, -3.42],
+      "rotationY": 0.6
+    },
+    {
+      "id": "plant",
+      "kind": "flowerpot",
+      "position": [-4.55, 0, 2.95],
+      "rotationY": 0.5
+    }
+  ],
+  "shell": {
+    "floorColor": "#a07848",
+    "wallColor": "#f4efe6",
+    "clearColor": "#e7e0d2",
+    "fogColor": "#e7e0d2",
+    "fogNear": 24,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 40,
+    "position": [5.7, 2.62, 6.7],
+    "target": [-0.45, 1.02, -1.15]
+  },
+  "cameraPresets": {
+    "corner": { "position": [6.35, 2.35, 2.7], "target": [0.2, 1.02, -2.15] },
+    "close": { "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] },
+    "detail": { "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ea", "ground": "#6a5340", "intensity": 0.4 },
+    "key": { "color": "#fff3e2", "intensity": 1.02, "position": [7.5, 11.5, 6.5] },
+    "fill": { "color": "#c5d4ea", "intensity": 0.34, "position": [-7.5, 4.8, 1.4] },
+    "points": [
+      { "id": "task_sew_a", "color": "#ffd7a4", "intensity": 0.42, "position": [-3.02, 1.2, -3.15], "distance": 2.6, "decay": 2 },
+      { "id": "task_sew_b", "color": "#ffd7a4", "intensity": 0.42, "position": [-1.12, 1.2, -3.2], "distance": 2.6, "decay": 2 },
+      { "id": "task_forward", "color": "#ffd7a4", "intensity": 0.4, "position": [-0.85, 1.22, 2.05], "distance": 2.6, "decay": 2 },
+      { "id": "task_pack", "color": "#ffd7a4", "intensity": 0.32, "position": [3.15, 1.2, 1.35], "distance": 2.4, "decay": 2 },
+      { "id": "pend_sew", "color": "#ffc98a", "intensity": 0.28, "position": [-2.15, 2.15, -2.7], "distance": 3.4, "decay": 2 },
+      { "id": "pend_forward", "color": "#ffc98a", "intensity": 0.28, "position": [-1.55, 2.15, 1.7], "distance": 3.4, "decay": 2 },
+      { "id": "pend_cut", "color": "#ffc98a", "intensity": 0.3, "position": [3.4, 2.25, -2.45], "distance": 3.2, "decay": 2 },
+      { "id": "stove", "color": "#ff9a3c", "intensity": 0.22, "position": [-3.82, 0.95, -2.5], "distance": 1.8, "decay": 2 }
+    ]
+  }
+}
