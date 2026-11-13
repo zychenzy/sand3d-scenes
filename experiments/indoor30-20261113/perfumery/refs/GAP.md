@@ -12,6 +12,6 @@ Inspected catalog GLBs (bounds, materials, node facing) before placing any of th
 - The book-stand bake is offset by about 5.4 m and reads as a dark podium. The formula is a flat card on the bench (`No. 14`).
 - Bar counter, bar stool, mug, espresso machine, school desk, and chalkboard were not used. Those read as the cafe or the science lab.
 - The flowerpot bake is an empty pot. A small citrus plant is built on top of it.
-- Contact shadows are discs. Shelf bays do not cast, because a full arc of boards striped the floor. Bottle shadows remain hard.
+- Contact shadows under the chairs and bench are discs. Shelf bays, the organ flacons, the floor slab, and the hood canopy do not cast. An arc of boards and the hood's shadow left grey stains on the open boards. Chairs, the bench, the table, and the bookcases still cast. The ceiling is one plaster soffit with a wood fascia and two beams, so the cutaway does not open onto sky. Floorboards are two close tones so the stripe stays quiet in unlit.
 - The extract hood is millwork, not a scanned fume cupboard. See the rejected hood link in `SOURCES.md`.
 - Drawer labels are legible up close and small in the wide shot. Family plates on the organ read from the corner camera.

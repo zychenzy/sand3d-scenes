@@ -10,6 +10,7 @@ const base = `http://127.0.0.1:${port}/experiments/indoor30-20261113/perfumery/`
 const shots = [
   ['toon_default.png', `${base}?shot=1`],
   ['toon_corner.png', `${base}?cam=corner&shot=1`],
+  ['toon_close.png', `${base}?cam=close&shot=1`],
   ['toon_detail.png', `${base}?cam=detail&shot=1`],
   ['unlit_default.png', `${base}?mode=unlit&shot=1`],
 ];
@@ -109,7 +110,7 @@ async function shot(send, url, filename) {
     throw new Error(`${filename}: not ready ${JSON.stringify(info)}`);
   }
   if (info.meshes < 400) throw new Error(`${filename}: sparse mesh count ${info.meshes}`);
-  if (info.organ < 48) throw new Error(`${filename}: organ ${info.organ}`);
+  if (info.organ < 120) throw new Error(`${filename}: organ ${info.organ}`);
   if (info.blotter < 12) throw new Error(`${filename}: blotters ${info.blotter}`);
   if (filename.startsWith('unlit') && info.mode !== 'UNLIT') throw new Error(`${filename}: mode ${info.mode}`);
   if (!filename.startsWith('unlit') && info.mode !== 'TOON') throw new Error(`${filename}: mode ${info.mode}`);

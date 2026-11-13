@@ -24,6 +24,6 @@ node --test experiments/indoor30-20261113/perfumery/tests/check_layout.mjs
 node experiments/indoor30-20261113/perfumery/tests/load_browser.mjs
 ```
 
-The browser test loads the page, asserts no console errors, and writes `shots/toon_default.png`, `toon_corner.png`, `toon_detail.png`, and `unlit_default.png`.
+The browser test loads the page, asserts no console errors, and writes `shots/toon_default.png`, `toon_corner.png`, `toon_close.png`, `toon_detail.png`, and `unlit_default.png`. Close and detail share one camera on the bench.
 
 Catalog GLBs are symlinks into `library/`, `cafe/`, `workshop/`, and `museum/`. Flacons, the balance, and the pipette are small bakes from `bake_assets.py` in this folder. Do not copy shared meshes.

@@ -20,9 +20,9 @@
       "cz": -0.55,
       "half": 1.2217,
       "tiers": [
-        { "id": "low", "r": 1.95, "y": 0.8, "count": 19 },
-        { "id": "mid", "r": 2.35, "y": 1.18, "count": 17 },
-        { "id": "high", "r": 2.72, "y": 1.56, "count": 15 }
+        { "id": "low", "r": 1.95, "y": 0.8, "count": 24, "rows": 2, "rowGap": 0.1 },
+        { "id": "mid", "r": 2.32, "y": 1.2, "count": 26, "rows": 2, "rowGap": 0.1 },
+        { "id": "high", "r": 2.68, "y": 1.58, "count": 22, "rows": 2, "rowGap": 0.09 }
       ]
     },
     "paths": {
@@ -79,12 +79,12 @@
     "fogFar": 48
   },
   "camera": {
-    "fov": 40,
-    "position": [5.15, 2.9, 6.2],
-    "target": [-0.7, 1.05, -0.85]
+    "fov": 64,
+    "position": [3.6, 0.95, 2.4],
+    "target": [-0.4, 1.4, -1.0]
   },
   "cameraPresets": {
-    "corner": { "position": [-2.7, 2.6, 6.2], "target": [-0.35, 1.05, -0.75], "fov": 42 },
+    "corner": { "position": [-0.4, 1.0, 1.35], "target": [0.4, 1.25, -1.0], "fov": 58 },
     "detail": { "position": [-0.02, 1.46, -0.72], "target": [-0.95, 0.9, -1.5], "fov": 34 },
     "close": { "position": [-0.02, 1.46, -0.72], "target": [-0.95, 0.9, -1.5], "fov": 34 }
   },

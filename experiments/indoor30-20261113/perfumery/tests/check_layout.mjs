@@ -75,7 +75,7 @@ test('seats face the work and stay human-scaled', () => {
 
 test('organ is a semicircle of mixed silhouettes inside the room', () => {
   const slots = organSlots(layout.anchors.organ);
-  assert.ok(slots.length >= 48, slots.length);
+  assert.ok(slots.length >= 120, slots.length);
   const kinds = new Set(slots.map((slot) => slot.kind));
   assert.ok(kinds.size >= 4, [...kinds].join(','));
   const families = new Set(slots.map((slot) => slot.family));

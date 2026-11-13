@@ -74,8 +74,8 @@ function contact(g, x, z, rx, rz) {
 }
 
 function dressFloor(g, W, D) {
-  const light = toon('#d4b78c');
-  const dark = toon('#c4a476');
+  const light = toon('#cbb892');
+  const dark = toon('#c6b38c');
   const n = Math.ceil((D - 0.2) / 0.18);
   for (let i = 0; i < n; i++) {
     const z = -D / 2 + 0.12 + i * 0.18;
@@ -124,11 +124,7 @@ function makeShell(layout) {
   addBox(g, 0.06, 0.06, D - 0.24, toon(WOOD), innerL + 0.03, 0.96, 0);
   addBox(g, W - 0.2, 0.08, 0.08, toon(WOOD_DARK), 0, H - 0.06, innerB);
   addBox(g, 0.08, 0.08, D - 0.2, toon(WOOD_DARK), innerL, H - 0.06, 0);
-  const soffit = addBox(g, W * 0.72, 0.08, D * 0.42, toon(PLASTER), -0.4, H - 0.08, -D * 0.22);
-  soffit.castShadow = false;
-  soffit.userData.noShadow = true;
-  addBox(g, W * 0.7, 0.1, 0.14, toon(WOOD_DARK), -0.5, H - 0.2, -2.4);
-  addBox(g, 0.14, 0.1, 2.4, toon(WOOD_DARK), 3.35, H - 0.2, 1.35);
+  buildCeiling(g, W, D, H);
 
   const runner = addBox(g, 0.92, 0.015, 4.3, toon('#8d4d56'), -0.9, 0.018, 1.15);
   receiveOnly(runner);
@@ -137,6 +133,25 @@ function makeShell(layout) {
   receiveOnly(rug);
   receiveOnly(addBox(g, 1.85, 0.01, 1.85, toon('#4e6d62'), 3.35, 0.028, 1.35));
   return g;
+}
+
+function buildCeiling(g, W, D, H) {
+  const plaster = toon(PLASTER);
+  const trim = toon(WOOD_DARK);
+  const z0 = -D / 2 + 0.1;
+  const z1 = 3.45;
+  const x0 = -W / 2 + 0.1;
+  const x1 = W / 2 - 0.28;
+  const cx = (x0 + x1) / 2;
+  const cz = (z0 + z1) / 2;
+  const cw = x1 - x0;
+  const cd = z1 - z0;
+  noShadow(addBox(g, cw, 0.07, cd, plaster, cx, H - 0.045, cz));
+  noShadow(addBox(g, cw + 0.06, 0.14, 0.1, trim, cx, H - 0.1, z1));
+  noShadow(addBox(g, 0.1, 0.14, cd, trim, x1, H - 0.1, cz));
+  for (const z of [-2.2, 0.55]) {
+    noShadow(addBox(g, cw - 0.35, 0.09, 0.12, trim, cx - 0.1, H - 0.15, z));
+  }
 }
 
 function buildOrgan(g, organ) {
@@ -271,10 +286,10 @@ function mouilletteJar(g, x, y, z) {
 function buildHood(g, bench, H) {
   const { x, z } = bench;
   const y = 2.12;
-  addBox(g, 1.35, 0.06, 0.72, toon(WOOD_DARK), x, y, z - 0.05);
-  addBox(g, 1.2, 0.28, 0.08, toon(WOOD), x, y + 0.16, z + 0.28);
-  addBox(g, 0.08, 0.28, 0.62, toon(WOOD), x - 0.62, y + 0.16, z - 0.02);
-  addBox(g, 0.08, 0.28, 0.62, toon(WOOD), x + 0.62, y + 0.16, z - 0.02);
+  noShadow(addBox(g, 1.35, 0.06, 0.72, toon(WOOD_DARK), x, y, z - 0.05));
+  noShadow(addBox(g, 1.2, 0.28, 0.08, toon(WOOD), x, y + 0.16, z + 0.28));
+  noShadow(addBox(g, 0.08, 0.28, 0.62, toon(WOOD), x - 0.62, y + 0.16, z - 0.02));
+  noShadow(addBox(g, 0.08, 0.28, 0.62, toon(WOOD), x + 0.62, y + 0.16, z - 0.02));
   for (let i = 0; i < 7; i++) {
     const slat = addBox(g, 1.15, 0.012, 0.045, toon(BRASS), x, y - 0.02, z - 0.28 + i * 0.09);
     noShadow(slat);
@@ -282,8 +297,8 @@ function buildHood(g, bench, H) {
   }
   const glow = addBox(g, 0.9, 0.015, 0.46, toon('#fff1d2', { emissive: '#ffd9a0', emissiveIntensity: 0.7 }), x, y - 0.045, z - 0.02);
   noShadow(glow);
-  addBox(g, 0.22, H - y - 0.2, 0.22, toon('#d9d3c8'), x, (H + y) / 2 - 0.05, z - 0.05);
-  addBox(g, 0.28, 0.06, 0.28, toon(BRASS), x, H - 0.16, z - 0.05);
+  noShadow(addBox(g, 0.22, H - y - 0.2, 0.22, toon('#d9d3c8'), x, (H + y) / 2 - 0.05, z - 0.05));
+  noShadow(addBox(g, 0.28, 0.06, 0.28, toon(BRASS), x, H - 0.16, z - 0.05));
   const plaque = addBox(g, 0.28, 0.07, 0.012, labelMat('EXTRACT', '#3e2a20', '#f3e6c8'), x, y + 0.16, z + 0.33);
   plaque.name = 'hood-plaque';
 }
@@ -404,6 +419,12 @@ boot({
       const node = place(slot.kind, slot);
       node.name = slot.id;
       node.userData.family = slot.family;
+      node.traverse((obj) => {
+        if (!obj.isMesh) return;
+        obj.castShadow = false;
+        obj.userData.noShadow = true;
+        obj.userData.receiveShadow = true;
+      });
     }
     place('flacon_shoulder', { id: 'hero_flacon', position: [-4.55, 0.9, 2.55], rotationY: 0.4, scale: 1.35 });
     place('flacon_rect', { id: 'table_citrus', position: [3.18, 0.74, 1.28], rotationY: 0.5, scale: 0.85 });

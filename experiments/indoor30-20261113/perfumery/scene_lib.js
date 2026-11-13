@@ -195,6 +195,9 @@ export function makeCutawayShell(layout, extra = {}) {
   const floor = new THREE.Mesh(new THREE.BoxGeometry(W, 0.08, D), floorMat);
   floor.position.y = -0.04;
   floor.receiveShadow = true;
+  floor.castShadow = false;
+  floor.userData.noShadow = true;
+  floor.userData.receiveShadow = true;
   g.add(floor);
 
   if (extra.carpet) {
@@ -302,7 +305,7 @@ export async function boot(opts) {
   const controls = new OrbitControls(camera, canvas);
   controls.target.set(...cam.target);
   controls.enableDamping = true;
-  controls.maxPolarAngle = Math.PI * 0.49;
+  controls.maxPolarAngle = Math.PI * 0.58;
   controls.minDistance = 1.4;
   controls.maxDistance = 28;
   controls.update();

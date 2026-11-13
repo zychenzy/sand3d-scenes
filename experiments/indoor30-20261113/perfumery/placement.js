@@ -17,24 +17,31 @@ export function facingDot(position, rotationY, target) {
 export function organSlots(organ) {
   const slots = [];
   for (const tier of organ.tiers) {
-    const n = tier.count;
-    for (let i = 0; i < n; i++) {
-      const t = n === 1 ? 0 : (i / (n - 1)) * 2 - 1;
-      const ang = Math.PI + t * organ.half;
-      const x = organ.cx + Math.sin(ang) * tier.r;
-      const z = organ.cz + Math.cos(ang) * tier.r;
-      const family = familyAt(t);
-      const kind = bottleKind(tier.id, family, i);
-      slots.push({
-        id: `organ_${tier.id}_${i}`,
-        kind,
-        family,
-        tier: tier.id,
-        t,
-        position: [x, tier.y, z],
-        rotationY: ang + Math.PI,
-        scale: 0.9 + (i % 3) * 0.07,
-      });
+    const rows = tier.rows || 1;
+    const gap = tier.rowGap || 0;
+    for (let row = 0; row < rows; row++) {
+      const n = tier.count;
+      const radius = tier.r + (row - (rows - 1) / 2) * gap;
+      const stagger = row % 2 === 1 ? 0.5 : 0;
+      for (let i = 0; i < n; i++) {
+        const t = n === 1 ? 0 : Math.max(-1, Math.min(1, ((i + stagger) / (n - 1 + stagger)) * 2 - 1));
+        const ang = Math.PI + t * organ.half;
+        const x = organ.cx + Math.sin(ang) * radius;
+        const z = organ.cz + Math.cos(ang) * radius;
+        const family = familyAt(t);
+        const kind = bottleKind(tier.id, family, i + row * 3);
+        const front = row === 0;
+        slots.push({
+          id: `organ_${tier.id}_r${row}_${i}`,
+          kind,
+          family,
+          tier: tier.id,
+          t,
+          position: [x, tier.y, z],
+          rotationY: ang + Math.PI,
+          scale: (front ? 0.96 : 0.86) + (i % 3) * 0.03,
+        });
+      }
     }
   }
   return slots;
