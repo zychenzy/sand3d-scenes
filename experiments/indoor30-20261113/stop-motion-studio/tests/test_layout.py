@@ -105,6 +105,13 @@ def test_cameras_cover_the_zones():
     detail = LAYOUT["cameraPresets"]["detail"]
     assert detail["position"][2] > stage["z"] + 0.4
     assert detail["position"][1] > stage["top"]
+    pup_x = stage["x"] + LAYOUT["studio"]["puppet"]["x"]
+    pup_z = stage["z"] + 0.08
+    hx, _, hz = LAYOUT["studio"]["rig"]["head"]
+    assert hz > pup_z + 0.5
+    assert abs(hx - pup_x) < 0.35
+    assert abs(math.atan2(pup_x - hx, -(pup_z - hz))) < math.radians(20)
+    assert LAYOUT["studio"]["rig"]["z"] > stage["z"] + stage["d"] / 2
 
 
 def test_sources_are_offline_and_distinct():

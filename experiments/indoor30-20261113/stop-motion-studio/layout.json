@@ -14,7 +14,7 @@
     "table": { "x": -0.2, "z": -0.55, "w": 2.24, "d": 1.28, "top": 1.0 },
     "puppet": { "x": -0.02, "z": 0.08, "h": 0.18 },
     "pencil": { "x": 0.16, "z": 0.04, "len": 0.18 },
-    "rig": { "x": -1.12, "z": 0.5, "head": [-0.62, 1.16, 0.02] },
+    "rig": { "x": -0.98, "z": 0.68, "head": [-0.34, 1.16, 0.55] },
     "tallestBuilding": 0.46,
     "rack": { "x": -3.55, "z": -3.72 }
   },
@@ -79,7 +79,7 @@
     "target": [0.55, 0.92, -0.35]
   },
   "cameraPresets": {
-    "corner": { "position": [-1.15, 1.58, 2.95], "target": [-3.35, 0.9, 1.2] },
+    "corner": { "position": [-1.35, 1.72, 3.38], "target": [-3.65, 1.12, 1.7] },
     "detail": { "position": [0.02, 1.16, 0.38], "target": [-0.22, 1.08, -0.5] }
   },
   "lights": {
@@ -114,7 +114,7 @@
     "must_read": [
       "The street on the table is miniature: buildings stay under 0.5m and the puppet is about pencil-length.",
       "Human chairs face the frame desk and the fabrication bench. The stool faces the stage.",
-      "The motion-control camera aims at the puppet. Small flags and fresnels sit on the table, not a cyclorama of softboxes."
+      "The motion-control camera sits on the near side of the street and looks at the puppet's face, matching the frontal frame on the monitor."
     ]
   }
 }

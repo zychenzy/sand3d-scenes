@@ -3,7 +3,8 @@
 Closed in this scene:
 
 - Raised animation table with a three-house street and a puppet in the street, not behind the roofs.
-- Motion-control column, head, cable, and sandbag aimed at the puppet. Micro fresnel, flag, and bounce card on the table.
+- Motion-control column stands in the front-left aisle. The head sits on the near side of the street and looks back at the puppet's face, the same frontal frame the monitor shows. Micro fresnel, flag, and bounce card stay on the table.
+- Doorways are a little taller than the 0.18 m puppet (ochre and brick openings 0.21 m), so the figure is not a giant in the street. The pencil and the chairs stay the human-scale reference.
 - Fabrication bench with a cutting mat, clay heads, jars, and a lamp. The chair faces the bench.
 - Frame desk: chair faces the monitor, the screen faces the chair, a frame-grab and a dope sheet sit on the top.
 - Armature rack, walk-cycle cards, storyboard easel, review puppet on a plinth.

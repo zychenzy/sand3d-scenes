@@ -492,9 +492,9 @@ function buildMiniature(g, layout, stageY) {
   const t = layout.studio.table;
   const tall = layout.studio.tallestBuilding;
   const houses = [
-    { x: -0.62, w: 0.34, d: 0.18, h: 0.34, body: '#c48a4a', roof: '#3e4650', trim: '#f3efe6', awning: '#2f6a52', door: { w: 0.07, h: 0.12, color: '#6b3a32' }, windows: [{ x: -0.09, y: 0.22, w: 0.06, h: 0.07 }, { x: 0.09, y: 0.22, w: 0.06, h: 0.07 }] },
-    { x: -0.2, w: 0.28, d: 0.2, h: tall, body: '#8d4a3a', roof: '#3a4048', trim: '#efe6d6', door: { w: 0.06, h: 0.13, color: '#3e342c' }, chimney: true, windows: [{ x: 0, y: 0.16, w: 0.05, h: 0.06 }, { x: 0, y: 0.28, w: 0.05, h: 0.06 }, { x: 0, y: 0.4, w: 0.05, h: 0.055 }] },
-    { x: 0.22, w: 0.36, d: 0.18, h: 0.3, body: '#e4d3b0', roof: '#6e5a48', trim: '#fff8ee', awning: '#8d3342', door: { w: 0.08, h: 0.12, color: '#5c4034' }, windows: [{ x: 0.08, y: 0.18, w: 0.1, h: 0.08 }] },
+    { x: -0.62, w: 0.34, d: 0.18, h: 0.34, body: '#c48a4a', roof: '#3e4650', trim: '#f3efe6', awning: '#2f6a52', door: { w: 0.1, h: 0.21, color: '#6b3a32' }, windows: [{ x: -0.09, y: 0.285, w: 0.055, h: 0.045 }, { x: 0.09, y: 0.285, w: 0.055, h: 0.045 }] },
+    { x: -0.2, w: 0.28, d: 0.2, h: tall, body: '#8d4a3a', roof: '#3a4048', trim: '#efe6d6', door: { w: 0.07, h: 0.21, color: '#3e342c' }, chimney: true, windows: [{ x: 0, y: 0.27, w: 0.05, h: 0.05 }, { x: 0, y: 0.34, w: 0.05, h: 0.05 }, { x: 0, y: 0.4, w: 0.045, h: 0.04 }] },
+    { x: 0.22, w: 0.36, d: 0.18, h: 0.3, body: '#e4d3b0', roof: '#6e5a48', trim: '#fff8ee', awning: '#8d3342', door: { w: 0.09, h: 0.19, color: '#5c4034' }, windows: [{ x: 0.1, y: 0.245, w: 0.08, h: 0.045 }] },
   ];
   const z = t.z - t.d / 2 + 0.28;
   for (const house of houses) {
