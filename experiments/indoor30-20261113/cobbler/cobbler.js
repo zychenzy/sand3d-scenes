@@ -169,6 +169,42 @@ function oxford(color, opts = {}) {
   return g;
 }
 
+/** Side-profile upper for the close shot: sole, heel, quarter, vamp, toe. */
+function clampedUpper(color) {
+  const g = new THREE.Group();
+  g.name = 'clamped-upper';
+  const leather = toon(color);
+  const dark = toon('#3a2a24');
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.01, 0.29), sole())).position.set(0, 0.014, 0.01);
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.072, 0.012, 0.07), sole())).position.set(0, 0.025, -0.1);
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.01, 0.05), dark)).position.set(0, 0.036, -0.108);
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.055, 0.1), leather)).position.set(0, 0.052, -0.07);
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.04, 0.09), leather)).position.set(0, 0.042, 0.015);
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.068, 0.026, 0.08), leather)).position.set(0, 0.032, 0.085);
+  const tip = put(g, new THREE.Mesh(new THREE.SphereGeometry(0.032, 12, 8), leather));
+  tip.scale.set(1.0, 0.42, 0.75);
+  tip.position.set(0, 0.03, 0.145);
+  const collar = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.004, 6, 12, Math.PI), dark));
+  collar.rotation.x = -Math.PI / 2;
+  collar.position.set(0, 0.08, -0.09);
+  for (let i = 0; i < 4; i++) {
+    const eye = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.0055, 0.0016, 5, 8), brass()));
+    eye.rotation.y = Math.PI / 2;
+    eye.position.set(0.036, 0.058, 0.01 - i * 0.016);
+  }
+  const welt = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.006, 0.24), stitch()));
+  welt.position.set(0.042, 0.02, 0.015);
+  welt.castShadow = false;
+  welt.userData.noShadow = true;
+  for (let i = 0; i < 11; i++) {
+    const bit = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.007, 0.0035, 0.0035), stitch()));
+    bit.position.set(0.045, 0.022, -0.085 + i * 0.02);
+    bit.castShadow = false;
+    bit.userData.noShadow = true;
+  }
+  return g;
+}
+
 function pegKit(parent, x, y, z) {
   const tray = put(parent, new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.025, 0.12), oakDark()));
   tray.position.set(x, y + 0.02, z);
@@ -293,41 +329,55 @@ function stitchHorse(parent, zone) {
   const h = zone.h;
   put(g, new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.07, 0.38), oakDark())).position.set(0, 0.035, 0);
   put(g, new THREE.Mesh(new THREE.BoxGeometry(0.12, h - 0.18, 0.12), oak())).position.set(0, h * 0.46, 0);
-  const jawL = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.09, 0.2), maple()));
-  jawL.position.set(-0.075, h + 0.015, 0.04);
-  jawL.rotation.z = 0.16;
-  const jawR = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.09, 0.2), maple()));
-  jawR.position.set(0.075, h + 0.015, 0.04);
-  jawR.rotation.z = -0.16;
-  const pad = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.01, 0.16), toon('#6e3a28')));
-  pad.position.set(0, h + 0.012, 0.04);
-  const screw = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.26, 8), iron()));
+  const jawL = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.045, 0.2), maple()));
+  jawL.position.set(-0.055, h - 0.004, 0.02);
+  const jawR = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.045, 0.2), maple()));
+  jawR.position.set(0.055, h - 0.004, 0.02);
+  const pad = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.01, 0.2), toon('#6e3a28')));
+  pad.position.set(0, h + 0.008, 0.02);
+  const screw = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.12, 8), iron()));
   screw.rotation.z = Math.PI / 2;
-  screw.position.set(0, h + 0.02, -0.08);
-  const wheel = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.042, 0.009, 6, 14), brass()));
-  wheel.rotation.y = Math.PI / 2;
-  wheel.position.set(0.15, h + 0.02, -0.08);
-  const work = oxford('#8a4030');
-  work.position.set(0.0, h + 0.03, 0.05);
-  work.rotation.y = 0.25;
-  work.rotation.x = 0.12;
+  screw.position.set(-0.07, h + 0.02, -0.16);
+  const wheel = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.007, 6, 14), brass()));
+  wheel.position.set(-0.13, h + 0.02, -0.16);
+  const work = clampedUpper('#8a4030');
+  work.position.set(0, h + 0.012, 0.02);
   g.add(work);
-  const spool = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.026, 0.035, 10), toon('#f3efe6')));
-  spool.position.set(-0.28, h + 0.03, -0.08);
-  const thread = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.006, 0.24), stitch()));
-  thread.position.set(-0.12, h + 0.08, 0.0);
-  thread.rotation.y = 0.3;
-  const awl = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.0015, 0.12, 6), iron()));
-  awl.rotation.x = 1.05;
-  awl.rotation.z = -0.2;
-  awl.position.set(0.06, h + 0.1, 0.1);
-  const grip = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.013, 0.045, 8), oak()));
-  grip.rotation.x = 1.05;
-  grip.position.set(0.05, h + 0.15, 0.05);
-  const wing = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.02, 0.2), oakMid()));
-  wing.position.set(-0.38, h - 0.01, -0.06);
+  const spool = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.032, 10), toon('#f3efe6')));
+  spool.rotation.z = Math.PI / 2;
+  spool.position.set(-0.14, h + 0.02, -0.2);
+  const thread = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.004, 0.08), stitch()));
+  thread.position.set(0.05, h + 0.045, -0.06);
+  thread.rotation.y = 0.5;
+  thread.castShadow = false;
+  thread.userData.noShadow = true;
+  const awl = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.0035, 0.0014, 0.09, 6), iron()));
+  awl.rotation.z = 1.2;
+  awl.rotation.y = 0.4;
+  awl.position.set(-0.08, h + 0.03, -0.02);
+  const grip = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.012, 0.036, 8), oak()));
+  grip.rotation.z = 1.2;
+  grip.rotation.y = 0.4;
+  grip.position.set(-0.11, h + 0.02, -0.04);
   parent.add(g);
   contact(parent, zone.x, zone.z, 0.4, 0.34);
+}
+
+function readyPair(parent, stitch) {
+  const g = new THREE.Group();
+  g.name = 'ready-pair';
+  g.position.set(0.85, 0, -0.62);
+  const block = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.045, 0.18), oakMid()));
+  block.position.y = 0.022;
+  const a = oxford('#6e2e28');
+  a.position.set(-0.05, 0.05, 0);
+  a.rotation.y = 0.3;
+  g.add(a);
+  const b = oxford('#6e2e28');
+  b.position.set(0.07, 0.05, 0.02);
+  b.rotation.y = -0.15;
+  g.add(b);
+  parent.add(g);
 }
 
 function finisher(parent, zone) {
@@ -532,24 +582,21 @@ function makeShell(layout) {
   const { width: W, depth: D, height: H } = layout.meta.room;
   const s = layout.shell;
   const floorMat = toon(s.floorColor, { polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
-  const altMat = toon(s.floorAlt, { polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
-  const slab = new THREE.Mesh(new THREE.BoxGeometry(W, 0.08, D), toon('#b89662'));
+  const slab = new THREE.Mesh(new THREE.BoxGeometry(W, 0.08, D), toon(s.floorColor));
   slab.position.y = -0.04;
   slab.receiveShadow = true;
   slab.castShadow = false;
   g.add(slab);
 
   const plankW = W - 0.28;
-  let z = -D / 2 + 0.16;
-  let i = 0;
-  while (z < D / 2 - 0.12) {
-    const depth = i % 3 === 0 ? 0.16 : 0.13;
-    const plank = new THREE.Mesh(new THREE.BoxGeometry(plankW, 0.012, depth - 0.012), i % 2 ? altMat : floorMat);
-    plank.position.set(0.05, 0.006, z + depth / 2);
+  const board = 0.22;
+  let z = -D / 2 + 0.12;
+  while (z < D / 2 - 0.08) {
+    const plank = new THREE.Mesh(new THREE.BoxGeometry(plankW, 0.01, board), floorMat);
+    plank.position.set(0.05, 0.005, z + board / 2);
     quiet(plank, true);
     g.add(plank);
-    z += depth;
-    i += 1;
+    z += board;
   }
   const trim = toon(s.trimColor);
   quiet(addBox(g, W - 0.08, 0.02, 0.08, trim, 0, 0.012, -D / 2 + 0.08), true);
@@ -588,12 +635,11 @@ function makeShell(layout) {
   addBox(g, 0.05, win.h + 0.08, 0.05, mullion, win.x + win.w / 2, win.y, win.z + 0.02);
   addBox(g, 0.035, win.h, 0.04, mullion, win.x, win.y, win.z + 0.025);
 
-  for (const z of [-2.35, -0.15, 1.85]) {
-    const beam = addBox(g, W - 0.7, 0.1, 0.14, oakDark(), -0.15, H - 0.16, z);
-    beam.castShadow = false;
+  const lid = addBox(g, W - 0.12, 0.07, D - 0.18, plaster(), -0.04, H - 0.035, -0.04);
+  quiet(lid);
+  for (const z of [-2.55, -0.55, 1.45]) {
+    quiet(addBox(g, W - 1.1, 0.08, 0.12, oak(), -0.2, H - 0.12, z));
   }
-  const soffit = addBox(g, W * 0.72, 0.06, D * 0.28, plaster(), -0.8, H - 0.05, -D * 0.3);
-  soffit.castShadow = false;
 
   const apron = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.7, 0.012), toon('#6e3a28')));
   apron.position.set(innerL + 0.02, 1.15, -1.7);
@@ -630,6 +676,7 @@ function makeProcedural(layout) {
   const z = layout.zones;
   repairBench(g, z.repair);
   stitchHorse(g, z.stitch);
+  readyPair(g, z.stitch);
   finisher(g, z.finisher);
   ticketRack(g, z.tickets);
   shoeRail(g, z.rail);

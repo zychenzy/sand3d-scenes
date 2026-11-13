@@ -11,7 +11,7 @@ Local bakes are the offline HF set this scene can load. Bounds are the raw GLB A
 | Library lamp `06accd4e0351` | 290 × 488 × 290 | Kept. Shade and arm sit on local −Z, so yaw π aims the shade at the cobbler. Bulb mesh is marked emissive; the green shade is not. |
 | Pendant `1b528c6ab04e` | 246 × 212 × 246 | Kept at 0.46 m. Taller than that and the shade becomes a ceiling disc. |
 | Jam jar `4e43eb29aa14` | 94 × 110 × 94 | Kept at 0.11 m for wax, polish, and pegs. A larger jar reads as a canister. |
-| Mug `6da6f7f87b8d` | 75 × 76 × 75 | Kept at 0.09 m on the stitch-horse wing. |
+| Mug `6da6f7f87b8d` | 75 × 76 × 75 | Kept at 0.09 m on the repair bench's lower shelf. It is not on the stitch horse. |
 | Cash register `870f6ebb115a` | 299 × 217 × 434 | Kept at 0.30 m. Keys and `brass_front` are +Z, so yaw 0 faces the customer. Depth is about 0.56 m, so it sits on the 0.66 m counter with little spare. |
 | Flowerpot `4a270f247734` | 250 × 204 × 250 | One plant in the open corner. Not a tool. |
 | Wall shelf `8732f5e14a30` | 659 × 25 × 938 | Rejected. Height is the thin axis. `prepareAsset` would scale that 25-unit thickness to shelf height and blow the footprint out to several metres. |
@@ -29,7 +29,9 @@ No local GLB has a shoe last, a welt, a finishing wheel, a peg tray, or a ticket
 - Foot lasts: toe, ball, pinched waist, heel, ankle cone, toe plate. Left and right differ by a ball offset, not a mirrored scale.
 - Oxfords and boots with a stacked heel, toe cap, eyelets, and welt stitches as geometry.
 - Repair bench with a knee hole, three drawers, a lasting jack, and a rail of awl, knife, hammer, and pincers.
-- Stitch horse: screw, handwheel, clamped upper, spool, and an awl in the welt.
+- Stitch horse: screw, handwheel, a side-profile clamped upper (sole, heel stack, quarter, vamp, toe), spool, and an awl on the far side of the jaws. No drink shelf.
+- Floorboards are one tan, butted, with no dark seam. Beams hang under a plaster ceiling and do not cast. Establishing cameras sit closer. A finished pair sits beside the horse, outside the 0.9 m aisles and out of the close camera.
+- A finished pair sits on a low block beside the horse, outside the 0.9 m aisles.
 - Compact finisher: motor drum, column, arm, abrasive wheel, pedal. The wheel is the silhouette, not a needle bar.
 - Ticket rack with numbered cards and a hanging rail of tagged pairs.
 - Standing handoff counter, till, bell, spike, and wrapped pairs.
@@ -37,7 +39,9 @@ No local GLB has a shoe last, a welt, a finishing wheel, a peg tray, or a ticket
 
 ## Still approximate
 
-- Lasts and uppers are overlapped primitives. They read as feet from the cameras used here; they are not scanned lasts.
+- The clamped upper is a side profile of boxes: sole, stepped heel, quarter, vamp, round toe, four eyelets, and a welt. It reads as a shoe from the close camera. It is not a scanned last, and the steps are still visible.
+- The corner shot still shows the open aisle between the stitch horse and the bench. That gap is the 0.9 m passage.
+- Lasts on the wall rack are overlapped primitives. They read as feet. They are not scanned lasts.
 - Welt stitches are about 6 mm across so the close shot can see them. Real stitches are smaller.
 - Rack lasts are scaled 1.15 × 1.05 × 1.4 so the toe-to-heel profile reads on the back wall. A true 28 cm last is only a few dozen pixels from the default camera.
 - The finisher has no moving belt and no dust collection. The belt is a dark strap.

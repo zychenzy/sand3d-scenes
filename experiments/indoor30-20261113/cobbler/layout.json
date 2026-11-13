@@ -13,7 +13,7 @@
   },
   "zones": {
     "repair": { "x": -0.9, "z": -3.18, "w": 2.8, "d": 0.7, "h": 0.78, "rot": 0 },
-    "stitch": { "x": 1.62, "z": -0.18, "w": 1.08, "d": 0.56, "h": 0.76, "rot": 0.08 },
+    "stitch": { "x": 1.62, "z": 0.05, "w": 1.08, "d": 0.56, "h": 0.76, "rot": 0.08 },
     "finisher": { "x": -4.55, "z": -1.05, "w": 0.7, "d": 0.56, "h": 1.18, "rot": 0 },
     "counter": { "x": 0.15, "z": 2.22, "w": 2.5, "d": 0.66, "h": 1.04, "rot": 0 },
     "lasts": { "x": -3.2, "z": -3.66, "w": 2.15, "d": 0.18, "h": 0.62, "y": 1.28 },
@@ -52,7 +52,7 @@
     "cup_mug": {
       "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
       "targetHeight": 0.09,
-      "role": "Cobbler's mug on the stitch horse."
+      "role": "Tea mug on the repair bench's lower shelf, off the work."
     },
     "cash_register": {
       "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
@@ -67,22 +67,22 @@
   },
   "instances": [
     { "id": "chair_repair", "kind": "dining_chair", "position": [-0.55, 0, -2.26], "rotationY": 3.1416, "faces": "repair" },
-    { "id": "chair_stitch", "kind": "dining_chair", "position": [1.55, 0, 0.55], "rotationY": 3.0616, "faces": "stitch" },
+    { "id": "chair_stitch", "kind": "dining_chair", "position": [1.55, 0, 0.72], "rotationY": 3.0616, "faces": "stitch" },
     { "id": "chair_finisher", "kind": "dining_chair", "position": [-3.48, 0, -1.05], "rotationY": -1.5708, "faces": "finisher" },
     { "id": "waiting_bench", "kind": "museum_bench", "position": [3.15, 0, 1.48], "rotationY": 1.5708 },
     { "id": "lamp_bench", "kind": "library_lamp", "position": [-1.85, 0.78, -3.1], "rotationY": 3.1416 },
-    { "id": "pend_stitch", "kind": "pendant_lamp", "position": [1.62, 2.52, -0.18], "rotationY": 0 },
+    { "id": "pend_stitch", "kind": "pendant_lamp", "position": [1.62, 2.52, 0.05], "rotationY": 0 },
     { "id": "pend_counter", "kind": "pendant_lamp", "position": [0.15, 2.46, 2.22], "rotationY": 0 },
     { "id": "jar_wax", "kind": "jam_jar", "position": [0.12, 0.78, -3.0], "rotationY": 0.4 },
     { "id": "jar_polish", "kind": "jam_jar", "position": [0.3, 0.78, -3.16], "rotationY": -0.2 },
     { "id": "jar_pegs", "kind": "jam_jar", "position": [-0.06, 0.78, -3.16], "rotationY": 0.8 },
-    { "id": "mug", "kind": "cup_mug", "position": [1.22, 0.76, -0.28], "rotationY": 0.5 },
+    { "id": "mug", "kind": "cup_mug", "position": [-1.55, 0.26, -3.12], "rotationY": 0.5 },
     { "id": "till", "kind": "cash_register", "position": [-0.72, 1.04, 2.16], "rotationY": 0 },
     { "id": "plant", "kind": "flowerpot", "position": [-4.62, 0, 3.22], "rotationY": 0.6 }
   ],
   "shell": {
-    "floorColor": "#c4a06e",
-    "floorAlt": "#b08a56",
+    "floorColor": "#cbb89a",
+    "floorAlt": "#cbb89a",
     "wallColor": "#f3eadf",
     "woodColor": "#6a4630",
     "ceilingColor": "#f6f0e6",
@@ -93,13 +93,13 @@
     "fogFar": 38
   },
   "camera": {
-    "fov": 40,
-    "position": [6.55, 2.72, 5.55],
-    "target": [-0.15, 1.05, -0.95]
+    "fov": 46,
+    "position": [2.6, 2.05, 3.7],
+    "target": [-0.2, 1.05, -1.5]
   },
   "cameraPresets": {
-    "corner": { "position": [6.9, 2.65, 1.35], "target": [-0.85, 1.05, -1.45] },
-    "close": { "position": [2.42, 1.2, 0.28], "target": [1.58, 0.86, -0.08] }
+    "corner": { "fov": 38, "position": [4.35, 1.75, 1.35], "target": [-0.55, 0.55, -1.5] },
+    "close": { "fov": 32, "position": [2.06, 0.84, 0.07], "target": [1.62, 0.82, 0.04] }
   },
   "lights": {
     "hemi": { "sky": 16775392, "ground": 9075272, "intensity": 0.72 },
@@ -114,7 +114,7 @@
     "fill": { "color": 14735320, "intensity": 0.24, "position": [-6.2, 3.6, 2.4], "target": [0, 1, 0] },
     "points": [
       { "color": 16768960, "intensity": 0.42, "distance": 3.2, "position": [-1.85, 1.32, -2.88] },
-      { "color": 16768960, "intensity": 0.36, "distance": 4.2, "position": [1.62, 2.2, -0.18] },
+      { "color": 16768960, "intensity": 0.36, "distance": 4.2, "position": [1.62, 2.2, 0.05] },
       { "color": 16768960, "intensity": 0.34, "distance": 4.0, "position": [0.15, 2.15, 2.22] },
       { "color": 16770240, "intensity": 0.22, "distance": 2.4, "position": [-4.05, 1.15, -1.05] }
     ]

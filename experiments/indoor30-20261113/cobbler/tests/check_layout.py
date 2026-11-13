@@ -154,6 +154,8 @@ def main():
         errors.append("bench lamp is below the bench top")
     if by_id["till"]["position"][1] < counter["h"] - 0.01:
         errors.append("till is below the counter top")
+    if by_id["mug"]["position"][1] > 0.45:
+        errors.append("mug sits on a work surface")
 
     for key, spec in layout["assets"].items():
         path = (SCENE / spec["glb"]).resolve()

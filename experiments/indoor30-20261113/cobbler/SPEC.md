@@ -5,7 +5,7 @@ Metres. Hard four-step toon by default (shadow stop 0.32). Unlit is `MeshBasicMa
 ## Zones
 
 1. **Repair** — bench at 0.78 m, drawers on the left, knee hole on the right, lasting jack, peg tray, tool rail. Dining chair faces −Z into the bench. Banker's lamp on the top, shade toward the sitter.
-2. **Stitch** — screw horse at 0.76 m with a clamped upper, spool, and awl. Dining chair faces the jaws. Mug on the wing.
+2. **Stitch** — screw horse at 0.76 m with a side-profile upper in the jaws. Dining chair faces the horse. The mug sits on the repair bench's lower shelf.
 3. **Finisher** — floor machine against the left wall. Motor, column, arm, wheel at about 0.9 m, pedal. Dining chair faces the wheel (−X).
 4. **Handoff** — counter at 1.04 m. Till faces +Z. Bell, ticket spike, finished pair, wrapped pairs on the shelf. Waiting bench on the open right, clear of the counter.
 5. **Wall** — last rack under the back window, ticket pigeonholes on the back right, tagged shoes on a freestanding rail. One apron on the left wall.
