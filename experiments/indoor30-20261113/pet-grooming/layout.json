@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "title": "Pet grooming salon",
+    "units": "metres",
+    "style": "Toon hard",
+    "animals": 0,
+    "distinctFrom": ["barber", "veterinary exam"],
+    "room": { "width": 12.4, "depth": 9.4, "height": 3.22 },
+    "notes": [
+      "Dry finish tables sit off the back wall. A raised wash tub and ramp occupy the wet corner. A two-by-two drying kennel and a stand dryer sit on the left.",
+      "Customers face the handoff counter. Groomers face their tables. The bather faces the tub. Pet gates are open leaves folded onto the rails so the aisles stay clear.",
+      "No animal figures. No barber chair and no exam lamp."
+    ]
+  },
+  "stations": {
+    "tableA": { "id": "table-a", "x": -2.2, "z": -2.62, "w": 1.24, "d": 0.64, "top": 0.88, "arm": -1 },
+    "tableB": { "id": "table-b", "x": 0.72, "z": -2.62, "w": 1.08, "d": 0.58, "top": 0.94, "arm": 1 },
+    "cart": { "x": -0.62, "z": -2.62, "w": 0.42, "d": 0.36, "h": 0.78 },
+    "tub": { "x": 4.15, "z": -3.15, "w": 1.36, "d": 0.74, "rim": 0.92 },
+    "ramp": { "x": 4.15, "z": -2.16, "w": 0.5, "d": 1.16, "y0": 0.78, "y1": 0.06 },
+    "kennel": { "x": -5.72, "z": -0.15, "w": 0.68, "d": 1.52, "h": 1.46 },
+    "dryer": { "x": -3.95, "z": -0.48, "w": 0.46, "d": 0.46, "h": 1.38 },
+    "cubby": { "x": -4.55, "z": -4.32, "w": 1.7, "d": 0.34, "h": 1.28 },
+    "counter": { "x": -1.55, "z": 2.72, "w": 2.3, "d": 0.66, "h": 1.04, "ledge": 0.52 },
+    "pier": { "x": 5.58, "z": -3.45, "w": 0.14, "d": 2.05, "h": 2.2 },
+    "boardA": { "x": -2.2, "z": -4.42, "w": 0.96, "d": 0.08, "h": 0.62, "y": 1.22 },
+    "boardB": { "x": 0.72, "z": -4.42, "w": 0.9, "d": 0.08, "h": 0.62, "y": 1.22 }
+  },
+  "barriers": [
+    { "id": "wall-west", "x": -2.82, "z": 1.05, "w": 6.46, "d": 0.1, "h": 0.78 },
+    { "id": "wall-east", "x": 1.9, "z": 1.05, "w": 0.7, "d": 0.1, "h": 0.78 },
+    { "id": "rail-join", "x": 2.22, "z": 0.76, "w": 0.1, "d": 0.62, "h": 0.74 },
+    { "id": "rail-left", "x": 2.71, "z": 0.42, "w": 0.92, "d": 0.1, "h": 0.74 },
+    { "id": "rail-right", "x": 4.92, "z": 0.42, "w": 1.28, "d": 0.1, "h": 0.74 },
+    { "id": "gate-leaf", "x": 0.02, "z": 1.05, "w": 0.92, "d": 0.06, "h": 0.76 },
+    { "id": "wash-leaf", "x": 4.58, "z": 0.42, "w": 0.68, "d": 0.06, "h": 0.72 }
+  ],
+  "openings": [
+    { "id": "floor-gate", "width": 0.98, "height": 0.78, "x0": 0.5, "x1": 1.48, "z": 1.05 },
+    { "id": "wash-gate", "width": 0.95, "height": 0.74, "x0": 3.25, "x1": 4.2, "z": 0.42 }
+  ],
+  "aisles": [
+    { "id": "spine", "x0": -1.45, "x1": 1.55, "z0": -1.22, "z1": 0.82 },
+    { "id": "entry", "x0": 0.55, "x1": 1.45, "z0": 1.28, "z1": 4.35 },
+    { "id": "dry", "x0": -5.22, "x1": -4.28, "z0": -0.85, "z1": 0.55 },
+    { "id": "wash", "x0": 2.4, "x1": 3.3, "z0": -1.3, "z1": 0.12 },
+    { "id": "link", "x0": 1.5, "x1": 2.45, "z0": -0.85, "z1": 0.15 }
+  ],
+  "facing": [
+    { "id": "chair_groom_a", "face": "negZ", "station": "tableA" },
+    { "id": "chair_groom_b", "face": "negZ", "station": "tableB" },
+    { "id": "chair_bather", "face": "posX", "station": "tub" },
+    { "id": "chair_staff", "face": "posZ", "station": "counter" },
+    { "id": "chair_guest_l", "face": "negZ", "station": "counter" },
+    { "id": "chair_guest_r", "face": "negZ", "station": "counter" }
+  ],
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.9,
+      "foot": [0.46, 0.5]
+    },
+    "simple_chair": {
+      "glb": "assets/simple_chair__a83a693ec68f.glb",
+      "targetHeight": 0.86,
+      "foot": [0.48, 0.5]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.5,
+      "foot": [0.46, 1.28]
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.58,
+      "foot": [0.72, 0.22]
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.36,
+      "foot": [0.28, 0.28]
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48,
+      "foot": [0.28, 0.28]
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.16,
+      "foot": [0.1, 0.1]
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.38,
+      "foot": [0.32, 0.32],
+      "tint": "#c4784a"
+    }
+  },
+  "instances": [
+    { "id": "chair_groom_a", "kind": "simple_chair", "position": [-2.2, 0, -1.72], "rotationY": 3.1416 },
+    { "id": "chair_groom_b", "kind": "simple_chair", "position": [0.72, 0, -1.72], "rotationY": 3.1416 },
+    { "id": "chair_bather", "kind": "simple_chair", "position": [2.82, 0, -3.05], "rotationY": -1.5708 },
+    { "id": "chair_staff", "kind": "dining_chair", "position": [-1.55, 0, 1.68], "rotationY": 0 },
+    { "id": "chair_guest_l", "kind": "dining_chair", "position": [-2.15, 0, 3.78], "rotationY": 3.1416 },
+    { "id": "chair_guest_r", "kind": "dining_chair", "position": [-0.95, 0, 3.78], "rotationY": 3.1416 },
+    { "id": "bench_wait", "kind": "museum_bench", "position": [3.45, 0, 3.28], "rotationY": 1.5708 },
+    { "id": "shelf_towels", "kind": "wall_shelf", "position": [-4.55, 1.48, -4.4], "rotationY": 0 },
+    { "id": "lamp_desk", "kind": "library_lamp", "position": [-0.85, 1.04, 2.58], "rotationY": 0 },
+    { "id": "pendant_a", "kind": "pendant_lamp", "position": [-2.2, 2.18, -2.62], "rotationY": 0 },
+    { "id": "pendant_b", "kind": "pendant_lamp", "position": [0.72, 2.18, -2.62], "rotationY": 0 },
+    { "id": "pendant_desk", "kind": "pendant_lamp", "position": [-1.55, 2.22, 2.72], "rotationY": 0 },
+    { "id": "jar_cubby_a", "kind": "jam_jar", "position": [-4.95, 1.28, -4.32], "rotationY": 0.3 },
+    { "id": "jar_cubby_b", "kind": "jam_jar", "position": [-4.15, 1.28, -4.32], "rotationY": -0.4 },
+    { "id": "jar_desk", "kind": "jam_jar", "position": [-1.15, 1.04, 2.9], "rotationY": 0.2 },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-5.45, 0, 4.15], "rotationY": 0.4 },
+    { "id": "pot_wait", "kind": "flowerpot", "position": [5.55, 0, 4.05], "rotationY": 1.1 }
+  ],
+  "shell": {
+    "floorColor": "#e6d3b4",
+    "wallColor": "#f6f1e8",
+    "woodColor": "#6a4632",
+    "ceilingColor": "#f7f3ea",
+    "clearColor": "#f4ecdf",
+    "fogColor": "#f4ecdf",
+    "fogNear": 20,
+    "fogFar": 46,
+    "aqua": "#2f8f86",
+    "steel": "#c5ced6",
+    "towel": "#c46b4a"
+  },
+  "camera": {
+    "fov": 42,
+    "position": [5.6, 4.15, 7.15],
+    "target": [0.2, 0.85, -0.85]
+  },
+  "cameraPresets": {
+    "corner": { "position": [-6.15, 3.45, 4.85], "target": [0.9, 0.85, -1.35] },
+    "close": { "position": [-0.7, 1.58, -1.85], "target": [-2.45, 1.12, -2.55] }
+  },
+  "lights": {
+    "hemi": { "sky": 16775370, "ground": 10122224, "intensity": 0.7 },
+    "key": { "color": 16773568, "intensity": 1.02, "position": [6.5, 12.5, 6.2] },
+    "fill": { "color": 15128772, "intensity": 0.42, "position": [-7, 7.5, 3] },
+    "points": [
+      { "color": 16769712, "intensity": 0.45, "position": [-2.2, 2.05, -2.62], "distance": 3.6, "decay": 2 },
+      { "color": 16769712, "intensity": 0.45, "position": [0.72, 2.05, -2.62], "distance": 3.6, "decay": 2 },
+      { "color": 16769712, "intensity": 0.4, "position": [-1.55, 2.15, 2.72], "distance": 4.2, "decay": 2 },
+      { "color": 15659759, "intensity": 0.34, "position": [4.15, 1.7, -2.6], "distance": 3.2, "decay": 2 },
+      { "color": 16769712, "intensity": 0.28, "position": [-4.6, 1.55, -0.4], "distance": 3.2, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "must_read": [
+      "A pet grooming salon: hydraulic tables with arms and loops, a raised tub with a ramp, a drying kennel and stand dryer, towel cubbies, and a customer handoff counter.",
+      "Groomers face the tables. Guests face the counter. The bather faces the tub.",
+      "Open pet gates leave a walking opening of at least 0.85 m. No animal figures."
+    ]
+  }
+}
