@@ -219,6 +219,17 @@ function makeShell(layout) {
   addBox(g, W, 0.1, D, ceil, 0, H - 0.05, 0, { shadow: 'receive' });
   addBox(g, W + 0.06, 0.18, 0.14, deep, 0, H - 0.12, D / 2 - 0.04, { shadow: 'cast' });
   addBox(g, 0.14, 0.18, D + 0.04, deep, W / 2 - 0.04, H - 0.12, 0, { shadow: 'cast' });
+
+  const rightX = W / 2;
+  const rightWall = addBox(g, 0.14, H, D, upper, rightX, H / 2, 0, { shadow: 'receive' });
+  rightWall.name = 'right-wall';
+  const innerR = rightX - 0.09;
+  beadRun(g, 'z', innerR - 0.02, -D / 2 + 0.35, D / 2 - 0.35, 0.5, 0.82);
+  addBox(g, 0.06, 0.06, D - 0.4, oak, innerR - 0.02, 0.96, 0.1, { shadow: 'cast' });
+  addCyl(g, 0.028, 0.028, D - 0.6, oak, innerR - 0.035, 1.02, 0.1, 12, { rotX: Math.PI / 2, shadow: 'cast' });
+  addBox(g, 0.04, 0.035, D - 0.5, brassMat, innerR - 0.015, 2.48, 0.05);
+  addBox(g, 0.02, 0.7, D - 0.45, warm, innerR - 0.005, 1.72, 0.05, { shadow: 'receive' });
+  addBox(g, 0.16, H, 0.16, deep, rightX - 0.02, H / 2, D / 2 - 0.02, { shadow: 'cast' });
   const beamY = H - 0.22;
   for (const z of [-2.7, -0.7, 1.3]) {
     addBox(g, W - 0.5, 0.16, 0.14, deep, -0.1, beamY, z, { shadow: 'cast' });

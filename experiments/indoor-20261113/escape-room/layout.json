@@ -212,8 +212,8 @@
   },
   "camera": {
     "fov": 42,
-    "position": [3.05, 2.02, 5.05],
-    "target": [1.2, 0.9, -1.4]
+    "position": [2.7, 2.28, 5.55],
+    "target": [1.35, 0.5, -1.2]
   },
   "cameraPresets": {
     "corner": {

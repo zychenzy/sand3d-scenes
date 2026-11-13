@@ -28,12 +28,21 @@ The shooter records console errors and network responses. It fails if a response
 
 What the frames are for:
 
-- Default: chart, wall slate, three cabinets, open lantern door, the full wheel panel, the clue table, the entry chest, and the floor path in one view.
+- Default: chart, wall slate, three cabinets, open lantern door, the full wheel panel, the clue table, the entry chest, the full compass rose, and the floor path in one view. The right edge is wall, not sky.
 - Corner: window desk, bench, and the long axis of the room.
 - Close: the chart type is large enough to read.
 - Unlit: the same default camera with lights ignored, so the palette has to carry the room.
 
 Findings from the rendered pass belong in the notes below this line once the shots exist.
+
+## Render notes, framing pass
+
+Shot again on 2026-11-13 after closing the right wall and reframing the entry camera. Same harness: headless Chrome, SwiftShader, 1600×1000, HUD hidden, `node shoot.mjs`. Zero console errors, zero failed responses, every request on `127.0.0.1:8813`. Default, corner, and close stayed on TOON. The fourth frame stayed on UNLIT (`MeshBasicMaterial`). Pixel samples along the right edge of default, corner, and unlit are plaster, oak, and beadboard. None are the sky clear color.
+
+- `toon_default`: the compass rose is fully in the lower left of the runner. The wheel panel (4, 8, 2, gear included), the cabinet bank, and the entry chest stay in frame. The right side is the new wall.
+- `toon_corner`: the former sky opening is beadboard and plaster. Slate text, cabinet doors, and all three wheels stay in view. The ceiling is still closed.
+- `toon_close`: unchanged. “TIDE LOCK”, Anchor 4, Gull 8, and Lantern 2 stay readable.
+- `unlit_default`: same camera as default. The right wall, rose, panel, and chest read from material color. No lighting model.
 
 ## Render notes, visual pass
 

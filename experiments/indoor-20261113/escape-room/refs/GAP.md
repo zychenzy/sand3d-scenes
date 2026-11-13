@@ -1,10 +1,15 @@
 # Gaps
 
+Framing pass after the third review:
+
+- The right wall is closed: plaster, beadboard, chair rail, and picture rail, with a timber jamb on the open front corner. Default, corner, and unlit no longer open onto empty sky. The roof stays shut.
+- The entry camera is pulled back and tilted down just enough that the whole compass rose sits in the frame with the wheel panel and the entry chest.
+
 Visual pass after the second review:
 
 - Floor boards use a narrow oak range and hairline gaps, so the staggered pattern sits under the runner, desks, and cabinets instead of reading as deck stripes.
-- A plaster ceiling closes the roof. Beams hang under it, and a timber fascia finishes the open +X and +Z edges. Sky still shows through the cutaway wall.
-- The entry camera includes the wheel panel, the cabinet bank, the clue table, and the entry chest. The compass rose is still clipped at the bottom edge of that frame.
+- A plaster ceiling closes the roof. Beams hang under it, and a timber fascia finishes the open front edge.
+- The entry camera includes the wheel panel, the cabinet bank, the clue table, the entry chest, and the full compass rose.
 - The keeper’s copy is a wall-hung slate: dark board, oak frame, chalk rail. The brown floor-stand GLB stays in the layout for the facing test and is hidden at runtime, because its silhouette is a wooden stand with a printed sheet.
 
 Refinement after the first review:
