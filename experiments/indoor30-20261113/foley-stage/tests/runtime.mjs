@@ -194,7 +194,7 @@ try {
         if (!(info.micDown?.[id] < -0.7)) pageProblems.push(`${id} down ${info.micDown?.[id]}`);
       }
       if (Math.abs(info.micDown?.mic_door ?? 1) > 0.35) pageProblems.push(`mic_door down ${info.micDown?.mic_door}`);
-      const expect = ['bar_stool', 'cup_mug', 'dining_chair', 'foley_shoe', 'foley_shoe_r', 'jam_jar', 'library_lamp', 'monitor', 'museum_bench', 'pendant_lamp', 'shotgun_mic', 'speaker', 'square_table', 'stage_door', 'study_desk', 'thermos', 'tray', 'water_basin'];
+      const expect = ['cup_mug', 'dining_chair', 'foley_shoe', 'foley_shoe_r', 'jam_jar', 'library_lamp', 'monitor', 'museum_bench', 'pendant_lamp', 'shotgun_mic', 'speaker', 'square_table', 'stage_door', 'study_desk', 'thermos', 'tray', 'water_basin'];
       for (const kind of expect) if (!info.loaded.includes(kind)) pageProblems.push(`missing kind ${kind}`);
     } else pageProblems.push('scene missing');
     for (const p of pageProblems) problems.push(`${name} ${p}`);

@@ -273,6 +273,11 @@ export async function boot(opts) {
     const node = proto.clone(true);
     node.position.set(inst.position[0], inst.position[1], inst.position[2]);
     if (inst.tint) recolor(node, inst.tint);
+    if (inst.kind === 'foley_shoe' || inst.kind === 'foley_shoe_r') {
+      node.traverse((obj) => {
+        if (obj.isMesh) obj.userData.noShadow = true;
+      });
+    }
     if (inst.aim) {
       const dir = new THREE.Vector3(...inst.aim).sub(node.position);
       if (dir.lengthSq() > 1e-8) node.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir.normalize());

@@ -9,7 +9,6 @@ Catalog meshes are existing Sandflow/sand3d-objaverse bakes (CC-BY-4.0), referen
 - **Speaker** (`music/assets/speaker__2db67686cd88.glb`, `objaverse-2db67686cd884068b5904b438844d525`) — by vovaustim. One cue speaker in the booth.
 - **Groveland square dining table** (`workshop/assets/square_table__7aaf2767b5f0.glb`, `objaverse-7aaf2767b5f04a80b49c950f0bdb918a`) — by allenbranch. Prop table.
 - **Modern ceiling lamp** (`workshop/assets/pendant_lamp__1b528c6ab04e.glb`) — by krolzuzannapl, https://sketchfab.com/3d-models/1b528c6ab04e42f990105db142cd71bd
-- **Bar stool** (`cafe/assets/bar_stool__319fcb56afe8.glb`) — "Bar stool lowpoly" by vaporclaws, https://sketchfab.com/3d-models/319fcb56afe845caae5464b129c99633
 - **Bench** (`museum/assets/museum_bench__0025f9484fc6.glb`, `objaverse-0025f9484fc64af29f59cf11a8beced7`) — by RookeyJerry. Shoe-change bench.
 - **Stylized coffee cup** (`cafe/assets/cup_mug__6da6f7f87b8d.glb`) — by n30hrtgdv, https://sketchfab.com/3d-models/6da6f7f87b8d4706a563331657d6b5c3
 - **Jam jar** (`cafe/assets/jam_jar__4e43eb29aa14.glb`) — by jwpthecoolguy2, https://sketchfab.com/3d-models/4e43eb29aa144bdbada1ec500d218a81
@@ -23,6 +22,6 @@ Baked in this folder (`programs/bake_foley_props.mjs`), original geometry, not O
 - `assets/stage_door.glb` — rolling stage door on casters, ajar, with a latch
 - `assets/water_basin.glb` — galvanized splash tub
 
-Pits, baffles, the cue booth, the picture screen, the pipe grid, the cloth rail, the thunder sheet, and the stair unit are procedural meshes in `foley.js`.
+Pits, baffles, the cue booth, the picture screen, the pipe grid, the cloth rail, the thunder sheet, the stair unit, the ceiling, and the four-leg work stool are procedural meshes in `foley.js`.
 
 Three.js r170 is the vendored build in `music/vendor/three.module.js`, imported, not copied.

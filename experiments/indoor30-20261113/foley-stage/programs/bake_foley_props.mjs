@@ -258,18 +258,28 @@ function packGlb(nodes) {
 
 function shotgun() {
   const alongZ = matRx(Math.PI / 2);
-  const metal = '#4a545c';
-  const grille = '#6d7a84';
-  const band = '#c2a36a';
+  const metal = '#5a656e';
+  const body = '#3e474e';
+  const slot = '#1c2226';
+  const grille = '#2a3136';
+  const band = '#c4a36a';
   const mount = '#8d97a0';
   const parts = [
-    part(cylinder(0.015, 0.015, 0.22, 14), alongZ, metal),
-    part(cylinder(0.017, 0.016, 0.05, 14), matMul(matT(0, 0, 0.125), alongZ), grille),
-    part(cylinder(0.0162, 0.0162, 0.008, 14), matMul(matT(0, 0, 0.035), alongZ), band),
-    part(cylinder(0.016, 0.011, 0.02, 12), matMul(matT(0, 0, -0.118), alongZ), '#3e474e'),
-    part(cylinder(0.028, 0.028, 0.012, 16), matMul(matT(0, 0, -0.02), alongZ), mount),
-    part(box(0.008, 0.058, 0.01), matT(0, 0, -0.02), mount),
+    part(cylinder(0.0115, 0.0115, 0.18, 12), matMul(matT(0, 0, 0.07), alongZ), metal),
+    part(cylinder(0.0155, 0.0155, 0.072, 12), matMul(matT(0, 0, -0.05), alongZ), body),
+    part(cylinder(0.0085, 0.0065, 0.026, 10), matMul(matT(0, 0, -0.096), alongZ), '#2a3034'),
+    part(cylinder(0.0122, 0.0095, 0.02, 12), matMul(matT(0, 0, 0.166), alongZ), grille),
+    part(cylinder(0.013, 0.013, 0.006, 12), matMul(matT(0, 0, 0.012), alongZ), band),
+    part(cylinder(0.024, 0.024, 0.01, 14), matMul(matT(0, 0, -0.028), alongZ), mount),
+    part(box(0.008, 0.046, 0.01), matT(0, 0, -0.028), mount),
   ];
+  for (let i = 0; i < 7; i++) {
+    const z = 0.028 + i * 0.018;
+    parts.push(part(box(0.004, 0.006, 0.007), matT(0.0105, 0, z), slot));
+    parts.push(part(box(0.004, 0.006, 0.007), matT(-0.0105, 0, z), slot));
+    parts.push(part(box(0.006, 0.004, 0.007), matT(0, 0.0105, z), slot));
+    parts.push(part(box(0.006, 0.004, 0.007), matT(0, -0.0105, z), slot));
+  }
   return [{ name: 'shotgun_mic', parts }];
 }
 
@@ -289,19 +299,23 @@ function shoe() {
 }
 
 function basin() {
-  const galv = '#8e9aa0';
-  const rim = '#6d7b82';
+  const galv = '#b7c2c6';
+  const wall = '#7d8b92';
+  const rim = '#3e484e';
   const innerW = 1.08;
   const innerD = 0.5;
-  const t = 0.04;
-  const h = 0.26;
+  const t = 0.045;
+  const h = 0.25;
   const parts = [
     part(box(innerW, 0.028, innerD), matT(0, 0.014, 0), galv),
-    part(box(t, h, innerD + t * 2), matT(-(innerW / 2 + t / 2), h / 2, 0), galv),
-    part(box(t, h, innerD + t * 2), matT(innerW / 2 + t / 2, h / 2, 0), galv),
-    part(box(innerW, h, t), matT(0, h / 2, -(innerD / 2 + t / 2)), galv),
-    part(box(innerW, h, t), matT(0, h / 2, innerD / 2 + t / 2), galv),
-    part(box(innerW + t * 2, 0.02, innerD + t * 2), matT(0, h + 0.004, 0), rim),
+    part(box(t, h, innerD + t * 2), matT(-(innerW / 2 + t / 2), h / 2, 0), wall),
+    part(box(t, h, innerD + t * 2), matT(innerW / 2 + t / 2, h / 2, 0), wall),
+    part(box(innerW, h, t), matT(0, h / 2, -(innerD / 2 + t / 2)), wall),
+    part(box(innerW, h, t), matT(0, h / 2, innerD / 2 + t / 2), wall),
+    part(box(innerW + 0.1, 0.03, 0.06), matT(0, h + 0.012, -(innerD / 2 + 0.02)), rim),
+    part(box(innerW + 0.1, 0.03, 0.06), matT(0, h + 0.012, innerD / 2 + 0.02), rim),
+    part(box(0.06, 0.03, innerD - 0.02), matT(-(innerW / 2 + 0.02), h + 0.012, 0), rim),
+    part(box(0.06, 0.03, innerD - 0.02), matT(innerW / 2 + 0.02, h + 0.012, 0), rim),
   ];
   return [{ name: 'water_basin', parts }];
 }

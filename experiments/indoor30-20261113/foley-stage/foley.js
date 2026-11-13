@@ -60,9 +60,9 @@ function gravelMap() {
 function waterMap() {
   const c = canvas(64, 64);
   const g = c.getContext('2d');
-  g.fillStyle = '#4ea3ab';
+  g.fillStyle = '#f3fffe';
   g.fillRect(0, 0, 64, 64);
-  g.strokeStyle = '#e7f4f4';
+  g.strokeStyle = '#b7e4e6';
   g.lineWidth = 2;
   g.beginPath();
   g.ellipse(32, 34, 20, 8, 0.15, 0, Math.PI * 2);
@@ -204,8 +204,9 @@ function makeShell(layout) {
   addBox(g, W, 0.1, 0.06, trim, 0, 0.05, -D / 2 + 0.08);
   addBox(g, 0.06, 0.1, D, trim, -W / 2 + 0.08, 0.05, 0);
 
-  const soffit = addBox(g, 6.6, 0.08, 2.5, toon(s.ceiling), -4.4, H - 0.06, -4.6);
-  quiet(soffit, { noShadow: true });
+  const ceiling = addBox(g, W + 1.8, 0.06, D + 1.8, toon(s.ceiling), 0.9, H - 0.03, 0.9);
+  ceiling.name = 'ceiling';
+  quiet(ceiling, { noShadow: true });
 
   baffles(g, layout);
   pits(g, layout);
@@ -243,8 +244,8 @@ function baffles(g, layout) {
   const cloth = toon(s.baffleB);
   [[-3.2, 0.4], [-0.6, -0.5], [1.9, 0.7], [3.4, 2.6]].forEach(([x, z], i) => {
     const y = 4.05;
-    addBox(g, 0.08, 0.55, 0.9, cloth, x, y, z);
-    addBox(g, 0.04, 0.08, 0.96, toon(s.trim), x, y + 0.26, z);
+    quiet(addBox(g, 0.08, 0.55, 0.9, cloth, x, y, z), { noShadow: true });
+    quiet(addBox(g, 0.04, 0.08, 0.96, toon(s.trim), x, y + 0.26, z), { noShadow: true });
     quiet(addCyl(g, 0.006, 0.006, 0.28, toon(s.pipe), x, 4.36, z, 6), { noShadow: true });
   });
 }
@@ -405,8 +406,8 @@ function shoeRacks(g, layout) {
   const wood = toon(s.trim);
   const shelfMat = toon(s.woodA);
   for (const bz of spec.bays) {
-    addBox(g, 0.04, 2.05, 0.04, wood, spec.x - 0.16, 1.02, bz - 0.48);
-    addBox(g, 0.04, 2.05, 0.04, wood, spec.x - 0.16, 1.02, bz + 0.48);
+    quiet(addBox(g, 0.04, 2.05, 0.04, wood, spec.x - 0.16, 1.02, bz - 0.48), { cast: false });
+    quiet(addBox(g, 0.04, 2.05, 0.04, wood, spec.x - 0.16, 1.02, bz + 0.48), { cast: false });
     for (const y of spec.shelves) {
       const shelf = addBox(g, 0.36, 0.025, 1.05, shelfMat, spec.x - 0.02, y - 0.02, bz);
       quiet(shelf, { cast: false });
@@ -419,24 +420,47 @@ function shoeRacks(g, layout) {
 function pipeGrid(g, layout) {
   const pipe = toon(layout.shell.pipe);
   const metal = toon(layout.shell.metal);
-  addBox(g, 8.2, 0.04, 0.04, pipe, -0.4, 3.56, 0.2);
-  addBox(g, 0.04, 0.04, 2.4, pipe, -2.7, 3.56, 0.45);
-  addBox(g, 0.04, 0.04, 2.4, pipe, -0.4, 3.56, 0.48);
-  addBox(g, 0.04, 0.04, 2.4, pipe, 1.7, 3.56, 0.45);
+  const cable = toon('#2c3338');
+  const pits = layout.mics.filter((m) => m.role === 'pit');
+  const xs = pits.map((m) => m.anchor[0]);
+  const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
+  quiet(addBox(g, Math.max(...xs) - Math.min(...xs) + 0.8, 0.035, 0.035, pipe, midX, 3.56, 0.55), { noShadow: true });
+  for (const mic of pits) {
+    quiet(addBox(g, 0.035, 0.035, 2.1, pipe, mic.anchor[0], mic.anchor[1], mic.anchor[2] - 0.35), { noShadow: true });
+  }
   for (const mic of layout.mics) {
     if (!mic.suspend) {
-      rod(g, mic.anchor, mic.capsule, 0.008, metal);
+      quiet(rod(g, mic.anchor, mic.capsule, 0.008, metal), { noShadow: true });
       continue;
     }
-    rod(g, mic.anchor, mic.capsule, 0.008, metal);
-    addCyl(g, 0.012, 0.012, 0.04, pipe, mic.anchor[0], mic.anchor[1], mic.anchor[2], 6);
+    quiet(rod(g, mic.anchor, mic.capsule, 0.007, metal), { noShadow: true });
+    const drop = [mic.anchor[0] + 0.025, mic.anchor[1] - 0.12, mic.anchor[2] + 0.02];
+    const tail = [mic.capsule[0] + 0.018, mic.capsule[1] + 0.015, mic.capsule[2] + 0.015];
+    quiet(rod(g, drop, tail, 0.0035, cable), { noShadow: true });
+    quiet(addCyl(g, 0.012, 0.012, 0.04, pipe, mic.anchor[0], mic.anchor[1], mic.anchor[2], 6), { noShadow: true });
   }
   const talk = layout.mics.find((m) => m.role === 'talkback');
-  addBox(g, 0.08, 0.02, 0.1, toon(layout.shell.trim), talk.anchor[0], talk.anchor[1], talk.anchor[2]);
+  quiet(addBox(g, 0.08, 0.02, 0.1, toon(layout.shell.trim), talk.anchor[0], talk.anchor[1], talk.anchor[2]), { noShadow: true });
+}
+
+function workStool(g, layout) {
+  const s = layout.shell;
+  const x = 3.1;
+  const z = 4.2;
+  const seat = 0.48;
+  quiet(addBox(g, 0.36, 0.04, 0.36, toon(s.woodB), x, seat, z), { cast: false });
+  for (const sx of [-0.14, 0.14]) {
+    for (const sz of [-0.14, 0.14]) {
+      quiet(addBox(g, 0.035, seat, 0.035, toon(s.trim), x + sx, seat / 2, z + sz), { cast: false });
+    }
+  }
+  quiet(addBox(g, 0.3, 0.025, 0.03, toon(s.trim), x, 0.18, z - 0.14), { noShadow: true });
+  quiet(addBox(g, 0.3, 0.025, 0.03, toon(s.trim), x, 0.18, z + 0.14), { noShadow: true });
 }
 
 function propDressing(g, layout) {
   const s = layout.shell;
+  workStool(g, layout);
   const stairs = layout.built.stairs;
   const [sx, sz] = stairs.center;
   const stepW = stairs.size[0];
@@ -486,20 +510,21 @@ function propDressing(g, layout) {
 
   const basin = layout.instances.find((i) => i.id === 'basin');
   const water = new THREE.Mesh(
-    new THREE.BoxGeometry(0.96, 0.045, 0.4),
-    toon('#ffffff', { map: waterMap(), transparent: true, opacity: 0.92 })
+    new THREE.BoxGeometry(0.98, 0.05, 0.42),
+    toon('#ffffff', { map: waterMap(), transparent: true, opacity: 0.94 })
   );
   water.material.color.set(s.water);
-  water.position.set(basin.position[0], 0.15, basin.position[2]);
+  water.position.set(basin.position[0], 0.235, basin.position[2]);
   water.rotation.y = basin.rotationY || 0;
   water.name = 'basin-water';
   quiet(water, { cast: false });
   g.add(water);
 
   const waterMic = layout.mics.find((m) => m.role === 'water');
-  addBox(g, 0.28, 0.02, 0.08, toon(s.trim), waterMic.aim[0] + 0.42, 0.02, waterMic.aim[2] + 0.15);
-  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.28, 0.07), toon('#ffffff', { map: labelMap('WATER') }));
-  face.position.set(waterMic.aim[0], 0.2, waterMic.aim[2] + 0.32);
+  addBox(g, 0.34, 0.012, 0.08, toon(s.trim), waterMic.aim[0], 0.3, waterMic.aim[2] + 0.4);
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.08), toon('#ffffff', { map: labelMap('WATER') }));
+  face.position.set(waterMic.aim[0], 0.36, waterMic.aim[2] + 0.4);
+  face.rotation.z = Math.PI;
   quiet(face, { noShadow: true });
   g.add(face);
 
