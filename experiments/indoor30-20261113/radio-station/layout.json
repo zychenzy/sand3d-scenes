@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "title": "KCOM community radio — live on-air desk",
+    "units": "metres",
+    "style": "Toon hard stepped",
+    "room": { "width": 10.4, "depth": 7.8, "height": 3.12 },
+    "zones": [
+      {
+        "id": "on-air",
+        "blurb": "Host faces two guests across a broadcast desk. Boom mics, channel mixer, cart cues, and the news clock sit in the host's sightline."
+      },
+      {
+        "id": "producer",
+        "blurb": "Control nook behind a wood-framed window. The producer faces the glass, the talent, and the cue monitors."
+      }
+    ],
+    "notes": [
+      "Station operations, not a music rehearsal and not a podcast conversation table.",
+      "Seat yaw comes from lookAt via orient.js. Swivel chairs, monitors, and speakers face local +Z at yaw 0.",
+      "The aisle at x=-1.9 stays clear from the open front to the host chair. The producer door is the gap in the partition."
+    ]
+  },
+  "assets": {
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.32
+    },
+    "speaker": {
+      "glb": "../../../music/assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.15
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.78
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.42
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.34
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.36
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    }
+  },
+  "instances": [
+    {
+      "id": "host",
+      "kind": "swivel",
+      "role": "seat",
+      "zone": "on-air",
+      "modelForward": "posZ",
+      "position": [-1.9, 0, 0.18],
+      "lookAt": [-1.9, -1.3]
+    },
+    {
+      "id": "guest_l",
+      "kind": "swivel",
+      "role": "seat",
+      "zone": "on-air",
+      "modelForward": "posZ",
+      "position": [-2.7, 0, -2.72],
+      "lookAt": [-1.9, -1.2]
+    },
+    {
+      "id": "guest_r",
+      "kind": "swivel",
+      "role": "seat",
+      "zone": "on-air",
+      "modelForward": "posZ",
+      "position": [-1.1, 0, -2.72],
+      "lookAt": [-1.9, -1.2]
+    },
+    {
+      "id": "producer",
+      "kind": "swivel",
+      "role": "seat",
+      "zone": "producer",
+      "modelForward": "posZ",
+      "position": [3.52, 0, -0.92],
+      "lookAt": [1.1, -0.92]
+    },
+    {
+      "id": "mon_host",
+      "kind": "monitor",
+      "zone": "on-air",
+      "modelForward": "posZ",
+      "position": [-1.12, 0.74, -1.48],
+      "lookAt": [-1.9, 0.18]
+    },
+    {
+      "id": "mon_prod_l",
+      "kind": "monitor",
+      "zone": "producer",
+      "modelForward": "posZ",
+      "position": [1.88, 0.74, -1.05],
+      "lookAt": [3.52, -0.92]
+    },
+    {
+      "id": "mon_prod_r",
+      "kind": "monitor",
+      "zone": "producer",
+      "modelForward": "posZ",
+      "position": [1.88, 0.74, -0.75],
+      "lookAt": [3.52, -0.92]
+    },
+    {
+      "id": "spk_l",
+      "kind": "speaker",
+      "zone": "producer",
+      "modelForward": "posZ",
+      "position": [1.7, 0.74, -1.22],
+      "lookAt": [3.52, -0.92]
+    },
+    {
+      "id": "spk_r",
+      "kind": "speaker",
+      "zone": "producer",
+      "modelForward": "posZ",
+      "position": [1.7, 0.74, -0.58],
+      "lookAt": [3.52, -0.92]
+    },
+    {
+      "id": "shelf_l",
+      "kind": "wall_shelf",
+      "position": [-3.35, 1.28, -3.62],
+      "rotationY": 0
+    },
+    {
+      "id": "shelf_r",
+      "kind": "wall_shelf",
+      "position": [-0.42, 1.28, -3.62],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_a",
+      "kind": "pendant_lamp",
+      "position": [-2.45, 2.22, -1.15],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pendant_b",
+      "kind": "pendant_lamp",
+      "position": [-1.25, 2.22, -1.45],
+      "rotationY": -0.3
+    },
+    {
+      "id": "mug_host",
+      "kind": "cup_mug",
+      "position": [-1.42, 0.74, -0.92],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug_guest",
+      "kind": "cup_mug",
+      "position": [-2.45, 0.74, -1.82],
+      "rotationY": -0.6
+    },
+    {
+      "id": "mug_prod",
+      "kind": "cup_mug",
+      "position": [2.55, 0.74, -0.7],
+      "rotationY": 0.8
+    },
+    {
+      "id": "lamp_prod",
+      "kind": "library_lamp",
+      "position": [2.58, 0.74, -1.12],
+      "rotationY": -0.6
+    },
+    {
+      "id": "thermos",
+      "kind": "thermos",
+      "position": [0.42, 0.72, 2.55],
+      "rotationY": 0.3
+    },
+    {
+      "id": "plant_window",
+      "kind": "flowerpot",
+      "position": [-4.55, 0, -3.15],
+      "rotationY": 0.4
+    },
+    {
+      "id": "plant_entry",
+      "kind": "flowerpot",
+      "position": [-4.55, 0, 2.85],
+      "rotationY": 0.1
+    }
+  ],
+  "mics": [
+    {
+      "id": "mic_host",
+      "seat": "host",
+      "mouth": [-1.9, 1.07, -0.14],
+      "capsule": [-1.9, 1.11, -0.5],
+      "base": [-1.9, 0.74, -0.86]
+    },
+    {
+      "id": "mic_guest_l",
+      "seat": "guest_l",
+      "mouth": [-2.551, 1.07, -2.437],
+      "capsule": [-2.383, 1.11, -2.118],
+      "base": [-2.42, 0.74, -1.9]
+    },
+    {
+      "id": "mic_guest_r",
+      "seat": "guest_r",
+      "mouth": [-1.249, 1.07, -2.437],
+      "capsule": [-1.417, 1.11, -2.118],
+      "base": [-1.38, 0.74, -1.9]
+    },
+    {
+      "id": "mic_producer",
+      "seat": "producer",
+      "mouth": [3.2, 1.07, -0.92],
+      "capsule": [2.84, 1.11, -0.92],
+      "base": [2.62, 0.74, -0.92]
+    }
+  ],
+  "built": {
+    "desk": { "position": [-1.9, 0, -1.38], "size": [2.24, 0.74, 1.24] },
+    "producerDesk": { "position": [2.22, 0, -0.92], "size": [1.24, 0.74, 0.64] },
+    "mixer": { "position": [-2.18, 0.74, -1.28], "size": [1.02, 0.1, 0.46] },
+    "controls": {
+      "channels": 8,
+      "faderCap": [0.016, 0.02, 0.011],
+      "knobRadius": 0.01,
+      "knobHeight": 0.012,
+      "button": [0.011, 0.007, 0.011]
+    },
+    "partition": { "x": 1.08, "z0": -3.72, "z1": 2.42, "door": [1.42, 2.28], "glassY": [0.92, 2.52] },
+    "clock": { "position": [-1.9, 2.28, -3.76], "radius": 0.36 },
+    "cues": [
+      { "id": "standby", "label": "STBY", "color": "#e0b15a" },
+      { "id": "on-air", "label": "ON AIR", "color": "#e23b3b" },
+      { "id": "record", "label": "REC", "color": "#d24b45" }
+    ],
+    "phoneTable": { "position": [0.42, 0, 2.55], "size": [0.62, 0.72, 0.46] },
+    "cartRack": { "position": [-3.15, 0, 1.85], "size": [0.42, 0.92, 0.5] },
+    "rack": { "position": [3.15, 0, -3.42], "size": [0.7, 1.55, 0.38] }
+  },
+  "paths": {
+    "aisle": [[-1.9, 1.05], [-1.9, 1.6], [-1.9, 2.2], [-1.9, 2.8], [-1.9, 3.4]],
+    "toProducer": [[-1.2, 1.85], [0.4, 1.85], [1.08, 1.85], [2.15, 1.5], [3.05, 0.2], [3.15, -0.15]],
+    "clearance": 0.42
+  },
+  "obstacles": [
+    { "id": "desk", "min": [-3.02, -2.0], "max": [-0.78, -0.76] },
+    { "id": "producerDesk", "min": [1.6, -1.24], "max": [2.84, -0.6] },
+    { "id": "partition", "min": [1.02, -3.72], "max": [1.16, 1.42] },
+    { "id": "phoneTable", "min": [0.11, 2.32], "max": [0.73, 2.78] },
+    { "id": "cartRack", "min": [-3.35, 1.58], "max": [-2.85, 2.12] },
+    { "id": "rack", "min": [2.8, -3.61], "max": [3.5, -3.23] }
+  ],
+  "shell": {
+    "floorColor": "#c4a078",
+    "wallColor": "#f3ecdf",
+    "woodColor": "#8d5a38",
+    "woodLight": "#c4a27a",
+    "ceilingColor": "#f7f3ec",
+    "panelColor": "#8e3d45",
+    "rugField": "#f0e2d2",
+    "rugEdge": "#7d3040",
+    "producerRug": "#6d7c86",
+    "clearColor": "#e7d7c4",
+    "fogColor": "#e7d7c4",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 54,
+    "position": [0.1, 1.58, 2.1],
+    "target": [0.05, 1.02, -1.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 46,
+      "position": [4.35, 1.92, 2.15],
+      "target": [-1.35, 1.02, -1.25]
+    },
+    "close": {
+      "fov": 34,
+      "position": [-1.45, 1.14, -0.15],
+      "target": [-2.15, 0.84, -1.3]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16774356, "ground": 10061778, "intensity": 0.48 },
+    "key": {
+      "color": 16774880,
+      "intensity": 1.35,
+      "position": [3.6, 7.4, 4.8],
+      "target": [-1.3, 0.8, -1.2],
+      "shadow": {
+        "mapSize": 2048,
+        "near": 0.6,
+        "far": 24,
+        "left": -6.5,
+        "right": 6.5,
+        "top": 6.5,
+        "bottom": -6.5,
+        "bias": -0.0004,
+        "normalBias": 0.04
+      }
+    },
+    "fill": { "color": 13032164, "intensity": 0.2, "position": [-5.2, 3.8, 1.2] },
+    "points": [
+      { "color": 16769956, "intensity": 0.55, "distance": 4.8, "decay": 2, "position": [-1.9, 2.35, -1.25] },
+      { "color": 16769188, "intensity": 0.4, "distance": 3.4, "decay": 2, "position": [2.5, 1.35, -1.05] }
+    ]
+  }
+}
