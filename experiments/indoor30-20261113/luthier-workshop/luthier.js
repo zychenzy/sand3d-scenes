@@ -98,6 +98,12 @@ function addMesh(g, geo, mat, x, y, z) {
   return m;
 }
 
+function offsetHole(shape, ox, oy, sx, sy) {
+  const pts = shape.getPoints(16).map((p) => new THREE.Vector2(ox + p.x * sx, oy + p.y * sy));
+  pts.reverse();
+  return new THREE.Path(pts);
+}
+
 function fHoleShape() {
   const s = new THREE.Shape();
   s.moveTo(0, -0.05);
@@ -119,17 +125,50 @@ function buildInstrument(kind, opts = {}) {
   const edgeMat = opts.varnished ? varnishDeep() : maple();
   const open = !!opts.open;
 
-  if (open) {
-    const outer = plateShape(samples, 0);
-    outer.holes.push(new THREE.Path(smoothClosed(samples, kind === 'guitar' ? 0.016 : 0.011).reverse()));
-    const ribs = addMesh(g, extrude(`${kind}-ribs`, outer, depth), edgeMat, 0, 0, -depth / 2);
-    ribs.castShadow = true;
-    for (const [x, y] of [[0, -0.15], [0, 0.15], [-0.07, -0.03], [0.07, -0.03], [-0.06, 0.05], [0.06, 0.05]]) {
-      addBox(g, 0.028, 0.032, depth * 0.7, walnut(), x, y, 0);
+  if (opts.plate && kind === 'violin') {
+    const top = plateShape(VIOLIN, 0);
+    for (const side of [-1, 1]) {
+      top.holes.push(offsetHole(fHoleShape(), side * 0.04, 0.006, side * 1.7, 1.45));
     }
-    const tag = addMesh(g, new THREE.PlaneGeometry(0.07, 0.04), labelMat('REPAIR', '#f4e7c8', '#4a3018', 256, 128), 0, -0.02, 0.002);
-    tag.castShadow = false;
-    tag.userData.noShadow = true;
+    addMesh(g, extrude('violin-loose-top', top, 0.008), spruce(), 0, 0, 0);
+    const purf = plateShape(VIOLIN, 0.008);
+    purf.holes.push(new THREE.Path(smoothClosed(VIOLIN, 0.014).reverse()));
+    const purfle = addMesh(g, extrude('violin-purfle', purf, 0.003), toon('#9a704c'), 0, 0, 0.008);
+    purfle.castShadow = false;
+    purfle.userData.noShadow = true;
+    const fMat = toon('#2f241c', { side: THREE.DoubleSide });
+    for (const side of [-1, 1]) {
+      const hole = addMesh(g, extrude(`fhole-loose-${side}`, fHoleShape(), 0.012), fMat, side * 0.04, 0.006, 0.004);
+      hole.scale.set(side * 1.7, 1.45, 1);
+      addCyl(g, 0.011, 0.011, 0.01, fMat, side * 0.038, 0.078, 0.012, 8);
+      addCyl(g, 0.01, 0.01, 0.01, fMat, side * 0.046, -0.055, 0.012, 8);
+    }
+    addBox(g, 0.016, 0.16, 0.014, toon('#e7c48a'), -0.02, 0.01, 0.016);
+    return g;
+  }
+
+  if (open) {
+    const ribDepth = kind === 'guitar' ? depth : 0.052;
+    const outer = plateShape(samples, 0);
+    outer.holes.push(new THREE.Path(smoothClosed(samples, kind === 'guitar' ? 0.018 : 0.016).reverse()));
+    const ribs = addMesh(g, extrude(`${kind}-ribs-b`, outer, ribDepth), toon('#f2d7ae'), 0, 0, -ribDepth / 2);
+    ribs.castShadow = true;
+    const back = plateShape(samples, kind === 'guitar' ? 0.014 : 0.012);
+    addMesh(g, extrude(`${kind}-back-b`, back, 0.007), spruce(), 0, 0, -ribDepth / 2 + 0.001);
+    const lining = plateShape(samples, kind === 'guitar' ? 0.012 : 0.01);
+    lining.holes.push(new THREE.Path(smoothClosed(samples, kind === 'guitar' ? 0.022 : 0.02).reverse()));
+    const lip = addMesh(g, extrude(`${kind}-lining-b`, lining, 0.006), toon('#f7e6c4'), 0, 0, ribDepth / 2 - 0.005);
+    lip.castShadow = false;
+    lip.userData.noShadow = true;
+    const blocks = kind === 'guitar'
+      ? [[0, -0.2, 0.05, 0.04], [0, 0.18, 0.046, 0.036]]
+      : [[0, -0.152, 0.042, 0.032], [0, 0.148, 0.038, 0.03], [-0.078, -0.032, 0.03, 0.026], [0.078, -0.032, 0.03, 0.026], [-0.06, 0.05, 0.028, 0.024], [0.06, 0.05, 0.028, 0.024]];
+    for (const [bx, by, bw, bh] of blocks) {
+      addBox(g, bw, bh, ribDepth * 0.72, toon('#c49255'), bx, by, -0.002);
+    }
+    if (kind === 'violin') {
+      addCyl(g, 0.006, 0.006, ribDepth * 0.7, toon('#e8d2a4'), 0.02, -0.01, -0.004, 6);
+    }
   } else {
     const topShape = plateShape(samples, 0.001);
     if (kind === 'guitar') {
@@ -165,10 +204,21 @@ function buildInstrument(kind, opts = {}) {
   const neckLen = kind === 'guitar' ? 0.46 : 0.145;
   const neckY = (kind === 'guitar' ? 0.228 : 0.176) + neckLen / 2;
   const neckW = kind === 'guitar' ? 0.028 : 0.016;
-  addBox(g, neckW, neckLen, kind === 'guitar' ? 0.02 : 0.014, maple(), 0, neckY, depth * 0.15);
+  const zNeck = (open && kind === 'violin') ? 0.014 : depth * 0.15;
+  const zFace = (open && kind === 'violin') ? 0.032 : depth / 2;
+  addBox(g, neckW, neckLen, kind === 'guitar' ? 0.02 : 0.014, maple(), 0, neckY, zNeck);
   const boardLen = neckLen + (kind === 'guitar' ? 0.08 : 0.1);
   const boardY = (kind === 'guitar' ? 0.2 : 0.15) + boardLen / 2 - 0.02;
-  addBox(g, kind === 'guitar' ? 0.03 : 0.016, boardLen, 0.006, ebony(), 0, boardY, depth / 2 + 0.004);
+  addBox(
+    g,
+    kind === 'guitar' ? 0.03 : (open ? 0.014 : 0.016),
+    open ? neckLen * 0.72 : boardLen,
+    open ? 0.005 : 0.006,
+    open ? toon('#5a4638') : ebony(),
+    0,
+    open ? (kind === 'guitar' ? 0.3 : 0.22) : boardY,
+    zFace + 0.006,
+  );
   if (kind === 'guitar') {
     for (let i = 0; i < 8; i++) {
       addBox(g, 0.028, 0.003, 0.003, brass(), 0, 0.26 + i * 0.045, depth / 2 + 0.008);
@@ -176,12 +226,13 @@ function buildInstrument(kind, opts = {}) {
   }
 
   const nutY = (kind === 'guitar' ? 0.228 : 0.176) + neckLen;
-  addBox(g, kind === 'guitar' ? 0.032 : 0.018, 0.008, 0.008, paper(), 0, nutY, depth / 2 + 0.006);
+  addBox(g, kind === 'guitar' ? 0.032 : 0.018, 0.008, 0.008, paper(), 0, nutY, zFace + 0.006);
   const headH = kind === 'guitar' ? 0.11 : 0.07;
-  addBox(g, kind === 'guitar' ? 0.04 : 0.02, headH, 0.012, maple(), 0, nutY + headH / 2, depth * 0.1);
+  addBox(g, kind === 'guitar' ? 0.04 : 0.02, headH, 0.012, maple(), 0, nutY + headH / 2, (open && kind === 'violin') ? 0.012 : depth * 0.1);
   if (kind === 'violin') {
-    const scroll = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.0065, 6, 16, Math.PI * 1.5), maple());
-    scroll.position.set(0.002, nutY + headH + 0.004, 0.004);
+    const scrollR = open ? 0.026 : 0.016;
+    const scroll = new THREE.Mesh(new THREE.TorusGeometry(scrollR, open ? 0.008 : 0.0065, 6, 16, Math.PI * 1.5), maple());
+    scroll.position.set(0.002, nutY + headH + (open ? 0.01 : 0.004), 0.004);
     scroll.castShadow = true;
     g.add(scroll);
     for (const side of [-1, 1]) {
@@ -245,7 +296,7 @@ function cradle(g, x, z, topY, length, width, matWood, matFelt) {
   const ribCount = 7;
   for (let i = 0; i < ribCount; i++) {
     const tz = -length / 2 + (length * i) / (ribCount - 1);
-    const arc = new THREE.Mesh(new THREE.TorusGeometry(width * 0.46, 0.011, 6, 16, Math.PI), matFelt);
+    const arc = new THREE.Mesh(new THREE.TorusGeometry(width * 0.46, 0.02, 6, 14, Math.PI), matFelt);
     arc.rotation.z = Math.PI;
     arc.rotation.y = Math.PI / 2;
     arc.position.set(0, width * 0.42, tz);
@@ -297,19 +348,30 @@ function makeShell(layout) {
   g.name = 'shell';
   const { width: W, depth: D, height: H } = layout.meta.room;
   const s = layout.shell;
-  const floorMat = toon(s.floorColor);
-  const alt = toon('#c9ae84');
+  const floorMat = toon('#d4c0a2');
+  const seamMat = toon('#cbb89a');
   const wallMat = toon(s.wallColor);
   const wood = toon(s.woodColor);
   const woodDeep = walnutDeep();
 
   const floor = addBox(g, W, 0.08, D, floorMat, 0, -0.04, 0);
   noCast(floor, true);
-  const plankN = Math.round((D - 0.2) / 0.18);
+  const plankStep = 0.32;
+  const plankN = Math.ceil((D - 0.08) / plankStep);
+  const plankGeo = new THREE.PlaneGeometry(W - 0.16, plankStep - 0.01);
+  const seamGeo = new THREE.PlaneGeometry(W - 0.16, 0.008);
   for (let i = 0; i < plankN; i++) {
-    const z = -D / 2 + 0.16 + i * 0.18;
-    const plank = addBox(g, W - 0.28, 0.01, 0.16, i % 2 ? alt : floorMat, 0, 0.006, z);
+    const z = -D / 2 + plankStep * 0.5 + i * plankStep;
+    const plank = new THREE.Mesh(plankGeo, floorMat);
+    plank.rotation.x = -Math.PI / 2;
+    plank.position.set(0, 0.006, z);
     noCast(plank, true);
+    g.add(plank);
+    const seam = new THREE.Mesh(seamGeo, seamMat);
+    seam.rotation.x = -Math.PI / 2;
+    seam.position.set(0, 0.007, z + plankStep / 2);
+    noCast(seam, true);
+    g.add(seam);
   }
 
   const back = addBox(g, W, H, 0.14, wallMat, 0, H / 2, -D / 2);
@@ -330,15 +392,22 @@ function makeShell(layout) {
   addBox(g, wallT, H - winY1, winZ1 - winZ0, wallMat, leftX, (H + winY1) / 2, (winZ0 + winZ1) / 2);
   g.children.slice(-4).forEach((mesh) => { mesh.castShadow = false; mesh.userData.noShadow = true; mesh.userData.receiveShadow = true; });
 
-  const glass = addBox(g, 0.02, winY1 - winY0 - 0.08, winZ1 - winZ0 - 0.08, toon('#d5e4ef', {
-    transparent: true, opacity: 0.28, emissive: '#d7e7f4', emissiveIntensity: 0.35, side: THREE.DoubleSide, depthWrite: false,
-  }), leftX + 0.02, (winY0 + winY1) / 2, (winZ0 + winZ1) / 2);
+  const winW = winZ1 - winZ0;
+  const winH = winY1 - winY0;
+  const winC = (winZ0 + winZ1) / 2;
+  const winMidY = (winY0 + winY1) / 2;
+  const frameX = -5.47;
+  const frame = toon('#a07a56');
+  const glass = addBox(g, 0.02, winH - 0.1, winW - 0.1, toon('#c5cfc8', {
+    transparent: true, opacity: 0.78, emissive: '#d5ddd8', emissiveIntensity: 0.06, side: THREE.DoubleSide, depthWrite: false,
+  }), frameX - 0.03, winMidY, winC);
   noCast(glass);
-  for (let i = 0; i < 3; i++) {
-    addBox(g, 0.04, winY1 - winY0, 0.04, wood, leftX + 0.04, (winY0 + winY1) / 2, winZ0 + ((winZ1 - winZ0) * i) / 2);
-  }
-  addBox(g, 0.04, 0.05, winZ1 - winZ0, wood, leftX + 0.04, winY0, (winZ0 + winZ1) / 2);
-  addBox(g, 0.04, 0.05, winZ1 - winZ0, wood, leftX + 0.04, winY1, (winZ0 + winZ1) / 2);
+  noCast(addBox(g, 0.04, winH, 0.05, frame, frameX, winMidY, winZ0 + 0.03));
+  noCast(addBox(g, 0.04, winH, 0.05, frame, frameX, winMidY, winZ1 - 0.03));
+  noCast(addBox(g, 0.04, 0.05, winW, frame, frameX, winY0 + 0.03, winC));
+  noCast(addBox(g, 0.04, 0.05, winW, frame, frameX, winY1 - 0.03, winC));
+  noCast(addBox(g, 0.028, winH - 0.1, 0.032, frame, frameX + 0.012, winMidY, winC));
+  noCast(addBox(g, 0.028, 0.032, winW - 0.1, frame, frameX + 0.012, winMidY, winC));
 
   const innerB = -D / 2 + 0.08;
   const innerLeft = -W / 2 + 0.08;
@@ -355,7 +424,7 @@ function makeShell(layout) {
     beam.userData.noShadow = true;
   }
 
-  const runner = addBox(g, 1.15, 0.012, 3.3, toon('#7a5340'), -0.15, 0.016, -0.55);
+  const runner = addBox(g, 1.15, 0.012, 3.3, toon('#8d6a4c'), -0.15, 0.016, -0.55);
   noCast(runner, true);
   const rug = addBox(g, 2.9, 0.014, 1.7, felt(), 2.7, 0.018, 2.35);
   noCast(rug, true);
@@ -492,23 +561,23 @@ function benchAssembly(g, a) {
     addBox(g, 0.08, h - 0.12, 0.08, walnutDeep(), x + dx, (h - 0.12) / 2, z);
   }
 
-  cradle(g, a.x - 0.7, a.z, h, 0.5, 0.26, walnut(), felt());
-  cradle(g, a.x + 1.47, a.z, h, 0.66, 0.34, walnut(), toon('#5c3a42'));
+  cradle(g, a.x - 0.7, a.z, h, 0.52, 0.28, walnut(), toon('#ead7b4'));
+  cradle(g, a.x + 1.47, a.z, h, 0.66, 0.34, walnut(), toon('#c4a888'));
 
   const openRig = new THREE.Group();
   const openViolin = buildInstrument('violin', { open: true, showStrings: false });
   openViolin.rotation.x = -Math.PI / 2;
   openRig.add(openViolin);
-  openRig.rotation.y = 0.65;
-  openRig.position.set(-1.55, h + 0.09, -3.8);
+  openRig.rotation.y = 2.35;
+  openRig.position.set(-1.55, h + 0.1, -3.78);
   g.add(openRig);
 
   const topRig = new THREE.Group();
-  const looseTop = buildInstrument('violin', { varnished: false, showStrings: false });
+  const looseTop = buildInstrument('violin', { plate: true, showStrings: false });
   looseTop.rotation.x = -Math.PI / 2;
   topRig.add(looseTop);
-  topRig.rotation.y = -0.8;
-  topRig.position.set(-2.35, h + 0.05, -3.95);
+  topRig.rotation.y = 0.2;
+  topRig.position.set(-2.12, h + 0.06, -3.42);
   g.add(topRig);
   addCyl(g, 0.004, 0.004, 0.055, spruce(), -2.05, h + 0.04, -3.55, 6);
 

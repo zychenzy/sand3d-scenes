@@ -83,7 +83,7 @@
     { "id": "mug_bench", "kind": "cup_mug", "position": [-0.55, 0.78, -3.58], "rotationY": 0.8 }
   ],
   "shell": {
-    "floorColor": "#d8c09a",
+    "floorColor": "#d4c0a2",
     "wallColor": "#f4ecdf",
     "woodColor": "#6b4632",
     "ceilingColor": "#f7f1e6",
@@ -93,13 +93,13 @@
     "fogFar": 40
   },
   "camera": {
-    "fov": 40,
-    "position": [4.7, 2.65, 4.85],
-    "target": [-0.55, 1.05, -0.7]
+    "fov": 43,
+    "position": [4.32, 2.66, 4.62],
+    "target": [-0.6, 1.0, -0.92]
   },
   "cameraPresets": {
     "corner": { "position": [3.15, 2.05, 0.7], "target": [-0.85, 1.15, -2.55] },
-    "close": { "position": [-0.15, 1.92, -2.48], "target": [-1.5, 0.92, -3.82] }
+    "close": { "position": [-0.35, 1.88, -2.5], "target": [-1.72, 0.9, -3.66] }
   },
   "lights": {
     "hemi": { "sky": 16774368, "ground": 9062984, "intensity": 0.58 },
