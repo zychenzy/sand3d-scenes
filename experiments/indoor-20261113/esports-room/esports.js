@@ -357,13 +357,20 @@ function gamingChair(g, x, z, yaw, accent, headsetOn) {
   back.position.set(0, 0.44, -0.15);
   back.rotation.x = -0.08;
   grp.add(back);
-  addBox(back, 0.38, 0.58, 0.045, shell, 0, 0.3, 0);
-  addBox(back, 0.3, 0.46, 0.028, cushion, 0, 0.28, 0.03);
-  addBox(back, 0.04, 0.44, 0.04, bolster, -0.18, 0.28, 0.02);
-  addBox(back, 0.04, 0.44, 0.04, bolster, 0.18, 0.28, 0.02);
-  const lumbar = addCyl(back, 0.035, 0.035, 0.24, bolster, 0, 0.16, 0.05, 12);
+  addBox(back, 0.24, 0.26, 0.04, shell, 0, 0.13, 0);
+  addBox(back, 0.38, 0.15, 0.046, shell, 0, 0.33, 0);
+  const leftWing = addBox(back, 0.05, 0.18, 0.038, bolster, -0.195, 0.33, 0.008);
+  leftWing.rotation.z = 0.26;
+  const rightWing = addBox(back, 0.05, 0.18, 0.038, bolster, 0.195, 0.33, 0.008);
+  rightWing.rotation.z = -0.26;
+  addBox(back, 0.2, 0.22, 0.024, cushion, 0, 0.14, 0.028);
+  addBox(back, 0.3, 0.11, 0.024, cushion, 0, 0.33, 0.03);
+  const lumbar = addCyl(back, 0.03, 0.03, 0.18, bolster, 0, 0.13, 0.046, 12);
   lumbar.rotation.z = Math.PI / 2;
-  addBox(back, 0.2, 0.075, 0.05, cushion, 0, 0.62, 0.02);
+  addBox(back, 0.012, 0.08, 0.012, metal, -0.038, 0.46, 0.008);
+  addBox(back, 0.012, 0.08, 0.012, metal, 0.038, 0.46, 0.008);
+  addBox(back, 0.22, 0.075, 0.048, cushion, 0, 0.54, 0.016);
+  addBox(back, 0.14, 0.04, 0.016, bolster, 0, 0.54, 0.038);
 
   for (const sx of [-1, 1]) {
     addBox(grp, 0.016, 0.12, 0.016, metal, sx * 0.22, 0.48, 0.02);
@@ -627,6 +634,32 @@ function raceway(g, layout) {
   for (let i = 0; i < 4; i++) {
     addBox(g, 0.03, 0.012, 0.012, toon('#1c2228'), -5.66 + i * 0.06, 0.07, z + 0.02);
   }
+  const frontZ = 1.16;
+  const sideX = -5.52;
+  const endX = Math.max(...xs) + 0.4;
+  addBox(g, 0.07, 0.032, frontZ - z, trunk, sideX, 0.024, (frontZ + z) / 2);
+  addBox(g, endX - sideX, 0.032, 0.07, trunk, (sideX + endX) / 2, 0.024, frontZ);
+  const seam = toon('#8d96a0');
+  const sideSeam = addBox(g, 0.012, 0.006, frontZ - z - 0.04, seam, sideX, 0.042, (frontZ + z) / 2);
+  sideSeam.castShadow = false;
+  const frontSeam = addBox(g, endX - sideX - 0.04, 0.006, 0.012, seam, (sideX + endX) / 2, 0.042, frontZ);
+  frontSeam.castShadow = false;
+  addBox(g, 0.11, 0.018, 0.09, toon('#3c4650'), sideX, 0.044, 0.35);
+  addBox(g, 0.12, 0.018, 0.09, toon('#3c4650'), 0.9, 0.044, frontZ);
+}
+
+function pitMarks(g, layout) {
+  const xs = layout.build.stations.map((st) => st.x);
+  const x0 = Math.min(...xs) - 0.5;
+  const x1 = Math.max(...xs) + 0.5;
+  const mid = (x0 + x1) / 2;
+  const tape = toon('#d4cbbd');
+  for (const z of [0.18, 0.72]) {
+    quiet(addBox(g, x1 - x0, 0.004, 0.04, tape, mid, 0.026, z));
+  }
+  for (const x of xs) {
+    quiet(addBox(g, 0.045, 0.004, 0.58, tape, x, 0.027, 0.45));
+  }
 }
 
 function speakerStands(g) {
@@ -662,6 +695,7 @@ function makeProcedural(layout) {
   credenza(g, b.credenza);
   acoustic(g, layout);
   raceway(g, layout);
+  pitMarks(g, layout);
   speakerStands(g);
   foliage(g, b.pot.x, b.pot.z);
   shelfDressing(g);

@@ -21,5 +21,6 @@ Known limits:
 - The pendant's stem is the asset's own. It does not grow a new cord.
 - Cable "management" is a channel and a spine, not a braided loom.
 - Screens do not animate. There is no bloom pass.
-- The default frame keeps all five stations and the replay readable. The coach enters as the near desk corner and the round notes. The full coach chair, keyboard, and round-tape monitor are the corner shot.
-- Hard toon still facets the chair and the monitor arm. The arm is the curved-monitor GLB, not a generated stand. The chair is one shell now, not a stack of loose boards, and it is still not a soft product render.
+- From behind, the back is a narrow lumbar, a wider shoulder yoke with short wings, and a headrest on two posts. It is still hard-edged toon, not a stitched product chair.
+- The daylight shadow is an 8192 hard map fitted to the pit. The old block fringe on the carpet is gone. A hard edge is still a hard edge in the close shot; it is not a soft penumbra.
+- The open carpet carries tape ticks at each station and a floor raceway along the left and the near edge. The walk between the chairs and that raceway stays open. The default frame still shows a lot of that floor, now marked.
