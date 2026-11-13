@@ -51,7 +51,7 @@
     "jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.16 }
   },
   "instances": [
-    { "id": "sofa", "kind": "sofa", "position": [4.15, 0, 1.85], "rotationY": -1.5707963267948966 },
+    { "id": "sofa", "kind": "sofa", "position": [4.15, 0, 1.85], "rotationY": -1.5707963267948966, "hide": true },
     { "id": "coffee", "kind": "coffee", "position": [2.85, 0, 1.85], "rotationY": 0, "scale": [0.62, 1, 0.68] },
     { "id": "bench", "kind": "bench", "position": [-4.72, 0, 2.4], "rotationY": 0 },
     { "id": "shelf", "kind": "shelf", "position": [-4.95, 1.42, 3.15], "rotationY": 1.5707963267948966 },

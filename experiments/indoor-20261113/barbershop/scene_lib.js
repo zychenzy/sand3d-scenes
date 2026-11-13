@@ -86,7 +86,37 @@ export function applyShading(root, mode) {
       obj.castShadow = false;
       obj.receiveShadow = !!obj.userData.receiveShadow;
     }
+    if (obj.userData && obj.userData.mirror) bindStationMirror(obj.material, obj);
   });
+}
+
+function bindStationMirror(material, mesh) {
+  const mirrorMatrix = mesh.userData.mirrorMatrix;
+  const mirrorMap = mesh.userData.mirrorMap;
+  if (!mirrorMatrix || !mirrorMap) return;
+  material.onBeforeCompile = (shader) => {
+    shader.uniforms.mirrorMap = { value: mirrorMap };
+    shader.uniforms.mirrorMatrix = { value: mirrorMatrix };
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nuniform mat4 mirrorMatrix;\nvarying vec4 vMirrorCoord;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\n\tvMirrorCoord = mirrorMatrix * vec4(position, 1.0);');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nuniform sampler2D mirrorMap;\nvarying vec4 vMirrorCoord;\nvec3 mirrorReflect;')
+      .replace('#include <color_fragment>', `#include <color_fragment>
+        mirrorReflect = vec3(0.62, 0.70, 0.74);
+        {
+          vec2 muv = vMirrorCoord.xy / vMirrorCoord.w;
+          if (muv.x > 0.0 && muv.x < 1.0 && muv.y > 0.0 && muv.y < 1.0) {
+            mirrorReflect = texture2D(mirrorMap, muv).rgb;
+          }
+        }
+        diffuseColor.rgb = mix(diffuseColor.rgb, mirrorReflect, 0.45);
+      `)
+      .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, mirrorReflect, 0.8);
+      `);
+  };
+  material.customProgramCacheKey = () => `station-mirror-${material.type}`;
 }
 
 export function prepareAsset(scene, targetHeight) {
@@ -190,6 +220,7 @@ export function makeCutawayShell(layout, extra = {}) {
   }
 
   const back = new THREE.Mesh(new THREE.BoxGeometry(W, H, glass ? 0.05 : 0.14), wallMat);
+  back.name = 'back-wall';
   back.position.set(0, H / 2, -D / 2);
   back.receiveShadow = true;
   g.add(back);
@@ -386,6 +417,7 @@ export async function boot(opts) {
         obj.castShadow = false;
       });
     }
+    if (inst.hide) node.visible = false;
     props.add(node);
   }
 
@@ -450,6 +482,7 @@ export async function boot(opts) {
 
   function tick() {
     controls.update();
+    if (opts.beforeRender) opts.beforeRender(renderer, scene, camera);
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
   }

@@ -16,6 +16,17 @@ const towel = () => toon('#f7f3ea');
 const bulbMat = () => toon('#fff4d4', { emissive: '#ffe6b0', emissiveIntensity: 1.15 });
 
 const texCache = new Map();
+let stationMirrorRT = null;
+
+function stationMirrorTarget() {
+  if (!stationMirrorRT) {
+    stationMirrorRT = new THREE.WebGLRenderTarget(768, 768, { depthBuffer: true, stencilBuffer: false });
+    stationMirrorRT.texture.colorSpace = THREE.SRGBColorSpace;
+    stationMirrorRT.texture.generateMipmaps = false;
+    stationMirrorRT.texture.minFilter = THREE.LinearFilter;
+  }
+  return stationMirrorRT;
+}
 
 function canvasTex(key, w, h, draw) {
   if (texCache.has(key)) return texCache.get(key);
@@ -349,20 +360,35 @@ function shopWindow(g, wallX) {
   quiet(glow);
 }
 
-function ceilingBay(g, H) {
-  const plaster = toon('#f4eee4');
-  quiet(addBox(g, 8.6, 0.07, 4.7, plaster, -0.45, H - 0.04, -1.05), true);
-  trim(addBox(g, 8.6, 0.08, 0.07, walnutDark(), -0.45, H - 0.1, 1.28));
-  trim(addBox(g, 8.6, 0.06, 0.06, walnut(), -0.45, H - 0.1, -3.38));
-  const cans = [[-2.55, -2.15], [1.35, -2.15], [-3.4, 0.15], [2.4, 0.35]];
+function ceilingBay(g, W, D, H) {
+  const plaster = toon('#f3eee6');
+  const y = H - 0.05;
+  const z0 = -D / 2 + 0.16;
+  const z1 = D / 2 - 0.06;
+  const x0 = -W / 2 + 0.16;
+  const x1 = W / 2 - 0.04;
+  const depth = z1 - z0;
+  const width = x1 - x0;
+  const zc = (z0 + z1) / 2;
+  const xc = (x0 + x1) / 2;
+  quiet(addBox(g, width, 0.08, depth, plaster, xc, y, zc), true);
+  trim(addBox(g, width, 0.16, 0.07, walnutDark(), xc, y - 0.08, z1));
+  trim(addBox(g, 0.07, 0.16, depth, walnutDark(), x1, y - 0.08, zc));
+  trim(addBox(g, width - 0.2, 0.05, 0.05, walnut(), xc, H - 0.14, z0 + 0.02));
+  const cans = [[-2.55, -2.15], [1.35, -2.15], [-3.4, 0.15], [2.4, 0.55], [0.2, 1.6]];
   for (const [x, z] of cans) {
-    addCyl(g, 0.055, 0.08, 0.05, brass(), x, H - 0.1, z, 14);
-    quiet(addCyl(g, 0.04, 0.04, 0.012, toon('#fff1c8', { emissive: '#ffe6b0', emissiveIntensity: 1.15 }), x, H - 0.13, z, 12));
+    addCyl(g, 0.055, 0.08, 0.05, brass(), x, y - 0.02, z, 14);
+    quiet(addCyl(g, 0.04, 0.04, 0.012, toon('#fff1c8', { emissive: '#ffe6b0', emissiveIntensity: 1.15 }), x, y - 0.06, z, 12));
   }
 }
 
 function makeShell(layout) {
   const g = makeCutawayShell(layout, { ceiling: false });
+  const backWall = g.getObjectByName('back-wall');
+  if (backWall) {
+    backWall.userData.noShadow = true;
+    backWall.userData.receiveShadow = false;
+  }
   const { width: W, depth: D, height: H } = layout.meta.room;
   const innerB = -D / 2 + 0.1;
   const innerL = -W / 2 + 0.1;
@@ -402,7 +428,7 @@ function makeShell(layout) {
   board.rotation.y = Math.PI / 2;
   g.add(board);
 
-  ceilingBay(g, H);
+  ceilingBay(g, W, D, H);
   const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.4), signBoard());
   sign.position.set(-0.7, 2.5, -3.72);
   g.add(sign);
@@ -562,7 +588,13 @@ function station(g, rec, anchors, variant) {
   const mh = mirrorTop - mirrorBottom;
   const wallZ = -3.78;
 
-  addBox(g, 1.16, mh, 0.02, mirrorTexture(variant), x, my, wallZ);
+  const glassMat = toon('#d5e2e8');
+  const glass = addBox(g, 1.16, mh, 0.018, glassMat, x, my, wallZ + 0.012);
+  glass.name = 'station-mirror';
+  glass.userData.mirror = true;
+  glass.userData.mirrorMatrix = new THREE.Matrix4();
+  glass.userData.mirrorMap = stationMirrorTarget().texture;
+  quiet(glass);
   addBox(g, 1.26, 0.045, 0.04, brass(), x, mirrorTop + 0.02, wallZ);
   addBox(g, 1.26, 0.045, 0.04, brass(), x, mirrorBottom - 0.02, wallZ);
   addBox(g, 0.045, mh + 0.08, 0.04, brass(), x - 0.6, my, wallZ);
@@ -691,16 +723,34 @@ function foliage(g, x, z) {
   addSphere(g, 0.09, toon('#245833'), x - 0.07, 0.55, z - 0.04);
 }
 
-function cushions(g) {
-  // Sofa bounds from the bake: seat toward x=3.72, back toward x=4.58, cushion line near y=0.36.
-  const pads = [
-    [3.92, 0.33, 1.68, '#6e2430'],
-    [3.92, 0.33, 2.02, '#1d3f38'],
-    [4.1, 0.42, 1.85, '#c6a15e'],
-  ];
-  for (const [x, y, z, color] of pads) {
-    addBox(g, 0.2, 0.07, 0.26, toon(color), x, y, z);
+function waitingSettee(g, sofa) {
+  // The catalog couch is a gray modern bake. This wood-and-leather settee
+  // occupies the same footprint and faces -X, toward the coffee table.
+  const x = sofa.position[0];
+  const z = sofa.position[2];
+  const seatY = 0.46;
+  const len = 1.58;
+  const depth = 0.58;
+  for (const sx of [-0.16, 0.2]) {
+    for (const sz of [-0.68, 0.68]) {
+      addCyl(g, 0.032, 0.038, seatY - 0.08, walnutDark(), x + sx, (seatY - 0.08) / 2, z + sz, 10);
+    }
   }
+  addBox(g, depth, 0.08, len, walnut(), x + 0.02, seatY - 0.06, z);
+  const cushion = addSphere(g, 0.22, leather(), x - 0.02, seatY + 0.02, z, 24);
+  cushion.scale.set(1.05, 0.28, 3.35);
+  const roll = addCyl(g, 0.045, 0.045, len - 0.16, leatherDeep(), x - 0.22, seatY + 0.01, z, 14);
+  roll.rotation.x = Math.PI / 2;
+  const back = addSphere(g, 0.2, leather(), x + 0.16, seatY + 0.28, z, 24);
+  back.scale.set(0.55, 1.35, 3.7);
+  addCyl(g, 0.028, 0.028, len + 0.06, walnut(), x + 0.2, seatY + 0.52, z, 12);
+  for (const sz of [-1, 1]) {
+    const arm = addSphere(g, 0.09, leatherDeep(), x - 0.02, seatY + 0.12, z + sz * 0.74, 16);
+    arm.scale.set(1.15, 0.7, 0.85);
+    addBox(g, 0.06, 0.28, 0.08, walnut(), x + 0.12, seatY + 0.16, z + sz * 0.76);
+  }
+  addBox(g, 0.22, 0.06, 0.28, toon('#6e2430'), x - 0.04, seatY + 0.08, z - 0.28);
+  addBox(g, 0.2, 0.05, 0.24, toon('#1d3f38'), x - 0.02, seatY + 0.1, z + 0.32);
 }
 
 function magazines(g, coffee) {
@@ -730,7 +780,7 @@ function makeProcedural(layout) {
   linen(g);
   const pot = layout.instances.find((item) => item.id === 'pot');
   foliage(g, pot.position[0], pot.position[2]);
-  cushions(g);
+  waitingSettee(g, layout.instances.find((item) => item.id === 'sofa'));
   const shelf = layout.instances.find((item) => item.id === 'shelf');
   bottle(g, shelf.position[0] + 0.12, shelf.position[1] + 0.2, shelf.position[2] - 0.1, '#7a3030', 0.12);
   bottle(g, shelf.position[0] + 0.12, shelf.position[1] + 0.2, shelf.position[2] + 0.1, '#efe6c8', 0.1);
@@ -742,8 +792,85 @@ function makeProcedural(layout) {
   return g;
 }
 
+const _mirrorPos = new THREE.Vector3();
+const _camPos = new THREE.Vector3();
+const _normal = new THREE.Vector3();
+const _view = new THREE.Vector3();
+const _look = new THREE.Vector3();
+const _target = new THREE.Vector3();
+const _rot = new THREE.Matrix4();
+const _plane = new THREE.Plane();
+const _clip = new THREE.Vector4();
+const _q = new THREE.Vector4();
+const _virtual = new THREE.PerspectiveCamera();
+const _base = new THREE.Matrix4();
+let _renderingMirror = false;
+
+function updateStationMirrors(renderer, scene, camera) {
+  if (_renderingMirror || !stationMirrorRT) return;
+  const mirrors = [];
+  scene.traverse((obj) => {
+    if (obj.name === 'station-mirror') mirrors.push(obj);
+  });
+  if (!mirrors.length) return;
+  const mirror = mirrors[0];
+  mirror.updateWorldMatrix(true, false);
+  _mirrorPos.setFromMatrixPosition(mirror.matrixWorld);
+  _camPos.setFromMatrixPosition(camera.matrixWorld);
+  _rot.extractRotation(mirror.matrixWorld);
+  _normal.set(0, 0, 1).transformDirection(mirror.matrixWorld);
+  _view.subVectors(_mirrorPos, _camPos);
+  if (_view.dot(_normal) > 0) return;
+  _view.reflect(_normal).negate().add(_mirrorPos);
+  _rot.extractRotation(camera.matrixWorld);
+  _look.set(0, 0, -1).applyMatrix4(_rot).add(_camPos);
+  _target.subVectors(_mirrorPos, _look);
+  _target.reflect(_normal).negate().add(_mirrorPos);
+  _virtual.position.copy(_view);
+  _virtual.up.set(0, 1, 0).transformDirection(camera.matrixWorld).reflect(_normal);
+  _virtual.lookAt(_target);
+  _virtual.far = camera.far;
+  _virtual.near = camera.near;
+  _virtual.fov = camera.fov;
+  _virtual.aspect = camera.aspect;
+  _virtual.updateProjectionMatrix();
+  _virtual.updateMatrixWorld();
+
+  _plane.setFromNormalAndCoplanarPoint(_normal, _mirrorPos);
+  _plane.applyMatrix4(_virtual.matrixWorldInverse);
+  _clip.set(_plane.normal.x, _plane.normal.y, _plane.normal.z, _plane.constant);
+  const pe = _virtual.projectionMatrix.elements;
+  _q.set((Math.sign(_clip.x) + pe[8]) / pe[0], (Math.sign(_clip.y) + pe[9]) / pe[5], -1, (1 + pe[10]) / pe[14]);
+  _clip.multiplyScalar(2 / _clip.dot(_q));
+  pe[2] = _clip.x;
+  pe[6] = _clip.y;
+  pe[10] = _clip.z + 1 - 0.003;
+  pe[14] = _clip.w;
+
+  _base.set(0.5, 0, 0, 0.5, 0, 0.5, 0, 0.5, 0, 0, 0.5, 0.5, 0, 0, 0, 1);
+  _base.multiply(_virtual.projectionMatrix);
+  _base.multiply(_virtual.matrixWorldInverse);
+  for (const item of mirrors) {
+    item.updateWorldMatrix(true, false);
+    item.userData.mirrorMatrix.copy(_base).multiply(item.matrixWorld);
+    item.visible = false;
+  }
+  const prev = renderer.getRenderTarget();
+  const prevAuto = renderer.shadowMap.autoUpdate;
+  renderer.shadowMap.autoUpdate = false;
+  _renderingMirror = true;
+  renderer.setRenderTarget(stationMirrorRT);
+  renderer.clear();
+  renderer.render(scene, _virtual);
+  _renderingMirror = false;
+  renderer.shadowMap.autoUpdate = prevAuto;
+  renderer.setRenderTarget(prev);
+  for (const item of mirrors) item.visible = true;
+}
+
 boot({
   makeShell,
   makeProcedural,
+  beforeRender: updateStationMirrors,
   readyText: 'ready — King Street barbershop · drag orbit · U unlit · T toon',
 });
