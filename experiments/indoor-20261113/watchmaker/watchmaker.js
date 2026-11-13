@@ -596,11 +596,13 @@ function makeShell(layout) {
   addBox(g, 0.028, 0.03, D - 0.3, brassDark, trimX, 2.68, 0);
 
   const fieldZ = trimZ + 0.02;
-  flat(addBox(g, 3.15, 1.05, 0.02, toon('#e7dcc6'), -1.15, 2.02, fieldZ));
-  addBox(g, 3.22, 0.035, 0.03, walnut, -1.15, 2.56, fieldZ);
-  addBox(g, 3.22, 0.035, 0.03, walnut, -1.15, 1.48, fieldZ);
-  addBox(g, 0.035, 1.12, 0.03, walnut, -2.76, 2.02, fieldZ);
-  addBox(g, 0.035, 1.12, 0.03, walnut, 0.46, 2.02, fieldZ);
+  const fieldX = -1.05;
+  const fieldY = 2.08;
+  flat(addBox(g, 2.4, 0.7, 0.02, toon('#e7dcc6'), fieldX, fieldY, fieldZ));
+  addBox(g, 2.48, 0.035, 0.03, walnut, fieldX, fieldY + 0.365, fieldZ);
+  addBox(g, 2.48, 0.035, 0.03, walnut, fieldX, fieldY - 0.365, fieldZ);
+  addBox(g, 0.035, 0.77, 0.03, walnut, fieldX - 1.22, fieldY, fieldZ);
+  addBox(g, 0.035, 0.77, 0.03, walnut, fieldX + 1.22, fieldY, fieldZ);
 
   const soffit = addBox(g, W * 0.9, 0.08, 3.5, plaster, -0.2, H - 0.06, -2.05);
   flat(soffit);
@@ -638,8 +640,10 @@ function makeProcedural(layout) {
 
   const frontZ = bench.z + bench.d / 2;
   addBox(g, bench.w, 0.045, 0.045, walnut, bench.x, top + 0.02, bench.z - bench.d / 2 + 0.03);
-  addBox(g, 0.62, 0.008, 0.34, baize, bench.x - 0.08, top + 0.006, bench.z + 0.02);
-  addBox(g, 0.16, 0.02, 0.08, toon('#d8c4a4'), bench.x - 0.34, top + 0.016, bench.z + 0.16);
+  const cx = bench.x - 0.02;
+  const cz = bench.z + 0.02;
+  addBox(g, 0.52, 0.008, 0.32, baize, cx, top + 0.006, cz);
+  addBox(g, 0.16, 0.02, 0.08, toon('#d8c4a4'), bench.x - 0.72, top + 0.016, bench.z - 0.18);
 
   const legY = 0.46;
   for (const [lx, lz] of [[-1.05, -0.22], [1.05, -0.22], [-1.05, 0.18], [1.05, 0.18]]) {
@@ -661,20 +665,20 @@ function makeProcedural(layout) {
   makerStool(g, stool.x, stool.z, stool.seat);
 
   const cloth = top + 0.014;
-  movement(g, bench.x - 0.02, cloth, bench.z + 0.01);
-  loupeStand(g, bench.x - 0.02, cloth, bench.z + 0.01);
-  partsTray(g, bench.x - 0.58, top, bench.z + 0.04);
-  partsTray(g, bench.x + 0.5, top, bench.z - 0.06);
-  screwdrivers(g, bench.x + 0.28, top, bench.z + 0.18);
-  oilCups(g, bench.x - 0.52, top, bench.z - 0.16);
-  handLoupe(g, bench.x - 0.22, top, bench.z + 0.24);
-  tweezers(g, bench.x + 0.12, top, bench.z + 0.22);
-  pegwood(g, bench.x + 0.16, top, bench.z - 0.16);
-  dustBlower(g, bench.x - 0.46, top, bench.z + 0.2);
-  timingMachine(g, bench.x + 0.78, top, bench.z - 0.02);
-  serviceTag(g, bench.x - 0.1, cloth + 0.002, bench.z + 0.14, '2824', -0.15);
-  serviceTag(g, bench.x + 0.08, cloth + 0.002, bench.z + 0.08, '7S26', 0.25);
-  serviceTag(g, bench.x + 0.55, top + 0.014, bench.z + 0.02, '6497', 0.35);
+  movement(g, cx - 0.02, cloth, cz - 0.02);
+  loupeStand(g, cx - 0.02, cloth, cz - 0.02);
+  partsTray(g, cx - 0.16, cloth, cz - 0.05);
+  partsTray(g, cx + 0.15, cloth, cz - 0.06);
+  screwdrivers(g, cx + 0.14, cloth, cz + 0.07);
+  oilCups(g, cx - 0.15, cloth, cz + 0.08);
+  handLoupe(g, cx - 0.04, cloth, cz + 0.09);
+  tweezers(g, cx + 0.04, cloth, cz + 0.09);
+  pegwood(g, cx + 0.06, cloth, cz - 0.1);
+  dustBlower(g, cx - 0.08, cloth, cz + 0.09);
+  timingMachine(g, bench.x + 0.82, top, bench.z - 0.08);
+  serviceTag(g, cx - 0.05, cloth + 0.002, cz + 0.02, '2824', -0.2);
+  serviceTag(g, cx + 0.05, cloth + 0.002, cz + 0.04, '7S26', 0.15);
+  serviceTag(g, cx + 0.01, cloth + 0.002, cz - 0.09, '6497', 0.1);
   for (let i = 0; i < 4; i++) {
     addCyl(g, 0.016, 0.016, 0.018, i % 2 ? steelDark : brassDark, bench.x - 0.72 + i * 0.045, top + 0.01, bench.z - 0.22, 12);
   }
@@ -710,9 +714,11 @@ function makeProcedural(layout) {
   }
 
   const clocks = [
-    [-2.15, 2.08, 0.16, 10, 10],
-    [-1.15, 2.02, 0.28, 7, 35],
-    [-0.28, 2.12, 0.13, 2, 50],
+    [-2.02, 2.08, 0.13, 10, 10],
+    [-1.58, 2.08, 0.11, 4, 20],
+    [-1.08, 2.06, 0.22, 7, 35],
+    [-0.55, 2.08, 0.11, 2, 50],
+    [-0.12, 2.08, 0.13, 8, 15],
   ];
   const wallZ = -layout.meta.room.depth / 2 + 0.24;
   for (const [x, y, radius, hh, mm] of clocks) roundClock(g, x, y, wallZ, radius, hh, mm);
@@ -749,12 +755,12 @@ function makeProcedural(layout) {
   addCyl(g, 0.006, 0.006, 0.012, brassDark, counter.x - 0.85, ct + 0.024, counter.z + 0.1, 8);
 
   signBoard(g, -1.15, 1.3, -layout.meta.room.depth / 2 + 0.26);
-  addCyl(g, 0.007, 0.007, 0.42, ink, -1.2, 2.9, -2.95, 6);
+  addCyl(g, 0.007, 0.007, 0.42, ink, 0.35, 2.9, -2.9, 6);
 
   contact(g, bench.x, -2.52, 0.22, 0.22);
   contact(g, -1.15, 0.58, 0.22, 0.22);
   contact(g, 0.05, 0.58, 0.22, 0.22);
-  contact(g, 2.55, 0.75, 0.85, 0.28);
+  contact(g, 1.72, -0.35, 0.85, 0.28);
   contact(g, 3.9, 1.45, 0.34, 0.34);
   contact(g, layout.meta.anchors.longcase.x, layout.meta.anchors.longcase.z, 0.28, 0.2);
   contact(g, layout.meta.anchors.pedestal.x, layout.meta.anchors.pedestal.z, 0.36, 0.36);

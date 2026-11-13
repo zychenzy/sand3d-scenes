@@ -20,4 +20,5 @@ Still weak:
 - The timing instrument is a box and a canvas, not a Witschi machine. There is no lathe, cleaning machine, or staking set.
 - Clock dials share one numeral texture. Hands differ. No seconds bit except the regulator’s pendulum, which does not swing.
 - The key light uses a 4096 soft PCF shadow map fit to the room, with a small depth bias and 3 cm of normal bias, so the bench receives a shadow without the old hard-map stair steps. Walls receive that shadow. They do not cast. Ceiling beams are kept out of the map so they do not stripe the plaster. Contact discs remain under the feet. There is no ambient-occlusion pass in the vendored toon path.
+- The default frame includes the sign, bench, counter, waiting bench, and the full longcase. The parts cabinet is cropped on the left of that camera. The corner camera still crops the longcase.
 - The wooden pedestal used as a mantel stand shipped as a solid column, not a glass vitrine.

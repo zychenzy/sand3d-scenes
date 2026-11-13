@@ -19,7 +19,7 @@
       "longcase": { "x": 2.35, "z": -3.38 },
       "pedestal": { "x": 3.55, "z": -3.22 },
       "lectern": { "x": -3.25, "z": 0.55 },
-      "waiting": { "x": 2.55, "z": 0.75 }
+      "waiting": { "x": 1.72, "z": -0.35 }
     },
     "notes": [
       "Cutaway: back wall -Z, left wall -X, open front +Z and open right +X.",
@@ -98,7 +98,7 @@
   "instances": [
     { "id": "bench_lamp", "kind": "library_lamp", "position": [-1.95, 1.02, -3.32], "rotationY": 3.1416 },
     { "id": "bench_etagere", "kind": "parts_etagere", "position": [-2.05, 1.02, -3.34], "rotationY": 0.2 },
-    { "id": "pendant", "kind": "pendant_lamp", "position": [-1.2, 2.18, -2.95], "rotationY": 0.2 },
+    { "id": "pendant", "kind": "pendant_lamp", "position": [0.35, 2.18, -2.9], "rotationY": 0.4 },
 
     { "id": "counter_lamp", "kind": "library_lamp", "position": [0.32, 0.74, -0.28], "rotationY": 1.5708 },
     { "id": "chair_customer_l", "kind": "dining_chair", "position": [-1.15, 0, 0.58], "rotationY": 3.1416, "lookAt": [-0.55, -0.15] },
@@ -110,7 +110,7 @@
     { "id": "jar_clean", "kind": "jam_jar", "position": [-4.42, 2.18, 0.16], "rotationY": -0.4 },
     { "id": "job_board", "kind": "chalkboard", "position": [-4.32, 0, 1.4], "rotationY": 0 },
 
-    { "id": "waiting_bench", "kind": "museum_bench", "position": [2.55, 0, 0.75], "rotationY": 1.5708 },
+    { "id": "waiting_bench", "kind": "museum_bench", "position": [1.72, 0, -0.35], "rotationY": 1.5708 },
     { "id": "waiting_table", "kind": "round_table", "position": [3.9, 0, 1.45], "rotationY": 0.4 },
     { "id": "maker_cup", "kind": "cup_mug", "position": [3.9, 0.52, 1.45], "rotationY": 0.8 },
     { "id": "corner_plant", "kind": "flowerpot", "position": [4.35, 0, 0.45], "rotationY": 0.6 },
@@ -129,13 +129,13 @@
     "fogFar": 28
   },
   "camera": {
-    "fov": 40,
-    "position": [2.95, 2.18, 2.75],
-    "target": [-0.65, 1.12, -2.05]
+    "fov": 46,
+    "position": [1.35, 2.28, 3.45],
+    "target": [0.05, 1.12, -1.55]
   },
   "cameraPresets": {
     "corner": { "position": [3.45, 1.92, 0.2], "target": [-1.25, 1.22, -2.45] },
-    "close": { "position": [-0.95, 1.55, -2.58], "target": [-1.2, 1.03, -3.16] }
+    "close": { "position": [-0.78, 1.46, -2.64], "target": [-1.22, 1.03, -3.13] }
   },
   "lights": {
     "hemi": { "sky": 15921908, "ground": 4217412, "intensity": 0.32 },
