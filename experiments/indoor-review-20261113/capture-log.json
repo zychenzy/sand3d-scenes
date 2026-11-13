@@ -1,0 +1,1308 @@
+[
+  {
+    "slug": "prior-greenhouse",
+    "rel": "experiments/prior-upgrade-20261110/greenhouse/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/greenhouse/?hud=0",
+        "bytes": 573251,
+        "ready": true,
+        "status": "ready — indoor greenhouse · drag orbit · U unlit · T toon",
+        "cam": [
+          4.05,
+          2.72,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [
+          "404 http://127.0.0.1:8765/favicon.ico"
+        ],
+        "consoleErrors": [
+          "Failed to load resource: the server responded with a status of 404 (File not found)"
+        ]
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/greenhouse/?hud=0&cam=corner",
+        "bytes": 547914,
+        "ready": true,
+        "status": "ready — indoor greenhouse · drag orbit · U unlit · T toon",
+        "cam": [
+          3.85,
+          1.92,
+          2.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/greenhouse/?hud=0&cam=close",
+        "bytes": 514977,
+        "ready": true,
+        "status": "ready — indoor greenhouse · drag orbit · U unlit · T toon",
+        "cam": [
+          1.55,
+          1.38,
+          1.62
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/greenhouse/?hud=0&mode=unlit",
+        "bytes": 399759,
+        "ready": true,
+        "status": "ready — indoor greenhouse · drag orbit · U unlit · T toon",
+        "cam": [
+          4.05,
+          2.72,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "prior-restaurant",
+    "rel": "experiments/prior-upgrade-20261110/restaurant/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/restaurant/?hud=0",
+        "bytes": 385567,
+        "ready": true,
+        "status": "ready — Hinoki dining · drag orbit · T toon · U unlit",
+        "cam": [
+          6.55,
+          4.45,
+          7.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/restaurant/?hud=0&cam=corner",
+        "bytes": 322475,
+        "ready": true,
+        "status": "ready — Hinoki dining · drag orbit · T toon · U unlit",
+        "cam": [
+          6.15,
+          2.65,
+          -0.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/restaurant/?hud=0&cam=close",
+        "bytes": 164255,
+        "ready": true,
+        "status": "ready — Hinoki dining · drag orbit · T toon · U unlit",
+        "cam": [
+          0.85,
+          1.48,
+          3.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/prior-upgrade-20261110/restaurant/?hud=0&mode=unlit",
+        "bytes": 181911,
+        "ready": true,
+        "status": "ready — Hinoki dining · drag orbit · T toon · U unlit",
+        "cam": [
+          6.55,
+          4.45,
+          7.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-arcade",
+    "rel": "experiments/sprint-20261110/arcade/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/arcade/?hud=0",
+        "bytes": 179514,
+        "ready": true,
+        "status": "ready — retro arcade · drag orbit · U unlit · T toon",
+        "cam": [
+          1.15,
+          2.85,
+          7.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/arcade/?hud=0&cam=corner",
+        "bytes": 232770,
+        "ready": true,
+        "status": "ready — retro arcade · drag orbit · U unlit · T toon",
+        "cam": [
+          4.7,
+          2.35,
+          4.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/arcade/?hud=0&cam=close",
+        "bytes": 157989,
+        "ready": true,
+        "status": "ready — retro arcade · drag orbit · U unlit · T toon",
+        "cam": [
+          0.85,
+          1.22,
+          0.95
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/arcade/?hud=0&mode=unlit",
+        "bytes": 163957,
+        "ready": true,
+        "status": "ready — retro arcade · drag orbit · U unlit · T toon",
+        "cam": [
+          1.15,
+          2.85,
+          7.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-architecture-office",
+    "rel": "experiments/sprint-20261110/architecture-office/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/architecture-office/?hud=0",
+        "bytes": 309571,
+        "ready": true,
+        "status": "ready — architecture studio · drag orbit · U unlit · T toon",
+        "cam": [
+          6.7,
+          2.95,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/architecture-office/?hud=0&cam=corner",
+        "bytes": 381854,
+        "ready": true,
+        "status": "ready — architecture studio · drag orbit · U unlit · T toon",
+        "cam": [
+          6.15,
+          2.45,
+          -0.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/architecture-office/?hud=0&cam=close",
+        "bytes": 348537,
+        "ready": true,
+        "status": "ready — architecture studio · drag orbit · U unlit · T toon",
+        "cam": [
+          4.15,
+          1.62,
+          1.72
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/architecture-office/?hud=0&mode=unlit",
+        "bytes": 140847,
+        "ready": true,
+        "status": "ready — architecture studio · drag orbit · U unlit · T toon",
+        "cam": [
+          6.7,
+          2.95,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-archive-room",
+    "rel": "experiments/sprint-20261110/archive-room/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/archive-room/?hud=0",
+        "bytes": 475428,
+        "ready": true,
+        "status": "ready — archive research room · drag orbit · U unlit · T toon",
+        "cam": [
+          6.85,
+          3.2,
+          6.25
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/archive-room/?hud=0&cam=corner",
+        "bytes": 313880,
+        "ready": true,
+        "status": "ready — archive research room · drag orbit · U unlit · T toon",
+        "cam": [
+          5.5,
+          2.6,
+          -0.7
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/archive-room/?hud=0&cam=close",
+        "bytes": 360112,
+        "ready": true,
+        "status": "ready — archive research room · drag orbit · U unlit · T toon",
+        "cam": [
+          -0.15,
+          1.42,
+          1.95
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/archive-room/?hud=0&mode=unlit",
+        "bytes": 284186,
+        "ready": true,
+        "status": "ready — archive research room · drag orbit · U unlit · T toon",
+        "cam": [
+          6.85,
+          3.2,
+          6.25
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-art-studio",
+    "rel": "experiments/sprint-20261110/art-studio/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/art-studio/?hud=0",
+        "bytes": 624596,
+        "ready": true,
+        "status": "ready — north-light studio · drag orbit · U unlit · T toon",
+        "cam": [
+          2.85,
+          2.42,
+          5.2
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/art-studio/?hud=0&cam=corner",
+        "bytes": 616666,
+        "ready": true,
+        "status": "ready — north-light studio · drag orbit · U unlit · T toon",
+        "cam": [
+          3.55,
+          2.05,
+          3.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/art-studio/?hud=0&cam=close",
+        "bytes": 389407,
+        "ready": true,
+        "status": "ready — north-light studio · drag orbit · U unlit · T toon",
+        "cam": [
+          -1.15,
+          1.42,
+          1.25
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/art-studio/?hud=0&mode=unlit",
+        "bytes": 513727,
+        "ready": true,
+        "status": "ready — north-light studio · drag orbit · U unlit · T toon",
+        "cam": [
+          2.85,
+          2.42,
+          5.2
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-blackbox-theatre",
+    "rel": "experiments/sprint-20261110/blackbox-theatre/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/blackbox-theatre/?hud=0",
+        "bytes": 287498,
+        "ready": true,
+        "status": "ready — blackbox theatre · drag orbit · U unlit · T toon",
+        "cam": [
+          3.7,
+          3.25,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/blackbox-theatre/?hud=0&cam=corner",
+        "bytes": 316808,
+        "ready": true,
+        "status": "ready — blackbox theatre · drag orbit · U unlit · T toon",
+        "cam": [
+          2.4,
+          2.15,
+          3.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/blackbox-theatre/?hud=0&cam=close",
+        "bytes": 238782,
+        "ready": true,
+        "status": "ready — blackbox theatre · drag orbit · U unlit · T toon",
+        "cam": [
+          0.3,
+          1.18,
+          0.12
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/blackbox-theatre/?hud=0&mode=unlit",
+        "bytes": 96106,
+        "ready": true,
+        "status": "ready — blackbox theatre · drag orbit · U unlit · T toon",
+        "cam": [
+          3.7,
+          3.25,
+          6.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-boardgame-cafe",
+    "rel": "experiments/sprint-20261110/boardgame-cafe/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/boardgame-cafe/?hud=0",
+        "bytes": 494827,
+        "ready": true,
+        "status": "ready — meeple & bean · drag orbit · U unlit · T toon",
+        "cam": [
+          6.4,
+          3.05,
+          6.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/boardgame-cafe/?hud=0&cam=corner",
+        "bytes": 354493,
+        "ready": true,
+        "status": "ready — meeple & bean · drag orbit · U unlit · T toon",
+        "cam": [
+          5.5,
+          2.65,
+          0.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/boardgame-cafe/?hud=0&cam=close",
+        "bytes": 351097,
+        "ready": true,
+        "status": "ready — meeple & bean · drag orbit · U unlit · T toon",
+        "cam": [
+          -0.55,
+          1.68,
+          -0.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/boardgame-cafe/?hud=0&mode=unlit",
+        "bytes": 313665,
+        "ready": true,
+        "status": "ready — meeple & bean · drag orbit · U unlit · T toon",
+        "cam": [
+          6.4,
+          3.05,
+          6.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-cafe-atrium",
+    "rel": "experiments/sprint-20261110/cafe-atrium/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/cafe-atrium/?hud=0",
+        "bytes": 379366,
+        "ready": true,
+        "status": "ready — atrium coffee · drag orbit · T toon · U unlit",
+        "cam": [
+          4.15,
+          5.35,
+          7.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/cafe-atrium/?hud=0&cam=corner",
+        "bytes": 341885,
+        "ready": true,
+        "status": "ready — atrium coffee · drag orbit · T toon · U unlit",
+        "cam": [
+          1.35,
+          2.15,
+          4.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/cafe-atrium/?hud=0&cam=close",
+        "bytes": 236206,
+        "ready": true,
+        "status": "ready — atrium coffee · drag orbit · T toon · U unlit",
+        "cam": [
+          1.15,
+          1.7,
+          -0.42
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/cafe-atrium/?hud=0&mode=unlit",
+        "bytes": 170556,
+        "ready": true,
+        "status": "ready — atrium coffee · drag orbit · T toon · U unlit",
+        "cam": [
+          4.15,
+          5.35,
+          7.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-ceramics",
+    "rel": "experiments/sprint-20261110/ceramics/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ceramics/?hud=0",
+        "bytes": 446201,
+        "ready": true,
+        "status": "ready — ceramics workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          6.35,
+          3.05,
+          5.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ceramics/?hud=0&cam=corner",
+        "bytes": 379827,
+        "ready": true,
+        "status": "ready — ceramics workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          -4.15,
+          2.55,
+          5.65
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ceramics/?hud=0&cam=close",
+        "bytes": 311154,
+        "ready": true,
+        "status": "ready — ceramics workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          -1.15,
+          1.28,
+          1.85
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ceramics/?hud=0&mode=unlit",
+        "bytes": 162541,
+        "ready": true,
+        "status": "ready — ceramics workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          6.35,
+          3.05,
+          5.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-conservatory",
+    "rel": "experiments/sprint-20261110/conservatory/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/conservatory/?hud=0",
+        "bytes": 575939,
+        "ready": true,
+        "status": "ready — indoor conservatory · drag orbit · U unlit · T toon",
+        "cam": [
+          3.2,
+          2.65,
+          6.5
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/conservatory/?hud=0&cam=corner",
+        "bytes": 501378,
+        "ready": true,
+        "status": "ready — indoor conservatory · drag orbit · U unlit · T toon",
+        "cam": [
+          3.55,
+          1.85,
+          2.85
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/conservatory/?hud=0&cam=close",
+        "bytes": 506452,
+        "ready": true,
+        "status": "ready — indoor conservatory · drag orbit · U unlit · T toon",
+        "cam": [
+          1.4,
+          1.42,
+          1.75
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/conservatory/?hud=0&mode=unlit",
+        "bytes": 408466,
+        "ready": true,
+        "status": "ready — indoor conservatory · drag orbit · U unlit · T toon",
+        "cam": [
+          3.2,
+          2.65,
+          6.5
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-diner",
+    "rel": "experiments/sprint-20261110/diner/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/diner/?hud=0",
+        "bytes": 338688,
+        "ready": true,
+        "status": "ready — neighborhood diner · drag orbit · U unlit · T toon",
+        "cam": [
+          1.15,
+          3.02,
+          6.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/diner/?hud=0&cam=corner",
+        "bytes": 431650,
+        "ready": true,
+        "status": "ready — neighborhood diner · drag orbit · U unlit · T toon",
+        "cam": [
+          -2.7,
+          2.72,
+          5.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/diner/?hud=0&cam=close",
+        "bytes": 306792,
+        "ready": true,
+        "status": "ready — neighborhood diner · drag orbit · U unlit · T toon",
+        "cam": [
+          2.151,
+          2.033,
+          1.349
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/diner/?hud=0&mode=unlit",
+        "bytes": 270448,
+        "ready": true,
+        "status": "ready — neighborhood diner · drag orbit · U unlit · T toon",
+        "cam": [
+          1.15,
+          3.02,
+          6.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-hotel-lobby",
+    "rel": "experiments/sprint-20261110/hotel-lobby/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/hotel-lobby/?hud=0",
+        "bytes": 328071,
+        "ready": true,
+        "status": "ready — The Marlowe lobby · drag orbit · U unlit · T toon",
+        "cam": [
+          9.4,
+          4.35,
+          9.6
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/hotel-lobby/?hud=0&cam=corner",
+        "bytes": 358025,
+        "ready": true,
+        "status": "ready — The Marlowe lobby · drag orbit · U unlit · T toon",
+        "cam": [
+          7.2,
+          3.05,
+          -2.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/hotel-lobby/?hud=0&cam=close",
+        "bytes": 177160,
+        "ready": true,
+        "status": "ready — The Marlowe lobby · drag orbit · U unlit · T toon",
+        "cam": [
+          2.35,
+          2.45,
+          -1.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/hotel-lobby/?hud=0&mode=unlit",
+        "bytes": 107907,
+        "ready": true,
+        "status": "ready — The Marlowe lobby · drag orbit · U unlit · T toon",
+        "cam": [
+          9.4,
+          4.35,
+          9.6
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-makerspace",
+    "rel": "experiments/sprint-20261110/makerspace/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/makerspace/?hud=0",
+        "bytes": 323483,
+        "ready": true,
+        "status": "ready — maker workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          2.65,
+          2.4,
+          5.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/makerspace/?hud=0&cam=corner",
+        "bytes": 347607,
+        "ready": true,
+        "status": "ready — maker workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          4.35,
+          2.05,
+          2.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/makerspace/?hud=0&cam=close",
+        "bytes": 324299,
+        "ready": true,
+        "status": "ready — maker workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          1.45,
+          1.46,
+          2.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/makerspace/?hud=0&mode=unlit",
+        "bytes": 123241,
+        "ready": true,
+        "status": "ready — maker workshop · drag orbit · U unlit · T toon",
+        "cam": [
+          2.65,
+          2.4,
+          5.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-photo-studio",
+    "rel": "experiments/sprint-20261110/photo-studio/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/photo-studio/?hud=0",
+        "bytes": 296955,
+        "ready": true,
+        "status": "ready — photography studio · drag orbit · U unlit · T toon",
+        "cam": [
+          5.15,
+          2.35,
+          4.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/photo-studio/?hud=0&cam=corner",
+        "bytes": 288873,
+        "ready": true,
+        "status": "ready — photography studio · drag orbit · U unlit · T toon",
+        "cam": [
+          0.4,
+          2.15,
+          4.7
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/photo-studio/?hud=0&cam=close",
+        "bytes": 255263,
+        "ready": true,
+        "status": "ready — photography studio · drag orbit · U unlit · T toon",
+        "cam": [
+          0.35,
+          1.42,
+          0.62
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/photo-studio/?hud=0&mode=unlit",
+        "bytes": 91869,
+        "ready": true,
+        "status": "ready — photography studio · drag orbit · U unlit · T toon",
+        "cam": [
+          5.15,
+          2.35,
+          4.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-planetarium",
+    "rel": "experiments/sprint-20261110/planetarium/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/planetarium/?hud=0",
+        "bytes": 320592,
+        "ready": true,
+        "status": "ready — star chamber · drag orbit · U unlit · T toon",
+        "cam": [
+          6.7,
+          3.25,
+          6.7
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/planetarium/?hud=0&cam=corner",
+        "bytes": 241619,
+        "ready": true,
+        "status": "ready — star chamber · drag orbit · U unlit · T toon",
+        "cam": [
+          5.5,
+          2.05,
+          0.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/planetarium/?hud=0&cam=close",
+        "bytes": 204718,
+        "ready": true,
+        "status": "ready — star chamber · drag orbit · U unlit · T toon",
+        "cam": [
+          1.45,
+          1.55,
+          0.7
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/planetarium/?hud=0&mode=unlit",
+        "bytes": 168849,
+        "ready": true,
+        "status": "ready — star chamber · drag orbit · U unlit · T toon",
+        "cam": [
+          6.7,
+          3.25,
+          6.7
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-podcast-lounge",
+    "rel": "experiments/sprint-20261110/podcast-lounge/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/podcast-lounge/?hud=0",
+        "bytes": 286126,
+        "ready": true,
+        "status": "ready — podcast lounge · drag orbit · U unlit · T toon",
+        "cam": [
+          4.7,
+          2.2,
+          3.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/podcast-lounge/?hud=0&cam=corner",
+        "bytes": 267722,
+        "ready": true,
+        "status": "ready — podcast lounge · drag orbit · U unlit · T toon",
+        "cam": [
+          3.7,
+          2.05,
+          -2.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/podcast-lounge/?hud=0&cam=close",
+        "bytes": 108451,
+        "ready": true,
+        "status": "ready — podcast lounge · drag orbit · U unlit · T toon",
+        "cam": [
+          -1.55,
+          1.32,
+          -0.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/podcast-lounge/?hud=0&mode=unlit",
+        "bytes": 128015,
+        "ready": true,
+        "status": "ready — podcast lounge · drag orbit · U unlit · T toon",
+        "cam": [
+          4.7,
+          2.2,
+          3.55
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-ramen-bar",
+    "rel": "experiments/sprint-20261110/ramen-bar/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ramen-bar/?hud=0",
+        "bytes": 276763,
+        "ready": true,
+        "status": "ready — ramen bar · stools face the pots · T toon · U unlit",
+        "cam": [
+          4.85,
+          2.18,
+          4.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ramen-bar/?hud=0&cam=corner",
+        "bytes": 339349,
+        "ready": true,
+        "status": "ready — ramen bar · stools face the pots · T toon · U unlit",
+        "cam": [
+          3.15,
+          1.62,
+          1.35
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ramen-bar/?hud=0&cam=close",
+        "bytes": 219206,
+        "ready": true,
+        "status": "ready — ramen bar · stools face the pots · T toon · U unlit",
+        "cam": [
+          -0.15,
+          1.46,
+          0.12
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ramen-bar/?hud=0&mode=unlit",
+        "bytes": 149623,
+        "ready": true,
+        "status": "ready — ramen bar · stools face the pots · T toon · U unlit",
+        "cam": [
+          4.85,
+          2.18,
+          4.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-record-store",
+    "rel": "experiments/sprint-20261110/record-store/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/record-store/?hud=0",
+        "bytes": 577170,
+        "ready": true,
+        "status": "ready — Afterglow Records · drag orbit · T toon · U unlit · 1/2/3 cameras",
+        "cam": [
+          6.35,
+          2.72,
+          5.85
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/record-store/?hud=0&cam=corner",
+        "bytes": 585697,
+        "ready": true,
+        "status": "ready — Afterglow Records · drag orbit · T toon · U unlit · 1/2/3 cameras",
+        "cam": [
+          6.35,
+          2.15,
+          0.25
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/record-store/?hud=0&cam=close",
+        "bytes": 252076,
+        "ready": true,
+        "status": "ready — Afterglow Records · drag orbit · T toon · U unlit · 1/2/3 cameras",
+        "cam": [
+          1.7,
+          1.645,
+          -0.951
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/record-store/?hud=0&mode=unlit",
+        "bytes": 405764,
+        "ready": true,
+        "status": "ready — Afterglow Records · drag orbit · T toon · U unlit · 1/2/3 cameras",
+        "cam": [
+          6.35,
+          2.72,
+          5.85
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-ship-salon",
+    "rel": "experiments/sprint-20261110/ship-salon/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ship-salon/?hud=0",
+        "bytes": 467273,
+        "ready": true,
+        "status": "ready — ship salon · drag orbit · U unlit · T toon",
+        "cam": [
+          3.35,
+          1.92,
+          4.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ship-salon/?hud=0&cam=corner",
+        "bytes": 358658,
+        "ready": true,
+        "status": "ready — ship salon · drag orbit · U unlit · T toon",
+        "cam": [
+          3.15,
+          1.78,
+          -2.05
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ship-salon/?hud=0&cam=close",
+        "bytes": 202417,
+        "ready": true,
+        "status": "ready — ship salon · drag orbit · U unlit · T toon",
+        "cam": [
+          0.35,
+          1.2,
+          1.95
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/ship-salon/?hud=0&mode=unlit",
+        "bytes": 256066,
+        "ready": true,
+        "status": "ready — ship salon · drag orbit · U unlit · T toon",
+        "cam": [
+          3.35,
+          1.92,
+          4.15
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  },
+  {
+    "slug": "sprint-study-loft",
+    "rel": "experiments/sprint-20261110/study-loft/",
+    "views": {
+      "toon_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/study-loft/?hud=0",
+        "bytes": 359497,
+        "ready": true,
+        "status": "ready — quiet study loft · drag orbit · U unlit · T toon",
+        "cam": [
+          7.5,
+          4.7,
+          6.3
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_corner.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/study-loft/?hud=0&cam=corner",
+        "bytes": 261454,
+        "ready": true,
+        "status": "ready — quiet study loft · drag orbit · U unlit · T toon",
+        "cam": [
+          7.6,
+          3.35,
+          2.4
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "toon_close.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/study-loft/?hud=0&cam=close",
+        "bytes": 222632,
+        "ready": true,
+        "status": "ready — quiet study loft · drag orbit · U unlit · T toon",
+        "cam": [
+          -1.25,
+          3.82,
+          -1.62
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      },
+      "unlit_default.png": {
+        "url": "http://127.0.0.1:8765/experiments/sprint-20261110/study-loft/?hud=0&mode=unlit",
+        "bytes": 154467,
+        "ready": true,
+        "status": "ready — quiet study loft · drag orbit · U unlit · T toon",
+        "cam": [
+          7.5,
+          4.7,
+          6.3
+        ],
+        "assetFailures": [],
+        "http404": [],
+        "consoleErrors": []
+      }
+    }
+  }
+]
