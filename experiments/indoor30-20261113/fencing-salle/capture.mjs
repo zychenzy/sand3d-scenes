@@ -3,7 +3,7 @@
  *   node capture.mjs http://127.0.0.1:8796/experiments/indoor30-20261113/fencing-salle
  */
 import { spawn } from 'node:child_process';
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 
 const BASE = (process.argv[2] || 'http://127.0.0.1:8796/experiments/indoor30-20261113/fencing-salle').replace(/\/$/, '');
 const PORT = 9336;
@@ -137,7 +137,8 @@ async function shoot(cdp, url, expectMode) {
   if (!report || !report.ok) throw new Error('inspect failed ' + JSON.stringify(report));
   if (report.bad) throw new Error('non-finite mesh positions');
   if (report.failed.length) throw new Error('glb failed ' + report.failed.join(','));
-  if (report.glb < 10) throw new Error('too few glb loads ' + report.glb);
+  const assetCount = Object.keys(JSON.parse(readFileSync(new URL('./layout.json', import.meta.url), 'utf8')).assets).length;
+  if (report.glb < assetCount) throw new Error('too few glb loads ' + report.glb + ' / ' + assetCount);
   if (expectMode === 'toon' && report.toon < 20) throw new Error('toon materials missing ' + JSON.stringify(report));
   if (expectMode === 'unlit' && (report.basic < 20 || report.toon > 0)) {
     throw new Error('unlit did not swap to MeshBasicMaterial ' + JSON.stringify(report));

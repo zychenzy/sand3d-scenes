@@ -7,6 +7,7 @@ import {
   PISTE,
   PLANKS,
   HALL,
+  COACH_FIT,
   REELS,
   frame,
   pisteFrames,
@@ -26,14 +27,7 @@ const layout = JSON.parse(fs.readFileSync(path.join(dir, 'layout.json'), 'utf8')
 
 const NATIVE = {
   museum_bench: { size: [0.414, 0.456, 1.5] },
-  dining_chair: { size: [0.362, 1.0, 0.511] },
-  school_desk: { size: [0.602, 0.7, 0.443] },
-  library_lamp: { size: [0.341, 0.451, 0.341] },
-  chalkboard: { size: [0.434, 1.258, 1.502] },
   wall_shelf: { size: [0.701, 0.8, 0.287] },
-  flowerpot: { size: [0.25, 0.204, 0.25] },
-  thermos: { size: [0.085, 0.3, 0.085] },
-  pendant_lamp: { size: [0.246, 0.449, 0.246] },
 };
 
 function bakedSize(name) {
@@ -141,23 +135,42 @@ test('score machines sit between 1 m and 5 m off the outer edge and face the ais
   assert.ok(scoreA.position[1] > 0.9);
 });
 
-test('seats face the pistes and the coach sits on the wall side of the desk', () => {
+test('seats face the pistes and the coach stool is on the wall side of the table', () => {
   const nearL = layout.instances.find((i) => i.id === 'bench_near_l');
   const nearR = layout.instances.find((i) => i.id === 'bench_near_r');
   const side = layout.instances.find((i) => i.id === 'bench_side');
-  const chair = layout.instances.find((i) => i.id === 'coach_chair');
-  const desk = layout.instances.find((i) => i.id === 'coach_desk');
   for (const bench of [nearL, nearR]) {
     assert.ok(Math.abs(Math.abs(bench.rotationY) - Math.PI / 2) < 0.02, bench.id);
     assert.ok(bench.position[2] > 7);
   }
   assert.equal(side.rotationY, 0);
   assert.ok(side.position[0] > frame(HALL.pisteBX).x1 + 1.2);
-  assert.ok(Math.abs(chair.rotationY + Math.PI / 2) < 0.02, 'chair faces -X, toward the pistes');
-  assert.ok(chair.position[0] > desk.position[0]);
-  assert.ok(Math.abs(chair.position[2] - desk.position[2]) < 0.2);
-  assert.ok(Math.abs(desk.rotationY + Math.PI / 2) < 0.02, 'desk open side toward the chair');
-  assert.ok(chair.position[0] < HALL.wallR - 0.15);
+
+  const table = {
+    x0: COACH_FIT.table.x - COACH_FIT.table.hx,
+    x1: COACH_FIT.table.x + COACH_FIT.table.hx,
+    z0: COACH_FIT.table.z - COACH_FIT.table.hz,
+    z1: COACH_FIT.table.z + COACH_FIT.table.hz,
+  };
+  const stool = {
+    x0: COACH_FIT.stool.x - COACH_FIT.stool.hx,
+    x1: COACH_FIT.stool.x + COACH_FIT.stool.hx,
+    z0: COACH_FIT.stool.z - COACH_FIT.stool.hz,
+    z1: COACH_FIT.stool.z + COACH_FIT.stool.hz,
+  };
+  assert.ok(stool.x0 > table.x1 - 0.02, 'stool is on the wall side of the table');
+  assert.ok(stool.x1 < HALL.wallR - 0.1);
+  assert.ok(Math.abs(COACH_FIT.stool.z - COACH_FIT.table.z) < 0.05);
+  assert.ok(COACH_FIT.diagram.x > HALL.wallR - 0.2, 'diagram is on the right wall');
+  assert.ok(COACH_FIT.diagram.w < 1.2 && COACH_FIT.diagram.h < 0.8);
+  for (const zone of forbiddenZones()) {
+    assert.equal(overlaps(table, zone, 0.02), false, `table overlaps ${zone.id}`);
+    assert.equal(overlaps(stool, zone, 0.02), false, `stool overlaps ${zone.id}`);
+  }
+  const retired = ['dining_chair', 'school_desk', 'library_lamp', 'chalkboard', 'flowerpot', 'thermos', 'pendant_lamp'];
+  for (const kind of retired) {
+    assert.equal(layout.instances.some((i) => i.kind === kind), false, kind);
+  }
 });
 
 test('armory kit is on the left wall and weapon bells meet the rack rail', () => {

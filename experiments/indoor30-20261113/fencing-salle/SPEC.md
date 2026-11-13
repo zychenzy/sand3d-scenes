@@ -10,9 +10,9 @@ Piste A is centred at x = −2.20, piste B at x = +2.20. Inner edges are 2.90 m 
 
 ## Room
 
-Walled length runs from z = −9.15 to the cut at z = 8.75. Clear height is 5.08. Side walls are plaster above a 1.18 m green wainscot, with a chair rail, baseboard, and a clerestory. The floor is oak planks 85 mm wide, running the length of the hall. Piste bodies are a flat aluminum, warning ends a dull rose, lines cream. The far door is centred on the referee aisle, not on a piste.
+Walled length runs from z = −9.15 to the cut at z = 8.75. Clear height is 5.08. Side walls are plaster above a 1.18 m green wainscot, with a chair rail, baseboard, and a clerestory. The floor is oak planks 85 mm wide, running the length of the hall. Piste bodies are a cool aluminum with a low-contrast panel shift and a seam every 2 m, warning ends a dull rose, lines cream. The oak around them stays warm and narrower. The far door is centred on the referee aisle, not on a piste.
 
-The left wall is the armory: masks on a peg rail, lamés beside them, a glove shelf, then a weapon rack with foils, epees, and sabres hung bell-down so the lip meets the rail. The right bay is the coach: desk, chair on the wall side of the desk facing the pistes, lamp, thermos, lesson board, plant, and a pendant under a soffit. A coach’s box is marked on the floor beside piste B. Four ceiling reels sit outside the piste edges. Spectator benches at the cut face down the hall. A side bench faces piste B.
+The left wall is the armory: a row of masks on a peg rail, one mask hung immediately beside the weapon rack, lamés, a glove shelf, then foils, epees, and sabres bell-down so the lip meets the rail. The right bay is the coach’s place under the soffit: a plain writing table, a backless stool on the wall side of the table looking across it toward the pistes, a notebook, and a wall-mounted distance diagram (en garde, straight attack, parry 4). A coach’s box is marked on the floor beside piste B. Four ceiling reels sit outside the piste edges. Spectator benches sit against the side walls at the cut and face down the hall. A side bench further along the right wall faces piste B.
 
 ## Light
 

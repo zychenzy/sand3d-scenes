@@ -39,6 +39,17 @@ export const HALL = {
 export const WEAPON_BELL_LIP = 0.179;
 export const RACK_RAIL_TOP = 0.794;
 
+/**
+ * Coach bay, wall side of piste B. The table sits between the marked coach box
+ * and the wall. The stool is on the wall side of the table, looking across it
+ * toward the pistes (−X). The diagram is mounted on the right wall.
+ */
+export const COACH_FIT = {
+  table: { x: 5.55, z: 0.15, hx: 0.28, hz: 0.62, top: 0.74 },
+  stool: { x: 6.22, z: 0.15, hx: 0.18, hz: 0.18, seat: 0.46 },
+  diagram: { x: 6.51, y: 1.52, z: 0.0, w: 1.12, h: 0.74 },
+};
+
 export const REELS = [
   { id: "reel_a_far", x: -3.55, z: -6.5 },
   { id: "reel_a_near", x: -3.55, z: 6.5 },

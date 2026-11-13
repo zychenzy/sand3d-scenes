@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { boot, toon, addBox, addCyl } from './scene_lib.js';
 import {
+  COACH_FIT,
   HALL,
   PLANKS,
   REELS,
@@ -51,15 +52,85 @@ function paintFloor(width, depth) {
     const b = 114 + wobble * 0.25;
     ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
     ctx.fillRect(i * plank, 0, plank + 1, H);
-    ctx.fillStyle = 'rgba(92, 64, 36, 0.35)';
+    ctx.fillStyle = 'rgba(92, 64, 36, 0.16)';
     ctx.fillRect(i * plank, 0, 1, H);
     const joint = (1.55 * ppm) ;
     const shift = (i % 2) * joint * 0.5;
-    ctx.fillStyle = 'rgba(90, 62, 34, 0.28)';
+    ctx.fillStyle = 'rgba(90, 62, 34, 0.12)';
     for (let y = shift; y < H; y += joint) {
       ctx.fillRect(i * plank, y, plank, 1);
     }
   }
+  return srgbTexture(canvas);
+}
+
+function paintPiste() {
+  const across = 96;
+  const along = 896;
+  const canvas = document.createElement('canvas');
+  canvas.width = across;
+  canvas.height = along;
+  const ctx = canvas.getContext('2d');
+  const panel = Math.round((2 / 14) * along);
+  for (let i = 0, y = 0; y < along; i += 1, y += panel) {
+    const shift = i % 2 === 0 ? 0 : -8;
+    ctx.fillStyle = `rgb(${206 + shift}, ${214 + shift}, ${206 + shift})`;
+    ctx.fillRect(0, y, across, panel + 1);
+  }
+  ctx.fillStyle = 'rgba(62, 74, 68, 0.72)';
+  for (let y = panel; y < along; y += panel) ctx.fillRect(0, y - 1, across, 2);
+  ctx.fillRect(across / 2, 0, 1, along);
+  const tex = srgbTexture(canvas);
+  tex.wrapS = THREE.ClampToEdgeWrapping;
+  tex.wrapT = THREE.ClampToEdgeWrapping;
+  return tex;
+}
+
+function paintLesson() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 768;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#f4f0e6';
+  ctx.fillRect(0, 0, 768, 512);
+  ctx.strokeStyle = '#2c4a42';
+  ctx.lineWidth = 8;
+  ctx.strokeRect(72, 148, 624, 168);
+  ctx.setLineDash([22, 16]);
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(72, 232);
+  ctx.lineTo(696, 232);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.lineWidth = 6;
+  const xGuard = (metres) => 72 + (624 * (7 + metres)) / 14;
+  for (const z of [-2, 2]) {
+    const x = xGuard(z);
+    ctx.beginPath();
+    ctx.moveTo(x, 148);
+    ctx.lineTo(x, 316);
+    ctx.stroke();
+  }
+  ctx.fillStyle = '#2c4a42';
+  ctx.beginPath();
+  ctx.arc(xGuard(-2), 196, 12, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(xGuard(2), 268, 12, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(xGuard(-2) + 18, 200);
+  ctx.lineTo(xGuard(2) - 22, 258);
+  ctx.stroke();
+  ctx.fillStyle = '#2c4a42';
+  ctx.font = '600 44px Georgia, "Times New Roman", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('DISTANCE', 384, 92);
+  ctx.font = '400 28px Georgia, "Times New Roman", serif';
+  ctx.fillStyle = '#6d4a36';
+  ctx.fillText('ATTAQUE   ·   PARADE 4', 384, 420);
   return srgbTexture(canvas);
 }
 
@@ -165,7 +236,7 @@ function makeShell() {
   const ceil = toon(CEIL);
   const beam = toon(BEAM);
   const green = toon(GREEN);
-  const copper = toon(PISTE_METAL);
+  const copper = toon('#ffffff', { map: paintPiste() });
   const warn = toon(WARN);
   const line = toon(LINE);
   const trim = toon('#c5ccd1');
@@ -365,6 +436,7 @@ function makeProcedural(layout) {
   addPegRail(g, metal, brass);
   addLames(g, cloth, metal, brass);
   addShelfGoods(g, cloth, green, brass);
+  addCoachBay(g, wood, green);
   return g;
 }
 
@@ -382,9 +454,9 @@ function addScoreStand(g, inst, metal, wood) {
 
 function addBenchBack(g, inst, wood, nearEnd) {
   const [x, , z] = inst.position;
-  if (nearEnd) {
-    addBox(g, 1.42, 0.78, 0.045, wood, x, 0.62, z + 0.28);
-    addBox(g, 1.42, 0.04, 0.06, toon('#8a6844'), x, 1.02, z + 0.28);
+    if (nearEnd) {
+    addBox(g, 1.28, 0.36, 0.04, wood, x, 0.62, z + 0.22);
+    addBox(g, 1.28, 0.035, 0.05, toon('#8a6844'), x, 0.82, z + 0.22);
   } else {
     addBox(g, 0.045, 0.78, 1.42, wood, x + 0.28, 0.62, z);
     addBox(g, 0.06, 0.04, 1.42, toon('#8a6844'), x + 0.28, 1.02, z);
@@ -413,10 +485,69 @@ function addReel(g, x, z, metal, green, brass) {
 }
 
 function addPegRail(g, metal, brass) {
-  addBox(g, 0.025, 0.025, 2.9, metal, -6.16, 1.73, 2.7);
-  for (let z = 1.35; z <= 4.06; z += 0.45) {
+  addBox(g, 0.025, 0.025, 2.4, metal, -6.16, 1.73, 2.95);
+  for (let z = 1.8; z <= 4.06; z += 0.45) {
     addBox(g, 0.04, 0.012, 0.012, brass, -6.13, 1.73, z);
   }
+  addBox(g, 0.025, 0.025, 0.28, metal, -6.16, 1.73, -0.55);
+  addBox(g, 0.04, 0.012, 0.012, brass, -6.13, 1.73, -0.55);
+}
+
+function addCoachBay(g, wood, green) {
+  const table = COACH_FIT.table;
+  const stool = COACH_FIT.stool;
+  const board = COACH_FIT.diagram;
+  const top = toon('#8d6846');
+  const leg = toon('#5c4634');
+  const paper = toon('#f4f0e6');
+
+  const slab = addBox(g, table.hx * 2, 0.032, table.hz * 2, top, table.x, table.top, table.z);
+  slab.userData.noCast = true;
+  addBox(g, table.hx * 2 - 0.06, 0.06, table.hz * 2 - 0.06, leg, table.x, table.top - 0.05, table.z);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(
+        g, 0.045, table.top - 0.04, 0.045, leg,
+        table.x + sx * (table.hx - 0.06),
+        (table.top - 0.04) / 2,
+        table.z + sz * (table.hz - 0.08),
+      );
+    }
+  }
+  addBox(g, 0.22, 0.012, 0.16, paper, table.x - 0.02, table.top + 0.022, table.z + 0.08);
+  const pencil = addBox(g, 0.012, 0.008, 0.16, toon('#c4a06a'), table.x + 0.14, table.top + 0.02, table.z - 0.06);
+  pencil.userData.noCast = true;
+  shadowBlob(g, table.x, table.z, table.hx * 2 + 0.1, table.hz * 2 + 0.08, 0.22);
+
+  addBox(g, stool.hx * 2, 0.04, stool.hz * 2, top, stool.x, stool.seat, stool.z);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(
+        g, 0.032, stool.seat - 0.02, 0.032, leg,
+        stool.x + sx * (stool.hx - 0.04),
+        (stool.seat - 0.02) / 2,
+        stool.z + sz * (stool.hz - 0.04),
+      );
+    }
+  }
+  addBox(g, stool.hx * 2 - 0.04, 0.02, 0.028, leg, stool.x, 0.2, stool.z);
+  shadowBlob(g, stool.x, stool.z, 0.42, 0.42, 0.2);
+
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(board.w - 0.06, board.h - 0.06), toon('#f4f0e6', { map: paintLesson() }));
+  face.position.set(board.x, board.y, board.z);
+  face.rotation.y = -Math.PI / 2;
+  face.userData.noCast = true;
+  g.add(face);
+  const frame = toon('#5c4634');
+  addBox(g, 0.02, board.h, 0.028, frame, board.x, board.y, board.z - board.w / 2);
+  addBox(g, 0.02, board.h, 0.028, frame, board.x, board.y, board.z + board.w / 2);
+  addBox(g, 0.02, 0.028, board.w, frame, board.x, board.y + board.h / 2, board.z);
+  addBox(g, 0.02, 0.028, board.w, frame, board.x, board.y - board.h / 2, board.z);
+  const rail = addBox(g, 0.03, 0.012, board.w + 0.08, green, board.x + 0.01, board.y + board.h / 2 + 0.04, board.z);
+  rail.userData.noCast = true;
+
+  const bay = addBox(g, 0.1, 0.025, 0.72, toon('#fff4e2', { emissive: '#fff1d4', emissiveIntensity: 0.7 }), 5.7, HALL.soffitY - 0.14, table.z);
+  bay.userData.noCast = true;
 }
 
 function addLames(g, cloth, metal, brass) {
@@ -441,30 +572,6 @@ function addShelfGoods(g, cloth, green, brass) {
   }
 }
 
-function addShrub(prepared) {
-  const leaf = toon('#2f5a45');
-  const potTop = 0.26;
-  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.016, 0.08, 8), toon('#5c4634'));
-  stem.position.y = potTop + 0.02;
-  prepared.add(stem);
-  const crown = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), leaf);
-  crown.position.y = potTop + 0.14;
-  crown.scale.set(1, 0.85, 1);
-  prepared.add(crown);
-}
-
-function liftCrushed(root) {
-  root.traverse((obj) => {
-    if (!obj.isMesh || !obj.material) return;
-    const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-    for (const m of mats) {
-      if (m.color && m.color.r < 0.05 && m.color.g < 0.05 && m.color.b < 0.05) {
-        m.color.setRGB(0.09, 0.085, 0.08);
-      }
-    }
-  });
-}
-
 function quietShadows(prepared, { cast, receive }) {
   prepared.traverse((obj) => {
     if (!obj.isMesh) return;
@@ -474,8 +581,6 @@ function quietShadows(prepared, { cast, receive }) {
 }
 
 function tuneAsset(kind, prepared) {
-  if (kind === 'flowerpot') addShrub(prepared);
-  if (kind === 'school_desk' || kind === 'dining_chair' || kind === 'chalkboard') liftCrushed(prepared);
   if (kind === 'foil' || kind === 'epee' || kind === 'sabre' || kind === 'weapon_rack') {
     quietShadows(prepared, { cast: false, receive: false });
   }
@@ -489,7 +594,7 @@ function makeProceduralWithBlobs(layout) {
     if (inst.kind === 'museum_bench') continue;
     if (inst.position[1] > 0.2 && inst.kind !== 'weapon_rack' && inst.kind !== 'wall_shelf') continue;
     if (inst.kind === 'foil' || inst.kind === 'epee' || inst.kind === 'sabre' || inst.kind === 'mask') continue;
-    const wide = inst.kind === 'chalkboard' || inst.kind === 'weapon_rack' || inst.kind === 'school_desk';
+    const wide = inst.kind === 'weapon_rack';
     shadowBlob(
       g,
       inst.position[0],

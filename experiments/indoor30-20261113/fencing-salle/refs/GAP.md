@@ -6,6 +6,12 @@ Lamés, gloves, and body-cord spools are boxes and cylinders in `salle.js`, not 
 
 The lesson board is the existing chalkboard bake. That mesh is a gilt freestanding panel, not a green board, and it is used as-is. The flowerpot bake is empty. A shrub is added on top of it. Desk and chair feet that were near black are lifted so they do not read as holes.
 
-The piste body is a flat aluminum, not a woven conductive texture. A canvas multiply was turning the strip the same brown as the oak, and a full-floor poche slab was winning the depth test in the middle distance, so the slab was removed and the map was dropped. Warning colour and the broken centre line carry the marking.
+The piste body is cool aluminum with a 2 m panel shift and a thin seam, not a woven conductive cloth. The seams stay quieter than the oak joints so the strip does not turn into a second wood floor. A full-floor poche slab used to win the depth test in the middle distance; it is gone.
 
-Blades, the rack, and the masks do not cast shadows. The mask grid and the thin steel were stippling the plaster (shadow acne). Contact under furniture is a blob. Hard shadows remain on the benches, score stands, and coach furniture. The darkest toon step is lifted so those shadows are not pure black. From the section cut, the near floor is still a wide band of oak before the piste ends. The benches and score boxes sit in that foreground. They are not cropped out, and they are not in the middle of the strips.
+Blades, the rack, and the masks do not cast shadows. The mask grid and the thin steel were stippling the plaster. Contact under the table, stool, and benches is a blob. Hard shadows remain on the score stands. The darkest toon step is lifted so those shadows are not pure black.
+
+The centered default still shows the 2 m runback as oak in front of the warning colour. Both score machines sit about 4.5 m off the centre line, so a normal lens that keeps both of them also keeps that runback in the near field. The runback is not shortened. The spectator benches are against the side walls and out of that frame, so they no longer read as two brown backs in the foreground.
+
+The coach bay is a table, a backless stool on the wall side, and a diagram on the wall. It is not a school desk, a ladder-back chair, a banker’s lamp, or the gilt chalkboard bake. The stool is partly behind the table from the corner camera, which is the wall-side seat looking toward the pistes. The diagram is a plan of the on-guard distance, not a full lesson board.
+
+The detail frame puts one complete mask beside the near end of the rack. Blade tips still leave the top of that frame. The plaster around the mask is the wall it hangs on. There is no second mask in that shot; the rest of the row is further down the armory wall.
