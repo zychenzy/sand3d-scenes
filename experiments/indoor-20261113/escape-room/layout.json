@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "title": "Tide Lock cipher study",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 7.8, "height": 3.3 },
+    "puzzle": {
+      "order": ["anchor", "gull", "lantern"],
+      "digits": { "anchor": 4, "gull": 8, "lantern": 2 },
+      "colors": { "anchor": "#1e4e86", "gull": "#d15a42", "lantern": "#e2a23a" }
+    },
+    "notes": [
+      "Cutaway harbor cipher study. Back wall is -Z, window wall is -X, camera side is +X and +Z.",
+      "Study-desk kneehole faces local +X; rotationY -pi/2 turns that face toward the room (+Z).",
+      "Dining-chair seat faces local +Z. rotationY pi turns the sitter toward -Z, into the desk.",
+      "Easel canvas faces local +Z. Chalkboard face is local +X; rotationY -pi/2 turns it toward the room.",
+      "Library-lamp shade overhangs local +Z, toward the sitter.",
+      "Wall shelf front is local +Z. rotationY pi/2 turns that face toward +X, off the window wall.",
+      "Round table, canister, two-tier stand, and wall shelf are uniform height fits. No non-uniform stretch.",
+      "Combination cabinets, wheels, chest, staff, and bell are procedural. GLBs are read-only symlinks."
+    ]
+  },
+  "anchors": {
+    "studyDesk": { "x": -1.15, "z": -0.85 },
+    "schoolDesk": { "x": -4.05, "z": 0.7 },
+    "easel": { "x": -3.55, "z": -2.4 },
+    "slate": { "x": -1.85, "z": -3.42 },
+    "table": { "x": 1.38, "z": 0.42 },
+    "chartTable": { "x": -4.12, "z": -0.95 },
+    "cabinets": [0.55, 1.45, 2.35],
+    "cabinetZ": -3.48,
+    "panel": { "x": 4.35, "z": -3.68 },
+    "plinth": { "x": 3.25, "z": -2.35 },
+    "lectern": { "x": -0.42, "z": -1.78 }
+  },
+  "circulation": [
+    [0.4, 3.35],
+    [0.4, 1.85],
+    [0.4, 0.15],
+    [0.4, -1.55],
+    [1.8, -1.55],
+    [4.2, -1.55]
+  ],
+  "branch": [
+    [0.4, 0.15],
+    [-2.2, 0.15],
+    [-3.15, 0.15]
+  ],
+  "assets": {
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76,
+      "span": [0.432, 1.288]
+    },
+    "school_desk": {
+      "glb": "assets/school_desk__57f955646049.glb",
+      "targetHeight": 0.74,
+      "span": [0.637, 0.468]
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.88,
+      "span": [0.318, 0.449]
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42,
+      "span": [0.32, 0.32]
+    },
+    "easel": {
+      "glb": "assets/easel__4d7f020db965.glb",
+      "targetHeight": 1.62,
+      "span": [0.67, 0.76]
+    },
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.74,
+      "span": [0.75, 0.75]
+    },
+    "round_table": {
+      "glb": "assets/round_table__49e5ede6a16d.glb",
+      "targetHeight": 0.7,
+      "span": [0.84, 0.84]
+    },
+    "chalkboard": {
+      "glb": "assets/chalkboard__72286e591df6.glb",
+      "targetHeight": 1.18,
+      "span": [0.4, 1.4]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "span": [0.42, 1.51]
+    },
+    "museum_plinth": {
+      "glb": "assets/museum_plinth__6bce39246b2c.glb",
+      "targetHeight": 0.72,
+      "span": [0.28, 0.28],
+      "tint": "#d9d0c2"
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.5,
+      "span": [0.95, 0.46]
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48,
+      "span": [0.25, 0.25]
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "span": [0.39, 0.39],
+      "tint": "#c46a45"
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.14,
+      "span": [0.11, 0.11]
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "span": [0.09, 0.09]
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26,
+      "span": [0.08, 0.18]
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.28,
+      "span": [0.16, 0.22]
+    },
+    "canister": {
+      "glb": "assets/straw_holder__252f730f1a04.glb",
+      "targetHeight": 0.2,
+      "span": [0.08, 0.08]
+    },
+    "tier_stand": {
+      "glb": "assets/tray_napkin__86821ece655f.glb",
+      "targetHeight": 0.26,
+      "span": [0.31, 0.24]
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.78,
+      "span": [0.68, 0.28]
+    }
+  },
+  "instances": [
+    { "id": "study_desk", "kind": "study_desk", "position": [-1.15, 0, -0.85], "rotationY": -1.5708, "blocksPath": true, "contact": [0.72, 0.32] },
+    { "id": "study_chair", "kind": "dining_chair", "position": [-1.15, 0, -0.18], "rotationY": 3.1416, "blocksPath": true, "contact": [0.22, 0.26] },
+    { "id": "study_lamp", "kind": "library_lamp", "position": [-0.72, 0.76, -0.98], "rotationY": 0 },
+    { "id": "study_mug", "kind": "cup_mug", "position": [-1.55, 0.76, -0.78], "rotationY": 0.4 },
+    { "id": "study_canister", "kind": "canister", "position": [-1.72, 0.76, -1.02], "rotationY": 0.2 },
+
+    { "id": "school_desk", "kind": "school_desk", "position": [-4.05, 0, 0.7], "rotationY": 0, "blocksPath": true, "contact": [0.36, 0.28] },
+    { "id": "school_chair", "kind": "dining_chair", "position": [-4.05, 0, 1.28], "rotationY": 3.1416, "blocksPath": true, "contact": [0.22, 0.26] },
+    { "id": "school_register", "kind": "cash_register", "position": [-4.22, 0.74, 0.58], "rotationY": 0.15 },
+    { "id": "school_thermos", "kind": "thermos", "position": [-3.82, 0.74, 0.62], "rotationY": 0.2 },
+
+    { "id": "easel", "kind": "easel", "position": [-3.55, 0, -2.4], "rotationY": 0, "blocksPath": true, "contact": [0.4, 0.42] },
+    { "id": "slate", "kind": "chalkboard", "position": [-1.85, 0, -3.42], "rotationY": -1.5708, "blocksPath": true, "contact": [0.72, 0.26] },
+
+    { "id": "clue_table", "kind": "square_table", "position": [1.38, 0, 0.42], "rotationY": 0.04, "blocksPath": true, "contact": [0.42, 0.42] },
+    { "id": "clue_chair", "kind": "dining_chair", "position": [1.38, 0, 1.22], "rotationY": 3.1416, "blocksPath": true, "contact": [0.22, 0.26] },
+    { "id": "jar_anchor", "kind": "jam_jar", "position": [1.16, 0.74, 0.28], "rotationY": 0.2 },
+    { "id": "jar_gull", "kind": "jam_jar", "position": [1.38, 0.74, 0.26], "rotationY": -0.3 },
+    { "id": "jar_lantern", "kind": "jam_jar", "position": [1.6, 0.74, 0.3], "rotationY": 0.5 },
+    { "id": "table_canister", "kind": "canister", "position": [1.16, 0.74, 0.52], "rotationY": 0.4 },
+
+    { "id": "chart_table", "kind": "round_table", "position": [-4.12, 0, -0.95], "rotationY": 0.2, "blocksPath": true, "contact": [0.46, 0.46] },
+    { "id": "chart_stand", "kind": "tier_stand", "position": [-4.12, 0.7, -0.95], "rotationY": 0.4 },
+    { "id": "chart_canister", "kind": "canister", "position": [-3.82, 0.7, -1.12], "rotationY": 0.1 },
+
+    { "id": "back_shelf", "kind": "wall_shelf", "position": [-0.48, 1.32, -3.64], "rotationY": 0 },
+    { "id": "shelf_tube_a", "kind": "canister", "position": [-0.62, 1.452, -3.64], "rotationY": 0.2 },
+    { "id": "shelf_tube_b", "kind": "canister", "position": [-0.32, 1.955, -3.64], "rotationY": -0.2 },
+    { "id": "side_shelf", "kind": "wall_shelf", "position": [-5.08, 1.18, -1.7], "rotationY": 1.5708 },
+    { "id": "side_tube_a", "kind": "canister", "position": [-5.0, 1.36, -1.86], "rotationY": 0.3 },
+    { "id": "side_tube_b", "kind": "canister", "position": [-5.0, 1.81, -1.52], "rotationY": -0.2 },
+
+    { "id": "panel_bench", "kind": "piano_bench", "position": [4.35, 0, -2.55], "rotationY": 0, "blocksPath": true, "contact": [0.55, 0.28] },
+    { "id": "prize_plinth", "kind": "museum_plinth", "position": [3.25, 0, -2.35], "rotationY": 0.15, "blocksPath": true, "contact": [0.2, 0.2] },
+    { "id": "entry_bench", "kind": "museum_bench", "position": [-4.45, 0, 2.85], "rotationY": 0, "blocksPath": true, "contact": [0.28, 0.8] },
+
+    { "id": "pot_window", "kind": "flowerpot", "position": [-4.72, 0, 3.32], "rotationY": 0.3, "blocksPath": true, "contact": [0.22, 0.22] },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [4.55, 0, 3.22], "rotationY": 1.1, "blocksPath": true, "contact": [0.22, 0.22] },
+
+    { "id": "pendant_desk", "kind": "pendant_lamp", "position": [-1.15, 2.15, -0.4], "rotationY": 0.2 },
+    { "id": "pendant_table", "kind": "pendant_lamp", "position": [1.38, 2.15, 0.42], "rotationY": -0.3 }
+  ],
+  "shell": {
+    "floorColor": "#c9a67c",
+    "floorDark": "#6d4c34",
+    "wallColor": "#f3ecdf",
+    "wallUpper": "#e4eeea",
+    "wainscot": "#16464e",
+    "woodColor": "#6b4632",
+    "woodDeep": "#3a261c",
+    "brass": "#c6a15b",
+    "ceilingColor": "#f4efe6",
+    "rug": "#1a5e56",
+    "rugEdge": "#c4553a",
+    "clearColor": "#d5e4ec",
+    "fogColor": "#d5e4ec",
+    "fogNear": 16,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 42,
+    "position": [2.7, 2.28, 5.55],
+    "target": [1.35, 0.5, -1.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-4.15, 2.05, 3.45],
+      "target": [0.55, 1.02, -1.35]
+    },
+    "close": {
+      "position": [-3.05, 1.38, -0.85],
+      "target": [-3.55, 0.95, -2.2]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff6ea", "ground": "#5d7c74", "intensity": 0.74 },
+    "key": {
+      "color": "#fff3e0",
+      "intensity": 1.35,
+      "position": [-7.2, 8.4, 1.1],
+      "target": [0.2, 0.8, -0.4],
+      "mapSize": 2048,
+      "far": 28,
+      "shadow": { "left": -7.5, "right": 7.5, "top": 7.5, "bottom": -7.5, "bias": -0.0004, "normalBias": 0.035 }
+    },
+    "fill": { "color": "#d5e6f4", "intensity": 0.42, "position": [7.5, 5.5, 5.5] },
+    "points": [
+      { "color": "#ffe2b0", "intensity": 1.35, "position": [-0.75, 1.25, -0.55], "distance": 3.2, "decay": 2 },
+      { "color": "#fff1d0", "intensity": 1.05, "position": [-3.5, 2.15, -1.9], "distance": 3.8, "decay": 2 },
+      { "color": "#ffd7a0", "intensity": 0.85, "position": [4.3, 1.85, -2.6], "distance": 3.6, "decay": 2 },
+      { "color": "#d7ebf6", "intensity": 0.7, "position": [-4.6, 2.05, 0.7], "distance": 4.2, "decay": 2 },
+      { "color": "#ffe6c4", "intensity": 0.55, "position": [1.4, 1.9, 0.4], "distance": 2.8, "decay": 2 }
+    ]
+  }
+}
