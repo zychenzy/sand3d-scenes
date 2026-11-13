@@ -1,0 +1,357 @@
+{
+  "meta": {
+    "title": "Northlane — four-lane house",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Pins toward −Z. Bowlers and theatre chairs face −Z.",
+      "Approach is the 15 ft behind the foul line and stays clear of furniture.",
+      "Each pair shares a ball return between the lanes. The cross aisle is behind the chairs.",
+      "Shoe desk is off the right side of the concourse. Ball rack is off the left."
+    ]
+  },
+  "assets": {
+    "theatre_chair": {
+      "glb": "../../../cinema/assets/theatre_chair__0e346addc570.glb",
+      "targetHeight": 0.96
+    },
+    "museum_bench": {
+      "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46
+    },
+    "bar_counter": {
+      "glb": "../../../cafe/assets/bar_counter__532dcc87f672.glb",
+      "targetHeight": 1.02
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.76
+    },
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.34
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.14
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.44
+    },
+    "library_lamp": {
+      "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.36
+    },
+    "monitor": {
+      "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
+      "targetHeight": 0.36
+    },
+    "tv": {
+      "glb": "../../../ktv/assets/tv__7a1ea89eeb48.glb",
+      "targetHeight": 0.7
+    },
+    "speaker": {
+      "glb": "../../../cinema/assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.32
+    }
+  },
+  "instances": [
+    {
+      "id": "seat_1",
+      "kind": "theatre_chair",
+      "position": [
+        -2.696,
+        0,
+        5.86
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "seat_2",
+      "kind": "theatre_chair",
+      "position": [
+        -0.872,
+        0,
+        5.86
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "seat_3",
+      "kind": "theatre_chair",
+      "position": [
+        0.872,
+        0,
+        5.86
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "seat_4",
+      "kind": "theatre_chair",
+      "position": [
+        2.696,
+        0,
+        5.86
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "score_1",
+      "kind": "monitor",
+      "position": [
+        -1.784,
+        0.74,
+        5.06
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "score_2",
+      "kind": "monitor",
+      "position": [
+        1.784,
+        0.74,
+        5.06
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "wait_bench",
+      "kind": "museum_bench",
+      "position": [
+        -4.078,
+        0,
+        5.95
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "shoe_counter",
+      "kind": "bar_counter",
+      "position": [
+        5.308,
+        0,
+        6.35
+      ],
+      "rotationY": 1.5707963267948966,
+      "scale": [
+        0.595,
+        1,
+        0.363
+      ]
+    },
+    {
+      "id": "shoe_stool_1",
+      "kind": "bar_stool",
+      "position": [
+        4.528,
+        0,
+        5.55
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "shoe_stool_2",
+      "kind": "bar_stool",
+      "position": [
+        4.528,
+        0,
+        6.35
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "shoe_stool_3",
+      "kind": "bar_stool",
+      "position": [
+        4.528,
+        0,
+        7.15
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "shoe_register",
+      "kind": "cash_register",
+      "position": [
+        5.328,
+        1.02,
+        5.72
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "shoe_pos",
+      "kind": "pos_terminal",
+      "position": [
+        5.288,
+        1.02,
+        6.95
+      ],
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "id": "shoe_lamp",
+      "kind": "library_lamp",
+      "position": [
+        5.348,
+        1.02,
+        6.35
+      ],
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "id": "pendant_1",
+      "kind": "pendant_lamp",
+      "position": [
+        -1.7,
+        2.64,
+        6.55
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_2",
+      "kind": "pendant_lamp",
+      "position": [
+        0.15,
+        2.64,
+        6.55
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "pendant_3",
+      "kind": "pendant_lamp",
+      "position": [
+        2.05,
+        2.64,
+        6.55
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "tv_lobby",
+      "kind": "tv",
+      "position": [
+        -5.308,
+        0.86,
+        6.85
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "speaker_l",
+      "kind": "speaker",
+      "position": [
+        -3.678,
+        1.42,
+        -18.8064
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "speaker_r",
+      "kind": "speaker",
+      "position": [
+        3.678,
+        1.42,
+        -18.8064
+      ],
+      "rotationY": 1.5707963267948966
+    }
+  ],
+  "shell": {
+    "clearColor": "#c9c3b6",
+    "fogColor": "#c9c3b6",
+    "fogNear": 34,
+    "fogFar": 72
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      2.55,
+      2.2,
+      11.6
+    ],
+    "target": [
+      -0.35,
+      0.82,
+      -6.2
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 46,
+      "position": [
+        1.25,
+        2.28,
+        -2.35
+      ],
+      "target": [
+        -0.35,
+        0.72,
+        4.9
+      ]
+    },
+    "close": {
+      "fov": 38,
+      "position": [
+        -0.12,
+        1.16,
+        -16.55
+      ],
+      "target": [
+        -0.872,
+        0.28,
+        -18.7
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 16774374,
+      "ground": 2371640,
+      "intensity": 0.5
+    },
+    "key": {
+      "color": 16773340,
+      "intensity": 1.42,
+      "position": [
+        5.2,
+        14.5,
+        7.5
+      ],
+      "target": [
+        -0.3,
+        0.4,
+        -8
+      ],
+      "shadow": 24
+    },
+    "fill": {
+      "color": 10396736,
+      "intensity": 0.26,
+      "position": [
+        -9,
+        7.5,
+        1
+      ]
+    }
+  },
+  "acceptance": {
+    "shots": [
+      "toon_default",
+      "toon_corner",
+      "toon_close",
+      "unlit_default"
+    ],
+    "must_read": [
+      "Four lanes with gutters, foul lines, arrows, and a full pin triangle each.",
+      "Ball returns between each pair, on the approach but off the lane walking surface.",
+      "Theatre chairs face the pins. The cross aisle behind them is empty."
+    ]
+  }
+}
