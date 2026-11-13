@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Cold stained-glass workshop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 8.0, "height": 3.25 },
+    "notes": [
+      "Cold shop only. Pattern light table, sheet racks, foil, solder under a vent hood, and a framed leaded window. No furnace, glory hole, blowpipe, marver, or lehr.",
+      "Both work stations are shop benches with four-leg stools. The light well is recessed in the bench top.",
+      "Coloured glass is thin extruded sheets with streak maps and partial transparency."
+    ]
+  },
+  "assets": {
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 1.02
+    },
+    "easel": {
+      "glb": "../../../workshop/assets/easel__4d7f020db965.glb",
+      "targetHeight": 1.62
+    },
+    "pendant_lamp": {
+      "glb": "../../../workshop/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.48
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.12
+    }
+  },
+  "instances": [
+    {
+      "id": "supply_shelf",
+      "kind": "wall_shelf",
+      "position": [-5.02, 1.08, 2.2],
+      "rotationY": 1.5708
+    },
+    {
+      "id": "cartoon_easel",
+      "kind": "easel",
+      "position": [-3.7, 0, -3.48],
+      "rotationY": 0.08
+    },
+    {
+      "id": "pend_table",
+      "kind": "pendant_lamp",
+      "position": [0.05, 2.42, 0.22],
+      "rotationY": 0
+    },
+    {
+      "id": "pend_solder",
+      "kind": "pendant_lamp",
+      "position": [3.15, 2.42, -2.55],
+      "rotationY": 0.4
+    },
+    {
+      "id": "task_lamp",
+      "kind": "library_lamp",
+      "position": [2.62, 0.86, -3.58],
+      "rotationY": 3.1416
+    },
+    {
+      "id": "flux_jar",
+      "kind": "jam_jar",
+      "position": [3.72, 0.86, -3.38],
+      "rotationY": 0.4
+    },
+    {
+      "id": "patina_jar",
+      "kind": "jam_jar",
+      "position": [3.9, 0.86, -3.58],
+      "rotationY": 1.1
+    },
+    {
+      "id": "oil_jar",
+      "kind": "jam_jar",
+      "position": [3.22, 0.86, -1.12],
+      "rotationY": 0.2
+    },
+    {
+      "id": "shelf_jar_a",
+      "kind": "jam_jar",
+      "position": [-4.98, 1.3, 1.95],
+      "rotationY": 0.5
+    },
+    {
+      "id": "shelf_jar_b",
+      "kind": "jam_jar",
+      "position": [-4.98, 1.3, 2.4],
+      "rotationY": -0.3
+    }
+  ],
+  "zones": {
+    "lightTable": { "x": 0.05, "z": 0.22, "top": 0.78, "w": 2.2, "d": 1.16, "wellW": 1.2, "wellD": 0.64 },
+    "solder": { "x": 3.15, "z": -3.5, "top": 0.86, "w": 1.72, "d": 0.7, "ironX": 3.55 },
+    "cutting": { "x": 3.4, "z": -1.22, "top": 0.86, "w": 1.2, "d": 0.66 },
+    "window": { "x": -1.42, "z": -3.7, "w": 1.34, "h": 1.46, "sill": 0.5 },
+    "racks": [
+      { "x": -4.92, "z": -1.2 },
+      { "x": -4.92, "z": 0.85 }
+    ],
+    "vent": { "x": 3.55, "z": -3.58, "y": 1.64 },
+    "path": { "x": 0.05, "z": 1.42, "w": 1.5, "d": 1.05 },
+    "stools": [
+      { "x": -0.95, "z": 1.02 },
+      { "x": 2.35, "z": -2.7 }
+    ],
+    "easelCartoon": { "x": -3.7, "z": -3.48, "y": 0.82, "dz": 0.36, "w": 0.44, "h": 0.66 },
+    "shelf": { "x": -5.02, "y": 1.08, "z": 2.2, "upper": 1.9 }
+  },
+  "shell": {
+    "floorColor": "#c4a078",
+    "wallColor": "#f4efe6",
+    "ceilingColor": "#f7f3ec",
+    "woodColor": "#7a4e32",
+    "trimColor": "#8d5e3c",
+    "matColor": "#e4d3b4",
+    "leadColor": "#3c3834",
+    "copperColor": "#c47a3c",
+    "ironColor": "#4e4742",
+    "ventColor": "#9aa3a6",
+    "dadoColor": "#e3d2b8",
+    "clearColor": "#f3eee6",
+    "fogColor": "#f3eee6",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 74,
+    "position": [1.0, 1.46, 2.78],
+    "target": [-1.15, 1.18, -2.25]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 62,
+      "position": [2.25, 1.16, -0.88],
+      "target": [1.9, 1.32, -3.25]
+    },
+    "detail": {
+      "fov": 50,
+      "position": [0.92, 1.32, 1.28],
+      "target": [0.08, 0.78, 0.16]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 16775914, "ground": 9076804, "intensity": 0.64 },
+    "key": {
+      "color": 16775396,
+      "intensity": 1.18,
+      "position": [5.6, 8.4, 5.1],
+      "shadowExtent": 13,
+      "bias": -0.00042,
+      "normalBias": 0.046
+    },
+    "fill": { "color": 14020600, "intensity": 0.4, "position": [-5.8, 4.4, 2.6] },
+    "points": [
+      { "color": 16775390, "intensity": 0.85, "distance": 2.8, "decay": 2, "position": [0.05, 1.7, 0.22] },
+      { "color": 16769968, "intensity": 0.55, "distance": 2.2, "decay": 2, "position": [3.35, 1.45, -2.85] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon detail", "unlit"],
+    "must_read": [
+      "Default view holds the light table, racks, leaded window, and solder bench with its hood.",
+      "Corner view shows the iron, foil, stool, and vent hood without a wide empty floor.",
+      "Detail view shows shaped coloured glass on the light table, not opaque cubes.",
+      "Unlit is a real MeshBasic pass of the same scene, still in colour."
+    ]
+  }
+}
