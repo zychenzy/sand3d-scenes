@@ -1,0 +1,1450 @@
+{
+  "meta": {
+    "title": "North Pins bowling alley",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 14.4,
+      "depth": 22.4,
+      "height": 4.15
+    },
+    "notes": [
+      "Four-lane house alley. Lane width is a real 1.08 m bed; length is shortened so the approach and the pin deck share one cutaway.",
+      "Pins at -Z. Seats face the pins. Shoe and snack counters face +X onto the concourse. Ball returns and scoring screens face the bowler (+Z)."
+    ]
+  },
+  "plan": {
+    "room": {
+      "width": 14.4,
+      "depth": 22.4,
+      "height": 4.15
+    },
+    "x0": -2.55,
+    "laneW": 1.08,
+    "gutterW": 0.23,
+    "returnW": 0.42,
+    "pairGap": 0.36,
+    "endCap": 0.16,
+    "foulZ": 2.35,
+    "approachEndZ": 5.78,
+    "pitZ": -9.85,
+    "headZ": -8.88,
+    "pinSpacing": 0.3048,
+    "seatZ": 6.98,
+    "seatOffset": 0.64,
+    "laneNumbers": [
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "pairs": [
+    {
+      "pair": 0,
+      "x": -0.87,
+      "returnX": -0.87,
+      "lanes": [
+        7,
+        8
+      ]
+    },
+    {
+      "pair": 1,
+      "x": 2.53,
+      "returnX": 2.53,
+      "lanes": [
+        9,
+        10
+      ]
+    }
+  ],
+  "lanes": [
+    {
+      "kind": "lane",
+      "x": -1.85,
+      "w": 1.08,
+      "number": 7,
+      "pair": 0,
+      "side": "left",
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "headZ": -8.88,
+      "id": "lane7"
+    },
+    {
+      "kind": "lane",
+      "x": 0.11,
+      "w": 1.08,
+      "number": 8,
+      "pair": 0,
+      "side": "right",
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "headZ": -8.88,
+      "id": "lane8"
+    },
+    {
+      "kind": "lane",
+      "x": 1.55,
+      "w": 1.08,
+      "number": 9,
+      "pair": 1,
+      "side": "left",
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "headZ": -8.88,
+      "id": "lane9"
+    },
+    {
+      "kind": "lane",
+      "x": 3.51,
+      "w": 1.08,
+      "number": 10,
+      "pair": 1,
+      "side": "right",
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "headZ": -8.88,
+      "id": "lane10"
+    }
+  ],
+  "gutters": [
+    {
+      "kind": "gutter",
+      "x": -1.195,
+      "w": 0.23,
+      "pair": 0,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "gutter0"
+    },
+    {
+      "kind": "gutter",
+      "x": -0.545,
+      "w": 0.23,
+      "pair": 0,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "gutter1"
+    },
+    {
+      "kind": "gutter",
+      "x": 2.205,
+      "w": 0.23,
+      "pair": 1,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "gutter2"
+    },
+    {
+      "kind": "gutter",
+      "x": 2.855,
+      "w": 0.23,
+      "pair": 1,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "gutter3"
+    }
+  ],
+  "returns": [
+    {
+      "kind": "return",
+      "x": -0.87,
+      "w": 0.42,
+      "pair": 0,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "return0"
+    },
+    {
+      "kind": "return",
+      "x": 2.53,
+      "w": 0.42,
+      "pair": 1,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "return1"
+    }
+  ],
+  "caps": [
+    {
+      "kind": "cap",
+      "x": -2.47,
+      "w": 0.16,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "cap0"
+    },
+    {
+      "kind": "cap",
+      "x": 4.13,
+      "w": 0.16,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "cap1"
+    }
+  ],
+  "gaps": [
+    {
+      "kind": "gap",
+      "x": 0.83,
+      "w": 0.36,
+      "foulZ": 2.35,
+      "pitZ": -9.85,
+      "id": "gap0"
+    }
+  ],
+  "approaches": [
+    {
+      "id": "approach0",
+      "pair": 0,
+      "x": -0.87,
+      "w": 3.04,
+      "z0": 2.35,
+      "z1": 5.78
+    },
+    {
+      "id": "approach1",
+      "pair": 1,
+      "x": 2.53,
+      "w": 3.04,
+      "z0": 2.35,
+      "z1": 5.78
+    }
+  ],
+  "floors": [
+    {
+      "id": "service_tile",
+      "x": -5.95,
+      "z": 6.55,
+      "w": 2.45,
+      "d": 9.1,
+      "color": "#cfc6b8"
+    },
+    {
+      "id": "concourse_carpet",
+      "x": 0.9,
+      "z": 9.15,
+      "w": 10.3,
+      "d": 3.55,
+      "color": "#6e2438"
+    },
+    {
+      "id": "carpet_border",
+      "x": 0.9,
+      "z": 7.55,
+      "w": 10.3,
+      "d": 0.16,
+      "color": "#4a1828"
+    }
+  ],
+  "blocks": [
+    {
+      "id": "shoe_counter",
+      "kind": "counter",
+      "label": "SHOES",
+      "x": -6.27,
+      "z": 9.08,
+      "w": 0.74,
+      "h": 1.05,
+      "d": 2.42,
+      "yaw": 0,
+      "facing": "+x",
+      "color": "#2c3338",
+      "top": "#1a1e22",
+      "accent": "#c2a06a"
+    },
+    {
+      "id": "snack_counter",
+      "kind": "counter",
+      "label": "SNACKS",
+      "x": -6.27,
+      "z": 5.02,
+      "w": 0.74,
+      "h": 1.05,
+      "d": 2.5,
+      "yaw": 0,
+      "facing": "+x",
+      "color": "#3a2a24",
+      "top": "#6a4328",
+      "accent": "#e6d2a2"
+    },
+    {
+      "id": "shoe_cubbies",
+      "kind": "cubby",
+      "x": -6.94,
+      "z": 9.08,
+      "w": 0.34,
+      "h": 1.92,
+      "d": 2.3,
+      "yaw": 0,
+      "facing": "+x",
+      "cols": 4,
+      "rows": 3
+    },
+    {
+      "id": "ball_rack",
+      "kind": "rack",
+      "x": -6.32,
+      "z": 2.78,
+      "w": 0.8,
+      "h": 1.28,
+      "d": 1.08,
+      "yaw": 0,
+      "facing": "+x"
+    },
+    {
+      "id": "tray_0",
+      "kind": "tray",
+      "pair": 0,
+      "x": -0.87,
+      "z": 2.97,
+      "w": 0.42,
+      "h": 0.56,
+      "d": 1.18,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "console_0",
+      "kind": "console",
+      "pair": 0,
+      "lanes": [
+        7,
+        8
+      ],
+      "elevated": true,
+      "x": -0.87,
+      "z": 3.13,
+      "w": 0.72,
+      "h": 0.46,
+      "d": 0.1,
+      "y": 1.02,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "masking_0",
+      "kind": "masking",
+      "pair": 0,
+      "lanes": [
+        7,
+        8
+      ],
+      "elevated": true,
+      "x": -0.87,
+      "z": -10.28,
+      "w": 3.04,
+      "h": 1.85,
+      "d": 0.08,
+      "y": 0.72,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "hood_0",
+      "kind": "hood",
+      "pair": 0,
+      "elevated": true,
+      "x": -0.87,
+      "z": -10.68,
+      "w": 2.96,
+      "h": 2.15,
+      "d": 0.48,
+      "y": 0.0,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "tray_1",
+      "kind": "tray",
+      "pair": 1,
+      "x": 2.53,
+      "z": 2.97,
+      "w": 0.42,
+      "h": 0.56,
+      "d": 1.18,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "console_1",
+      "kind": "console",
+      "pair": 1,
+      "lanes": [
+        9,
+        10
+      ],
+      "elevated": true,
+      "x": 2.53,
+      "z": 3.13,
+      "w": 0.72,
+      "h": 0.46,
+      "d": 0.1,
+      "y": 1.02,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "masking_1",
+      "kind": "masking",
+      "pair": 1,
+      "lanes": [
+        9,
+        10
+      ],
+      "elevated": true,
+      "x": 2.53,
+      "z": -10.28,
+      "w": 3.04,
+      "h": 1.85,
+      "d": 0.08,
+      "y": 0.72,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "hood_1",
+      "kind": "hood",
+      "pair": 1,
+      "elevated": true,
+      "x": 2.53,
+      "z": -10.68,
+      "w": 2.96,
+      "h": 2.15,
+      "d": 0.48,
+      "y": 0.0,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "menu_board",
+      "kind": "sign",
+      "elevated": true,
+      "text": "menu",
+      "face": "+z",
+      "x": -6.25,
+      "z": 6.21,
+      "w": 0.96,
+      "h": 0.74,
+      "d": 0.05,
+      "y": 1.12,
+      "yaw": 0,
+      "facing": "+z"
+    },
+    {
+      "id": "shoe_sign",
+      "kind": "sign",
+      "elevated": true,
+      "text": "shoes",
+      "x": -6.35,
+      "z": 9.23,
+      "w": 0.06,
+      "h": 0.42,
+      "d": 1.35,
+      "y": 2.15,
+      "yaw": 0,
+      "facing": "+x"
+    }
+  ],
+  "clear": [
+    {
+      "id": "concourse",
+      "min": [
+        -4.35,
+        7.58
+      ],
+      "max": [
+        6.15,
+        10.85
+      ]
+    },
+    {
+      "id": "left_aisle",
+      "min": [
+        -4.48,
+        2.1
+      ],
+      "max": [
+        -2.88,
+        7.58
+      ]
+    },
+    {
+      "id": "approach_7",
+      "min": [
+        -2.35,
+        2.35
+      ],
+      "max": [
+        -1.35,
+        5.78
+      ]
+    },
+    {
+      "id": "approach_8",
+      "min": [
+        -0.39,
+        2.35
+      ],
+      "max": [
+        0.61,
+        5.78
+      ]
+    },
+    {
+      "id": "approach_9",
+      "min": [
+        1.05,
+        2.35
+      ],
+      "max": [
+        2.05,
+        5.78
+      ]
+    },
+    {
+      "id": "approach_10",
+      "min": [
+        3.01,
+        2.35
+      ],
+      "max": [
+        4.01,
+        5.78
+      ]
+    }
+  ],
+  "assets": {
+    "bowling_pin": {
+      "glb": "assets/bowling_pin__40a52bb7b68b.glb",
+      "targetHeight": 0.381
+    },
+    "house_ball": {
+      "glb": "assets/house_ball.glb",
+      "targetHeight": 0.216
+    },
+    "lane_seat": {
+      "glb": "assets/lane_seat.glb",
+      "targetHeight": 0.842
+    },
+    "drink_table": {
+      "glb": "assets/drink_table.glb",
+      "targetHeight": 0.52
+    },
+    "bar_stool": {
+      "glb": "assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.74
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.24
+    },
+    "pos_terminal": {
+      "glb": "assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.16
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.62
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.26
+    }
+  },
+  "instances": [
+    {
+      "id": "ball_t0_0",
+      "kind": "house_ball",
+      "position": [
+        -0.87,
+        0.38,
+        2.65
+      ],
+      "rotationY": 0.4,
+      "color": "#c4232a",
+      "rest": "tray_0"
+    },
+    {
+      "id": "ball_t0_1",
+      "kind": "house_ball",
+      "position": [
+        -0.87,
+        0.38,
+        2.97
+      ],
+      "rotationY": 1.1,
+      "color": "#1d4e89",
+      "rest": "tray_0"
+    },
+    {
+      "id": "ball_t0_2",
+      "kind": "house_ball",
+      "position": [
+        -0.87,
+        0.38,
+        3.29
+      ],
+      "rotationY": 1.8,
+      "color": "#5c2d82",
+      "rest": "tray_0"
+    },
+    {
+      "id": "seat_0l",
+      "kind": "lane_seat",
+      "position": [
+        -1.51,
+        0,
+        6.98
+      ],
+      "rotationY": 0,
+      "faces": "pins"
+    },
+    {
+      "id": "seat_0r",
+      "kind": "lane_seat",
+      "position": [
+        -0.23,
+        0,
+        6.98
+      ],
+      "rotationY": 0,
+      "faces": "pins"
+    },
+    {
+      "id": "table_0",
+      "kind": "drink_table",
+      "position": [
+        -0.87,
+        0,
+        6.98
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "mug_0",
+      "kind": "cup_mug",
+      "position": [
+        -0.87,
+        0.52,
+        7.0
+      ],
+      "rotationY": 0.6,
+      "rest": "table_0"
+    },
+    {
+      "id": "ball_t1_0",
+      "kind": "house_ball",
+      "position": [
+        2.53,
+        0.38,
+        2.65
+      ],
+      "rotationY": 1.4,
+      "color": "#1a1a1a",
+      "rest": "tray_1"
+    },
+    {
+      "id": "ball_t1_1",
+      "kind": "house_ball",
+      "position": [
+        2.53,
+        0.38,
+        2.97
+      ],
+      "rotationY": 2.1,
+      "color": "#e07a1f",
+      "rest": "tray_1"
+    },
+    {
+      "id": "ball_t1_2",
+      "kind": "house_ball",
+      "position": [
+        2.53,
+        0.38,
+        3.29
+      ],
+      "rotationY": 2.8,
+      "color": "#1f7a4d",
+      "rest": "tray_1"
+    },
+    {
+      "id": "seat_1l",
+      "kind": "lane_seat",
+      "position": [
+        1.89,
+        0,
+        6.98
+      ],
+      "rotationY": 0,
+      "faces": "pins"
+    },
+    {
+      "id": "seat_1r",
+      "kind": "lane_seat",
+      "position": [
+        3.17,
+        0,
+        6.98
+      ],
+      "rotationY": 0,
+      "faces": "pins"
+    },
+    {
+      "id": "table_1",
+      "kind": "drink_table",
+      "position": [
+        2.53,
+        0,
+        6.98
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "mug_1",
+      "kind": "cup_mug",
+      "position": [
+        2.53,
+        0.52,
+        7.0
+      ],
+      "rotationY": 0.6,
+      "rest": "table_1"
+    },
+    {
+      "id": "pin_7_0_0",
+      "kind": "bowling_pin",
+      "position": [
+        -1.85,
+        0,
+        -8.88
+      ],
+      "rotationY": 0.0,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_1_0",
+      "kind": "bowling_pin",
+      "position": [
+        -2.0024,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.15,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_1_1",
+      "kind": "bowling_pin",
+      "position": [
+        -1.6976,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.3,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_2_0",
+      "kind": "bowling_pin",
+      "position": [
+        -2.1548,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.3,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_2_1",
+      "kind": "bowling_pin",
+      "position": [
+        -1.85,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.45,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_2_2",
+      "kind": "bowling_pin",
+      "position": [
+        -1.5452,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.6,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_3_0",
+      "kind": "bowling_pin",
+      "position": [
+        -2.3072,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.45,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_3_1",
+      "kind": "bowling_pin",
+      "position": [
+        -2.0024,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.6,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_3_2",
+      "kind": "bowling_pin",
+      "position": [
+        -1.6976,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.0,
+      "lane": 7
+    },
+    {
+      "id": "pin_7_3_3",
+      "kind": "bowling_pin",
+      "position": [
+        -1.3928,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.15,
+      "lane": 7
+    },
+    {
+      "id": "pin_8_0_0",
+      "kind": "bowling_pin",
+      "position": [
+        0.11,
+        0,
+        -8.88
+      ],
+      "rotationY": 0.0,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_1_0",
+      "kind": "bowling_pin",
+      "position": [
+        -0.0424,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.15,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_1_1",
+      "kind": "bowling_pin",
+      "position": [
+        0.2624,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.3,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_2_0",
+      "kind": "bowling_pin",
+      "position": [
+        -0.1948,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.3,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_2_1",
+      "kind": "bowling_pin",
+      "position": [
+        0.11,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.45,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_2_2",
+      "kind": "bowling_pin",
+      "position": [
+        0.4148,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.6,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_3_0",
+      "kind": "bowling_pin",
+      "position": [
+        -0.3472,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.45,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_3_1",
+      "kind": "bowling_pin",
+      "position": [
+        -0.0424,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.6,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_3_2",
+      "kind": "bowling_pin",
+      "position": [
+        0.2624,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.0,
+      "lane": 8
+    },
+    {
+      "id": "pin_8_3_3",
+      "kind": "bowling_pin",
+      "position": [
+        0.5672,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.15,
+      "lane": 8
+    },
+    {
+      "id": "pin_9_0_0",
+      "kind": "bowling_pin",
+      "position": [
+        1.55,
+        0,
+        -8.88
+      ],
+      "rotationY": 0.0,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_1_0",
+      "kind": "bowling_pin",
+      "position": [
+        1.3976,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.15,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_1_1",
+      "kind": "bowling_pin",
+      "position": [
+        1.7024,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.3,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_2_0",
+      "kind": "bowling_pin",
+      "position": [
+        1.2452,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.3,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_2_1",
+      "kind": "bowling_pin",
+      "position": [
+        1.55,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.45,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_2_2",
+      "kind": "bowling_pin",
+      "position": [
+        1.8548,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.6,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_3_0",
+      "kind": "bowling_pin",
+      "position": [
+        1.0928,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.45,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_3_1",
+      "kind": "bowling_pin",
+      "position": [
+        1.3976,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.6,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_3_2",
+      "kind": "bowling_pin",
+      "position": [
+        1.7024,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.0,
+      "lane": 9
+    },
+    {
+      "id": "pin_9_3_3",
+      "kind": "bowling_pin",
+      "position": [
+        2.0072,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.15,
+      "lane": 9
+    },
+    {
+      "id": "pin_10_0_0",
+      "kind": "bowling_pin",
+      "position": [
+        3.51,
+        0,
+        -8.88
+      ],
+      "rotationY": 0.0,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_1_0",
+      "kind": "bowling_pin",
+      "position": [
+        3.3576,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.15,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_1_1",
+      "kind": "bowling_pin",
+      "position": [
+        3.6624,
+        0,
+        -9.144
+      ],
+      "rotationY": 0.3,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_2_0",
+      "kind": "bowling_pin",
+      "position": [
+        3.2052,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.3,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_2_1",
+      "kind": "bowling_pin",
+      "position": [
+        3.51,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.45,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_2_2",
+      "kind": "bowling_pin",
+      "position": [
+        3.8148,
+        0,
+        -9.4079
+      ],
+      "rotationY": 0.6,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_3_0",
+      "kind": "bowling_pin",
+      "position": [
+        3.0528,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.45,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_3_1",
+      "kind": "bowling_pin",
+      "position": [
+        3.3576,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.6,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_3_2",
+      "kind": "bowling_pin",
+      "position": [
+        3.6624,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.0,
+      "lane": 10
+    },
+    {
+      "id": "pin_10_3_3",
+      "kind": "bowling_pin",
+      "position": [
+        3.9672,
+        0,
+        -9.6719
+      ],
+      "rotationY": 0.15,
+      "lane": 10
+    },
+    {
+      "id": "ball_r0",
+      "kind": "house_ball",
+      "position": [
+        -6.58,
+        0.215,
+        2.7
+      ],
+      "rotationY": 0.0,
+      "color": "#b01e6a",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r1",
+      "kind": "house_ball",
+      "position": [
+        -6.32,
+        0.215,
+        2.7
+      ],
+      "rotationY": 0.5,
+      "color": "#d4a017",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r2",
+      "kind": "house_ball",
+      "position": [
+        -6.06,
+        0.215,
+        2.7
+      ],
+      "rotationY": 1.0,
+      "color": "#0e6b6b",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r3",
+      "kind": "house_ball",
+      "position": [
+        -6.58,
+        0.575,
+        3.0
+      ],
+      "rotationY": 1.5,
+      "color": "#c4232a",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r4",
+      "kind": "house_ball",
+      "position": [
+        -6.32,
+        0.575,
+        3.0
+      ],
+      "rotationY": 2.0,
+      "color": "#1d4e89",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r5",
+      "kind": "house_ball",
+      "position": [
+        -6.06,
+        0.575,
+        3.0
+      ],
+      "rotationY": 2.5,
+      "color": "#5c2d82",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r6",
+      "kind": "house_ball",
+      "position": [
+        -6.54,
+        0.935,
+        2.7
+      ],
+      "rotationY": 3.0,
+      "color": "#1a1a1a",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "ball_r7",
+      "kind": "house_ball",
+      "position": [
+        -6.1,
+        0.935,
+        2.7
+      ],
+      "rotationY": 3.5,
+      "color": "#e07a1f",
+      "rest": "ball_rack"
+    },
+    {
+      "id": "stool_0",
+      "kind": "bar_stool",
+      "position": [
+        -5.38,
+        0,
+        4.2
+      ],
+      "rotationY": -1.570796,
+      "faces": "snack_counter"
+    },
+    {
+      "id": "stool_1",
+      "kind": "bar_stool",
+      "position": [
+        -5.38,
+        0,
+        5.02
+      ],
+      "rotationY": -1.570796,
+      "faces": "snack_counter"
+    },
+    {
+      "id": "stool_2",
+      "kind": "bar_stool",
+      "position": [
+        -5.38,
+        0,
+        5.84
+      ],
+      "rotationY": -1.570796,
+      "faces": "snack_counter"
+    },
+    {
+      "id": "register",
+      "kind": "cash_register",
+      "position": [
+        -6.25,
+        1.05,
+        8.73
+      ],
+      "rotationY": 1.570796,
+      "faces": "+x",
+      "rest": "shoe_counter"
+    },
+    {
+      "id": "pos",
+      "kind": "pos_terminal",
+      "position": [
+        -6.21,
+        1.05,
+        5.57
+      ],
+      "rotationY": 1.570796,
+      "faces": "+x",
+      "rest": "snack_counter"
+    },
+    {
+      "id": "snack_mug",
+      "kind": "cup_mug",
+      "position": [
+        -6.19,
+        1.05,
+        4.47
+      ],
+      "rotationY": 0.2,
+      "rest": "snack_counter"
+    },
+    {
+      "id": "counter_plant",
+      "kind": "flowerpot",
+      "position": [
+        -6.29,
+        1.05,
+        5.97
+      ],
+      "rotationY": 0.3,
+      "rest": "snack_counter"
+    },
+    {
+      "id": "pendant_0",
+      "kind": "pendant_lamp",
+      "position": [
+        -5.05,
+        3.42,
+        4.05
+      ],
+      "rotationY": 0,
+      "elevated": true
+    },
+    {
+      "id": "pendant_1",
+      "kind": "pendant_lamp",
+      "position": [
+        -4.85,
+        3.42,
+        9.55
+      ],
+      "rotationY": 0,
+      "elevated": true
+    }
+  ],
+  "shell": {
+    "floorColor": "#3a3532",
+    "wallColor": "#1e3330",
+    "wainscot": "#6a3b2c",
+    "woodColor": "#5a3a28",
+    "ceilingColor": "#2a2422",
+    "clearColor": "#d5dde2",
+    "fogColor": "#d5dde2",
+    "fogNear": 22,
+    "fogFar": 46
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      4.15,
+      4.85,
+      12.15
+    ],
+    "target": [
+      -1.05,
+      0.62,
+      1.05
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        6.55,
+        2.15,
+        -6.35
+      ],
+      "target": [
+        -0.9,
+        0.55,
+        -8.55
+      ]
+    },
+    "close": {
+      "position": [
+        0.28,
+        1.78,
+        3.9
+      ],
+      "target": [
+        -0.87,
+        0.48,
+        2.8
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": 15921908,
+      "ground": 3810082,
+      "intensity": 0.48
+    },
+    "key": {
+      "color": 16774630,
+      "intensity": 1.72,
+      "position": [
+        8.5,
+        14.5,
+        10.5
+      ],
+      "shadow": {
+        "left": -14,
+        "right": 14,
+        "top": 14,
+        "bottom": -14,
+        "near": 1,
+        "far": 42,
+        "map": 4096,
+        "bias": -0.0003,
+        "normalBias": 0.04
+      }
+    },
+    "fill": {
+      "color": 9085108,
+      "intensity": 0.32,
+      "position": [
+        -9,
+        7,
+        3
+      ]
+    }
+  },
+  "dimensions": {
+    "counterH": 1.05,
+    "stoolH": 0.74,
+    "pinH": 0.381,
+    "ballD": 0.216
+  }
+}
