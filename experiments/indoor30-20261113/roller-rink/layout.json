@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "title": "Civic maple roller rink",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 16.8, "depth": 12.6, "height": 4.95 },
+    "zones": [
+      "oval maple rink",
+      "safety rail and rink gate",
+      "skate rental cubbies",
+      "lace-up benches",
+      "entry gate",
+      "DJ booth",
+      "retro ceiling lights"
+    ],
+    "notes": [
+      "Small civic roller rink. Counterclockwise oval, rail outside the skate line, rental and entry off the floor.",
+      "Not a bowling lane and not an arcade. Catalog GLBs are pendant, speaker, stool, lamp, register, pot, and mug.",
+      "Rails, oval, skates, slat benches, booth, vault, and gates are procedural. The back wall carries a civic name board, not a foreground billboard."
+    ]
+  },
+  "architecture": {
+    "wallT": 0.16,
+    "rightWallZ1": -1.55,
+    "rink": {
+      "cx": 0.45,
+      "cz": 0.22,
+      "a": 4.72,
+      "b": 2.82,
+      "railA": 5.02,
+      "railB": 3.06,
+      "railTop": 1.04,
+      "railMid": 0.58,
+      "kick": 0.26,
+      "gateAngle": 3.14159265,
+      "gateHalf": 0.32
+    },
+    "vault": {
+      "springY": 3.4,
+      "rise": 1.28,
+      "halfX": 5.85,
+      "halfZ": 3.55
+    },
+    "entry": {
+      "x0": -4.42,
+      "x1": -2.98,
+      "z": 5.18,
+      "post": 0.1,
+      "h": 2.14,
+      "leaf": 0.98
+    },
+    "cubbies": {
+      "xBack": -8.22,
+      "z0": -2.62,
+      "depth": 0.4,
+      "modules": [
+        { "w": 0.5, "h": 1.74, "shelves": 2, "hold": ["white", "burgundy"] },
+        { "w": 0.36, "h": 1.5, "shelves": 1, "hold": ["black"] },
+        { "w": 0.46, "h": 1.02, "shelves": 1, "hold": [] },
+        { "w": 0.32, "h": 1.32, "shelves": 1, "hold": ["cream"] },
+        { "w": 0.54, "h": 1.74, "shelves": 2, "hold": ["white", "black"] },
+        { "w": 0.4, "h": 1.56, "shelves": 2, "hold": ["burgundy"] }
+      ]
+    },
+    "counter": { "x0": -8.18, "x1": -7.18, "z0": 1.05, "z1": 2.42, "h": 0.96 },
+    "benches": {
+      "seat": 0.46,
+      "depth": 0.4,
+      "laceLength": 1.42,
+      "lace": [
+        { "x": -5.95, "z": -1.7 },
+        { "x": -5.95, "z": 0.2 }
+      ],
+      "spectator": { "x": 1.45, "z": 4.82, "rot": 1.5708, "length": 1.55 }
+    },
+    "dj": {
+      "x0": 4.62,
+      "x1": 8.12,
+      "z0": -6.08,
+      "z1": -4.26,
+      "rise": 0.2,
+      "counterTop": 1.04
+    },
+    "path": [
+      [-3.7, 5.05],
+      [-4.55, 3.35],
+      [-5.2, 1.85],
+      [-5.12, 0.22],
+      [-3.45, 0.22],
+      [0.45, 0.22]
+    ]
+  },
+  "assets": {
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.64
+    },
+    "speaker": {
+      "glb": "assets/speaker__2db67686cd88.glb",
+      "targetHeight": 0.48
+    },
+    "bar_stool": {
+      "glb": "assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.64
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.36
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.3
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    }
+  },
+  "instances": [
+    { "id": "speaker_l", "kind": "speaker", "position": [5.25, 1.04, -4.42], "rotationY": -0.8023 },
+    { "id": "speaker_r", "kind": "speaker", "position": [7.2, 1.04, -4.42], "rotationY": -0.9686 },
+    { "id": "dj_stool", "kind": "bar_stool", "position": [6.35, 0.2, -5.28], "rotationY": 0.15 },
+    { "id": "dj_lamp", "kind": "library_lamp", "position": [6.15, 1.04, -5.15], "rotationY": 0.6 },
+    { "id": "dj_mug", "kind": "cup_mug", "position": [6.55, 1.04, -5.12], "rotationY": 0.2 },
+    { "id": "register", "kind": "cash_register", "position": [-7.72, 0.96, 1.72], "rotationY": 1.5708 },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [-6.35, 0, 4.35], "rotationY": 0.3 },
+    { "id": "pendant_rental", "kind": "pendant_lamp", "position": [-6.45, 2.76, -1.15] },
+    { "id": "pendant_counter", "kind": "pendant_lamp", "position": [-6.55, 2.72, 1.65] },
+    { "id": "pendant_entry", "kind": "pendant_lamp", "position": [-5.35, 2.7, 4.55], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#a85a42",
+    "wallColor": "#f4efe6",
+    "woodColor": "#6b4632",
+    "ceilingColor": "#f3ecdf",
+    "accentColor": "#8d3d45",
+    "clearColor": "#efe6d8",
+    "fogColor": "#efe6d8",
+    "fogNear": 20,
+    "fogFar": 42
+  },
+  "camera": {
+    "fov": 40,
+    "position": [1.35, 1.9, 8.05],
+    "target": [1.05, 1.25, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 48,
+      "position": [0.35, 1.78, 7.85],
+      "target": [-1.85, 1.12, 1.15]
+    },
+    "close": {
+      "position": [-4.55, 1.48, 0.95],
+      "target": [-6.85, 0.78, -0.85]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff3e4", "ground": "#c49a78", "intensity": 0.5 },
+    "key": {
+      "color": "#fff6ea",
+      "intensity": 1.22,
+      "position": [5.5, 11.5, 6.5],
+      "target": [0.2, 0.4, -0.2],
+      "shadow": {
+        "mapSize": 2048,
+        "near": 0.8,
+        "far": 34,
+        "left": -13,
+        "right": 13,
+        "top": 12,
+        "bottom": -12,
+        "bias": -0.00022,
+        "normalBias": 0.048
+      }
+    },
+    "fill": { "color": "#f3e4d2", "intensity": 0.3, "position": [-9, 6.5, 2] },
+    "points": [
+      { "color": "#ffd7a6", "intensity": 0.7, "distance": 7.5, "decay": 2, "position": [0.45, 3.7, 0.22] },
+      { "color": "#ffd0a0", "intensity": 0.45, "distance": 6.2, "decay": 2, "position": [3.3, 3.55, 0.22] },
+      { "color": "#ffd0a0", "intensity": 0.45, "distance": 6.2, "decay": 2, "position": [-2.4, 3.55, 0.22] },
+      { "color": "#ffc98a", "intensity": 0.55, "distance": 5.5, "decay": 2, "position": [-6.45, 2.7, -1.15] },
+      { "color": "#ffc98a", "intensity": 0.42, "distance": 4.8, "decay": 2, "position": [-6.55, 2.65, 1.65] },
+      { "color": "#e7b0a4", "intensity": 0.16, "distance": 4.2, "decay": 2, "position": [0.45, 3.35, 2.15] },
+      { "color": "#e8a86a", "intensity": 0.18, "distance": 4.2, "decay": 2, "position": [0.45, 3.35, -1.7] },
+      { "color": "#ffc07a", "intensity": 0.55, "distance": 3.4, "decay": 2, "position": [6.05, 1.35, -4.7] }
+    ]
+  }
+}
