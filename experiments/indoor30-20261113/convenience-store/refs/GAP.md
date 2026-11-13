@@ -38,6 +38,6 @@ Selected bakes, already in `cafe/assets`, referenced and not copied:
 - The stool cushion bake is pure black rubber. It is tinted to a dark green-grey so the seat is not a hole. The mesh file is unchanged.
 - No articulated freezer, no ice well, no newspaper rack.
 - The night window is a framed pane with a night card (lamp glow and a few distant lights) and a pale interior streak. It is not a street model.
-- The ceiling is a finished soffit over the plan. The open front and right stay cut away.
+- The ceiling is a finished soffit over the plan. The open front and right stay cut away. The corner camera stands inside the room so that view does not look out the cut.
 - Wall treatment is a back-wall header, a price rail (COLD / SNACK / HOT / OPEN), and two unbranded posters. No logos.
 - The hot counter is a roller well under a hood. Doors still do not swing, and nothing on the shelves is a printed brand.
