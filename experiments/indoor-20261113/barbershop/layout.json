@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "King Street barbershop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.4, "depth": 7.8, "height": 3.2 },
+    "notes": [
+      "Three barber chairs face the mirror wall. Local +Z on a chair is the footrest, the direction the client looks. rotationY = pi turns that toward -Z.",
+      "The wash chair faces +X (rotation pi/2) so the neck, on local -Z, meets the basin on the left wall.",
+      "Waiting loveseat faces -X into the room. The coffee table is scaled in plan; the bake is 1.82 m long at the correct 0.40 m height.",
+      "A 1.1 m runner is the path from the entry to the station bay. Station pitch is 1.85 m so a barber can stand between chairs."
+    ]
+  },
+  "anchors": {
+    "chairRot": 3.141592653589793,
+    "chairSeat": 0.52,
+    "chairEye": 1.14,
+    "footReach": 0.58,
+    "counterTop": 0.88,
+    "counterFrontZ": -3.38,
+    "counterDepth": 0.42,
+    "mirrorBottom": 1.02,
+    "mirrorTop": 2.12,
+    "stations": [
+      { "id": "a", "x": -2.55, "z": -2.28 },
+      { "id": "b", "x": -0.7, "z": -2.28 },
+      { "id": "c", "x": 1.15, "z": -2.28 }
+    ],
+    "wash": {
+      "x": -3.52,
+      "z": 0.52,
+      "rot": 1.5707963267948966,
+      "neckReach": 0.48,
+      "basinX": -4.46,
+      "basinZ": 0.52,
+      "basinRim": 0.86
+    },
+    "reception": { "x": -1.7, "z": 2.38, "top": 0.96, "w": 1.45, "d": 0.56 },
+    "runner": { "x0": 0.0, "x1": 1.12, "z0": -1.38, "z1": 3.35 },
+    "pole": { "x": -0.72, "z": 2.92 }
+  },
+  "assets": {
+    "sofa": { "glb": "assets/sofa_solid__2172bb7e3b99.glb", "targetHeight": 0.84 },
+    "coffee": { "glb": "assets/coffee_table__29a509d8be0b.glb", "targetHeight": 0.4 },
+    "bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.72 },
+    "cash": { "glb": "assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.38 },
+    "lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4 },
+    "pendant": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.7 },
+    "pot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.38, "tint": "#b5653e" },
+    "jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.16 }
+  },
+  "instances": [
+    { "id": "sofa", "kind": "sofa", "position": [4.15, 0, 1.85], "rotationY": -1.5707963267948966, "hide": true },
+    { "id": "coffee", "kind": "coffee", "position": [2.85, 0, 1.85], "rotationY": 0, "scale": [0.62, 1, 0.68] },
+    { "id": "bench", "kind": "bench", "position": [-4.72, 0, 2.4], "rotationY": 0 },
+    { "id": "shelf", "kind": "shelf", "position": [-4.95, 1.42, 3.15], "rotationY": 1.5707963267948966 },
+    { "id": "cash", "kind": "cash", "position": [-2.05, 0.96, 2.32], "rotationY": 0 },
+    { "id": "lamp", "kind": "lamp", "position": [-1.18, 0.96, 2.42], "rotationY": 0 },
+    { "id": "pendant", "kind": "pendant", "position": [3.15, 1.72, 1.95], "rotationY": 0, "castShadow": false },
+    { "id": "pot", "kind": "pot", "position": [4.28, 0, 0.72], "rotationY": 0.4 },
+    { "id": "jar_a", "kind": "jar", "position": [-3.0, 0.88, -3.58], "rotationY": 0.3 },
+    { "id": "jar_c", "kind": "jar", "position": [1.52, 0.88, -3.58], "rotationY": -0.4 },
+    { "id": "jar_desk", "kind": "jar", "position": [-1.52, 0.96, 2.32], "rotationY": 0.2 }
+  ],
+  "shell": {
+    "floorColor": "#b8926a",
+    "wallColor": "#f3ecdf",
+    "woodColor": "#5c3b28",
+    "ceilingColor": "#f6f0e6",
+    "clearColor": "#e4d8c6",
+    "fogColor": "#e4d8c6",
+    "fogNear": 18,
+    "fogFar": 40
+  },
+  "camera": {
+    "fov": 40,
+    "position": [4.85, 2.28, 6.55],
+    "target": [-0.55, 1.28, -1.35]
+  },
+  "cameraPresets": {
+    "corner": { "position": [6.35, 2.05, 0.15], "target": [-1.15, 1.0, -1.55] },
+    "close": { "position": [0.28, 1.22, -0.55], "target": [-0.62, 1.02, -3.25] }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff1dc", "ground": "#3a3028", "intensity": 0.36 },
+    "key": { "color": "#fff6e4", "intensity": 1.62, "position": [6.4, 11.2, 7.4] },
+    "fill": { "color": "#9aafc2", "intensity": 0.16, "position": [-6.5, 4.8, 1.2] },
+    "points": [
+      { "color": "#f4f7ff", "intensity": 0.16, "position": [-2.4, 1.7, 1.15], "distance": 4.5, "decay": 2 },
+      { "color": "#ffd7a2", "intensity": 0.28, "position": [3.15, 1.85, 1.95], "distance": 3.6, "decay": 2 },
+      { "color": "#ffe6b8", "intensity": 0.18, "position": [-1.18, 1.7, 2.15], "distance": 3.2, "decay": 2 }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit default"],
+    "must_read": [
+      "A barbershop: three chairs face three lit mirrors, with a wash basin, a waiting seat, and a path between them.",
+      "Chair seats are about 0.52 m. The coffee table is 0.40 m, below the loveseat. The bench seat is 0.46 m.",
+      "Station tools sit on the counter, not in the 1.1 m runner."
+    ]
+  }
+}
