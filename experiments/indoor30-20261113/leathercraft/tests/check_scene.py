@@ -20,6 +20,7 @@ REQUIRED_ZONES = [
     "clickerStand",
     "pony",
     "ponyTable",
+    "workStool",
     "burnish",
     "cabinet",
     "niche",
@@ -29,7 +30,6 @@ REQUIRED_ZONES = [
 
 REQUIRED_IDS = [
     "chair_burnish",
-    "stool_clicker",
     "lamp_burnish",
     "lamp_pony",
     "pend_clicker",
@@ -145,12 +145,25 @@ def main():
     if stand[1] - stand[0] < 0.9:
         errors.append("standing zone is narrower than 0.9 m")
 
-    stool = footprint_box(by_id["stool_clicker"], layout["assets"]["bar_stool"])
+    stool_z = zones["workStool"]
+    stool = zone_box(stool_z)
     chair = footprint_box(by_id["chair_burnish"], layout["assets"]["dining_chair"])
     if overlap_xz(stool, stand, -0.02):
-        errors.append("clicker stool blocks the standing zone")
+        errors.append("work stool blocks the standing zone")
     if overlap_xz(stool, clicker, -0.02):
-        errors.append("clicker stool intersects the bench")
+        errors.append("work stool intersects the clicker bench")
+    if not (0.58 <= stool_z["h"] <= 0.72):
+        errors.append("work stool is not a perch height beside the standing bench")
+    stool_dot, stool_dist = face_dot(
+        {"rotationY": stool_z["rot"], "position": [stool_z["x"], 0, stool_z["z"]]},
+        (zones["clickerEnd"]["x"], zones["clickerEnd"]["z"]),
+    )
+    if stool_dot < 0.8:
+        errors.append(f"work stool faces away from the clicker end (dot {stool_dot:.2f})")
+    if not (0.35 <= stool_dist <= 1.4):
+        errors.append(f"work stool distance to the clicker end is {stool_dist:.2f}")
+    if "bar_stool" in layout["assets"] or any(i["kind"] == "bar_stool" for i in layout["instances"]):
+        errors.append("tulip cafe stool is still instanced")
     if overlap_xz(chair, burnish, -0.02):
         errors.append("burnish chair intersects the bench")
     # Seat front is the side toward -Z (rotation pi). Keep a knee gap, not a stride.
@@ -177,15 +190,22 @@ def main():
     for name in ("corner", "close"):
         if name not in layout["cameraPresets"]:
             errors.append(f"missing camera {name}")
+    close = layout["cameraPresets"]["close"]["target"]
+    if math.hypot(close[0] - zones["pony"]["x"], close[2] - zones["pony"]["z"]) > 0.7:
+        errors.append("close camera is not aimed at the stitching pony")
+    if not (0.55 <= close[1] <= 1.05):
+        errors.append("close camera target misses the pony seat and jaws")
     if len(layout["lights"].get("points") or []) < 4:
         errors.append("expected task and pendant point lights")
 
     js = (SCENE / "leather.js").read_text()
     lib = (SCENE / "scene_lib.js").read_text()
     html = (SCENE / "index.html").read_text()
-    for token in ("LatheGeometry", "TorusGeometry", "TubeGeometry", "hangGeometry", "stitchingPony", "clickerPress"):
+    for token in ("LatheGeometry", "TorusGeometry", "TubeGeometry", "hangGeometry", "stitchingPony", "clickerPress", "workStool", "bagSeam"):
         if token not in js:
             errors.append(f"leather.js missing {token}")
+    if "bar_stool" in js:
+        errors.append("leather.js still references the cafe bar stool")
     for banned in ("floorLoom", "sewingMachine", "textile.js"):
         if banned in js:
             errors.append(f"leather.js still references {banned}")
@@ -226,11 +246,11 @@ def main():
                 errors.append(f"GLB load failed {spec['glb']}: {exc}")
 
         runtime = subprocess.run(
-            ["node", str(SCENE / "tests" / "runtime_browser.mjs"), base],
+            ["node", str(SCENE / "tests" / "runtime_browser.mjs"), base, str(SCENE / "shots")],
             check=False,
             capture_output=True,
             text=True,
-            timeout=70,
+            timeout=90,
         )
         if runtime.returncode != 0:
             errors.append((runtime.stderr or runtime.stdout or "runtime failed").strip())

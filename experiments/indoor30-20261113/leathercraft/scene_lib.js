@@ -170,15 +170,16 @@ function addDirectional(scene, spec, cast) {
   if (cast) {
     light.castShadow = true;
     const ext = spec.shadowExtent ?? 8.5;
-    light.shadow.mapSize.set(2048, 2048);
-    light.shadow.camera.near = 0.4;
-    light.shadow.camera.far = 36;
+    const map = spec.mapSize ?? 2048;
+    light.shadow.mapSize.set(map, map);
+    light.shadow.camera.near = spec.shadowNear ?? 0.6;
+    light.shadow.camera.far = spec.shadowFar ?? 24;
     light.shadow.camera.left = -ext;
     light.shadow.camera.right = ext;
     light.shadow.camera.top = ext;
     light.shadow.camera.bottom = -ext;
-    light.shadow.bias = spec.bias ?? -0.00028;
-    light.shadow.normalBias = spec.normalBias ?? 0.04;
+    light.shadow.bias = spec.bias ?? -0.00035;
+    light.shadow.normalBias = spec.normalBias ?? 0.02;
     light.shadow.camera.updateProjectionMatrix();
   }
   scene.add(light);
@@ -303,6 +304,10 @@ export async function boot(opts) {
       const p = presets[camKey];
       camera.position.set(...p.position);
       controls.target.set(...p.target);
+      if (p.fov) {
+        camera.fov = p.fov;
+        camera.updateProjectionMatrix();
+      }
       controls.update();
     }
 

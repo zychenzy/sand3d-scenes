@@ -14,8 +14,8 @@ python3 -m http.server 8796 --bind 127.0.0.1
 ```
 
 - http://127.0.0.1:8796/experiments/indoor30-20261113/leathercraft/
-- `?cam=corner` from the open right side
-- `?cam=close` stitching-pony jaws
+- `?cam=corner` across the benches from the open right
+- `?cam=close` stitching-pony seat, jaws, and hand tools
 - `?mode=unlit` flat color
 - `?hud=0` hides the overlay
 - `T` toon · `U` unlit
@@ -28,4 +28,4 @@ Shots in `shots/`: `toon_default.png`, `toon_corner.png`, `toon_close.png`, `unl
 
 ## Selected bakes
 
-Existing Sandflow GLBs, referenced in place: dining chair, bar stool, library lamp, pendant, jam jar, flowerpot, mug. The wall-shelf bake was inspected and left out. The HF handbag program `objaverse-3486704343f64c83b88b72db6adbed0d` was inspected and not baked. See `refs/GAP.md`.
+Existing Sandflow GLBs, referenced in place: dining chair, library lamp, pendant, jam jar, flowerpot, mug. The wall-shelf bake and the black tulip cafe stool were inspected and left out. The perch beside the clicker is a procedural four-leg work stool. The HF handbag program `objaverse-3486704343f64c83b88b72db6adbed0d` was inspected and not baked. See `refs/GAP.md`.

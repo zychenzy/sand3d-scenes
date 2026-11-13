@@ -83,6 +83,8 @@ function cdp(method, params = {}) {
 
 await cdp('Page.enable');
 await cdp('Runtime.enable');
+await cdp('Network.enable');
+await cdp('Network.setCacheDisabled', { cacheDisabled: true });
 
 async function evalJson(expression) {
   const result = await cdp('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
@@ -93,14 +95,23 @@ async function evalJson(expression) {
 }
 
 async function open(url) {
+  const before = await evalJson('JSON.stringify(location.href)');
   await cdp('Page.navigate', { url });
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 60; i++) {
     const state = await evalJson(`JSON.stringify({
       ready: !!window.__ready,
+      href: location.href,
       status: (document.getElementById('status') || {}).textContent || '',
       errors: window.__errors || [],
-      meshes: (window.__scene && window.__scene.meshCount) || 0
+      meshes: (window.__scene && window.__scene.meshCount) || 0,
+      cam: window.__scene && window.__scene.camera
+        ? [window.__scene.camera.position.x, window.__scene.camera.position.y, window.__scene.camera.position.z]
+        : null
     })`);
+    if (state.href === before) {
+      await new Promise((r) => setTimeout(r, 100));
+      continue;
+    }
     if (state.errors.length) die(`page errors: ${state.errors.join(' | ')}`);
     if (state.status.startsWith('error:')) die(state.status);
     if (state.ready) return state;
@@ -134,14 +145,15 @@ try {
   if (shotDir) {
     mkdirSync(shotDir, { recursive: true });
     const shots = [
-      ['toon_default.png', `${base}/?hud=0`],
-      ['toon_corner.png', `${base}/?hud=0&cam=corner`],
-      ['toon_close.png', `${base}/?hud=0&cam=close`],
-      ['unlit_default.png', `${base}/?hud=0&mode=unlit`],
+      ['toon_default.png', `${base}/?hud=0&shot=default`],
+      ['toon_corner.png', `${base}/?hud=0&cam=corner&shot=corner`],
+      ['toon_close.png', `${base}/?hud=0&cam=close&shot=close`],
+      ['unlit_default.png', `${base}/?hud=0&mode=unlit&shot=unlit`],
     ];
     for (const [name, url] of shots) {
-      await open(url);
-      await new Promise((r) => setTimeout(r, 350));
+      const state = await open(url);
+      await new Promise((r) => setTimeout(r, 400));
+      console.log(`${name} cam ${JSON.stringify(state.cam)} ${state.href}`);
       const shot = await cdp('Page.captureScreenshot', { format: 'png' });
       writeFileSync(`${shotDir}/${name}`, Buffer.from(shot.data, 'base64'));
       console.log(`wrote ${name}`);

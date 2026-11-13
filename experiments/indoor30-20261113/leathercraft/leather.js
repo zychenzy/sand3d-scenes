@@ -452,55 +452,152 @@ function clickerBench(g, bench) {
   mat.userData.receiveOnly = true;
 }
 
+function bagSeam(parent, y, z) {
+  const w = 0.1;
+  const h = 0.2;
+  const geo = new THREE.PlaneGeometry(w, h, 10, 14);
+  const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i);
+    const yy = pos.getY(i);
+    const bow = Math.cos((x / w) * Math.PI) * 0.012;
+    const lip = Math.max(0, yy - h * 0.05) * 0.05;
+    pos.setZ(i, bow + lip);
+  }
+  geo.computeVertexNormals();
+  geo.rotateY(Math.PI / 2);
+  const grp = new THREE.Group();
+  grp.name = 'bag-seam';
+  thickSkin(grp, geo, HIDE[1].grain, HIDE[1].flesh, 2, 2);
+  grp.position.set(0.004, y, z);
+  grp.rotation.y = -0.18;
+  parent.add(grp);
+  const stitchY = h * 0.36;
+  threadAlong(grp, [
+    [0.012, stitchY, -w * 0.4],
+    [0.014, stitchY + 0.008, -w * 0.12],
+    [0.013, stitchY + 0.004, w * 0.14],
+    [0.011, stitchY - 0.004, w * 0.4],
+  ], 0.0036, '#f6e7c4');
+  const n1 = addCyl(grp, 0.0024, 0.0008, 0.07, toon('#dfe6ea'), 0.016, stitchY + 0.02, -0.012, 5);
+  n1.rotation.z = 1.15;
+  n1.rotation.y = 0.35;
+  const n2 = addCyl(grp, 0.0024, 0.0008, 0.064, toon('#eef3f6'), 0.0, stitchY + 0.015, 0.016, 5);
+  n2.rotation.z = -1.05;
+  n2.rotation.y = 0.15;
+  threadAlong(grp, [
+    [0.02, stitchY + 0.02, -0.012],
+    [0.04, stitchY + 0.07, -0.02],
+    [0.02, stitchY + 0.06, 0.02],
+    [0.002, stitchY + 0.02, 0.016],
+  ], 0.0026, '#f3e6c8');
+  return grp;
+}
+
 function stitchingPony(g, spec) {
   const root = new THREE.Group();
   root.name = 'stitching-pony';
   root.position.set(spec.x, 0, spec.z);
   root.rotation.y = spec.rot;
-  const wood = toon('#8a5a38');
+  const wood = toon('#a56b3e');
   const dark = toon('#5c3b28');
   const seat = spec.seat;
-  addBox(root, 0.28, 0.07, 0.62, wood, 0, seat - 0.03, -0.06);
-  const dome = new THREE.Mesh(new THREE.SphereGeometry(0.15, 18, 12, 0, Math.PI * 2, 0, Math.PI / 2), wood);
-  dome.scale.set(0.95, 0.42, 1.9);
-  dome.position.set(0, seat - 0.01, -0.06);
-  dome.castShadow = true;
-  root.add(dome);
-  const nose = addCyl(root, 0.1, 0.12, 0.16, wood, 0, seat - 0.02, 0.22, 12);
-  nose.rotation.x = Math.PI / 2;
-  for (const sx of [-1, 1]) {
-    for (const sz of [-1, 1]) {
-      const leg = addBox(root, 0.045, seat - 0.04, 0.045, dark, sx * 0.1, (seat - 0.04) / 2, -0.06 + sz * 0.22);
-      leg.rotation.z = sx * -0.08;
-      leg.rotation.x = sz * 0.06;
-    }
+  const mounts = [
+    [-0.1, -0.24, -0.15, -0.3],
+    [0.1, -0.24, 0.15, -0.3],
+    [-0.09, 0.14, -0.13, 0.2],
+    [0.09, 0.14, 0.13, 0.2],
+  ];
+  for (const [x0, z0, x1, z1] of mounts) {
+    spar(root, x0, seat - 0.05, z0, x1, 0.02, z1, 0.018, dark, 8);
   }
-  addBox(root, 0.24, 0.03, 0.04, dark, 0, 0.14, -0.06);
-  addBox(root, 0.05, seat + 0.08, 0.05, dark, 0, (seat + 0.08) / 2, 0.28);
+  spar(root, -0.13, 0.18, -0.26, -0.12, 0.18, 0.16, 0.012, dark, 6);
+  spar(root, 0.13, 0.18, -0.26, 0.12, 0.18, 0.16, 0.012, dark, 6);
+  spar(root, -0.12, 0.18, 0.16, 0.12, 0.18, 0.16, 0.012, dark, 6);
+
+  addBox(root, 0.3, 0.05, 0.62, wood, 0, seat - 0.03, -0.02);
+  const pad = new THREE.Mesh(
+    new THREE.SphereGeometry(0.14, 22, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+    leatherMat(HIDE[0].grain, 2, 2),
+  );
+  pad.scale.set(1.02, 0.16, 2.05);
+  pad.position.set(0, seat - 0.004, -0.02);
+  pad.castShadow = true;
+  pad.receiveShadow = true;
+  root.add(pad);
+  const cantle = new THREE.Mesh(
+    new THREE.SphereGeometry(0.13, 16, 10, 0, Math.PI, 0, Math.PI / 2),
+    toon('#8a5a38'),
+  );
+  cantle.scale.set(1.15, 0.45, 0.28);
+  cantle.position.set(0, seat - 0.01, -0.3);
+  cantle.rotation.y = Math.PI;
+  cantle.castShadow = true;
+  root.add(cantle);
+
+  addBox(root, 0.055, 0.32, 0.05, dark, 0, seat + 0.1, 0.28);
   const jawY = spec.jaw;
+  const jawZ = 0.42;
+  addBox(root, 0.12, 0.04, 0.07, dark, 0, jawY - 0.09, 0.32);
   const jawWood = toon('#6d4a32');
-  const leftJaw = addBox(root, 0.11, 0.16, 0.02, jawWood, -0.045, jawY, 0.3);
-  leftJaw.rotation.y = 0.55;
-  const rightJaw = addBox(root, 0.11, 0.16, 0.02, jawWood, 0.045, jawY, 0.3);
-  rightJaw.rotation.y = -0.55;
-  const gusset = hangGeometry(0.1, 0.16, 0.025, 1);
-  const gussetGrp = new THREE.Group();
-  thickSkin(gussetGrp, gusset, HIDE[1].grain, HIDE[1].flesh, 2, 2);
-  gussetGrp.position.set(0, jawY, 0.3);
-  root.add(gussetGrp);
-  threadAlong(root, [
-    [-0.035, jawY - 0.06, 0.32],
-    [-0.01, jawY - 0.01, 0.33],
-    [0.015, jawY + 0.045, 0.325],
-    [0.038, jawY + 0.07, 0.318],
-  ], 0.004, '#f6e7c4');
-  const screw = addCyl(root, 0.01, 0.01, 0.1, toon('#c6a15a'), 0, jawY, 0.3, 8);
-  screw.rotation.x = Math.PI / 2;
-  const wing = new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.006, 6, 14), toon('#e2c98a'));
-  wing.position.set(0.07, jawY, 0.3);
+  const gap = 0.007;
+  const jawT = 0.018;
+  addBox(root, jawT, 0.14, 0.13, jawWood, -(gap + jawT / 2), jawY, jawZ);
+  addBox(root, jawT, 0.14, 0.13, jawWood, gap + jawT / 2, jawY, jawZ);
+  bagSeam(root, jawY + 0.055, jawZ);
+  const screw = addCyl(root, 0.007, 0.007, 0.07, toon('#c6a15a'), 0, jawY - 0.02, jawZ + 0.015, 8);
+  screw.rotation.z = Math.PI / 2;
+  const wing = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.0055, 6, 14), toon('#e2c98a'));
+  wing.position.set(gap + jawT + 0.006, jawY - 0.02, jawZ + 0.015);
   wing.rotation.y = Math.PI / 2;
   wing.castShadow = true;
   root.add(wing);
+
+  addBox(root, 0.16, 0.014, 0.09, wood, 0.2, seat + 0.002, 0.04);
+  awl(root, 0.14, seat + 0.05, 0.0);
+  const spool = addCyl(root, 0.016, 0.016, 0.034, toon('#e6d3a4'), 0.21, seat + 0.018, 0.02, 8);
+  spool.rotation.z = Math.PI / 2;
+  threadAlong(root, [
+    [0.19, seat + 0.03, 0.02],
+    [0.16, seat + 0.05, 0.04],
+    [0.12, seat + 0.045, 0.01],
+  ], 0.0022, '#f3e6c8');
+  g.add(root);
+}
+
+function workStool(g, spec) {
+  const root = new THREE.Group();
+  root.name = 'work-stool';
+  root.position.set(spec.x, 0, spec.z);
+  root.rotation.y = spec.rot || 0;
+  const h = spec.h;
+  const seatWood = toon('#c4a36a');
+  const legWood = toon('#6b4632');
+  addCyl(root, 0.165, 0.15, 0.038, seatWood, 0, h - 0.02, 0, 20);
+  const dish = new THREE.Mesh(
+    new THREE.SphereGeometry(0.145, 18, 10, 0, Math.PI * 2, 0, Math.PI * 0.45),
+    toon('#d7b07a'),
+  );
+  dish.scale.set(1, 0.16, 1);
+  dish.position.y = h - 0.004;
+  dish.castShadow = true;
+  root.add(dish);
+  const y0 = h - 0.04;
+  const y1 = 0.02;
+  const top = 0.1;
+  const bot = 0.155;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      spar(root, sx * top, y0, sz * top, sx * bot, y1, sz * bot, 0.018, legWood, 8);
+    }
+  }
+  const railY = h * 0.4;
+  const t = (y0 - railY) / (y0 - y1);
+  const spread = top + t * (bot - top);
+  spar(root, -spread, railY, -spread, spread, railY, -spread, 0.012, legWood, 6);
+  spar(root, -spread, railY, spread, spread, railY, spread, 0.012, legWood, 6);
+  spar(root, -spread, railY, -spread, -spread, railY, spread, 0.012, legWood, 6);
+  spar(root, spread, railY, -spread, spread, railY, spread, 0.012, legWood, 6);
   g.add(root);
 }
 
@@ -517,16 +614,24 @@ function ponyTable(g, table) {
       );
     }
   }
-  const y = table.h + 0.03;
-  for (let i = 0; i < 4; i++) {
-    const spool = addCyl(g, 0.018, 0.018, 0.04, toon(['#e6d3a4', '#8d4e2c', '#6e2430', '#2c2826'][i]), table.x - 0.1 + i * 0.05, y + 0.02, table.z + 0.06, 8);
+  const top = table.h;
+  laidHide(g, table.x - 0.02, top + 0.006, table.z + 0.02, 0.2, 0.12, HIDE[3], 0.35, 0.01);
+  for (let i = 0; i < 3; i++) {
+    const spool = addCyl(
+      g, 0.016, 0.016, 0.036,
+      toon(['#e6d3a4', '#8d4e2c', '#6e2430'][i]),
+      table.x - 0.12 + i * 0.045, top + 0.018, table.z - 0.08, 8,
+    );
     spool.rotation.z = Math.PI / 2;
   }
-  chisel(g, table.x + 0.12, y + 0.06, table.z - 0.06, 2);
-  chisel(g, table.x + 0.16, y + 0.07, table.z - 0.02, 4);
-  awl(g, table.x - 0.12, y + 0.08, table.z - 0.08);
-  const wax = addCyl(g, 0.025, 0.028, 0.03, toon('#e6d39a'), table.x + 0.02, y + 0.015, table.z - 0.08, 10);
+  chisel(g, table.x + 0.12, top + 0.08, table.z + 0.02, 2);
+  chisel(g, table.x + 0.17, top + 0.08, table.z - 0.04, 4);
+  awl(g, table.x - 0.14, top + 0.045, table.z + 0.08);
+  const wax = addCyl(g, 0.024, 0.026, 0.028, toon('#e6d39a'), table.x + 0.04, top + 0.016, table.z + 0.08, 10);
   wax.castShadow = true;
+  const needle = addCyl(g, 0.0016, 0.0007, 0.05, toon('#e8eef2'), table.x + 0.02, top + 0.012, table.z + 0.01, 4);
+  needle.rotation.z = Math.PI / 2;
+  needle.rotation.y = 0.4;
 }
 
 function burnishStation(g, bench) {
@@ -717,6 +822,12 @@ function pendantCords(g, layout) {
   }
 }
 
+function trimOnly(mesh) {
+  mesh.userData.receiveOnly = true;
+  mesh.castShadow = false;
+  return mesh;
+}
+
 function makeShell(layout) {
   const g = new THREE.Group();
   g.name = 'shell';
@@ -726,6 +837,7 @@ function makeShell(layout) {
   const wainscot = toon(s.wainscotColor);
   const beamMat = toon(s.beamColor);
   const ceilMat = toon(s.ceilingColor);
+  const wallT = 0.16;
 
   const floor = new THREE.Mesh(new THREE.BoxGeometry(W, 0.08, D), toon(s.floorColor, { map: floorTexture(s.floorRepeat || [4, 8]) }));
   floor.position.y = -0.04;
@@ -734,12 +846,11 @@ function makeShell(layout) {
   floor.userData.receiveOnly = true;
   g.add(floor);
 
-  addBox(g, W, H, 0.14, plaster, 0, H / 2, -D / 2);
-  addBox(g, W - 0.2, 1.02, 0.03, wainscot, 0, 0.51, -D / 2 + 0.08);
-  addBox(g, W - 0.2, 0.045, 0.05, toon(s.woodColor), 0, 1.04, -D / 2 + 0.09);
+  addBox(g, W, H, wallT, plaster, 0, H / 2, -D / 2);
+  trimOnly(addBox(g, W - 0.4, 1.02, 0.025, wainscot, 0, 0.51, -D / 2 + wallT / 2 + 0.01));
+  trimOnly(addBox(g, W - 0.4, 0.04, 0.04, toon(s.woodColor), 0, 1.04, -D / 2 + wallT / 2 + 0.02));
 
   const win = layout.zones.window;
-  const wallT = 0.14;
   const xWall = -W / 2;
   const z0 = win.z - win.w / 2;
   const z1 = win.z + win.w / 2;
@@ -747,31 +858,59 @@ function makeShell(layout) {
   const y1 = win.y + win.h / 2;
   const southLen = D / 2 - z1;
   const northLen = z0 + D / 2;
-  addBox(g, wallT, H, southLen, plaster, xWall, H / 2, (D / 2 + z1) / 2);
-  addBox(g, wallT, H, northLen, plaster, xWall, H / 2, (-D / 2 + z0) / 2);
-  addBox(g, wallT, y0, win.w, plaster, xWall, y0 / 2, win.z);
-  addBox(g, wallT, H - y1, win.w, plaster, xWall, (H + y1) / 2, win.z);
-  addBox(g, 0.08, 1.02, northLen, wainscot, xWall + 0.1, 0.51, (-D / 2 + z0) / 2);
-  addBox(g, 0.08, 1.02, southLen, wainscot, xWall + 0.1, 0.51, (D / 2 + z1) / 2);
-  addBox(g, 0.06, Math.min(1.02, y0), win.w, wainscot, xWall + 0.08, Math.min(1.02, y0) / 2, win.z);
+  const skin = 0.02;
+  const massT = wallT - skin;
+  const xMass = xWall - skin / 2;
+  const xSkin = xWall + wallT / 2 - skin / 2;
+  const open = [
+    [H, southLen, H / 2, (D / 2 + z1) / 2],
+    [H, northLen, H / 2, (-D / 2 + z0) / 2],
+    [y0, win.w, y0 / 2, win.z],
+    [H - y1, win.w, (H + y1) / 2, win.z],
+  ];
+  for (const [h, d, y, z] of open) {
+    trimOnly(addBox(g, massT, h, d, plaster, xMass, y, z));
+    addBox(g, skin, h, d, plaster, xSkin, y, z);
+  }
+  trimOnly(addBox(g, 0.03, 1.02, northLen - 0.04, wainscot, xWall + wallT / 2 + 0.02, 0.51, (-D / 2 + z0) / 2));
+  trimOnly(addBox(g, 0.03, 1.02, southLen - 0.04, wainscot, xWall + wallT / 2 + 0.02, 0.51, (D / 2 + z1) / 2));
+  trimOnly(addBox(g, 0.03, Math.min(1.0, y0 - 0.02), win.w - 0.08, wainscot, xWall + wallT / 2 + 0.02, Math.min(1.0, y0 - 0.02) / 2, win.z));
 
   const sky = addBox(
-    g, 0.02, win.h - 0.08, win.w - 0.1,
+    g, 0.02, win.h - 0.1, win.w - 0.12,
     toon('#d5e4f0', { emissive: '#e4f0f8', emissiveIntensity: 0.62 }),
-    xWall - 0.04, win.y, win.z,
+    xWall - wallT / 2 - 0.02, win.y, win.z,
   );
   sky.userData.noShadow = true;
-  addBox(g, 0.08, win.h, 0.06, toon(s.beamColor), xWall + 0.04, win.y, z0);
-  addBox(g, 0.08, win.h, 0.06, toon(s.beamColor), xWall + 0.04, win.y, z1);
-  addBox(g, 0.1, 0.06, win.w, toon(s.woodColor), xWall + 0.08, y0, win.z);
-  addBox(g, 0.05, win.h - 0.1, 0.035, toon(s.beamColor), xWall + 0.05, win.y, win.z - win.w * 0.22);
-  addBox(g, 0.05, win.h - 0.1, 0.035, toon(s.beamColor), xWall + 0.05, win.y, win.z + win.w * 0.18);
-  addBox(g, 0.05, 0.035, win.w - 0.12, toon(s.beamColor), xWall + 0.05, win.y, win.z);
+  trimOnly(addBox(g, 0.04, win.h + 0.02, 0.06, toon(s.beamColor), xSkin + 0.03, win.y, z0));
+  trimOnly(addBox(g, 0.04, win.h + 0.02, 0.06, toon(s.beamColor), xSkin + 0.03, win.y, z1));
+  trimOnly(addBox(g, 0.05, 0.05, win.w, toon(s.woodColor), xSkin + 0.03, y0, win.z));
+  trimOnly(addBox(g, 0.05, 0.05, win.w, toon(s.woodColor), xSkin + 0.03, y1, win.z));
+  const muntin = (z) => {
+    const bar = addBox(g, 0.04, win.h - 0.12, 0.045, toon(s.beamColor), xWall, win.y, z);
+    bar.userData.noShadow = true;
+    return bar;
+  };
+  muntin(win.z - win.w * 0.22);
+  muntin(win.z + win.w * 0.18);
+  const rail = addBox(g, 0.04, 0.04, win.w - 0.14, toon(s.beamColor), xWall, win.y, win.z);
+  rail.userData.noShadow = true;
 
-  const ceil = addBox(g, W * 0.98, 0.08, D * 0.62, ceilMat, 0, H - 0.04, -D * 0.16);
+  const returnD = 1.2;
+  addBox(g, wallT, H, returnD, plaster, W / 2, H / 2, -D / 2 + returnD / 2 - 0.02);
+  trimOnly(addBox(g, 0.025, 1.02, returnD - 0.1, wainscot, W / 2 - wallT / 2 - 0.01, 0.51, -D / 2 + returnD / 2));
+
+  const ceilT = 0.1;
+  const frontZ = 3.95;
+  const backZ = -D / 2 - 0.02;
+  const ceil = addBox(g, W + 0.36, ceilT, frontZ - backZ, ceilMat, 0, H - ceilT / 2, (frontZ + backZ) / 2);
+  ceil.userData.noShadow = true;
   ceil.castShadow = false;
-  addBox(g, W - 0.8, 0.16, 0.22, beamMat, -0.2, H - 0.28, -0.15);
-  addBox(g, 0.16, H - 0.2, 0.16, beamMat, -5.15, (H - 0.2) / 2, 2.55);
+  ceil.receiveShadow = false;
+  addBox(g, W - 0.2, 0.22, 0.14, beamMat, 0, H - 0.16, frontZ);
+  addBox(g, W - 1.2, 0.14, 0.18, beamMat, -0.2, H - 0.34, -0.4);
+  addBox(g, 0.14, H - 0.46, 0.14, beamMat, -5.28, (H - 0.46) / 2, -0.4);
+  trimOnly(addBox(g, W - 0.5, 0.05, 0.05, toon(s.woodColor), 0, H - 0.09, -D / 2 + wallT / 2 + 0.02));
 
   const threshold = addBox(g, W * 0.72, 0.04, 0.12, toon('#4a3024'), -0.4, 0.02, D / 2 - 0.12);
   threshold.userData.receiveOnly = true;
@@ -783,6 +922,7 @@ function makeProcedural(layout) {
   g.name = 'leathercraft';
   const zones = layout.zones;
   clickerBench(g, zones.clicker);
+  workStool(g, zones.workStool);
   stitchingPony(g, zones.pony);
   ponyTable(g, zones.ponyTable);
   burnishStation(g, zones.burnish);
