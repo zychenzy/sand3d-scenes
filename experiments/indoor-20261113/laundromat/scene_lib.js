@@ -261,6 +261,7 @@ export async function boot(opts) {
           if (!obj.isMesh) return;
           obj.userData.shadeSteps = spec.shadeSteps || 3;
         });
+        if (opts.tuneAsset) opts.tuneAsset(kind, gltf.scene);
         const prepared = prepareAsset(gltf.scene, spec.targetHeight);
         applyShading(prepared, shadingMode);
         prototypes[kind] = prepared;
@@ -277,6 +278,7 @@ export async function boot(opts) {
       node.traverse((obj) => {
         if (obj.isMesh) obj.userData.shadeSteps = layout.assets[inst.kind].shadeSteps || 3;
       });
+      if (opts.dressInstance) opts.dressInstance(node, inst, layout);
       applyShading(node, shadingMode);
       node.position.set(inst.position[0], inst.position[1], inst.position[2]);
       if (inst.rotationY) node.rotation.y = inst.rotationY;
