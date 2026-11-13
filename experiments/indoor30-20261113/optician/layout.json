@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "Field Opticians",
+    "units": "metres",
+    "style": "Toon hard stepped",
+    "room": { "width": 11.6, "depth": 8.8, "height": 3.22 },
+    "notes": [
+      "Independent high-street optician. Retail floor (oak, frame cabinets, fitting mirror) is west of the partition. The sight lane is a separate exam nook with linoleum, a dropped ceiling, a phoropter, and a chart.",
+      "Dining-chair front is +Z at rotation 0. Fitting and adjustment chairs use -π/2 so they face the left-wall mirror and the bench. The patient and the receptionist face -Z."
+    ]
+  },
+  "places": {
+    "partitionX": 2.02,
+    "door": { "z0": -1.58, "z1": -0.64, "h": 2.12 },
+    "exam": { "x0": 2.1, "z1": -0.06 },
+    "reception": { "x": -3.7, "z": 2.88, "w": 2.2, "d": 0.72, "h": 1.05 },
+    "mirror": { "x": -5.66, "y": 1.34, "z": -2.9, "w": 0.62, "h": 0.92 },
+    "ledge": { "x": -5.46, "y": 0.8, "z": -2.9, "w": 0.96, "d": 0.3 },
+    "window": { "z0": -0.05, "z1": 2.15, "y0": 0.98, "y1": 2.42 },
+    "cabinets": [
+      { "x": -3.15, "z": -4.14, "w": 1.46, "h": 1.8, "d": 0.34 },
+      { "x": -1.5, "z": -4.14, "w": 1.46, "h": 1.8, "d": 0.34 },
+      { "x": 0.15, "z": -4.14, "w": 1.46, "h": 1.8, "d": 0.34 }
+    ],
+    "vitrines": [
+      { "x": -1.15, "z": 0.22, "w": 1.18, "d": 0.58, "h": 0.96 },
+      { "x": -0.1, "z": -1.48, "w": 1.12, "d": 0.56, "h": 0.9 }
+    ],
+    "examChair": { "x": 4.15, "z": -1.02, "hx": 0.32, "hz": 0.38 },
+    "phoropter": { "x": 4.15, "z": -1.62, "y": 1.22, "hx": 0.22, "hz": 0.2 },
+    "chart": { "x": 4.15, "y": 1.42, "z": -4.22, "w": 0.46, "h": 0.66 },
+    "lane": { "x": 4.15, "z0": -4.05, "z1": -1.35, "w": 0.72 },
+    "adjust": { "x": -4.88, "z": -1.7, "hx": 0.38, "hz": 0.25, "top": 0.825 },
+    "wait": { "x": 0.32, "z": 0.95, "hx": 0.4, "hz": 0.22, "rotY": 0 }
+  },
+  "assets": {
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.88, "hx": 0.16, "hz": 0.225 },
+    "study_desk": { "glb": "assets/study_desk__630f6d76cbcd.glb", "targetHeight": 0.76, "hx": 0.216, "hz": 0.644, "top": 0.76 },
+    "display_bookcase": { "glb": "assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 1.86, "hx": 0.39, "hz": 0.19, "tint": "#6d5344" },
+    "cash_register": { "glb": "assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.36, "hx": 0.22, "hz": 0.28 },
+    "pos_terminal": { "glb": "assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.16, "hx": 0.16, "hz": 0.1 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4, "hx": 0.14, "hz": 0.14 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.68, "hx": 0.2, "hz": 0.2 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.26, "hx": 0.16, "hz": 0.16, "tint": "#c4784a" },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.62, "hx": 0.24, "hz": 0.24 },
+    "monitor": { "glb": "assets/monitor__b7429da7ef4a.glb", "targetHeight": 0.32, "hx": 0.28, "hz": 0.08 }
+  },
+  "instances": [
+    { "id": "chair_fitting", "kind": "dining_chair", "position": [-4.82, 0, -2.9], "rotationY": -1.5708, "zone": "retail" },
+    { "id": "chair_adjust", "kind": "dining_chair", "position": [-4.02, 0, -1.7], "rotationY": -1.5708, "zone": "retail" },
+    { "id": "chair_staff", "kind": "dining_chair", "position": [-3.7, 0, 3.58], "rotationY": 3.1416, "zone": "retail" },
+    { "id": "chair_consult", "kind": "dining_chair", "position": [-3.15, 0, 1.92], "rotationY": 0, "zone": "retail" },
+    { "id": "desk_exam", "kind": "study_desk", "position": [4.95, 0, -3.22], "rotationY": 0, "zone": "exam" },
+    { "id": "trial_case", "kind": "display_bookcase", "position": [2.36, 0, -3.22], "rotationY": -1.5708, "zone": "exam" },
+    { "id": "register", "kind": "cash_register", "position": [-4.2, 1.05, 2.86], "rotationY": 3.1416, "zone": "retail" },
+    { "id": "pos", "kind": "pos_terminal", "position": [-3.15, 1.05, 2.98], "rotationY": 3.1416, "zone": "retail" },
+    { "id": "lamp_adjust", "kind": "library_lamp", "position": [-4.88, 0.825, -1.88], "rotationY": 3.1416, "zone": "retail" },
+    { "id": "lamp_exam", "kind": "library_lamp", "position": [5.12, 0.76, -2.85], "rotationY": 3.1416, "zone": "exam" },
+    { "id": "pendant_rx", "kind": "pendant_lamp", "position": [-3.4, 2.32, 2.7], "rotationY": 0, "zone": "retail" },
+    { "id": "pendant_a", "kind": "pendant_lamp", "position": [-1.15, 2.32, 0.22], "rotationY": 0, "zone": "retail" },
+    { "id": "pendant_b", "kind": "pendant_lamp", "position": [-0.1, 2.32, -1.48], "rotationY": 0, "zone": "retail" },
+    { "id": "pot", "kind": "flowerpot", "position": [-5.15, 0, 3.55], "rotationY": 0.4, "zone": "retail" },
+    { "id": "stool_exam", "kind": "bar_stool", "position": [5.15, 0, -1.7], "rotationY": 0, "zone": "exam" },
+    { "id": "monitor_topo", "kind": "monitor", "position": [4.85, 0.76, -3.62], "rotationY": 0, "zone": "exam" }
+  ],
+  "routes": [
+    { "id": "street_to_exam", "clear": 0.42, "points": [[1.38, 3.7], [1.38, -1.1], [3.15, -1.1]] },
+    { "id": "street_to_fitting", "clear": 0.38, "points": [[-2.17, 3.45], [-2.17, -0.7], [-3.4, -2.05]] },
+    { "id": "consult_to_desk", "clear": 0.28, "points": [[-2.05, 1.15], [-2.95, 1.15]] }
+  ],
+  "shell": {
+    "floorColor": "#c6a36a",
+    "wallColor": "#f3efe6",
+    "examWall": "#e4eef0",
+    "lino": "#b7c9c6",
+    "woodColor": "#6b4a32",
+    "ceilingColor": "#f7f3ea",
+    "clearColor": "#e6dfd4",
+    "fogColor": "#e6dfd4",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": { "fov": 56, "position": [2.05, 1.6, 3.68], "target": [1.55, 1.18, -1.55] },
+  "cameraPresets": {
+    "corner": { "fov": 46, "position": [-1.55, 1.62, 3.05], "target": [-2.4, 1.18, -1.7] },
+    "close": { "fov": 40, "position": [-3.15, 1.34, -1.42], "target": [-5.15, 1.18, -2.72] }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff4e6", "ground": "#8d7c68", "intensity": 0.52 },
+    "key": { "color": "#fff1dc", "intensity": 1.18, "position": [7.5, 11.5, 6.5] },
+    "fill": { "color": "#c9d7ea", "intensity": 0.36, "position": [-7, 5.5, 2] },
+    "points": [
+      { "color": "#ffe0b0", "intensity": 0.42, "position": [-3.4, 2.5, 2.7], "distance": 4.2 },
+      { "color": "#ffe0b0", "intensity": 0.4, "position": [-1.15, 2.5, 0.22], "distance": 4.2 },
+      { "color": "#ffe0b0", "intensity": 0.4, "position": [-0.1, 2.5, -1.48], "distance": 4.2 },
+      { "color": "#ffd39a", "intensity": 0.46, "position": [-4.7, 1.25, -1.55], "distance": 2.8 },
+      { "color": "#fff6e4", "intensity": 0.34, "position": [-5.4, 1.5, -2.9], "distance": 2.2 },
+      { "color": "#d5e6f2", "intensity": 0.55, "position": [4.15, 2.35, -2.6], "distance": 4.8 },
+      { "color": "#fff4d4", "intensity": 0.5, "position": [4.15, 2.05, -3.7], "distance": 3.2 },
+      { "color": "#ffd7a4", "intensity": 0.32, "position": [5.05, 1.35, -3.05], "distance": 2.4 }
+    ]
+  }
+}
