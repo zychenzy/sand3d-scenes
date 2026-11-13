@@ -35,6 +35,17 @@ What the frames are for:
 
 Findings from the rendered pass belong in the notes below this line once the shots exist.
 
+## Render notes, refinement
+
+Shot again on 2026-11-13 after the composition pass. Same harness: headless Chrome, SwiftShader, 1600×1000, HUD hidden, `node shoot.mjs`. Zero console errors, zero failed responses, every request on `127.0.0.1:8813`. Default, corner, and close stayed on TOON. The fourth frame stayed on UNLIT.
+
+- `toon_default`: rose and runner in the foreground, bollard at the left of the path, investigation desk with the chair facing it, clue table with jars and a second chair, easel chart, slate, cabinet bank with the lantern door open. The wheel panel is at the right edge.
+- `toon_corner`: the long axis. Slate text, cabinet dials, and the wheel panel (4, 8, 2) are in one view. The chart chest and the entry chest read as storage, not as crates.
+- `toon_close`: “TIDE LOCK”, Anchor 4, Gull 8, and Lantern 2 stay readable. The tide staff is on the left wall beside the chart.
+- `unlit_default`: same camera. Beadboard, oak boards, cabinet colors, chart, and slate still read from material color and the canvas maps.
+
+Shelf canisters were checked in a separate close view and lowered until each base met its board.
+
 ## Render notes
 
 Shot on 2026-11-13 with headless Chrome, SwiftShader, 1600×1000, HUD hidden. `node shoot.mjs` reported zero console errors, zero failed responses, and every request on `127.0.0.1:8813`. Default and corner stayed on TOON. The fourth frame stayed on UNLIT.

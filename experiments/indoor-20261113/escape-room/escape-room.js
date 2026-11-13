@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { boot, toon, addBox, addCyl } from './scene_lib.js';
 import {
-  tideChart, keeperSlate, deskLog, entryCard, jarTag, dialFace, seaView, floorRose, mapSheet,
+  tideChart, keeperSlate, deskLog, jarTag, dialFace, seaView, floorRose, mapSheet, tideStaff,
 } from './panels.js';
 
 const ORDER = ['anchor', 'gull', 'lantern'];
@@ -15,7 +15,7 @@ function brassDeep() { return toon('#8d6830'); }
 function plaster(hex) {
   const m = toon(hex);
   m.emissive = new THREE.Color(hex);
-  m.emissiveIntensity = 0.08;
+  m.emissiveIntensity = 0.035;
   return m;
 }
 
@@ -23,7 +23,7 @@ function art(tex, opts = {}) {
   return toon('#ffffff', {
     map: tex,
     emissive: '#ffffff',
-    emissiveIntensity: opts.glow ?? 0.55,
+    emissiveIntensity: opts.glow ?? 0.26,
     side: opts.side || THREE.FrontSide,
   });
 }
@@ -54,7 +54,7 @@ function layStrip(parent, points) {
     const mx = (x1 + x2) / 2;
     const mz = (z1 + z2) / 2;
     const len = Math.hypot(x2 - x1, z2 - z1);
-    const strip = addBox(parent, 0.08, 0.006, len, brass(), mx, 0.022, mz, { shadow: 'none' });
+    const strip = addBox(parent, 0.055, 0.008, len, brass(), mx, 0.036, mz, { shadow: 'none' });
     strip.rotation.y = Math.atan2(x2 - x1, z2 - z1);
   }
 }
@@ -64,7 +64,7 @@ function contact(parent, x, z, rx, rz) {
     new THREE.CircleGeometry(1, 18),
     toon('#1a120c', {
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.2,
       depthWrite: false,
       polygonOffset: true,
       polygonOffsetFactor: -2,
@@ -72,7 +72,7 @@ function contact(parent, x, z, rx, rz) {
     }),
   );
   m.rotation.x = -Math.PI / 2;
-  m.position.set(x, 0.02, z);
+  m.position.set(x, 0.021, z);
   m.scale.set(rx, rz, 1);
   m.userData.shadow = 'none';
   m.raycast = () => {};
@@ -94,22 +94,36 @@ function foliage(parent, x, z, y0) {
   leaf(0.09, a, -0.08, 0.44, -0.04);
 }
 
-function panelRun(g, axis, fixed, a0, a1, y, h, inset) {
-  const span = a1 - a0;
-  const n = Math.max(3, Math.round(span / 0.92));
-  const step = span / n;
-  const frame = wood('#3e291f');
-  const fill = toon('#1b4650');
-  for (let i = 0; i < n; i++) {
-    const c = a0 + step * (i + 0.5);
-    const pw = step - 0.07;
-    if (axis === 'x') {
-      addBox(g, pw, h, 0.04, frame, c, y, fixed, { shadow: 'receive' });
-      addBox(g, pw - 0.1, h - 0.12, 0.02, fill, c, y, fixed + inset, { shadow: 'receive' });
-    } else {
-      addBox(g, 0.04, h, pw, frame, fixed, y, c, { shadow: 'receive' });
-      addBox(g, 0.02, h - 0.12, pw - 0.1, fill, fixed + inset, y, c, { shadow: 'receive' });
+function deck(g, W, D) {
+  const tones = ['#c9a67c', '#b48960', '#8f6848', '#6d4c34'].map((c) => toon(c));
+  const plankW = 0.125;
+  const lengths = [1.45, 1.9, 2.2, 1.65];
+  let row = 0;
+  for (let z = -D / 2 + 0.2; z < D / 2 - 0.16; z += plankW) {
+    let x = -W / 2 + 0.18 + (row % 3) * 0.55;
+    let i = 0;
+    while (x < W / 2 - 0.18) {
+      const len = lengths[(row + i) % lengths.length];
+      const x1 = Math.min(x + len, W / 2 - 0.16);
+      const w = x1 - x;
+      if (w > 0.22) {
+        addBox(g, w - 0.014, 0.018, plankW - 0.014, tones[(row + i * 2) % tones.length], (x + x1) / 2, 0.009, z, { shadow: 'receive' });
+      }
+      x = x1;
+      i += 1;
     }
+    row += 1;
+  }
+}
+
+function beadRun(g, axis, fixed, a0, a1, y, h) {
+  const a = toon('#143f48');
+  const b = toon('#1c5560');
+  const step = 0.1;
+  for (let t = a0; t < a1 - 0.02; t += step) {
+    const mat = Math.round(t * 8) % 2 ? a : b;
+    if (axis === 'x') addBox(g, 0.072, h, 0.03, mat, t + 0.03, y, fixed, { shadow: 'receive' });
+    else addBox(g, 0.03, h, 0.072, mat, fixed, y, t + 0.03, { shadow: 'receive' });
   }
 }
 
@@ -118,87 +132,103 @@ function makeShell(layout) {
   g.name = 'shell';
   const { width: W, depth: D, height: H } = layout.meta.room;
   const s = layout.shell;
-  const wall = plaster(s.wallColor);
+  const upper = plaster(s.wallUpper || '#e5eeea');
+  const warm = plaster(s.wallColor);
   const oak = wood(s.woodColor);
   const deep = wood(s.woodDeep);
   const brassMat = brass();
 
-  addBox(g, W, 0.08, D, toon(s.floorDark), 0, -0.04, 0, { shadow: 'receive' });
-  const n = Math.ceil((D - 0.16) / 0.16);
-  for (let i = 0; i < n; i++) {
-    const z = -D / 2 + 0.1 + i * 0.16;
-    const shade = i % 2 ? s.floorDark : s.floorColor;
-    addBox(g, W - 0.24, 0.012, 0.145, toon(shade), 0, 0.006, z, { shadow: 'receive' });
-  }
-  addBox(g, W - 0.08, 0.02, 0.08, deep, 0, 0.012, -D / 2 + 0.06, { shadow: 'none' });
-  addBox(g, W - 0.08, 0.02, 0.08, deep, 0, 0.012, D / 2 - 0.06, { shadow: 'none' });
-  addBox(g, 0.08, 0.02, D - 0.08, deep, -W / 2 + 0.06, 0.012, 0, { shadow: 'none' });
-  addBox(g, 0.08, 0.02, D - 0.08, deep, W / 2 - 0.06, 0.012, 0, { shadow: 'none' });
+  addBox(g, W, 0.08, D, toon('#3a261c'), 0, -0.04, 0, { shadow: 'receive' });
+  deck(g, W, D);
+  addBox(g, W - 0.08, 0.028, 0.09, deep, 0, 0.018, -D / 2 + 0.07, { shadow: 'none' });
+  addBox(g, W - 0.08, 0.028, 0.09, deep, 0, 0.018, D / 2 - 0.07, { shadow: 'none' });
+  addBox(g, 0.09, 0.028, D - 0.1, deep, -W / 2 + 0.07, 0.018, 0, { shadow: 'none' });
+  addBox(g, 0.09, 0.028, D - 0.1, deep, W / 2 - 0.07, 0.018, 0, { shadow: 'none' });
 
-  const rug = addBox(g, 2.15, 0.018, 1.7, toon(s.rug), -1.15, 0.016, -0.5, { shadow: 'receive' });
+  const rug = addBox(g, 2.35, 0.02, 1.85, toon(s.rug), -1.15, 0.02, -0.5, { shadow: 'receive' });
   rug.userData.shadow = 'receive';
-  addBox(g, 1.9, 0.008, 1.45, toon('#21786e'), -1.15, 0.028, -0.5, { shadow: 'none' });
-  addBox(g, 2.15, 0.006, 0.045, toon(s.rugEdge), -1.15, 0.03, -0.5 + 0.82, { shadow: 'none' });
-  addBox(g, 2.15, 0.006, 0.045, toon(s.rugEdge), -1.15, 0.03, -0.5 - 0.82, { shadow: 'none' });
+  addBox(g, 2.05, 0.006, 1.55, toon('#1a6d64'), -1.15, 0.032, -0.5, { shadow: 'none' });
+  const med = new THREE.Mesh(new THREE.CircleGeometry(0.42, 24), toon('#14564f'));
+  med.rotation.x = -Math.PI / 2;
+  med.position.set(-1.15, 0.036, -0.5);
+  med.userData.shadow = 'none';
+  g.add(med);
+  addBox(g, 2.35, 0.006, 0.05, toon(s.rugEdge), -1.15, 0.034, -0.5 + 0.9, { shadow: 'none' });
+  addBox(g, 2.35, 0.006, 0.05, toon(s.rugEdge), -1.15, 0.034, -0.5 - 0.9, { shadow: 'none' });
 
-  addBox(g, 1.7, 0.016, 1.35, toon('#3d4c59'), 4.2, 0.014, -2.7, { shadow: 'receive' });
+  const runner = addBox(g, 0.78, 0.012, 4.15, toon('#1a454c'), 0.42, 0.024, 0.35, { shadow: 'receive' });
+  runner.userData.shadow = 'receive';
+  addBox(g, 0.08, 0.004, 4.15, toon('#c6a15b'), 0.42, 0.032, 0.35, { shadow: 'none' });
+  for (const z of [2.4, -1.7]) {
+    const cap = new THREE.Mesh(new THREE.CircleGeometry(0.39, 20), toon('#1a454c'));
+    cap.rotation.x = -Math.PI / 2;
+    cap.position.set(0.42, 0.03, z);
+    cap.userData.shadow = 'none';
+    g.add(cap);
+  }
 
-  const back = addBox(g, W, H, 0.14, wall, 0, H / 2, -D / 2, { shadow: 'receive' });
+  addBox(g, 1.85, 0.016, 1.25, toon('#2c3a44'), 4.2, 0.02, -2.85, { shadow: 'receive' });
+
+  const back = addBox(g, W, H, 0.14, upper, 0, H / 2, -D / 2, { shadow: 'receive' });
   back.name = 'back-wall';
-  const win = { z0: -0.2, z1: 1.65, y0: 0.92, y1: 2.28 };
+  const win = { z0: -0.2, z1: 1.65, y0: 0.95, y1: 2.22 };
   const leftX = -W / 2;
-  addBox(g, 0.14, win.y0, D, wall, leftX, win.y0 / 2, 0, { shadow: 'receive' });
-  addBox(g, 0.14, H - win.y1, D, wall, leftX, (H + win.y1) / 2, 0, { shadow: 'receive' });
+  addBox(g, 0.14, win.y0, D, warm, leftX, win.y0 / 2, 0, { shadow: 'receive' });
+  addBox(g, 0.14, H - win.y1, D, upper, leftX, (H + win.y1) / 2, 0, { shadow: 'receive' });
   const leftSpan = win.z0 - (-D / 2);
-  addBox(g, 0.14, win.y1 - win.y0, leftSpan, wall, leftX, (win.y0 + win.y1) / 2, (-D / 2 + win.z0) / 2, { shadow: 'receive' });
+  addBox(g, 0.14, win.y1 - win.y0, leftSpan, warm, leftX, (win.y0 + win.y1) / 2, (-D / 2 + win.z0) / 2, { shadow: 'receive' });
   const rightSpan = D / 2 - win.z1;
-  addBox(g, 0.14, win.y1 - win.y0, rightSpan, wall, leftX, (win.y0 + win.y1) / 2, (win.z1 + D / 2) / 2, { shadow: 'receive' });
+  addBox(g, 0.14, win.y1 - win.y0, rightSpan, warm, leftX, (win.y0 + win.y1) / 2, (win.z1 + D / 2) / 2, { shadow: 'receive' });
 
-  const view = new THREE.Mesh(new THREE.PlaneGeometry(win.z1 - win.z0 - 0.08, win.y1 - win.y0 - 0.08), art(seaView(), { glow: 0.72 }));
+  const view = new THREE.Mesh(new THREE.PlaneGeometry(win.z1 - win.z0 - 0.08, win.y1 - win.y0 - 0.08), art(seaView(), { glow: 0.62 }));
   view.position.set(leftX - 0.02, (win.y0 + win.y1) / 2, (win.z0 + win.z1) / 2);
   view.rotation.y = Math.PI / 2;
   view.userData.shadow = 'none';
   g.add(view);
   const glass = new THREE.Mesh(
     new THREE.PlaneGeometry(win.z1 - win.z0, win.y1 - win.y0),
-    toon('#d5eaf2', { transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false }),
+    toon('#d5eaf2', { transparent: true, opacity: 0.16, side: THREE.DoubleSide, depthWrite: false }),
   );
   glass.position.set(leftX + 0.08, (win.y0 + win.y1) / 2, (win.z0 + win.z1) / 2);
   glass.rotation.y = Math.PI / 2;
   glass.userData.shadow = 'none';
   g.add(glass);
-  addBox(g, 0.08, 0.08, win.z1 - win.z0 + 0.12, oak, leftX + 0.08, win.y0, (win.z0 + win.z1) / 2);
-  addBox(g, 0.08, 0.08, win.z1 - win.z0 + 0.12, oak, leftX + 0.08, win.y1, (win.z0 + win.z1) / 2);
-  addBox(g, 0.08, win.y1 - win.y0, 0.08, oak, leftX + 0.08, (win.y0 + win.y1) / 2, win.z0);
-  addBox(g, 0.08, win.y1 - win.y0, 0.08, oak, leftX + 0.08, (win.y0 + win.y1) / 2, win.z1);
-  addBox(g, 0.05, win.y1 - win.y0 - 0.08, 0.045, oak, leftX + 0.09, (win.y0 + win.y1) / 2, (win.z0 + win.z1) / 2);
+  addBox(g, 0.09, 0.08, win.z1 - win.z0 + 0.14, oak, leftX + 0.08, win.y0, (win.z0 + win.z1) / 2, { shadow: 'cast' });
+  addBox(g, 0.09, 0.08, win.z1 - win.z0 + 0.14, oak, leftX + 0.08, win.y1, (win.z0 + win.z1) / 2, { shadow: 'cast' });
+  addBox(g, 0.09, win.y1 - win.y0, 0.08, oak, leftX + 0.08, (win.y0 + win.y1) / 2, win.z0, { shadow: 'cast' });
+  addBox(g, 0.09, win.y1 - win.y0, 0.08, oak, leftX + 0.08, (win.y0 + win.y1) / 2, win.z1, { shadow: 'cast' });
+  addBox(g, 0.05, win.y1 - win.y0 - 0.08, 0.045, oak, leftX + 0.1, (win.y0 + win.y1) / 2, (win.z0 + win.z1) / 2, { shadow: 'cast' });
+  addBox(g, 0.26, 0.045, win.z1 - win.z0 + 0.06, oak, leftX + 0.22, win.y0 + 0.01, (win.z0 + win.z1) / 2, { shadow: 'cast' });
+  addCyl(g, 0.022, 0.022, win.z1 - win.z0, oak, leftX + 0.35, win.y0 + 0.01, (win.z0 + win.z1) / 2, 10, { rotX: Math.PI / 2, shadow: 'cast' });
 
-  const innerB = -D / 2 + 0.08;
-  const innerL = -W / 2 + 0.08;
-  panelRun(g, 'x', innerB, -W / 2 + 0.4, W / 2 - 0.35, 0.52, 0.86, 0.03);
-  panelRun(g, 'z', innerL, -D / 2 + 0.45, win.z0 - 0.15, 0.52, 0.86, 0.03);
-  panelRun(g, 'z', innerL, win.z1 + 0.15, D / 2 - 0.4, 0.52, 0.86, 0.03);
-  addBox(g, W - 0.3, 0.07, 0.06, oak, 0, 1.02, innerB + 0.02);
-  addBox(g, 0.06, 0.07, D - 0.4, oak, innerL + 0.02, 1.02, 0.2);
-  addBox(g, W - 0.4, 0.03, 0.04, brassMat, 0, 2.55, innerB + 0.02);
-  addBox(g, 0.04, 0.03, D - 0.5, brassMat, innerL + 0.02, 2.55, 0.15);
+  const innerB = -D / 2 + 0.09;
+  const innerL = -W / 2 + 0.09;
+  beadRun(g, 'x', innerB + 0.02, -W / 2 + 0.35, W / 2 - 0.3, 0.5, 0.82);
+  beadRun(g, 'z', innerL + 0.02, -D / 2 + 0.35, D / 2 - 0.35, 0.5, 0.82);
+  addBox(g, W - 0.25, 0.06, 0.07, oak, 0, 0.96, innerB + 0.03, { shadow: 'cast' });
+  addCyl(g, 0.032, 0.032, W - 0.4, oak, 0, 1.02, innerB + 0.05, 12, { rotZ: Math.PI / 2, shadow: 'cast' });
+  addBox(g, W - 0.3, 0.025, 0.02, toon('#2a2118'), 0, 0.93, innerB + 0.045, { shadow: 'none' });
+  addBox(g, 0.07, 0.06, D - 0.35, oak, innerL + 0.03, 0.96, 0.15, { shadow: 'cast' });
+  addCyl(g, 0.032, 0.032, D - 0.55, oak, innerL + 0.05, 1.02, 0.15, 12, { rotX: Math.PI / 2, shadow: 'cast' });
+  addBox(g, W - 0.35, 0.035, 0.045, brassMat, 0, 2.48, innerB + 0.02);
+  addBox(g, 0.045, 0.035, D - 0.45, brassMat, innerL + 0.02, 2.48, 0.1);
+  addBox(g, W - 0.4, 0.7, 0.02, warm, 0, 1.72, innerB + 0.012, { shadow: 'receive' });
 
-  const soffit = addBox(g, W * 0.96, 0.08, D * 0.48, plaster(s.ceilingColor), -0.1, H - 0.05, -D * 0.22, { shadow: 'receive' });
-  soffit.userData.shadow = 'receive';
-  for (const z of [-2.7, -0.6]) {
-    addBox(g, W - 1.1, 0.1, 0.12, deep, -0.15, H - 0.16, z, { shadow: 'cast' });
+  for (const z of [-2.85, -0.85, 1.15]) {
+    addBox(g, W - 0.8, 0.12, 0.14, deep, -0.2, H - 0.18, z, { shadow: 'cast' });
   }
-  addBox(g, 0.12, 0.1, 2.4, deep, 0.35, H - 0.18, 1.55, { shadow: 'cast' });
+  addBox(g, 0.14, 0.12, 2.2, deep, -1.2, H - 0.22, 0.15, { shadow: 'cast' });
+  addBox(g, 0.14, 0.12, 1.6, deep, 2.4, H - 0.22, -1.7, { shadow: 'cast' });
 
   const buoy = new THREE.Group();
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.28, 0.07, 10, 24), toon('#f4efe6'));
-  buoy.add(ring);
+  const ringB = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.055, 10, 24), toon('#f4efe6'));
+  buoy.add(ringB);
   for (let i = 0; i < 4; i++) {
-    const seg = new THREE.Mesh(new THREE.TorusGeometry(0.28, 0.075, 8, 8, Math.PI / 2.4), toon(i % 2 ? '#d15a42' : '#f7f3ea'));
+    const seg = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.06, 8, 8, Math.PI / 2.4), toon(i % 2 ? '#d15a42' : '#f7f3ea'));
     seg.rotation.z = i * (Math.PI / 2);
     buoy.add(seg);
   }
-  buoy.position.set(innerL + 0.08, 1.7, 2.55);
+  buoy.position.set(innerL + 0.1, 1.85, 2.15);
   buoy.rotation.y = Math.PI / 2;
   g.add(buoy);
 
@@ -220,38 +250,39 @@ function cabinet(parent, x, z, spec) {
   const g = new THREE.Group();
   const w = 0.72;
   const h = 1.52;
-  const d = 0.4;
-  addBox(g, w, h, d, wood(), 0, h / 2, 0);
-  addBox(g, w - 0.08, 0.08, 0.05, wood('#3e291f'), 0, 0.04, d / 2 - 0.01);
-  addBox(g, w - 0.06, 0.06, 0.04, brass(), 0, h - 0.08, d / 2 + 0.01);
+  const d = 0.42;
+  addBox(g, w, h, d, wood('#4a3124'), 0, h / 2, 0);
+  addBox(g, w - 0.08, 0.06, 0.05, wood('#2e2018'), 0, 0.04, d / 2);
+  addBox(g, w - 0.08, 0.05, 0.04, brass(), 0, h - 0.06, d / 2 + 0.01);
 
   const door = new THREE.Group();
   const doorW = w - 0.1;
-  const doorH = h - 0.28;
-  addBox(door, doorW, doorH, 0.04, toon(spec.color), doorW / 2, 0, 0.02, { pick: `dial:${spec.key}` });
-  addBox(door, 0.035, 0.12, 0.03, brass(), doorW - 0.08, 0, 0.045);
+  const doorH = h - 0.26;
+  addBox(door, doorW, doorH, 0.04, wood('#5c3d2e'), doorW / 2, 0, 0.012);
+  addBox(door, doorW - 0.14, doorH - 0.2, 0.025, toon(spec.color), doorW / 2, -0.02, 0.03, { pick: `dial:${spec.key}` });
+  addCyl(door, 0.018, 0.018, 0.11, brass(), doorW - 0.08, 0.02, 0.05, 8);
   const face = dialFace(spec.digit, spec.color);
-  const dial = new THREE.Mesh(new THREE.CircleGeometry(0.09, 24), art(face, { glow: 0.35 }));
-  dial.position.set(doorW / 2, 0.18, 0.046);
+  const dial = new THREE.Mesh(new THREE.CircleGeometry(0.09, 24), art(face, { glow: 0.32 }));
+  dial.position.set(doorW / 2, 0.22, 0.05);
   dial.userData.pick = `dial:${spec.key}`;
   dial.userData.shadow = 'none';
   door.add(dial);
   const plaqueTex = jarTag(spec.name, spec.digit, spec.color);
-  const plaque = new THREE.Mesh(new THREE.PlaneGeometry(0.28, 0.12), art(plaqueTex, { glow: 0.4 }));
-  plaque.position.set(doorW / 2, doorH / 2 - 0.16, 0.046);
+  const plaque = new THREE.Mesh(new THREE.PlaneGeometry(0.28, 0.11), art(plaqueTex, { glow: 0.3 }));
+  plaque.position.set(doorW / 2, doorH / 2 - 0.16, 0.05);
   plaque.userData.shadow = 'none';
   door.add(plaque);
   door.position.set(-w / 2 + 0.05, h / 2 - 0.02, d / 2);
   if (spec.open) door.rotation.y = -0.95;
   g.add(door);
-  rig.dials[spec.key] = { tex: face, mesh: dial, digit: spec.digit };
+  rig.dials[spec.key] = { tex: face, mesh: dial, digit: spec.digit, color: spec.color };
 
   if (spec.open) {
-    addBox(g, w - 0.16, 0.04, d - 0.1, wood('#6b4a34'), 0, 0.78, 0);
-    addBox(g, 0.22, 0.03, 0.16, toon('#6e2438'), 0.02, 0.815, 0.02);
+    addBox(g, w - 0.18, 0.035, d - 0.12, wood('#6b4a34'), 0, 0.72, -0.02);
+    addBox(g, w - 0.18, 0.035, d - 0.12, wood('#6b4a34'), 0, 1.05, -0.02);
     const key = keyMesh();
-    key.position.set(0.02, 0.9, 0.02);
-    key.rotation.z = 0.4;
+    key.position.set(0.02, 0.78, 0.02);
+    key.rotation.z = 0.35;
     g.add(key);
   }
 
@@ -260,49 +291,67 @@ function cabinet(parent, x, z, spec) {
   return g;
 }
 
+function cabinetBank(parent, xs, z) {
+  const g = new THREE.Group();
+  const x0 = xs[0] - 0.46;
+  const x1 = xs[xs.length - 1] + 0.46;
+  const mid = (x0 + x1) / 2;
+  const span = x1 - x0;
+  addBox(g, span, 0.08, 0.5, wood('#3a261c'), mid, 0.04, z);
+  addBox(g, span + 0.06, 0.07, 0.5, wood('#5c3d2e'), mid, 1.56, z);
+  addCyl(g, 0.02, 0.02, span + 0.02, brass(), mid, 1.62, z + 0.2, 10, { rotZ: Math.PI / 2 });
+  addBox(g, 0.07, 1.6, 0.5, wood('#3e291f'), x0, 0.8, z);
+  addBox(g, 0.07, 1.6, 0.5, wood('#3e291f'), x1, 0.8, z);
+  parent.add(g);
+}
+
 function mechanism(parent, x, z, digits, colors) {
   const g = new THREE.Group();
-  addBox(g, 1.42, 1.28, 0.06, toon('#24343c'), 0, 1.28, 0, { shadow: 'receive' });
-  addBox(g, 1.5, 0.06, 0.08, brass(), 0, 1.9, 0.02);
-  addBox(g, 1.5, 0.06, 0.08, brass(), 0, 0.66, 0.02);
-  addBox(g, 0.06, 1.28, 0.08, brass(), -0.72, 1.28, 0.02);
-  addBox(g, 0.06, 1.28, 0.08, brass(), 0.72, 1.28, 0.02);
+  addBox(g, 1.55, 1.42, 0.1, wood('#3e291f'), 0, 1.22, -0.02, { shadow: 'receive' });
+  addBox(g, 1.38, 1.2, 0.05, toon('#24343c'), 0, 1.24, 0.02, { shadow: 'receive' });
+  addBox(g, 1.62, 0.06, 0.12, brass(), 0, 1.9, 0.02);
+  addBox(g, 1.62, 0.06, 0.12, brass(), 0, 0.54, 0.02);
+  addBox(g, 0.06, 1.4, 0.12, brass(), -0.78, 1.22, 0.02);
+  addBox(g, 0.06, 1.4, 0.12, brass(), 0.78, 1.22, 0.02);
+  addBox(g, 1.3, 0.045, 0.16, wood('#6b4632'), 0, 0.62, 0.08);
 
   ORDER.forEach((key, i) => {
     const cx = -0.42 + i * 0.42;
-    const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 24), brass());
+    const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.045, 24), brass());
     wheel.rotation.x = Math.PI / 2;
-    wheel.position.set(cx, 1.32, 0.06);
+    wheel.position.set(cx, 1.32, 0.07);
     g.add(wheel);
-    const face = new THREE.Mesh(new THREE.CircleGeometry(0.1, 24), art(dialFace(digits[key], colors[key]), { glow: 0.45 }));
-    face.position.set(cx, 1.32, 0.085);
+    const hub = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.012, 6, 18), brassDeep());
+    hub.position.set(cx, 1.32, 0.09);
+    g.add(hub);
+    const face = new THREE.Mesh(new THREE.CircleGeometry(0.09, 24), art(dialFace(digits[key], colors[key]), { glow: 0.4 }));
+    face.position.set(cx, 1.32, 0.1);
     face.userData.shadow = 'none';
     g.add(face);
-    const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.1), art(jarTag(NAMES[key], digits[key], colors[key]), { glow: 0.4 }));
-    tag.position.set(cx, 1.68, 0.07);
+    const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.09), art(jarTag(NAMES[key], digits[key], colors[key]), { glow: 0.32 }));
+    tag.position.set(cx, 1.68, 0.08);
     tag.userData.shadow = 'none';
     g.add(tag);
     const lever = new THREE.Group();
-    addBox(lever, 0.03, 0.22, 0.03, toon('#d7dde2'), 0, 0.08, 0);
-    addBox(lever, 0.08, 0.03, 0.05, toon('#e2a23a'), 0, 0.18, 0);
-    lever.position.set(cx, 0.86, 0.08);
-    lever.rotation.x = i === 2 ? -0.5 : -0.15;
+    addCyl(lever, 0.016, 0.016, 0.2, toon('#d7dde2'), 0, 0.08, 0, 8);
+    addBox(lever, 0.07, 0.028, 0.045, toon('#e2a23a'), 0, 0.18, 0);
+    lever.position.set(cx, 0.78, 0.1);
+    lever.rotation.x = i === 2 ? -0.55 : -0.18;
     g.add(lever);
-    const gem = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 10), toon(colors[key], { emissive: colors[key], emissiveIntensity: 0.8 }));
-    gem.position.set(cx, 1.05, 0.08);
+    const gem = new THREE.Mesh(new THREE.SphereGeometry(0.032, 12, 10), toon(colors[key], { emissive: colors[key], emissiveIntensity: 0.65 }));
+    gem.position.set(cx, 1.02, 0.09);
     g.add(gem);
   });
 
-  const gear = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.03, 12), brassDeep());
+  const gear = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.03, 12), brassDeep());
   gear.rotation.x = Math.PI / 2;
-  gear.position.set(0.58, 1.05, 0.07);
+  gear.position.set(0.52, 1.02, 0.08);
   g.add(gear);
   rig.gear = gear;
   for (let i = 0; i < 8; i++) {
-    const tooth = addBox(g, 0.035, 0.07, 0.03, brass(), 0, 0, 0);
+    const tooth = addBox(g, 0.03, 0.06, 0.028, brass(), 0, 0, 0);
     const a = (i / 8) * Math.PI * 2;
-    tooth.position.set(0.58 + Math.cos(a) * 0.18, 1.05 + Math.sin(a) * 0.18, 0.07);
-    tooth.userData.tooth = true;
+    tooth.position.set(0.52 + Math.cos(a) * 0.17, 1.02 + Math.sin(a) * 0.17, 0.08);
   }
 
   g.position.set(x, 0, z);
@@ -311,17 +360,188 @@ function mechanism(parent, x, z, digits, colors) {
 
 function compass(parent, x, y, z) {
   const g = new THREE.Group();
-  addCyl(g, 0.16, 0.16, 0.03, brass(), 0, 0.02, 0, 20);
-  addCyl(g, 0.11, 0.11, 0.02, toon('#f4efe4'), 0, 0.04, 0, 20);
-  const needle = addBox(g, 0.018, 0.01, 0.16, toon('#d15a42'), 0, 0.055, 0);
-  needle.rotation.y = 0.2;
+  addCyl(g, 0.15, 0.15, 0.028, brass(), 0, 0.02, 0, 20);
+  addCyl(g, 0.1, 0.1, 0.018, toon('#f4efe4'), 0, 0.038, 0, 20);
+  const needle = addBox(g, 0.016, 0.008, 0.15, toon('#d15a42'), 0, 0.05, 0);
+  needle.rotation.y = 0.25;
   const dome = new THREE.Mesh(
-    new THREE.SphereGeometry(0.12, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+    new THREE.SphereGeometry(0.11, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2),
     toon('#d5eef2', { transparent: true, opacity: 0.35, depthWrite: false, side: THREE.DoubleSide }),
   );
-  dome.position.y = 0.045;
+  dome.position.y = 0.04;
   g.add(dome);
   g.position.set(x, y, z);
+  parent.add(g);
+}
+
+function seaChest(parent, x, z, yaw = 0) {
+  const g = new THREE.Group();
+  const w = 0.86;
+  const h = 0.36;
+  const d = 0.48;
+  addBox(g, w, h, d, wood('#6b4632'), 0, h / 2, 0, { shadow: 'cast' });
+  addBox(g, w - 0.1, h - 0.1, 0.02, wood('#3e291f'), 0, h / 2, d / 2 + 0.004);
+  const lid = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 18, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+    wood('#7d5640'),
+  );
+  lid.scale.set(w / 2, 0.14, d / 2);
+  lid.position.y = h;
+  lid.userData.shadow = 'cast';
+  g.add(lid);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.032, 10, 8), brass());
+      cap.position.set(sx * (w / 2 - 0.02), 0.05, sz * (d / 2 - 0.02));
+      g.add(cap);
+    }
+  }
+  for (const sx of [-0.2, 0.2]) {
+    const beck = new THREE.Mesh(new THREE.TorusGeometry(0.055, 0.011, 8, 14), toon('#8d5a32'));
+    beck.position.set(sx, h * 0.55, d / 2 + 0.02);
+    g.add(beck);
+  }
+  g.position.set(x, 0, z);
+  g.rotation.y = yaw;
+  parent.add(g);
+}
+
+function chartChest(parent, x, z, digits, colors) {
+  const g = new THREE.Group();
+  const w = 0.98;
+  const h = 0.5;
+  const d = 0.46;
+  addBox(g, w, h, d, wood('#5c3d2e'), 0, h / 2, 0, { shadow: 'cast' });
+  const lid = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2),
+    wood('#7a5340'),
+  );
+  lid.scale.set(w / 2, 0.11, d / 2);
+  lid.position.y = h;
+  g.add(lid);
+  ORDER.forEach((key, i) => {
+    const dx = -0.3 + i * 0.3;
+    addBox(g, 0.24, 0.28, 0.02, wood('#3e291f'), dx, 0.24, d / 2 + 0.006);
+    addCyl(g, 0.02, 0.02, 0.03, brass(), dx, 0.24, d / 2 + 0.03, 10);
+    const tag = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.16, 0.07),
+      art(jarTag(NAMES[key], digits[key], colors[key]), { glow: 0.28 }),
+    );
+    tag.position.set(dx, 0.38, d / 2 + 0.02);
+    tag.userData.shadow = 'none';
+    g.add(tag);
+  });
+  g.position.set(x, 0, z);
+  parent.add(g);
+}
+
+function bollard(parent, x, z) {
+  const g = new THREE.Group();
+  addCyl(g, 0.18, 0.2, 0.08, wood('#3a261c'), 0, 0.04, 0, 16, { shadow: 'cast' });
+  addCyl(g, 0.1, 0.12, 0.46, wood('#6b4632'), 0, 0.3, 0, 16, { shadow: 'cast' });
+  addCyl(g, 0.15, 0.11, 0.08, wood('#8a6248'), 0, 0.56, 0, 16, { shadow: 'cast' });
+  const rope = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.028, 8, 20), toon('#8d5a32'));
+  rope.rotation.x = Math.PI / 2;
+  rope.position.y = 0.045;
+  rope.userData.shadow = 'cast';
+  g.add(rope);
+  g.position.set(x, 0, z);
+  parent.add(g);
+}
+
+function binoculars(parent, x, y, z, yaw) {
+  const g = new THREE.Group();
+  const body = toon('#243034');
+  for (const sx of [-0.055, 0.055]) {
+    addCyl(g, 0.042, 0.048, 0.16, body, sx, 0, 0, 12, { rotX: Math.PI / 2 });
+    addCyl(g, 0.034, 0.034, 0.028, brass(), sx, 0, 0.09, 10);
+    addCyl(g, 0.03, 0.03, 0.02, brassDeep(), sx, 0, -0.08, 10);
+  }
+  addBox(g, 0.12, 0.03, 0.05, brass(), 0, 0.01, 0);
+  const strap = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.008, 6, 14, Math.PI), toon('#6b4632'));
+  strap.rotation.x = Math.PI / 2;
+  strap.position.set(0, -0.02, -0.02);
+  g.add(strap);
+  g.position.set(x, y, z);
+  g.rotation.y = yaw;
+  parent.add(g);
+}
+
+function pegRail(parent, x, y, z, yaw) {
+  const g = new THREE.Group();
+  addCyl(g, 0.028, 0.028, 0.78, wood('#5c3d2e'), 0, 0, 0, 10, { rotZ: Math.PI / 2, shadow: 'cast' });
+  for (const sx of [-0.24, 0, 0.24]) {
+    addCyl(g, 0.016, 0.012, 0.09, brass(), sx, -0.01, 0.05, 8, { rotX: Math.PI / 2 });
+    const knob = new THREE.Mesh(new THREE.SphereGeometry(0.02, 8, 8), brass());
+    knob.position.set(sx, -0.01, 0.1);
+    g.add(knob);
+  }
+  g.position.set(x, y, z);
+  g.rotation.y = yaw;
+  parent.add(g);
+}
+
+function porthole(parent, x, y, z) {
+  const g = new THREE.Group();
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.032, 10, 28), brass());
+  g.add(ring);
+  const glass = new THREE.Mesh(new THREE.CircleGeometry(0.21, 28), art(seaView(), { glow: 0.55 }));
+  glass.position.z = -0.01;
+  glass.userData.shadow = 'none';
+  g.add(glass);
+  for (let i = 0; i < 6; i++) {
+    const a = (i / 6) * Math.PI * 2;
+    const bolt = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 8), brassDeep());
+    bolt.position.set(Math.cos(a) * 0.24, Math.sin(a) * 0.24, 0.02);
+    g.add(bolt);
+  }
+  g.position.set(x, y, z);
+  parent.add(g);
+}
+
+function staff(parent, x, z, tex) {
+  const g = new THREE.Group();
+  addBox(g, 0.18, 1.45, 0.045, wood('#3e291f'), 0, 1.15, 0, { shadow: 'cast' });
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.14, 1.28), art(tex, { glow: 0.28 }));
+  face.position.set(0, 1.16, 0.028);
+  face.userData.shadow = 'none';
+  g.add(face);
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 10), brass());
+  cap.position.y = 1.92;
+  g.add(cap);
+  g.position.set(x, 0, z);
+  g.rotation.y = Math.PI / 2;
+  parent.add(g);
+}
+
+function bell(parent, x, y, z) {
+  const g = new THREE.Group();
+  const mesh = new THREE.Mesh(new THREE.LatheGeometry([
+    new THREE.Vector2(0.02, 0),
+    new THREE.Vector2(0.09, 0.02),
+    new THREE.Vector2(0.12, 0.1),
+    new THREE.Vector2(0.06, 0.18),
+    new THREE.Vector2(0.02, 0.22),
+  ], 18), brass());
+  mesh.userData.shadow = 'cast';
+  g.add(mesh);
+  const clapper = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), brassDeep());
+  clapper.position.y = 0.06;
+  g.add(clapper);
+  g.position.set(x, y, z);
+  parent.add(g);
+}
+
+function chartRolls(parent, x, z) {
+  const g = new THREE.Group();
+  const colors = ['#e7dcc4', '#1e4e86', '#d7c4a2'];
+  colors.forEach((c, i) => {
+    const x = (i - 1) * 0.14;
+    addCyl(g, 0.05, 0.05, 0.46, toon(c), x, 0.05, 0, 14, { rotZ: Math.PI / 2, shadow: 'cast' });
+    addCyl(g, 0.054, 0.054, 0.03, brass(), x - 0.23, 0.05, 0, 10, { rotZ: Math.PI / 2 });
+    addCyl(g, 0.054, 0.054, 0.03, brass(), x + 0.23, 0.05, 0, 10, { rotZ: Math.PI / 2 });
+  });
+  g.position.set(x, 0, z);
   parent.add(g);
 }
 
@@ -336,32 +556,32 @@ function makeProcedural(layout) {
     if (inst.contact) contact(g, inst.position[0], inst.position[2], inst.contact[0], inst.contact[1]);
   }
 
-  const rose = new THREE.Mesh(new THREE.CircleGeometry(0.48, 28), art(floorRose(), { glow: 0.25 }));
+  const rose = new THREE.Mesh(new THREE.CircleGeometry(0.42, 28), art(floorRose(), { glow: 0.2 }));
   rose.rotation.x = -Math.PI / 2;
-  rose.position.set(0.4, 0.03, 2.45);
+  rose.position.set(0.42, 0.034, 1.62);
   rose.userData.shadow = 'none';
   g.add(rose);
 
   layStrip(g, layout.circulation);
   layStrip(g, layout.branch);
 
-  sheet(g, tideChart(digits), a.easel.x, 0.86, a.easel.z + 0.3, 0.5, 0.86, 0, -0.18);
-  const lightBar = addBox(g, 0.62, 0.04, 0.08, brass(), a.easel.x, 1.72, a.easel.z + 0.16);
+  sheet(g, tideChart(digits), a.easel.x, 0.92, a.easel.z + 0.28, 0.52, 0.9, 0, -0.16);
+  const lightBar = addBox(g, 0.64, 0.045, 0.08, brass(), a.easel.x, 1.78, a.easel.z + 0.12, { shadow: 'cast' });
   lightBar.userData.shadow = 'cast';
-  addBox(g, 0.5, 0.02, 0.04, toon('#fff4d4', { emissive: '#fff4d4', emissiveIntensity: 0.9 }), a.easel.x, 1.69, a.easel.z + 0.2, { shadow: 'none' });
+  addBox(g, 0.5, 0.018, 0.04, toon('#fff4d4', { emissive: '#fff4d4', emissiveIntensity: 0.85 }), a.easel.x, 1.75, a.easel.z + 0.17, { shadow: 'none' });
 
-  sheet(g, keeperSlate(digits), a.slate.x, 0.95, a.slate.z + 0.2, 0.92, 0.6);
-  sheet(g, deskLog(digits), -1.45, 0.785, -0.9, 0.36, 0.24, 0.2, -1.48, false);
-  sheet(g, entryCard(), a.lectern.x, 1.08, a.lectern.z + 0.16, 0.3, 0.3, 0.5, 0.25);
-  sheet(g, mapSheet(), a.table.x - 0.02, 0.77, a.table.z - 0.08, 0.34, 0.24, 0.15, -1.48, false);
+  sheet(g, keeperSlate(digits), a.slate.x, 0.95, a.slate.z + 0.22, 0.92, 0.58);
+  sheet(g, deskLog(digits), -1.42, 0.785, -0.95, 0.34, 0.22, 0.15, -1.48, false);
+  sheet(g, mapSheet(), a.table.x, 0.745, a.table.z - 0.02, 0.32, 0.22, 0.1, -1.5, false);
+  sheet(g, mapSheet(), -3.15, 1.72, -3.78, 0.78, 0.48, 0, 0, true);
 
   ORDER.forEach((key, i) => {
     const tag = new THREE.Mesh(
-      new THREE.PlaneGeometry(0.16, 0.08),
-      art(jarTag(NAMES[key], digits[key], colors[key]), { glow: 0.35 }),
+      new THREE.PlaneGeometry(0.15, 0.075),
+      art(jarTag(NAMES[key], digits[key], colors[key]), { glow: 0.28 }),
     );
-    tag.position.set(1.28 + i * 0.27, 0.86, 0.78);
-    tag.rotation.x = -0.7;
+    tag.position.set(a.table.x - 0.22 + i * 0.22, 0.86, a.table.z + 0.22);
+    tag.rotation.x = -0.85;
     tag.userData.shadow = 'none';
     g.add(tag);
   });
@@ -375,29 +595,39 @@ function makeProcedural(layout) {
       open: key === 'lantern',
     });
   });
+  cabinetBank(g, a.cabinets, a.cabinetZ);
   mechanism(g, a.panel.x, a.panel.z, digits, colors);
-  compass(g, a.plinth.x, 0.8, a.plinth.z);
+  compass(g, a.table.x + 0.22, 0.78, a.table.z + 0.08);
+  bell(g, a.plinth.x, 0.8, a.plinth.z);
+
+  porthole(g, -4.45, 1.78, -3.76);
+  staff(g, -5.12, -2.85, tideStaff(digits));
+  pegRail(g, -5.12, 1.48, 3.25, Math.PI / 2);
+  binoculars(g, -4.92, 1.04, 0.85, 0.7);
+
+  seaChest(g, 2.65, 1.52, -0.2);
+  bollard(g, -0.95, 1.82);
+  chartChest(g, -2.35, -2.55, digits, colors);
+  chartRolls(g, -2.95, -1.85);
 
   foliage(g, -4.75, 3.35, 0.32);
   foliage(g, 4.55, 3.25, 0.32);
 
-  addCyl(g, 0.045, 0.05, 0.08, toon('#24343c'), -0.95, 0.8, -0.7, 10);
-  addBox(g, 0.012, 0.14, 0.012, toon('#c6a15b'), -0.98, 0.82, -0.66);
+  addCyl(g, 0.04, 0.045, 0.07, toon('#24343c'), -0.95, 0.8, -0.72, 10);
+  addBox(g, 0.012, 0.12, 0.012, brass(), -0.98, 0.84, -0.68);
 
-  const coil = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.035, 8, 18), toon('#8d5a32'));
+  const coil = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.03, 8, 16), toon('#8d5a32'));
   coil.rotation.x = Math.PI / 2;
-  coil.position.set(-4.55, 0.05, -0.55);
+  coil.position.set(2.05, 0.05, 2.45);
   g.add(coil);
 
   return g;
 }
 
-function redrawDial(key, digit, color) {
+function redrawDial(key, digit) {
   const slot = rig.dials[key];
   if (!slot) return;
-  const image = dialFace(digit, color).image;
-  // dialFace returns a texture; paint by replacing the map image via a fresh texture.
-  slot.tex = dialFace(digit, color);
+  slot.tex = dialFace(digit, slot.color || '#888888');
   const apply = (mat) => {
     if (!mat) return;
     mat.map = slot.tex;
@@ -409,7 +639,6 @@ function redrawDial(key, digit, color) {
 
 function statusFor(layout) {
   const digits = layout.meta.puzzle.digits;
-  const colors = layout.meta.puzzle.colors;
   const matched = ORDER.every((key) => rig.dials[key] && rig.dials[key].digit === digits[key]);
   const line = ORDER.map((key) => `${NAMES[key]} ${rig.dials[key] ? rig.dials[key].digit : '?'}`).join(' · ');
   return matched ? `${line} — the lantern door is open` : `${line} — the chart still disagrees`;
@@ -422,6 +651,9 @@ boot({
   onReady(api) {
     const el = document.getElementById('status');
     if (el) el.textContent = statusFor(api.layout);
+    ORDER.forEach((key) => {
+      if (rig.dials[key]) rig.dials[key].color = api.layout.meta.puzzle.colors[key];
+    });
   },
   onPick(hits, api) {
     for (const hit of hits) {
@@ -436,7 +668,8 @@ boot({
       const slot = rig.dials[key];
       if (!slot) return;
       slot.digit = (slot.digit + 1) % 10;
-      redrawDial(key, slot.digit, api.layout.meta.puzzle.colors[key]);
+      slot.color = api.layout.meta.puzzle.colors[key];
+      redrawDial(key, slot.digit);
       api.setStatus(statusFor(api.layout));
       return;
     }

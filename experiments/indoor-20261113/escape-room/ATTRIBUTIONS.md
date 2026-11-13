@@ -21,7 +21,11 @@ Sources are Hugging Face `Sandflow/sand3d-objaverse` programs, CC-BY-4.0, plus t
 - **Stylized Coffee Cup** (`cup_mug__6da6f7f87b8d`) — by n30hrtgdv, Sketchfab CC-BY-4.0 — `cafe/assets/cup_mug__6da6f7f87b8d.glb`
 - **Thermos** (`thermos__c85ee7b8828b`) — by Platon_Debik, Sketchfab CC-BY-4.0 — `cafe/assets/thermos__c85ee7b8828b.glb`
 - **Day1.Draft Cash Register** (`cash_register__870f6ebb115a`) — by illusive_skarwing, Sketchfab CC-BY-4.0 — `cafe/assets/cash_register__870f6ebb115a.glb`
+- **Round side coffee table marble top** (`round_table__49e5ede6a16d`) — by 3DTechDesignCo.Ltd, Sketchfab CC-BY-4.0 — `cafe/assets/round_table__49e5ede6a16d.glb`. Used at its own proportions as the window chart table (height 0.70 m, top about 0.84 m across).
+- **Straw Holder** (`straw_holder__252f730f1a04`) — by KatH10, Sketchfab CC-BY-4.0 — `cafe/assets/straw_holder__252f730f1a04.glb`. The bake is a lidded canister, not loose straws. Height 0.20 m.
+- **IKEA FULLSPÄCKAD serving tray** (`tray_napkin__86821ece655f`) — by ceragir, Sketchfab CC-BY-4.0 — `cafe/assets/tray_napkin__86821ece655f.glb`. The bake is a two-tier stand. Height 0.26 m, about 0.31 m wide.
+- **CC0 Wall Shelf 4** (`wall_shelf__8732f5e14a30`) — by plaggy, Sketchfab CC-BY-4.0 — `cafe/assets/wall_shelf__8732f5e14a30.glb`. Height fit 0.78 m gives a shelf about 0.68 m wide and 0.28 m deep. It is not scaled on one axis.
 
 Three.js r170 (MIT) is `workshop/vendor/`, used read-only.
 
-Cabinets, dials, the mechanical panel, the chart, the slate sheet, the key, the compass, the window view, and the plants are local geometry in `escape-room.js` and `panels.js`. They are not external models.
+Cabinets, dials, the mechanical panel, the chart, the slate sheet, the tide staff, the key, the compass, the bell, the chests, the bollard, the window view, and the plants are local geometry in `escape-room.js` and `panels.js`. They are not external models. The book stand GLB was inspected and not placed: it reads as a dark podium and was blocking the slate.

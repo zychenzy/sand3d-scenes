@@ -1,8 +1,8 @@
 # Tide Lock cipher study
 
-A cutaway harbor office where the chart, the keeper’s slate, the brass wheels, and three combination cabinets all carry the same three marks. Daylight comes through the left window. The floor strip runs from the entry rose to the mechanical panel.
+A cutaway harbor office where the chart, the keeper’s slate, the tide staff, the brass wheels, and three combination cabinets all carry the same three marks. Daylight comes through the left window. A runner and a brass strip run from the entry rose to the mechanical panel.
 
-Not a library, and not a black box. Walls are plaster and teal paneling. The readable focal point is the chart on the easel.
+Not a library, and not a black box. Walls are plaster over teal beadboard. The readable focal point is the chart on the easel. The jars, the log, and the chart chest sit on the furniture someone would actually use.
 
 ## Open
 

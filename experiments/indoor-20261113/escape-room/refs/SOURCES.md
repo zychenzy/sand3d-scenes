@@ -11,4 +11,4 @@ Composition, not a traced room:
 
 The room is a daylight cipher study: chart, slate, wheels, and three colored cabinets. It is not a copy of any one lighthouse or escape room.
 
-Asset geometry is the existing sand3d bakes listed in `ATTRIBUTIONS.md`. Each GLB was opened in a toon render (front, side) before it was placed. Notes from that pass are in `GAP.md`.
+Asset geometry is the existing sand3d bakes listed in `ATTRIBUTIONS.md`. Each GLB was opened in a toon render before it was placed, including the round table, the lidded canister, the two-tier stand, and the wall shelf added in the refinement. Notes from that pass are in `GAP.md`.

@@ -309,6 +309,47 @@ export function floorRose() {
   });
 }
 
+export function tideStaff(digits) {
+  return canvas(320, 1280, (ctx, w, h) => {
+    ctx.fillStyle = '#f4ecda';
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#1e4e86';
+    ctx.fillRect(0, 0, 22, h);
+    ctx.fillStyle = '#c6a15b';
+    ctx.fillRect(w - 18, 0, 18, h);
+    ctx.fillStyle = '#1c2430';
+    font(ctx, 42, 700, SANS);
+    ctx.textAlign = 'center';
+    ctx.fillText('TIDE', w / 2, 70);
+    ctx.fillText('STAFF', w / 2, 120);
+    const marks = [
+      { y: 280, row: ROWS[2] },
+      { y: 620, row: ROWS[1] },
+      { y: 980, row: ROWS[0] },
+    ];
+    marks.forEach(({ y, row }) => {
+      ctx.strokeStyle = '#8a7964';
+      ctx.lineWidth = 3;
+      for (let t = y - 90; t < y + 80; t += 28) {
+        ctx.beginPath();
+        ctx.moveTo(36, t);
+        ctx.lineTo(t % 56 === 0 ? 92 : 70, t);
+        ctx.stroke();
+      }
+      ctx.fillStyle = row.color;
+      ctx.fillRect(28, y - 8, w - 56, 16);
+      ctx.fillStyle = '#1c2430';
+      font(ctx, 36, 700, SANS);
+      ctx.textAlign = 'left';
+      ctx.fillText(row.name, 40, y + 58);
+      ctx.textAlign = 'right';
+      font(ctx, 78, 700, SERIF);
+      ctx.fillStyle = row.color;
+      ctx.fillText(String(digits[row.key]), w - 36, y + 64);
+    });
+  });
+}
+
 export function mapSheet() {
   return canvas(1024, 768, (ctx, w, h) => {
     ctx.fillStyle = '#e7f0ea';
