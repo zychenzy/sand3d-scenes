@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "slug": "capsule-hotel",
+    "title": "Koya sleeping floor",
+    "units": "metres",
+    "style": "Toon hard stepped",
+    "circulation": "narrow-hall",
+    "room": { "minX": -2.22, "maxX": 1.82, "minZ": -4.08, "maxZ": 3.56, "height": 2.48, "wallT": 0.08 },
+    "body": { "stature": 1.75, "shoulder": 0.46, "eye": 1.55 },
+    "pod": {
+      "bayCount": 4,
+      "pitch": 1.24,
+      "originZ": -2.58,
+      "faceX": -0.2,
+      "interiorLength": 1.9,
+      "interiorWidth": 1.0,
+      "lowerFloor": 0.14,
+      "lowerCeiling": 1.12,
+      "upperFloor": 1.28,
+      "upperCeiling": 2.3,
+      "openingW": 0.86,
+      "openingH": 0.74,
+      "openingR": 0.15,
+      "frameD": 0.055,
+      "mattressT": 0.1,
+      "mattressGap": 0.045
+    },
+    "ladder": {
+      "width": 0.34,
+      "rail": 0.024,
+      "rungD": 0.024,
+      "spacing": 0.28,
+      "firstY": 0.22,
+      "count": 4,
+      "protrusion": 0.16,
+      "xGap": 0.025,
+      "railExtra": 0.38
+    },
+    "corridor": { "walkX0": 0.1, "walkX1": 1.12, "entryZ": -3.85, "standZ": 2.45, "minClear": 0.95, "maxClear": 1.3 },
+    "lockers": {
+      "cols": 4,
+      "rows": 3,
+      "w": 0.4,
+      "d": 0.46,
+      "h": 0.46,
+      "gapZ": 0.04,
+      "gapY": 0.03,
+      "faceX": 1.22,
+      "originZ": -1.72,
+      "baseY": 0.05
+    },
+    "groom": {
+      "z0": 2.02,
+      "counterH": 0.88,
+      "counterD": 0.5,
+      "counterX0": -0.35,
+      "counterX1": 1.35,
+      "backZ": 3.46,
+      "sinkX": 0.42,
+      "mirrorW": 0.56,
+      "mirrorH": 0.72,
+      "mirrorY": 1.48
+    },
+    "pods": [
+      { "bay": 0, "level": "lower", "curtain": "open", "cloth": "persimmon", "no": "04" },
+      { "bay": 0, "level": "upper", "curtain": "half", "cloth": "indigo", "no": "14" },
+      { "bay": 1, "level": "lower", "curtain": "closed", "cloth": "indigo", "no": "05" },
+      { "bay": 1, "level": "upper", "curtain": "open", "cloth": "indigo", "no": "15" },
+      { "bay": 2, "level": "lower", "curtain": "half", "cloth": "persimmon", "no": "06" },
+      { "bay": 2, "level": "upper", "curtain": "closed", "cloth": "stone", "no": "16" },
+      { "bay": 3, "level": "lower", "curtain": "open", "cloth": "stone", "no": "07" },
+      { "bay": 3, "level": "upper", "curtain": "closed", "cloth": "indigo", "no": "17" }
+    ],
+    "palette": {
+      "persimmon": "#e07a45",
+      "indigo": "#44558f",
+      "stone": "#a39e96"
+    }
+  },
+  "shell": { "clearColor": "#d8d0c4", "fogColor": "#e3dcd0", "fogNear": 10, "fogFar": 24 },
+  "camera": { "fov": 48, "position": [0.64, 1.4, -3.52], "target": [-0.28, 0.52, -1.45] },
+  "cameraPresets": {
+    "corner": { "fov": 44, "position": [0.62, 1.55, 1.35], "target": [0.5, 1.22, -3.55] },
+    "detail": { "fov": 38, "position": [0.7, 0.78, -2.2], "target": [-1.05, 0.5, -2.62] },
+    "close": { "fov": 38, "position": [0.7, 0.78, -2.2], "target": [-1.05, 0.5, -2.62] }
+  },
+  "lights": {
+    "hemi": { "sky": "#f6f1e6", "ground": "#8d8478", "intensity": 0.48 },
+    "key": {
+      "color": "#fff1dc",
+      "intensity": 1.22,
+      "position": [2.6, 5.4, -4.4],
+      "target": [0.15, 0.9, 0.2],
+      "shadow": { "left": -5, "right": 5, "top": 5, "bottom": -4, "near": 0.5, "far": 18, "bias": -0.0008, "normalBias": 0.055 }
+    },
+    "fill": { "color": "#d5dee8", "intensity": 0.26, "position": [-0.4, 2.2, 3.4] }
+  },
+  "assets": {
+    "reading_lamp": { "glb": "./assets/reading_lamp.glb", "targetHeight": 0.08, "baked": true },
+    "pillow": { "glb": "./assets/pillow.glb", "targetHeight": 0.09, "baked": true },
+    "luggage_locker": { "glb": "./assets/luggage_locker.glb", "targetHeight": 0.46, "baked": true },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.085, "baked": false },
+    "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.11, "baked": false },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.22, "baked": false },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.36, "baked": false }
+  }
+}
