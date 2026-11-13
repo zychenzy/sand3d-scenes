@@ -14,17 +14,20 @@ The checker confirms local GLB paths resolve inside the repo and are not copied 
 
 Last shoot, console and network clean aside from the ignored favicon 404. `window.__ready` true. Zero asset errors.
 
+Second pass after the screenshot review. Shadow map is 4096 over a tighter frustum, thin table lips no longer cast, and the striped steel and cloth maps are gone.
+
 | Shot | Bytes | Read |
 | --- | ---: | --- |
-| `shots/toon_default.png` | 620832 | Both banks, folding counter, sort counter, carts, and chairs. Toon steps and hard shadows on the tile. |
-| `shots/toon_corner.png` | 625382 | Dryer bank, folding top, SOAP vendor with colored bottles, attendant desk, lamp, shelf, price board, chairs. |
-| `shots/toon_close.png` | 534777 | Dryer doors with radial vanes. One lower door ajar so the drum stays visible. Folding top in the foreground. |
-| `shots/unlit_default.png` | 470226 | Same framing as default. Flat color, no shadows. Warm drums still read because unlit uses emissive as the color. |
+| `shots/toon_default.png` | 568997 | DRYERS sign fully in frame. Washer bank left, two-pocket dryers right, folding counter, carts, chairs. No green soffit strips. |
+| `shots/toon_corner.png` | 588472 | Dryer bank, SOAP vendor, attendant desk, lamp, shelf, WEST END price board, chairs, floor mat. |
+| `shots/toon_close.png` | 458719 | Perforated dryer drums behind dark glass and a metal ring. One lower door ajar. Rolled folds on the table, not page stripes. |
+| `shots/unlit_default.png` | 354070 | Same framing as default. Flat color, no shadows. Warm drums still read because unlit uses emissive as the color. |
 
 ## Limits still visible
 
-- Drum vanes are three bars on a disc. They read as a star at this scale, not as a deep perforated cylinder.
-- The open dryer door is ajar rather than fully open, so the head-on close shot still shows the ring.
-- Carts are basket frames with a few rails, not a dense wire mesh.
-- The window bench is built and clear of the aisles, and it is mostly outside the four committed frames.
+- Dryer drums are a recessed cylinder, a ring of holes, and three wall lifters. They are not a fully perforated tumbling drum.
+- The open dryer door stays ajar so the head-on close shot still shows the ring.
+- Folded stacks are rolled hems on a soft pile. From the corner they can still look blocky.
+- The floor tote reads as a plain box. Carts are basket frames, not a dense wire mesh.
+- The center of the default frame is the open aisle. The window bench and the WASHERS sign sit outside that frame.
 - Large washers sit toward the window and are easy to crop from the default frame.

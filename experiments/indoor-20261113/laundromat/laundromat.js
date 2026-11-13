@@ -6,8 +6,8 @@ function box(g, sx, sy, sz, mat, x, y, z, rotY = 0, extra = {}) {
   m.position.set(x, y, z);
   if (rotY) m.rotation.y = rotY;
   if (extra.noShadow) m.userData.noShadow = true;
-  m.castShadow = !extra.noShadow;
-  m.receiveShadow = !extra.noShadow;
+  m.castShadow = !extra.noShadow && extra.cast !== false;
+  m.receiveShadow = !extra.noShadow && extra.receive !== false;
   g.add(m);
   return m;
 }
@@ -17,8 +17,8 @@ function put(g, geo, mat, x, y, z, rot, extra = {}) {
   m.position.set(x, y, z);
   if (rot) m.rotation.set(rot[0] || 0, rot[1] || 0, rot[2] || 0);
   if (extra.noShadow) m.userData.noShadow = true;
-  m.castShadow = !extra.noShadow;
-  m.receiveShadow = !extra.noShadow;
+  m.castShadow = !extra.noShadow && extra.cast !== false;
+  m.receiveShadow = !extra.noShadow && extra.receive !== false;
   g.add(m);
   return m;
 }
@@ -62,15 +62,17 @@ function makeTextures() {
     }
   }, [3.2, 2.2]);
 
-  const brush = canvasTex(128, 256, (ctx, w, h) => {
-    ctx.fillStyle = '#d5dde2';
+  const brush = canvasTex(128, 128, (ctx, w, h) => {
+    ctx.fillStyle = '#c5ced4';
     ctx.fillRect(0, 0, w, h);
-    for (let x = 0; x < w; x += 2) {
-      const shade = 196 + ((x * 17) % 28);
-      ctx.fillStyle = `rgba(${shade},${shade + 6},${shade + 10},0.45)`;
-      ctx.fillRect(x, 0, 1, h);
+    for (let i = 0; i < 90; i++) {
+      const x = (i * 47) % w;
+      const y = (i * 29) % h;
+      const shade = 180 + ((i * 13) % 40);
+      ctx.fillStyle = `rgba(${shade},${shade + 4},${shade + 8},0.07)`;
+      ctx.fillRect(x, y, 10 + (i % 5), 8);
     }
-  }, [1, 2]);
+  }, [1, 1]);
 
   const laminate = canvasTex(256, 128, (ctx, w, h) => {
     ctx.fillStyle = '#efe6d4';
@@ -85,12 +87,16 @@ function makeTextures() {
   }, [2.2, 1]);
 
   const cloth = canvasTex(128, 128, (ctx) => {
-    ctx.fillStyle = '#f4efe6';
+    ctx.fillStyle = '#f3ece3';
     ctx.fillRect(0, 0, 128, 128);
-    ctx.fillStyle = '#e4d3c0';
-    for (let y = 8; y < 128; y += 16) ctx.fillRect(0, y, 128, 3);
-    ctx.fillStyle = 'rgba(47,111,104,0.35)';
-    ctx.fillRect(0, 108, 128, 8);
+    for (let i = 0; i < 70; i++) {
+      const x = (i * 41) % 128;
+      const y = (i * 23) % 128;
+      ctx.fillStyle = i % 2 ? 'rgba(210,190,168,0.16)' : 'rgba(255,252,246,0.2)';
+      ctx.beginPath();
+      ctx.ellipse(x, y, 8 + (i % 4), 5, (i % 7) * 0.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
   });
 
   const ceiling = canvasTex(256, 256, (ctx) => {
@@ -136,6 +142,26 @@ function labelMap(text, bg, fg) {
   g.textAlign = 'center';
   g.textBaseline = 'middle';
   g.fillText(text, 64, 34);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  labelCache.set(key, t);
+  return t;
+}
+
+function signMap(text, bg, fg) {
+  const key = `sign|${text}|${bg}|${fg}`;
+  if (labelCache.has(key)) return labelCache.get(key);
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 128;
+  const g = c.getContext('2d');
+  g.fillStyle = bg;
+  g.fillRect(0, 0, 512, 128);
+  g.fillStyle = fg;
+  g.font = '700 72px sans-serif';
+  g.textAlign = 'center';
+  g.textBaseline = 'middle';
+  g.fillText(text, 256, 68);
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   labelCache.set(key, t);
@@ -188,7 +214,6 @@ function makeShell(layout) {
   const z = layout.zones;
   const wall = toon('#ffffff', { map: tex().plaster });
   const teal = toon(s.wainscotColor);
-  const tealDark = toon(s.accentColor);
   const trim = toon('#efe8dc');
   const floor = toon('#ffffff', { map: tex().tile });
   const edge = toon('#b7a78f');
@@ -236,103 +261,141 @@ function makeShell(layout) {
   const ceilD = 5.6;
   box(g, W - 0.5, 0.06, ceilD, ceil, -0.15, H - 0.04, -D / 2 + ceilD / 2 + 0.08, 0, { noShadow: true });
   box(g, 3.6, 0.06, 2.5, ceil, -3.3, H - 0.04, 2.55, 0, { noShadow: true });
-  box(g, 0.08, 0.16, ceilD - 0.2, tealDark, -2.4, H - 0.16, -1.15, 0, { noShadow: true });
-  box(g, 0.08, 0.16, ceilD - 0.2, tealDark, 1.6, H - 0.16, -1.15, 0, { noShadow: true });
 
   box(g, W - 0.8, 0.08, 0.08, edge, 0.2, 0.04, D / 2 - 0.02);
   return g;
 }
 
-function faceVanes(g, axis, x, y, z, radius, vane) {
+function drumInterior(g, axis, mouthX, mouthY, mouthZ, radius, depth, mats, hot, perforated) {
+  const quiet = { noShadow: true };
+  const wall = hot ? mats.drumWallHot : mats.drumWall;
+  const backMat = hot ? mats.cavityHot : (perforated ? mats.drumBackDry : mats.drumBackWash);
+  const lifterMat = hot ? mats.lifterHot : mats.lifter;
+  const rot = axis === 'x' ? [0, 0, Math.PI / 2] : [Math.PI / 2, 0, 0];
+  const cx = axis === 'x' ? mouthX - depth / 2 : mouthX;
+  const cz = axis === 'z' ? mouthZ - depth / 2 : mouthZ;
+  put(g, new THREE.CylinderGeometry(radius, radius * 0.96, depth, 28, 1, true), wall, cx, mouthY, cz, rot, quiet);
+  const bx = axis === 'x' ? mouthX - depth : mouthX;
+  const bz = axis === 'z' ? mouthZ - depth : mouthZ;
+  const faceRot = axis === 'x' ? [0, -Math.PI / 2, 0] : null;
+  put(g, new THREE.CircleGeometry(radius * 0.98, 28), backMat, bx, mouthY, bz, faceRot, quiet);
   for (let i = 0; i < 3; i++) {
-    const angle = (i / 3) * Math.PI;
-    const geo = axis === 'x'
-      ? new THREE.BoxGeometry(0.01, radius * 1.35, 0.016)
-      : new THREE.BoxGeometry(0.016, radius * 1.35, 0.01);
-    const fin = new THREE.Mesh(geo, vane);
-    fin.position.set(x, y, z);
-    if (axis === 'x') fin.rotation.x = angle;
-    else fin.rotation.z = angle;
+    const a = (i / 3) * Math.PI * 2 + 0.5;
+    const len = radius * 0.46;
+    const rad = radius * 0.58;
+    const geo = new THREE.BoxGeometry(0.016, len, 0.02);
+    const fin = new THREE.Mesh(geo, lifterMat);
     fin.castShadow = false;
     fin.receiveShadow = false;
+    if (axis === 'z') {
+      fin.position.set(mouthX + Math.cos(a) * rad, mouthY + Math.sin(a) * rad, bz + 0.02);
+      fin.rotation.z = a - Math.PI / 2;
+    } else {
+      fin.position.set(bx + 0.02, mouthY + Math.sin(a) * rad, mouthZ + Math.cos(a) * rad);
+      fin.rotation.x = Math.PI / 2 - a;
+    }
     g.add(fin);
+  }
+  if (!perforated) return;
+  const hole = hot ? mats.holeHot : mats.hole;
+  for (let ring = 0; ring < 2; ring++) {
+    const count = ring === 0 ? 12 : 8;
+    const pr = radius * (ring === 0 ? 0.62 : 0.34);
+    const hr = radius * (ring === 0 ? 0.055 : 0.04);
+    for (let i = 0; i < count; i++) {
+      const a = (i / count) * Math.PI * 2 + ring * 0.2;
+      put(g, new THREE.CircleGeometry(hr, 8), hole, mouthX + Math.cos(a) * pr, mouthY + Math.sin(a) * pr, bz + 0.006, null, quiet);
+    }
+  }
+}
+
+function doorRing(hinge, radius, glassMat, mats, axis) {
+  const quiet = { cast: false };
+  const rot = axis === 'x' ? [0, Math.PI / 2, 0] : null;
+  const hx = axis === 'x' ? 0.018 : radius;
+  const hz = axis === 'x' ? radius : 0.018;
+  put(hinge, new THREE.TorusGeometry(radius, 0.016, 8, 32), mats.chrome, hx, 0, hz, rot, quiet);
+  put(hinge, new THREE.TorusGeometry(radius * 0.9, 0.012, 8, 28), mats.gasket, axis === 'x' ? 0.01 : radius, 0, axis === 'x' ? radius : 0.01, rot, quiet);
+  put(hinge, new THREE.CircleGeometry(radius * 0.84, 28), glassMat, axis === 'x' ? 0.026 : radius, 0, axis === 'x' ? radius : 0.026, rot, { noShadow: true });
+  if (axis === 'x') {
+    box(hinge, 0.018, 0.1, 0.016, mats.chrome, 0.04, -radius * 0.15, radius + radius * 0.72, 0, quiet);
+  } else {
+    box(hinge, 0.016, 0.09, 0.018, mats.chrome, radius + radius * 0.72, -radius * 0.15, 0.04, 0, quiet);
   }
 }
 
 function washerUnit(g, spec, mats) {
   const { faceX, z, w, h, depth, open, large, price, lamp } = spec;
-  const cx = faceX - depth / 2;
   const body = large ? mats.enamelWarm : mats.enamel;
-  box(g, depth - 0.04, h - 0.12, w - 0.018, body, cx - 0.015, (h - 0.12) / 2 + 0.07, z);
-  box(g, depth - 0.1, 0.07, w - 0.03, mats.navy, cx - 0.03, 0.035, z);
-  box(g, depth - 0.02, 0.04, w - 0.012, mats.navy, cx, h - 0.02, z);
-  box(g, 0.025, h - 0.18, w - 0.05, mats.enamelInset, faceX - 0.02, h * 0.48 + 0.02, z);
+  const recess = 0.18;
+  const bodyD = depth - recess;
+  const bodyX = faceX - recess - bodyD / 2;
+  box(g, bodyD, h - 0.1, w - 0.016, body, bodyX, (h - 0.1) / 2 + 0.05, z);
+  const cheekX = faceX - recess / 2;
+  box(g, recess, h - 0.12, 0.05, body, cheekX, h * 0.5, z - w / 2 + 0.03);
+  box(g, recess, h - 0.12, 0.05, body, cheekX, h * 0.5, z + w / 2 - 0.03);
+  box(g, recess + 0.02, 0.055, w - 0.02, mats.navy, faceX - recess / 2, h - 0.028, z);
+  box(g, depth - 0.08, 0.06, w - 0.03, mats.navy, faceX - depth / 2, 0.035, z);
+  box(g, recess, 0.045, w - 0.08, mats.enamelInset, cheekX, 0.1, z);
 
   const slots = large ? 4 : 3;
   const slotW = large ? 0.055 : 0.042;
   for (let i = 0; i < slots; i++) {
-    box(g, 0.012, 0.045, slotW, mats.steel, faceX + 0.008, h - 0.11, z - w * 0.28 + i * (slotW + 0.012));
+    box(g, 0.012, 0.04, slotW, mats.steel, faceX + 0.006, h - 0.1, z - w * 0.28 + i * (slotW + 0.012), 0, { cast: false });
   }
 
-  const doorR = large ? 0.3 : 0.235;
-  const doorY = large ? 0.64 : 0.56;
+  const doorR = large ? 0.29 : 0.23;
+  const doorY = large ? 0.62 : 0.55;
+  const mouthX = faceX - 0.02;
+  drumInterior(g, 'x', mouthX, doorY, z, doorR * 0.78, 0.16, mats, false, false);
+  put(g, new THREE.TorusGeometry(doorR * 0.86, 0.01, 8, 28), mats.steel, mouthX + 0.004, doorY, z, [0, Math.PI / 2, 0], { cast: false });
+
   const hinge = new THREE.Group();
-  hinge.position.set(faceX + 0.012, doorY, z - doorR);
+  hinge.position.set(faceX + 0.01, doorY, z - doorR);
   hinge.rotation.y = open || 0;
   g.add(hinge);
-  put(hinge, new THREE.TorusGeometry(doorR, 0.018, 8, 28), mats.chrome, 0.02, 0, doorR, [0, Math.PI / 2, 0]);
-  put(hinge, new THREE.TorusGeometry(doorR * 0.86, 0.022, 8, 24), mats.gasket, 0.012, 0, doorR, [0, Math.PI / 2, 0]);
-  put(hinge, new THREE.CircleGeometry(doorR * 0.78, 24), mats.glass, 0.028, 0, doorR, [0, Math.PI / 2, 0], { noShadow: true });
-  box(hinge, 0.02, 0.11, 0.018, mats.chrome, 0.04, -doorR * 0.42, doorR + doorR * 0.55);
-
-  put(g, new THREE.TorusGeometry(doorR * 0.8, 0.012, 8, 28), mats.gasket, faceX + 0.004, doorY, z, [0, Math.PI / 2, 0]);
-  put(g, new THREE.CircleGeometry(doorR * 0.72, 28), mats.cavity, faceX + 0.01, doorY, z, [0, Math.PI / 2, 0]);
-  faceVanes(g, 'x', faceX + 0.02, doorY, z, doorR * 0.58, mats.vane);
+  doorRing(hinge, doorR, mats.glassWash, mats, 'x');
 
   const plate = toon('#ffffff', { map: labelMap(price, '#142028', '#d5f2e6') });
-  box(g, 0.012, 0.07, 0.11, plate, faceX + 0.01, h - 0.16, z + w * 0.3);
+  box(g, 0.012, 0.07, 0.11, plate, faceX + 0.012, h - 0.16, z + w * 0.28, 0, { cast: false });
   if (lamp) {
-    box(g, 0.012, 0.018, 0.018, lamp === 'run' ? mats.ledRun : mats.ledDone, faceX + 0.016, h - 0.22, z + w * 0.3, 0, { noShadow: true });
+    box(g, 0.012, 0.016, 0.016, lamp === 'run' ? mats.ledRun : mats.ledDone, faceX + 0.016, h - 0.22, z + w * 0.28, 0, { noShadow: true });
   }
 }
 
 function dryerColumn(g, spec, mats) {
   const { x, frontZ, w, h, depth, open, glow, card } = spec;
-  const cz = frontZ - depth / 2;
-  box(g, w - 0.012, h - 0.08, depth - 0.03, mats.steelBody, x, h / 2 + 0.01, cz);
-  box(g, w - 0.02, 0.05, depth - 0.06, mats.steelDark, x, 0.03, cz + 0.01);
-  box(g, w - 0.008, 0.045, depth - 0.02, mats.steelDark, x, h - 0.03, cz);
-  box(g, w - 0.04, 0.02, 0.012, mats.gasket, x, h * 0.5, frontZ + 0.006);
+  const recess = 0.2;
+  const bodyD = depth - recess;
+  const cz = frontZ - recess - bodyD / 2;
+  box(g, w - 0.01, h - 0.06, bodyD, mats.steelBody, x, h / 2 + 0.01, cz);
+  const cheekZ = frontZ - recess / 2;
+  box(g, 0.045, h - 0.08, recess, mats.steelBody, x - w / 2 + 0.028, h / 2, cheekZ);
+  box(g, 0.045, h - 0.08, recess, mats.steelBody, x + w / 2 - 0.028, h / 2, cheekZ);
+  box(g, w - 0.01, 0.05, recess, mats.steelDark, x, h - 0.03, cheekZ);
+  box(g, w - 0.02, 0.07, recess + 0.02, mats.steelDark, x, 0.04, cheekZ);
+  box(g, w - 0.08, 0.045, 0.03, mats.steelDark, x, 0.95, frontZ - 0.012);
 
-  const doors = [0.52, 1.38];
+  const doors = [0.5, 1.4];
   doors.forEach((y, index) => {
-    const r = 0.25;
+    const r = 0.24;
     const hot = glow && index === 0;
+    const mouthZ = frontZ - 0.025;
+    drumInterior(g, 'z', x, y, mouthZ, r * 0.8, 0.16, mats, hot, true);
+    put(g, new THREE.TorusGeometry(r * 0.88, 0.01, 8, 28), mats.steel, x, y, mouthZ + 0.004, null, { cast: false });
     const hinge = new THREE.Group();
-    hinge.position.set(x - r, y, frontZ + 0.012);
+    hinge.position.set(x - r, y, frontZ + 0.008);
     hinge.rotation.y = open && index === 0 ? open : 0;
     g.add(hinge);
-    put(hinge, new THREE.TorusGeometry(r, 0.016, 8, 28), mats.chrome, r, 0, 0.02);
-    put(hinge, new THREE.TorusGeometry(r * 0.84, 0.02, 8, 24), mats.gasket, r, 0, 0.01);
-    const glassMat = hot ? mats.glassWarm : mats.glass;
-    put(hinge, new THREE.CircleGeometry(r * 0.76, 24), glassMat, r, 0, 0.028, null, { noShadow: true });
-    box(hinge, 0.016, 0.1, 0.02, mats.chrome, r + r * 0.55, -r * 0.32, 0.04);
-    const back = hot ? mats.cavityHotBack : mats.cavity;
-    const vane = hot ? mats.vaneHot : mats.vane;
-    put(g, new THREE.TorusGeometry(r * 0.8, 0.01, 8, 28), mats.gasket, x, y, frontZ + 0.004);
-    put(g, new THREE.CircleGeometry(r * 0.72, 28), back, x, y, frontZ + 0.008);
-    faceVanes(g, 'z', x, y, frontZ + 0.018, r * 0.58, vane);
-    put(g, new THREE.CylinderGeometry(0.012, 0.012, 0.02, 10), mats.knob, x + w * 0.36, y + 0.08, frontZ + 0.02, [Math.PI / 2, 0, 0]);
+    doorRing(hinge, r, hot ? mats.glassWarm : mats.glassDry, mats, 'z');
+    put(g, new THREE.CylinderGeometry(0.014, 0.014, 0.018, 10), mats.knob, x + w * 0.34, y + r * 0.15, frontZ + 0.02, [Math.PI / 2, 0, 0], { cast: false });
   });
 
-  box(g, w - 0.12, 0.055, 0.025, mats.steelDark, x, 0.1, frontZ + 0.01);
-  box(g, w * 0.42, 0.012, 0.02, mats.chrome, x, 0.13, frontZ + 0.028);
+  box(g, w - 0.14, 0.04, 0.018, mats.steelDark, x, 0.12, frontZ + 0.006, 0, { cast: false });
+  box(g, w * 0.36, 0.012, 0.014, mats.chrome, x, 0.145, frontZ + 0.016, 0, { cast: false });
   if (card) {
     const cardMat = toon('#ffffff', { map: labelMap('OUT', '#f3efe4', '#8a3a32') });
-    box(g, 0.16, 0.1, 0.012, cardMat, x, 0.95, frontZ + 0.03);
-  }
-  for (let i = 0; i < 5; i++) {
-    box(g, 0.012, 0.008, 0.08, mats.steelDark, x - 0.08 + i * 0.04, h - 0.01, frontZ - depth + 0.12);
+    box(g, 0.16, 0.09, 0.01, cardMat, x, 0.95, frontZ + 0.02, 0, { cast: false });
   }
 }
 
@@ -341,12 +404,8 @@ function tableFrame(g, x0, x1, z0, z1, h, top, edge, leg) {
   const d = z1 - z0;
   const cx = (x0 + x1) / 2;
   const cz = (z0 + z1) / 2;
-  box(g, w, 0.04, d, top, cx, h - 0.02, cz);
-  box(g, w, 0.045, 0.03, edge, cx, h - 0.055, z1 - 0.012);
-  box(g, w, 0.045, 0.03, edge, cx, h - 0.055, z0 + 0.012);
-  box(g, 0.03, 0.045, d, edge, x0 + 0.012, h - 0.055, cz);
-  box(g, 0.03, 0.045, d, edge, x1 - 0.012, h - 0.055, cz);
-  box(g, w - 0.08, 0.08, d - 0.08, edge, cx, h - 0.1, cz);
+  box(g, w, 0.05, d, top, cx, h - 0.025, cz);
+  box(g, w - 0.04, 0.06, d - 0.04, edge, cx, h - 0.08, cz, 0, { cast: false });
   const inset = 0.08;
   for (const x of [x0 + inset, x1 - inset]) {
     for (const z of [z0 + inset, z1 - inset]) {
@@ -389,17 +448,28 @@ function cart(g, spec, mats) {
   box(root, 0.02, 0.32, 0.02, mats.chrome, w / 2, rim + 0.14, d / 2);
   box(root, w * 0.7, 0.025, 0.025, mats.chrome, 0, rim + 0.3, d / 2 + 0.02);
   if (spec.liner) {
-    box(root, w - 0.08, 0.16, d - 0.1, mats.liner, 0, bed + 0.1, 0);
-    box(root, 0.24, 0.07, 0.16, mats.towel, -0.06, bed + 0.2, 0.02, 0.15);
-    box(root, 0.16, 0.05, 0.12, mats.clay, 0.1, bed + 0.18, -0.04);
+    box(root, w - 0.08, 0.12, d - 0.1, mats.liner, 0, bed + 0.08, 0, 0, { cast: false });
+    foldedTextile(root, -0.02, bed + 0.14, 0.02, 0.2, mats, 'blue');
   }
 }
 
-function towelStack(g, x, y, z, rot, mats, kind) {
-  const colors = kind === 'blue' ? [mats.blue, mats.towel, mats.blue] : kind === 'clay' ? [mats.clay, mats.towel, mats.clay] : [mats.towel, mats.towelBand, mats.towel];
-  colors.forEach((mat, i) => {
-    box(g, 0.28 - i * 0.015, 0.035, 0.2 - i * 0.01, mat, x + i * 0.008, y + 0.02 + i * 0.035, z, rot);
-  });
+function foldedTextile(g, x, y, z, rot, mats, kind) {
+  const cloth = kind === 'blue' ? mats.blue : kind === 'clay' ? mats.clay : mats.towel;
+  const hem = kind === 'blue' ? mats.towel : kind === 'clay' ? mats.towelBand : mats.hem;
+  const root = new THREE.Group();
+  root.position.set(x, y, z);
+  root.rotation.y = rot || 0;
+  g.add(root);
+  const quiet = { cast: false };
+  const fold = (ox, oy, oz, w, d, thick) => {
+    box(root, w * 0.9, thick * 0.45, d * 0.5, cloth, ox, oy + thick * 0.4, oz - d * 0.08, 0, quiet);
+    put(root, new THREE.CylinderGeometry(thick * 0.72, thick * 0.72, w * 0.94, 14), hem, ox, oy + thick * 0.5, oz + d * 0.22, [0, 0, Math.PI / 2], quiet);
+    put(root, new THREE.SphereGeometry(thick * 0.62, 10, 8), cloth, ox, oy + thick * 0.55, oz - d * 0.02, null, quiet);
+    put(root, new THREE.SphereGeometry(thick * 0.5, 8, 6), cloth, ox - w * 0.4, oy + thick * 0.42, oz, null, quiet);
+    put(root, new THREE.SphereGeometry(thick * 0.5, 8, 6), cloth, ox + w * 0.4, oy + thick * 0.42, oz, null, quiet);
+  };
+  fold(0, 0, 0, 0.32, 0.22, 0.06);
+  fold(0.02, 0.05, -0.01, 0.24, 0.18, 0.05);
 }
 
 function makeProcedural(layout) {
@@ -413,26 +483,33 @@ function makeProcedural(layout) {
     enamelInset: toon('#e7e2d8'),
     navy: toon('#1c3d5a'),
     steel: toon('#d5dde3'),
-    steelBody: toon('#ffffff', { map: tex().brush }),
+    steelBody: toon('#c5ced4', { map: tex().brush }),
     steelDark: toon('#5c6a72'),
     chrome: toon('#e7eef2'),
-    gasket: toon('#2a3036'),
-    glass: toon('#d5e4ec', { transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false }),
-    glassWarm: toon('#f0d2ae', { transparent: true, opacity: 0.16, side: THREE.DoubleSide, depthWrite: false }),
-    cavity: toon('#1a1e24'),
-    cavityBack: toon('#12151a'),
-    cavityHot: toon('#6a4632', { emissive: '#e39a55', emissiveIntensity: 0.85 }),
-    cavityHotBack: toon('#e7b27a', { emissive: '#ffb15a', emissiveIntensity: 1.05 }),
-    vane: toon('#d7e0e6'),
-    vaneHot: toon('#4a3024'),
+    gasket: toon('#1c2226'),
+    glassWash: toon('#4d6468', { transparent: true, opacity: 0.34, side: THREE.DoubleSide, depthWrite: false }),
+    glassDry: toon('#6a7c86', { transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false }),
+    glassWarm: toon('#c4926a', { transparent: true, opacity: 0.2, side: THREE.DoubleSide, depthWrite: false }),
+    drumWall: toon('#8d99a1', { side: THREE.DoubleSide }),
+    drumWallHot: toon('#a88468', { emissive: '#e0a060', emissiveIntensity: 0.35, side: THREE.DoubleSide }),
+    drumBackWash: toon('#2a3338'),
+    drumBackDry: toon('#4a555c'),
+    cavityHot: toon('#e7b27a', { emissive: '#ffb15a', emissiveIntensity: 0.9 }),
+    lifter: toon('#d5dee4'),
+    lifterHot: toon('#6a4030'),
+    hole: toon('#1a2024'),
+    holeHot: toon('#3a2418'),
     knob: toon('#eceff2'),
     ledRun: toon('#b8fff0', { emissive: '#7dffe8', emissiveIntensity: 1.2 }),
     ledDone: toon('#ffd7a8', { emissive: '#ffb15a', emissiveIntensity: 1.1 }),
     wire: toon('#c5ced4'),
     rubber: toon('#2c3134'),
     liner: toon('#3d7a74'),
-    towel: toon('#ffffff', { map: tex().cloth }),
-    towelBand: toon('#d9cbb8'),
+    towel: toon('#f4efe6', { map: tex().cloth }),
+    towelBand: toon('#e4d3c0'),
+    hem: toon('#ddd0c0'),
+    bag: toon('#c4b49a'),
+    mat: toon('#3c4448'),
     clay: toon('#c4896a'),
     blue: toon('#6d8ea6'),
     leg: toon('#ece8e0'),
@@ -528,24 +605,21 @@ function makeProcedural(layout) {
   tableFrame(g, fold.x0, fold.x1, fold.backZ, foldZ1, fold.h, mats.lam, mats.edge, mats.leg);
   const fx = (fold.x0 + fold.x1) / 2;
   const fz = (fold.backZ + foldZ1) / 2;
-  towelStack(g, fx - 1.35, fold.h, fz + 0.06, 0.08, mats, 'cream');
-  towelStack(g, fx - 0.85, fold.h, fz - 0.08, -0.12, mats, 'blue');
-  towelStack(g, fx - 0.15, fold.h, fz + 0.02, 0.18, mats, 'cream');
-  towelStack(g, fx + 0.55, fold.h, fz - 0.04, -0.05, mats, 'clay');
-  towelStack(g, fx + 1.15, fold.h, fz + 0.08, 0.22, mats, 'blue');
-  box(g, 0.32, 0.012, 0.26, mats.clay, fx + 0.15, fold.h + 0.008, foldZ1 - 0.02, 0.4);
-  box(g, 0.22, 0.08, 0.16, mats.basket, fx - 1.55, fold.h + 0.05, fz + 0.12, 0.15);
-  box(g, 0.16, 0.05, 0.12, mats.towel, fx - 1.52, fold.h + 0.11, fz + 0.12, -0.2);
+  foldedTextile(g, fx - 1.35, fold.h, fz + 0.04, 0.08, mats, 'cream');
+  foldedTextile(g, fx - 0.7, fold.h, fz - 0.06, -0.18, mats, 'blue');
+  foldedTextile(g, fx + 0.05, fold.h, fz + 0.02, 0.22, mats, 'cream');
+  foldedTextile(g, fx + 0.75, fold.h, fz - 0.02, -0.08, mats, 'clay');
+  foldedTextile(g, fx + 1.4, fold.h, fz + 0.05, 0.3, mats, 'blue');
+  box(g, 0.22, 0.07, 0.16, mats.basket, fx - 1.55, fold.h + 0.04, fz + 0.1, 0.15, { cast: false });
   contactDisc(g, fx, fz, (fold.x1 - fold.x0) * 0.48, fold.depth * 0.55, 0.38);
 
   const sort = zones.sort;
   tableFrame(g, sort.x0, sort.x1, sort.z0, sort.z1, sort.h, mats.sortTop, mats.sortEdge, mats.leg);
   const sx = (sort.x0 + sort.x1) / 2;
   const sz = (sort.z0 + sort.z1) / 2;
-  box(g, 0.34, 0.16, 0.26, mats.basket, sx, sort.h + 0.08, sz - 0.35);
-  box(g, 0.22, 0.08, 0.16, mats.blue, sx, sort.h + 0.2, sz - 0.32, 0.2);
-  box(g, 0.18, 0.05, 0.14, mats.towel, sx + 0.02, sort.h + 0.26, sz - 0.36, -0.4);
-  towelStack(g, sx, sort.h, sz + 0.45, 0.5, mats, 'cream');
+  box(g, 0.32, 0.1, 0.24, mats.basket, sx, sort.h + 0.06, sz - 0.35, 0, { cast: false });
+  foldedTextile(g, sx, sort.h + 0.1, sz - 0.35, 0.4, mats, 'blue');
+  foldedTextile(g, sx, sort.h, sz + 0.4, 0.5, mats, 'cream');
   contactDisc(g, sx, sz, 0.36, (sort.z1 - sort.z0) * 0.48, 0.32);
 
   for (const spec of layout.props || []) {
@@ -583,6 +657,12 @@ function makeProcedural(layout) {
   box(g, 0.02, 0.28, 0.16, mats.enamel, ch.x - ch.w / 2 - 0.01, 1.22, ch.z);
   box(g, 0.02, 0.04, 0.1, mats.chrome, ch.x - ch.w / 2 - 0.02, 0.95, ch.z);
   box(g, 0.015, 0.02, 0.02, mats.ledRun, ch.x - ch.w / 2 - 0.02, 1.38, ch.z + 0.06, 0, { noShadow: true });
+  const changeSign = toon('#ffffff', { map: signMap('CHANGE', '#2a3034', '#f4efe6') });
+  const changeFace = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.08), changeSign);
+  changeFace.position.set(ch.x - ch.w / 2 - 0.02, 1.22, ch.z);
+  changeFace.rotation.y = Math.PI / 2;
+  changeFace.userData.noShadow = true;
+  g.add(changeFace);
 
   const desk = zones.attendant;
   tableFrame(
@@ -599,6 +679,40 @@ function makeProcedural(layout) {
   contactDisc(g, desk.x, desk.z, desk.w * 0.6, desk.d * 0.48, 0.32);
 
   box(g, 0.62, 0.78, 0.02, mats.board, 5.62, 1.72, -0.42, -Math.PI / 2);
+
+  function wallSign(text, x, y, z, w, h, rotY) {
+    const mat = toon('#ffffff', { map: signMap(text, '#1e4e4a', '#f6f1e6') });
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    face.position.set(x, y, z);
+    face.rotation.y = rotY;
+    face.userData.noShadow = true;
+    g.add(face);
+    const back = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.02), toon('#163632'));
+    back.position.set(x + Math.sin(rotY) * 0.016, y, z - Math.cos(rotY) * 0.016);
+    back.rotation.y = rotY;
+    back.userData.noShadow = true;
+    g.add(back);
+  }
+  wallSign('DRYERS', dryMid, dry.h + 0.28, frontZ + 0.04, 1.45, 0.22, 0);
+  const washMidZ = (std.z0 + big.z0 + bigLen) / 2;
+  wallSign('WASHERS', wash.wallX + 0.05, 2.15, washMidZ, 1.15, 0.2, -Math.PI / 2);
+
+  const mat = new THREE.Mesh(new THREE.PlaneGeometry(1.25, 0.8), mats.mat);
+  mat.rotation.x = -Math.PI / 2;
+  mat.position.set(0.15, 0.025, 1.85);
+  mat.userData.noShadow = true;
+  g.add(mat);
+  const tote = new THREE.Group();
+  tote.position.set(0.95, 0, 1.7);
+  tote.rotation.y = -0.35;
+  g.add(tote);
+  box(tote, 0.4, 0.28, 0.24, mats.bag, 0, 0.16, 0);
+  box(tote, 0.36, 0.035, 0.2, mats.hem, 0, 0.31, 0, 0, { cast: false });
+  for (const hx of [-0.09, 0.09]) {
+    box(tote, 0.012, 0.11, 0.012, mats.steelDark, hx, 0.36, -0.06, 0, { cast: false });
+    box(tote, 0.012, 0.11, 0.012, mats.steelDark, hx, 0.36, 0.06, 0, { cast: false });
+    box(tote, 0.012, 0.012, 0.14, mats.steelDark, hx, 0.41, 0, 0, { cast: false });
+  }
   put(g, new THREE.CylinderGeometry(0.16, 0.16, 0.03, 24), mats.clockFace, dryMid - 0.2, 2.62, dry.wallZ + 0.05, [Math.PI / 2, 0, 0]);
   box(g, 0.012, 0.09, 0.012, mats.clockHand, dryMid - 0.2, 2.62, dry.wallZ + 0.07);
   box(g, 0.05, 0.012, 0.012, mats.clockHand, dryMid - 0.16, 2.6, dry.wallZ + 0.07);

@@ -213,7 +213,7 @@ export async function boot(opts) {
   const key = new THREE.DirectionalLight(keySpec.color, keySpec.intensity);
   key.position.set(...keySpec.position);
   key.castShadow = true;
-  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.mapSize.set(4096, 4096);
   const sh = keySpec.shadow || {};
   key.shadow.camera.near = sh.near ?? 2;
   key.shadow.camera.far = sh.far ?? 32;

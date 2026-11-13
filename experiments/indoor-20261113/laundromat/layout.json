@@ -6,7 +6,7 @@
     "room": { "width": 11.6, "depth": 9.0, "height": 3.18 },
     "notes": [
       "Neighbourhood coin laundry, cutaway from the street corner. Back wall is a packed two-pocket dryer bank. Left wall is a front-load washer bank, standards then two larger machines toward the window.",
-      "Folding counter sits across from the dryers with a 1.52 m service aisle. A shorter sort counter serves the washer aisle. Waiting chairs and a backless bench sit under the storefront window and face the machines.",
+      "Folding counter sits across from the dryers with a 1.52 m service aisle. A shorter sort counter serves the washer aisle. Waiting chairs and a backless bench sit under the storefront window and face the machines. DRYERS and WASHERS panels name the banks.",
       "Payment, detergent vending, and the attendant ledge close the right pier. Carts park off the aisles."
     ]
   },
@@ -113,9 +113,9 @@
     "fogFar": 34
   },
   "camera": {
-    "fov": 40,
-    "position": [3.7, 3.05, 5.45],
-    "target": [-1.55, 0.98, -0.15]
+    "fov": 50,
+    "position": [1.2, 1.64, 3.15],
+    "target": [-1.05, 1.16, -1.45]
   },
   "cameraPresets": {
     "corner": {
@@ -133,7 +133,7 @@
       "color": "#fff1dc",
       "intensity": 1.48,
       "position": [5.2, 9.2, 6.4],
-      "shadow": { "left": -8, "right": 8, "top": 8, "bottom": -8, "near": 2, "far": 28, "bias": -0.00032, "normalBias": 0.03 }
+      "shadow": { "left": -6.5, "right": 6.5, "top": 6.5, "bottom": -6.5, "near": 0.6, "far": 22, "bias": -0.0008, "normalBias": 0.05 }
     },
     "fill": { "color": "#d5e4f2", "intensity": 0.38, "position": [7.2, 3.6, 0.4] },
     "points": [
