@@ -169,39 +169,54 @@ function oxford(color, opts = {}) {
   return g;
 }
 
-/** Side-profile upper for the close shot: sole, heel, quarter, vamp, toe. */
+/** One extruded side profile: heel, instep, and a round toe cap. Sole bottom is y=0. */
 function clampedUpper(color) {
   const g = new THREE.Group();
   g.name = 'clamped-upper';
   const leather = toon(color);
-  const dark = toon('#3a2a24');
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.01, 0.29), sole())).position.set(0, 0.014, 0.01);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.072, 0.012, 0.07), sole())).position.set(0, 0.025, -0.1);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.01, 0.05), dark)).position.set(0, 0.036, -0.108);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.055, 0.1), leather)).position.set(0, 0.052, -0.07);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.04, 0.09), leather)).position.set(0, 0.042, 0.015);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.068, 0.026, 0.08), leather)).position.set(0, 0.032, 0.085);
-  const tip = put(g, new THREE.Mesh(new THREE.SphereGeometry(0.032, 12, 8), leather));
-  tip.scale.set(1.0, 0.42, 0.75);
-  tip.position.set(0, 0.03, 0.145);
-  const collar = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.004, 6, 12, Math.PI), dark));
-  collar.rotation.x = -Math.PI / 2;
-  collar.position.set(0, 0.08, -0.09);
-  for (let i = 0; i < 4; i++) {
-    const eye = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.0055, 0.0016, 5, 8), brass()));
-    eye.rotation.y = Math.PI / 2;
-    eye.position.set(0.036, 0.058, 0.01 - i * 0.016);
-  }
-  const welt = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.006, 0.24), stitch()));
-  welt.position.set(0.042, 0.02, 0.015);
-  welt.castShadow = false;
-  welt.userData.noShadow = true;
-  for (let i = 0; i < 11; i++) {
-    const bit = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.007, 0.0035, 0.0035), stitch()));
-    bit.position.set(0.045, 0.022, -0.085 + i * 0.02);
-    bit.castShadow = false;
-    bit.userData.noShadow = true;
-  }
+  const shape = new THREE.Shape();
+  shape.moveTo(0.0, 0.0);
+  shape.lineTo(0.0, 0.062);
+  shape.bezierCurveTo(0.004, 0.088, 0.016, 0.104, 0.032, 0.102);
+  shape.bezierCurveTo(0.046, 0.096, 0.058, 0.07, 0.068, 0.05);
+  shape.bezierCurveTo(0.082, 0.046, 0.1, 0.055, 0.125, 0.058);
+  shape.bezierCurveTo(0.155, 0.05, 0.185, 0.042, 0.21, 0.034);
+  shape.bezierCurveTo(0.23, 0.028, 0.248, 0.02, 0.252, 0.014);
+  shape.bezierCurveTo(0.258, 0.008, 0.25, 0.002, 0.236, 0.0);
+  shape.lineTo(0.0, 0.0);
+  const extrude = {
+    depth: 0.066,
+    bevelEnabled: true,
+    bevelThickness: 0.002,
+    bevelSize: 0.002,
+    bevelSegments: 1,
+    curveSegments: 12,
+  };
+  const upper = put(g, new THREE.Mesh(new THREE.ExtrudeGeometry(shape, extrude), leather));
+  upper.geometry.translate(0, 0, -0.033);
+  upper.rotation.y = -Math.PI / 2;
+  const cap = new THREE.Shape();
+  cap.moveTo(0.2, 0.0);
+  cap.lineTo(0.2, 0.036);
+  cap.bezierCurveTo(0.222, 0.03, 0.242, 0.02, 0.252, 0.014);
+  cap.bezierCurveTo(0.258, 0.008, 0.25, 0.002, 0.236, 0.0);
+  cap.lineTo(0.2, 0.0);
+  const capMesh = put(g, new THREE.Mesh(new THREE.ExtrudeGeometry(cap, extrude), toon('#a86858')));
+  capMesh.geometry.translate(0, 0, -0.033);
+  capMesh.rotation.y = -Math.PI / 2;
+  const soleShape = new THREE.Shape();
+  soleShape.moveTo(0.0, 0.0);
+  soleShape.lineTo(0.246, 0.0);
+  soleShape.lineTo(0.246, 0.01);
+  soleShape.lineTo(0.0, 0.01);
+  soleShape.lineTo(0.0, 0.0);
+  const soleMesh = put(g, new THREE.Mesh(new THREE.ExtrudeGeometry(soleShape, {
+    depth: 0.076,
+    bevelEnabled: false,
+    curveSegments: 6,
+  }), sole()));
+  soleMesh.geometry.translate(0, 0, -0.038);
+  soleMesh.rotation.y = -Math.PI / 2;
   return g;
 }
 
@@ -327,38 +342,28 @@ function stitchHorse(parent, zone) {
   g.position.set(zone.x, 0, zone.z);
   g.rotation.y = zone.rot || 0;
   const h = zone.h;
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.07, 0.38), oakDark())).position.set(0, 0.035, 0);
-  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.12, h - 0.18, 0.12), oak())).position.set(0, h * 0.46, 0);
-  const jawL = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.045, 0.2), maple()));
-  jawL.position.set(-0.055, h - 0.004, 0.02);
-  const jawR = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.045, 0.2), maple()));
-  jawR.position.set(0.055, h - 0.004, 0.02);
-  const pad = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.01, 0.2), toon('#6e3a28')));
-  pad.position.set(0, h + 0.008, 0.02);
-  const screw = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.12, 8), iron()));
+  put(g, new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.06, 0.34), oakDark())).position.set(0, 0.03, 0);
+  const beamH = 0.05;
+  const beamTop = h + 0.016;
+  const beamBottom = beamTop - beamH;
+  const postBottom = 0.06;
+  const postTop = beamBottom + 0.018;
+  const postH = postTop - postBottom;
+  const post = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.12, postH, 0.16), oak()));
+  post.position.set(0, postBottom + postH / 2, 0.03);
+  const beam = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.088, beamH, 0.28), maple()));
+  beam.position.set(0, beamBottom + beamH / 2, 0.03);
+  const screw = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.1, 8), iron()));
   screw.rotation.z = Math.PI / 2;
-  screw.position.set(-0.07, h + 0.02, -0.16);
-  const wheel = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.007, 6, 14), brass()));
-  wheel.position.set(-0.13, h + 0.02, -0.16);
+  screw.position.set(-0.06, beamTop - 0.02, -0.1);
+  const wheel = put(g, new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.006, 6, 14), brass()));
+  wheel.position.set(-0.11, beamTop - 0.02, -0.1);
   const work = clampedUpper('#8a4030');
-  work.position.set(0, h + 0.012, 0.02);
+  work.position.set(0, beamTop, -0.09);
   g.add(work);
-  const spool = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.032, 10), toon('#f3efe6')));
+  const spool = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.028, 10), toon('#f3efe6')));
   spool.rotation.z = Math.PI / 2;
-  spool.position.set(-0.14, h + 0.02, -0.2);
-  const thread = put(g, new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.004, 0.08), stitch()));
-  thread.position.set(0.05, h + 0.045, -0.06);
-  thread.rotation.y = 0.5;
-  thread.castShadow = false;
-  thread.userData.noShadow = true;
-  const awl = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.0035, 0.0014, 0.09, 6), iron()));
-  awl.rotation.z = 1.2;
-  awl.rotation.y = 0.4;
-  awl.position.set(-0.08, h + 0.03, -0.02);
-  const grip = put(g, new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.012, 0.036, 8), oak()));
-  grip.rotation.z = 1.2;
-  grip.rotation.y = 0.4;
-  grip.position.set(-0.11, h + 0.02, -0.04);
+  spool.position.set(-0.07, beamTop + 0.016, -0.1);
   parent.add(g);
   contact(parent, zone.x, zone.z, 0.4, 0.34);
 }

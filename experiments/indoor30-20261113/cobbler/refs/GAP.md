@@ -29,7 +29,7 @@ No local GLB has a shoe last, a welt, a finishing wheel, a peg tray, or a ticket
 - Foot lasts: toe, ball, pinched waist, heel, ankle cone, toe plate. Left and right differ by a ball offset, not a mirrored scale.
 - Oxfords and boots with a stacked heel, toe cap, eyelets, and welt stitches as geometry.
 - Repair bench with a knee hole, three drawers, a lasting jack, and a rail of awl, knife, hammer, and pincers.
-- Stitch horse: screw, handwheel, a side-profile clamped upper (sole, heel stack, quarter, vamp, toe), spool, and an awl on the far side of the jaws. No drink shelf.
+- Stitch horse: the post runs into a clamp beam. The upper is one side profile with a heel, throat, instep, toe cap, and sole. A spool sits on the far side. No drink on the work.
 - Floorboards are one tan, butted, with no dark seam. Beams hang under a plaster ceiling and do not cast. Establishing cameras sit closer. A finished pair sits beside the horse, outside the 0.9 m aisles and out of the close camera.
 - A finished pair sits on a low block beside the horse, outside the 0.9 m aisles.
 - Compact finisher: motor drum, column, arm, abrasive wheel, pedal. The wheel is the silhouette, not a needle bar.
@@ -39,7 +39,7 @@ No local GLB has a shoe last, a welt, a finishing wheel, a peg tray, or a ticket
 
 ## Still approximate
 
-- The clamped upper is a side profile of boxes: sole, stepped heel, quarter, vamp, round toe, four eyelets, and a welt. It reads as a shoe from the close camera. It is not a scanned last, and the steps are still visible.
+- The clamped upper is one extruded side profile: heel counter, throat, instep, and a lighter toe cap, on a sole. The horse post runs into the underside of the clamp beam. It is not a scanned shoe.
 - The corner shot still shows the open aisle between the stitch horse and the bench. That gap is the 0.9 m passage.
 - Lasts on the wall rack are overlapped primitives. They read as feet. They are not scanned lasts.
 - Welt stitches are about 6 mm across so the close shot can see them. Real stitches are smaller.

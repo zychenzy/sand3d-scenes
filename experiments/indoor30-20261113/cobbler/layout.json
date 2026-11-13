@@ -99,7 +99,7 @@
   },
   "cameraPresets": {
     "corner": { "fov": 38, "position": [4.35, 1.75, 1.35], "target": [-0.55, 0.55, -1.5] },
-    "close": { "fov": 32, "position": [2.06, 0.84, 0.07], "target": [1.62, 0.82, 0.04] }
+    "close": { "fov": 36, "position": [2.28, 0.84, 0.05], "target": [1.62, 0.72, 0.03] }
   },
   "lights": {
     "hemi": { "sky": 16775392, "ground": 9075272, "intensity": 0.72 },
