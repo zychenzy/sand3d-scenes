@@ -19,6 +19,8 @@ Compromises:
 - Glass, the soaking tray, and the window panes are opaque or faintly unlit. Real transparency sorts badly under the toon path.
 - The north light is a clerestory in the left wall plus a flat sky card outside it. There is no modeled street.
 - Shadows are PCF soft. The toon ramp is still four hard steps. A hard shadow map turned the wheel spokes into noise on the bed.
-- The ceiling slab does not cast. When it did, it threw a dead rectangle across the north wall. The beams still stripe that wall.
+- The ceiling is a full lid, and the key light enters through the clerestory instead of over the roof. Beams, pipes, and the ceiling slab do not cast. When the slab cast, it blacked out the north wall. When the beams cast, they painted four diagonal stripes on that wall. Window mullions, the press, and the furniture still cast.
+- The press cheeks are an extruded casting with a bearing hole, not four posts. The wheel is still a torus with six spokes and a brass grip. The bed is still a plate.
+- Floor boards are a narrow value range so the press and paper stay in front of the grain. The seams are still there.
 - A real shop often puts ferric chloride in a separate exhausted room. Here it is a lidded cart on the east side, with the wash alcove, and the paper is on the back wall. The separation is distance, not a door.
 - No printer figure, no moving bed, no running water.

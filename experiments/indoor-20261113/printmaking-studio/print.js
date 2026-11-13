@@ -37,24 +37,30 @@ const sheets = new Map();
 const labels = new Map();
 
 function floorTexture() {
+  for (let i = 0; i < 16; i++) {
+    rand();
+    rand();
+    if (rand() > 0.45) {
+      rand();
+      rand();
+      rand();
+      rand();
+    }
+  }
+  const rng = mulberry32(11);
   const c = document.createElement('canvas');
   c.width = 512;
   c.height = 512;
   const g = c.getContext('2d');
+  g.fillStyle = '#c4a07c';
+  g.fillRect(0, 0, 512, 512);
   const boards = 16;
   const bw = c.width / boards;
   for (let i = 0; i < boards; i++) {
-    const tone = 118 + (i % 5) * 7 + Math.floor(rand() * 10);
-    g.fillStyle = `rgb(${tone + 28}, ${Math.floor(tone * 0.62)}, ${Math.floor(tone * 0.32)})`;
-    g.fillRect(i * bw, 0, bw + 0.5, c.height);
-    g.fillStyle = `rgba(60, 36, 18, ${0.18 + rand() * 0.12})`;
-    g.fillRect(i * bw, 0, 2, c.height);
-    if (rand() > 0.45) {
-      g.fillStyle = `rgba(90, 58, 30, ${0.25 + rand() * 0.3})`;
-      g.beginPath();
-      g.ellipse(i * bw + bw * 0.5, rand() * c.height, 7 + rand() * 8, 3 + rand() * 3, rand(), 0, Math.PI * 2);
-      g.fill();
-    }
+    const n = rng();
+    const tone = 176 + (n > 0.72 ? 5 : 0);
+    g.fillStyle = `rgb(${tone + 16}, ${Math.floor(tone * 0.72)}, ${Math.floor(tone * 0.48)})`;
+    g.fillRect(i * bw + 1, 0, bw - 1, c.height);
   }
   return c;
 }
@@ -342,23 +348,36 @@ function makeShell(layout) {
   addBox(g, 0.28, H, 0.18, plasterL, xWall + 0.22, H / 2, D / 2 - 0.08);
   addBox(g, 0.28, H, 0.18, plasterR, -xWall - 0.22, H / 2, D / 2 - 0.08);
 
-  const soffit = toon('#f3f0ea');
-  const soffitMesh = addBox(g, W * 0.86, 0.06, D * 0.58, soffit, -0.2, H - 0.04, -D * 0.22);
-  soffitMesh.castShadow = false;
-  soffitMesh.userData.noShadow = true;
-  for (const z of [-3.3, -1.7, 0.15, 1.65]) {
-    addBox(g, W * 0.82, 0.16, 0.1, wood, -0.15, H - 0.22, z);
+  const plasterC = toon('#efeae3', { map: tex.plaster });
+  const ceiling = addBox(g, W + 0.4, 0.1, D + 1.6, plasterC, 0, H + 0.02, 0.45);
+  ceiling.castShadow = false;
+  ceiling.receiveShadow = false;
+  ceiling.userData.noShadow = true;
+  ceiling.userData.noReceive = true;
+  const fascia = addBox(g, W + 0.46, 0.28, 0.16, wood, 0, H - 0.08, D / 2 + 0.95);
+  fascia.castShadow = false;
+  fascia.userData.noShadow = true;
+  for (const z of [-2.4, -0.55, 1.45]) {
+    const beam = addBox(g, W * 0.7, 0.12, 0.09, wood, -0.15, H - 0.12, z);
+    beam.castShadow = false;
+    beam.userData.noShadow = true;
   }
-  addBox(g, W * 0.84, 0.2, 0.14, wood, -0.15, H - 0.24, 0.55);
 
   const pipe = toon('#4e565c');
-  addCyl(g, 0.025, 0.025, W * 0.7, pipe, -0.2, H - 0.38, -2.35, 8, [0, 0, Math.PI / 2]);
-  addCyl(g, 0.02, 0.02, 0.7, pipe, -0.85, H - 0.7, -1.35, 8);
+  const pipeA = addCyl(g, 0.025, 0.025, W * 0.7, pipe, -0.2, H - 0.32, -2.35, 8, [0, 0, Math.PI / 2]);
+  const pipeB = addCyl(g, 0.02, 0.02, 0.7, pipe, -0.85, H - 0.62, -1.35, 8);
+  pipeA.castShadow = false;
+  pipeA.userData.noShadow = true;
+  pipeB.castShadow = false;
+  pipeB.userData.noShadow = true;
 
   const housing = toon('#2f353b');
-  addBox(g, 1.05, 0.06, 0.22, housing, -0.85, 3.22, -1.35);
+  const lampBar = addBox(g, 1.05, 0.06, 0.22, housing, -0.85, 3.22, -1.35);
+  lampBar.castShadow = false;
+  lampBar.userData.noShadow = true;
   const tube = addBox(g, 0.86, 0.03, 0.07, toon('#f4f7ff', { emissive: '#f7f9ff', emissiveIntensity: 0.85 }), -0.85, 3.17, -1.35);
   tube.castShadow = false;
+  tube.userData.noShadow = true;
 
   const sky = new THREE.Mesh(
     new THREE.PlaneGeometry(D * 0.96, H * 1.05),
@@ -459,88 +478,111 @@ function addClip(parent, x, y, z) {
   addBox(parent, 0.035, 0.045, 0.012, toon('#2a2e32'), x, y, z);
 }
 
+function pressCheekShape() {
+  const s = new THREE.Shape();
+  s.moveTo(-0.3, 0.08);
+  s.lineTo(-0.3, 0.52);
+  s.bezierCurveTo(-0.3, 0.78, -0.22, 0.86, -0.16, 0.94);
+  s.lineTo(-0.14, 1.16);
+  s.absarc(0, 1.16, 0.18, Math.PI, 0, true);
+  s.lineTo(0.14, 1.16);
+  s.lineTo(0.16, 0.94);
+  s.bezierCurveTo(0.22, 0.86, 0.3, 0.78, 0.3, 0.52);
+  s.lineTo(0.3, 0.08);
+  s.lineTo(-0.3, 0.08);
+  const axle = new THREE.Path();
+  axle.absarc(0, 1.02, 0.078, 0, Math.PI * 2, true);
+  s.holes.push(axle);
+  return s;
+}
+
 function buildPress(g, layout) {
   const p = layout.stations.press;
   const grp = new THREE.Group();
   grp.name = 'press';
   grp.position.set(p.x, 0, p.z);
-  const iron = toon('#556068');
-  const ironDark = toon('#3e474e');
-  const steel = toon('#a7b0b6');
-  const bedCol = toon('#9aa3aa');
-  const brass = toon('#b08a45');
+  const iron = toon('#5c666e');
+  const ironDark = toon('#3a434a');
+  const steel = toon('#c5ced3');
+  const bedCol = toon('#d5dde2');
+  const brass = toon('#c4964a');
   const feltA = toon('#4e4741');
   const feltB = toon('#cfc4b2');
   const feltC = toon('#8a8176');
 
-  addBox(grp, 1.2, 0.02, 1.15, toon('#6a7076'), 0, 0.01, 0.05);
+  addBox(grp, 1.05, 0.03, 0.9, toon('#4e565c'), 0, 0.02, -0.02);
 
-  for (const z of [-0.48, 0.48]) {
-    for (const x of [-0.32, 0.32]) {
-      addBox(grp, 0.08, 1.16, 0.08, iron, x, 0.6, z);
-    }
-    addBox(grp, 0.78, 0.09, 0.09, ironDark, 0, 1.16, z);
-    addBox(grp, 0.78, 0.08, 0.1, ironDark, 0, 0.08, z);
-    addBox(grp, 0.14, 0.06, 0.22, iron, 0, 0.04, z);
+  const cheekGeo = new THREE.ExtrudeGeometry(pressCheekShape(), {
+    depth: 0.055,
+    bevelEnabled: false,
+    curveSegments: 14,
+  });
+  cheekGeo.translate(0, 0, -0.027);
+  for (const z of [-0.44, 0.4]) {
+    const cheek = new THREE.Mesh(cheekGeo, iron);
+    cheek.position.set(0, 0, z);
+    cheek.castShadow = true;
+    cheek.receiveShadow = true;
+    grp.add(cheek);
+    addBox(grp, 0.72, 0.055, 0.16, ironDark, 0, 0.045, z);
+    addCyl(grp, 0.1, 0.1, 0.07, ironDark, 0, 1.02, z, 18, [Math.PI / 2, 0, 0]);
   }
-  addBox(grp, 0.1, 0.08, 1.05, ironDark, 0, 1.18, 0);
-  addCyl(grp, 0.028, 0.028, 0.1, brass, -0.16, 1.26, 0, 10);
-  addCyl(grp, 0.028, 0.028, 0.1, brass, 0.16, 1.26, 0, 10);
-  addBox(grp, 0.09, 0.015, 0.015, brass, -0.16, 1.32, 0);
-  addBox(grp, 0.09, 0.015, 0.015, brass, 0.16, 1.32, 0);
+  addCyl(grp, 0.022, 0.022, 0.98, ironDark, -0.2, 1.28, -0.02, 10, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.022, 0.022, 0.98, ironDark, 0.2, 1.28, -0.02, 10, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.016, 0.016, 0.14, brass, 0, 1.2, 0.4, 8);
+  addCyl(grp, 0.016, 0.016, 0.14, brass, 0, 1.2, -0.44, 8);
+  addCyl(grp, 0.045, 0.045, 0.02, brass, 0, 1.28, 0.4, 10);
+  addCyl(grp, 0.045, 0.045, 0.02, brass, 0, 1.28, -0.44, 10);
 
-  addCyl(grp, 0.085, 0.085, 0.82, steel, 0, 0.7, 0, 20, [Math.PI / 2, 0, 0]);
-  addCyl(grp, 0.11, 0.11, 0.78, iron, 0, 1.0, 0, 22, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.1, 0.1, 0.74, steel, 0, 1.02, -0.02, 28, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.062, 0.062, 0.7, toon('#8a949c'), 0, 0.58, -0.02, 22, [Math.PI / 2, 0, 0]);
 
-  addBox(grp, 2.5, 0.055, 0.08, ironDark, -0.32, 0.74, 0.22);
-  addBox(grp, 2.5, 0.055, 0.08, ironDark, -0.32, 0.74, -0.22);
-  for (const x of [-1.25, -0.55, 0.25, 0.85]) {
-    addBox(grp, 0.06, 0.05, 0.52, iron, x, 0.72, 0);
-  }
-  addBox(grp, 2.5, 0.045, 0.74, bedCol, -0.32, 0.8, 0);
-  addBox(grp, 2.5, 0.012, 0.03, ironDark, -0.32, 0.778, 0.37);
-  addBox(grp, 2.5, 0.012, 0.03, ironDark, -0.32, 0.778, -0.37);
-  addBox(grp, 0.7, 0.02, 0.62, ironDark, 0, 0.28, 0);
-  addBox(grp, 0.42, 0.06, 0.32, toon('#efe6d4'), -0.05, 0.33, 0);
-  addBox(grp, 0.38, 0.045, 0.28, toon('#d9d0c2'), 0.02, 0.38, 0.02);
+  addBox(grp, 2.45, 0.045, 0.055, ironDark, -0.12, 0.68, 0.26);
+  addBox(grp, 2.45, 0.045, 0.055, ironDark, -0.12, 0.68, -0.3);
+  addBox(grp, 2.32, 0.04, 0.58, toon('#9aa4ac'), -0.12, 0.74, -0.02);
+  addBox(grp, 2.18, 0.014, 0.5, bedCol, -0.12, 0.766, -0.02);
+  addCyl(grp, 0.018, 0.018, 0.5, bedCol, -1.28, 0.755, -0.02, 12, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.018, 0.018, 0.5, bedCol, 1.04, 0.755, -0.02, 12, [Math.PI / 2, 0, 0]);
 
-  const wheelZ = 0.62;
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.47, 0.02, 8, 36), iron);
-  rim.position.set(0, 1.0, wheelZ);
+  const wheelZ = 0.58;
+  const wheelY = 1.02;
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.44, 0.034, 12, 48), iron);
+  rim.position.set(0, wheelY, wheelZ);
   rim.castShadow = true;
   grp.add(rim);
-  addCyl(grp, 0.07, 0.07, 0.08, ironDark, 0, 1.0, wheelZ, 14, [Math.PI / 2, 0, 0]);
-  addCyl(grp, 0.1, 0.1, 0.04, toon('#5c656c'), 0, 1.0, 0.52, 12, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.09, 0.09, 0.045, ironDark, 0, wheelY, wheelZ, 18, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.045, 0.045, 0.07, toon('#2e353b'), 0, wheelY, wheelZ + 0.02, 14, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.055, 0.04, 0.16, ironDark, 0, wheelY, 0.48, 14, [Math.PI / 2, 0, 0]);
   for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2 + 0.2;
-    const len = 0.36;
-    addBox(grp, len, 0.032, 0.028, iron, Math.cos(a) * len * 0.5, 1.0 + Math.sin(a) * len * 0.5, wheelZ, [0, 0, a]);
+    const a = (i / 6) * Math.PI * 2 + 0.35;
+    const len = 0.3;
+    const mid = 0.09 + len * 0.5;
+    addBox(grp, len, 0.045, 0.022, iron, Math.cos(a) * mid, wheelY + Math.sin(a) * mid, wheelZ, [0, 0, a]);
   }
-  const ha = -0.85;
-  addCyl(grp, 0.02, 0.02, 0.11, brass, Math.cos(ha) * 0.47, 1.0 + Math.sin(ha) * 0.47, wheelZ + 0.07, 8, [Math.PI / 2, 0, 0]);
-  addCyl(grp, 0.028, 0.028, 0.04, brass, Math.cos(ha) * 0.47, 1.0 + Math.sin(ha) * 0.47, wheelZ + 0.12, 8, [Math.PI / 2, 0, 0]);
+  const ha = -1.15;
+  addCyl(grp, 0.018, 0.018, 0.1, brass, Math.cos(ha) * 0.44, wheelY + Math.sin(ha) * 0.44, wheelZ + 0.06, 8, [Math.PI / 2, 0, 0]);
+  addCyl(grp, 0.032, 0.028, 0.045, brass, Math.cos(ha) * 0.44, wheelY + Math.sin(ha) * 0.44, wheelZ + 0.12, 10, [Math.PI / 2, 0, 0]);
 
-  addBox(grp, 0.85, 0.014, 0.66, feltA, 0.04, 0.832, 0);
-  addBox(grp, 0.95, 0.032, 0.66, feltB, 0.0, 0.856, 0);
-  addBox(grp, 0.7, 0.012, 0.62, feltC, 0.08, 0.878, 0);
-  addBox(grp, 0.22, 0.2, 0.025, feltB, 0.32, 0.74, 0.4, [0.7, 0.15, 0]);
+  addBox(grp, 0.7, 0.012, 0.46, feltA, 0.22, 0.786, -0.02);
+  addBox(grp, 0.82, 0.026, 0.46, feltB, 0.18, 0.806, -0.02);
+  addBox(grp, 0.56, 0.01, 0.4, feltC, 0.26, 0.824, -0.02);
+  addBox(grp, 0.22, 0.14, 0.018, feltB, 0.42, 0.72, 0.22, [0.7, 0.15, 0.1]);
 
-  addBox(grp, 0.36, 0.008, 0.28, toon('#8a5a38'), -0.82, 0.828, 0.02);
-  addBox(grp, 0.32, 0.006, 0.24, toon('#d4894e'), -0.82, 0.834, 0.02);
-  const proof = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.36), toon('#f6f1e6', { map: sheet('proof') }));
+  addBox(grp, 0.3, 0.008, 0.22, toon('#8a5a38'), 0.62, 0.78, -0.02);
+  addBox(grp, 0.26, 0.006, 0.18, toon('#d4894e'), 0.62, 0.788, -0.02);
+  const proof = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.3), toon('#f6f1e6', { map: sheet('proof') }));
   proof.rotation.x = -Math.PI / 2;
-  proof.position.set(-0.8, 0.846, 0.02);
+  proof.position.set(0.6, 0.8, -0.02);
   proof.receiveShadow = true;
   grp.add(proof);
-  addBox(grp, 0.045, 0.004, 0.028, toon('#e6d7a8'), -0.98, 0.848, 0.16);
-  addBox(grp, 0.045, 0.004, 0.028, toon('#e6d7a8'), -0.98, 0.848, -0.12);
+  addBox(grp, 0.04, 0.004, 0.024, toon('#e6d7a8'), 0.78, 0.806, 0.08);
+  addBox(grp, 0.04, 0.004, 0.024, toon('#e6d7a8'), 0.78, 0.806, -0.12);
 
   addBox(grp, 0.9, 0.012, 0.7, toon('#2c3136'), 0.05, 0.012, 0.72);
   g.add(grp);
 }
 
 function buildInkSlab(g, layout) {
-  const table = findInst(layout, 'inking_table');
   const glass = layout.stations.ink.glass;
   const top = layout.stations.ink.top;
   const stone = toon('#b7c2be');
@@ -548,18 +590,16 @@ function buildInkSlab(g, layout) {
   addBox(g, glass.w, 0.028, glass.d, stone, glass.x, top + 0.016, glass.z);
   addBox(g, glass.w + 0.02, 0.012, 0.015, edge, glass.x, top + 0.02, glass.z + glass.d / 2);
   addBox(g, glass.w + 0.02, 0.012, 0.015, edge, glass.x, top + 0.02, glass.z - glass.d / 2);
-  addBox(g, 0.62, 0.006, 0.32, toon('#121416'), glass.x - 0.02, top + 0.034, glass.z + 0.02);
-  addBox(g, 0.5, 0.004, 0.03, toon('#3a3e42'), glass.x - 0.02, top + 0.04, glass.z + 0.02);
+  addBox(g, 0.72, 0.008, 0.38, toon('#121416'), glass.x, top + 0.034, glass.z + 0.02);
+  addBox(g, 0.46, 0.004, 0.035, toon('#3a3e42'), glass.x - 0.04, top + 0.042, glass.z + 0.04);
 
-  addBrayer(g, glass.x - 0.02, top + 0.09, glass.z + 0.02, 0.26, 0.05, 0.35, '#1a1c1e');
-  addBrayer(g, glass.x + 0.28, top + 0.07, glass.z - 0.1, 0.16, 0.035, -0.5, '#24282c');
-  addBrayer(g, table.position[0] + 0.55, top + 0.065, table.position[2] + 0.28, 0.12, 0.028, 1.1, '#2a2420');
+  addBrayer(g, glass.x - 0.04, top + 0.086, glass.z + 0.02, 0.34, 0.05, 0.25, '#101214');
+  addBrayer(g, glass.x + 0.34, top + 0.072, glass.z - 0.08, 0.22, 0.036, -0.9, '#1e2428');
 
-  addBox(g, 0.16, 0.006, 0.012, toon('#c0c4c6'), glass.x + 0.18, top + 0.028, glass.z - 0.08, [0, 0.4, 0]);
-  addBox(g, 0.012, 0.006, 0.14, toon('#b8b0a4'), glass.x - 0.28, top + 0.028, glass.z + 0.12, [0, -0.3, 0]);
-  addBox(g, 0.1, 0.02, 0.08, toon('#d8d2c6'), glass.x + 0.34, top + 0.03, glass.z + 0.16, [0.4, 0.2, 0.3]);
-  addBox(g, 0.16, 0.008, 0.12, toon('#efe6d4'), glass.x - 0.34, top + 0.026, glass.z - 0.02);
-  addBox(g, 0.06, 0.004, 0.04, toon('#1a1c1e'), glass.x - 0.3, top + 0.032, glass.z);
+  const knife = toon('#d5dbe0');
+  addBox(g, 0.26, 0.004, 0.028, knife, glass.x + 0.22, top + 0.04, glass.z - 0.16, [0, 0.5, 0]);
+  addBox(g, 0.07, 0.012, 0.018, toon('#6b442c'), glass.x + 0.36, top + 0.044, glass.z - 0.2, [0, 0.5, 0]);
+  addBox(g, 0.012, 0.004, 0.16, toon('#c8b49a'), glass.x - 0.32, top + 0.038, glass.z + 0.08, [0, -0.2, 0]);
 
   const hx = 2.82;
   const hz = -1.62;
@@ -571,13 +611,15 @@ function addBrayer(parent, x, y, z, len, rad, rotY, rubber) {
   const grp = new THREE.Group();
   grp.position.set(x, y, z);
   grp.rotation.y = rotY;
-  addCyl(grp, rad, rad, len, toon(rubber), 0, 0, 0, 16, [0, 0, Math.PI / 2]);
-  const metal = toon('#8d9498');
-  const wood = toon('#8a6244');
-  addBox(grp, 0.012, rad * 2.2, 0.012, metal, -len / 2 - 0.01, rad * 0.5, 0);
-  addBox(grp, 0.012, rad * 2.2, 0.012, metal, len / 2 + 0.01, rad * 0.5, 0);
-  addBox(grp, len + 0.04, 0.012, 0.012, metal, 0, rad * 1.6, 0);
-  addCyl(grp, 0.011, 0.012, 0.14, wood, 0, rad * 1.6 + 0.06, 0.03, 8, [0.7, 0, 0]);
+  addCyl(grp, rad, rad, len, toon(rubber), 0, 0, 0, 22, [0, 0, Math.PI / 2]);
+  addCyl(grp, rad * 1.05, rad * 1.05, 0.012, toon('#2a2e32'), -len / 2, 0, 0, 16, [0, 0, Math.PI / 2]);
+  addCyl(grp, rad * 1.05, rad * 1.05, 0.012, toon('#2a2e32'), len / 2, 0, 0, 16, [0, 0, Math.PI / 2]);
+  const metal = toon('#d5dce0');
+  const arm = rad * 2.15;
+  addBox(grp, 0.014, arm, 0.014, metal, -len / 2 - 0.02, arm * 0.42, 0);
+  addBox(grp, 0.014, arm, 0.014, metal, len / 2 + 0.02, arm * 0.42, 0);
+  addCyl(grp, 0.009, 0.009, len + 0.1, metal, 0, arm * 0.9, 0, 8, [0, 0, Math.PI / 2]);
+  addCyl(grp, 0.016, 0.018, 0.22, toon('#7a4e30'), 0, arm * 0.9 + 0.02, 0.04, 10, [1.05, 0, 0]);
   parent.add(grp);
 }
 

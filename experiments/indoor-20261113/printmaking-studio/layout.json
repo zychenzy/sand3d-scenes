@@ -148,9 +148,9 @@
     "fogFar": 38
   },
   "camera": {
-    "fov": 42,
-    "position": [3.55, 2.48, 6.05],
-    "target": [-0.55, 0.88, -1.05]
+    "fov": 58,
+    "position": [2.15, 1.7, 4.7],
+    "target": [-0.2, 0.9, -1.1]
   },
   "cameraPresets": {
     "corner": {
@@ -158,18 +158,18 @@
       "target": [3.85, 0.82, -0.2]
     },
     "close": {
-      "position": [0.05, 1.42, -0.2],
-      "target": [-0.95, 0.92, -1.28]
+      "position": [0.22, 1.28, -0.28],
+      "target": [-0.55, 0.98, -1.2]
     }
   },
   "lights": {
     "hemi": { "sky": "#d7e4ee", "ground": "#a68458", "intensity": 0.5 },
     "key": {
       "color": "#f4f7fb",
-      "intensity": 1.85,
-      "position": [-8.4, 6.1, 0.8],
-      "target": [-0.6, 0.85, -1.05],
-      "shadow": { "mapSize": 4096, "frustum": 9.5, "near": 0.5, "far": 26, "bias": -0.0004, "normalBias": 0.034 }
+      "intensity": 1.7,
+      "position": [-9.2, 2.72, 0.4],
+      "target": [0.6, 0.35, -0.4],
+      "shadow": { "mapSize": 4096, "frustum": 9.2, "near": 0.4, "far": 24, "bias": -0.00035, "normalBias": 0.03 }
     },
     "fill": { "color": "#ffd8b0", "intensity": 0.38, "position": [6.2, 2.4, 5.8] },
     "points": [

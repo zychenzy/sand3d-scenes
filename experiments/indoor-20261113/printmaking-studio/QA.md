@@ -32,18 +32,30 @@ Headless Chrome, 1440×900, SwiftShader, cache disabled. Four shots, no console 
 
 The 23 basic materials in toon mode are the sky card, window panes, floor stains, and the edition-board face, which is kept basic so the chalk stays readable. Unlit replaces every toon material with `MeshBasicMaterial`.
 
+## Review pass
+
+Loom’s notes on the first stills, and what changed:
+
+- The four diagonal beam stripes are gone. The key light now comes through the clerestory, under a finished ceiling. Beams do not cast. Window and furniture shadows remain.
+- The corner and the default no longer open onto empty sky. The ceiling is a full lid with a fascia at the cutaway.
+- The default camera is lower and closer (fov 58, eye at 1.7 m). A sliver of the east cart sits on the right edge. The drying racks stay on the left. The entry aisle is still a wide floor; moving closer drops the racks out of the frame.
+- The close shot shows a shaped cheek, a steel roller, a thicker spoked wheel with a brass grip, blankets, and a sheet on the bed.
+- The slab carries two brayers with yokes and wood handles, plus a knife, on a larger ink film. They read in the default and corner frames.
+- Floor boards use a narrow value range. Unlit no longer has high-contrast stripes. Toon still shows clerestory shadows on the floor.
+
 ## What the frames actually show
 
-- **Default.** West clerestory, two racks of hanging prints, portfolio case, homasote stack, etching press with wheel and bed, edition board, glass slab with a black film and a green task lamp, paper table behind it. The entry floor in front is empty on purpose.
-- **Corner.** Inking slab, paper bench, flat files, lidded ferric cart, copper/steel plate rack, and the wash alcove (tile splash, brass faucet, solvent shelf). This is the frame that proves the wash is in the room. The default camera cannot see it: the alcove is on the east wall, forward of the press, outside a 42° view from the cutaway.
-- **Close.** Spoked wheel, upper roller, bed rails, three blankets, copper plate, and a sheet. Iron is a mid grey so the toon steps read instead of a black mass.
-- **Unlit.** Same framing as default, flat color, no shadows.
+- **Default.** Finished ceiling, west clerestory, drying racks, portfolio case, homasote stack, press, edition board, inking slab with brayers, and a sliver of the east cart at the right edge. The entry floor is still the foreground.
+- **Corner.** Finished ceiling, no beam stripes on the north wall. Inking slab, paper bench, flat files, ferric cart, plate rack, and the wash alcove.
+- **Close.** Shaped cheek, steel roller, spoked wheel with a brass grip, blankets, and a sheet on the bed.
+- **Unlit.** Same framing as default, flat color, quiet floor grain, no shadows.
 
 ## Still wrong, or only good enough
 
-- The press, brayers, racks, flat files, sink, and plates are boxes and cylinders. The wheel is a torus. See `refs/GAP.md`.
-- Inking and paper stations are dining tables. Ink tins are recolored jam jars.
-- Glass, the soaking tray, and the window glass are opaque or barely transparent. Toon sorting made real glass worse.
-- Beam shadows stripe the north wall between the flat files and the wash. That wall is otherwise bare. Filling it would put storage on the paper/solvent path.
+- The cheeks are one extruded profile. The wheel is still a torus, the roller a cylinder, the bed a plate. See `refs/GAP.md`.
+- Inking and paper stations are dining tables. Ink tins are recolored jam jars. The brayer handles are dowels.
+- Glass, the soaking tray, and the window glass are opaque or barely transparent.
+- The north wall between the flat files and the wash is bare. Beams no longer stripe it. Filling it would put storage on the paper/solvent path.
+- The sink itself is only in the corner frame. The default view gets the east cart, not the basin.
 - The ferric label is a small card. At corner distance it reads as a label, not as the letters FeCl3.
-- No printer, no rolling bed, no running water. The open floor is the crank stance plus the entry aisle, not missing furniture.
+- No printer, no rolling bed, no running water. The open floor is the crank stance plus the entry aisle.
