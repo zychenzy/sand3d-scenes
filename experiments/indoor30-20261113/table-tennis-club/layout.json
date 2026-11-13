@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "title": "Nettleton Table Tennis Club",
+    "units": "metres",
+    "style": "Toon hard",
+    "notes": [
+      "Three ITTF tables, 2.74 × 1.525 × 0.76, mesh nets 15.25 cm with 15.25 cm post overhang.",
+      "Each bay is a 10 × 5 m club court. Scorer benches sit on the east side of the net and face the table."
+    ]
+  },
+  "assets": {
+    "ittf_table": { "glb": "./assets/ittf_table.glb", "targetHeight": 0.76 },
+    "museum_bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.45 },
+    "ball_basket": { "glb": "./assets/ball_basket__0224d9084cf9.glb", "targetHeight": 0.4 },
+    "wire_cart": { "glb": "./assets/wire_cart__eec6b31a52d1.glb", "targetHeight": 0.72 },
+    "paddle_red": { "glb": "./assets/paddle_red__2531d5a1d03f.glb", "targetHeight": 0.26 },
+    "paddle_wood": { "glb": "./assets/paddle_wood__665bb45e623a.glb", "targetHeight": 0.255 },
+    "dining_chair": { "glb": "../../../library/assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "library_lamp": { "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.42 },
+    "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.26 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.22 },
+    "chalkboard": { "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb", "targetHeight": 1.15 },
+    "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.72 },
+    "pendant_lamp": { "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.62 }
+  },
+  "shell": {
+    "clearColor": "#d9d3c8",
+    "fogColor": "#d9d3c8",
+    "fogNear": 18,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 46,
+    "position": [7.72, 1.58, 3.15],
+    "target": [1.35, 0.78, -0.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "fov": 54,
+      "position": [6.2, 1.4, 2.4],
+      "target": [6.35, 0.58, 0.1]
+    },
+    "detail": {
+      "fov": 38,
+      "position": [6.42, 1.12, 1.15],
+      "target": [5.15, 0.86, 0.02]
+    },
+    "close": {
+      "fov": 38,
+      "position": [6.42, 1.12, 1.15],
+      "target": [5.15, 0.86, 0.02]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15987707, "ground": 13027866, "intensity": 0.58 },
+    "key": {
+      "color": 16775396,
+      "intensity": 1.48,
+      "position": [-2.4, 13.5, -6.5],
+      "target": [0.4, 0.7, 0.2],
+      "shadow": 10,
+      "mapSize": 4096,
+      "bias": -0.0004,
+      "normalBias": 0.03
+    },
+    "fill": {
+      "color": 14019050,
+      "intensity": 0.34,
+      "position": [9, 6.5, 7]
+    }
+  }
+}
