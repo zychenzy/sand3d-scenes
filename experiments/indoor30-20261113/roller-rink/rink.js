@@ -58,8 +58,34 @@ function palette() {
     stair: toon('#6e5038'),
     nosing: toon('#5c4030'),
     slab: toon('#8d6248'),
+    bench: toon('#c6a36a'),
+    lace: toon('#2c2826'),
     size: [toon('#f4f0e8'), toon('#e7b15a'), toon('#8d3d45'), toon('#3d4a58')],
   };
+}
+
+function civicSignTexture() {
+  const c = document.createElement('canvas');
+  c.width = 1024;
+  c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#f7f2e8';
+  ctx.fillRect(0, 0, 1024, 256);
+  ctx.fillStyle = '#8d3d45';
+  ctx.fillRect(0, 0, 1024, 16);
+  ctx.fillRect(0, 240, 1024, 16);
+  ctx.font = '600 46px "Liberation Serif", "DejaVu Serif", serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('CIVIC HALL', 512, 78);
+  ctx.fillStyle = '#3c2b22';
+  ctx.font = '700 112px "Liberation Serif", "DejaVu Serif", serif';
+  ctx.fillText('MAPLE RINK', 512, 170);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
+  tex.needsUpdate = true;
+  return tex;
 }
 
 function carpetTexture() {
@@ -302,7 +328,59 @@ function buildShell(layout, mats) {
   for (let i = 0; i < 9; i++) {
     tag(addBox(g, 0.06, 1.55, 0.04, mats.walnut, 5.15 + i * 0.28, 1.85, slatZ), 'cast');
   }
+
+  dressUpperWalls(g, mats, backIn, leftIn);
+  buildCivicSign(g, mats, backIn);
   return g;
+}
+
+function framedPanel(g, mats, x, y, z, w, h, face) {
+  const rail = 0.028;
+  if (face === 'z') {
+    tag(addBox(g, w, h, 0.018, mats.plasterDeep, x, y, z), 'none');
+    tag(addBox(g, w + rail, rail, 0.028, mats.walnut, x, y + h / 2, z + 0.008), 'none');
+    tag(addBox(g, w + rail, rail, 0.028, mats.walnut, x, y - h / 2, z + 0.008), 'none');
+    tag(addBox(g, rail, h, 0.028, mats.walnut, x - w / 2, y, z + 0.008), 'none');
+    tag(addBox(g, rail, h, 0.028, mats.walnut, x + w / 2, y, z + 0.008), 'none');
+  } else {
+    tag(addBox(g, 0.018, h, w, mats.plasterDeep, x, y, z), 'none');
+    tag(addBox(g, 0.028, rail, w + rail, mats.walnut, x + 0.008, y + h / 2, z), 'none');
+    tag(addBox(g, 0.028, rail, w + rail, mats.walnut, x + 0.008, y - h / 2, z), 'none');
+    tag(addBox(g, 0.028, h, rail, mats.walnut, x + 0.008, y, z - w / 2), 'none');
+    tag(addBox(g, 0.028, h, rail, mats.walnut, x + 0.008, y, z + w / 2), 'none');
+  }
+}
+
+function dressUpperWalls(g, mats, backIn, leftIn) {
+  const y = 1.78;
+  const h = 0.92;
+  tag(addBox(g, 14.6, 0.035, 0.03, mats.walnut, -0.4, 2.36, backIn + 0.03), 'none');
+  tag(addBox(g, 0.03, 0.035, 8.4, mats.walnut, leftIn + 0.03, 2.36, 0.4), 'none');
+  framedPanel(g, mats, -4.55, y, backIn + 0.02, 1.85, h, 'z');
+  framedPanel(g, mats, -2.35, y, backIn + 0.02, 1.7, h, 'z');
+  framedPanel(g, mats, 2.55, y, backIn + 0.02, 1.7, h, 'z');
+  framedPanel(g, mats, 4.35, y, backIn + 0.02, 1.15, h, 'z');
+  framedPanel(g, mats, leftIn + 0.02, 2.08, -2.15, 0.72, 0.42, 'x');
+  framedPanel(g, mats, leftIn + 0.02, 2.08, -1.15, 0.86, 0.42, 'x');
+  framedPanel(g, mats, leftIn + 0.02, 2.08, -0.15, 0.7, 0.42, 'x');
+  framedPanel(g, mats, leftIn + 0.02, y, 0.85, 1.15, h, 'x');
+  framedPanel(g, mats, leftIn + 0.02, y, 2.15, 1.35, h, 'x');
+  framedPanel(g, mats, leftIn + 0.02, y, 3.6, 1.25, h, 'x');
+  framedPanel(g, mats, leftIn + 0.02, y, 4.85, 0.95, h, 'x');
+}
+
+function buildCivicSign(g, mats, backIn) {
+  const x = -0.15;
+  const y = 1.78;
+  const z = backIn + 0.04;
+  tag(addBox(g, 2.62, 0.64, 0.04, mats.walnut, x, y, z), 'cast');
+  const face = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.4, 0.5),
+    toon('#f7f2e8', { map: civicSignTexture() }),
+  );
+  face.position.set(x, y, z + 0.024);
+  tag(face, 'none');
+  g.add(face);
 }
 
 function pointOn(rink, a, b, ang) {
@@ -401,18 +479,24 @@ function chevronGeo() {
 function skate(g, mats, x, y, z, rot, name) {
   const boot = mats.boot[name] || mats.boot.white;
   const s = new THREE.Group();
-  tag(addBox(s, 0.2, 0.012, 0.075, mats.plate, 0, 0.055, 0), 'cast');
-  tag(addBox(s, 0.16, 0.07, 0.08, boot, -0.01, 0.1, 0), 'cast');
-  tag(addBox(s, 0.09, 0.07, 0.075, boot, -0.05, 0.16, 0), 'cast');
-  tag(addBox(s, 0.04, 0.02, 0.055, mats.stop, 0.09, 0.1, 0), 'cast');
-  tag(addCyl(s, 0.012, 0.014, 0.03, mats.stop, 0.1, 0.045, 0, 8), 'cast');
-  for (const wx of [-0.055, 0.045]) {
-    for (const wz of [-0.032, 0.032]) {
-      const w = addCyl(s, 0.031, 0.031, 0.016, mats.wheel, wx, 0.031, wz, 10);
+  for (const wx of [-0.048, 0.042]) {
+    for (const wz of [-0.034, 0.034]) {
+      const w = addCyl(s, 0.032, 0.032, 0.02, mats.wheel, wx, 0.032, wz, 12);
       w.rotation.x = Math.PI / 2;
       tag(w, 'cast');
     }
   }
+  tag(addBox(s, 0.2, 0.012, 0.078, mats.plate, -0.004, 0.07, 0), 'cast');
+  const stop = addCyl(s, 0.016, 0.02, 0.042, mats.stop, 0.108, 0.04, 0, 10);
+  stop.rotation.z = -0.7;
+  tag(stop, 'cast');
+  tag(addBox(s, 0.21, 0.016, 0.082, boot, -0.006, 0.086, 0), 'cast');
+  tag(addBox(s, 0.055, 0.032, 0.074, boot, -0.07, 0.1, 0), 'cast');
+  tag(addBox(s, 0.07, 0.04, 0.086, boot, 0.055, 0.108, 0), 'cast');
+  tag(addBox(s, 0.11, 0.055, 0.08, boot, 0.01, 0.14, 0), 'cast');
+  tag(addBox(s, 0.07, 0.07, 0.072, boot, -0.03, 0.19, 0), 'cast');
+  tag(addBox(s, 0.062, 0.016, 0.078, mats.lace, -0.02, 0.232, 0), 'cast');
+  tag(addBox(s, 0.09, 0.01, 0.012, mats.lace, 0.02, 0.168, 0), 'cast');
   s.position.set(x, y, z);
   s.rotation.y = rot;
   g.add(s);
@@ -434,16 +518,16 @@ function buildCubbies(g, mats, layout) {
     shelfYs.forEach((sy) => {
       if (sy < mod.h - 0.2) tag(addBox(g, spec.depth - 0.04, 0.025, mod.w - 0.06, mats.wainscot, x + 0.01, sy, cz), 'cast');
     });
-    const dot = addBox(g, 0.025, 0.08, 0.08, mats.size[index % mats.size.length], x + spec.depth / 2 + 0.01, Math.min(1.12, mod.h - 0.14), z + 0.08);
+    const dot = addBox(g, 0.01, 0.04, 0.04, mats.size[index % mats.size.length], x + spec.depth / 2 + 0.006, Math.min(1.02, mod.h - 0.18), z + 0.07);
     tag(dot, 'none');
     mod.hold.forEach((color, n) => {
-      const sy = shelfYs[Math.min(n, shelfYs.length - 1)] + 0.012;
-      const zz = cz + (n - (mod.hold.length - 1) / 2) * 0.16;
-      skate(g, mats, x + 0.02, sy, zz, 0.4 + n * 0.5, color);
+      const sy = shelfYs[Math.min(n, shelfYs.length - 1)] + 0.014;
+      const zz = cz + (n - (mod.hold.length - 1) / 2) * 0.06;
+      skate(g, mats, x + 0.02, sy, zz, Math.PI / 2, color);
     });
     if (!mod.hold.length) {
-      tag(addBox(g, 0.24, 0.07, 0.16, mats.towel, x, 0.6, cz - 0.02), 'cast');
-      tag(addBox(g, 0.14, 0.11, 0.12, mats.bag, x + 0.01, 0.68, cz + 0.08), 'cast');
+      tag(addBox(g, 0.22, 0.025, 0.16, mats.towel, x + 0.01, 0.58, cz - 0.02), 'cast');
+      tag(addBox(g, 0.12, 0.08, 0.1, mats.bag, x + 0.02, 0.62, cz + 0.06), 'cast');
     }
     z += mod.w;
   });
@@ -475,15 +559,19 @@ function buildBooth(g, mats, layout) {
   tag(addBox(g, w + 0.06, 0.04, 0.06, mats.nosing, cx, d.rise + 0.02, d.z1), 'cast');
   tag(addBox(g, w, d.counterTop - d.rise, 0.08, mats.walnut, cx, (d.counterTop + d.rise) / 2, d.z1 - 0.02), 'cast');
   tag(addBox(g, 0.08, d.counterTop - d.rise, depth, mats.walnut, d.x1 - 0.04, (d.counterTop + d.rise) / 2, cz), 'cast');
-  tag(addBox(g, w, 0.045, 0.62, mats.frame, cx, d.counterTop - 0.02, d.z1 - 0.28), 'cast');
+  tag(addBox(g, w, 0.045, 1.15, mats.frame, cx, d.counterTop - 0.02, d.z1 - 0.55), 'cast');
   tag(addBox(g, w - 0.3, 0.08, 0.08, mats.kickDark, cx, 2.02, d.z1), 'cast');
   tag(addCyl(g, 0.035, 0.035, 2.0, mats.walnut, d.x0 + 0.04, 1.0, d.z1, 8), 'cast');
   tag(addCyl(g, 0.035, 0.035, 2.0, mats.walnut, d.x1 - 0.04, 1.0, d.z1, 8), 'cast');
 
-  const mixer = addBox(g, 0.46, 0.06, 0.26, mats.mixer, 6.45, d.counterTop + 0.04, d.z1 - 0.38);
+  tag(addBox(g, w - 0.5, 0.72, 0.05, mats.walnut, cx, 1.5, d.z0 + 0.08), 'cast');
+  tag(addBox(g, w - 0.9, 0.46, 0.02, mats.wainscot, cx, 1.52, d.z0 + 0.11), 'none');
+
+  const mixer = addBox(g, 0.7, 0.045, 0.3, mats.mixer, 6.22, d.counterTop + 0.03, -4.7);
   tag(mixer, 'cast');
+  tag(addBox(g, 0.6, 0.012, 0.2, mats.fader, 6.22, d.counterTop + 0.058, -4.68), 'none');
   for (let i = 0; i < 5; i++) {
-    tag(addBox(g, 0.018, 0.045, 0.045, mats.fader, 6.3 + i * 0.07, d.counterTop + 0.08, d.z1 - 0.36), 'cast');
+    tag(addBox(g, 0.016, 0.05, 0.03, mats.kickDark, 6.02 + i * 0.09, d.counterTop + 0.09, -4.66), 'cast');
   }
 
   const sx = d.x0 - 0.42;
@@ -571,6 +659,35 @@ function buildLights(g, mats, layout) {
   });
 }
 
+function buildBench(g, mats, x, z, rot, length, depth, seat) {
+  const bench = new THREE.Group();
+  const leg = 0.05;
+  const hx = depth / 2 - 0.05;
+  const hz = length / 2 - 0.08;
+  for (const sx of [-hx, hx]) {
+    for (const sz of [-hz, hz]) {
+      tag(addBox(bench, leg, seat - 0.04, leg, mats.walnut, sx, (seat - 0.04) / 2, sz), 'cast');
+    }
+  }
+  tag(addBox(bench, depth - 0.06, 0.06, length - 0.12, mats.frame, 0, seat - 0.08, 0), 'cast');
+  tag(addBox(bench, depth, 0.02, length, mats.bench, 0, seat - 0.04, 0), 'cast');
+  const slat = (depth - 0.03) / 3;
+  for (let i = 0; i < 3; i++) {
+    const sx = -depth / 2 + 0.015 + slat / 2 + i * slat;
+    tag(addBox(bench, slat - 0.012, 0.02, length - 0.02, mats.bench, sx, seat - 0.01, 0), 'cast');
+  }
+  bench.position.set(x, 0, z);
+  bench.rotation.y = rot;
+  g.add(bench);
+}
+
+function buildBenches(g, mats, layout) {
+  const b = layout.architecture.benches;
+  b.lace.forEach((p) => buildBench(g, mats, p.x, p.z, 0, b.laceLength, b.depth, b.seat));
+  const s = b.spectator;
+  buildBench(g, mats, s.x, s.z, s.rot, s.length, b.depth, b.seat);
+}
+
 function buildPlant(g, mats) {
   const x = -6.35;
   const z = 4.35;
@@ -598,9 +715,10 @@ function buildProcedural(layout) {
   buildEntry(g, mats, layout);
   buildLights(g, mats, layout);
   buildPlant(g, mats);
-  const benchSkateY = 0.41;
-  skate(g, mats, -5.78, benchSkateY, -1.85, 1.1, 'white');
-  skate(g, mats, -5.78, benchSkateY, -1.55, 0.85, 'burgundy');
+  buildBenches(g, mats, layout);
+  const benchSkateY = layout.architecture.benches.seat;
+  skate(g, mats, -5.95, benchSkateY, -1.9, -1.15, 'white');
+  skate(g, mats, -5.95, benchSkateY, -1.48, -1.35, 'burgundy');
   return g;
 }
 

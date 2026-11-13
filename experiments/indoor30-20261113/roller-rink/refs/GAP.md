@@ -6,9 +6,9 @@ Every candidate below was loaded from the root catalog, scaled to a real height,
 
 | asset | kept | measured size at the chosen height | why |
 | --- | --- | --- | --- |
-| museum bench | yes | 0.42 × 0.46 × 1.51 m, long axis local Z | Backless X-leg bench. Lace-up pair along the rental wall, one spectator bench on the front concourse. Tinted `#e4cba6` so it is not the gallery yellow. |
+| museum bench | no | 0.42 × 0.46 × 1.51 m, long axis local Z | Backless X-leg gallery bench. It read as leftover furniture at the rental counter, so the lace-up and spectator seats are procedural slat benches instead. |
 | pendant | yes, three | 0.35 × 0.64 m teardrop | Woven shade. Only over the rental and the entry. Not the rink rig. |
-| speaker, horizontal | yes, two | 0.86 × 0.36 × 0.25 m at height 0.36 | Broad face is the grille (local +Z). Port is a nub on +X. Aimed at the oval center. |
+| speaker, horizontal | yes, two | about 1.14 × 0.48 × 0.34 m at height 0.48 | Broad face is the grille (local +Z). Port is a nub on +X. Both sit on the booth counter, aimed at the oval. |
 | speaker, stood on end | no | 0.23 × 0.55 × 0.16 m | Z-rotation makes the long axis the height and the cabinet collapses into a skinny column. |
 | bar stool | yes, one | 0.48 × 0.64 m | Round, no favored face. Scaled down so the seat sits under the booth counter. |
 | library lamp | yes, one | 0.32 × 0.36 m | Green banker's shade. One task light on the booth, not a row. |
@@ -28,16 +28,18 @@ The local bake programs do not include a quad skate, an oval floor, a rink rail,
 - Maple oval, burgundy border, lane line, center rings, four small counterclockwise chevrons.
 - Three-rail safety fence, kickboard, and a swung-open skate gate on the rental side.
 - Entry portal with an open leaf on the front concourse.
-- Uneven rental cubbies and blocky quad skates (boot, plate, four wheels, toe stop).
-- DJ booth, two-step staff stair, and a small mixer.
+- Uneven rental cubbies and quad skates: high boot, plate, two-by-two wheels, toe stop. Still simple meshes, not scanned boots.
+- Slat benches for lacing and one spectator bench. Square legs, three seat boards.
+- DJ booth, two-step staff stair, cream back board, and a small mixer between the monitors.
+- Back-wall panels and a civic name board reading MAPLE RINK. Empty frames only, no posters.
 - Barrel vault, milk-glass globes, four amber/rose cans, one faceted mirror ball.
 
 ## Left unresolved
 
 - No skaters, no recorded audio, and the lights do not chase.
 - The speaker is a mesh cabinet, not a horn-loaded rink PA. From across the room it reads as a monitor; up close the port is on the end, not a cone in the grille.
-- Skates are blocks with cylinders. They read at the close camera and do not read as scanned boots.
-- The bench has no back, so "facing the oval" is the long axis and the sitting side, not a chair back.
+- Skates are still stacked boxes and cylinders. The close camera can tell boot from wheel from toe stop; they are not scanned boots.
+- The lace-up benches have no backs. They are rental seats, not chairs.
 - The mirror ball does not scatter colored light. A real disco ball would.
 - The vault is one barrel with five ribs, not the steel truss in the Crystal Palace photo.
 - Clerestory glass is an emissive panel, not a transmitted sky.

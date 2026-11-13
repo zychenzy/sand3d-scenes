@@ -1,6 +1,6 @@
 # Civic maple roller rink
 
-A cutaway municipal roller rink: maple oval, waist rail with an open skate gate, rental cubbies and lace-up benches, a front entry gate, and a small DJ booth under a barrel of warm globe lights.
+A cutaway municipal roller rink: maple oval, waist rail with an open skate gate, rental cubbies and slat lace-up benches, a front entry gate, and a small DJ booth under a barrel of warm globe lights. The back wall is lettered MAPLE RINK.
 
 Toon is the default. It uses a four-stop hard gradient whose darkest step stays lifted so the floor and plaster do not crush. `U` switches to real unlit (`MeshBasicMaterial`). Nothing is loaded from the network.
 

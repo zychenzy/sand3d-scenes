@@ -21,12 +21,14 @@ def outside_ellipse(x, z, a, b, margin=1.0):
     return ((x - RINK["cx"]) / a) ** 2 + ((z - RINK["cz"]) / b) ** 2 > margin
 
 
-def bench_aabb(inst):
-    fx, fz = LAYOUT["assets"]["museum_bench"]["footprint"]
-    if abs(abs(inst["rotationY"]) - math.pi / 2) < 0.2:
-        fx, fz = fz, fx
-    x, _, z = inst["position"]
-    return (x - fx / 2, x + fx / 2, z - fz / 2, z + fz / 2)
+def bench_boxes():
+    b = ARCH["benches"]
+    boxes = []
+    for p in b["lace"]:
+        boxes.append(("lace", p["x"] - b["depth"] / 2, p["x"] + b["depth"] / 2, p["z"] - b["laceLength"] / 2, p["z"] + b["laceLength"] / 2))
+    s = b["spectator"]
+    boxes.append(("spectator", s["x"] - s["length"] / 2, s["x"] + s["length"] / 2, s["z"] - b["depth"] / 2, s["z"] + b["depth"] / 2))
+    return boxes
 
 
 def point_in(aabb, x, z, pad=0.0):
@@ -68,8 +70,9 @@ def main():
     if len(ids) != len(set(ids)):
         errors += fail("duplicate instance ids")
 
+    if "museum_bench" in LAYOUT["assets"]:
+        errors += fail("museum bench is still a catalog leftover")
     required = {
-        "bench_lace_a", "bench_lace_b", "bench_spectator",
         "speaker_l", "speaker_r", "dj_stool", "dj_lamp", "dj_mug",
         "register", "pot_entry", "pendant_rental", "pendant_counter", "pendant_entry",
     }
@@ -85,18 +88,20 @@ def main():
     if opening < 1.15:
         errors += fail(f"rink gate chord {opening:.2f} m is tight")
 
-    lace = next(i for i in LAYOUT["instances"] if i["id"] == "bench_lace_a")
-    if abs(lace["rotationY"]) > 0.2:
-        errors += fail("lace bench long axis is not along the rental wall")
-    bench_front = lace["position"][0] + LAYOUT["assets"]["museum_bench"]["footprint"][0] / 2
+    benches = ARCH["benches"]
+    if len(benches["lace"]) < 2:
+        errors += fail("rental needs two lace-up benches")
+    if benches["seat"] < 0.42 or benches["seat"] > 0.5:
+        errors += fail(f"bench seat {benches['seat']} is not a rental height")
+    lace = benches["lace"][0]
+    bench_front = lace["x"] + benches["depth"] / 2
     rail_x = RINK["cx"] - RINK["railA"]
     aisle = rail_x - bench_front
     if aisle < 1.05:
         errors += fail(f"lace aisle {aisle:.2f} m is under 1.05 m")
 
-    spec = next(i for i in LAYOUT["instances"] if i["id"] == "bench_spectator")
-    # long axis should run across the front concourse, facing the oval along Z
-    if abs(abs(spec["rotationY"]) - math.pi / 2) > 0.2:
+    spec = benches["spectator"]
+    if abs(abs(spec["rot"]) - math.pi / 2) > 0.2:
         errors += fail("spectator bench is not set along the front")
 
     center = (RINK["cx"], RINK["cz"])
@@ -141,9 +146,7 @@ def main():
         ("booth", dj["x0"], dj["x1"], dj["z0"], dj["z1"]),
         ("cubbies", cubby["xBack"], cubby["xBack"] + cubby["depth"], cubby["z0"], cubby_z1),
     ]
-    for inst in LAYOUT["instances"]:
-        if inst["kind"] == "museum_bench":
-            solids.append((inst["id"], *bench_aabb(inst)))
+    solids.extend(bench_boxes())
     for i, (x, z) in enumerate(ARCH["path"]):
         for name, x0, x1, z0, z1 in solids:
             if point_in((x0, x1, z0, z1), x, z, 0.05):
@@ -168,6 +171,11 @@ def main():
     html = (ROOT / "index.html").read_text()
     if "http://" in html or "https://" in html:
         errors += fail("index.html is not offline")
+    rink_src = (ROOT / "rink.js").read_text()
+    if "MAPLE RINK" not in rink_src:
+        errors += fail("civic sign is missing the rink name")
+    if "museum_bench" in rink_src:
+        errors += fail("rink.js still builds the museum bench")
 
     for name in ("toon_default.png", "toon_corner.png", "toon_close.png", "unlit_default.png"):
         shot = ROOT / "shots" / name

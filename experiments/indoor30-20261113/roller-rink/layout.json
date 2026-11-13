@@ -15,8 +15,8 @@
     ],
     "notes": [
       "Small civic roller rink. Counterclockwise oval, rail outside the skate line, rental and entry off the floor.",
-      "Not a bowling lane and not an arcade. Catalog GLBs are bench, pendant, speaker, stool, lamp, register, pot, and mug.",
-      "Rails, oval, skates, booth, vault, and gates are procedural. No mural sign in the main view."
+      "Not a bowling lane and not an arcade. Catalog GLBs are pendant, speaker, stool, lamp, register, pot, and mug.",
+      "Rails, oval, skates, slat benches, booth, vault, and gates are procedural. The back wall carries a civic name board, not a foreground billboard."
     ]
   },
   "architecture": {
@@ -64,9 +64,14 @@
     },
     "counter": { "x0": -8.18, "x1": -7.18, "z0": 1.05, "z1": 2.42, "h": 0.96 },
     "benches": {
-      "laceX": -5.95,
-      "laceZ": [-1.7, 0.2],
-      "spectator": [1.45, 4.82]
+      "seat": 0.46,
+      "depth": 0.4,
+      "laceLength": 1.42,
+      "lace": [
+        { "x": -5.95, "z": -1.7 },
+        { "x": -5.95, "z": 0.2 }
+      ],
+      "spectator": { "x": 1.45, "z": 4.82, "rot": 1.5708, "length": 1.55 }
     },
     "dj": {
       "x0": 4.62,
@@ -86,19 +91,13 @@
     ]
   },
   "assets": {
-    "museum_bench": {
-      "glb": "assets/museum_bench__0025f9484fc6.glb",
-      "targetHeight": 0.46,
-      "tint": "#e4cba6",
-      "footprint": [0.422, 1.513]
-    },
     "pendant_lamp": {
       "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
       "targetHeight": 0.64
     },
     "speaker": {
       "glb": "assets/speaker__2db67686cd88.glb",
-      "targetHeight": 0.36
+      "targetHeight": 0.48
     },
     "bar_stool": {
       "glb": "assets/bar_stool__319fcb56afe8.glb",
@@ -122,14 +121,11 @@
     }
   },
   "instances": [
-    { "id": "bench_lace_a", "kind": "museum_bench", "position": [-5.95, 0, -1.7], "rotationY": 0 },
-    { "id": "bench_lace_b", "kind": "museum_bench", "position": [-5.95, 0, 0.2], "rotationY": 0 },
-    { "id": "bench_spectator", "kind": "museum_bench", "position": [1.45, 0, 4.82], "rotationY": 1.5708 },
-    { "id": "speaker_l", "kind": "speaker", "position": [5.15, 1.04, -4.08], "rotationY": -0.78 },
-    { "id": "speaker_r", "kind": "speaker", "position": [7.45, 1.04, -4.08], "rotationY": -1.02 },
+    { "id": "speaker_l", "kind": "speaker", "position": [5.25, 1.04, -4.42], "rotationY": -0.8023 },
+    { "id": "speaker_r", "kind": "speaker", "position": [7.2, 1.04, -4.42], "rotationY": -0.9686 },
     { "id": "dj_stool", "kind": "bar_stool", "position": [6.35, 0.2, -5.28], "rotationY": 0.15 },
-    { "id": "dj_lamp", "kind": "library_lamp", "position": [6.05, 1.04, -4.72], "rotationY": 1.15 },
-    { "id": "dj_mug", "kind": "cup_mug", "position": [6.72, 1.04, -4.62], "rotationY": 0.4 },
+    { "id": "dj_lamp", "kind": "library_lamp", "position": [6.15, 1.04, -5.15], "rotationY": 0.6 },
+    { "id": "dj_mug", "kind": "cup_mug", "position": [6.55, 1.04, -5.12], "rotationY": 0.2 },
     { "id": "register", "kind": "cash_register", "position": [-7.72, 0.96, 1.72], "rotationY": 1.5708 },
     { "id": "pot_entry", "kind": "flowerpot", "position": [-6.35, 0, 4.35], "rotationY": 0.3 },
     { "id": "pendant_rental", "kind": "pendant_lamp", "position": [-6.45, 2.76, -1.15] },
@@ -149,8 +145,8 @@
   },
   "camera": {
     "fov": 40,
-    "position": [2.2, 1.98, 8.15],
-    "target": [-0.55, 1.42, -0.65]
+    "position": [1.35, 1.9, 8.05],
+    "target": [1.05, 1.25, -1.15]
   },
   "cameraPresets": {
     "corner": {
