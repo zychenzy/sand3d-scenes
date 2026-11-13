@@ -20,17 +20,19 @@ Console: one 404 for `/favicon.ico`. WebGL `ReadPixels` stall warnings appeared 
 
 ## Shading
 
-- Default and `?cam=close`: 431 `MeshToonMaterial`, 0 basic.
-- `?mode=unlit`: 431 `MeshBasicMaterial`, 0 toon. Windows and pendants stay bright because unlit uses the emissive color.
+- Default toon: 556 `MeshToonMaterial`, 0 basic, 3 mirror `ShaderMaterial`s (kept in both modes so the glass stays a reflection).
+- `?mode=unlit`: 556 `MeshBasicMaterial`, 0 toon, the same 3 mirror shaders. Windows and pendants stay bright because unlit uses the emissive color. The mirror pass renders after the swap, so the glass reflects the unlit room.
 
 ## What the shots showed, and what changed
 
-First default view put a full-height post in front of the sewing bay and a deep green pier across the alcove. The post was removed. The pier became a slim jamb so the mirror, tape, and FITTING plaque read. The camera moved back and wider (fov 46) so the sewing chair stays in frame and still faces the machine.
+The first review called the suits stacked boxes, the floorboards too wide, and the mirror a dull panel. The alcove also read as a desk.
 
-The close view's first shears read as two loose bars. They are now a pivot, two blades, and two finger rings on the pattern paper. The cutting stool was pulled clear of the tabletop; it sits at the left end.
+Floorboards are now about 12 cm wide, with butt joints and a normal map on the top face only. Jacket bodies are lathed, with shoulder caps, a bent sleeve, a collar, and notched lapels. The navy figure has trousers with a knee and a cuff. The toile is a muslin lathe with blue lines, not a box torso. The basted coat no longer wears a second muslin body under the wool.
 
-Corner view shows the dark alcove as its own volume: mirror, curtain, table, chair, companion seat, and the rail and cloth books beyond. Close view shows the kraft grid, three pattern shapes, shears, the basted form, the navy suit, and the bookcase. Unlit keeps every zone and drops the shadows.
+The fitting glass is a planar reflection: three panels, each with its own target, clipped to the mirror plane, updated before the main draw. In the corner and default shots the center panel shows the room and the open front, not a gray card. The companion bench sits beside a low standing board. The order table is against the back wall. A coat hangs on a hook. The curtain is tied on the far jamb so it does not cover the glass.
+
+Shears are a pivot, two blades, and two bows, kept on the table in the close shot with a tracing wheel and a button tray. The sewing head is a bed, pillar, arm, and handwheel rather than a stack of boxes.
 
 ## Still rough
 
-See `refs/GAP.md`. The bookcase is the pale catalog case, the cutting stool is light and modern, and the mirrors do not reflect. Those are visible in the shots and left as catalog limits.
+See `refs/GAP.md`. Lapels are small at room scale. Sleeves are still constructed limbs, not draped cloth. Shear blades are flat. The bookcase is the pale catalog case. The mirror also reflects the cutaway sky, and the wing panels are oblique from the corner camera.

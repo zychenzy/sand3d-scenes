@@ -35,6 +35,8 @@ export function toToonMaterial(src) {
     color: colorFromMaterial(src),
     gradientMap: toonGradient,
     map: src && src.map ? src.map : null,
+    normalMap: src && src.normalMap ? src.normalMap : null,
+    normalScale: src && src.normalScale ? src.normalScale.clone() : new THREE.Vector2(1, 1),
     side: (src && src.side) || THREE.FrontSide,
     vertexColors: !!(src && src.vertexColors),
     emissive: src && src.emissive ? src.emissive.clone() : new THREE.Color(0x000000),
@@ -105,6 +107,8 @@ export function toon(color, opts = {}) {
   const m = new THREE.MeshToonMaterial({
     color,
     map: opts.map || null,
+    normalMap: opts.normalMap || null,
+    normalScale: opts.normalScale || new THREE.Vector2(1, 1),
     gradientMap: toonGradient,
     emissive: new THREE.Color(opts.emissive || 0x000000),
     emissiveIntensity: opts.emissiveIntensity ?? 0,
@@ -302,11 +306,20 @@ export async function boot(opts) {
   });
 
   window.__scene = { renderer, scene, camera, controls, setMode, layout, failures };
+
+  function renderFrame() {
+    if (opts.beforeRender) opts.beforeRender({ renderer, scene, camera, mode: shadingMode });
+    renderer.render(scene, camera);
+  }
+
+  renderer.shadowMap.needsUpdate = true;
+  renderer.render(scene, camera);
+  renderFrame();
   window.__ready = failures.length === 0;
 
   function tick() {
     controls.update();
-    renderer.render(scene, camera);
+    renderFrame();
     requestAnimationFrame(tick);
   }
   tick();

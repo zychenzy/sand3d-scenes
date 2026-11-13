@@ -14,8 +14,8 @@
   },
   "zones": {
     "alcove": { "x0": -5.72, "x1": -3.42, "z0": 0.42, "z1": 3.22, "doorZ0": 1.62, "dadoH": 0.9, "pierH": 2.48 },
-    "mirror": { "x": -5.58, "z": 1.2 },
-    "alcoveTable": { "x": -4.68, "z": 2.02 },
+    "mirror": { "x": -5.58, "z": 1.35 },
+    "alcoveTable": { "x": -4.9, "z": 2.58 },
     "platform": { "x": 0.25, "z": -3.12, "w": 2.4, "d": 1.62, "h": 0.18 },
     "cutting": { "x": 0.2, "z": 0.88, "w": 2.3, "d": 1.12, "h": 0.9 },
     "sewing": { "x": 3.45, "z": -3.38, "w": 1.6, "d": 0.66, "h": 0.73 },
@@ -38,7 +38,8 @@
       { "id": "toile", "min": [1.72, -1.9], "max": [2.38, -1.2] },
       { "id": "stool", "min": [-1.78, 0.68], "max": [-1.22, 1.22] },
       { "id": "rail", "min": [-5.75, -3.7], "max": [-5.12, -0.52] },
-      { "id": "alcoveTable", "min": [-5.12, 1.6], "max": [-4.24, 2.45] }
+      { "id": "alcoveTable", "min": [-5.35, 2.12], "max": [-4.45, 3.05] },
+      { "id": "fitBoard", "min": [-5.5, 1.02], "max": [-4.72, 1.68] }
     ],
     "paths": {
       "entry": [[2.4, 3.55], [2.4, 1.7], [2.4, -0.05]],
@@ -114,8 +115,8 @@
     {
       "id": "alcove_chair",
       "kind": "dining_chair",
-      "position": [-4.68, 0, 2.9],
-      "rotationY": 3.141592653589793,
+      "position": [-4.9, 0, 1.93],
+      "rotationY": 0,
       "faces": "alcoveTable"
     },
     {
@@ -127,7 +128,7 @@
     {
       "id": "companion_bench",
       "kind": "piano_bench",
-      "position": [-4.5, 0, 1.2],
+      "position": [-4.28, 0, 0.98],
       "rotationY": -1.5707963267948966,
       "faces": "mirror"
     },
@@ -140,7 +141,7 @@
     {
       "id": "alcove_table",
       "kind": "square_table",
-      "position": [-4.68, 0, 2.02],
+      "position": [-4.9, 0, 2.58],
       "rotationY": 0.2
     },
     {
@@ -170,7 +171,7 @@
     {
       "id": "mug",
       "kind": "cup_mug",
-      "position": [-4.5, 0.74, 2.14],
+      "position": [-4.72, 0.74, 2.66],
       "rotationY": 0.6
     },
     {
@@ -188,7 +189,7 @@
     {
       "id": "pend_alcove",
       "kind": "pendant_lamp",
-      "position": [-4.6, 2.02, 1.75],
+      "position": [-5.05, 2.02, 1.35],
       "rotationY": 0
     },
     {
@@ -223,12 +224,12 @@
   },
   "cameraPresets": {
     "corner": {
-      "position": [3.55, 1.78, 4.85],
-      "target": [-4.35, 1.12, 1.35]
+      "position": [2.85, 1.7, 4.55],
+      "target": [-4.7, 1.16, 1.35]
     },
     "close": {
-      "position": [1.05, 1.38, 1.82],
-      "target": [0.22, 0.93, 0.62]
+      "position": [0.9, 1.36, 1.92],
+      "target": [0.18, 1.02, 0.2]
     }
   },
   "lights": {
@@ -255,7 +256,7 @@
     "points": [
       { "color": 16763274, "intensity": 0.72, "distance": 5.2, "position": [0.2, 2.45, 0.88] },
       { "color": 16763274, "intensity": 0.58, "distance": 4.6, "position": [0.25, 2.4, -2.7] },
-      { "color": 16769200, "intensity": 0.95, "distance": 3.6, "position": [-4.55, 2.25, 1.7] },
+      { "color": 16769200, "intensity": 1.05, "distance": 4.2, "position": [-5.0, 2.28, 1.4] },
       { "color": 16765600, "intensity": 0.42, "distance": 2.4, "position": [3.7, 1.25, -3.25] },
       { "color": 16769200, "intensity": 0.36, "distance": 4.2, "position": [-4.9, 1.85, -2.1] }
     ]
@@ -263,7 +264,7 @@
   "acceptance": {
     "shots": ["toon_default", "toon_corner", "toon_close", "unlit_default"],
     "must_read": [
-      "Dark fitting alcove with a three-panel mirror, companion bench, and a tied-back curtain.",
+      "Dark fitting alcove with a reflective three-panel mirror, a standing board, a companion bench facing the glass, and a tied-back curtain.",
       "Raised fitting platform with steps, a basted process jacket, and a finished suit.",
       "Standing cutting table with pattern pieces, shears, and a stool at the end, not a seated loom table.",
       "One sewing chair facing its machine. Suit rail and cloth books are different walls, with a clear aisle."

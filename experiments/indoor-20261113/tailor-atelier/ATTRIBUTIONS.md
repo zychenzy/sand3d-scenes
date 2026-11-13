@@ -19,4 +19,4 @@ Dataset: https://huggingface.co/datasets/Sandflow/sand3d-objaverse
 
 ## Original to this scene
 
-Shell, alcove, platform, patterns, shears, sewing head, suit rail, jackets, dress forms, mirrors, curtain, runners, cloth textures, and the FITTING plaque are procedural meshes in `atelier.js`. No downloaded images and no local GLB copies.
+Shell, alcove, platform, patterns, shears, sewing head, suit rail, jackets, dress forms, the planar mirror shader, curtain, runners, floor and cloth textures, and the FITTING plaque are procedural in `atelier.js`. No downloaded images and no local GLB copies. The catalog has no mannequin, mirror, or shears.

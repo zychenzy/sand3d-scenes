@@ -4,9 +4,9 @@ Metres. Toon hard is the default: four steps, darkest stop at 0.22, hard shadows
 
 ## Zones
 
-1. **Customer fitting alcove** (front left). Lowered dark-green ceiling, walnut dado toward the room, brass-framed three-panel mirror, hanging tape, tied-back oxblood curtain, companion bench facing the mirror, side table with a swatch fan, and a chair facing that table. The doorway is 1.6 m. A plaque reads FITTING.
-2. **Tailor fitting platform**. Walnut dais, 0.18 m, two treads on the room side. A basted herringbone jacket on a torso form (canvas front, white basting) and a finished navy suit on a full figure. A muslin toile with blue balance lines stands off the right end. A brass height rod marks 1.0 m and 1.5 m.
-3. **Pattern cutting table**. Standing top at 0.90 m, 2.30 × 1.12. Kraft grid, jacket-front, sleeve, and trouser patterns, shears, rule, weights, chalk, pin cushion, and a folded navy cloth. The bar stool sits at the left end, clear of the top.
+1. **Customer fitting alcove** (front left). Lowered dark-green ceiling, walnut dado toward the room, and a brass-framed three-panel mirror. Each panel is a planar reflection (its own render target, clipped to the glass), so the glass shows the room instead of a painted panel. A low walnut board marks where the customer stands. The companion bench sits to the side of that board and faces the glass. The order table and its chair are against the back wall, with a swatch fan on the table. A coat hangs on a hook. The oxblood curtain is tied back on the far jamb. The doorway is 1.6 m. A plaque reads FITTING.
+2. **Tailor fitting platform**. Walnut dais, 0.18 m, two treads on the room side. Jacket bodies are lathed (hem, waist, chest) with shoulder caps, a two-bone sleeve, a collar, and notched lapels. The basted herringbone coat keeps a canvas front and white basting. The finished navy suit adds trousers with a knee and a cuff, and a flat shirt triangle. A muslin toile, lathed, carries blue balance lines and pins. A brass height rod marks 1.0 m and 1.5 m. None of these is a scanned body.
+3. **Pattern cutting table**. Standing top at 0.90 m, 2.30 × 1.12. Kraft grid, jacket-front, sleeve, and trouser patterns, shears with blades and finger bows, a yard rule, weights, a chalk wedge, a pin cushion, a tracing wheel, a button tray, and a folded navy cloth. The bar stool sits at the left end, clear of the top.
 4. **Sewing bay**. Seated table at 0.73 m against the back right. One straight-stitch head, needle to the sitter's left, handwheel to the right. The dining chair faces the needle. Banker's lamp, ham, sleeve board, iron. Thread spools on the wall shelf to the right.
 5. **Suit rail and cloth books**. Brass rail on the rear left wall with four different jackets and one pair of trousers, and a gap where a suit was taken to the platform. Two bookcases of cloth-sample spines, plus an open swatch book at the lectern.
 
@@ -17,6 +17,10 @@ Runners, not a packed floor. Entry aisle on the right of the cutting table, a cr
 ## Facing
 
 Dining-chair and piano-bench fronts are +Z at rotation 0 (back posts at −Z). The banker's lamp shade opens toward −Z at rotation 0, so the sewing lamp is rotated π to throw light toward the sitter. Bookcases open toward −Z locally and are rotated π so the shelves face the room.
+
+## Floor
+
+Boards run front to back, about 12 cm wide and about 2.4 m between butt joints. The top face uses a canvas color map and a matching normal map so the seams catch the toon steps. The cut edge of the floor slab is solid maple, not a stretched copy of the plank map.
 
 ## Light
 
