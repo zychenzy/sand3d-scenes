@@ -12,7 +12,7 @@ Stones are 286 mm across (circumference under the 914 mm limit) and 120 mm tall,
 
 ## Building
 
-The ice hall is narrow: walks outside the side lines, back boards, a roof at 5.04, and trusses on a 4.4 m rhythm. The home −X wall and the home end above the back board are cut away. The cut face is dark poche. The far end keeps a wall and a clerestory so the length closes instead of running into a void.
+The ice hall is narrow: walks outside the side lines, back boards, a roof at 5.04, and trusses on a 4.4 m rhythm. The −X wall, both end walls, and the roof close the shell. Clerestory bays are opaque panels, so the long side does not open onto the background colour. The home end wall sits past the cameras. The lounge stays only at the home end.
 
 The lounge is only at the home end, on +X. Its floor is 160 mm above the apron, oak, under a soffit at 3.22. Glass and a 1.05 m doorway separate it from the ice. Benches face the sheet. A sofa, round table, chair, mugs, and two plants sit off the 0.80 m aisle along the glass. The long coffee-table bake was measured and rejected: at a usable height it is about 2.5 m long and would close that aisle.
 

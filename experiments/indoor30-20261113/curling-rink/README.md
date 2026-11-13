@@ -1,6 +1,6 @@
 # Sheet 2 — indoor curling rink
 
-A cutaway of one club sheet. The ice is a World Curling Federation length, 45.720 m by 4.750 m, with both houses, hog lines, hacks, and a warm lounge stepped up along the home-end side. It is not a squash court, a pool, or a gym with ice paint.
+One enclosed club sheet. The ice is a World Curling Federation length, 45.720 m by 4.750 m, with both houses, hog lines, hacks, and a warm lounge stepped up along the home-end side. The hall walls and roof close around the sheet. It is not a squash court, a pool, or a gym with ice paint.
 
 Three.js r170 stays in `gym/vendor`. Shading is local: a hard 4-step toon and a real `MeshBasicMaterial` unlit path. Shared GLBs are referenced from the repo root. Nothing in this folder copies them.
 

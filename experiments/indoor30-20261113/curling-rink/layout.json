@@ -3,11 +3,12 @@
     "title": "Sheet 2 — indoor curling rink",
     "units": "metres",
     "style": "Toon hard",
-    "room": { "width": 10.10, "depth": 47.00, "height": 5.04 },
+    "room": { "width": 10.10, "depth": 49.40, "height": 5.04 },
     "notes": [
       "One WCF sheet, 45.720 m by 4.750 m, home end at +Z.",
       "Warm lounge is a wider volume on +X at the home end, stepped up off the ice.",
-      "Sixteen stones: six and seven still in the home racks, three in play."
+      "Sixteen stones: six and seven still in the home racks, three in play.",
+      "Walls and roof close the hall. Cameras stand inside the home end."
     ]
   },
   "signage": {
@@ -71,11 +72,11 @@
     "fogFar": 82
   },
   "camera": {
-    "fov": 42,
+    "fov": 46,
     "near": 0.08,
     "far": 130,
-    "position": [-1.7, 2.22, 24.85],
-    "target": [0.4, 0.48, 8.6]
+    "position": [-1.35, 2.05, 24.65],
+    "target": [1.55, 0.95, 13.4]
   },
   "cameraPresets": {
     "corner": {

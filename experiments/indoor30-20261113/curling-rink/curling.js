@@ -5,7 +5,6 @@ import {
 } from './sheet_spec.mjs';
 
 const ICE_Y = 0.021;
-const POCHE = '#2a2623';
 
 function srgb(canvas) {
   const tex = new THREE.CanvasTexture(canvas);
@@ -156,12 +155,12 @@ function makeMats() {
     cap: toon('#1b2c44'),
     rubber: toon('#2e3438'),
     wall: toon('#e4eaee'),
-    wallFar: toon('#d5dee4'),
+    wallFar: toon('#c9d3d8'),
     dado: toon('#c5ced3'),
     steel: toon('#5c656c'),
     steelLite: toon('#d5dbdf'),
     ceiling: toon('#e7eef2'),
-    poche: toon(POCHE),
+    clerestory: toon('#c5d6e2'),
     glass: toon('#c9e0ea', { transparent: true, opacity: 0.14, side: THREE.DoubleSide, depthWrite: false }),
     mullion: toon('#3c4650'),
     loungeWall: toon('#f4eee6'),
@@ -235,37 +234,64 @@ function addBrush(parent, mats, spec) {
 }
 
 function addSite(g, mats) {
-  addBox(g, 16, 0.08, 52, mats.ground, 1.2, -0.20, 0, { noCast: true, noReceive: true });
-  addBox(g, HALL.loungeX1 - HALL.x0 + 0.2, 0.16, HALL.z1 - HALL.z0 + 0.2, mats.slab, (HALL.x0 + HALL.loungeX1) / 2, -0.08, 0, { noCast: true, role: 'slab' });
+  const zMid = (HALL.z0 + HALL.z1) / 2;
+  addBox(g, 18, 0.08, 58, mats.ground, 1.2, -0.20, zMid, { noCast: true, noReceive: true });
+  addBox(g, HALL.loungeX1 - HALL.x0 + 0.2, 0.16, HALL.z1 - HALL.z0 + 0.2, mats.slab, (HALL.x0 + HALL.loungeX1) / 2, -0.08, zMid, { noCast: true, role: 'slab' });
+}
+
+function addSideBays(g, mats, xFace, z0, z1) {
+  const bay = 2.2;
+  for (let z = z0 + 1.1; z < z1 - 0.8; z += bay) {
+    const panelD = Math.min(bay - 0.16, z1 - 0.5 - z);
+    if (panelD < 0.5) break;
+    addBox(g, 0.025, 0.78, panelD, mats.clerestory, xFace + 0.02, 3.46, z + panelD / 2, { noCast: true, noReceive: true });
+    addBox(g, 0.05, HALL.roofY - 0.12, 0.10, mats.dado, xFace + 0.035, (HALL.roofY - 0.12) / 2, z, { noCast: true });
+  }
 }
 
 function addHall(g, mats) {
-  const cutZ = 8.0;
   const wallT = 0.16;
-  // Far side wall (-X), stopped at the cut so the home end is open.
-  addBox(g, wallT, HALL.roofY, cutZ - HALL.z0, mats.wall, HALL.x0 + wallT / 2, HALL.roofY / 2, (HALL.z0 + cutZ) / 2, { noCast: true });
-  addBox(g, wallT, 1.05, cutZ - HALL.z0, mats.dado, HALL.x0 + wallT / 2 + 0.01, 0.52, (HALL.z0 + cutZ) / 2, { noCast: true });
-  addBox(g, 0.04, 0.62, cutZ - HALL.z0 - 1.2, mats.glass, HALL.x0 - 0.02, 3.35, (HALL.z0 + cutZ) / 2, { noCast: true, noReceive: true });
-  for (let z = HALL.z0 + 1.6; z < cutZ; z += 4.4) {
-    addBox(g, 0.18, HALL.roofY, 0.16, mats.dado, HALL.x0 - 0.06, HALL.roofY / 2, z, { noCast: true, noReceive: true });
-  }
-  addBox(g, 0.22, HALL.roofY - 0.28, 0.22, mats.poche, HALL.x0 + 0.04, HALL.roofY / 2 + 0.1, cutZ, { noCast: true, role: 'poche' });
-
-  // Far end wall.
+  const sideLen = HALL.z1 - HALL.z0;
+  const zMid = (HALL.z0 + HALL.z1) / 2;
   const endW = HALL.x1 - HALL.x0;
+
+  // -X wall runs the full sheet. Clerestory bays are opaque so the shell
+  // does not open onto the clear colour.
+  addBox(g, wallT, HALL.roofY, sideLen, mats.wall, HALL.x0 + wallT / 2, HALL.roofY / 2, zMid, { noCast: true });
+  addBox(g, 0.03, 1.08, sideLen - 0.24, mats.dado, HALL.x0 + wallT + 0.015, 0.54, zMid, { noCast: true });
+  addBox(g, 0.05, 0.07, sideLen, mats.steel, HALL.x0 + wallT + 0.02, HALL.roofY - 0.08, zMid, { noCast: true });
+  addBox(g, 0.035, 0.045, sideLen - 1.2, mats.mullion, HALL.x0 + wallT + 0.028, 3.02, zMid, { noCast: true });
+  addBox(g, 0.035, 0.045, sideLen - 1.2, mats.mullion, HALL.x0 + wallT + 0.028, 3.88, zMid, { noCast: true });
+  addSideBays(g, mats, HALL.x0 + wallT, HALL.z0, HALL.z1);
+
+  // Far end wall, with an opaque clerestory instead of a window to nothing.
   addBox(g, endW, HALL.roofY, wallT, mats.wallFar, (HALL.x0 + HALL.x1) / 2, HALL.roofY / 2, HALL.z0 + wallT / 2, { noCast: true });
-  addBox(g, endW - 0.8, 1.15, 0.04, mats.glass, (HALL.x0 + HALL.x1) / 2, 3.55, HALL.z0 + wallT + 0.02, { noCast: true, noReceive: true });
-  addBox(g, endW, 0.08, 0.08, mats.mullion, (HALL.x0 + HALL.x1) / 2, 2.95, HALL.z0 + wallT + 0.02, { noCast: true });
+  addBox(g, endW - 0.8, 0.84, 0.03, mats.clerestory, (HALL.x0 + HALL.x1) / 2, 3.55, HALL.z0 + wallT + 0.02, { noCast: true, noReceive: true });
+  addBox(g, endW, 0.08, 0.08, mats.mullion, (HALL.x0 + HALL.x1) / 2, 3.05, HALL.z0 + wallT + 0.02, { noCast: true });
+  addBox(g, endW - 0.3, 1.05, 0.03, mats.dado, (HALL.x0 + HALL.x1) / 2, 0.52, HALL.z0 + wallT + 0.02, { noCast: true });
+
+  // Near end wall sits behind the home-end cameras.
+  addBox(g, endW, HALL.roofY, wallT, mats.wall, (HALL.x0 + HALL.x1) / 2, HALL.roofY / 2, HALL.z1 - wallT / 2, { noCast: true });
+  addBox(g, endW - 0.3, 1.08, 0.03, mats.dado, (HALL.x0 + HALL.x1) / 2, 0.54, HALL.z1 - wallT - 0.02, { noCast: true });
+  addBox(g, endW - 1.2, 0.72, 0.025, mats.clerestory, (HALL.x0 + HALL.x1) / 2, 3.46, HALL.z1 - wallT - 0.02, { noCast: true, noReceive: true });
+  addBox(g, endW - 0.4, 0.05, 0.04, mats.mullion, (HALL.x0 + HALL.x1) / 2, 3.05, HALL.z1 - wallT - 0.02, { noCast: true });
+
+  // Pocket behind the lounge end glass, so that window looks at a wall.
+  const bayZ0 = LOUNGE.floorZ1 + 0.2;
+  const bayZ1 = HALL.z1 - wallT;
+  const bayX1 = LOUNGE.floorX1 + 0.16;
+  const bayLen = bayZ1 - bayZ0;
+  addBox(g, bayX1 - HALL.x1, HALL.roofY, wallT, mats.loungeWall, (HALL.x1 + bayX1) / 2, HALL.roofY / 2, HALL.z1 - wallT / 2, { noCast: true });
+  addBox(g, 0.12, HALL.roofY, bayLen, mats.loungeWall, bayX1, HALL.roofY / 2, (bayZ0 + bayZ1) / 2, { noCast: true });
+  addBox(g, bayX1 - HALL.x1 + 0.12, 0.08, bayLen + 0.08, mats.ceiling, (HALL.x1 + bayX1) / 2, HALL.roofY, (bayZ0 + bayZ1) / 2, { noCast: true, noReceive: true });
 
   // Narrow +X wall along the far sheet, up to the lounge.
   const farLen = LOUNGE.floorZ0 - HALL.z0;
   addBox(g, wallT, HALL.roofY, farLen, mats.wall, HALL.x1, HALL.roofY / 2, HALL.z0 + farLen / 2, { noCast: true });
   addBox(g, 0.04, 1.05, farLen, mats.dado, HALL.x1 - 0.1, 0.52, HALL.z0 + farLen / 2, { noCast: true });
 
-  // Roof over the enclosed hall, with the near -X corner cut away.
-  addBox(g, HALL.x1 - HALL.x0, 0.08, cutZ - HALL.z0, mats.ceiling, (HALL.x0 + HALL.x1) / 2, HALL.roofY, (HALL.z0 + cutZ) / 2, { noCast: true, noReceive: true });
-  addBox(g, HALL.x1 + 0.55, 0.08, HALL.z1 - cutZ, mats.ceiling, ( -0.55 + HALL.x1) / 2, HALL.roofY, (cutZ + HALL.z1) / 2, { noCast: true, noReceive: true });
-  addBox(g, 0.7, 0.10, 0.18, mats.poche, -0.9, HALL.roofY, (cutZ + HALL.z1) / 2, { noCast: true, role: 'poche' });
+  // Roof over the whole ice hall, including the home end the cameras stand in.
+  addBox(g, endW, 0.08, sideLen, mats.ceiling, (HALL.x0 + HALL.x1) / 2, HALL.roofY, zMid, { noCast: true, noReceive: true });
 
   // Side boards. Home -X board runs the full sheet; +X board stops where the glass curb continues.
   const boardH = 0.30;
@@ -317,6 +343,13 @@ function addIce(g, mats) {
   addBox(g, 0.55, 0.012, SHEET.length, mats.apron, 2.74, 0.008, 0, { noCast: true, noReceive: true });
   addBox(g, SHEET.width, 0.012, 0.62, mats.apron, 0, 0.008, f.halfL + 0.36, { noCast: true, noReceive: true });
   addBox(g, SHEET.width, 0.012, 0.58, mats.apron, 0, 0.008, -f.halfL - 0.34, { noCast: true, noReceive: true });
+  const walkZ0 = f.halfL + 0.12;
+  const walkZ1 = HALL.z1 - 0.2;
+  addBox(
+    g, HALL.x1 - HALL.x0 - 0.24, 0.016, walkZ1 - walkZ0, mats.apron,
+    (HALL.x0 + HALL.x1) / 2, 0.008, (walkZ0 + walkZ1) / 2,
+    { noCast: true, noReceive: true },
+  );
 }
 
 function addHouses(g, mats) {
@@ -400,10 +433,15 @@ function addLounge(g, mats) {
   addBox(g, 2.05, 0.012, 2.35, mats.rug, 5.15, L.floorY + 0.008, 11.15, { noCast: true, role: 'lounge' });
 
   // Back wall and end walls up to the high roof, with a low warm soffit inside.
+  // End walls overlap the ice-hall wall so the corner does not open onto the background.
+  const endX0 = HALL.x1 - 0.04;
+  const endX1 = L.floorX1 + 0.16;
+  const endSpan = endX1 - endX0;
+  const endX = (endX0 + endX1) / 2;
   addBox(g, 0.16, HALL.roofY, floorD + 0.16, mats.loungeWall, L.floorX1 + 0.08, HALL.roofY / 2, zMid, { noCast: true });
   addBox(g, 0.08, 0.94, floorD, mats.wainscot, L.floorX1 - 0.02, L.floorY + 0.47, zMid, { noCast: true });
-  addBox(g, floorW + 0.2, HALL.roofY, 0.16, mats.loungeWall, xMid, HALL.roofY / 2, L.floorZ0 - 0.08, { noCast: true });
-  addBox(g, floorW + 0.2, HALL.roofY, 0.16, mats.loungeWall, xMid, HALL.roofY / 2, L.floorZ1 + 0.08, { noCast: true });
+  addBox(g, endSpan, HALL.roofY, 0.16, mats.loungeWall, endX, HALL.roofY / 2, L.floorZ0 - 0.08, { noCast: true });
+  addBox(g, endSpan, HALL.roofY, 0.16, mats.loungeWall, endX, HALL.roofY / 2, L.floorZ1 + 0.08, { noCast: true });
   addBox(g, 0.9, 0.7, 0.04, mats.glass, 4.7, 1.7, L.floorZ1 + 0.02, { noCast: true, noReceive: true });
   addBox(g, 1.02, 0.08, 0.06, mats.mullion, 4.7, 2.08, L.floorZ1 + 0.04, { noCast: true });
   addBox(g, 1.02, 0.08, 0.06, mats.mullion, 4.7, 1.32, L.floorZ1 + 0.04, { noCast: true });

@@ -14,4 +14,6 @@ The ice plane does not receive the key shadow. Contact under racks, stones, and 
 
 One sheet, not a four-sheet arena. The far racks are empty because the sixteen stones are the home rack plus the three in play. There are no players, sliders, or a measuring stick. The scoreboard shows six completed ends and a blank seventh, matching the stones still out.
 
+The first shell left the home −X wall and the home end open. That read as a pale void beside the sheet. Both are now solid, and the clerestory is an opaque panel rather than glass onto an empty exterior. The playing length is unchanged.
+
 No reference images are committed. Full photographs stay at the links in `SOURCES.md`.

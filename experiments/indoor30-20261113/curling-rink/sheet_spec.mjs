@@ -44,7 +44,7 @@ export const HALL = {
   x0: -3.55,
   x1: 2.88,
   z0: -23.50,
-  z1: 23.50,
+  z1: 25.90,
   roofY: 5.04,
   loungeX1: 6.55,
 };

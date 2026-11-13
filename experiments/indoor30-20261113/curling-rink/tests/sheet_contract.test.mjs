@@ -181,15 +181,25 @@ test('signage stays small and cameras cover length, lounge, and house', () => {
   assert.ok(near.y > 1.8);
 
   const cam = layout.camera;
-  assert.ok(cam.position[2] > HALL.z1 - 0.2);
+  assert.ok(cam.position[2] < HALL.z1 - 0.8, 'default camera stands inside the near wall');
+  assert.ok(cam.position[2] > frame().halfL + 0.8, 'default camera stays at the home end');
   assert.ok(cam.position[0] < 0);
-  assert.ok(cam.position[0] > HALL.x0 - 1.5);
+  assert.ok(cam.position[0] > HALL.x0 + 0.4, 'default camera stands inside the side wall');
+  assert.ok(cam.position[1] < HALL.roofY - 0.6);
   assert.ok(cam.target[2] < cam.position[2] - 10);
-  assert.ok(layout.cameraPresets.corner.position[0] > LOUNGE.floorX0);
-  assert.ok(layout.cameraPresets.corner.position[0] < LOUNGE.floorX1);
+  const corner = layout.cameraPresets.corner;
+  assert.ok(corner.position[0] > LOUNGE.floorX0);
+  assert.ok(corner.position[0] < LOUNGE.floorX1);
+  assert.ok(corner.position[2] > LOUNGE.floorZ0 && corner.position[2] < LOUNGE.floorZ1);
+  assert.ok(corner.position[1] < LOUNGE.soffitY);
   const detail = layout.cameraPresets.detail;
   assert.ok(Math.abs(detail.target[2] - tee) < 2.5);
+  assert.ok(detail.position[2] < HALL.z1 - 0.8);
+  assert.ok(detail.position[0] > HALL.x0 + 0.35);
+  assert.ok(detail.position[1] < HALL.roofY - 0.5);
   assert.equal(layout.cameraPresets.close, undefined);
+  assert.ok(HALL.z1 > frame().halfL + 2.4, 'home end wall sits behind the cameras');
+  assert.ok(HALL.z0 < -frame().halfL - 0.4);
 });
 
 test('shared GLBs and vendor are repo-root references', () => {
