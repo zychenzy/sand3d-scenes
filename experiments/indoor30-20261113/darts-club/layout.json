@@ -1,0 +1,371 @@
+{
+  "meta": {
+    "title": "Oche Hall",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 12.6,
+      "depth": 10,
+      "height": 3.22
+    },
+    "darts": {
+      "bullHeight": 1.73,
+      "throwDistance": 2.37,
+      "diagonalPublished": 2.93,
+      "diagonalExact": 2.9342,
+      "boardDiameter": 0.451,
+      "doubleOuter": 0.17,
+      "trebleOuter": 0.1074,
+      "ringWidth": 0.008,
+      "innerBullDiameter": 0.0127,
+      "outerBullDiameter": 0.0318,
+      "ocheHeight": 0.038,
+      "ocheLength": 0.61,
+      "boardFaceZ": -4.878,
+      "ocheBackZ": -2.508,
+      "laneCenters": [
+        -3,
+        -1,
+        1,
+        3
+      ],
+      "corridorHalf": 0.66
+    },
+    "notes": [
+      "Four steel-tip lanes on the back wall. Bull at 1.73 m. The back of each 610 mm oche is 2.37 m from the board face.",
+      "Throw corridors and the stance behind the oche stay clear of the high table, stools, spectator chairs, and scoring stands.",
+      "The high table is the communal poseur table behind the lanes. It is not a bar counter and there is no pool table."
+    ]
+  },
+  "shell": {
+    "clearColor": "#d7d1c6",
+    "fogColor": "#d7d1c6",
+    "fogNear": 20,
+    "fogFar": 42
+  },
+  "camera": {
+    "fov": 40,
+    "position": [
+      -0.85,
+      1.5,
+      4.55
+    ],
+    "target": [
+      -0.9,
+      1.22,
+      -2.5
+    ]
+  },
+  "cameraPresets": {
+    "default": {
+      "position": [
+        -0.85,
+        1.5,
+        4.55
+      ],
+      "target": [
+        -0.9,
+        1.22,
+        -2.5
+      ]
+    },
+    "corner": {
+      "position": [
+        -5.7,
+        1.68,
+        5.35
+      ],
+      "target": [
+        -1,
+        1.14,
+        -0.6
+      ]
+    },
+    "close": {
+      "position": [
+        -1,
+        1.8,
+        -3.958
+      ],
+      "target": [
+        -1,
+        1.8,
+        -4.878
+      ]
+    },
+    "detail": {
+      "position": [
+        -1,
+        1.8,
+        -3.958
+      ],
+      "target": [
+        -1,
+        1.8,
+        -4.878
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#fff4e6",
+      "ground": "#8d7862",
+      "intensity": 0.6
+    },
+    "key": {
+      "color": "#fff3e4",
+      "intensity": 1.02,
+      "position": [
+        4.8,
+        7.6,
+        4.6
+      ],
+      "shadowExtent": 9
+    },
+    "fill": {
+      "color": "#d7e0ea",
+      "intensity": 0.26,
+      "position": [
+        -5.2,
+        4.4,
+        2.4
+      ]
+    },
+    "spots": [
+      {
+        "color": "#fff1d4",
+        "intensity": 9,
+        "distance": 3.4,
+        "angle": 0.4,
+        "penumbra": 0.42,
+        "decay": 1.6,
+        "position": [
+          -3,
+          2.74,
+          -4.178
+        ],
+        "target": [
+          -3,
+          1.73,
+          -4.878
+        ]
+      },
+      {
+        "color": "#fff1d4",
+        "intensity": 9,
+        "distance": 3.4,
+        "angle": 0.4,
+        "penumbra": 0.42,
+        "decay": 1.6,
+        "position": [
+          -1,
+          2.74,
+          -4.178
+        ],
+        "target": [
+          -1,
+          1.73,
+          -4.878
+        ]
+      },
+      {
+        "color": "#fff1d4",
+        "intensity": 9,
+        "distance": 3.4,
+        "angle": 0.4,
+        "penumbra": 0.42,
+        "decay": 1.6,
+        "position": [
+          1,
+          2.74,
+          -4.178
+        ],
+        "target": [
+          1,
+          1.73,
+          -4.878
+        ]
+      },
+      {
+        "color": "#fff1d4",
+        "intensity": 9,
+        "distance": 3.4,
+        "angle": 0.4,
+        "penumbra": 0.42,
+        "decay": 1.6,
+        "position": [
+          3,
+          2.74,
+          -4.178
+        ],
+        "target": [
+          3,
+          1.73,
+          -4.878
+        ]
+      }
+    ]
+  },
+  "assets": {
+    "square_table": {
+      "glb": "../../../workshop/assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 1.14
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.75
+    },
+    "dining_chair": {
+      "glb": "../../../restaurant/assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 1
+    },
+    "pendant_lamp": {
+      "glb": "../../../cafe/assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.45
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.1
+    },
+    "library_lamp": {
+      "glb": "../../../library/assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.4
+    },
+    "wall_shelf": {
+      "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.8
+    }
+  },
+  "instances": [
+    {
+      "id": "high_table",
+      "kind": "square_table",
+      "position": [
+        1.45,
+        0,
+        1.55
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "stool_n",
+      "kind": "bar_stool",
+      "position": [
+        1.45,
+        0,
+        0.69
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "stool_s",
+      "kind": "bar_stool",
+      "position": [
+        1.45,
+        0,
+        2.41
+      ],
+      "rotationY": 3.141593
+    },
+    {
+      "id": "stool_e",
+      "kind": "bar_stool",
+      "position": [
+        2.31,
+        0,
+        1.55
+      ],
+      "rotationY": -1.570796
+    },
+    {
+      "id": "stool_w",
+      "kind": "bar_stool",
+      "position": [
+        0.59,
+        0,
+        1.55
+      ],
+      "rotationY": 1.570796
+    },
+    {
+      "id": "watch_a",
+      "kind": "dining_chair",
+      "position": [
+        -4.35,
+        0,
+        1.15
+      ],
+      "rotationY": 1.570796
+    },
+    {
+      "id": "watch_b",
+      "kind": "dining_chair",
+      "position": [
+        -4.35,
+        0,
+        2.15
+      ],
+      "rotationY": 1.570796
+    },
+    {
+      "id": "pend_a",
+      "kind": "pendant_lamp",
+      "position": [
+        1.17,
+        2.42,
+        1.5
+      ],
+      "rotationY": 0.2
+    },
+    {
+      "id": "pend_b",
+      "kind": "pendant_lamp",
+      "position": [
+        1.73,
+        2.42,
+        1.59
+      ],
+      "rotationY": -0.3
+    },
+    {
+      "id": "mug_a",
+      "kind": "cup_mug",
+      "position": [
+        1.67,
+        1.14,
+        1.67
+      ],
+      "rotationY": 0.4
+    },
+    {
+      "id": "mug_b",
+      "kind": "cup_mug",
+      "position": [
+        1.75,
+        1.14,
+        1.45
+      ],
+      "rotationY": -0.6
+    },
+    {
+      "id": "lamp",
+      "kind": "library_lamp",
+      "position": [
+        1.81,
+        1.14,
+        1.29
+      ],
+      "rotationY": -0.4
+    },
+    {
+      "id": "shelf",
+      "kind": "wall_shelf",
+      "position": [
+        -6.07,
+        1.38,
+        1.9
+      ],
+      "rotationY": 1.570796
+    }
+  ]
+}
