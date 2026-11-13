@@ -50,12 +50,20 @@ Loom’s notes on the first stills, and what changed:
 - **Close.** Shaped cheek, steel roller, spoked wheel with a brass grip, blankets, and a sheet on the bed.
 - **Unlit.** Same framing as default, flat color, quiet floor grain, no shadows.
 
+## Bench pass
+
+- Inking and paper tops are thick maple benches with aprons, square legs, and a lower shelf. The dining-table meshes are hidden.
+- Both seats are shop stools: round wood, four straight legs, a foot rail. The cafe tulip and the dining chair are hidden.
+- A paper cart with a BFK stack stands in the left foreground, outside the entry aisle.
+- The corner camera is in closer, so the benches and the wash fill that frame. The ceiling stays closed. The north wall is not striped.
+- The default still shows the drying racks, the press, and the edition board. Fov is 56.
+
 ## Still wrong, or only good enough
 
 - The cheeks are one extruded profile. The wheel is still a torus, the roller a cylinder, the bed a plate. See `refs/GAP.md`.
-- Inking and paper stations are dining tables. Ink tins are recolored jam jars. The brayer handles are dowels.
+- The visible benches and stools are built from boxes and cylinders. Ink tins are still recolored jam jars. The brayer handles are dowels.
 - Glass, the soaking tray, and the window glass are opaque or barely transparent.
 - The north wall between the flat files and the wash is bare. Beams no longer stripe it. Filling it would put storage on the paper/solvent path.
 - The sink itself is only in the corner frame. The default view gets the east cart, not the basin.
 - The ferric label is a small card. At corner distance it reads as a label, not as the letters FeCl3.
-- No printer, no rolling bed, no running water. The open floor is the crank stance plus the entry aisle.
+- No printer, no rolling bed, no running water. The center of the default frame is still open floor. That is the entry aisle, and a closer camera loses the drying racks. The paper cart sits beside it, not in it.

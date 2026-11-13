@@ -823,12 +823,94 @@ function buildPlant(g, layout) {
   }
 }
 
+function buildBench(g, x, z, w, d, topY) {
+  const maple = toon('#b4835a');
+  const apron = toon('#6b4630');
+  const leg = toon('#3e2c22');
+  const topT = 0.06;
+  addBox(g, w, topT, d, maple, x, topY - topT / 2 - 0.002, z);
+  const bandY = topY - 0.018;
+  addBox(g, w + 0.03, 0.028, 0.03, apron, x, bandY, z + d / 2);
+  addBox(g, w + 0.03, 0.028, 0.03, apron, x, bandY, z - d / 2);
+  addBox(g, 0.03, 0.028, d, apron, x - w / 2, bandY, z);
+  addBox(g, 0.03, 0.028, d, apron, x + w / 2, bandY, z);
+  const apronH = 0.14;
+  const apronY = topY - topT - apronH / 2;
+  addBox(g, w - 0.1, apronH, 0.028, apron, x, apronY, z + d / 2 - 0.05);
+  addBox(g, w - 0.1, apronH, 0.028, apron, x, apronY, z - d / 2 + 0.05);
+  addBox(g, 0.028, apronH, d - 0.12, apron, x - w / 2 + 0.06, apronY, z);
+  addBox(g, 0.028, apronH, d - 0.12, apron, x + w / 2 - 0.06, apronY, z);
+  const legTop = topY - topT - apronH;
+  const insetX = w / 2 - 0.09;
+  const insetZ = d / 2 - 0.09;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, 0.07, legTop, 0.07, leg, x + sx * insetX, legTop / 2, z + sz * insetZ);
+    }
+  }
+  const railY = 0.16;
+  addBox(g, w - 0.28, 0.028, 0.028, leg, x, railY, z + insetZ);
+  addBox(g, w - 0.28, 0.028, 0.028, leg, x, railY, z - insetZ);
+  addBox(g, 0.028, 0.028, d - 0.28, leg, x + insetX, railY, z);
+  addBox(g, 0.028, 0.028, d - 0.28, leg, x - insetX, railY, z);
+  addBox(g, w - 0.28, 0.03, d - 0.28, toon('#8d6240'), x, 0.28, z);
+}
+
+function buildShopStool(g, x, z, seatY, seat) {
+  const wood = toon('#a56b3e');
+  const steel = toon('#2f3438');
+  addCyl(g, seat, seat, 0.04, wood, x, seatY, z, 20);
+  addCyl(g, seat * 0.72, seat * 0.72, 0.012, toon('#6b4428'), x, seatY - 0.02, z, 16);
+  const span = seat * 0.72;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, 0.032, seatY - 0.02, 0.032, steel, x + sx * span, (seatY - 0.02) / 2, z + sz * span);
+    }
+  }
+  const rail = span * 1.15;
+  addBox(g, rail * 2, 0.016, 0.016, steel, x, 0.18, z - rail);
+  addBox(g, rail * 2, 0.016, 0.016, steel, x, 0.18, z + rail);
+  addBox(g, 0.016, 0.016, rail * 2, steel, x - rail, 0.18, z);
+  addBox(g, 0.016, 0.016, rail * 2, steel, x + rail, 0.18, z);
+}
+
+function buildPaperCart(g, layout) {
+  const c = zone(layout, 'paperCart');
+  const steel = toon('#6a737a');
+  const dark = toon('#2c3136');
+  addBox(g, c.w, 0.035, c.d, dark, c.x, 0.46, c.z);
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, 0.035, 0.44, 0.035, steel, c.x + sx * (c.w / 2 - 0.04), 0.22, c.z + sz * (c.d / 2 - 0.04));
+      addCyl(g, 0.04, 0.04, 0.03, dark, c.x + sx * (c.w / 2 - 0.04), 0.03, c.z + sz * (c.d / 2 - 0.04), 10);
+    }
+  }
+  addBox(g, 0.02, 0.42, 0.02, steel, c.x - c.w / 2 + 0.04, 0.68, c.z + c.d / 2);
+  addBox(g, 0.02, 0.42, 0.02, steel, c.x + c.w / 2 - 0.04, 0.68, c.z + c.d / 2);
+  addCyl(g, 0.012, 0.012, c.w - 0.08, toon('#c4a574'), c.x, 0.9, c.z + c.d / 2, 8, [0, 0, Math.PI / 2]);
+  const tones = ['#f4efe4', '#e7dcc8', '#f7f1e6', '#efe4d0'];
+  tones.forEach((col, i) => {
+    addBox(g, c.w - 0.12, 0.012, c.d - 0.1, toon(col), c.x, 0.49 + i * 0.014, c.z, [0, (i - 1.5) * 0.02, 0]);
+  });
+  const tag = addBox(g, 0.16, 0.05, 0.006, toon('#ffffff', { map: label('BFK') }), c.x, 0.56, c.z + c.d / 2 - 0.02);
+  tag.castShadow = false;
+}
+
 function makeProcedural(layout) {
   const g = new THREE.Group();
   g.name = 'procedural';
   buildPress(g, layout);
+  const ink = findInst(layout, 'inking_table');
+  const paper = findInst(layout, 'paper_table');
+  buildBench(g, ink.position[0], ink.position[2], 1.64, 1.1, layout.stations.ink.top);
+  buildBench(g, paper.position[0], paper.position[2], 1.9, 1.0, 0.76);
+  const stool = findInst(layout, 'stool_ink');
+  const seat = findInst(layout, 'chair_paper');
+  buildShopStool(g, stool.position[0], stool.position[2], 0.64, 0.17);
+  buildShopStool(g, seat.position[0], seat.position[2], 0.5, 0.16);
   buildInkSlab(g, layout);
   buildPaperTable(g, layout);
+  buildPaperCart(g, layout);
   buildFlatFiles(g, layout);
   buildRack(g, zone(layout, 'rackA'), [
     { x: -0.68, rod: 0, w: 0.42, h: 0.52, tex: 'roofs', twist: 0.04, curl: 0.05 },
@@ -909,12 +991,25 @@ function dressMugs(props) {
   });
 }
 
+function hideFurniture(node) {
+  node.traverse((o) => {
+    if (!o.isMesh) return;
+    o.visible = false;
+    o.castShadow = false;
+    o.receiveShadow = false;
+    o.userData.noShadow = true;
+  });
+}
+
 function onReady({ props }) {
   props.traverse((node) => {
     if (node.name === 'portfolios') dressBookcase(node);
     if (node.name === 'edition_board') dressBoard(node);
     if (node.name === 'shelf_wash') dressShelf(node);
     if (node.name === 'pendant_ink') dressPendant(node);
+    if (node.name === 'inking_table' || node.name === 'paper_table' || node.name === 'stool_ink' || node.name === 'chair_paper') {
+      hideFurniture(node);
+    }
   });
   dressMugs(props);
 }
