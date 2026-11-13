@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { boot, toon, addBox, addCyl, makeCutawayShell } from './scene_lib.js';
+import { boot, toon, addBox, addCyl, makeCutawayShell, applyShading } from './scene_lib.js';
 
 const labelCache = new Map();
 
@@ -77,54 +77,87 @@ function makeShell(layout) {
   const innerB = -D / 2 + 0.08;
   const innerL = -W / 2 + 0.08;
 
+  g.traverse((obj) => {
+    if (!obj.isMesh || !obj.geometry?.parameters) return;
+    const p = obj.geometry.parameters;
+    if (p.height === 0.08 && p.width > 5 && p.depth > 5) {
+      obj.geometry.dispose();
+      obj.geometry = new THREE.BoxGeometry(p.width, 0.014, p.depth);
+      obj.position.y = -0.007;
+      obj.userData.noShadow = true;
+      obj.userData.receiveShadow = true;
+    }
+  });
+
   const tileA = toon('#d4c4aa');
   const tileB = toon('#c2b093');
   const grout = toon('#a89880');
-  const tw = 0.58;
-  const nx = Math.ceil((W - 0.4) / tw);
-  const nz = Math.ceil((D - 0.4) / tw);
+  const tw = 0.56;
+  const margin = 0.06;
+  const nx = Math.floor((W - margin * 2) / tw);
+  const nz = Math.floor((D - margin * 2) / tw);
+  const ox = -((nx - 1) * tw) / 2;
+  const oz = -((nz - 1) * tw) / 2;
   for (let iz = 0; iz < nz; iz++) {
     for (let ix = 0; ix < nx; ix++) {
-      const x = -W / 2 + 0.28 + ix * tw;
-      const z = -D / 2 + 0.28 + iz * tw;
-      quiet(addBox(g, tw - 0.025, 0.008, tw - 0.025, (ix + iz) % 2 ? tileB : tileA, x, 0.006, z));
+      quiet(addBox(g, tw - 0.018, 0.008, tw - 0.018, (ix + iz) % 2 ? tileB : tileA, ox + ix * tw, 0.006, oz + iz * tw));
     }
   }
-  quiet(addBox(g, W - 0.2, 0.004, 0.012, grout, 0, 0.012, innerB + 0.02));
+  quiet(addBox(g, W - 0.16, 0.004, 0.012, grout, 0, 0.012, innerB + 0.02));
 
   const panel = toon('#6a7c88');
   const inset = toon('#7d8e99', { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
-  const spanX = W - 0.7;
+  const wood = toon('#5c3d2e');
+  const panelH = 1.02;
+  const panelY = 0.56;
+  const railY = 1.12;
+  const backZ = innerB + 0.03;
+  const leftX = innerL + 0.03;
+  const xEnd = W / 2 - 0.28;
+  const zEnd = D / 2 - 0.28;
+  quiet(addBox(g, 0.09, panelH, 0.09, panel, leftX, panelY, backZ));
   const nBack = 8;
+  const bw = (xEnd - (leftX + 0.06)) / nBack;
   for (let i = 0; i < nBack; i++) {
-    const x = -W / 2 + 0.4 + (i + 0.5) * (spanX / nBack);
-    quiet(addBox(g, spanX / nBack - 0.05, 1.02, 0.04, panel, x, 0.58, innerB + 0.03));
-    quiet(addBox(g, spanX / nBack - 0.12, 0.86, 0.015, inset, x, 0.58, innerB + 0.05));
+    const x = leftX + 0.06 + (i + 0.5) * bw;
+    quiet(addBox(g, bw - 0.04, panelH, 0.04, panel, x, panelY, backZ));
+    quiet(addBox(g, bw - 0.1, panelH - 0.16, 0.012, inset, x, panelY, backZ + 0.018));
   }
-  const spanZ = D - 0.8;
-  const nLeft = 6;
+  const nLeft = 7;
+  const ld = (zEnd - (backZ + 0.06)) / nLeft;
   for (let i = 0; i < nLeft; i++) {
-    const z = -D / 2 + 0.45 + (i + 0.5) * (spanZ / nLeft);
-    quiet(addBox(g, 0.04, 1.02, spanZ / nLeft - 0.05, panel, innerL + 0.03, 0.58, z));
-    quiet(addBox(g, 0.015, 0.86, spanZ / nLeft - 0.12, inset, innerL + 0.05, 0.58, z));
+    const z = backZ + 0.06 + (i + 0.5) * ld;
+    quiet(addBox(g, 0.04, panelH, ld - 0.04, panel, leftX, panelY, z));
+    quiet(addBox(g, 0.012, panelH - 0.16, ld - 0.1, inset, leftX + 0.018, panelY, z));
   }
-  addBox(g, W - 0.3, 0.06, 0.05, toon('#5c3d2e'), 0, 1.12, innerB + 0.04);
-  addBox(g, 0.05, 0.06, D - 0.3, toon('#5c3d2e'), innerL + 0.04, 1.12, 0);
+  addBox(g, xEnd - leftX, 0.055, 0.06, wood, (leftX + xEnd) / 2, railY, backZ);
+  addBox(g, 0.06, 0.055, zEnd - backZ, wood, leftX, railY, (backZ + zEnd) / 2);
+  addBox(g, 0.1, 0.055, 0.1, wood, leftX, railY, backZ);
+  quiet(addBox(g, xEnd - leftX + 0.02, 0.09, 0.028, wood, (leftX + xEnd) / 2, 0.045, backZ + 0.01));
+  quiet(addBox(g, 0.028, 0.09, zEnd - backZ, wood, leftX + 0.01, 0.045, (backZ + zEnd) / 2));
 
-  const steel = toon('#4e555c');
-  const soffit = toon('#efe8da');
-  quiet(addBox(g, W - 0.8, 0.08, 2.4, soffit, -0.3, H - 0.08, -2.2));
-  for (const x of [-3.4, -1.6, 0.3, 2.2]) {
-    quiet(addBox(g, 0.06, 0.12, 2.3, steel, x, H - 0.16, -2.15));
+  const ceilMat = toon('#f4efe6', { emissive: '#f6f0e4', emissiveIntensity: 0.92, side: THREE.DoubleSide });
+  const ceilUnder = H - 0.09;
+  quiet(addBox(g, W - 0.1, 0.07, D - 0.1, ceilMat, -0.02, H - 0.05, -0.02));
+  const cornY = H - 0.1;
+  quiet(addBox(g, xEnd - leftX + 0.04, 0.07, 0.07, wood, (leftX + xEnd) / 2, cornY, backZ));
+  quiet(addBox(g, 0.07, 0.07, zEnd - backZ, wood, leftX, cornY, (backZ + zEnd) / 2));
+  quiet(addBox(g, 0.1, 0.07, 0.1, wood, leftX, cornY, backZ));
+  quiet(addBox(g, 0.08, H - 0.04, 0.1, wood, W / 2 - 0.03, (H - 0.04) / 2, -D / 2 + 0.02));
+  quiet(addBox(g, 0.1, H - 0.04, 0.08, wood, -W / 2 + 0.02, (H - 0.04) / 2, D / 2 - 0.03));
+
+  const beam = toon('#5e656c');
+  for (const z of [-2.55, -0.35, 1.7]) {
+    quiet(addBox(g, W - 0.7, 0.05, 0.06, beam, -0.08, ceilUnder - 0.025, z));
   }
-  quiet(addBox(g, W - 1.2, 0.08, 0.08, steel, -0.4, H - 0.2, 0.35));
 
   const tube = toon('#fff6dd', { emissive: '#ffe7b0', emissiveIntensity: 0.85 });
   const housing = toon('#2e3338');
-  quiet(addBox(g, 1.5, 0.05, 0.14, housing, -2.05, 2.72, -2.7));
-  quiet(addBox(g, 1.32, 0.012, 0.06, tube, -2.05, 2.69, -2.7));
-  quiet(addBox(g, 1.15, 0.05, 0.14, housing, 2.45, 2.7, -2.65));
-  quiet(addBox(g, 0.98, 0.012, 0.06, tube, 2.45, 2.67, -2.65));
+  const hy = ceilUnder - 0.03;
+  quiet(addBox(g, 1.5, 0.04, 0.14, housing, -2.05, hy, -2.55));
+  quiet(addBox(g, 1.32, 0.01, 0.06, tube, -2.05, hy - 0.026, -2.55));
+  quiet(addBox(g, 1.15, 0.04, 0.14, housing, 2.35, hy, -2.45));
+  quiet(addBox(g, 0.98, 0.01, 0.06, tube, 2.35, hy - 0.026, -2.45));
 
   const ao = toon('#2a241c', { transparent: true, opacity: 0.16, depthWrite: false });
   quiet(addBox(g, W - 0.4, 0.04, 0.06, ao, 0, 0.03, innerB));
@@ -152,27 +185,27 @@ function stereoScope(g, x, y, z) {
   grp.name = 'solder_scope';
   addBox(grp, 0.18, 0.02, 0.12, toon('#2c3136'), 0, 0.01, 0);
   addCyl(grp, 0.016, 0.02, 0.34, toon('#3e464e'), -0.02, 0.19, -0.02, 12);
-  addBox(grp, 0.26, 0.018, 0.02, toon('#535c64'), 0.1, 0.35, -0.01);
-  addCyl(grp, 0.02, 0.02, 0.028, toon('#2a3034'), 0.2, 0.35, 0.0, 10);
-  addCyl(grp, 0.012, 0.014, 0.08, toon('#2e353c'), 0.2, 0.29, 0.03, 10);
-  addBox(grp, 0.1, 0.055, 0.06, toon('#1b2126'), 0.2, 0.24, 0.05);
-  addCyl(grp, 0.012, 0.018, 0.045, toon('#c6a15a'), 0.2, 0.19, 0.05, 10);
+  addBox(grp, 0.28, 0.018, 0.02, toon('#535c64'), 0.11, 0.35, 0.01);
+  addCyl(grp, 0.02, 0.02, 0.028, toon('#2a3034'), 0.24, 0.35, 0.02, 10);
+  addCyl(grp, 0.012, 0.014, 0.08, toon('#2e353c'), 0.24, 0.29, 0.07, 10);
+  addBox(grp, 0.1, 0.055, 0.06, toon('#1b2126'), 0.24, 0.24, 0.09);
+  addCyl(grp, 0.012, 0.018, 0.045, toon('#c6a15a'), 0.24, 0.19, 0.09, 10);
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(0.026, 0.0045, 8, 16),
     toon('#fff4d4', { emissive: '#ffd7a4', emissiveIntensity: 1 }),
   );
   ring.rotation.x = Math.PI / 2;
-  ring.position.set(0.2, 0.172, 0.045);
+  ring.position.set(0.24, 0.172, 0.085);
   grp.add(quiet(ring));
   for (const dx of [-0.024, 0.024]) {
-    const eye = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.07, 10), toon('#14181c'));
-    eye.position.set(0.2 + dx, 0.3, 0.08);
-    eye.rotation.x = -0.7;
+    const eye = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.07, 10), toon('#e8ebef'));
+    eye.position.set(0.24 + dx, 0.3, 0.1);
+    eye.rotation.x = -0.55;
     eye.castShadow = true;
     grp.add(eye);
-    addCyl(grp, 0.013, 0.013, 0.012, toon('#c5ccd2'), 0.2 + dx, 0.332, 0.11, 8);
+    addCyl(grp, 0.016, 0.016, 0.014, toon('#f7f8f6'), 0.24 + dx, 0.328, 0.132, 8);
   }
-  const knob = addCyl(grp, 0.011, 0.011, 0.016, toon('#c6a15a'), 0.248, 0.24, 0.045, 8);
+  const knob = addCyl(grp, 0.011, 0.011, 0.016, toon('#c6a15a'), 0.288, 0.24, 0.085, 8);
   knob.rotation.z = Math.PI / 2;
   grp.position.set(x, y, z);
   g.add(grp);
@@ -544,8 +577,9 @@ function shelfDevices(g, layout) {
 
 function pendantCord(g, layout) {
   const p = layout.instances.find((i) => i.id === 'pendant');
-  const H = layout.meta.room.height;
-  addCyl(g, 0.006, 0.006, H - p.position[1] - 0.15, toon('#2a241c'), p.position[0], (H + p.position[1]) / 2, p.position[2], 6);
+  const y0 = p.position[1] + 0.2;
+  const y1 = layout.meta.room.height - 0.09;
+  addCyl(g, 0.006, 0.006, y1 - y0, toon('#2a241c'), p.position[0], (y0 + y1) / 2, p.position[2], 6);
 }
 
 function foliage(g, x, y, z) {
@@ -562,7 +596,7 @@ function makeProcedural(layout) {
   const top = layout.anchors.benchTop;
 
   addBox(g, 1.2, 0.008, 0.42, toon('#1f6b45'), s.x - 0.05, top + 0.006, s.z + 0.04);
-  stereoScope(g, s.x - 0.35, top, s.z + 0.02);
+  stereoScope(g, s.x - 0.36, top, s.z + 0.1);
   fumeExtractor(g, s.x + 0.62, top, s.z - 0.02);
   solderStation(g, s.x + 0.15, top + 0.008, s.z + 0.08);
   phoneTray(g, s.x - 0.05, top + 0.01, s.z + 0.16);
@@ -608,6 +642,32 @@ boot({
   makeProcedural,
   readyText: 'ready — electronics repair · drag orbit · U unlit · T toon',
   onReady(sceneApi) {
+    const meter = sceneApi.scene.getObjectByName('meter');
+    if (meter) {
+      let face = null;
+      meter.traverse((obj) => {
+        if (obj.isMesh && (obj.name || '').toLowerCase() === 'dark_face') face = obj;
+      });
+      if (face) {
+        face.geometry.computeBoundingBox();
+        const bb = face.geometry.boundingBox;
+        const sz = bb.getSize(new THREE.Vector3());
+        const thin = sz.x <= sz.y && sz.x <= sz.z ? 'x' : sz.y <= sz.z ? 'y' : 'z';
+        const lcd = new THREE.Mesh(
+          new THREE.PlaneGeometry(sz.x * 0.62, sz.z * 0.2),
+          toon('#123c28', { emissive: '#c6ff9a', emissiveIntensity: 1.2, side: THREE.DoubleSide }),
+        );
+        lcd.rotation.x = Math.PI / 2;
+        const outward = thin === 'y' ? bb.max.y + sz.y : thin === 'x' ? bb.max.x + sz.x : bb.max.z + sz.z;
+        lcd.position.set(bb.getCenter(new THREE.Vector3()).x, thin === 'y' ? outward : bb.getCenter(new THREE.Vector3()).y, bb.min.z + sz.z * 0.27);
+        if (thin === 'x') lcd.position.x = outward;
+        if (thin === 'z') lcd.position.z = outward;
+        lcd.name = 'meter_readout';
+        face.add(lcd);
+        const mode = (document.getElementById('mode')?.textContent || 'TOON').toLowerCase();
+        applyShading(lcd, mode.includes('unlit') ? 'unlit' : 'toon');
+      }
+    }
     window.__bounds = (name) => {
       const obj = sceneApi.scene.getObjectByName(name);
       if (!obj) return null;

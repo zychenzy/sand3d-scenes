@@ -40,7 +40,7 @@
     { "id": "mug", "kind": "cup_mug", "position": [-2.72, 0.752, -3.32], "rotationY": 0.4 },
 
     { "id": "chair_test", "kind": "dining_chair", "position": [2.45, 0, -2.28], "rotationY": 3.1416 },
-    { "id": "meter", "kind": "multimeter", "position": [2.05, 0.772, -3.22], "rotationY": -0.4 },
+    { "id": "meter", "kind": "multimeter", "position": [-1.66, 0.752, -2.98], "rotationY": 0.35 },
 
     { "id": "stool_staff", "kind": "bar_stool", "position": [-0.55, 0, 0.62], "rotationY": 0 },
     { "id": "chair_customer_l", "kind": "dining_chair", "position": [-1.9, 0, 2.28], "rotationY": 3.1416 },

@@ -351,6 +351,18 @@ export async function boot(opts) {
           });
         }
         markLamps(prepared);
+        if (kind === 'multimeter') {
+          prepared.traverse((obj) => {
+            if (!obj.isMesh || (obj.name || '').toLowerCase() !== 'display') return;
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            for (const m of mats) {
+              if (!m) continue;
+              if (m.color) m.color.set('#123528');
+              m.emissive = new THREE.Color('#b6ffb0');
+              m.emissiveIntensity = 0.75;
+            }
+          });
+        }
         applyShading(prepared, shadingMode);
         prototypes[kind] = prepared;
       } catch (err) {
