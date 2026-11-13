@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Salle Montjoie — paired fencing pistes",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 12.82, "depth": 18.45, "height": 5.08 },
+    "notes": [
+      "Two FIE pistes, 14 m by 1.50 m, with a 2.90 m referee aisle and 2 m runbacks.",
+      "Armory on the left wall. Coach bay and lesson board on the right. Score machines sit 1.45 m off the outer edges."
+    ]
+  },
+  "assets": {
+    "museum_bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "wall_shelf": { "glb": "../../../library/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.56 },
+    "foil": { "glb": "./assets/foil.glb", "targetHeight": 1.1036 },
+    "epee": { "glb": "./assets/epee.glb", "targetHeight": 1.1246 },
+    "sabre": { "glb": "./assets/sabre.glb", "targetHeight": 1.0688 },
+    "mask": { "glb": "./assets/mask.glb", "targetHeight": 0.36 },
+    "weapon_rack": { "glb": "./assets/weapon_rack.glb", "targetHeight": 1.18 },
+    "scoring_box": { "glb": "./assets/scoring_box.glb", "targetHeight": 0.217 }
+  },
+  "instances": [
+    { "id": "bench_near_l", "kind": "museum_bench", "position": [-5.35, 0, 8.55], "rotationY": 1.5708 },
+    { "id": "bench_near_r", "kind": "museum_bench", "position": [5.55, 0, 8.55], "rotationY": 1.5708 },
+    { "id": "bench_side", "kind": "museum_bench", "position": [4.95, 0, -5.6], "rotationY": 0 },
+    { "id": "glove_shelf", "kind": "wall_shelf", "position": [-6.02, 0.78, 2.65], "rotationY": 1.5708 },
+    { "id": "weapon_rack", "kind": "weapon_rack", "position": [-6.09, 0.46, -1.6], "rotationY": 1.5708 },
+    { "id": "score_a", "kind": "scoring_box", "position": [-4.55, 1.02, 6.2], "rotationY": 1.5708 },
+    { "id": "score_b", "kind": "scoring_box", "position": [4.55, 1.02, 6.2], "rotationY": -1.5708 },
+    { "id": "foil_1", "kind": "foil", "position": [-6.035, 1.075, -0.97], "rotationY": 0.04 },
+    { "id": "foil_2", "kind": "foil", "position": [-6.035, 1.075, -1.15], "rotationY": -0.03 },
+    { "id": "foil_3", "kind": "foil", "position": [-6.035, 1.075, -1.33], "rotationY": 0.06 },
+    { "id": "epee_1", "kind": "epee", "position": [-6.035, 1.075, -1.69], "rotationY": 0.05 },
+    { "id": "epee_2", "kind": "epee", "position": [-6.035, 1.075, -1.87], "rotationY": -0.04 },
+    { "id": "sabre_1", "kind": "sabre", "position": [-6.035, 1.075, -2.05], "rotationY": 1.5708 },
+    { "id": "sabre_2", "kind": "sabre", "position": [-6.035, 1.075, -2.23], "rotationY": 1.5708 },
+    { "id": "mask_1", "kind": "mask", "position": [-6.05, 1.42, -0.55], "rotationY": 1.5708 },
+    { "id": "mask_2", "kind": "mask", "position": [-6.05, 1.42, 1.8], "rotationY": 1.5708 },
+    { "id": "mask_3", "kind": "mask", "position": [-6.05, 1.42, 2.25], "rotationY": 1.5708 },
+    { "id": "mask_4", "kind": "mask", "position": [-6.05, 1.42, 2.7], "rotationY": 1.5708 },
+    { "id": "mask_5", "kind": "mask", "position": [-6.05, 1.42, 3.15], "rotationY": 1.5708 },
+    { "id": "mask_6", "kind": "mask", "position": [-6.05, 1.42, 3.6], "rotationY": 1.5708 },
+    { "id": "mask_7", "kind": "mask", "position": [-6.05, 1.42, 4.05], "rotationY": 1.5708 }
+  ],
+  "shell": {
+    "floorColor": "#c9a36e",
+    "wallColor": "#f3efe6",
+    "clearColor": "#d7d4cc",
+    "fogColor": "#d7d4cc",
+    "fogNear": 20,
+    "fogFar": 42
+  },
+  "camera": { "fov": 78, "position": [0.0, 1.22, 10.05], "target": [0.0, 0.38, 0.6] },
+  "cameraPresets": {
+    "corner": { "fov": 50, "position": [3.15, 1.46, 2.15], "target": [5.85, 1.15, -0.15] },
+    "close": { "fov": 44, "position": [-4.6, 1.64, -1.05], "target": [-6.12, 1.66, -1.08] }
+  },
+  "lights": {
+    "hemi": { "sky": 16775914, "ground": 14269480, "intensity": 0.72 },
+    "key": {
+      "color": 16775396,
+      "intensity": 1.42,
+      "position": [5.2, 13.2, 7.4],
+      "target": [-0.4, 0.9, -0.6],
+      "shadow": 14
+    },
+    "fill": { "color": 14019050, "intensity": 0.16, "position": [-8, 7.5, 1] }
+  },
+  "acceptance": {
+    "shots": ["toon default", "toon corner", "toon close", "unlit"],
+    "must_read": [
+      "Two copper pistes with on-guard lines, a broken centre line, rear limits, and burgundy warning zones.",
+      "Weapon rack, hanging masks, and a glove shelf on the armory wall.",
+      "A scoring box with red and green lamps beside each piste, outside the runback.",
+      "Coach table and wall-side stool facing the strips, a wall diagram, and the coach's box on the floor."
+    ]
+  }
+}
