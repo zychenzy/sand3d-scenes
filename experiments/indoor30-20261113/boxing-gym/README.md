@@ -15,7 +15,7 @@ Open `http://127.0.0.1:8794/`.
 
 - `T` hard-stepped toon (default) · `U` unlit (`MeshBasicMaterial`)
 - `?mode=unlit`
-- `?cam=corner` from the open side, along the ropes
+- `?cam=corner` inside the room, along the ropes
 - `?cam=detail` (alias `?cam=close`) on the back wall: timer, bell, and a speed-bag platform
 - `?shot=1` hides the HUD for captures
 

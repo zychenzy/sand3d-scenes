@@ -167,15 +167,52 @@ test('instances are unique, on known assets, and inside the shell', () => {
     assert.ok(inst.position[1] >= 0 && inst.position[1] < room.height);
   }
   assert.ok(layout.cameraPresets.corner && layout.cameraPresets.detail && layout.cameraPresets.close);
-  const outside = (p) => p[0] > room.width / 2 || p[2] > room.depth / 2;
-  assert.equal(outside(layout.camera.position), true);
-  assert.equal(outside(layout.cameraPresets.corner.position), true);
+  const interior = (p) =>
+    p[0] > -room.width / 2 + 0.35 &&
+    p[0] < room.width / 2 - 0.35 &&
+    p[2] > -room.depth / 2 + 0.35 &&
+    p[2] < room.depth / 2 - 0.35 &&
+    p[1] > 1.35 &&
+    p[1] < layout.architecture.ceilingY - 0.4;
+  assert.equal(interior(layout.camera.position), true, 'default camera is inside the room');
+  assert.equal(interior(layout.cameraPresets.corner.position), true, 'corner camera is inside the room');
+  assert.ok(layout.camera.target[2] < layout.camera.position[2] - 1.5, 'default camera looks toward the back wall');
+  assert.ok(layout.camera.target[0] < layout.camera.position[0] - 1.5);
+  assert.ok(layout.cameraPresets.corner.target[2] < layout.cameraPresets.corner.position[2] - 1);
   const detail = layout.cameraPresets.detail.position;
   const ring = layout.architecture.ring;
   const half = ring.inside / 2 + ring.apron;
   const platform = aabb(ring.cx, ring.cz, half, half);
+  for (const p of [layout.camera.position, layout.cameraPresets.corner.position]) {
+    assert.ok(gap(platform, aabb(p[0], p[2], 0.15, 0.15)) >= 0.4, 'camera stands off the apron');
+  }
   assert.ok(gap(platform, aabb(detail[0], detail[2], 0.05, 0.05)) >= 0.45, 'detail camera stands off the apron');
   const backInner = -room.depth / 2 + layout.architecture.wallT / 2;
   assert.ok(detail[2] > backInner + 0.8 && detail[2] < ring.cz - half, 'detail camera is in front of the speed bags');
   assert.equal(layout.lights.points.length, 4);
+});
+
+test('stairs match the apron height and the rail meets the apron', () => {
+  const ring = layout.architecture.ring;
+  const stairs = layout.architecture.stairs;
+  const rise = ring.deckY / stairs.count;
+  assert.ok(stairs.count >= 6, 'enough treads for a 0.98 m apron');
+  assert.ok(rise >= 0.14 && rise <= 0.175, `rise ${rise.toFixed(3)}`);
+  assert.ok(stairs.run >= 0.26 && stairs.run <= 0.32, `run ${stairs.run}`);
+  const pitch = (Math.atan(rise / stairs.run) * 180) / Math.PI;
+  assert.ok(pitch >= 28 && pitch <= 34, `pitch ${pitch.toFixed(1)}`);
+  const comfort = 2 * rise + stairs.run;
+  assert.ok(comfort >= 0.58 && comfort <= 0.66, `2R+G ${comfort.toFixed(3)}`);
+  assert.ok(stairs.railHeight >= 0.85 && stairs.railHeight <= 1.0);
+  const apronZ = ring.cz + ring.inside / 2 + ring.apron;
+  const bottomZ = apronZ + stairs.run * (stairs.count - 0.5);
+  assert.ok(bottomZ < layout.meta.room.depth / 2 - 0.7, 'flight ends before the open edge');
+  const src = readFileSync(join(root, 'boxing.js'), 'utf8');
+  assert.match(src, /deckY \/ count/);
+  assert.match(src, /architecture\.stairs/);
+  assert.match(src, /rail-apron/);
+  assert.match(src, /addScaledVector\(dir, 0\.11\)/);
+  assert.match(src, /addScaledVector\(dir, -0\.11\)/);
+  assert.match(src, /addBox\(g, W, 0\.08, D, toon\(PAL\.ceil\), 0, ceilY, 0\)/);
+  assert.match(src, /corner-pads/);
 });

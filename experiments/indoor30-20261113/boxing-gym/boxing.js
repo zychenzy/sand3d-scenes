@@ -304,6 +304,7 @@ function makeShell(layout) {
 
   addClerestory(g, layout);
   addCeiling(g, layout, ceilY);
+  addReturns(g, layout);
 
   const base = tag(addBox(g, W, 0.08, 0.08, toon(PAL.woodDark), 0, 0.04, -D / 2 + wallT / 2 + 0.02), { receiveOnly: true });
   base.name = 'baseboard-back';
@@ -343,19 +344,53 @@ function addClerestory(g, layout) {
 
 function addCeiling(g, layout, ceilY) {
   const { width: W, depth: D } = layout.meta.room;
-  const slab = tag(
-    addBox(g, W * 0.9, 0.07, 3.4, toon(PAL.ceil), -0.35, ceilY, -4.2),
-    { receiveOnly: true }
-  );
+  const slab = tag(addBox(g, W, 0.08, D, toon(PAL.ceil), 0, ceilY, 0), { receiveOnly: true });
   slab.name = 'ceiling';
   const joist = toon(PAL.beam);
   for (const z of [-4.7, -3.4, -2.1, -0.55, 0.95, 2.35]) {
-    const beam = addBox(g, W * 0.7, 0.08, 0.07, joist, -0.9, ceilY - 0.08, z);
+    const beam = addBox(g, W * 0.7, 0.08, 0.07, joist, -0.9, ceilY - 0.1, z);
     tag(beam, { noShadow: true });
   }
   for (const x of [-4.4, -0.6, 2.4]) {
-    tag(addBox(g, 0.12, 0.16, D * 0.62, toon(PAL.steelDeep), x, ceilY - 0.16, -0.7), { noShadow: true });
+    tag(addBox(g, 0.12, 0.16, D * 0.62, toon(PAL.steelDeep), x, ceilY - 0.18, -0.7), { noShadow: true });
   }
+}
+
+function addReturns(g, layout) {
+  const { width: W, depth: D, height: H } = layout.meta.room;
+  const wallT = layout.architecture.wallT;
+  const ceilY = layout.architecture.ceilingY;
+  const ret = 0.78;
+  const plaster = toon(PAL.plaster);
+  const returns = new THREE.Group();
+  returns.name = 'returns';
+  const backRight = tag(
+    addBox(returns, wallT, H, ret, plaster, W / 2 - wallT / 2, H / 2, -D / 2 + ret / 2),
+    { receiveOnly: true }
+  );
+  backRight.name = 'return-back';
+  const frontLeft = tag(
+    addBox(returns, ret, H, wallT, plaster, -W / 2 + ret / 2, H / 2, D / 2 - wallT / 2),
+    { receiveOnly: true }
+  );
+  frontLeft.name = 'return-front';
+  const bead = beadTexture();
+  bead.repeat.set(1, 1);
+  tag(
+    addBox(returns, wallT + 0.04, 1.22, ret - 0.04, toon('#ffffff', { map: bead }), W / 2 - wallT / 2 - 0.02, 0.61, -D / 2 + ret / 2),
+    { receiveOnly: true }
+  );
+  const beadFront = beadTexture();
+  tag(
+    addBox(returns, ret - 0.04, 1.22, wallT + 0.04, toon('#ffffff', { map: beadFront }), -W / 2 + ret / 2, 0.61, D / 2 - wallT / 2 - 0.02),
+    { receiveOnly: true }
+  );
+  const fascia = toon(PAL.woodDark);
+  tag(addBox(returns, 0.07, 0.14, D, fascia, W / 2 - 0.035, 0.03, 0), { receiveOnly: true });
+  tag(addBox(returns, W, 0.14, 0.07, fascia, 0, 0.03, D / 2 - 0.035), { receiveOnly: true });
+  tag(addBox(returns, 0.1, 0.1, D, toon(PAL.ceil), W / 2 - 0.05, ceilY - 0.09, 0), { noShadow: true });
+  tag(addBox(returns, W, 0.1, 0.1, toon(PAL.ceil), 0, ceilY - 0.09, D / 2 - 0.05), { noShadow: true });
+  g.add(returns);
 }
 
 function makeProcedural(layout) {
@@ -447,12 +482,15 @@ function addRing(g, layout) {
     sz,
   }));
   const steel = toon(PAL.steel);
-  const padH = ring.postAbove - 0.04;
+  const pads = new THREE.Group();
+  pads.name = 'corner-pads';
+  root.add(pads);
   for (const c of corners) {
-    addCyl(root, 0.055, 0.06, deckY - 0.04, steel, c.x, (deckY - 0.04) / 2, c.z, 10);
-    const pad = addCyl(root, 0.09, 0.09, padH - 0.02, toon(c.color), c.x, deckY + 0.03 + (padH - 0.02) / 2, c.z, 12);
-    pad.name = 'post';
-    addBox(root, 0.2, 0.05, 0.2, toon(PAL.steelDeep), c.x, deckY + ring.postAbove, c.z);
+    addCyl(root, 0.04, 0.045, deckY - 0.04, steel, c.x, (deckY - 0.04) / 2, c.z, 10);
+    addCornerCushion(pads, c, deckY, ring);
+    const stub = ring.postAbove - (ring.ropeAbove[3] + 0.08);
+    addCyl(root, 0.038, 0.038, stub, steel, c.x, deckY + ring.ropeAbove[3] + 0.08 + stub / 2, c.z, 10);
+    addBox(root, 0.16, 0.045, 0.16, toon(PAL.steelDeep), c.x, deckY + ring.postAbove, c.z);
   }
 
   const ropeMat = toon(PAL.rope);
@@ -504,28 +542,62 @@ function addRing(g, layout) {
   g.add(root);
 }
 
+function addCornerCushion(pads, c, deckY, ring) {
+  const padMat = toon(c.color);
+  const pipe = toon(PAL.canvas);
+  const armLen = 0.3;
+  const armT = 0.13;
+  const padBottom = deckY + 0.015;
+  const padTop = deckY + ring.ropeAbove[3] + 0.08;
+  const padH = padTop - padBottom;
+  const y = padBottom + padH / 2;
+  const alongX = -c.sx;
+  const alongZ = -c.sz;
+  const xArmX = c.x + alongX * 0.07;
+  const xArmZ = c.z + c.sz * 0.015;
+  const zArmX = c.x + c.sx * 0.015;
+  const zArmZ = c.z + alongZ * 0.07;
+  addBox(pads, armLen, padH, armT, padMat, xArmX, y, xArmZ);
+  addBox(pads, armT, padH, armLen, padMat, zArmX, y, zArmZ);
+  addCyl(pads, 0.07, 0.07, padH, padMat, c.x + c.sx * 0.04, y, c.z + c.sz * 0.04, 14);
+  for (const t of [0.22, 0.78]) {
+    const wy = padBottom + padH * t;
+    addBox(pads, armLen + 0.012, 0.022, armT + 0.016, pipe, xArmX, wy, xArmZ);
+    addBox(pads, armT + 0.016, 0.022, armLen + 0.012, pipe, zArmX, wy, zArmZ);
+  }
+}
+
 function addSteps(root, layout, rig) {
   const { half, cx, cz, deckY } = rig;
+  const spec = layout.architecture.stairs;
+  const count = spec.count;
+  const run = spec.run;
+  const rise = deckY / count;
   const steps = new THREE.Group();
   steps.name = 'steps';
-  const treads = 4;
-  const rise = deckY / treads;
-  const run = 0.2;
-  const width = 0.9;
-  const x = cx + 1.2;
-  for (let i = 0; i < treads; i++) {
-    const z = cz + half + run * (i + 0.45);
-    const top = rise * (i + 1);
+  const width = spec.width;
+  const x = cx + spec.xOffset;
+  const apronZ = cz + half;
+  for (let i = 0; i < count; i++) {
+    const z = apronZ + run * (i + 0.55);
+    const top = deckY - i * rise;
     const tread = addBox(steps, width, 0.04, run * 0.92, toon(PAL.woodLite), x, top - 0.02, z);
     tread.castShadow = true;
-    const riser = addBox(steps, width - 0.06, rise - 0.045, 0.04, toon(PAL.wood), x, top - rise / 2, z - run * 0.32);
+    const riser = addBox(steps, width - 0.04, Math.max(0.04, rise - 0.045), 0.035, toon(PAL.wood), x, top - rise / 2, z - run * 0.46);
     riser.castShadow = true;
   }
-  const railX = x + width / 2 + 0.03;
-  const z0 = cz + half + 0.08;
-  const z1 = cz + half + run * treads - 0.05;
-  addPole(steps, railX, rise * 0.4, z0, railX, deckY + 0.78, z1, 0.016, toon(PAL.steel));
-  addCyl(steps, 0.018, 0.018, deckY + 0.78, toon(PAL.steel), railX, (deckY + 0.78) / 2, z1, 8);
+  const railX = x + width / 2 + 0.045;
+  const topZ = apronZ + 0.02;
+  const topY = deckY + spec.railHeight;
+  const bottomZ = apronZ + run * (count - 0.5);
+  const bottomY = rise + spec.railHeight;
+  const steel = toon(PAL.steel);
+  const newelH = topY - (deckY - 0.22);
+  const newel = addCyl(steps, 0.022, 0.022, newelH, steel, railX, (topY + deckY - 0.22) / 2, topZ, 8);
+  newel.name = 'rail-apron';
+  addBox(steps, 0.07, 0.1, 0.1, steel, railX, deckY - 0.06, apronZ);
+  addCyl(steps, 0.022, 0.022, bottomY, steel, railX, bottomY / 2, bottomZ, 8);
+  addPole(steps, railX, topY, topZ, railX, bottomY, bottomZ, 0.016, steel);
   root.add(steps);
 }
 

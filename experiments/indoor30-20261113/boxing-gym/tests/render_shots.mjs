@@ -18,7 +18,7 @@ const shots = [
   { name: 'boxing_unlit', file: 'unlit_default.png', query: 'shot=1&mode=unlit', mode: 'unlit' },
 ];
 
-const names = ['ring', 'ring-canvas', 'bag_a', 'bag_b', 'bag_c', 'speed_a', 'speed_b', 'glove_rack', 'timer', 'stool_red', 'stool_blue', 'steps', 'bench_l', 'bench_r', 'wrap_shelf'];
+const names = ['ring', 'ring-canvas', 'bag_a', 'bag_b', 'bag_c', 'speed_a', 'speed_b', 'glove_rack', 'timer', 'stool_red', 'stool_blue', 'steps', 'bench_l', 'bench_r', 'wrap_shelf', 'ceiling', 'corner-pads', 'rail-apron'];
 
 function wait(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -209,6 +209,21 @@ try {
     if (!ring || ring[1] < 2.2 || ring[1] > 2.9 || ring[0] > 7.6) {
       throw new Error('ring bounds ' + JSON.stringify(ring));
     }
+    const ceiling = probe.bounds.ceiling;
+    const ceilW = ceiling.max[0] - ceiling.min[0];
+    const ceilD = ceiling.max[2] - ceiling.min[2];
+    if (ceilW < 14 || ceilD < 11.8) throw new Error('ceiling does not cover the room ' + JSON.stringify(ceiling));
+    const pads = probe.bounds['corner-pads'];
+    const padSpan = pads.max[0] - pads.min[0];
+    if (padSpan < 4.9 || padSpan > 5.8) throw new Error('corner pads ' + JSON.stringify(pads));
+    if (pads.max[1] < canvas.max[1] + 1.35 || pads.min[1] < canvas.max[1] - 0.05) {
+      throw new Error('pads do not cover the rope turns ' + JSON.stringify(pads));
+    }
+    const rail = probe.bounds['rail-apron'];
+    if (rail.min[2] > canvas.max[2] + 0.2 || rail.max[2] < canvas.max[2] - 0.02) {
+      throw new Error('handrail misses the apron ' + JSON.stringify(rail));
+    }
+    if (rail.max[1] < canvas.max[1] + 0.8) throw new Error('handrail is short of the apron ' + JSON.stringify(rail));
     for (const id of ['bag_a', 'bag_b', 'bag_c']) {
       if (overlaps(probe.bounds[id], probe.bounds.ring, 0.05)) throw new Error(`${id} intersects the ring`);
     }

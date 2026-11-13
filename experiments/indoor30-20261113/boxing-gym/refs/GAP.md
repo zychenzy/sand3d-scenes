@@ -23,7 +23,7 @@ The sand3d compiler is not installed here (`sand3d` is not on PyPI), so these pr
 
 ## Closed in this scene
 
-- Raised ring with four ropes, turnbuckles, rope spacers, coloured corner pads, red and blue stools, steps, and an empty centre circle.
+- Raised ring with four ropes, turnbuckles buried in padded corner cushions, rope spacers, red and blue stools, a six-riser flight that meets the apron, and an empty centre circle. The ceiling is a full slab over the existing truss.
 - Three heavy bags with a rubber lane, a strike depth, and a walk to the apron.
 - Two speed-bag platforms with a standing mat in front of each.
 - Glove pegs, wrap rolls on the catalog shelf, round timer, bell, bout card, water stoop.

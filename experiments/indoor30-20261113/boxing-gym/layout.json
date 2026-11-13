@@ -32,7 +32,8 @@
       }
     ],
     "notes": [
-      "Cutaway drops the front (+Z) and right (+X) walls. Back wall is clerestory plaster over beadboard. Left wall is the bag line.",
+      "Back and left walls are clerestory plaster over beadboard. The front and right stay open, finished with returns, and the ceiling covers the whole room over the truss.",
+      "Cameras stand inside the shell and look toward the solid walls.",
       "Not a weights room: no racks, plates, kettlebells, or cardio.",
       "GLBs and Three.js are relative symlinks into gym/ and cafe/. Nothing outside this folder is written."
     ]
@@ -77,6 +78,13 @@
     "stools": {
       "inset": 0.62,
       "coach": { "x": 3.55, "z": 1.2 }
+    },
+    "stairs": {
+      "count": 6,
+      "run": 0.28,
+      "width": 0.88,
+      "xOffset": 0.85,
+      "railHeight": 0.9
     },
     "ceilingY": 4.12
   },
@@ -136,14 +144,14 @@
     "fogFar": 38
   },
   "camera": {
-    "fov": 48,
-    "position": [8.35, 3.05, 7.55],
-    "target": [-1.15, 1.15, 0.15]
+    "fov": 46,
+    "position": [5.35, 1.78, 4.5],
+    "target": [-1.7, 1.12, -0.75]
   },
   "cameraPresets": {
     "corner": {
-      "position": [7.7, 2.45, 2.4],
-      "target": [-1.05, 1.2, -0.15]
+      "position": [3.35, 1.5, 4.9],
+      "target": [-1.55, 1.1, -0.55]
     },
     "detail": {
       "position": [0.55, 2.12, -3.82],
