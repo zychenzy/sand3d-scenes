@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Late Corner convenience store",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.8, "depth": 8.4, "height": 3.12 },
+    "readyText": "ready — late-night convenience store · T toon · U unlit",
+    "notes": [
+      "Cutaway interior only. Back wall is -Z, left wall is -X, front and right stay open.",
+      "Glass-door coolers, two gondolas, a hot-food counter, checkout, and a window ledge.",
+      "No bakery oven and no diner booths."
+    ]
+  },
+  "shell": {
+    "floorColor": "#cfc6b4",
+    "wallColor": "#e6e0d4",
+    "ceilingColor": "#d5d8dc",
+    "trimColor": "#8d8478",
+    "bumperColor": "#4e585c",
+    "frameColor": "#d5d8dc",
+    "nightGlass": "#2c3a4e",
+    "clearColor": "#d4cfc4",
+    "fogColor": "#d4cfc4",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "zones": {
+    "fridges": { "x0": -5.15, "count": 4, "w": 0.96, "gap": 0.05, "d": 0.68, "h": 2.02, "z": -3.84 },
+    "stockDoor": { "x": -0.48, "w": 0.86, "h": 2.05 },
+    "gondolas": [
+      { "id": "gondola-a", "x": -3.28, "w": 0.96, "h": 1.55, "z0": -2.42, "z1": 0.88 },
+      { "id": "gondola-b", "x": -1.24, "w": 0.96, "h": 1.55, "z0": -2.42, "z1": 0.88 }
+    ],
+    "wallBay": { "x": -5.11, "d": 0.42, "h": 1.62, "z0": -2.42, "z1": 0.7 },
+    "hot": { "x0": 0.35, "x1": 2.45, "z": -3.82, "d": 0.68, "h": 0.9 },
+    "checkout": { "x0": 2.62, "x1": 3.42, "z0": -0.15, "z1": 2.3, "h": 0.92 },
+    "ledge": { "x": -5.11, "d": 0.38, "h": 1.04, "z0": 1.92, "z1": 3.42 },
+    "window": { "z0": 1.55, "z1": 3.55, "y0": 0.85, "y1": 2.35 },
+    "wordmark": { "x": -3.16, "y": 2.48, "w": 1.35, "h": 0.22 },
+    "lights": [
+      { "x": -4.33, "y": 2.9, "z": -0.75, "len": 2.5 },
+      { "x": -2.26, "y": 2.9, "z": -0.75, "len": 2.5 },
+      { "x": 1.35, "y": 2.84, "z": -2.85, "len": 1.5, "warm": true },
+      { "x": 2.4, "y": 2.86, "z": 1.05, "len": 1.35 }
+    ]
+  },
+  "aisles": [
+    { "id": "left", "min": [-4.84, -2.32], "max": [-3.82, 0.78], "minClear": 0.95 },
+    { "id": "mid", "min": [-2.74, -2.32], "max": [-1.78, 0.78], "minClear": 0.9 },
+    { "id": "back", "min": [-4.8, -3.38], "max": [2.3, -2.52], "minClear": 0.8 },
+    { "id": "front", "min": [-4.7, 1.02], "max": [2.4, 1.78], "minClear": 0.7 },
+    { "id": "till", "min": [1.7, -0.05], "max": [2.5, 2.15], "minClear": 0.75 }
+  ],
+  "assets": {
+    "cash_register": {
+      "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.36
+    },
+    "pos_terminal": {
+      "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb",
+      "targetHeight": 0.2,
+      "fit": [0.18, 0.14, 0.16],
+      "tints": { "screen": "#1a4552", "screen.001": "#163e4c" }
+    },
+    "bar_stool": {
+      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
+      "targetHeight": 0.76,
+      "tints": { "cushioned_top": "#3e4a46", "stepped_foot": "#2a302e" }
+    },
+    "cup_mug": {
+      "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.11
+    },
+    "jam_jar": {
+      "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.13
+    },
+    "thermos": {
+      "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26
+    },
+    "flowerpot": {
+      "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.24
+    }
+  },
+  "instances": [
+    {
+      "id": "register",
+      "kind": "cash_register",
+      "position": [3.02, 0.94, 1.85],
+      "rotationY": -1.5708,
+      "facing": "-X",
+      "frontLocal": "+Z"
+    },
+    {
+      "id": "pos",
+      "kind": "pos_terminal",
+      "position": [3.02, 0.94, 1.15],
+      "rotationY": -1.5708,
+      "facing": "-X",
+      "frontLocal": "+Z"
+    },
+    {
+      "id": "ledge_stool_a",
+      "kind": "bar_stool",
+      "position": [-4.42, 0, 2.28],
+      "rotationY": -1.5708,
+      "facing": "-X",
+      "frontLocal": "+Z",
+      "contact": [0.24, 0.24]
+    },
+    {
+      "id": "ledge_stool_b",
+      "kind": "bar_stool",
+      "position": [-4.42, 0, 3.05],
+      "rotationY": -1.5708,
+      "facing": "-X",
+      "frontLocal": "+Z",
+      "contact": [0.24, 0.24]
+    },
+    {
+      "id": "clerk_stool",
+      "kind": "bar_stool",
+      "position": [3.92, 0, 1.05],
+      "rotationY": -1.5708,
+      "facing": "-X",
+      "frontLocal": "+Z",
+      "contact": [0.24, 0.24]
+    },
+    {
+      "id": "ledge_mug_a",
+      "kind": "cup_mug",
+      "position": [-5.08, 1.08, 2.45],
+      "rotationY": 0.4
+    },
+    {
+      "id": "ledge_mug_b",
+      "kind": "cup_mug",
+      "position": [-5.12, 1.08, 2.85],
+      "rotationY": -0.6
+    },
+    {
+      "id": "hot_thermos",
+      "kind": "thermos",
+      "position": [1.85, 0.96, -3.72],
+      "rotationY": 0.2
+    },
+    {
+      "id": "hot_jar",
+      "kind": "jam_jar",
+      "position": [0.72, 0.96, -3.68],
+      "rotationY": 0.5
+    },
+    {
+      "id": "window_plant",
+      "kind": "flowerpot",
+      "position": [-4.7, 0, 3.72],
+      "rotationY": 0.3,
+      "contact": [0.14, 0.14]
+    }
+  ],
+  "footprints": {
+    "cash_register": { "radius": 0.2 },
+    "pos_terminal": { "radius": 0.14 },
+    "bar_stool": { "radius": 0.24 },
+    "cup_mug": { "radius": 0.06 },
+    "jam_jar": { "radius": 0.07 },
+    "thermos": { "radius": 0.09 },
+    "flowerpot": { "radius": 0.12 }
+  },
+  "camera": {
+    "fov": 48,
+    "position": [0.85, 2.48, 6.85],
+    "target": [-0.7, 1.05, -1.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [4.55, 1.82, 4.6],
+      "target": [-2.8, 1.02, 0.85]
+    },
+    "detail": {
+      "position": [-3.64, 1.16, -2.62],
+      "target": [-3.64, 1.0, -3.75]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15133426, "ground": 6963800, "intensity": 0.48 },
+    "key": {
+      "color": 16775400,
+      "intensity": 0.74,
+      "position": [2.4, 8.4, 6.6],
+      "shadowSpan": 12,
+      "bias": -0.00022,
+      "normalBias": 0.05
+    },
+    "fill": { "color": 13424632, "intensity": 0.22, "position": [-4.5, 4.2, 2.4] }
+  }
+}
