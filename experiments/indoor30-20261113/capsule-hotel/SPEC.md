@@ -1,6 +1,6 @@
 # SPEC — Koya sleeping floor
 
-Units are metres. Y up. The −Z end is the open cutaway. Pods occupy the −X wall. Lockers occupy the +X wall. The grooming vanity is the +Z niche.
+Units are metres. Y up. The −Z end is a wall with an entry door. Pods occupy the −X wall. Lockers occupy the +X wall. The grooming vanity is the +Z niche.
 
 ## Body and pod
 
@@ -16,8 +16,8 @@ One ladder per bay, on the +Z jamb, 0.34 m wide. Four rungs at 0.28 m spacing, s
 
 ## Circulation
 
-Corridor clear, from the ladder's outer rail to the locker face, is about 1.24 m. The kept walking strip is 1.02 m wide (`x` 0.10 to 1.12), from the open end to a standing spot in front of the vanity. Ceiling is 2.48 m. The vanity counter is 0.88 m high. The path samples do not enter a ladder, a locker, or the counter.
+Corridor clear, from the ladder's outer rail to the locker face, is about 1.24 m. The kept walking strip is 1.02 m wide (`x` 0.10 to 1.12), from just inside the entry door to a standing spot in front of the vanity. Ceiling is 2.48 m. The vanity counter is 0.88 m high. The path samples do not enter a ladder, a locker, or the counter.
 
 ## Light
 
-Default shading is a 4-step toon gradient and a hard shadow map. Open berths carry a warm point near the bedding plus the baked sconce. Closed curtains keep a warm leak at the sill so the opening is not a black hole. Unlit mode swaps to `MeshBasicMaterial` and keeps the same colors. The mirror bars stay unshaded so they read in both modes.
+Default shading is a 4-step toon gradient and a hard shadow map. Each berth has a small warm point at the sconce, stronger when the curtain is open, so the bedding stays readable and the duvet is not a blown disc. Closed curtains keep a warm leak at the sill so the opening is not a black hole. Unlit mode swaps to `MeshBasicMaterial` and keeps the same colors. The mirror bars stay unshaded so they read in both modes. The vanity mirror uses a small painted glass map.

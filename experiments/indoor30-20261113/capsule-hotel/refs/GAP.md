@@ -18,18 +18,22 @@ The local kit has no bed, pillow, curtain, ladder, sink, or luggage locker. Thes
 
 - Rounded pod openings, not a grid of opaque boxes.
 - Bedding you can see in the open berths: mattress, baked pillow, a second sham, a soft duvet mound.
-- A reading sconce in every berth, with a warm pool only on the open and half-open ones.
+- A reading sconce in every berth. The point light sits on the shade, dim enough that the duvet, pillow, and shade all stay visible.
 - Closed curtains keep a warm sill leak so the hole is not crushed black.
+- The −Z end is a wall and an entry door, so the corner view terminates instead of opening onto empty space.
+- Curtains hang as overlapping folds from a rail, with a short gather when the berth is open.
+- The vanity mirror is a framed painted glass, and the basin is an oval bowl rather than a cylinder.
 - Ladders at 0.28 m rung spacing, 0.34 m wide, with a handhold above the upper bunk, outside the walking strip.
 - Locker bank and a vanity (counter 0.88 m, mirror, sink, cup, jar, bottle, shelf).
 - Hard 4-step toon by default, and a real unlit pass.
 
 ## Still open
 
-- Curtains are a rounded panel plus a few cylinders for the gather. They are not cloth, and the gather can read as a flat orange or blue slab when the camera is close.
-- The duvet is one soft mound and a roll, not a tucked sheet with a hem. The pillow is a smooth loaf, no piping.
-- The reading lamp is a plate, arm, and shade. In the detail shot the pool on the duvet is brighter than the shade itself.
-- The sink is a short cylinder. The faucet is two brass cylinders. The mirror is a pale plane with a frame, not a reflection.
+- Curtain folds are overlapping cylinders on a rail, with a scalloped hem. They are not sewn cloth. Up close the open gather is a ribbed hanging bunch.
+- The duvet is one soft mound and a roll, not a tucked sheet with a hem. The pillow is a smooth loaf, no piping. The berth light no longer blows the duvet out; the shade is the bright spot.
+- The reading lamp is a plate, arm, and shade.
+- The basin is an oval bowl with a rim and a small drain. The faucet is two brass cylinders. The mirror reflection is a painted canvas inside the frame, not a raytraced view of the hall.
+- The default camera shows the locker bank, the ladders, the near open berth, and the vanity. The nearest pod's side fascia is still a large beige plane beside that opening.
 - The cafe wall shelf, scaled to 0.36 m tall, is a book-shelf proportion sitting beside the mirror. It is not a medicine cabinet.
 - Locker doors are flat color. Unlit they sit a step darker than the toon pass because there is no light lift. They are not a photographed wood grain.
 - Hard shadows still alias along the curved rims. That is the shadow map on a curve, not a second texture.

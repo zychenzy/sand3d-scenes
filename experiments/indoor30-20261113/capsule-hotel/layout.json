@@ -78,11 +78,11 @@
     }
   },
   "shell": { "clearColor": "#d8d0c4", "fogColor": "#e3dcd0", "fogNear": 10, "fogFar": 24 },
-  "camera": { "fov": 42, "position": [0.42, 1.46, -3.7], "target": [-0.22, 0.72, -1.7] },
+  "camera": { "fov": 48, "position": [0.64, 1.4, -3.52], "target": [-0.28, 0.52, -1.45] },
   "cameraPresets": {
-    "corner": { "fov": 42, "position": [0.92, 1.58, 2.48], "target": [-0.48, 0.98, -0.7] },
-    "detail": { "fov": 36, "position": [0.78, 0.82, -2.28], "target": [-1.2, 0.52, -2.62] },
-    "close": { "fov": 36, "position": [0.78, 0.82, -2.28], "target": [-1.2, 0.52, -2.62] }
+    "corner": { "fov": 44, "position": [0.62, 1.55, 1.35], "target": [0.5, 1.22, -3.55] },
+    "detail": { "fov": 38, "position": [0.7, 0.78, -2.2], "target": [-1.05, 0.5, -2.62] },
+    "close": { "fov": 38, "position": [0.7, 0.78, -2.2], "target": [-1.05, 0.5, -2.62] }
   },
   "lights": {
     "hemi": { "sky": "#f6f1e6", "ground": "#8d8478", "intensity": 0.48 },

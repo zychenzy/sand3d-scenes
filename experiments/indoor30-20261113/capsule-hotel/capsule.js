@@ -32,7 +32,7 @@ const PAL = {
   sill: '#b08960',
   mattress: '#f7f3ea',
   sheet: '#fffdf8',
-  duvet: '#fbf7f1',
+  duvet: '#e6dcd0',
   throw: '#d7c4b0',
   brass: '#c6a36a',
   leak: '#ffc98a',
@@ -147,19 +147,6 @@ function rimShape(pod, level) {
   return shape;
 }
 
-function curtainShape(pod, level, mode) {
-  const bottom = openingBottom(pod, level) + (mode === 'closed' ? 0.045 : 0.02);
-  const top = openingBottom(pod, level) + pod.openingH - 0.02;
-  const h = top - bottom;
-  const fullW = pod.openingW - 0.04;
-  const w = mode === 'half' ? fullW * 0.46 : fullW;
-  const cx = mode === 'half' ? -fullW * 0.26 : 0;
-  const cy = bottom + h / 2;
-  const shape = new THREE.Shape();
-  rr(shape, cx, cy, w, h, Math.max(0.08, pod.openingR - 0.03), false);
-  return shape;
-}
-
 function mattressGeo(length, width, thick) {
   const shape = new THREE.Shape();
   rr(shape, 0, 0, length, width, 0.07, false);
@@ -203,7 +190,9 @@ function makeShell(layout) {
     (groom.z0 + room.maxZ) / 2,
     { name: 'soffit' },
   );
-  const runnerZ0 = room.minZ + 0.15;
+  addEnd(g, layout);
+  addBox(g, 0.025, 0.09, depth - 0.3, toon(PAL.floorEdge), room.maxX - t - 0.03, 0.045, cz, { noCast: true, name: 'baseboard' });
+  const runnerZ0 = room.minZ + 0.35;
   const runnerZ1 = groom.z0 - 0.05;
   addBox(
     g,
@@ -299,42 +288,67 @@ function addBedding(g, layout, rec) {
   );
 }
 
+function hangFolds(g, cloth, x, yBottom, yTop, z0, z1, count, name, overlap = 0.86) {
+  const span = Math.max(0.05, z1 - z0);
+  const mid = (z0 + z1) / 2;
+  addCyl(g, 0.008, 0.008, span + 0.04, toon(PAL.inkSoft), x + 0.012, yTop - 0.01, mid, 8, {
+    rotX: Math.PI / 2,
+    noCast: true,
+    name: `${name}_rail`,
+  });
+  const pitch = span / count;
+  const r = Math.min(0.046, pitch * overlap);
+  for (let i = 0; i < count; i++) {
+    const z = z0 + pitch * (i + 0.5);
+    const hem = 0.016 + (i % 2) * 0.055;
+    const h = Math.max(0.14, yTop - 0.028 - yBottom - hem);
+    const depth = (i % 2 === 0 ? 0.55 : -0.4) * r;
+    addCyl(g, r * 0.9, r, h, cloth, x + depth, yBottom + hem + h / 2, z, 10, { name });
+  }
+}
+
 function addCurtain(g, layout, rec) {
   const pod = layout.meta.pod;
   const cloth = toon(layout.meta.palette[rec.cloth] || PAL.indigo, { side: THREE.DoubleSide });
+  const y0 = openingBottom(pod, rec.level);
+  const y1 = y0 + pod.openingH;
+  const x = pod.faceX + 0.034;
+  const left = rec.z - pod.openingW / 2 + 0.05;
+  const right = rec.z + pod.openingW / 2 - 0.05;
   if (rec.curtain === 'open') {
-    const x = pod.faceX + 0.03;
-    const base = openingBottom(pod, rec.level);
-    for (let i = 0; i < 5; i++) {
-      addCyl(
-        g,
-        0.012 + (i % 2) * 0.004,
-        0.014,
-        pod.openingH - 0.06,
-        cloth,
-        x,
-        base + pod.openingH / 2,
-        rec.z - pod.openingW / 2 + 0.05 + i * 0.018,
-        8,
-        { name: `bunch_${rec.no}` },
-      );
-    }
+    hangFolds(g, cloth, x, y0, y1, left, left + 0.14, 5, `bunch_${rec.no}`, 1.35);
     return;
   }
-  const shape = curtainShape(pod, rec.level, rec.curtain);
-  const geo = extrudeYZ(shape, 0.012);
-  addMesh(g, geo, cloth, pod.faceX + 0.028, 0, rec.z, { name: `curtain_${rec.no}` });
-  if (rec.curtain === 'closed' || rec.curtain === 'half') {
-    const y = openingBottom(pod, rec.level) + 0.02;
-    const leak = new THREE.Mesh(
-      new THREE.BoxGeometry(0.01, 0.028, pod.openingW * (rec.curtain === 'half' ? 0.48 : 0.78)),
-      new THREE.MeshBasicMaterial({ color: PAL.leak }),
-    );
-    leak.position.set(pod.faceX + 0.03, y, rec.z + (rec.curtain === 'half' ? 0.16 : 0));
-    leak.userData.unshaded = true;
-    leak.userData.noCast = true;
-    g.add(leak);
+  if (rec.curtain === 'half') {
+    hangFolds(g, cloth, x, y0, y1, left, rec.z - 0.02, 8, `curtain_${rec.no}`);
+  } else {
+    hangFolds(g, cloth, x, y0, y1, left, right, 14, `curtain_${rec.no}`);
   }
+  const leak = new THREE.Mesh(
+    new THREE.BoxGeometry(0.008, 0.02, rec.curtain === 'half' ? 0.28 : 0.55),
+    new THREE.MeshBasicMaterial({ color: PAL.leak }),
+  );
+  leak.position.set(x - 0.01, y0 + 0.02, rec.curtain === 'half' ? left + 0.16 : rec.z);
+  leak.userData.unshaded = true;
+  leak.userData.noCast = true;
+  g.add(leak);
+}
+
+function addEnd(g, layout) {
+  const room = layout.meta.room;
+  const t = room.wallT;
+  const z = room.minZ + t / 2;
+  const width = room.maxX - room.minX - t * 2;
+  const cx = (room.minX + room.maxX) / 2;
+  addBox(g, width, room.height, t, toon(PAL.wall), cx, room.height / 2, z, { name: 'end-wall' });
+  const doorW = 0.9;
+  const doorH = 2.04;
+  const doorX = 0.58;
+  const face = z + t / 2 + 0.015;
+  addBox(g, doorW + 0.1, doorH + 0.08, 0.045, toon(PAL.ink), doorX, 0.04 + doorH / 2, face, { name: 'door-frame' });
+  addBox(g, doorW, doorH, 0.038, toon('#c9b79a'), doorX, 0.02 + doorH / 2, face + 0.028, { name: 'entry-door' });
+  addBox(g, 0.26, 0.46, 0.012, toon(PAL.mirror, { emissive: '#e7f2f6', emissiveIntensity: 0.22 }), doorX, 1.48, face + 0.05, { noCast: true, name: 'door-lite' });
+  addCyl(g, 0.01, 0.01, 0.24, toon(PAL.brass), doorX + doorW / 2 - 0.1, 1.02, face + 0.07, 8, { name: 'door-pull' });
 }
 
 function addLadder(g, layout, index) {
@@ -373,6 +387,49 @@ function addNumbers(g, layout) {
   });
 }
 
+function mirrorTexture() {
+  const c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 320;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#b7c9d4';
+  ctx.fillRect(0, 0, 256, 320);
+  ctx.fillStyle = '#e7e0d4';
+  ctx.fillRect(0, 36, 78, 188);
+  ctx.fillStyle = '#44558f';
+  ctx.fillRect(16, 78, 40, 52);
+  ctx.fillRect(16, 146, 40, 48);
+  ctx.fillStyle = '#e07a45';
+  ctx.fillRect(18, 208, 28, 36);
+  ctx.fillStyle = '#8c8378';
+  ctx.fillRect(0, 214, 256, 106);
+  ctx.fillStyle = '#3e4854';
+  ctx.fillRect(96, 228, 64, 92);
+  ctx.fillStyle = '#d9d3c6';
+  ctx.fillRect(188, 70, 52, 140);
+  ctx.strokeStyle = 'rgba(255,255,255,0.62)';
+  ctx.lineWidth = 8;
+  ctx.beginPath();
+  ctx.moveTo(28, 18);
+  ctx.lineTo(210, 300);
+  ctx.stroke();
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 2;
+  return tex;
+}
+
+function addBasin(g, x, y, z) {
+  const rim = new THREE.TorusGeometry(0.16, 0.018, 8, 28);
+  rim.rotateX(Math.PI / 2);
+  rim.scale(1.35, 1, 0.78);
+  addMesh(g, rim, toon('#8e9c98'), x, y + 0.055, z, { name: 'basin-rim' });
+  const bowl = new THREE.SphereGeometry(0.16, 22, 12, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+  bowl.scale(1.35, 0.42, 0.78);
+  addMesh(g, bowl, toon(PAL.basin), x, y + 0.05, z, { name: 'basin-bowl' });
+  addCyl(g, 0.02, 0.014, 0.014, toon(PAL.inkSoft), x, y + 0.018, z, 10, { noCast: true });
+}
+
 function addGroom(g, layout) {
   const room = layout.meta.room;
   const groom = layout.meta.groom;
@@ -381,15 +438,17 @@ function addGroom(g, layout) {
   const cx = (groom.counterX0 + groom.counterX1) / 2;
   addBox(g, counterW, groom.counterH - 0.04, groom.counterD, toon(PAL.shell), cx, (groom.counterH - 0.04) / 2, counterZ);
   addBox(g, counterW + 0.04, 0.035, groom.counterD + 0.04, toon(PAL.sill), cx, groom.counterH - 0.018, counterZ, { name: 'countertop' });
-  addCyl(g, 0.16, 0.14, 0.08, toon(PAL.basin), groom.sinkX, groom.counterH - 0.02, counterZ - 0.02, 20);
-  addCyl(g, 0.012, 0.012, 0.16, toon(PAL.brass), groom.sinkX, groom.counterH + 0.1, counterZ - 0.16, 8);
-  addCyl(g, 0.01, 0.01, 0.12, toon(PAL.brass), groom.sinkX, groom.counterH + 0.16, counterZ - 0.1, 8, { rotX: Math.PI / 2 });
-  addBox(g, groom.mirrorW + 0.06, groom.mirrorH + 0.06, 0.02, toon(PAL.ink), groom.sinkX, groom.mirrorY, groom.backZ - room.wallT - 0.02, { noCast: true });
+  addBasin(g, groom.sinkX, groom.counterH, counterZ - 0.14);
+  addCyl(g, 0.012, 0.012, 0.2, toon(PAL.brass), groom.sinkX, groom.counterH + 0.14, counterZ + 0.02, 8);
+  addCyl(g, 0.01, 0.01, 0.16, toon(PAL.brass), groom.sinkX, groom.counterH + 0.22, counterZ - 0.06, 8, { rotX: Math.PI / 2 });
+  const glass = mirrorTexture();
+  addBox(g, groom.mirrorW + 0.08, groom.mirrorH + 0.08, 0.035, toon(PAL.ink), groom.sinkX, groom.mirrorY, groom.backZ - room.wallT - 0.02, { noCast: true, name: 'mirror-frame' });
   const mirror = new THREE.Mesh(
     new THREE.PlaneGeometry(groom.mirrorW, groom.mirrorH),
-    toon(PAL.mirror, { emissive: '#e7f2f6', emissiveIntensity: 0.25, side: THREE.DoubleSide }),
+    toon('#ffffff', { map: glass, emissive: '#ffffff', emissiveMap: glass, emissiveIntensity: 0.4, side: THREE.FrontSide }),
   );
-  mirror.position.set(groom.sinkX, groom.mirrorY, groom.backZ - room.wallT - 0.035);
+  mirror.position.set(groom.sinkX, groom.mirrorY, groom.backZ - room.wallT - 0.045);
+  mirror.rotation.y = Math.PI;
   mirror.userData.noCast = true;
   g.add(mirror);
   addBox(g, 0.035, groom.mirrorH + 0.08, 0.03, new THREE.MeshBasicMaterial({ color: '#fff6ea' }), groom.sinkX - groom.mirrorW / 2 - 0.05, groom.mirrorY, groom.backZ - 0.1, { unshaded: true, noCast: true });

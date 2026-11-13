@@ -143,14 +143,15 @@ export function buildInstances(layout) {
 export function pointLights(layout) {
   const lights = [];
   for (const rec of podRecords(layout)) {
-    const intensity = rec.curtain === 'open' ? 0.62 : rec.curtain === 'half' ? 0.4 : 0.2;
+    const [x, y, z] = lampPosition(layout, rec);
+    const intensity = rec.curtain === 'open' ? 0.1 : rec.curtain === 'half' ? 0.07 : 0.04;
     lights.push({
       id: `pod_${rec.no}`,
       color: '#ffc48a',
       intensity,
-      distance: rec.curtain === 'closed' ? 0.9 : 1.7,
+      distance: rec.curtain === 'closed' ? 0.55 : 0.85,
       decay: 2,
-      position: [layout.meta.pod.faceX - 0.72, rec.floor + 0.42, rec.z],
+      position: [x, y + 0.04, z + 0.05],
     });
   }
   const spots = [-2.3, -0.55, 1.15];

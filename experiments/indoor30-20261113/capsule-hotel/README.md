@@ -14,9 +14,9 @@ python3 -m http.server 8874 --bind 127.0.0.1
 
 http://127.0.0.1:8874/experiments/indoor30-20261113/capsule-hotel/
 
-`T` toon (default, hard 4-step gradient, hard shadows) · `U` unlit (`MeshBasicMaterial`) · `?mode=unlit` · `?cam=corner` · `?cam=detail` · `?hud=0` hides the label.
+`T` toon (default, hard 4-step gradient, hard shadows) · `U` unlit (`MeshBasicMaterial`) · `?mode=unlit` · `?cam=corner` · `?cam=close` · `?cam=detail` · `?hud=0` hides the label.
 
-Shots in `shots/`: `toon_default.png`, `toon_corner.png`, `toon_detail.png`, `unlit_default.png`.
+Shots in `shots/`: `toon_default.png`, `toon_corner.png`, `toon_close.png`, `toon_detail.png`, `unlit_default.png`. Close and detail share the berth camera.
 
 ## Check
 

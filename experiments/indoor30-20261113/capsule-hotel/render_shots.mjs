@@ -8,12 +8,14 @@ const base = process.argv[2] || 'http://127.0.0.1:8874/experiments/indoor30-2026
 const outDir = process.argv[3] || new URL('./shots/', import.meta.url).pathname;
 mkdirSync(outDir, { recursive: true });
 
+const only = process.argv[4] || '';
 const shots = [
   ['toon_default.png', `${base}/?hud=0`],
   ['toon_corner.png', `${base}/?hud=0&cam=corner`],
-  ['toon_detail.png', `${base}/?hud=0&cam=detail`],
+  ['toon_close.png', `${base}/?hud=0&cam=close`],
+  ['toon_detail.png', `${base}/?hud=0&cam=close`],
   ['unlit_default.png', `${base}/?hud=0&mode=unlit`],
-];
+].filter((shot) => !only || shot[0].includes(only));
 
 const chrome = spawn('google-chrome', [
   '--headless=new',
