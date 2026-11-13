@@ -16,12 +16,9 @@ const repo = path.resolve(scene, '../../..');
 const layout = JSON.parse(fs.readFileSync(path.join(scene, 'layout.json'), 'utf8'));
 
 const NATIVE = {
-  museum_bench: { h: 0.456, x: 0.418, z: 1.5 },
   simple_chair: { h: 0.85, x: 0.475, z: 0.501 },
   display_bookcase: { h: 2, x: 0.834, z: 0.408 },
   wall_shelf: { h: 0.8, x: 0.701, z: 0.287 },
-  chalkboard: { h: 1.258, x: 0.434, z: 1.502 },
-  study_desk: { h: 0.649, x: 0.369, z: 1.1 },
   thermos: { h: 0.3, x: 0.09, z: 0.21 },
   cup_mug: { h: 0.09, x: 0.075, z: 0.075 },
   flowerpot: { h: 0.207, x: 0.25, z: 0.25 },
@@ -174,6 +171,42 @@ test('benches face the court and furniture stays out of the 2 m runoff', () => {
       assert.ok(inst.position[0] < runoff.x0);
     }
   }
+
+  for (const kind of ['museum_bench', 'chalkboard', 'study_desk']) {
+    assert.equal(layout.assets[kind], undefined, kind);
+    assert.equal(layout.instances.some((i) => i.kind === kind), false, kind);
+  }
+
+  const tie = layout.zones.tieBench;
+  assert.equal(tie.seatToward, 'posX');
+  assert.ok(tie.len >= 2.4, 'tie-up seating is a gym bench, not a 1.5 m museum seat');
+  const tieBox = {
+    x0: tie.x - tie.depth / 2,
+    x1: tie.x + tie.depth / 2,
+    z0: tie.z - tie.len / 2,
+    z1: tie.z + tie.len / 2,
+  };
+  assert.equal(intersects(tieBox, runoff), false, 'tie bench');
+  assert.ok(tieBox.x1 <= runoff.x0 + 1e-6, 'tie bench faces the court from outside the runoff');
+
+  const pad = layout.zones.wallPad;
+  const padBox = {
+    x0: pad.x - pad.d / 2,
+    x1: pad.x + pad.d / 2,
+    z0: pad.z - pad.len / 2,
+    z1: pad.z + pad.len / 2,
+  };
+  assert.equal(intersects(padBox, runoff), false, 'wall pad');
+  assert.ok(pad.h >= 1.1 && pad.len >= 1.8);
+
+  const rack = layout.zones.ballRack;
+  const rackBox = {
+    x0: rack.x - rack.w / 2,
+    x1: rack.x + rack.w / 2,
+    z0: rack.z - rack.d / 2,
+    z1: rack.z + rack.d / 2,
+  };
+  assert.equal(intersects(rackBox, runoff), false, 'ball rack');
 
   const home = layout.instances.find((i) => i.id === 'coach_home');
   const away = layout.instances.find((i) => i.id === 'coach_away');

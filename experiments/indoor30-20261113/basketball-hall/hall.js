@@ -216,36 +216,6 @@ function backboardTexture() {
   return srgbTexture(canvas);
 }
 
-function playTexture() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1024;
-  canvas.height = 640;
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#1f6a45';
-  ctx.fillRect(0, 0, 1024, 640);
-  ctx.strokeStyle = '#f4f1ea';
-  ctx.lineWidth = 10;
-  ctx.strokeRect(36, 36, 952, 568);
-  ctx.lineWidth = 6;
-  ctx.strokeRect(280, 70, 460, 500);
-  ctx.beginPath();
-  ctx.arc(510, 430, 90, Math.PI, 0);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(510, 250, 150, 0.4, Math.PI - 0.4);
-  ctx.stroke();
-  ctx.fillStyle = '#f4f1ea';
-  for (const [x, y] of [[510, 150], [360, 280], [660, 280], [430, 390], [590, 390]]) {
-    ctx.beginPath();
-    ctx.arc(x, y, 16, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  ctx.font = '600 42px Georgia, serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('HORNS', 512, 78);
-  return srgbTexture(canvas);
-}
-
 function scoreTexture() {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
@@ -423,6 +393,73 @@ function makeTeamBench(spec) {
   for (const tz of [-len * 0.32, len * 0.18]) {
     const towel = addBox(g, 0.22, 0.025, 0.36, toon('#f4efe6'), -0.02, seatY + 0.045, tz);
     towel.userData.noCast = true;
+  }
+  g.position.set(spec.x, 0, spec.z);
+  return g;
+}
+
+function makeTieBench(spec) {
+  const g = new THREE.Group();
+  g.name = spec.id;
+  const wood = toon(spec.color || '#b8894e');
+  const steel = toon(STEEL);
+  const seatY = 0.45;
+  const { len, depth } = spec;
+  const seat = addBox(g, depth, 0.045, len, wood, 0, seatY, 0);
+  seat.userData.noCast = true;
+  const nose = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, len - 0.06, 10), wood);
+  nose.rotation.x = Math.PI / 2;
+  nose.position.set(-depth / 2 + 0.02, seatY, 0);
+  nose.userData.noCast = true;
+  g.add(nose);
+  const back = addBox(g, 0.04, 0.26, len - 0.1, wood, depth / 2 - 0.035, seatY + 0.14, 0);
+  back.userData.noCast = true;
+  for (const tz of [-len * 0.38, -len * 0.12, len * 0.14, len * 0.38]) {
+    addBox(g, 0.035, seatY - 0.04, 0.035, steel, -depth / 2 + 0.08, (seatY - 0.04) / 2, tz);
+    addBox(g, 0.035, 0.62, 0.035, steel, depth / 2 - 0.05, 0.31, tz);
+  }
+  addBox(g, 0.025, 0.025, len - 0.4, steel, 0, 0.16, 0);
+  g.rotation.y = Math.PI;
+  g.position.set(spec.x, 0, spec.z);
+  return g;
+}
+
+function makeWallPad(spec) {
+  const g = new THREE.Group();
+  g.name = spec.id;
+  const vinyl = toon('#1e4f86');
+  const edge = toon('#163e6b');
+  const face = addBox(g, spec.d, spec.h, spec.len, vinyl, 0, 0, 0);
+  face.userData.noCast = true;
+  addBox(g, spec.d * 0.45, spec.h + 0.05, 0.05, edge, spec.d * 0.15, 0, spec.len / 2);
+  addBox(g, spec.d * 0.45, spec.h + 0.05, 0.05, edge, spec.d * 0.15, 0, -spec.len / 2);
+  addBox(g, spec.d * 0.45, 0.05, spec.len, edge, spec.d * 0.15, spec.h / 2, 0);
+  addBox(g, spec.d * 0.45, 0.05, spec.len, edge, spec.d * 0.15, -spec.h / 2, 0);
+  const stitch = addBox(g, 0.012, 0.018, spec.len - 0.16, toon('#d5e3f0'), spec.d / 2 + 0.002, 0.04, 0);
+  stitch.userData.noCast = true;
+  g.position.set(spec.x, spec.y, spec.z);
+  return g;
+}
+
+function makeBallRack(spec) {
+  const g = new THREE.Group();
+  g.name = spec.id;
+  const steel = toon(STEEL);
+  const dark = toon(STEEL_DARK);
+  const { w, d, h } = spec;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(g, 0.035, h, 0.035, steel, sx * (w / 2 - 0.03), h / 2, sz * (d / 2 - 0.04));
+    }
+  }
+  for (const y of [0.28, 0.62]) {
+    const shelf = addBox(g, w - 0.06, 0.02, d - 0.08, dark, 0, y, 0);
+    shelf.userData.noCast = true;
+    addBox(g, 0.02, 0.02, d, steel, -w / 2 + 0.02, y, 0);
+    addBox(g, 0.02, 0.02, d, steel, w / 2 - 0.02, y, 0);
+  }
+  for (const y of [0.4, 0.74]) {
+    for (const z of [-0.42, 0, 0.42]) addBall(g, 0, y, z);
   }
   g.position.set(spec.x, 0, spec.z);
   return g;
@@ -617,12 +654,13 @@ function makeProcedural(layout) {
 
   for (const ball of layout.zones.looseBalls) addBall(g, ball.x, 0.12, ball.z);
 
-  const play = new THREE.Mesh(new THREE.PlaneGeometry(1.32, 0.72), toon('#ffffff', { map: playTexture() }));
-  play.name = 'play_board';
-  play.position.set(layout.zones.play.x, layout.zones.play.y, layout.zones.play.z);
-  play.rotation.y = Math.PI / 2;
-  play.userData.noCast = true;
-  g.add(play);
+  const tie = layout.zones.tieBench;
+  g.add(makeTieBench(tie));
+  shadowBlob(g, tie.x, tie.z, tie.depth + 0.15, tie.len * 0.92, 0.28);
+  g.add(makeWallPad(layout.zones.wallPad));
+  const rack = layout.zones.ballRack;
+  g.add(makeBallRack(rack));
+  shadowBlob(g, rack.x, rack.z, rack.w + 0.15, rack.d * 0.9, 0.3);
 
   for (const shelf of layout.zones.shelfBalls) {
     addBall(g, shelf.x, shelf.y, shelf.z);
@@ -642,7 +680,7 @@ function makeProcedural(layout) {
   addSphere(g, 0.11, toon('#2f6a45'), pot.position[0], pot.position[1] + 0.34, pot.position[2], 12);
   addSphere(g, 0.07, toon('#3e7d52'), pot.position[0] + 0.05, pot.position[1] + 0.42, pot.position[2] + 0.03, 10);
 
-  for (const id of ['coach_home', 'coach_away', 'case_a', 'case_b', 'plan_desk']) {
+  for (const id of ['coach_home', 'coach_away', 'case_a', 'case_b']) {
     const inst = layout.instances.find((i) => i.id === id);
     const wide = id.startsWith('case') ? 0.7 : 0.55;
     shadowBlob(g, inst.position[0], inst.position[2], wide, id.startsWith('coach') ? 0.5 : 0.9, 0.28);
@@ -650,19 +688,8 @@ function makeProcedural(layout) {
   return g;
 }
 
-function tuneAsset(kind, root) {
-  if (kind !== 'chalkboard') return;
-  root.traverse((obj) => {
-    if (!obj.isMesh) return;
-    if (obj.name === 'panel' || obj.parent?.name === 'panel') {
-      obj.material = toon('#1f6a45');
-    }
-  });
-}
-
 boot({
   makeShell,
   makeProcedural,
-  tuneAsset,
   readyText: 'ready — court 2 practice hall · drag orbit · U unlit · T toon',
 });

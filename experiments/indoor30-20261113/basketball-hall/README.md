@@ -1,6 +1,6 @@
 # Court 2 — basketball practice hall
 
-A full FIBA practice hall: 28 m × 15 m maple, a 2 m clear runoff, wall-mounted goals, home and away benches facing the court, a scorer’s table, a ball cart, and a storage wall. It is a court, not the bag-and-rack training room in `gym/`.
+A full FIBA practice hall: 28 m × 15 m maple, a 2 m clear runoff, wall-mounted goals, home and away benches facing the court, a scorer’s table, a ball cart, and a storage wall with a tie-up bench, a wall pad, and a ball rack. It is a court, not the bag-and-rack training room in `gym/`.
 
 Three.js r170 stays in `gym/vendor`. Catalog GLBs stay in the scene folders that baked them. This folder references both. Nothing here copies those files.
 
@@ -15,7 +15,7 @@ python3 -m http.server 8813 --bind 127.0.0.1
 
 http://127.0.0.1:8813/experiments/indoor30-20261113/basketball-hall/
 
-`T` toon · `U` unlit · `?mode=unlit` · `?cam=corner` · `?cam=detail` · `?hud=0` hides the overlay.
+`T` toon · `U` unlit · `?mode=unlit` · `?cam=corner` · `?cam=detail` · `?hud=0` hides the overlay. The detail still is framed taller than the wide shots so the goal and a slice of the key fill it.
 
 ## Check
 

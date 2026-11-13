@@ -9,7 +9,7 @@
     "notes": [
       "FIBA 28 m × 15 m practice hall with a 2 m clear runoff. Goals are wall-mounted so the runoff stays open.",
       "Both team benches and the scorer’s table sit on the open sideline, facing the court, outside the 2 m line.",
-      "Storage, the coach’s board, and the plan desk are on the far sideline, also outside the runoff."
+      "Storage, a tie-up bench, a wall pad, and a ball rack are on the far sideline, also outside the runoff."
     ]
   },
   "zones": {
@@ -19,7 +19,9 @@
     ],
     "table": { "id": "scorer_table", "x": 10.2, "z": 0, "w": 2.3, "d": 0.68, "h": 0.76 },
     "cart": { "id": "ball_cart", "x": 10.7, "z": 1.9, "w": 0.98, "d": 0.74, "h": 1.05 },
-    "play": { "x": -10.12, "y": 0.98, "z": -4.2 },
+    "tieBench": { "id": "tie_bench", "x": -10.42, "z": 7.25, "len": 2.8, "depth": 0.46, "seatToward": "posX", "color": "#b8894e" },
+    "wallPad": { "id": "wall_pad", "x": -12.08, "y": 1.15, "z": -4.35, "len": 2.2, "h": 1.35, "d": 0.12 },
+    "ballRack": { "id": "ball_rack", "x": -10.85, "z": -7.9, "w": 0.52, "d": 1.45, "h": 0.95 },
     "looseBalls": [
       { "x": 0.55, "z": 10.7 },
       { "x": -0.85, "z": 6.1 }
@@ -41,12 +43,9 @@
     ]
   },
   "assets": {
-    "museum_bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.45 },
     "simple_chair": { "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.85 },
     "display_bookcase": { "glb": "../../../museum/assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 2.0 },
     "wall_shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.8 },
-    "chalkboard": { "glb": "../../../cowork/assets/chalkboard__72286e591df6.glb", "targetHeight": 1.26 },
-    "study_desk": { "glb": "../../../cowork/assets/study_desk__630f6d76cbcd.glb", "targetHeight": 0.65 },
     "thermos": { "glb": "../../../cafe/assets/thermos__c85ee7b8828b.glb", "targetHeight": 0.28 },
     "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
     "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.28 }
@@ -58,10 +57,6 @@
     { "id": "case_b", "kind": "display_bookcase", "position": [-9.93, 0, 3.15], "rotationY": -1.5707963267948966, "openToward": "posX" },
     { "id": "shelf_a", "kind": "wall_shelf", "position": [-10.22, 0, -2.35], "rotationY": -1.5707963267948966, "openToward": "posX" },
     { "id": "shelf_b", "kind": "wall_shelf", "position": [-10.22, 0, -0.85], "rotationY": -1.5707963267948966, "openToward": "posX" },
-    { "id": "coach_board", "kind": "chalkboard", "position": [-10.42, 0, -4.2], "rotationY": 0, "facing": "posX" },
-    { "id": "plan_desk", "kind": "study_desk", "position": [-10.62, 0, -8.4], "rotationY": 0, "facing": "posX" },
-    { "id": "bench_tie_a", "kind": "museum_bench", "position": [-10.48, 0, 6.55], "rotationY": 0, "sitToward": "posX" },
-    { "id": "bench_tie_b", "kind": "museum_bench", "position": [-10.48, 0, 8.35], "rotationY": 0, "sitToward": "posX" },
     { "id": "entry_plant", "kind": "flowerpot", "position": [-11.35, 0, -6.35], "rotationY": 0.4 },
     { "id": "water", "kind": "thermos", "position": [10.32, 0.76, -0.42], "rotationY": 0.6 },
     { "id": "mug_a", "kind": "cup_mug", "position": [10.08, 0.76, 0.38], "rotationY": 0.2 },
@@ -87,14 +82,14 @@
       "target": [-2.2, 1.7, 3.2]
     },
     "detail": {
-      "fov": 50,
-      "position": [0.55, 2.85, 8.15],
-      "target": [0.0, 2.15, 12.4]
+      "fov": 58,
+      "position": [0.45, 2.9, 9.0],
+      "target": [0.0, 2.2, 12.7]
     },
     "close": {
-      "fov": 50,
-      "position": [0.55, 2.85, 8.15],
-      "target": [0.0, 2.15, 12.4]
+      "fov": 58,
+      "position": [0.45, 2.9, 9.0],
+      "target": [0.0, 2.2, 12.7]
     }
   },
   "lights": {

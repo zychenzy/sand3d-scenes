@@ -128,6 +128,10 @@ try {
         bench: window.__bounds('bench_home'),
         cart: window.__bounds('ball_cart'),
         far: window.__bounds('ring_far'),
+        tie: window.__bounds('tie_bench'),
+        rack: window.__bounds('ball_rack'),
+        pad: window.__bounds('wall_pad'),
+        board: window.__bounds('coach_board'),
       };
     })()`,
     returnByValue: true,
@@ -145,7 +149,12 @@ try {
   if (Math.abs(farY - 3.05) > 0.02) throw new Error('far rim height ' + farY);
   if (info.bench.min[0] < 9.5) throw new Error('home bench enters the runoff ' + JSON.stringify(info.bench));
   if (info.cart.min[0] < 9.5) throw new Error('cart enters the runoff ' + JSON.stringify(info.cart));
-  console.log(JSON.stringify({ status: state.status, ringY, benchMinX: info.bench.min[0], cartMinX: info.cart.min[0], toon: info.toon, unlitBasic: info.unlitBasic }, null, 2));
+  if (!info.tie || info.tie.max[0] > -9.5) throw new Error('tie bench missing or inside the runoff ' + JSON.stringify(info.tie));
+  if (info.tie.max[2] - info.tie.min[2] < 2.4) throw new Error('tie bench is still a short seat ' + JSON.stringify(info.tie));
+  if (!info.rack || info.rack.max[0] > -9.5) throw new Error('ball rack missing or inside the runoff ' + JSON.stringify(info.rack));
+  if (!info.pad || info.pad.max[0] > -9.5) throw new Error('wall pad missing or inside the runoff ' + JSON.stringify(info.pad));
+  if (info.board) throw new Error('classroom board is still in the scene');
+  console.log(JSON.stringify({ status: state.status, ringY, benchMinX: info.bench.min[0], cartMinX: info.cart.min[0], tieMaxX: info.tie.max[0], toon: info.toon, unlitBasic: info.unlitBasic }, null, 2));
   ws.close();
 } finally {
   server.kill('SIGTERM');

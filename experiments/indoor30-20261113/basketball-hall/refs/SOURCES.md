@@ -14,4 +14,4 @@ Public halls used for the shell, the painted key, and the sideline furniture (no
 - https://commons.wikimedia.org/wiki/File:Athens_Olympic_Basketball_Court_score_board_2.JPG — scoreboard, Wikimedia Commons
 - https://commons.wikimedia.org/wiki/Category:Indoor_basketball_courts — Wikimedia Commons category
 
-Asset programs: Hugging Face dataset `Sandflow/sand3d-objaverse`, CC-BY-4.0, via the existing bakes named in `ATTRIBUTIONS.md`. Shapes were measured from those GLBs (bench 1.50 × 0.42 × 0.46 m, bookcase 0.83 × 0.41 × 2.00 m, chalkboard 1.50 × 0.43 × 1.26 m, chair 0.48 × 0.50 × 0.85 m). No hoop, ball, or cart is in that baked set.
+Asset programs: Hugging Face dataset `Sandflow/sand3d-objaverse`, CC-BY-4.0, via the existing bakes named in `ATTRIBUTIONS.md`. Shapes were measured from those GLBs (bookcase 0.83 × 0.41 × 2.00 m, chair 0.48 × 0.50 × 0.85 m). No hoop, ball, cart, or gym bench is in that baked set. The museum bench and the cowork chalkboard and study desk were inspected and left unused: they read as gallery and classroom furniture, not gym equipment.

@@ -13,10 +13,10 @@ const shotsDir = resolve(scene, 'shots');
 const outDir = process.env.SHOT_DIR || '/opt/cursor/artifacts';
 
 const shots = [
-  { name: 'basketball_default', file: 'toon_default.png', query: 'shot=1' },
-  { name: 'basketball_corner', file: 'toon_corner.png', query: 'shot=1&cam=corner' },
-  { name: 'basketball_detail', file: 'toon_detail.png', query: 'shot=1&cam=detail' },
-  { name: 'basketball_unlit', file: 'unlit_default.png', query: 'shot=1&mode=unlit' },
+  { name: 'basketball_default', file: 'toon_default.png', query: 'shot=1', width: 1680, height: 1050 },
+  { name: 'basketball_corner', file: 'toon_corner.png', query: 'shot=1&cam=corner', width: 1680, height: 1050 },
+  { name: 'basketball_detail', file: 'toon_detail.png', query: 'shot=1&cam=detail', width: 1200, height: 1500 },
+  { name: 'basketball_unlit', file: 'unlit_default.png', query: 'shot=1&mode=unlit', width: 1680, height: 1050 },
 ];
 
 function wait(ms) {
@@ -87,10 +87,15 @@ try {
   const { send, logs } = cdp(ws);
   await send('Page.enable');
   await send('Runtime.enable');
-  await send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: false });
   await mkdir(shotsDir, { recursive: true });
   await mkdir(outDir, { recursive: true });
   for (const shot of shots) {
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: shot.width || width,
+      height: shot.height || height,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
     const url = `http://127.0.0.1:${httpPort}/experiments/indoor30-20261113/basketball-hall/?${shot.query}`;
     await send('Page.navigate', { url });
     let state = null;
