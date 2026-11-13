@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "title": "Watchmaker repair shop",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 8.6, "depth": 7.2, "height": 3.2 },
+    "notes": [
+      "A working repair shop: two jeweler benches against the back wall, a glass intake counter, and a small waiting corner. Not a jewelry salon.",
+      "Bench tops sit at 0.96 m. Bar-stool seats land near 0.68 m so thighs clear the underside and the work is in loupe range.",
+      "Customers stand at the counter. Waiting chairs face the low table. Stools face the benches.",
+      "Local +Z is the front of chairs, the register keys, and the lamp base. Shade overhang on the library lamp is local -Z, so bench lamps use rotation pi to throw light toward the maker."
+    ]
+  },
+  "proportions": {
+    "stoolSeatFraction": 0.996,
+    "chairSeatFraction": 0.493,
+    "benchTop": 0.96,
+    "apronUnderside": 0.89,
+    "stoolTarget": 0.68,
+    "tableTarget": 0.72,
+    "chairTarget": 0.85
+  },
+  "anchors": {
+    "benchA": {
+      "x": -1.85, "z": -3.05, "w": 1.72, "d": 0.64, "h": 0.96,
+      "pedL": [-2.71, -2.25], "pedR": [-1.41, -0.99]
+    },
+    "benchB": {
+      "x": 1.05, "z": -3.05, "w": 1.48, "d": 0.62, "h": 0.96,
+      "pedL": [0.31, 0.78], "pedR": [1.52, 1.79]
+    },
+    "chest": { "x": -0.42, "z": -3.24, "w": 0.5, "d": 0.38, "h": 1.16 },
+    "counter": { "x": -0.2, "z": -0.68, "w": 2.7, "d": 0.66, "h": 1.02, "solidX": 0.7 },
+    "cabinet": { "x": 3.62, "z": -3.3, "w": 0.56, "d": 0.4, "h": 1.5 },
+    "cart": { "x": 2.9, "z": -1.9, "w": 0.46, "d": 0.34, "h": 0.7 },
+    "table": { "x": -1.9, "z": 2.55 },
+    "bookcase": { "x": -4.01, "z": -2.05 },
+    "shelfTops": [0.136, 0.52]
+  },
+  "blockers": [
+    { "id": "ped_a_l", "x0": -2.71, "x1": -2.25, "z0": -3.37, "z1": -2.73 },
+    { "id": "ped_a_r", "x0": -1.41, "x1": -0.99, "z0": -3.37, "z1": -2.73 },
+    { "id": "ped_b_l", "x0": 0.31, "x1": 0.78, "z0": -3.36, "z1": -2.74 },
+    { "id": "ped_b_r", "x0": 1.52, "x1": 1.79, "z0": -3.36, "z1": -2.74 },
+    { "id": "chest", "x0": -0.67, "x1": -0.17, "z0": -3.43, "z1": -3.05 },
+    { "id": "counter", "x0": -1.55, "x1": 1.15, "z0": -1.01, "z1": -0.35 },
+    { "id": "cabinet", "x0": 3.34, "x1": 3.9, "z0": -3.5, "z1": -3.1 },
+    { "id": "cart", "x0": 2.67, "x1": 3.13, "z0": -2.07, "z1": -1.73 }
+  ],
+  "paths": {
+    "entryToCounter": [[3.5, 2.6], [3.5, 0.2], [0.15, 0.05]],
+    "aroundCounterToBenches": [[1.8, 0.08], [1.8, -1.62], [-2.3, -1.62]]
+  },
+  "assets": {
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.68 },
+    "simple_chair": { "glb": "assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.85 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.36 },
+    "pendant_lamp": { "glb": "assets/pendant_lamp__1b528c6ab04e.glb", "targetHeight": 0.42 },
+    "square_table": { "glb": "assets/square_table__7aaf2767b5f0.glb", "targetHeight": 0.72 },
+    "cash_register": { "glb": "assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.32 },
+    "display_bookcase": { "glb": "assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 1.92, "tint": "#6a4a32" },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.64 },
+    "museum_bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "museum_vitrine": { "glb": "assets/museum_vitrine__bcc6c9850ce8.glb", "targetHeight": 0.74 },
+    "jam_jar": { "glb": "assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.11 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.075 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.28 }
+  },
+  "instances": [
+    { "id": "stool_a", "kind": "bar_stool", "position": [-1.83, 0, -2.48], "rotationY": 3.1416, "faces": "-Z" },
+    { "id": "stool_b", "kind": "bar_stool", "position": [1.17, 0, -2.48], "rotationY": 3.1416, "faces": "-Z" },
+    { "id": "chair_wait_s", "kind": "simple_chair", "position": [-1.9, 0, 1.99], "rotationY": 0, "faces": "+Z" },
+    { "id": "chair_wait_n", "kind": "simple_chair", "position": [-1.9, 0, 3.11], "rotationY": 3.1416, "faces": "-Z" },
+    { "id": "lamp_a", "kind": "library_lamp", "position": [-2.4, 0.96, -2.94], "rotationY": 3.1416, "faces": "shade-+Z" },
+    { "id": "lamp_b", "kind": "library_lamp", "position": [0.58, 0.96, -2.94], "rotationY": 3.1416, "faces": "shade-+Z" },
+    { "id": "pendant_counter", "kind": "pendant_lamp", "position": [-0.55, 2.2, -0.68], "rotationY": 0 },
+    { "id": "pendant_bench", "kind": "pendant_lamp", "position": [-1.5, 2.25, -2.2], "rotationY": 0 },
+    { "id": "pendant_wait", "kind": "pendant_lamp", "position": [-1.9, 2.18, 2.55], "rotationY": 0 },
+    { "id": "wait_table", "kind": "square_table", "position": [-1.9, 0, 2.55], "rotationY": 0 },
+    { "id": "register", "kind": "cash_register", "position": [0.92, 1.02, -0.72], "rotationY": 3.1416, "faces": "-Z" },
+    { "id": "parts_case", "kind": "display_bookcase", "position": [-4.01, 0, -2.05], "rotationY": -1.5708, "faces": "+X" },
+    { "id": "parts_shelf", "kind": "wall_shelf", "position": [2.5, 0, -3.38], "rotationY": 0 },
+    { "id": "wait_bench", "kind": "museum_bench", "position": [-3.82, 0, 0.15], "rotationY": 0, "scale": [1, 1, 0.85] },
+    { "id": "vitrine", "kind": "museum_vitrine", "position": [2.35, 0, 1.45], "rotationY": 0.15 },
+    { "id": "pot", "kind": "flowerpot", "position": [-3.5, 0, 1.25], "rotationY": 0.4 },
+    { "id": "jar_oil", "kind": "jam_jar", "position": [-2.58, 0.96, -3.22], "rotationY": 0.3 },
+    { "id": "jar_rinse", "kind": "jam_jar", "position": [1.5, 0.96, -3.2], "rotationY": -0.4 },
+    { "id": "jar_shelf_a", "kind": "jam_jar", "position": [2.36, 0.136, -3.38], "rotationY": 0.2 },
+    { "id": "jar_shelf_b", "kind": "jam_jar", "position": [2.6, 0.136, -3.38], "rotationY": 0.8 },
+    { "id": "jar_shelf_c", "kind": "jam_jar", "position": [2.48, 0.52, -3.38], "rotationY": 0.1 },
+    { "id": "mug_bench", "kind": "cup_mug", "position": [-1.32, 0.96, -3.2], "rotationY": 0.6 },
+    { "id": "mug_wait", "kind": "cup_mug", "position": [-2.12, 0.72, 2.4], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#b99262",
+    "wallColor": "#f3eadc",
+    "clearColor": "#d9d0c2",
+    "fogColor": "#d9d0c2",
+    "fogNear": 14,
+    "fogFar": 32
+  },
+  "camera": {
+    "fov": 40,
+    "position": [4.2, 2.35, 3.7],
+    "target": [-0.55, 1.05, -0.95]
+  },
+  "cameraPresets": {
+    "corner": { "position": [4.35, 2.15, 0.55], "target": [-1.15, 1.05, -1.85] },
+    "close": { "position": [-1.05, 1.7, -3.34], "target": [-2.25, 1.02, -2.78] }
+  },
+  "lights": {
+    "hemi": { "sky": 16775880, "ground": 6709344, "intensity": 0.42 },
+    "key": { "color": 16774360, "intensity": 1.35, "position": [5.2, 9.5, 5.4] },
+    "fill": { "color": 13424616, "intensity": 0.28, "position": [-6.5, 4.2, 1.2] },
+    "points": [
+      { "color": 16769168, "intensity": 0.9, "position": [-2.4, 1.28, -2.78], "distance": 2.6, "decay": 2 },
+      { "color": 16769168, "intensity": 0.85, "position": [0.58, 1.28, -2.78], "distance": 2.6, "decay": 2 },
+      { "color": 16772080, "intensity": 0.55, "position": [-0.55, 2.15, -0.68], "distance": 3.6, "decay": 2 },
+      { "color": 16772080, "intensity": 0.4, "position": [-1.5, 2.2, -2.2], "distance": 3.4, "decay": 2 },
+      { "color": 16773552, "intensity": 0.32, "position": [-1.9, 2.1, 2.55], "distance": 3.2, "decay": 2 },
+      { "color": 14739440, "intensity": 0.45, "position": [-3.9, 1.9, 1.1], "distance": 4.2, "decay": 2 }
+    ]
+  }
+}
