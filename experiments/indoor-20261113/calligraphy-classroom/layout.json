@@ -1,0 +1,1267 @@
+{
+  "meta": {
+    "title": "Calligraphy classroom",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": {
+      "width": 12.2,
+      "depth": 9.6,
+      "height": 3.36
+    },
+    "seatFraction": 0.4165,
+    "chairForward": "local +Z. rotationY 0 faces +Z. Students use π so the seat front faces the teaching wall at -Z.",
+    "teachingWall": "-Z",
+    "notes": [
+      "Writing tables are long slabs, 0.70 m deep so a seated writer reaches the far edge. Three seats per table leave about a metre of elbow room.",
+      "Dining-chair seat top is 0.4165 of grounded height. At targetHeight 1.05 the seat is 0.437 m; writing tops are 0.75 m.",
+      "Bookcase opening is the model local -Z. rotationY π turns that opening toward the room (+Z).",
+      "Wall-shelf depth is local Z. rotationY π/2 runs the shelf along the left wall and the depth into the room.",
+      "One chair (seat_r1_2) is pulled back 0.14 m and still clears the next table. seat_l2_0 is yawed 4 degrees and still faces the wall."
+    ]
+  },
+  "assets": {
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 1.05,
+      "footprint": [
+        0.38,
+        0.537
+      ],
+      "frontLocal": "+Z"
+    },
+    "display_bookcase": {
+      "glb": "assets/display_bookcase__b68cc93dc444.glb",
+      "targetHeight": 2.1,
+      "footprint": [
+        0.876,
+        0.428
+      ],
+      "frontLocal": "-Z"
+    },
+    "wall_shelf": {
+      "glb": "assets/wall_shelf__8732f5e14a30.glb",
+      "targetHeight": 0.7,
+      "footprint": [
+        0.613,
+        0.251
+      ]
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.38,
+      "footprint": [
+        0.29,
+        0.29
+      ]
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 0.78,
+      "footprint": [
+        0.432,
+        0.432
+      ]
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.3,
+      "footprint": [
+        0.362,
+        0.362
+      ]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "footprint": [
+        0.422,
+        1.513
+      ]
+    }
+  },
+  "architecture": {
+    "wallThickness": 0.16,
+    "platform": {
+      "x": -0.22,
+      "z": -3.42,
+      "w": 4.7,
+      "d": 2.06,
+      "h": 0.12
+    },
+    "windows": [
+      {
+        "z0": -3.15,
+        "z1": -0.85,
+        "sill": 0.92,
+        "head": 2.46
+      },
+      {
+        "z0": 0.4,
+        "z1": 2.7,
+        "sill": 0.92,
+        "head": 2.46
+      }
+    ],
+    "scrolls": [
+      {
+        "id": "hero",
+        "x": 0.28,
+        "z": -4.62,
+        "w": 1.5,
+        "h": 1.68,
+        "y": 1.16,
+        "motif": "yong-teach"
+      },
+      {
+        "id": "couplet_shan",
+        "x": -1.45,
+        "z": -4.62,
+        "w": 0.4,
+        "h": 1.5,
+        "y": 1.22,
+        "motif": "shan"
+      },
+      {
+        "id": "couplet_shui",
+        "x": 1.95,
+        "z": -4.62,
+        "w": 0.4,
+        "h": 1.5,
+        "y": 1.22,
+        "motif": "shui"
+      }
+    ],
+    "pins": [
+      {
+        "id": "pin0",
+        "x": -5.15,
+        "z": -4.62,
+        "w": 0.34,
+        "h": 0.46,
+        "y": 1.45,
+        "motif": "yong-mid"
+      },
+      {
+        "id": "pin1",
+        "x": -4.7,
+        "z": -4.62,
+        "w": 0.34,
+        "h": 0.46,
+        "y": 1.52,
+        "motif": "yong-full"
+      },
+      {
+        "id": "pin2",
+        "x": -4.25,
+        "z": -4.62,
+        "w": 0.34,
+        "h": 0.46,
+        "y": 1.42,
+        "motif": "shan"
+      },
+      {
+        "id": "pin3",
+        "x": -3.8,
+        "z": -4.62,
+        "w": 0.34,
+        "h": 0.46,
+        "y": 1.55,
+        "motif": "grid-yong"
+      },
+      {
+        "id": "pin4",
+        "x": -3.35,
+        "z": -4.62,
+        "w": 0.34,
+        "h": 0.46,
+        "y": 1.46,
+        "motif": "yong-marked"
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_l0",
+      "role": "writing_table",
+      "x": -2.7,
+      "z": -1.2,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#a56b3c"
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_r0",
+      "role": "writing_table",
+      "x": 1.8,
+      "z": -1.2,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#8d5a34"
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_l1",
+      "role": "writing_table",
+      "x": -2.7,
+      "z": 0.95,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#a56b3c"
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_r1",
+      "role": "writing_table",
+      "x": 1.8,
+      "z": 0.95,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#8d5a34"
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_l2",
+      "role": "writing_table",
+      "x": -2.7,
+      "z": 3.1,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#a56b3c"
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "table_r2",
+      "role": "writing_table",
+      "x": 1.8,
+      "z": 3.1,
+      "w": 3.15,
+      "d": 0.7,
+      "h": 0.75,
+      "color": "#8d5a34"
+    },
+    {
+      "rotY": 0,
+      "y": 0.12,
+      "id": "demo_table",
+      "role": "demo_table",
+      "x": 0.32,
+      "z": -3.18,
+      "w": 2.4,
+      "d": 0.78,
+      "h": 0.76,
+      "color": "#6e442c"
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l0_0",
+      "role": "chair",
+      "x": -3.72,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l0_1",
+      "role": "chair",
+      "x": -2.7,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l0_2",
+      "role": "chair",
+      "x": -1.68,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l1_0",
+      "role": "chair",
+      "x": -3.72,
+      "z": 1.6083,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l1_1",
+      "role": "chair",
+      "x": -2.7,
+      "z": 1.6083,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l1_2",
+      "role": "chair",
+      "x": -1.68,
+      "z": 1.6083,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.0716,
+      "y": 0,
+      "id": "seat_l2_0",
+      "role": "chair",
+      "x": -3.72,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l2_1",
+      "role": "chair",
+      "x": -2.7,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_l2_2",
+      "role": "chair",
+      "x": -1.68,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r0_0",
+      "role": "chair",
+      "x": 0.78,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r0_1",
+      "role": "chair",
+      "x": 1.8,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r0_2",
+      "role": "chair",
+      "x": 2.82,
+      "z": -0.5417,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r1_0",
+      "role": "chair",
+      "x": 0.78,
+      "z": 1.6083,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r1_1",
+      "role": "chair",
+      "x": 1.8,
+      "z": 1.6083,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r1_2",
+      "role": "chair",
+      "x": 2.82,
+      "z": 1.7483,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r2_0",
+      "role": "chair",
+      "x": 0.78,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r2_1",
+      "role": "chair",
+      "x": 1.8,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "seat_r2_2",
+      "role": "chair",
+      "x": 2.82,
+      "z": 3.7583,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 0,
+      "y": 0.12,
+      "id": "seat_teacher",
+      "role": "chair",
+      "x": 0.32,
+      "z": -3.8783,
+      "w": 0.3801,
+      "d": 0.5366,
+      "h": 1.05
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "case_0",
+      "role": "bookcase",
+      "x": 4.02,
+      "z": -4.4258,
+      "w": 0.8757,
+      "d": 0.4284,
+      "h": 2.1
+    },
+    {
+      "rotY": 3.1416,
+      "y": 0,
+      "id": "case_1",
+      "role": "bookcase",
+      "x": 5.12,
+      "z": -4.4258,
+      "w": 0.8757,
+      "d": 0.4284,
+      "h": 2.1
+    },
+    {
+      "rotY": 0.15,
+      "y": 0.12,
+      "id": "model_stand",
+      "role": "lectern",
+      "x": -1.82,
+      "z": -3.32,
+      "w": 0.4323,
+      "d": 0.4323,
+      "h": 0.78
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "bench_side",
+      "role": "bench",
+      "x": -5.42,
+      "z": 1.15,
+      "w": 0.4217,
+      "d": 1.5132,
+      "h": 0.46
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "pot_entry",
+      "role": "pot",
+      "x": -5.48,
+      "z": 3.95,
+      "w": 0.3623,
+      "d": 0.3623,
+      "h": 0.3
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "side_cabinet",
+      "role": "cabinet",
+      "x": -5.7,
+      "z": -3.35,
+      "w": 0.48,
+      "d": 1.28,
+      "h": 0.8
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "wash",
+      "role": "wash",
+      "x": 4.18,
+      "z": -2.92,
+      "w": 0.68,
+      "d": 0.52,
+      "h": 0.78
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "chest",
+      "role": "chest",
+      "x": 5.22,
+      "z": -2.92,
+      "w": 0.88,
+      "d": 0.46,
+      "h": 0.66
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "rack",
+      "role": "drying_rack",
+      "x": 4.65,
+      "z": 4.12,
+      "w": 1.9,
+      "d": 0.4,
+      "h": 1.72,
+      "sheets": 6
+    },
+    {
+      "rotY": 0,
+      "y": 0,
+      "id": "screen",
+      "role": "screen",
+      "x": 4.65,
+      "z": 3.58,
+      "w": 1.85,
+      "d": 0.07,
+      "h": 1.62
+    }
+  ],
+  "instances": [
+    {
+      "id": "seat_l0_0",
+      "kind": "dining_chair",
+      "position": [
+        -3.72,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l0"
+    },
+    {
+      "id": "seat_l0_1",
+      "kind": "dining_chair",
+      "position": [
+        -2.7,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l0"
+    },
+    {
+      "id": "seat_l0_2",
+      "kind": "dining_chair",
+      "position": [
+        -1.68,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l0"
+    },
+    {
+      "id": "seat_l1_0",
+      "kind": "dining_chair",
+      "position": [
+        -3.72,
+        0,
+        1.608
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l1"
+    },
+    {
+      "id": "seat_l1_1",
+      "kind": "dining_chair",
+      "position": [
+        -2.7,
+        0,
+        1.608
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l1"
+    },
+    {
+      "id": "seat_l1_2",
+      "kind": "dining_chair",
+      "position": [
+        -1.68,
+        0,
+        1.608
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l1"
+    },
+    {
+      "id": "seat_l2_0",
+      "kind": "dining_chair",
+      "position": [
+        -3.72,
+        0,
+        3.758
+      ],
+      "rotationY": 3.0716,
+      "faces": "teaching_wall",
+      "table": "table_l2"
+    },
+    {
+      "id": "seat_l2_1",
+      "kind": "dining_chair",
+      "position": [
+        -2.7,
+        0,
+        3.758
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l2"
+    },
+    {
+      "id": "seat_l2_2",
+      "kind": "dining_chair",
+      "position": [
+        -1.68,
+        0,
+        3.758
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_l2"
+    },
+    {
+      "id": "seat_r0_0",
+      "kind": "dining_chair",
+      "position": [
+        0.78,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r0"
+    },
+    {
+      "id": "seat_r0_1",
+      "kind": "dining_chair",
+      "position": [
+        1.8,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r0"
+    },
+    {
+      "id": "seat_r0_2",
+      "kind": "dining_chair",
+      "position": [
+        2.82,
+        0,
+        -0.542
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r0"
+    },
+    {
+      "id": "seat_r1_0",
+      "kind": "dining_chair",
+      "position": [
+        0.78,
+        0,
+        1.608
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r1"
+    },
+    {
+      "id": "seat_r1_1",
+      "kind": "dining_chair",
+      "position": [
+        1.8,
+        0,
+        1.608
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r1"
+    },
+    {
+      "id": "seat_r1_2",
+      "kind": "dining_chair",
+      "position": [
+        2.82,
+        0,
+        1.748
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r1"
+    },
+    {
+      "id": "seat_r2_0",
+      "kind": "dining_chair",
+      "position": [
+        0.78,
+        0,
+        3.758
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r2"
+    },
+    {
+      "id": "seat_r2_1",
+      "kind": "dining_chair",
+      "position": [
+        1.8,
+        0,
+        3.758
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r2"
+    },
+    {
+      "id": "seat_r2_2",
+      "kind": "dining_chair",
+      "position": [
+        2.82,
+        0,
+        3.758
+      ],
+      "rotationY": 3.1416,
+      "faces": "teaching_wall",
+      "table": "table_r2"
+    },
+    {
+      "id": "seat_teacher",
+      "kind": "dining_chair",
+      "position": [
+        0.32,
+        0.12,
+        -3.878
+      ],
+      "rotationY": 0,
+      "faces": "class",
+      "table": "demo_table"
+    },
+    {
+      "id": "case_0",
+      "kind": "display_bookcase",
+      "position": [
+        4.02,
+        0,
+        -4.426
+      ],
+      "rotationY": 3.1416,
+      "tint": "#6b4630",
+      "frontLocal": "-Z"
+    },
+    {
+      "id": "case_1",
+      "kind": "display_bookcase",
+      "position": [
+        5.12,
+        0,
+        -4.426
+      ],
+      "rotationY": 3.1416,
+      "tint": "#5c3c2a",
+      "frontLocal": "-Z"
+    },
+    {
+      "id": "shelf_0",
+      "kind": "wall_shelf",
+      "position": [
+        -5.814,
+        1.28,
+        -4.15
+      ],
+      "rotationY": 1.5708,
+      "ontop": true
+    },
+    {
+      "id": "shelf_1",
+      "kind": "wall_shelf",
+      "position": [
+        -5.814,
+        1.38,
+        -0.18
+      ],
+      "rotationY": 1.5708,
+      "ontop": true
+    },
+    {
+      "id": "shelf_2",
+      "kind": "wall_shelf",
+      "position": [
+        -5.814,
+        1.32,
+        3.4
+      ],
+      "rotationY": 1.5708,
+      "ontop": true
+    },
+    {
+      "id": "teacher_lamp",
+      "kind": "library_lamp",
+      "position": [
+        1.12,
+        0.88,
+        -3.32
+      ],
+      "rotationY": -0.4,
+      "ontop": true
+    },
+    {
+      "id": "model_stand",
+      "kind": "book_stand",
+      "position": [
+        -1.82,
+        0.12,
+        -3.32
+      ],
+      "rotationY": 0.15,
+      "tint": "#3a281c"
+    },
+    {
+      "id": "bench_side",
+      "kind": "museum_bench",
+      "position": [
+        -5.42,
+        0,
+        1.15
+      ],
+      "rotationY": 0,
+      "tint": "#6a5038"
+    },
+    {
+      "id": "pot_entry",
+      "kind": "flowerpot",
+      "position": [
+        -5.48,
+        0,
+        3.95
+      ],
+      "rotationY": 0.4,
+      "tint": "#8a4e32"
+    },
+    {
+      "id": "pot_cabinet",
+      "kind": "flowerpot",
+      "position": [
+        -5.68,
+        0.8,
+        -3.85
+      ],
+      "rotationY": 0.2,
+      "tint": "#6e5344",
+      "ontop": true
+    }
+  ],
+  "stations": [
+    {
+      "id": "st_l0_0",
+      "table": "table_l0",
+      "x": -3.72,
+      "z": -1.12,
+      "variant": "yong-large",
+      "yaw": -0.04
+    },
+    {
+      "id": "st_l0_1",
+      "table": "table_l0",
+      "x": -2.7,
+      "z": -1.12,
+      "variant": "yong-full",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_l0_2",
+      "table": "table_l0",
+      "x": -1.68,
+      "z": -1.12,
+      "variant": "yong-marked",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_l1_0",
+      "table": "table_l1",
+      "x": -3.72,
+      "z": 1.03,
+      "variant": "shan",
+      "yaw": -0.04
+    },
+    {
+      "id": "st_l1_1",
+      "table": "table_l1",
+      "x": -2.7,
+      "z": 1.03,
+      "variant": "shui",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_l1_2",
+      "table": "table_l1",
+      "x": -1.68,
+      "z": 1.03,
+      "variant": "grid-yong",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_l2_0",
+      "table": "table_l2",
+      "x": -3.72,
+      "z": 3.18,
+      "variant": "yong-full",
+      "yaw": -0.04
+    },
+    {
+      "id": "st_l2_1",
+      "table": "table_l2",
+      "x": -2.7,
+      "z": 3.18,
+      "variant": "grid-yong",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_l2_2",
+      "table": "table_l2",
+      "x": -1.68,
+      "z": 3.18,
+      "variant": "shan",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_r0_0",
+      "table": "table_r0",
+      "x": 0.78,
+      "z": -1.12,
+      "variant": "yong-start",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_r0_1",
+      "table": "table_r0",
+      "x": 1.8,
+      "z": -1.12,
+      "variant": "yong-mid",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_r0_2",
+      "table": "table_r0",
+      "x": 2.82,
+      "z": -1.12,
+      "variant": "yong-full",
+      "yaw": 0.05
+    },
+    {
+      "id": "st_r1_0",
+      "table": "table_r1",
+      "x": 0.78,
+      "z": 1.03,
+      "variant": "yong-mid",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_r1_1",
+      "table": "table_r1",
+      "x": 1.8,
+      "z": 1.03,
+      "variant": "cleared",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_r1_2",
+      "table": "table_r1",
+      "x": 2.82,
+      "z": 1.03,
+      "variant": "yong-marked",
+      "yaw": 0.05
+    },
+    {
+      "id": "st_r2_0",
+      "table": "table_r2",
+      "x": 0.78,
+      "z": 3.18,
+      "variant": "yong-start",
+      "yaw": -0.01
+    },
+    {
+      "id": "st_r2_1",
+      "table": "table_r2",
+      "x": 1.8,
+      "z": 3.18,
+      "variant": "yong-full",
+      "yaw": 0.02
+    },
+    {
+      "id": "st_r2_2",
+      "table": "table_r2",
+      "x": 2.82,
+      "z": 3.18,
+      "variant": "shui",
+      "yaw": 0.05
+    }
+  ],
+  "circulation": [
+    {
+      "id": "center",
+      "x": -0.45,
+      "z": 0.9,
+      "w": 1.05,
+      "d": 5.5
+    },
+    {
+      "id": "front",
+      "x": -0.2,
+      "z": -1.98,
+      "w": 6.4,
+      "d": 0.46
+    },
+    {
+      "id": "side_left",
+      "x": -4.82,
+      "z": 0.4,
+      "w": 0.72,
+      "d": 5.6
+    },
+    {
+      "id": "side_right",
+      "x": 3.95,
+      "z": 0.55,
+      "w": 0.78,
+      "d": 3.6
+    },
+    {
+      "id": "row_gap_0",
+      "x": -0.45,
+      "z": 0.16,
+      "w": 6.2,
+      "d": 0.5
+    },
+    {
+      "id": "row_gap_1",
+      "x": -0.45,
+      "z": 2.32,
+      "w": 6.2,
+      "d": 0.48
+    }
+  ],
+  "shell": {
+    "floorColor": "#c49662",
+    "floorAlt": "#a87548",
+    "wallColor": "#f3ead8",
+    "wainscot": "#6b432c",
+    "woodColor": "#5c3a24",
+    "woodLight": "#c4925a",
+    "ceilingColor": "#f7f1e6",
+    "windowTint": "#d5e4dc",
+    "clearColor": "#efe6d6",
+    "fogColor": "#efe6d6",
+    "fogNear": 16,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 38,
+    "position": [
+      6.7,
+      3.2,
+      6.85
+    ],
+    "target": [
+      -0.2,
+      1,
+      -0.55
+    ]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [
+        6.35,
+        2.45,
+        3.15
+      ],
+      "target": [
+        0.4,
+        1.05,
+        -1.55
+      ]
+    },
+    "close": {
+      "position": [
+        2.72,
+        1.38,
+        4.42
+      ],
+      "target": [
+        1.8,
+        0.84,
+        3.16
+      ]
+    }
+  },
+  "lights": {
+    "hemi": {
+      "sky": "#fff6ea",
+      "ground": "#6a5344",
+      "intensity": 0.36
+    },
+    "key": {
+      "color": "#fff8f0",
+      "intensity": 1.7,
+      "position": [
+        -1.4,
+        9.4,
+        7.2
+      ],
+      "target": [
+        -0.2,
+        0.7,
+        -1.4
+      ],
+      "shadow": {
+        "mapSize": 2048,
+        "left": -9,
+        "right": 9,
+        "top": 9,
+        "bottom": -9,
+        "near": 1,
+        "far": 28,
+        "bias": -0.0004,
+        "normalBias": 0.032
+      }
+    },
+    "fill": {
+      "color": "#d5e2ea",
+      "intensity": 0.16,
+      "position": [
+        -7.2,
+        3.4,
+        0.2
+      ]
+    },
+    "points": [
+      {
+        "color": "#ffc58a",
+        "intensity": 0.55,
+        "position": [
+          0.3,
+          2.35,
+          -3.15
+        ],
+        "distance": 4.5
+      },
+      {
+        "color": "#ffc58a",
+        "intensity": 0.42,
+        "position": [
+          -0.45,
+          2.4,
+          -1.2
+        ],
+        "distance": 4.2
+      },
+      {
+        "color": "#ffc58a",
+        "intensity": 0.42,
+        "position": [
+          -0.45,
+          2.4,
+          0.95
+        ],
+        "distance": 4.2
+      },
+      {
+        "color": "#ffc58a",
+        "intensity": 0.38,
+        "position": [
+          -0.45,
+          2.4,
+          3.1
+        ],
+        "distance": 4.2
+      },
+      {
+        "color": "#ffe0b0",
+        "intensity": 0.35,
+        "position": [
+          1.12,
+          1.35,
+          -3.3
+        ],
+        "distance": 2.4
+      }
+    ]
+  }
+}
