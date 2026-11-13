@@ -1,6 +1,6 @@
 # Field Opticians
 
-Independent high-street optician. The oak retail floor holds frame cabinets, two glass trays, a reception desk, and a seated fitting mirror. A cased door opens into a linoleum sight lane with a phoropter, a chart, and a trial-lens cabinet.
+Independent high-street optician. The oak retail room has a full ceiling, frame cabinets, two glass trays, a reception desk, one waiting seat, and a seated fitting mirror. A cased door opens into a linoleum sight lane with a phoropter, a chart, and a trial-lens cabinet.
 
 Shared GLBs and the Three.js runtime are symlinks into `library/`, `cafe/`, `museum/`, and `cowork/`. Do not copy them and do not edit those folders.
 

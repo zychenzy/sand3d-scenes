@@ -12,7 +12,7 @@ Still open:
 - The mirror is one planar reflection. It does not have a second bounce, and the glass is not a measured coating. If the reflection pass is empty the pane falls back to a silver field inside the frame.
 - The sight lane is about 3.2 m from the patient's eyes to the chart. A full 6 m lane does not fit this cutaway. There is no mirror-lane fold.
 - Frames, the phoropter, the exam chair, the chart, and the cabinets are authored meshes. The catalog has no eyewear or refractor bake, and this environment has no `sand3d` baker, so nothing new was baked.
-- The school desk is still a school desk under the felt mat. The wire book-ends are hidden. The study desk is a writing table, not a slit lamp.
+- The adjustment bench and the waiting seat are built wood and cloth, not catalog meshes. The study desk is a writing table, not a slit lamp.
 - The monitor topography and the POS screen are drawn canvases. They are not device UI.
 - Contact shadows are discs. The toon ramp is four hard steps with the darkest stop at 0.42 so shadows stay open. There is no ambient occlusion pass.
 - No people. Temples do not hinge. Lenses do not refract.

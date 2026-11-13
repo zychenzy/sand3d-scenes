@@ -29,14 +29,14 @@
     "examChair": { "x": 4.15, "z": -1.02, "hx": 0.32, "hz": 0.38 },
     "phoropter": { "x": 4.15, "z": -1.62, "y": 1.22, "hx": 0.22, "hz": 0.2 },
     "chart": { "x": 4.15, "y": 1.42, "z": -4.22, "w": 0.46, "h": 0.66 },
-    "lane": { "x": 4.15, "z0": -4.05, "z1": -1.35, "w": 0.72 }
+    "lane": { "x": 4.15, "z0": -4.05, "z1": -1.35, "w": 0.72 },
+    "adjust": { "x": -4.88, "z": -1.7, "hx": 0.38, "hz": 0.25, "top": 0.825 },
+    "wait": { "x": 0.32, "z": 0.95, "hx": 0.4, "hz": 0.22, "rotY": 0 }
   },
   "assets": {
     "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.88, "hx": 0.16, "hz": 0.225 },
-    "school_desk": { "glb": "assets/school_desk__57f955646049.glb", "targetHeight": 0.75, "hx": 0.322, "hz": 0.237, "top": 0.75 },
     "study_desk": { "glb": "assets/study_desk__630f6d76cbcd.glb", "targetHeight": 0.76, "hx": 0.216, "hz": 0.644, "top": 0.76 },
     "display_bookcase": { "glb": "assets/display_bookcase__b68cc93dc444.glb", "targetHeight": 1.86, "hx": 0.39, "hz": 0.19, "tint": "#6d5344" },
-    "museum_bench": { "glb": "assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46, "hx": 0.26, "hz": 0.9 },
     "cash_register": { "glb": "assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.36, "hx": 0.22, "hz": 0.28 },
     "pos_terminal": { "glb": "assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.16, "hx": 0.16, "hz": 0.1 },
     "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.4, "hx": 0.14, "hz": 0.14 },
@@ -50,17 +50,15 @@
     { "id": "chair_adjust", "kind": "dining_chair", "position": [-4.02, 0, -1.7], "rotationY": -1.5708, "zone": "retail" },
     { "id": "chair_staff", "kind": "dining_chair", "position": [-3.7, 0, 3.58], "rotationY": 3.1416, "zone": "retail" },
     { "id": "chair_consult", "kind": "dining_chair", "position": [-3.15, 0, 1.92], "rotationY": 0, "zone": "retail" },
-    { "id": "desk_adjust", "kind": "school_desk", "position": [-4.88, 0, -1.7], "rotationY": 0, "zone": "retail" },
     { "id": "desk_exam", "kind": "study_desk", "position": [4.95, 0, -3.22], "rotationY": 0, "zone": "exam" },
     { "id": "trial_case", "kind": "display_bookcase", "position": [2.36, 0, -3.22], "rotationY": -1.5708, "zone": "exam" },
-    { "id": "bench_wait", "kind": "museum_bench", "position": [-0.35, 0, 2.28], "rotationY": 1.5708, "zone": "retail" },
     { "id": "register", "kind": "cash_register", "position": [-4.2, 1.05, 2.86], "rotationY": 3.1416, "zone": "retail" },
     { "id": "pos", "kind": "pos_terminal", "position": [-3.15, 1.05, 2.98], "rotationY": 3.1416, "zone": "retail" },
-    { "id": "lamp_adjust", "kind": "library_lamp", "position": [-4.88, 0.75, -1.88], "rotationY": 3.1416, "zone": "retail" },
+    { "id": "lamp_adjust", "kind": "library_lamp", "position": [-4.88, 0.825, -1.88], "rotationY": 3.1416, "zone": "retail" },
     { "id": "lamp_exam", "kind": "library_lamp", "position": [5.12, 0.76, -2.85], "rotationY": 3.1416, "zone": "exam" },
-    { "id": "pendant_rx", "kind": "pendant_lamp", "position": [-3.4, 2.28, 2.7], "rotationY": 0, "zone": "retail" },
-    { "id": "pendant_a", "kind": "pendant_lamp", "position": [-1.15, 2.28, 0.22], "rotationY": 0, "zone": "retail" },
-    { "id": "pendant_b", "kind": "pendant_lamp", "position": [-0.1, 2.28, -1.48], "rotationY": 0, "zone": "retail" },
+    { "id": "pendant_rx", "kind": "pendant_lamp", "position": [-3.4, 2.32, 2.7], "rotationY": 0, "zone": "retail" },
+    { "id": "pendant_a", "kind": "pendant_lamp", "position": [-1.15, 2.32, 0.22], "rotationY": 0, "zone": "retail" },
+    { "id": "pendant_b", "kind": "pendant_lamp", "position": [-0.1, 2.32, -1.48], "rotationY": 0, "zone": "retail" },
     { "id": "pot", "kind": "flowerpot", "position": [-5.15, 0, 3.55], "rotationY": 0.4, "zone": "retail" },
     { "id": "stool_exam", "kind": "bar_stool", "position": [5.15, 0, -1.7], "rotationY": 0, "zone": "exam" },
     { "id": "monitor_topo", "kind": "monitor", "position": [4.85, 0.76, -3.62], "rotationY": 0, "zone": "exam" }
@@ -82,10 +80,10 @@
     "fogNear": 16,
     "fogFar": 36
   },
-  "camera": { "fov": 40, "position": [4.7, 3.22, 7.35], "target": [-0.35, 1.15, -1.05] },
+  "camera": { "fov": 56, "position": [2.05, 1.6, 3.68], "target": [1.55, 1.18, -1.55] },
   "cameraPresets": {
-    "corner": { "position": [-2.35, 2.65, 6.85], "target": [-1.35, 1.2, -1.7] },
-    "close": { "position": [-3.15, 1.34, -1.42], "target": [-5.15, 1.18, -2.72] }
+    "corner": { "fov": 46, "position": [-1.55, 1.62, 3.05], "target": [-2.4, 1.18, -1.7] },
+    "close": { "fov": 40, "position": [-3.15, 1.34, -1.42], "target": [-5.15, 1.18, -2.72] }
   },
   "lights": {
     "hemi": { "sky": "#fff4e6", "ground": "#8d7c68", "intensity": 0.52 },

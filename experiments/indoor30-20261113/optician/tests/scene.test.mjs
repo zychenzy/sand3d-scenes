@@ -50,6 +50,10 @@ function blockers() {
   list.push({ id: 'exam-chair', ...rotAabb(chair.x, chair.z, chair.hx, chair.hz, 0) });
   const ph = layout.places.phoropter;
   list.push({ id: 'phoropter', ...rotAabb(ph.x, ph.z, ph.hx, ph.hz, 0) });
+  const adj = layout.places.adjust;
+  list.push({ id: 'adjust', ...rotAabb(adj.x, adj.z, adj.hx, adj.hz, 0) });
+  const wait = layout.places.wait;
+  list.push({ id: 'wait', ...rotAabb(wait.x, wait.z, wait.hx, wait.hz, wait.rotY || 0) });
   const room = layout.meta.room;
   const halfD = room.depth / 2;
   const px = layout.places.partitionX;
@@ -108,9 +112,12 @@ test('chairs, mirror, and exam lane face the work', () => {
   assert.ok(mirror.y - mirror.h / 2 < 1.15 && mirror.y + mirror.h / 2 > 1.15);
 
   const adjust = byId.chair_adjust;
-  const desk = byId.desk_adjust;
+  const desk = layout.places.adjust;
   assert.ok(facing(adjust.rotationY).x < -0.95);
-  assert.ok(adjust.position[0] > desk.position[0] + 0.4);
+  assert.ok(adjust.position[0] > desk.x + 0.4);
+  assert.ok(layout.places.wait.hx <= 0.45 && layout.places.wait.hz <= 0.28);
+  assert.equal(layout.assets.museum_bench, undefined);
+  assert.equal(layout.assets.school_desk, undefined);
 
   const staff = byId.chair_staff;
   const reception = layout.places.reception;

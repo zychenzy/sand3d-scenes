@@ -221,12 +221,14 @@ function makeShell(layout) {
   const floor = addBox(g, W, 0.08, D, paint(C.oakDark), 0, -0.04, 0);
   quiet(floor, true);
 
+  const boardA = '#c7b08a';
+  const boardB = '#c0a780';
   let i = 0;
-  for (let z = -halfD + 0.12; z < halfD - 0.08; z += 0.18) {
+  for (let z = -halfD + 0.14; z < halfD - 0.1; z += 0.24) {
     const inExam = z < p.exam.z1;
     const x1 = inExam ? p.partitionX - 0.08 : halfW - 0.12;
     const x0 = -halfW + 0.14;
-    const plank = addBox(g, x1 - x0, 0.012, 0.15, paint(i % 2 ? C.oak : C.oakDark), (x0 + x1) / 2, 0.012, z);
+    const plank = addBox(g, x1 - x0, 0.012, 0.22, paint(i % 2 ? boardA : boardB), (x0 + x1) / 2, 0.012, z);
     quiet(plank, true);
     i += 1;
   }
@@ -320,10 +322,24 @@ function makeShell(layout) {
   const batten = addBox(g, 0.16, 0.05, 2.4, new THREE.MeshBasicMaterial({ color: '#f3f7fb' }), p.chart.x, 2.7, -2.55);
   batten.userData.keepBasic = true;
 
-  addBox(g, W * 0.62, 0.08, 1.3, paint(layout.shell.ceilingColor), -1.3, H - 0.1, -2.6);
-  for (const z of [-3.3, -0.4, 2.2]) {
-    const beam = addBox(g, W * 0.55, 0.1, 0.12, paint(C.trim), -1.15, H - 0.22, z);
-    quiet(beam, false);
+  const lidX0 = -halfW + 0.12;
+  const lidX1 = halfW - 0.12;
+  const lidZ0 = -halfD + 0.14;
+  const lidZ1 = halfD - 0.1;
+  const lid = addBox(
+    g,
+    lidX1 - lidX0,
+    0.1,
+    lidZ1 - lidZ0,
+    paint(layout.shell.ceilingColor),
+    (lidX0 + lidX1) / 2,
+    H - 0.09,
+    (lidZ0 + lidZ1) / 2,
+  );
+  quiet(lid, false);
+  quiet(addBox(g, lidX1 - lidX0, 0.12, 0.07, paint(C.trim), (lidX0 + lidX1) / 2, H - 0.18, lidZ1), false);
+  for (const z of [-3.4, -1.2, 0.9, 2.9]) {
+    quiet(addBox(g, lidX1 - lidX0 - 0.24, 0.045, 0.07, paint(C.trim), (lidX0 + lidX1) / 2, H - 0.18, z), false);
   }
   return g;
 }
@@ -406,6 +422,45 @@ function fittingMirror(g, layout, mirrors) {
   addBox(g, ledge.d - 0.04, 0.02, ledge.w - 0.08, paint(C.felt), ledge.x + 0.02, ledge.y + 0.035, ledge.z);
   placeFrames(g, { x: ledge.x + 0.04, y: ledge.y + 0.05, z: ledge.z, rotY: Math.PI / 2, count: 3, gap: 0.22, start: 1, tilt: 0.2 });
   signPlate(g, 'FITTING', '#1c3d4c', '#f6f1e6', 0.42, 0.08, m.x + 0.06, m.y + m.h / 2 + 0.1, m.z, Math.PI / 2, 512, 96, 64);
+}
+
+function waitingSeat(g, place) {
+  const grp = new THREE.Group();
+  grp.name = 'waiting-seat';
+  grp.position.set(place.x, 0, place.z);
+  grp.rotation.y = place.rotY || 0;
+  const wood = paint(C.trim);
+  const cloth = paint('#8a5344');
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(grp, 0.055, 0.38, 0.055, wood, sx * 0.32, 0.19, sz * 0.15);
+    }
+  }
+  addBox(grp, 0.78, 0.05, 0.4, wood, 0, 0.4, 0);
+  addBox(grp, 0.74, 0.07, 0.38, cloth, 0, 0.46, -0.01);
+  addBox(grp, 0.74, 0.34, 0.07, cloth, 0, 0.66, 0.16);
+  addBox(grp, 0.05, 0.38, 0.07, wood, -0.36, 0.62, 0.15);
+  addBox(grp, 0.05, 0.38, 0.07, wood, 0.36, 0.62, 0.15);
+  g.add(grp);
+  contact(g, place.x, place.z, place.hx * 0.7, place.hz * 0.8);
+}
+
+function adjustmentBench(g, place) {
+  const grp = new THREE.Group();
+  grp.name = 'adjust-bench';
+  grp.position.set(place.x, 0, place.z);
+  const wood = paint('#6a4630');
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(grp, 0.07, 0.74, 0.07, wood, sx * 0.28, 0.37, sz * 0.16);
+    }
+  }
+  addBox(grp, 0.62, 0.05, 0.36, wood, 0, 0.28, 0);
+  addBox(grp, 0.7, 0.08, 0.42, wood, 0, 0.74, 0);
+  addBox(grp, 0.76, 0.05, 0.5, paint(C.oak), 0, 0.8, 0);
+  addBox(grp, 0.68, 0.012, 0.42, paint(C.felt), 0, 0.832, 0);
+  g.add(grp);
+  contact(g, place.x, place.z, place.hx * 0.75, place.hz * 0.75);
 }
 
 function reception(g, layout) {
@@ -517,7 +572,7 @@ function trialLenses(g, layout) {
 
 function toolsOnBench(g) {
   const desk = g; // positions in world
-  const y = 0.78;
+  const y = 0.85;
   const x = -4.7;
   const z = -1.58;
   addBox(desk, 0.34, 0.015, 0.2, paint(C.felt), x, y, z);
@@ -590,6 +645,8 @@ function makeProcedural(layout) {
   layout.places.cabinets.forEach((spec, i) => cabinet(g, spec, i));
   layout.places.vitrines.forEach((spec, i) => vitrine(g, spec, i));
   fittingMirror(g, layout, mirrors);
+  waitingSeat(g, layout.places.wait);
+  adjustmentBench(g, layout.places.adjust);
   reception(g, layout);
   examChair(g, layout.places.examChair);
   phoropter(g, layout.places.phoropter);
@@ -623,11 +680,6 @@ function makeProcedural(layout) {
 }
 
 function prepareKind(kind, root) {
-  if (kind === 'school_desk') {
-    root.traverse((obj) => {
-      if (/loop|wire/i.test(obj.name || '')) obj.visible = false;
-    });
-  }
   if (kind === 'monitor') {
     const tex = topoTexture();
     root.traverse((obj) => {

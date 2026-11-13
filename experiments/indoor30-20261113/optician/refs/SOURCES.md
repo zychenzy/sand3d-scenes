@@ -18,8 +18,8 @@ Existing Sandflow/sand3d-objaverse bakes were inspected (node bounds, facing, an
 
 Used:
 
-- Dining chair, school desk, study desk, library lamp, display bookcase — `library/assets`. Chair front is +Z. School-desk book loops are hidden so the top reads as an adjustment bench. The bookcase is the trial-lens cabinet.
-- Museum bench — `museum/assets`. Backless waiting seat, long axis turned across the aisle.
+- Dining chair, study desk, library lamp, display bookcase — `library/assets`. Chair front is +Z. The bookcase is the trial-lens cabinet. The study desk is the exam writing table.
+- The waiting seat and the adjustment bench are built in `optician.js`. The museum trestle bench and the thin-legged school desk were set aside: one reads as a gallery slab, the other as a school desk.
 - Cash register, POS terminal, pendant, flowerpot, bar stool — `cafe/assets`. Register and terminal sit on the reception top. The stool is the practitioner's perch.
 - Monitor — `cowork/assets`. Screen faces +Z at rotation 0, same as the cowork desks, and carries a drawn topography so the panel is not a black slab.
 

@@ -4,7 +4,7 @@ One cutaway, two rooms.
 
 ## Retail
 
-Oak floor, plaster, a shop window on the left wall. Three felt cabinets on the back wall, two glass trays in the aisle, reception at the front-left, a waiting bench facing the shop. The fitting bay is the left-wall mirror: bulbs, a ledge of frames, a chair facing the glass, and a school desk used as the adjustment bench.
+Oak floor, plaster, a ceiling over the retail room and the open front, and a shop window on the left wall. Three felt cabinets on the back wall, two glass trays in the aisle, reception at the front-left, and one compact waiting seat facing the frames. The fitting bay is the left-wall mirror: bulbs, a ledge of frames, a chair facing the glass, and a solid wood adjustment bench.
 
 ## Exam
 
