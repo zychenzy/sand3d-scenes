@@ -24,8 +24,6 @@ FORBIDDEN = {
 SEATS = {
     "chair_sew_a",
     "chair_sew_b",
-    "stool_press",
-    "stool_cut",
     "chair_forward",
     "chair_pack",
 }
@@ -89,7 +87,11 @@ def test_proportions():
     assert stations["guillotine"]["top"] - stations["sewing"]["top"] > 0.12
     assets = LAYOUT["assets"]
     assert 0.84 <= assets["dining_chair"]["targetHeight"] <= 0.96
-    assert 0.62 <= assets["bar_stool"]["targetHeight"] <= 0.76
+    assert "bar_stool" not in assets
+    stools = LAYOUT["meta"]["workStools"]
+    assert {s["id"] for s in stools} == {"stool_press", "stool_cut"}
+    for stool in stools:
+        assert 0.58 <= stool["seat"] <= 0.7
     assert 0.32 <= assets["library_lamp"]["targetHeight"] <= 0.46
     assert assets["pendant_lamp"]["targetHeight"] <= 0.5
     assert assets["jam_jar"]["targetHeight"] < 0.16
@@ -117,13 +119,22 @@ def test_instances_and_facing():
         assert 0 <= y < room["height"] - 0.2, inst["id"]
         if "faces" not in inst:
             continue
-        tx, tz = inst["faces"]
-        dx, dz = tx - x, tz - z
-        dist = math.hypot(dx, dz)
-        assert 0.55 < dist < 1.6, (inst["id"], round(dist, 3))
-        fx, fz = forward(inst.get("rotationY", 0))
-        dot = (fx * dx + fz * dz) / dist
-        assert dot > 0.85, (inst["id"], round(dot, 3))
+        assert_faces(inst["id"], x, z, inst.get("rotationY", 0), inst["faces"])
+    for stool in LAYOUT["meta"]["workStools"]:
+        x, _, z = stool["position"]
+        assert -half_w + 0.12 < x < half_w - 0.12, stool["id"]
+        assert -half_d + 0.15 < z < half_d - 0.15, stool["id"]
+        assert_faces(stool["id"], x, z, stool.get("rotationY", 0), stool["faces"])
+
+
+def assert_faces(name, x, z, yaw, faces):
+    tx, tz = faces
+    dx, dz = tx - x, tz - z
+    dist = math.hypot(dx, dz)
+    assert 0.55 < dist < 1.6, (name, round(dist, 3))
+    fx, fz = forward(yaw)
+    dot = (fx * dx + fz * dz) / dist
+    assert dot > 0.85, (name, round(dot, 3))
 
 
 def test_clearance():
@@ -137,14 +148,20 @@ def test_clearance():
     seat_boxes = {
         "chair_sew_a": "sewing",
         "chair_sew_b": "sewing",
-        "stool_press": "press",
-        "stool_cut": "guillotine",
         "chair_forward": "forward",
         "chair_pack": "packing",
     }
     for seat, station in seat_boxes.items():
         x, _, z = by_id[seat]["position"]
         assert not inside(floor[station], x, z, pad=0.05), seat
+    stools = {s["id"]: s for s in LAYOUT["meta"]["workStools"]}
+    for seat, station in (("stool_press", "press"), ("stool_cut", "guillotine")):
+        x, _, z = stools[seat]["position"]
+        assert not inside(floor[station], x, z, pad=0.05), seat
+    shear = stations["guillotine"]
+    cut = stools["stool_cut"]
+    # Parked at the right-hand end, clear of the bed and the blade swing.
+    assert cut["position"][0] - 0.19 > shear["x"] + shear["spanX"] / 2 + 0.05
     drawers = stations["drawers"]
     forward = stations["forward"]
     wet_gap = math.hypot(drawers["x"] - forward["x"], drawers["z"] - forward["z"])
@@ -154,12 +171,23 @@ def test_clearance():
     assert stations["guillotine"]["top"] >= 0.88
 
 
+def indoors(pos, room):
+    x, y, z = pos
+    half_w = room["width"] / 2
+    half_d = room["depth"] / 2
+    assert -half_w + 0.15 < x < half_w - 0.15, pos
+    assert -half_d + 0.15 < z < half_d - 0.15, pos
+    assert 1.15 < y < room["height"] - 0.28, pos
+
+
 def test_cameras_and_lights():
-    assert LAYOUT["camera"]["position"][2] > LAYOUT["meta"]["room"]["depth"] / 2
+    room = LAYOUT["meta"]["room"]
+    indoors(LAYOUT["camera"]["position"], room)
+    assert LAYOUT["camera"]["target"][2] < LAYOUT["camera"]["position"][2] - 2.5
     for key in ("corner", "close", "detail"):
         assert key in LAYOUT["cameraPresets"]
         pos = LAYOUT["cameraPresets"][key]["position"]
-        assert pos[1] > 0.4
+        indoors(pos, room)
     points = {p["id"] for p in LAYOUT["lights"]["points"]}
     for key in ("task_sew_a", "task_sew_b", "task_forward", "pend_sew", "pend_cut", "stove"):
         assert key in points, key

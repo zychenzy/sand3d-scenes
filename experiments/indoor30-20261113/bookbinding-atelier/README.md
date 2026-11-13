@@ -1,6 +1,6 @@
 # Bookbinding atelier (Three.js + sand3d)
 
-Cutaway hand bindery. Sewing frames and a lying press share a seated bench. A standing press, a board-shear guillotine, flat-file paper drawers, a drying rack, and a leather / finishing-stove wall are separate stations. Paste stays on the forwarding bench, away from the paper.
+Cutaway hand bindery under a full ceiling. Sewing frames and a lying press share a seated bench. A standing press, a board-shear guillotine, flat-file paper drawers, a drying rack, and a leather / finishing-stove wall are separate stations. Four-leg work stools sit beside the press and the shear. Paste stays on the forwarding bench, away from the paper. Establishing cameras stand inside the room.
 
 Catalog GLBs are referenced from `workshop/`, `cafe/`, and `cowork/`. Three.js is the shared workshop vendor. Nothing in this folder copies those files.
 

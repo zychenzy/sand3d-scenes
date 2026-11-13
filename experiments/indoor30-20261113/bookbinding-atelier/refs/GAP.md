@@ -1,6 +1,6 @@
 # GAP — bookbinding atelier
 
-The catalog has chairs, a low stool, banker lamps, pendants, jars, a mug, a thermos, and a flowerpot. It does not have a sewing frame, lying press, plough, standing press, guillotine, flat file, drying rack, or finishing stove.
+The catalog has chairs, a tulip-base bar stool, banker lamps, pendants, jars, a mug, a thermos, and a flowerpot. It does not have a sewing frame, lying press, plough, standing press, guillotine, flat file, drying rack, finishing stove, or a plain four-leg work stool.
 
 Closed in this scene:
 
@@ -17,7 +17,9 @@ Remaining:
 - Frames, presses, the shear, drawers, hides, and the stove are toon solids, not scanned tools. Hides are flat panels. The plough is a block and a blade, not a dovetailed sled.
 - Jam jars stand in for paste pots. The gold lid is the tell.
 - The banker lamp is a library lamp. A glow disc and an emissive tube make the shade read as a task light in toon and in unlit.
-- The bar stool's rubber is near-black in the bake. The toon and unlit paths lift that to charcoal so the foot does not drop out.
+- The press and the shear use procedural four-leg stools, seat 0.64 m. The catalog stool is a gray tulip base, so it stays out of this room. The shear stool sits at the right-hand end, clear of the bed.
+- The ceiling is a full plaster lid with beams that stop at the wall plates. Establishing cameras stand inside, under that lid. The front and the right stay open as the cutaway, so a strip of the clear color still shows at that edge.
+- The tool rail, folders, and thread spools do not cast. A hard shadow from the frames and the lamps still falls on the wainscot.
 - Contact shadows are radial decals. The hard shadow map is biased to limit acne on the bench tops; thin cords do not cast.
 - Clerestory glass is a transparent toon pane. It does not refract.
 - The guillotine is a hand board shear in the raised position, not a powered paper cutter. The blade is a slab, so the edge is not a knife line.

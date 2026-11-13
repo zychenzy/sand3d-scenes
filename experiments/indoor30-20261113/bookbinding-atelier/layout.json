@@ -16,6 +16,22 @@
       "stove": { "x": -3.82, "z": -2.5, "spanX": 0.42, "spanZ": 0.36, "h": 0.84 },
       "leather": { "x": -4.22, "z": -3.66 }
     },
+    "workStools": [
+      {
+        "id": "stool_press",
+        "position": [1.2, 0, -2.08],
+        "rotationY": 3.1416,
+        "faces": [1.2, -3.12],
+        "seat": 0.64
+      },
+      {
+        "id": "stool_cut",
+        "position": [4.55, 0, -2.35],
+        "rotationY": -2.0344,
+        "faces": [3.35, -2.95],
+        "seat": 0.64
+      }
+    ],
     "notes": [
       "Hand bindery, not a reading room and not a printshop. Sewing frames and a lying press share the seated bench. A standing press, board-shear guillotine, flat-file paper drawers, and a drying rack are separate stations.",
       "Paste lives on the forwarding bench, away from the paper drawers. Seats face the station they serve.",
@@ -26,10 +42,6 @@
     "dining_chair": {
       "glb": "../../../workshop/assets/dining_chair__5e1f7a56da4a.glb",
       "targetHeight": 0.9
-    },
-    "bar_stool": {
-      "glb": "../../../cafe/assets/bar_stool__319fcb56afe8.glb",
-      "targetHeight": 0.68
     },
     "library_lamp": {
       "glb": "../../../cowork/assets/library_lamp__06accd4e0351.glb",
@@ -70,20 +82,6 @@
       "position": [-1.35, 0, -2.22],
       "rotationY": 3.1416,
       "faces": [-1.35, -3.22]
-    },
-    {
-      "id": "stool_press",
-      "kind": "bar_stool",
-      "position": [1.2, 0, -2.08],
-      "rotationY": 3.1416,
-      "faces": [1.2, -3.12]
-    },
-    {
-      "id": "stool_cut",
-      "kind": "bar_stool",
-      "position": [4.55, 0, -2.35],
-      "rotationY": -2.0344,
-      "faces": [3.35, -2.95]
     },
     {
       "id": "chair_forward",
@@ -181,14 +179,14 @@
     "fogFar": 46
   },
   "camera": {
-    "fov": 40,
-    "position": [5.7, 2.62, 6.7],
-    "target": [-0.45, 1.02, -1.15]
+    "fov": 68,
+    "position": [-0.15, 1.48, 3.42],
+    "target": [0.15, 1.14, -2.55]
   },
   "cameraPresets": {
-    "corner": { "position": [6.35, 2.35, 2.7], "target": [0.2, 1.02, -2.15] },
-    "close": { "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] },
-    "detail": { "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] }
+    "corner": { "fov": 60, "position": [2.35, 1.55, 3.35], "target": [0.7, 1.08, -2.5] },
+    "close": { "fov": 40, "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] },
+    "detail": { "fov": 40, "position": [-0.55, 1.5, -1.5], "target": [-1.45, 1.02, -3.15] }
   },
   "lights": {
     "hemi": { "sky": "#fff6ea", "ground": "#6a5340", "intensity": 0.4 },

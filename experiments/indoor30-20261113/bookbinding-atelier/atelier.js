@@ -146,14 +146,50 @@ function clerestory(g, W) {
 }
 
 function ceiling(g, W, D, H) {
-  const slab = addBox(g, W - 0.5, 0.06, 3.15, toon('#f6f1e6'), -0.15, H - 0.04, -2.05);
+  const plaster = toon('#f3eee6');
+  const slab = addBox(g, W, 0.07, D, plaster, 0, H - 0.035, 0);
   slab.userData.noReceive = true;
   quiet(slab);
   const beam = toon('#5c3d28');
-  for (const z of [-3.15, -2.05, -0.85]) {
-    quiet(addBox(g, W - 0.8, 0.09, 0.07, beam, -0.15, H - 0.1, z));
+  const beamY = H - 0.12;
+  for (const z of [-3.45, -2.35, -1.25, -0.15, 0.95, 2.05]) {
+    quiet(addBox(g, W - 0.36, 0.1, 0.08, beam, 0, beamY, z));
   }
-  quiet(addBox(g, W - 0.5, 0.08, 0.08, beam, -0.15, H - 0.08, -0.5));
+  quiet(addBox(g, W - 0.2, 0.14, 0.1, beam, 0, beamY, -D / 2 + 0.1));
+  quiet(addBox(g, W - 0.2, 0.14, 0.1, beam, 0, beamY, D / 2 - 0.1));
+  quiet(addBox(g, 0.1, 0.14, D - 0.24, beam, -W / 2 + 0.12, beamY, 0));
+  quiet(addBox(g, 0.1, 0.14, D - 0.24, beam, W / 2 - 0.1, beamY, 0));
+}
+
+function sectionSkirt(g, W, D) {
+  const wood = toon('#5a3c28');
+  quiet(addBox(g, W + 0.06, 0.1, 0.05, wood, 0, -0.02, D / 2 + 0.012));
+  quiet(addBox(g, 0.05, 0.1, D + 0.06, wood, W / 2 + 0.012, -0.02, 0));
+}
+
+function workStool(g, spec) {
+  const root = new THREE.Group();
+  root.name = spec.id;
+  const seatH = spec.seat;
+  const wood = toon('#8a5a36');
+  const dark = toon('#4e3422');
+  addBox(root, 0.38, 0.04, 0.34, wood, 0, seatH - 0.02, 0);
+  const ix = 0.14;
+  const iz = 0.11;
+  const legH = seatH - 0.06;
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
+      addBox(root, 0.038, legH, 0.038, dark, sx * ix, legH / 2, sz * iz);
+    }
+  }
+  addBox(root, ix * 2, 0.026, 0.026, dark, 0, 0.16, -iz);
+  addBox(root, ix * 2, 0.026, 0.026, dark, 0, 0.16, iz);
+  addBox(root, 0.026, 0.026, iz * 2, dark, -ix, 0.16, 0);
+  addBox(root, 0.026, 0.026, iz * 2, dark, ix, 0.16, 0);
+  root.position.set(spec.position[0], spec.position[1], spec.position[2]);
+  root.rotation.y = spec.rotationY || 0;
+  g.add(root);
+  addContact(g, spec.position[0], spec.position[2], 0.4, 0.36, 0.2);
 }
 
 function sewingFrame(g, x, z, top) {
@@ -238,6 +274,7 @@ function benchTools(g, bench) {
   for (const [dx, color] of [[-0.35, '#f4efe4'], [0.0, '#7a2e2a'], [0.28, '#2c3d66']]) {
     const spool = addCyl(g, 0.034, 0.034, 0.028, toon(color), bench.x + dx, spoolY, z + 0.02, 12);
     spool.rotation.x = Math.PI / 2;
+    quiet(spool);
   }
 }
 
@@ -595,14 +632,10 @@ function lampGlows(g, layout) {
     if (inst.kind !== 'pendant_lamp') continue;
     const spec = layout.assets.pendant_lamp;
     const y0 = inst.position[1] + spec.targetHeight;
-    const underSlab = inst.position[2] < -0.55;
-    const y1 = underSlab ? layout.meta.room.height - 0.12 : y0 + 0.42;
+    const y1 = layout.meta.room.height - 0.08;
     if (y1 <= y0 + 0.05) continue;
     const cord = addCyl(g, 0.006, 0.006, y1 - y0, toon('#2c2826'), inst.position[0], (y0 + y1) / 2, inst.position[2], 6);
     quiet(cord);
-    if (!underSlab) {
-      quiet(addCyl(g, 0.05, 0.05, 0.02, toon('#5c3d28'), inst.position[0], y1, inst.position[2], 8));
-    }
     const bulb = new THREE.Mesh(
       new THREE.SphereGeometry(0.035, 10, 8),
       toon('#fff6dc', { emissive: '#ffe6b0', emissiveIntensity: 0.8 }),
@@ -628,7 +661,6 @@ function foliage(g, inst) {
 function contactsForSeats(g, layout) {
   const footprints = {
     dining_chair: [0.42, 0.48],
-    bar_stool: [0.42, 0.42],
     flowerpot: [0.28, 0.28],
   };
   for (const inst of layout.instances) {
@@ -644,6 +676,7 @@ function makeShell(layout) {
     leftOpening: { z0: 0.4, z1: 2.65, y0: 2.05, y1: 2.78 },
   });
   floorPlanks(g, W, D);
+  sectionSkirt(g, W, D);
   wainscot(g, W, D);
   clerestory(g, W);
   ceiling(g, W, D, H);
@@ -663,6 +696,7 @@ function makeProcedural(layout) {
   leatherAndStove(g, layout);
   ticketsAndSign(g, layout);
   lampGlows(g, layout);
+  for (const stool of layout.meta.workStools) workStool(g, stool);
   foliage(g, layout.instances.find((i) => i.id === 'plant'));
   contactsForSeats(g, layout);
   return g;

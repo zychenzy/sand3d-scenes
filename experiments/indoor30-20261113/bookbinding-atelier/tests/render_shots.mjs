@@ -114,7 +114,7 @@ try {
       expect('rack-root', 1.4, 1.7);
       expect('stove-root', 0.7, 1.05);
       if (m.hugeMeshes) errors.push(`${name} huge meshes ${m.hugeMeshes}`);
-      if (m.propCount !== 18) errors.push(`${name} propCount ${m.propCount}`);
+      if (m.propCount !== 16) errors.push(`${name} propCount ${m.propCount}`);
     }
     if (name.startsWith('unlit') && info?.mode && info.mode !== 'UNLIT') {
       errors.push(`${name} mode is ${info.mode}`);

@@ -21,7 +21,7 @@ Existing GLBs were measured from their accessor bounds and checked against rende
 Selected, by relative path, because the long axis is height and the footprint stays human-scaled after `targetHeight`:
 
 - Dining chair, overall 0.90 m. Front legs are the local +Z side, so a yaw of π faces a bench on −Z.
-- Bar stool, overall 0.68 m, for the standing press and the guillotine.
+- The cafe bar stool was measured and left out of the standing stations. Its tulip base reads as a counter stool. The press and the shear use plain four-leg work stools built in the scene, seat 0.64 m, parked beside the work.
 - Banker's lamp, overall 0.38 m. The shade group sits on local −Z; yaw π opens it toward the sitter. The `light_tube` mesh is marked emissive.
 - Pendant, overall 0.40 m. The `bulb` mesh is marked emissive. A short cord continues it to the beam.
 - Jam jars at 0.12 m as paste pots, one mug, one thermos, one flowerpot.
