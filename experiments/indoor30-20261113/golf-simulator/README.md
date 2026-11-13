@@ -1,6 +1,6 @@
 # Two-bay indoor golf simulator
 
-A cutaway club room with two separated right-handed hitting bays. Each bay has a concave impact screen, side and ceiling net, a stance mat, a floor launch monitor on the screen side of the ball, and a club rack on the outer wall. Six theatre chairs sit behind the yellow safety line and face the screens. The entry holds a bag bench, a service counter, and ball baskets. It is a hitting room with a viewing row, not a lounge that happens to contain a television.
+A cutaway club room with two separated right-handed hitting bays. Each bay has a concave impact screen (a dogleg par 4 and a water-carry par 3), side and ceiling net, a stance mat, a low floor launch monitor on the screen side of the ball, and a club rack on the outer wall. Six theatre chairs, narrowed on X, sit behind the yellow safety line and face the screens. The side walls carry a chair rail and a bay card over the dado. The entry holds a bag bench, a service counter, and ball baskets. It is a hitting room with a viewing row, not a lounge that happens to contain a television.
 
 Shading is hard 4-step toon with a single hard shadow. `U` switches the room to unlit `MeshBasicMaterial`. The impact screens and launch-monitor readouts stay basic in both modes so the hole and the numbers stay readable.
 

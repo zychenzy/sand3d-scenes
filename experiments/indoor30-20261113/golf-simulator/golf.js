@@ -12,92 +12,174 @@ function canvasTex(draw) {
   return tex;
 }
 
+function pine(g, x, ground, h, w) {
+  g.beginPath();
+  g.moveTo(x, ground);
+  g.lineTo(x + w * 0.5, ground - h);
+  g.lineTo(x + w, ground);
+  g.fill();
+}
+
+function roundTree(g, x, ground, h, w) {
+  g.beginPath();
+  g.ellipse(x + w * 0.5, ground - h * 0.62, w * 0.55, h * 0.42, 0, 0, Math.PI * 2);
+  g.fill();
+  g.fillRect(x + w * 0.42, ground - h * 0.35, w * 0.16, h * 0.35);
+}
+
 function paintHole(kind) {
   return canvasTex((canvas, g) => {
     canvas.width = 1024;
     canvas.height = 768;
-    const sky = g.createLinearGradient(0, 0, 0, 430);
-    sky.addColorStop(0, '#6eaddc');
-    sky.addColorStop(0.7, '#c5e4f6');
-    sky.addColorStop(1, '#e7f4ea');
+    const par3 = kind === 'par3';
+    const sky = g.createLinearGradient(0, 0, 0, 420);
+    if (par3) {
+      sky.addColorStop(0, '#8eb7d4');
+      sky.addColorStop(0.65, '#d5e6ea');
+      sky.addColorStop(1, '#efe2c4');
+    } else {
+      sky.addColorStop(0, '#3e86c4');
+      sky.addColorStop(0.7, '#b7daf2');
+      sky.addColorStop(1, '#d5e7c8');
+    }
     g.fillStyle = sky;
     g.fillRect(0, 0, 1024, 768);
-    g.fillStyle = '#fff3cc';
+    g.fillStyle = par3 ? '#fff1c9' : '#fff6d2';
     g.beginPath();
-    g.arc(kind === 'par3' ? 250 : 780, 110, 34, 0, Math.PI * 2);
+    g.arc(par3 ? 210 : 820, par3 ? 150 : 92, par3 ? 28 : 36, 0, Math.PI * 2);
     g.fill();
-    g.fillStyle = '#2c6840';
-    for (let i = 0; i < 16; i++) {
-      const x = 20 + i * 64 + (i % 2) * 10;
-      const h = 110 + (i % 3) * 26;
+
+    if (par3) {
+      g.fillStyle = '#1e4d38';
       g.beginPath();
-      g.moveTo(x, 390);
-      g.lineTo(x + 26, 390 - h);
-      g.lineTo(x + 52, 390);
+      g.moveTo(0, 430);
+      g.lineTo(180, 300);
+      g.lineTo(340, 390);
+      g.lineTo(0, 470);
       g.fill();
-    }
-    g.fillStyle = '#74b44c';
-    g.fillRect(0, 390, 1024, 378);
-    g.fillStyle = '#68a644';
-    g.beginPath();
-    g.moveTo(120, 768);
-    g.lineTo(904, 768);
-    g.lineTo(670, 400);
-    g.lineTo(354, 400);
-    g.closePath();
-    g.fill();
-    g.fillStyle = 'rgba(255,255,255,0.13)';
-    g.beginPath();
-    g.moveTo(250, 760);
-    g.lineTo(470, 760);
-    g.lineTo(500, 448);
-    g.lineTo(430, 448);
-    g.fill();
-    g.fillStyle = '#e6d3a2';
-    g.beginPath();
-    g.ellipse(kind === 'par3' ? 300 : 360, 590, 78, 30, -0.4, 0, Math.PI * 2);
-    g.fill();
-    if (kind === 'par3') {
-      g.fillStyle = '#3c86b0';
+      g.fillStyle = '#245c40';
+      roundTree(g, 40, 430, 150, 90);
+      roundTree(g, 110, 440, 190, 120);
+      g.fillStyle = '#163c2c';
+      pine(g, 860, 400, 150, 70);
+      pine(g, 930, 410, 110, 60);
+      g.fillStyle = '#2a6a48';
+      pine(g, 800, 415, 90, 50);
+
+      g.fillStyle = '#2f74a4';
+      g.fillRect(0, 400, 1024, 368);
+      g.fillStyle = '#3e86b6';
+      for (let y = 430; y < 760; y += 36) {
+        g.fillRect(0, y, 1024, 8);
+      }
+      g.fillStyle = '#e7d7b0';
       g.beginPath();
-      g.ellipse(720, 575, 100, 38, 0.25, 0, Math.PI * 2);
+      g.moveTo(250, 470);
+      g.quadraticCurveTo(520, 430, 790, 500);
+      g.lineTo(760, 540);
+      g.quadraticCurveTo(500, 490, 280, 530);
       g.fill();
-      g.fillStyle = 'rgba(255,255,255,0.25)';
+      g.fillStyle = '#3f9a52';
       g.beginPath();
-      g.ellipse(700, 568, 40, 8, 0.25, 0, Math.PI * 2);
+      g.ellipse(620, 500, 150, 58, -0.2, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#2f7d40';
+      g.beginPath();
+      g.ellipse(600, 492, 90, 28, -0.3, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#e4d2a4';
+      g.beginPath();
+      g.ellipse(500, 530, 36, 16, 0.4, 0, Math.PI * 2);
+      g.fill();
+      g.strokeStyle = '#f4f1e8';
+      g.lineWidth = 5;
+      g.beginPath();
+      g.moveTo(640, 500);
+      g.lineTo(640, 430);
+      g.stroke();
+      g.fillStyle = '#d24b45';
+      g.beginPath();
+      g.moveTo(640, 430);
+      g.lineTo(700, 448);
+      g.lineTo(640, 466);
       g.fill();
     } else {
-      g.fillStyle = '#e6d3a2';
+      g.fillStyle = '#8e9a78';
       g.beginPath();
-      g.ellipse(690, 520, 54, 20, 0.5, 0, Math.PI * 2);
+      g.moveTo(0, 360);
+      g.lineTo(260, 300);
+      g.lineTo(520, 348);
+      g.lineTo(780, 280);
+      g.lineTo(1024, 340);
+      g.lineTo(1024, 400);
+      g.lineTo(0, 400);
+      g.fill();
+      g.fillStyle = '#1f5a34';
+      const left = [[30, 200, 70], [90, 250, 80], [160, 160, 60], [240, 220, 74]];
+      for (const [x, h, w] of left) pine(g, x, 390, h, w);
+      g.fillStyle = '#2f6d40';
+      roundTree(g, 300, 395, 170, 110);
+      g.fillStyle = '#173f28';
+      pine(g, 860, 380, 180, 78);
+      pine(g, 940, 390, 130, 64);
+      g.fillStyle = '#24633a';
+      roundTree(g, 760, 390, 120, 80);
+
+      g.fillStyle = '#d5e3b4';
+      g.fillRect(0, 378, 1024, 390);
+      g.fillStyle = '#c9d9a6';
+      for (let y = 410; y < 760; y += 46) g.fillRect(0, y, 1024, 7);
+      g.fillStyle = '#5ea246';
+      g.beginPath();
+      g.moveTo(470, 768);
+      g.lineTo(760, 768);
+      g.quadraticCurveTo(700, 640, 560, 540);
+      g.quadraticCurveTo(400, 450, 300, 390);
+      g.lineTo(230, 410);
+      g.quadraticCurveTo(340, 490, 470, 590);
+      g.quadraticCurveTo(560, 680, 470, 768);
+      g.fill();
+      g.strokeStyle = 'rgba(255,255,255,0.28)';
+      g.lineWidth = 8;
+      g.beginPath();
+      g.moveTo(620, 750);
+      g.quadraticCurveTo(560, 620, 430, 520);
+      g.quadraticCurveTo(340, 450, 280, 400);
+      g.stroke();
+      g.fillStyle = '#e4d2a2';
+      g.beginPath();
+      g.ellipse(500, 560, 62, 22, -0.6, 0, Math.PI * 2);
+      g.fill();
+      g.beginPath();
+      g.ellipse(360, 450, 40, 16, 0.4, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#3d9850';
+      g.beginPath();
+      g.ellipse(270, 400, 88, 34, -0.4, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#2d7840';
+      g.beginPath();
+      g.ellipse(258, 394, 46, 14, -0.5, 0, Math.PI * 2);
+      g.fill();
+      g.strokeStyle = '#f7f7f4';
+      g.lineWidth = 5;
+      g.beginPath();
+      g.moveTo(262, 396);
+      g.lineTo(262, 330);
+      g.stroke();
+      g.fillStyle = '#f4f4f2';
+      g.beginPath();
+      g.moveTo(262, 330);
+      g.lineTo(318, 348);
+      g.lineTo(262, 366);
       g.fill();
     }
-    g.fillStyle = '#3c9648';
-    g.beginPath();
-    g.ellipse(512, 500, 128, 46, 0, 0, Math.PI * 2);
-    g.fill();
-    g.fillStyle = '#2f7a3c';
-    g.beginPath();
-    g.ellipse(500, 492, 70, 18, -0.2, 0, Math.PI * 2);
-    g.fill();
-    g.strokeStyle = '#f7f7f4';
-    g.lineWidth = 5;
-    g.beginPath();
-    g.moveTo(512, 500);
-    g.lineTo(512, 418);
-    g.stroke();
-    g.fillStyle = kind === 'par3' ? '#d24b45' : '#f4f4f2';
-    g.beginPath();
-    g.moveTo(512, 418);
-    g.lineTo(572, 436);
-    g.lineTo(512, 454);
-    g.closePath();
-    g.fill();
+
     g.fillStyle = 'rgba(16, 28, 22, 0.62)';
     g.fillRect(36, 34, 300, 70);
     g.fillStyle = '#f6f1e6';
     g.font = '600 32px sans-serif';
-    g.fillText(kind === 'par3' ? 'PAR 3   ·   168' : 'PAR 4   ·   412', 54, 80);
+    g.fillText(par3 ? 'PAR 3   ·   168' : 'PAR 4   ·   412', 54, 80);
   });
 }
 
@@ -163,38 +245,26 @@ function paintGallery() {
 }
 
 function paintReadout(bay) {
+  const carry = bay.hole === 'par3' ? '168' : '214';
+  const club = bay.hole === 'par3' ? '7I' : 'DR';
   return canvasTex((canvas, g) => {
-    canvas.width = 512;
-    canvas.height = 288;
-    g.fillStyle = '#10241c';
-    g.fillRect(0, 0, 512, 288);
-    g.strokeStyle = '#1f7a4c';
-    g.lineWidth = 8;
-    g.strokeRect(10, 10, 492, 268);
-    g.fillStyle = '#c8f5d4';
-    g.font = '700 40px sans-serif';
-    g.fillText('BAY ' + bay.label, 32, 68);
-    const rows = bay.hole === 'par3'
-      ? [['CARRY', '168'], ['BALL', '124'], ['SPIN', '6840'], ['CLUB', '7I']]
-      : [['CARRY', '214'], ['BALL', '148'], ['SPIN', '2460'], ['CLUB', 'DR']];
-    rows.forEach((row, i) => {
-      g.fillStyle = '#7dbe96';
-      g.font = '600 26px sans-serif';
-      g.fillText(row[0], 32, 118 + i * 38);
-      g.fillStyle = '#f3fff6';
-      g.font = '700 28px sans-serif';
-      g.fillText(row[1], 210, 118 + i * 38);
-    });
-    g.strokeStyle = '#e7fff0';
-    g.lineWidth = 4;
-    g.beginPath();
-    g.moveTo(360, 230);
-    g.quadraticCurveTo(430, 70, 486, 160);
-    g.stroke();
-    g.fillStyle = '#ffffff';
-    g.beginPath();
-    g.arc(486, 160, 6, 0, Math.PI * 2);
-    g.fill();
+    canvas.width = 640;
+    canvas.height = 360;
+    g.fillStyle = '#0e1c16';
+    g.fillRect(0, 0, 640, 360);
+    g.fillStyle = '#163528';
+    g.fillRect(0, 0, 640, 86);
+    g.fillStyle = '#d7f5e2';
+    g.font = '700 54px sans-serif';
+    g.fillText('BAY ' + bay.label, 28, 60);
+    g.fillStyle = '#8dccaa';
+    g.font = '600 32px sans-serif';
+    g.fillText('CARRY', 28, 150);
+    g.fillText('CLUB', 28, 270);
+    g.fillStyle = '#f4fff8';
+    g.font = '700 84px sans-serif';
+    g.fillText(carry, 230, 168);
+    g.fillText(club, 230, 292);
   });
 }
 
@@ -475,6 +545,7 @@ function makeProcedural(layout) {
 
   clubRacks(g, layout, wood, dark);
   serviceCounter(g, wood, dark, brass);
+  sideGallery(g, layout, wood);
   for (const pot of layout.instances.filter((item) => item.kind === 'flowerpot')) {
     shrub(g, pot.position[0], pot.position[2]);
   }
@@ -486,46 +557,62 @@ function launchMonitor(monitor, bay, metal, brass) {
   root.name = 'monitor-' + bay.id;
   root.position.set(monitor.x, 0, monitor.z);
   const [bx, bz] = bay.ball;
-  const yaw = Math.atan2(bx - monitor.x, bz - monitor.z);
   const g = new THREE.Group();
-  g.rotation.y = yaw;
+  g.rotation.y = Math.atan2(bx - monitor.x, bz - monitor.z);
   root.add(g);
-  const body = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), metal);
-  body.scale.set(0.2, 0.072, 0.15);
-  body.position.y = 0.078;
+  const rubber = toon('#1a1f22');
+  const plinth = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.016, 0.3), rubber);
+  plinth.position.set(0, 0.01, 0);
+  g.add(plinth);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.048, 0.24), metal);
+  body.position.set(0, 0.042, 0.01);
   g.add(body);
-  const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.02, 18), metal);
-  foot.position.y = 0.012;
-  g.add(foot);
-  for (const x of [-0.055, 0.055]) {
-    const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.026, 0.02, 16), toon('#12161a'));
+  for (const z of [-0.1, 0.12]) {
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 12), metal);
+    cap.scale.set(1, 0.3, 0.55);
+    cap.position.set(0, 0.042, z);
+    g.add(cap);
+  }
+  const cowl = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.04, 0.1), toon('#2a3034'));
+  cowl.position.set(0, 0.078, -0.04);
+  g.add(cowl);
+  for (const x of [-0.045, 0.045]) {
+    const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.026, 0.03, 14), toon('#12161a'));
     lens.rotation.x = Math.PI / 2;
-    lens.position.set(x, 0.082, 0.132);
+    lens.position.set(x, 0.05, 0.125);
     g.add(lens);
     const glass = new THREE.Mesh(
-      new THREE.CircleGeometry(0.018, 16),
+      new THREE.CircleGeometry(0.014, 14),
       new THREE.MeshBasicMaterial({ color: '#1f6b86' }),
     );
-    glass.position.set(x, 0.082, 0.144);
+    glass.position.set(x, 0.05, 0.142);
     glass.userData.keepMaterial = true;
     glass.userData.noCast = true;
     g.add(glass);
   }
-  const lip = new THREE.Mesh(new THREE.TorusGeometry(0.018, 0.004, 8, 16), brass);
-  lip.position.set(0.09, 0.05, 0);
-  lip.rotation.y = Math.PI / 2;
-  g.add(lip);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.003, 6, 14), brass);
+  ring.position.set(0.078, 0.04, 0.02);
+  ring.rotation.y = Math.PI / 2;
+  g.add(ring);
+  for (const [x, z] of [[-0.07, -0.1], [0.07, -0.1], [-0.07, 0.1], [0.07, 0.1]]) {
+    const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.012, 8), rubber);
+    foot.position.set(x, 0.006, z);
+    g.add(foot);
+  }
+  const bezel = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.122, 0.01), toon('#14181c'));
+  bezel.position.set(0, 0.112, 0.02);
+  bezel.rotation.x = -1.02;
+  g.add(bezel);
   const display = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.24, 0.15),
+    new THREE.PlaneGeometry(0.186, 0.108),
     new THREE.MeshBasicMaterial({ map: paintReadout(bay), side: THREE.DoubleSide }),
   );
-  // Gallery side of the puck. Negative X rotation leans the top back so the face points up at the seats.
-  display.position.set(0, 0.16, 0.07);
-  display.rotation.x = -0.7;
+  display.position.set(0, 0.112, 0.03);
+  display.rotation.x = -1.02;
   display.userData.keepMaterial = true;
   display.userData.noCast = true;
   display.name = 'readout-' + bay.id;
-  root.add(display);
+  g.add(display);
   return root;
 }
 
@@ -568,6 +655,48 @@ function serviceCounter(g, wood, dark, brass) {
   addBox(g, 0.9, 0.025, 0.22, brass, 0.15, 0.865, z);
 }
 
+function sideGallery(g, layout, wood) {
+  const room = layout.meta.room;
+  const t = room.wall;
+  for (const x of [room.minX + t + 0.05, room.maxX - t - 0.05]) {
+    const rail = addBox(g, 0.055, 0.045, 4.05, wood, x, 1.2, 3.05);
+    rail.userData.noCast = true;
+    rail.name = 'chair-rail';
+  }
+  wallCard(g, room.minX + t + 0.06, 1.86, 2.45, Math.PI / 2, 'BAY 01', 'PAR 4');
+  wallCard(g, room.maxX - t - 0.06, 1.86, 2.45, -Math.PI / 2, 'BAY 02', 'PAR 3');
+}
+
+function wallCard(g, x, y, z, yaw, title, line) {
+  const group = new THREE.Group();
+  group.position.set(x, y, z);
+  group.rotation.y = yaw;
+  const frame = addBox(group, 0.72, 0.46, 0.03, toon('#5c3b28'), 0, 0, 0);
+  frame.userData.noCast = true;
+  const card = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.62, 0.36),
+    new THREE.MeshBasicMaterial({ color: '#ffffff' }),
+  );
+  card.position.z = 0.016;
+  card.userData.keepMaterial = true;
+  card.userData.noCast = true;
+  card.material.map = canvasTex((canvas, ctx) => {
+    canvas.width = 440;
+    canvas.height = 260;
+    ctx.fillStyle = '#1c2420';
+    ctx.fillRect(0, 0, 440, 260);
+    ctx.fillStyle = '#e7c27a';
+    ctx.font = '700 64px sans-serif';
+    ctx.fillText(title, 36, 110);
+    ctx.fillStyle = '#f4efe4';
+    ctx.font = '600 42px sans-serif';
+    ctx.fillText(line, 36, 180);
+  });
+  card.material.needsUpdate = true;
+  group.add(card);
+  g.add(group);
+}
+
 function ballBasket(g, x, z, metal) {
   const pts = [];
   for (let i = 0; i <= 10; i++) {
@@ -602,6 +731,14 @@ boot({
   makeShell,
   makeProcedural,
   readyText: 'two bays — orbit · T toon · U unlit',
+  tuneAsset(kind, prepared) {
+    if (kind !== 'theatre_chair') return;
+    const inner = prepared.children[0];
+    inner.scale.x *= 0.6;
+    inner.updateWorldMatrix(true, true);
+    const box = new THREE.Box3().setFromObject(prepared);
+    inner.position.x -= (box.min.x + box.max.x) / 2;
+  },
   onReady({ layout }) {
     const issues = collectIssues(layout, layout.meta.chairFootprint);
     window.__audit = { ok: issues.length === 0, issues };

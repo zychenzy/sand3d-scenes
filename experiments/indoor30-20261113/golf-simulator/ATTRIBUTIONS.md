@@ -1,6 +1,6 @@
 # Attributions
 
-New bakes are CC-BY-4.0 programs from Hugging Face `Sandflow/sand3d-objaverse`, converted here from the dataset USDA (Z-up, metres) into Y-up glTF. Clubs are stood on the shaft axis with the head up. Three.js r170 stays in `gym/vendor` and is not copied.
+New bakes are CC-BY-4.0 programs from Hugging Face `Sandflow/sand3d-objaverse`, converted here from the dataset USDA (Z-up, metres) into Y-up glTF. Clubs are stood on the shaft axis. The original heads were thin sheets, so the driver, iron, and wedge heads in these GLBs were rebuilt on those shafts in this folder. Three.js r170 stays in `gym/vendor` and is not copied. Gallery chairs are the shared theatre chair, narrowed on X in the scene. No shared club chair in the repo is anything other than a dining chair, a sofa, or a stool.
 
 ## Baked for this room
 
