@@ -27,4 +27,8 @@ The first default framing cut court 2 off the right edge, and the darkest toon s
 
 ## Still true after those fixes
 
-The east wall is the quiet plane of the hall. The dado is there, and it is still a large flat surface. The 26 mm sag reads in the close frame as the tape falling away from the post; from the hall camera it is a nearly level white band, which is what 26 mm looks like at that distance. The door opens onto the cutaway void, not a modelled lobby.
+The east wall is the quiet plane of the hall. The dado is there, and it is still a large flat surface. The 26 mm sag reads in the close frame as the tape falling away from the post; from the hall camera it is a nearly level white band, which is what 26 mm looks like at that distance.
+
+## Refinement after the still review
+
+Same cameras. The south wall now sits behind the default camera and the black cut skirt is gone. The bottom of `toon_default.png` and `unlit_default.png` is timber, not the clear colour. A paneled roof deck closes the truss grid; the unlit ceiling samples as the deck greens (`#c5d5cb` and its neighbours), not the clear colour. Tall walls no longer receive the key shadow, so the four truss arrows on the left wall are gone, and the mats still take the floor shadow. The close camera skips truss and net casting: a horizontal sample across the close mat is one green band (two sharp steps, the lines), and the shuttle, tape, and gap under the mesh stay in frame. The east wall has four canvas pads and a small notice. The bookcase is green with a SHUTTLES header and tubes; the board face is a two-court score and the easel feet are hidden. The west door opens into a vestibule. Console stayed empty and the eight GLBs plus `three.module.js` still returned 200. Layout tests: 9 passed.

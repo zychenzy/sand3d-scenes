@@ -65,6 +65,8 @@ export const HALL = {
   eastWallX: outerR + side,
   northWallZ: -halfL - 2,
   southCutZ: halfL + 2 + 0.2,
+  // South wall sits behind the default camera so the hall is enclosed.
+  southWallZ: 21.2,
   clearHeight: 9.05,
   trussTop: 9.82,
   wallTop: 10.25,

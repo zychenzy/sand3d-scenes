@@ -12,11 +12,11 @@ Each court is a green mat on a timber sprung floor. Mats do not cover the run-of
 
 ## Clearances
 
-Side run-off and the gap between the courts are 2.00 m (above the 1.50 m BWF / club minimum). Back run-off to the north wall is 2.00 m. The south cut is 2.20 m past the baselines so the open end still shows a clear run-off. Clear height under the truss bottom chord is 9.05 m. Battens hang at 8.12 m over the side run-offs and the centre gap only, at least 0.75 m clear of every sideline.
+Side run-off and the gap between the courts are 2.00 m (above the 1.50 m BWF / club minimum). Back run-off to the north wall is 2.00 m. The south wall is a real wall behind the default camera, so the establishing view stands inside the room. Clear height under the truss bottom chord is 9.05 m. A paneled roof deck sits on the trusses. Battens hang at 8.12 m over the side run-offs and the centre gap only, at least 0.75 m clear of every sideline. The east wall carries four canvas pads and a small court notice. Tall walls do not receive the key shadow; the floor and the mats do. The close camera turns off truss and net shadow casting so the lines stay readable.
 
 ## Gallery and entry
 
-West of the 2 m run-off is a 2.35 m gallery under a timber soffit at 3.15 m. A colonnade on the gallery edge holds the soffit and does not step into the run-off. Benches are backless and run parallel to the courts, so the court-side seat faces the play. The shoe bench, rubber mat, and ajar door are at the south end of the gallery. The chair faces west, into the sign-in desk, not onto a court. The bookcase opens east, toward the aisle, and holds shuttle tubes and grips. Rackets hang head-down on the rail beside it, faces toward the courts. One racket lies on the shoe bench.
+West of the 2 m run-off is a 2.35 m gallery under a timber soffit at 3.15 m. A colonnade on the gallery edge holds the soffit and does not step into the run-off. Benches are backless and run parallel to the courts, so the court-side seat faces the play. The shoe bench, rubber mat, and ajar door are at the south end of the gallery. The chair faces west, into the sign-in desk, not onto a court. The bookcase opens east, toward the aisle. It is stained green, signed SHUTTLES, and holds tubes and grips. The draw board is the same chalkboard bake with the easel feet hidden, a dark frame, and a two-court score on the face. The west door opens into a small enclosed vestibule. Rackets hang head-down on the rail beside it, faces toward the courts. One racket lies on the shoe bench.
 
 Cool linear battens light the hall. Warm pendants and a cove light only the gallery, which is the shoe-change threshold. Walls are a darker green below 2.35 m and a lighter green above, with no windows.
 

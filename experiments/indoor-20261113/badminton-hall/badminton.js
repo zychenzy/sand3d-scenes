@@ -11,6 +11,9 @@ import {
   racketMetrics,
 } from './court_spec.mjs';
 
+const easeCloseShadows = typeof location !== 'undefined'
+  && new URLSearchParams(location.search).get('cam') === 'close';
+
 const C = {
   lower: '#2c5642',
   upper: '#5f8b74',
@@ -18,7 +21,10 @@ const C = {
   dado: '#1c332b',
   steel: '#2a3138',
   poche: '#141210',
-  ceiling: '#e3eee6',
+  ceiling: '#b7c9be',
+  seam: '#7f978c',
+  pad: '#e4d3b4',
+  padEdge: '#1c332b',
   mat: '#1f7a45',
   line: '#f4f6f1',
   post: '#f3f4f1',
@@ -153,6 +159,38 @@ function stringTexture() {
   return srgb(canvas);
 }
 
+function paintDeck(width, depth) {
+  const ppm = 18;
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(64, Math.round(width * ppm));
+  canvas.height = Math.max(64, Math.round(depth * ppm));
+  const ctx = canvas.getContext('2d');
+  const panels = ['#c5d5cb', '#b7c9be', '#d0ddd4', '#aebfb4'];
+  const pw = 1.6 * ppm;
+  const ph = 3.2 * ppm;
+  for (let y = 0, row = 0; y < canvas.height; y += ph, row++) {
+    for (let x = 0, col = 0; x < canvas.width; x += pw, col++) {
+      ctx.fillStyle = panels[(row + col) % panels.length];
+      ctx.fillRect(x, y, pw + 1, ph + 1);
+    }
+  }
+  ctx.strokeStyle = '#6f877c';
+  ctx.lineWidth = 3;
+  for (let x = 0; x <= canvas.width; x += pw) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+  for (let y = 0; y <= canvas.height; y += ph) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+  return srgb(canvas);
+}
+
 function textPlane(lines, w, h, opts = {}) {
   const canvas = document.createElement('canvas');
   canvas.width = opts.pw || 1024;
@@ -282,7 +320,8 @@ function addNet(g, cx, index, textures) {
     const tm = (t0 + t1) / 2;
     const x = x0 + (x1 - x0) * tm;
     const y = cableY(tm) - COURT.tape / 2;
-    addBox(g, (x1 - x0) / segs + 0.004, COURT.tape, 0.014, tapeMat, x, y, 0);
+    const tape = addBox(g, (x1 - x0) / segs + 0.004, COURT.tape, 0.014, tapeMat, x, y, 0);
+    if (easeCloseShadows) tape.userData.noCast = true;
   }
   const meshMat = mat(C.net, {
     map: textures.net,
@@ -295,6 +334,7 @@ function addNet(g, cx, index, textures) {
   for (const side of [1, -1]) {
     const mesh = new THREE.Mesh(sagStrip(x0, x1, yTop, yBot, 36, side * 0.004, side), meshMat);
     mesh.userData.noReceive = true;
+    if (easeCloseShadows) mesh.userData.noCast = true;
     net.add(mesh);
   }
   const hemMat = mat(C.net);
@@ -304,6 +344,7 @@ function addNet(g, cx, index, textures) {
     const y = yBot(tm) + 0.006;
     const hem = addBox(g, (x1 - x0) / segs + 0.004, 0.012, 0.01, hemMat, x, y, 0);
     hem.userData.noReceive = true;
+    if (easeCloseShadows) hem.userData.noCast = true;
   }
   const strapTop = cableY(0.5) - COURT.tape;
   const strapBottom = 0.02;
@@ -311,6 +352,11 @@ function addNet(g, cx, index, textures) {
   addBox(net, 0.02, strapH, 0.008, tapeMat, cx, strapBottom + strapH / 2, 0);
   const anchor = addBox(net, 0.08, 0.008, 0.08, baseMat, cx, 0.02, 0);
   anchor.userData.noCast = true;
+  if (easeCloseShadows) {
+    net.traverse((obj) => {
+      if (obj.isMesh) obj.userData.noCast = true;
+    });
+  }
   g.add(net);
 }
 
@@ -321,18 +367,23 @@ function addTruss(g, z, steel) {
   const y1 = HALL.trussTop;
   const len = x1 - x0;
   const mid = (x0 + x1) / 2;
-  addBox(g, len, 0.07, 0.07, steel, mid, y0, z);
-  addBox(g, len, 0.07, 0.07, steel, mid, y1, z);
+  const member = (w, h, d, x, y, zz) => {
+    const mesh = addBox(g, w, h, d, steel, x, y, zz);
+    if (easeCloseShadows) mesh.userData.noCast = true;
+    return mesh;
+  };
+  member(len, 0.07, 0.07, mid, y0, z);
+  member(len, 0.07, 0.07, mid, y1, z);
   const n = 8;
   for (let i = 0; i <= n; i++) {
     const x = x0 + (len * i) / n;
-    addBox(g, 0.05, y1 - y0, 0.05, steel, x, (y0 + y1) / 2, z);
+    member(0.05, y1 - y0, 0.05, x, (y0 + y1) / 2, z);
     if (i < n) {
       const xB = x0 + (len * (i + 1)) / n;
       const dx = xB - x;
       const dy = y1 - y0;
       const up = i % 2 === 0;
-      const diag = addBox(g, Math.hypot(dx, dy), 0.032, 0.032, steel, (x + xB) / 2, (y0 + y1) / 2, z);
+      const diag = member(Math.hypot(dx, dy), 0.032, 0.032, (x + xB) / 2, (y0 + y1) / 2, z);
       diag.rotation.z = Math.atan2(up ? dy : -dy, dx);
     }
   }
@@ -432,30 +483,43 @@ function addGear(g, strings) {
   g.add(lay);
 
   const shelf = [
-    { y: 0.539, lx: [-0.24, -0.02, 0.22], open: 1 },
-    { y: 1.511, lx: [-0.16, 0.16], open: -1 },
+    { y: 0.539, lx: [-0.28, -0.1, 0.08, 0.26], open: 1 },
+    { y: 1.511, lx: [-0.22, 0.0, 0.22], open: 0 },
   ];
   for (const row of shelf) {
     row.lx.forEach((lx, i) => {
       const tube = makeTube(i === row.open);
-      tube.position.set(-11.15, row.y, -1.05 + lx);
+      tube.position.set(-11.08, row.y, -1.05 + lx);
       g.add(tube);
       if (i === row.open) {
         for (let s = 0; s < 3; s++) {
           const shuttle = makeShuttle();
-          shuttle.position.set(-11.15 + (s - 1) * 0.012, row.y + 0.16, -1.05 + lx);
+          shuttle.position.set(-11.02 + (s - 1) * 0.014, row.y + 0.16, -1.05 + lx);
           shuttle.scale.setScalar(0.72);
           g.add(shuttle);
         }
       }
     });
   }
-  const grips = ['#8e2d32', '#1d4e8f', '#e6e2d4', '#1c1c1c', '#2f6a3a'];
+  const grips = ['#8e2d32', '#1d4e8f', '#e6e2d4', '#1c1c1c', '#2f6a3a', '#c47b2b'];
   grips.forEach((color, i) => {
-    const roll = addCyl(g, 0.016, 0.016, 0.1, mat(color), 0, 0, 0, 10);
+    const roll = addCyl(g, 0.022, 0.022, 0.11, mat(color), 0, 0, 0, 10);
     roll.rotation.x = Math.PI / 2;
-    roll.position.set(-11.16, 1.025 + 0.016, -1.05 - 0.24 + i * 0.12);
+    roll.position.set(-10.98, 1.025 + 0.024, -1.05 - 0.28 + i * 0.11);
   });
+  const store = textPlane(
+    [
+      { text: 'SHUTTLES', font: '700 150px Georgia, serif' },
+      { text: 'grips on the middle shelf', font: '58px Georgia, serif' },
+    ],
+    0.78,
+    0.26,
+    { bg: '#1e3d30', border: '#e7e4dc', fg: '#f4f6f1', pw: 1024, ph: 360 },
+  );
+  store.position.set(-11.0, 2.16, -1.05);
+  store.rotation.y = Math.PI / 2;
+  store.name = 'shuttle-sign';
+  g.add(store);
 
   const loose = makeShuttle();
   loose.rotation.x = Math.PI / 2;
@@ -481,14 +545,63 @@ function addDoor(g) {
   g.add(hinge);
 }
 
+function addVestibule(g, thick) {
+  const x1 = HALL.westWallX - thick;
+  const x0 = x1 - 1.7;
+  const z0 = 6.4;
+  const z1 = 7.7;
+  const y1 = 2.85;
+  const wall = mat(C.lower);
+  const cap = mat(C.upper);
+  addBox(g, x1 - x0, 0.08, z1 - z0, mat(C.rubber), (x0 + x1) / 2, 0.04, (z0 + z1) / 2).userData.noReceive = true;
+  const parts = [
+    addBox(g, 0.12, y1, z1 - z0, wall, x0 + 0.06, y1 / 2, (z0 + z1) / 2),
+    addBox(g, x1 - x0, y1, 0.1, wall, (x0 + x1) / 2, y1 / 2, z0 + 0.05),
+    addBox(g, x1 - x0, y1, 0.1, wall, (x0 + x1) / 2, y1 / 2, z1 - 0.05),
+    addBox(g, x1 - x0, 0.1, z1 - z0, cap, (x0 + x1) / 2, y1 - 0.05, (z0 + z1) / 2),
+  ];
+  parts.forEach((part) => {
+    part.userData.noReceive = true;
+    part.userData.noCast = true;
+  });
+}
+
+function addEastWall(g) {
+  const x = HALL.eastWallX - 0.045;
+  const padMat = mat(C.pad);
+  const edgeMat = mat(C.padEdge);
+  [-5.1, -1.7, 1.7, 5.1].forEach((z) => {
+    const edge = addBox(g, 0.02, 1.78, 1.04, edgeMat, x + 0.02, 1.12, z);
+    const pad = addBox(g, 0.04, 1.58, 0.86, padMat, x - 0.01, 1.12, z);
+    edge.userData.noCast = true;
+    edge.userData.noReceive = true;
+    pad.userData.noCast = true;
+    pad.userData.noReceive = true;
+  });
+  const notice = textPlane(
+    [
+      { text: 'COURT 2', font: '700 150px Georgia, serif' },
+      { text: 'keep the run-off clear', font: '58px Georgia, serif' },
+    ],
+    0.78,
+    0.36,
+    { bg: '#1e3d30', border: '#e7e4dc', fg: '#f4f6f1', pw: 1024, ph: 480 },
+  );
+  notice.position.set(HALL.eastWallX - 0.02, 1.55, 0);
+  notice.rotation.y = Math.PI / 2;
+  notice.material.side = THREE.DoubleSide;
+  notice.name = 'east-notice';
+  g.add(notice);
+}
+
 function makeShell(layout) {
   const g = new THREE.Group();
   g.name = 'shell';
   const H = HALL;
   const width = H.eastWallX - H.westWallX;
-  const depth = H.southCutZ - H.northWallZ;
+  const depth = H.southWallZ - H.northWallZ;
   const cx = (H.eastWallX + H.westWallX) / 2;
-  const cz = (H.southCutZ + H.northWallZ) / 2;
+  const cz = (H.southWallZ + H.northWallZ) / 2;
 
   const hallTimber = paintPlanks(width, depth, ['#c6a36e', '#d2b07a', '#bb955f', '#c9a874', '#b08958', '#d0ae76']);
   const galleryTimber = paintPlanks(H.galleryWidth, depth, ['#b7a48c', '#c2b09a', '#ad9a84', '#c8b59c']);
@@ -540,36 +653,49 @@ function makeShell(layout) {
     const d = Math.abs(z1 - z0);
     const mx = (x0 + x1) / 2;
     const mz = (z0 + z1) / 2;
-    addBox(g, w, 0.08, d, skirt, mx, 0.04, mz);
-    addBox(g, w, H.dadoY - 0.08, d, lower, mx, 0.08 + (H.dadoY - 0.08) / 2, mz);
-    addBox(g, w, 0.025, d, dado, mx, H.dadoY + 0.012, mz);
-    addBox(g, w, H.wallTop - H.dadoY - 0.02, d, upper, mx, H.dadoY + 0.02 + (H.wallTop - H.dadoY - 0.02) / 2, mz);
+    const parts = [
+      addBox(g, w, 0.08, d, skirt, mx, 0.04, mz),
+      addBox(g, w, H.dadoY - 0.08, d, lower, mx, 0.08 + (H.dadoY - 0.08) / 2, mz),
+      addBox(g, w, 0.025, d, dado, mx, H.dadoY + 0.012, mz),
+      addBox(g, w, H.wallTop - H.dadoY - 0.02, d, upper, mx, H.dadoY + 0.02 + (H.wallTop - H.dadoY - 0.02) / 2, mz),
+    ];
+    parts.forEach((part) => {
+      part.userData.noReceive = true;
+    });
   }
 
-  bandedWall(H.eastWallX, H.eastWallX + thick, H.northWallZ, H.southCutZ);
+  bandedWall(H.eastWallX, H.eastWallX + thick, H.northWallZ, H.southWallZ);
   bandedWall(H.westWallX - thick, H.eastWallX + thick, H.northWallZ - thick, H.northWallZ);
+  bandedWall(H.westWallX - thick, H.eastWallX + thick, H.southWallZ, H.southWallZ + thick);
   bandedWall(H.westWallX - thick, H.westWallX, H.northWallZ, 6.55);
-  bandedWall(H.westWallX - thick, H.westWallX, 7.51, H.southCutZ);
-  addBox(g, thick, 0.2, 0.96, lower, H.westWallX - thick / 2, 2.25, 7.03);
-  addBox(g, thick, H.wallTop - 2.35, 0.96, upper, H.westWallX - thick / 2, 2.35 + (H.wallTop - 2.35) / 2, 7.03);
+  bandedWall(H.westWallX - thick, H.westWallX, 7.51, H.southWallZ);
+  const header = [
+    addBox(g, thick, 0.2, 0.96, lower, H.westWallX - thick / 2, 2.25, 7.03),
+    addBox(g, thick, H.wallTop - 2.35, 0.96, upper, H.westWallX - thick / 2, 2.35 + (H.wallTop - 2.35) / 2, 7.03),
+  ];
+  header.forEach((part) => {
+    part.userData.noReceive = true;
+  });
 
-  const poche = mat(C.poche);
-  addBox(g, width + thick * 2, 0.36, 0.2, poche, cx, -0.18, H.southCutZ + 0.08);
-  addBox(g, thick, H.wallTop, 0.05, poche, H.eastWallX + thick / 2, H.wallTop / 2, H.southCutZ - 0.01);
-  addBox(g, thick, H.wallTop, 0.05, poche, H.westWallX - thick / 2, H.wallTop / 2, H.southCutZ - 0.01);
-
-  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(width + 0.4, depth + 0.3), mat(C.ceiling));
-  ceiling.rotation.x = Math.PI / 2;
-  ceiling.position.set(cx, H.ceilingY, cz);
-  ceiling.userData.noCast = true;
-  ceiling.userData.noReceive = true;
-  ceiling.name = 'ceiling';
-  g.add(ceiling);
+  const lid = addBox(
+    g,
+    width + 0.36,
+    0.18,
+    depth + 0.36,
+    mat(0xffffff, { map: paintDeck(width, depth) }),
+    cx,
+    H.ceilingY + 0.09,
+    cz,
+  );
+  lid.userData.noCast = true;
+  lid.userData.noReceive = true;
+  lid.name = 'ceiling';
 
   const steel = mat(C.steel);
   for (const z of H.trussZs) addTruss(g, z, steel);
   for (const x of [-8.1, -2.2, 2.6, 7.4]) {
-    addBox(g, 0.05, 0.05, depth - 0.8, steel, x, H.trussTop, cz);
+    const purlin = addBox(g, 0.05, 0.05, depth - 0.8, steel, x, H.trussTop, cz);
+    if (easeCloseShadows) purlin.userData.noCast = true;
   }
 
   const housingMat = mat(C.housing);
@@ -610,6 +736,8 @@ function makeShell(layout) {
   }
 
   addDoor(g);
+  addVestibule(g, thick);
+  addEastWall(g);
 
   const sign = textPlane(
     [
@@ -695,14 +823,21 @@ function tuneAsset(kind, prepared) {
   if (kind === 'gear_case') {
     prepared.traverse((obj) => {
       if (!obj.isMesh) return;
-      const back = (obj.name || '').includes('back');
-      obj.material = new THREE.MeshStandardMaterial({
-        color: back ? 0x5c3e2a : 0x8a5a38,
-        roughness: 0.72,
-      });
+      const n = obj.name || '';
+      let color = 0x3d4a38;
+      if (n.includes('back')) color = 0x241c16;
+      else if (n.includes('shelf') || n.includes('slab')) color = 0x6a4630;
+      obj.material = new THREE.MeshStandardMaterial({ color, roughness: 0.8 });
     });
   }
   if (kind === 'chalkboard') {
+    prepared.traverse((obj) => {
+      const n = obj.name || '';
+      if (n === 'end_support' || n === 'far_support' || n.startsWith('foot')) obj.visible = false;
+      if (obj.isMesh && obj.visible && n !== 'panel') {
+        obj.material = new THREE.MeshStandardMaterial({ color: 0x243028, roughness: 1 });
+      }
+    });
     const panel = prepared.getObjectByName('panel');
     if (!panel) return;
     const box = new THREE.Box3().setFromObject(panel);
@@ -713,19 +848,24 @@ function tuneAsset(kind, prepared) {
     canvas.width = 1024;
     canvas.height = 640;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#1a2a22';
+    ctx.fillStyle = '#14241c';
     ctx.fillRect(0, 0, 1024, 640);
     ctx.strokeStyle = '#d9d3c4';
-    ctx.lineWidth = 6;
-    ctx.strokeRect(36, 36, 952, 568);
-    ctx.fillStyle = '#e6e0d2';
-    ctx.font = '600 72px Georgia, serif';
-    ctx.fillText('TONIGHT', 78, 150);
-    ctx.font = '46px Georgia, serif';
-    ctx.fillText('Court 1     19:00     doubles', 78, 280);
-    ctx.fillText('Court 2     20:00     club', 78, 370);
+    ctx.lineWidth = 8;
+    ctx.strokeRect(28, 28, 968, 584);
+    ctx.fillStyle = '#e7e2d4';
+    ctx.font = '700 54px Georgia, serif';
+    ctx.fillText('CLUB BOARD', 70, 110);
+    ctx.font = '600 64px Georgia, serif';
+    ctx.fillText('COURT 1', 70, 230);
+    ctx.fillText('COURT 2', 560, 230);
+    ctx.font = '700 120px Georgia, serif';
+    ctx.fillText('21', 90, 390);
+    ctx.fillText('18', 580, 390);
     ctx.font = '42px Georgia, serif';
-    ctx.fillText('Non-marking shoes on the wood', 78, 500);
+    ctx.fillStyle = '#c9d2c4';
+    ctx.fillText('19:00  doubles', 70, 500);
+    ctx.fillText('20:00  club', 560, 500);
     const board = new THREE.Mesh(
       new THREE.PlaneGeometry(Math.max(size.z, size.x), Math.max(size.y, 0.4)),
       new THREE.MeshStandardMaterial({ map: srgb(canvas), roughness: 1, side: THREE.DoubleSide }),
@@ -734,6 +874,20 @@ function tuneAsset(kind, prepared) {
     board.rotation.y = Math.PI / 2;
     board.name = 'draw-sheet';
     prepared.add(board);
+    prepared.updateWorldMatrix(true, true);
+    const stand = new THREE.Box3();
+    prepared.traverse((obj) => {
+      if (obj.isMesh && obj.visible && obj !== board) stand.expandByObject(obj);
+    });
+    if (stand.min.y > 0.04) {
+      const plinth = new THREE.Mesh(
+        new THREE.BoxGeometry(0.08, stand.min.y, Math.max(0.4, stand.max.z - stand.min.z)),
+        new THREE.MeshStandardMaterial({ color: 0x243028, roughness: 1 }),
+      );
+      plinth.position.set((stand.min.x + stand.max.x) / 2, stand.min.y / 2, (stand.min.z + stand.max.z) / 2);
+      plinth.name = 'board-plinth';
+      prepared.add(plinth);
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 # Shuttle Hall — two-court club badminton
 
-A cutaway club hall: two BWF doubles courts on green mats, white 40 mm lines, shallow nets with the legal centre sag, and a side gallery for shoes, rackets, and shuttles. The south end is open so the courts can be read from outside the volume.
+An enclosed club hall: two BWF doubles courts on green mats, white 40 mm lines, shallow nets with the legal centre sag, and a side gallery for shoes, rackets, and shuttles. The default camera stands inside the south end of the room.
 
 Three.js r170 stays in `gym/vendor`. Shading is local (`scene_lib.js`): hard 4-step toon by default, and true unlit (`MeshBasicMaterial`) on `U`. Shared GLBs are referenced from the repository root, not copied.
 
