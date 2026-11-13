@@ -177,8 +177,8 @@ function makeShell(layout) {
   const rug = layout.shell;
   const field = toon(rug.rugField, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
   const edge = toon(rug.rugEdge, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
-  addBox(g, 1.35, 0.012, 2.55, edge, -1.9, 0.008, 0.55, { cast: false });
-  addBox(g, 1.15, 0.014, 2.35, field, -1.9, 0.012, 0.55, { cast: false });
+  addBox(g, 1.05, 0.012, 1.05, edge, -1.9, 0.008, 0.12, { cast: false });
+  addBox(g, 0.88, 0.014, 0.88, field, -1.9, 0.012, 0.12, { cast: false });
   const pr = toon(rug.producerRug, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
   addBox(g, 2.15, 0.012, 1.7, pr, 2.7, 0.008, -0.95, { cast: false });
 
@@ -285,6 +285,29 @@ function cueStack(g, x, y, z) {
       { cast: false }
     );
   });
+}
+
+function swivelChair(g, inst) {
+  const chair = new THREE.Group();
+  const base = toon('#2a2420');
+  const metal = toon('#8a8178');
+  const pad = toon('#3e4650');
+  const padDark = toon('#2c333b');
+  addCyl(chair, 0.04, 0.04, 0.03, metal, 0, 0.045, 0, 10);
+  for (let i = 0; i < 5; i++) {
+    const a = (i / 5) * Math.PI * 2;
+    const leg = addBox(chair, 0.032, 0.016, 0.24, base, Math.sin(a) * 0.12, 0.036, Math.cos(a) * 0.12);
+    leg.rotation.y = a;
+    addCyl(chair, 0.016, 0.016, 0.018, metal, Math.sin(a) * 0.24, 0.014, Math.cos(a) * 0.24, 8);
+  }
+  addCyl(chair, 0.026, 0.02, 0.34, metal, 0, 0.22, 0, 10);
+  addBox(chair, 0.46, 0.065, 0.42, pad, 0, 0.44, 0.02);
+  addBox(chair, 0.4, 0.4, 0.055, padDark, 0, 0.72, -0.16);
+  addBox(chair, 0.05, 0.03, 0.2, pad, -0.23, 0.54, 0.02);
+  addBox(chair, 0.05, 0.03, 0.2, pad, 0.23, 0.54, 0.02);
+  chair.position.set(inst.position[0], inst.position[1], inst.position[2]);
+  chair.rotation.y = inst.rotationY || 0;
+  g.add(chair);
 }
 
 function desk(g, spec, topColor) {
@@ -607,6 +630,9 @@ function makeProcedural(layout) {
   const g = new THREE.Group();
   g.name = 'procedural';
   partition(g, layout);
+  for (const inst of layout.instances) {
+    if (inst.role === 'seat') swivelChair(g, inst);
+  }
   desk(g, layout.built.desk, '#a56b42');
   desk(g, layout.built.producerDesk, '#8d5a38');
   broadcastMixer(g, layout);

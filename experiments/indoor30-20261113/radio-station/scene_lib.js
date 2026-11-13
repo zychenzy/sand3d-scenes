@@ -292,6 +292,10 @@ export async function boot(opts) {
   const camKey = params.get('cam');
   if (camKey && presets[camKey]) {
     const p = presets[camKey];
+    if (p.fov) {
+      camera.fov = p.fov;
+      camera.updateProjectionMatrix();
+    }
     camera.position.set(...p.position);
     controls.target.set(...p.target);
     controls.update();

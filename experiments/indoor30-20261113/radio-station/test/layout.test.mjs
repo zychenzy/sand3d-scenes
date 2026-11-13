@@ -125,7 +125,8 @@ test('props stay inside the cutaway and the foreground sightline is clear', () =
   }
   const tall = layout.instances.filter((inst) => {
     const [x, y, z] = inst.position;
-    const h = y + layout.assets[inst.kind].targetHeight;
+    const spec = layout.assets[inst.kind];
+    const h = y + (spec ? spec.targetHeight : 0.9);
     return z > 2.15 && x > 0.6 && x < 3.4 && h > 0.7;
   });
   assert.deepEqual(tall.map((t) => t.id), []);

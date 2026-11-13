@@ -16,15 +16,11 @@
     ],
     "notes": [
       "Station operations, not a music rehearsal and not a podcast conversation table.",
-      "Seat yaw comes from lookAt via orient.js. Chairs, monitors, and speakers face local +Z at yaw 0.",
+      "Seat yaw comes from lookAt via orient.js. Swivel chairs, monitors, and speakers face local +Z at yaw 0.",
       "The aisle at x=-1.9 stays clear from the open front to the host chair. The producer door is the gap in the partition."
     ]
   },
   "assets": {
-    "dining_chair": {
-      "glb": "../../../lounge/assets/dining_chair__5e1f7a56da4a.glb",
-      "targetHeight": 0.9
-    },
     "monitor": {
       "glb": "../../../cowork/assets/monitor__b7429da7ef4a.glb",
       "targetHeight": 0.32
@@ -61,7 +57,7 @@
   "instances": [
     {
       "id": "host",
-      "kind": "dining_chair",
+      "kind": "swivel",
       "role": "seat",
       "zone": "on-air",
       "modelForward": "posZ",
@@ -70,7 +66,7 @@
     },
     {
       "id": "guest_l",
-      "kind": "dining_chair",
+      "kind": "swivel",
       "role": "seat",
       "zone": "on-air",
       "modelForward": "posZ",
@@ -79,7 +75,7 @@
     },
     {
       "id": "guest_r",
-      "kind": "dining_chair",
+      "kind": "swivel",
       "role": "seat",
       "zone": "on-air",
       "modelForward": "posZ",
@@ -88,7 +84,7 @@
     },
     {
       "id": "producer",
-      "kind": "dining_chair",
+      "kind": "swivel",
       "role": "seat",
       "zone": "producer",
       "modelForward": "posZ",
@@ -283,18 +279,20 @@
     "fogFar": 32
   },
   "camera": {
-    "fov": 46,
-    "position": [-0.55, 1.68, 4.2],
-    "target": [-1.8, 1.0, -1.25]
+    "fov": 54,
+    "position": [0.1, 1.58, 2.1],
+    "target": [0.05, 1.02, -1.25]
   },
   "cameraPresets": {
     "corner": {
+      "fov": 46,
       "position": [4.35, 1.92, 2.15],
       "target": [-1.35, 1.02, -1.25]
     },
     "close": {
-      "position": [-0.2, 1.16, 0.28],
-      "target": [-2.15, 0.86, -1.28]
+      "fov": 34,
+      "position": [-1.45, 1.14, -0.15],
+      "target": [-2.15, 0.84, -1.3]
     }
   },
   "lights": {

@@ -16,7 +16,6 @@ The local catalog has the same hole: chairs, a desktop monitor, a small speaker,
 
 Reused as-is, referenced by relative path (not copied):
 
-- Dining chair — lounge bake, host, two guests, producer
 - Monitor — cowork bake. Screen faces local +Z, so each one looks at its operator. A small rundown plane sits on the glass.
 - Speaker — music bake, two cue cabinets on the producer desk, 0.15 m tall
 - Wall shelf, pendant, mug, flowerpot, thermos — cafe bakes
@@ -25,7 +24,7 @@ Reused as-is, referenced by relative path (not copied):
 Known stand-ins:
 
 - No people. Facing is the seat's forward axis.
-- Ladder-back dining chairs stand in for studio swivel chairs.
+- Seats are procedural padded swivels on a five-star base. The catalog dining chair is a ladder-back and reads as a classroom chair, so it is not used here.
 - Carts are colored slabs in a wood rack, not cartridge machines.
 - Record rows on the shelves are colored slabs.
 - The producer window is wood mullions and a transparent pane.
