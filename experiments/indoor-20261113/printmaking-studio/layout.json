@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "Copperplate Atelier / 版画工坊",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 12.0, "depth": 9.2, "height": 3.22 },
+    "facing": "rotationY 0 looks toward +Z. Forward vector is (sin(rotationY), cos(rotationY)).",
+    "notes": [
+      "Cutaway intaglio shop. Back wall -Z, left wall -X, open front. Right stub is the wet wall.",
+      "Clean paper is the west side: flat files, soak sink, seated tearing table. The etching press sits center, star wheel toward the room. Inking slab, hot plate, ferric hood, and the ink sink are east.",
+      "Clean circulation stays west of the press. Dirty circulation stays east. They meet at the bed."
+    ]
+  },
+  "assets": {
+    "dining_chair": { "glb": "assets/dining_chair__5e1f7a56da4a.glb", "targetHeight": 0.86 },
+    "bar_stool": { "glb": "assets/bar_stool__319fcb56afe8.glb", "targetHeight": 0.76 },
+    "library_lamp": { "glb": "assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.38 },
+    "wall_shelf": { "glb": "assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.72 },
+    "cup_mug": { "glb": "assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "flowerpot": { "glb": "assets/flowerpot__4a270f247734.glb", "targetHeight": 0.34 }
+  },
+  "footprints": [
+    { "id": "press", "min": [-1.2, -1.51], "max": [1.1, -0.59], "top": 0.88, "wheel": { "x": -0.05, "y": 1.12, "z": -0.46, "radius": 0.44 } },
+    { "id": "ink_table", "min": [2.2, 1.62], "max": [4.6, 2.78], "top": 0.92 },
+    { "id": "paper_table", "min": [-4.45, 1.9], "max": [-2.25, 3.0], "top": 0.78 },
+    { "id": "flat_a", "min": [-5.84, -3.24], "max": [-5.16, -2.16], "top": 1.08 },
+    { "id": "flat_b", "min": [-5.84, -1.86], "max": [-5.16, -0.84], "top": 0.92 },
+    { "id": "clean_sink", "min": [-5.86, 0.17], "max": [-5.08, 0.73], "top": 0.9 },
+    { "id": "dirty_sink", "min": [4.39, -1.35], "max": [5.41, -0.75], "top": 0.9 },
+    { "id": "acid", "min": [4.02, -3.57], "max": [5.42, -2.83], "top": 0.86 },
+    { "id": "hot_plate", "min": [1.9, -2.86], "max": [3.0, -2.24], "top": 0.84 },
+    { "id": "dry_rack", "min": [-0.1, -4.38], "max": [1.45, -3.98], "top": 1.78 },
+    { "id": "plate_rack", "min": [1.29, -2.09], "max": [1.67, -1.31], "top": 0.72 },
+    { "id": "felt", "min": [-1.68, -2.08], "max": [-1.28, -1.64], "top": 0.62 },
+    { "id": "stool", "min": [2.94, 3.07], "max": [3.36, 3.49] },
+    { "id": "chair_w", "min": [-5.19, 2.21], "max": [-4.71, 2.69] },
+    { "id": "chair_n", "min": [-3.59, 1.18], "max": [-3.11, 1.66] },
+    { "id": "chair_s", "min": [-3.59, 3.24], "max": [-3.11, 3.72] }
+  ],
+  "keepClear": [
+    { "id": "operator", "min": [-0.82, -0.1], "max": [0.72, 1.22] }
+  ],
+  "circulation": {
+    "clean": [[0.2, 4.12], [-1.7, 4.02], [-4.85, 3.85], [-4.4, 1.05], [-2.6, 0.65], [-2.15, -0.15], [-2.5, -2.4], [-0.9, -3.55]],
+    "dirty": [[1.72, 2.15], [1.65, 0.7], [1.95, -0.9], [3.55, -1.9], [3.55, -2.5], [4.6, -2.2], [3.75, -1.05], [2.0, 0.4]]
+  },
+  "rightStub": { "position": [5.72, -2.5], "size": [0.16, 3.22, 4.12] },
+  "instances": [
+    { "id": "chair_w", "kind": "dining_chair", "position": [-4.95, 0, 2.45], "rotationY": 1.5708, "faces": "paper_table" },
+    { "id": "chair_n", "kind": "dining_chair", "position": [-3.35, 0, 1.42], "rotationY": 0, "faces": "paper_table" },
+    { "id": "chair_s", "kind": "dining_chair", "position": [-3.35, 0, 3.48], "rotationY": 3.1416, "faces": "paper_table" },
+    { "id": "ink_stool", "kind": "bar_stool", "position": [3.15, 0, 3.28], "rotationY": 3.1416, "faces": "ink_table" },
+    { "id": "lamp_paper", "kind": "library_lamp", "position": [-4.12, 0.78, 2.12], "rotationY": 0.7 },
+    { "id": "lamp_ink", "kind": "library_lamp", "position": [4.28, 0.92, 1.82], "rotationY": -0.8 },
+    { "id": "paper_shelf", "kind": "wall_shelf", "position": [-5.78, 1.16, -3.85], "rotationY": 1.5708 },
+    { "id": "mug", "kind": "cup_mug", "position": [-2.52, 0.78, 2.72], "rotationY": 0.9 },
+    { "id": "plant", "kind": "flowerpot", "position": [-5.5, 0, 3.58], "rotationY": 0.4 }
+  ],
+  "shell": {
+    "floorColor": "#8e8a82",
+    "wallColor": "#e6e0d4",
+    "dadoColor": "#1c2926",
+    "woodColor": "#6b5340",
+    "ceilingColor": "#ebe6dc",
+    "clearColor": "#c5cdc8",
+    "fogColor": "#c5cdc8",
+    "fogNear": 20,
+    "fogFar": 42
+  },
+  "camera": {
+    "fov": 42,
+    "position": [6.05, 3.42, 6.25],
+    "target": [-0.15, 0.82, -0.55]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-5.55, 3.15, 6.15],
+      "target": [0.85, 0.9, -0.85]
+    },
+    "close": {
+      "position": [1.25, 1.48, 1.42],
+      "target": [-0.15, 1.02, -0.72]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": 15134194, "ground": 3817532, "intensity": 0.5 },
+    "key": {
+      "color": 16774370,
+      "intensity": 1.42,
+      "position": [5.4, 10.4, 6.6],
+      "target": [-0.2, 0.7, -0.8],
+      "shadow": {
+        "left": -9,
+        "right": 9,
+        "top": 9,
+        "bottom": -9,
+        "near": 1,
+        "far": 32,
+        "mapSize": 2048,
+        "bias": -0.00055,
+        "normalBias": 0.04
+      }
+    },
+    "fill": { "color": 13425640, "intensity": 0.18, "position": [-6.2, 3.6, 3.2] },
+    "window": { "color": 14020600, "intensity": 0.52, "position": [-0.6, 4.8, -7.2], "target": [0.2, 1.2, -1.5] }
+  },
+  "acceptance": {
+    "shots": ["toon_default", "toon_corner", "toon_close", "unlit_default"],
+    "zones": ["etching press", "inking slab", "paper table", "flat files", "soak sink", "ink sink", "ferric hood", "hot plate", "drying lines", "drying rack"],
+    "must_read": [
+      "The press reads as a press: bed, roller, cheeks, and a star wheel on the room side.",
+      "Inking slab and paper table are shop-sized, not dining tables.",
+      "Clean paper stays west. Ink, hot plate, ferric, and the ink sink stay east.",
+      "Seats face the table they belong to. Operator bay in front of the wheel stays empty."
+    ]
+  }
+}
