@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "title": "West End Wash",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 11.6, "depth": 9.0, "height": 3.18 },
+    "notes": [
+      "Neighbourhood coin laundry, cutaway from the street corner. Back wall is a packed two-pocket dryer bank. Left wall is a front-load washer bank, standards then two larger machines toward the window.",
+      "Folding counter sits across from the dryers with a 1.52 m service aisle. A shorter sort counter serves the washer aisle. Waiting chairs and a backless bench sit under the storefront window and face the machines.",
+      "Payment, detergent vending, and the attendant ledge close the right pier. Carts park off the aisles."
+    ]
+  },
+  "zones": {
+    "dryers": {
+      "x0": -1.7,
+      "count": 7,
+      "colW": 0.683,
+      "depth": 0.71,
+      "h": 1.943,
+      "wallZ": -4.38,
+      "openIndex": 3,
+      "glow": [0, 2, 5],
+      "cardIndex": 6
+    },
+    "washers": {
+      "wallX": -5.68,
+      "standards": {
+        "z0": -2.15,
+        "count": 4,
+        "w": 0.68,
+        "gap": 0.04,
+        "h": 1.114,
+        "depth": 0.704,
+        "openIndex": 3
+      },
+      "larges": {
+        "z0": 0.9,
+        "count": 2,
+        "w": 0.86,
+        "gap": 0.05,
+        "h": 1.28,
+        "depth": 0.78
+      }
+    },
+    "fold": { "x0": -1.15, "x1": 2.75, "backZ": -2.15, "depth": 0.74, "h": 0.9 },
+    "sort": { "x0": -3.42, "x1": -2.84, "z0": -0.15, "z1": 1.75, "h": 0.9 },
+    "vending": { "x": 3.82, "z": -3.86, "w": 0.78, "d": 0.52, "h": 1.86 },
+    "change": { "x": 5.48, "z": -2.72, "w": 0.28, "h": 0.62, "d": 0.36 },
+    "attendant": { "x": 4.58, "z": -1.32, "w": 0.56, "d": 1.66, "h": 0.92 },
+    "pier": { "z1": 0.25 },
+    "window": { "x0": -4.7, "x1": -1.35, "y0": 1.02, "y1": 2.46 },
+    "bench": { "x": -3.4, "z": 4.12 },
+    "clearance": [
+      { "id": "dryer_aisle", "x0": -1.7, "x1": 3.08, "z0": -3.67, "z1": -2.15 },
+      { "id": "washer_aisle", "x0": -4.55, "x1": -3.42, "z0": -2.15, "z1": 2.67 },
+      { "id": "turn", "x0": -4.55, "x1": -1.7, "z0": -3.67, "z1": -2.15 },
+      { "id": "entry", "x0": -0.55, "x1": 2.55, "z0": 2.35, "z1": 4.35 },
+      { "id": "right_path", "x0": 2.9, "x1": 4.22, "z0": -2.15, "z1": -0.15 }
+    ]
+  },
+  "assets": {
+    "simple_chair": { "glb": "../../../cafe/assets/simple_chair__a83a693ec68f.glb", "targetHeight": 0.84 },
+    "bench": { "glb": "../../../museum/assets/museum_bench__0025f9484fc6.glb", "targetHeight": 0.46 },
+    "side_table": { "glb": "../../../cafe/assets/round_table__49e5ede6a16d.glb", "targetHeight": 0.48 },
+    "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.09 },
+    "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.14 },
+    "crock": { "glb": "../../../cafe/assets/straw_holder__252f730f1a04.glb", "targetHeight": 0.2 },
+    "caddy": { "glb": "../../../cafe/assets/tray_napkin__86821ece655f.glb", "targetHeight": 0.16 },
+    "shelf": { "glb": "../../../cafe/assets/wall_shelf__8732f5e14a30.glb", "targetHeight": 0.78 },
+    "register": { "glb": "../../../cafe/assets/cash_register__870f6ebb115a.glb", "targetHeight": 0.28 },
+    "pos": { "glb": "../../../cafe/assets/pos_terminal__91c277a25bc3.glb", "targetHeight": 0.15 },
+    "desk_lamp": { "glb": "../../../library/assets/library_lamp__06accd4e0351.glb", "targetHeight": 0.42 },
+    "flowerpot": { "glb": "../../../cafe/assets/flowerpot__4a270f247734.glb", "targetHeight": 0.22 }
+  },
+  "instances": [
+    { "id": "bench_window", "kind": "bench", "position": [-3.4, 0, 4.12], "rotationY": 1.5708 },
+    { "id": "chair_w1", "kind": "simple_chair", "position": [-4.28, 0, 3.32], "rotationY": 3.1416, "faces": "machines" },
+    { "id": "chair_w2", "kind": "simple_chair", "position": [-2.48, 0, 3.18], "rotationY": 3.3, "faces": "machines" },
+    { "id": "chair_f1", "kind": "simple_chair", "position": [0.05, 0, 0.42], "rotationY": 3.1416, "faces": "machines" },
+    { "id": "chair_f2", "kind": "simple_chair", "position": [1.42, 0, 0.55], "rotationY": 3.02, "faces": "machines" },
+    { "id": "side_table", "kind": "side_table", "position": [-1.52, 0, 3.9], "rotationY": 0.2 },
+    { "id": "mug_wait", "kind": "cup_mug", "position": [-1.52, 0.48, 3.86], "rotationY": 0.6 },
+    { "id": "mug_desk", "kind": "cup_mug", "position": [4.42, 0.92, -0.78], "rotationY": -0.4 },
+    { "id": "register", "kind": "register", "position": [4.46, 0.92, -1.78], "rotationY": -1.5708 },
+    { "id": "pos", "kind": "pos", "position": [4.4, 0.92, -1.22], "rotationY": -1.35 },
+    { "id": "desk_lamp", "kind": "desk_lamp", "position": [4.7, 0.92, -0.72], "rotationY": 1.5708 },
+    { "id": "shelf", "kind": "shelf", "position": [5.5, 1.55, -1.85], "rotationY": -1.5708 },
+    { "id": "jar_shelf_a", "kind": "jam_jar", "position": [5.32, 1.73, -2.08], "rotationY": 0.4 },
+    { "id": "jar_shelf_b", "kind": "jam_jar", "position": [5.32, 1.73, -1.64], "rotationY": -0.3 },
+    { "id": "jar_shelf_c", "kind": "jam_jar", "position": [5.3, 2.19, -1.86], "rotationY": 0.8 },
+    { "id": "jar_desk", "kind": "jam_jar", "position": [4.38, 0.92, -1.98], "rotationY": 0.2 },
+    { "id": "crock", "kind": "crock", "position": [0.42, 0.9, -1.68], "rotationY": 0.4 },
+    { "id": "caddy", "kind": "caddy", "position": [1.72, 0.9, -1.82], "rotationY": -0.2 },
+    { "id": "pot_sill", "kind": "flowerpot", "position": [-4.55, 1.02, 4.22], "rotationY": 0.3, "scale": 0.9 },
+    { "id": "pot_floor", "kind": "flowerpot", "position": [-5.4, 0, 3.55], "rotationY": -0.4, "scale": 1.35 }
+  ],
+  "props": [
+    { "id": "cart_fold_l", "kind": "cart", "position": [-0.55, 0, -0.62], "rotationY": 0.15, "liner": false, "foot": [0.54, 0.78] },
+    { "id": "cart_fold_r", "kind": "cart", "position": [2.45, 0, -0.85], "rotationY": -0.1, "liner": true, "foot": [0.54, 0.78] },
+    { "id": "cart_large", "kind": "cart", "position": [-1.85, 0, 2.28], "rotationY": 0.2, "liner": true, "foot": [0.54, 0.78] }
+  ],
+  "shell": {
+    "floorColor": "#cbbba4",
+    "wallColor": "#f3ebe3",
+    "wainscotColor": "#2f6f68",
+    "woodColor": "#6a4c34",
+    "ceilingColor": "#f7f4ee",
+    "accentColor": "#1e4e4a",
+    "windowTint": "#c5d7e4",
+    "clearColor": "#e7e0d6",
+    "fogColor": "#e7e0d6",
+    "fogNear": 16,
+    "fogFar": 34
+  },
+  "camera": {
+    "fov": 40,
+    "position": [3.7, 3.05, 5.45],
+    "target": [-1.55, 0.98, -0.15]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-3.65, 1.88, 3.55],
+      "target": [0.2, 1.02, -1.7]
+    },
+    "close": {
+      "position": [0.85, 1.42, -0.55],
+      "target": [0.7, 1.05, -3.4]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff4ea", "ground": "#6a5344", "intensity": 0.4 },
+    "key": {
+      "color": "#fff1dc",
+      "intensity": 1.48,
+      "position": [5.2, 9.2, 6.4],
+      "shadow": { "left": -8, "right": 8, "top": 8, "bottom": -8, "near": 2, "far": 28, "bias": -0.00032, "normalBias": 0.03 }
+    },
+    "fill": { "color": "#d5e4f2", "intensity": 0.38, "position": [7.2, 3.6, 0.4] },
+    "points": [
+      { "id": "flu_dry_a", "fixture": "fluorescent", "color": "#e9f3ff", "intensity": 0.7, "distance": 5.4, "decay": 2, "position": [-0.7, 2.92, -2.9] },
+      { "id": "flu_dry_b", "fixture": "fluorescent", "color": "#e9f3ff", "intensity": 0.7, "distance": 5.4, "decay": 2, "position": [1.7, 2.92, -2.9] },
+      { "id": "flu_fold", "fixture": "fluorescent", "color": "#f4f7ff", "intensity": 0.62, "distance": 5.2, "decay": 2, "position": [0.5, 2.92, -0.55] },
+      { "id": "flu_wash", "fixture": "fluorescent", "color": "#e9f3ff", "intensity": 0.55, "distance": 4.8, "decay": 2, "position": [-4.15, 2.92, 0.35] },
+      { "id": "flu_wait", "fixture": "fluorescent", "color": "#f7f4ea", "intensity": 0.42, "distance": 4.2, "decay": 2, "position": [-3.15, 2.92, 3.35] },
+      { "id": "desk", "fixture": "desk", "color": "#ffc98a", "intensity": 0.8, "distance": 3.1, "decay": 2, "position": [4.7, 1.38, -0.72] },
+      { "id": "vend", "fixture": "vending", "color": "#d6ecff", "intensity": 0.38, "distance": 2.4, "decay": 2, "position": [3.82, 1.35, -3.7] }
+    ]
+  },
+  "acceptance": {
+    "shots": ["toon_default", "toon_corner", "toon_close", "unlit_default"],
+    "must_read": [
+      "Washer bank and dryer bank are different machines: one door versus two, white versus stainless, different heights.",
+      "Folding counter faces the dryer aisle and is not a clone of the sort counter.",
+      "Waiting chairs face the machines. Carts sit off the service paths.",
+      "Detergent vending and the attendant ledge are a separate corner from the folding aisle."
+    ]
+  }
+}
