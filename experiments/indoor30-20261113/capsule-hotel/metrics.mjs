@@ -93,8 +93,8 @@ export function lampPosition(layout, rec) {
 
 export function pillowPosition(layout, rec) {
   const { pod } = layout.meta;
-  const x = podBackX(pod) + 0.32;
-  return [x, rec.mattressY, rec.z + 0.02];
+  const x = podBackX(pod) + 0.28;
+  return [x, rec.mattressY + 0.014, rec.z];
 }
 
 export function buildInstances(layout) {

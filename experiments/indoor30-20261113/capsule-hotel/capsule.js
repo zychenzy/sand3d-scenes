@@ -247,6 +247,24 @@ function addBay(g, layout, index) {
   addBox(g, 0.08, pod.upperCeiling + 0.06, pier, shellMat, face - 0.02, (pod.upperCeiling + 0.06) / 2, z + pod.pitch / 2 - pier / 2);
 }
 
+function clothSlab(length, width, thick, radius) {
+  const shape = new THREE.Shape();
+  rr(shape, 0, 0, length, width, radius, false);
+  const geo = new THREE.ExtrudeGeometry(shape, {
+    depth: thick,
+    bevelEnabled: true,
+    bevelThickness: Math.min(0.01, thick * 0.3),
+    bevelSize: 0.01,
+    bevelSegments: 2,
+    curveSegments: 6,
+  });
+  geo.rotateX(-Math.PI / 2);
+  geo.computeBoundingBox();
+  const center = geo.boundingBox.getCenter(new THREE.Vector3());
+  geo.translate(-center.x, -geo.boundingBox.min.y, -center.z);
+  return geo;
+}
+
 function addBedding(g, layout, rec) {
   const pod = layout.meta.pod;
   const length = pod.interiorLength - pod.mattressGap * 2 - 0.08;
@@ -254,15 +272,43 @@ function addBedding(g, layout, rec) {
   const geo = mattressGeo(length, width, pod.mattressT);
   const x = (pod.faceX + podBackX(pod)) / 2 - 0.02;
   addMesh(g, geo, toon(PAL.mattress), x, rec.floor + 0.012, rec.z, { name: `mattress_${rec.no}`, receiveShadow: true });
-  const quilt = new THREE.SphereGeometry(1, 18, 12);
-  quilt.scale(0.52, 0.07, 0.34);
-  addMesh(g, quilt, toon(PAL.duvet), pod.faceX - 0.72, rec.mattressY + 0.06, rec.z, { name: `duvet_${rec.no}` });
-  const fold = new THREE.SphereGeometry(1, 16, 12);
-  fold.scale(0.16, 0.06, 0.3);
-  addMesh(g, fold, toon(PAL.throw), pod.faceX - 0.34, rec.mattressY + 0.07, rec.z + 0.04, { name: `fold_${rec.no}` });
-  const sham = new THREE.SphereGeometry(1, 16, 12);
-  sham.scale(0.12, 0.055, 0.2);
-  addMesh(g, sham, toon(PAL.sheet), podBackX(pod) + 0.46, rec.mattressY + 0.02, rec.z - 0.08, { name: `sham_${rec.no}` });
+  const duvetW = width - 0.04;
+  const duvetL = length * 0.68;
+  const duvetT = 0.038;
+  const head = podBackX(pod);
+  const duvetX = head + 0.56 + duvetL / 2;
+  const top = rec.mattressY + 0.012;
+  addMesh(g, clothSlab(duvetL, duvetW, duvetT, 0.055), toon(PAL.duvet), duvetX, top, rec.z, {
+    name: `duvet_${rec.no}`,
+    receiveShadow: true,
+  });
+  const hemL = 0.22;
+  const hemX = duvetX - duvetL / 2 + hemL / 2;
+  addMesh(g, clothSlab(hemL, duvetW - 0.015, 0.028, 0.045), toon(PAL.throw), hemX, top + 0.02, rec.z, {
+    name: `hem_${rec.no}`,
+  });
+  addBox(
+    g,
+    0.016,
+    0.02,
+    duvetW - 0.06,
+    toon('#c9b6a4'),
+    hemX + hemL / 2,
+    top + 0.046,
+    rec.z,
+    { name: `seam_${rec.no}`, noCast: true },
+  );
+  addBox(
+    g,
+    0.02,
+    0.018,
+    duvetW - 0.05,
+    toon('#d9cfc3'),
+    duvetX + duvetL / 2 - 0.02,
+    top + duvetT,
+    rec.z,
+    { name: `foot_${rec.no}`, noCast: true },
+  );
   addBox(
     g,
     0.1,
@@ -288,7 +334,7 @@ function addBedding(g, layout, rec) {
   );
 }
 
-function hangFolds(g, cloth, x, yBottom, yTop, z0, z1, count, name, overlap = 0.86) {
+function hangFolds(g, cloth, x, yBottom, yTop, z0, z1, count, name) {
   const span = Math.max(0.05, z1 - z0);
   const mid = (z0 + z1) / 2;
   addCyl(g, 0.008, 0.008, span + 0.04, toon(PAL.inkSoft), x + 0.012, yTop - 0.01, mid, 8, {
@@ -297,13 +343,12 @@ function hangFolds(g, cloth, x, yBottom, yTop, z0, z1, count, name, overlap = 0.
     name: `${name}_rail`,
   });
   const pitch = span / count;
-  const r = Math.min(0.046, pitch * overlap);
   for (let i = 0; i < count; i++) {
     const z = z0 + pitch * (i + 0.5);
-    const hem = 0.016 + (i % 2) * 0.055;
-    const h = Math.max(0.14, yTop - 0.028 - yBottom - hem);
-    const depth = (i % 2 === 0 ? 0.55 : -0.4) * r;
-    addCyl(g, r * 0.9, r, h, cloth, x + depth, yBottom + hem + h / 2, z, 10, { name });
+    const hem = 0.012 + (i % 2) * 0.045;
+    const h = Math.max(0.16, yTop - 0.026 - yBottom - hem);
+    const geo = new THREE.BoxGeometry(0.008, h, pitch * 1.45);
+    addMesh(g, geo, cloth, x + (i % 2 === 0 ? 0.012 : 0), yBottom + hem + h / 2, z, { name });
   }
 }
 
@@ -316,13 +361,13 @@ function addCurtain(g, layout, rec) {
   const left = rec.z - pod.openingW / 2 + 0.05;
   const right = rec.z + pod.openingW / 2 - 0.05;
   if (rec.curtain === 'open') {
-    hangFolds(g, cloth, x, y0, y1, left, left + 0.14, 5, `bunch_${rec.no}`, 1.35);
+    hangFolds(g, cloth, x, y0, y1, left, left + 0.18, 4, `bunch_${rec.no}`);
     return;
   }
   if (rec.curtain === 'half') {
-    hangFolds(g, cloth, x, y0, y1, left, rec.z - 0.02, 8, `curtain_${rec.no}`);
+    hangFolds(g, cloth, x, y0, y1, left, rec.z - 0.02, 5, `curtain_${rec.no}`);
   } else {
-    hangFolds(g, cloth, x, y0, y1, left, right, 14, `curtain_${rec.no}`);
+    hangFolds(g, cloth, x, y0, y1, left, right, 9, `curtain_${rec.no}`);
   }
   const leak = new THREE.Mesh(
     new THREE.BoxGeometry(0.008, 0.02, rec.curtain === 'half' ? 0.28 : 0.55),

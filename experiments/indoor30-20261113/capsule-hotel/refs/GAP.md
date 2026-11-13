@@ -12,16 +12,16 @@ The local kit has no bed, pillow, curtain, ladder, sink, or luggage locker. Thes
 - `tv` — about 1.45 m wide
 - `flowerpot` — empty cafe pot
 
-`sand3d` is not installed here. The package wants Python 3.11 or 3.13 plus bpy; this machine is Python 3.12. The three missing props were baked offline with the vendored Three.js r170 geometries in `programs/bake_props.mjs`. No image textures. Each GLB is under 50 KB.
+`sand3d` is not installed here. The package wants Python 3.11 or 3.13 plus bpy; this machine is Python 3.12. The three missing props were baked offline with the vendored Three.js r170 geometries in `programs/bake_props.mjs`. No image textures. Each GLB is under 60 KB.
 
 ## Closed in this scene
 
 - Rounded pod openings, not a grid of opaque boxes.
-- Bedding you can see in the open berths: mattress, baked pillow, a second sham, a soft duvet mound.
+- Bedding you can see in the open berths: mattress, a rectangular pillow, and a mattress-width duvet with a turned cuff.
 - A reading sconce in every berth. The point light sits on the shade, dim enough that the duvet, pillow, and shade all stay visible.
 - Closed curtains keep a warm sill leak so the hole is not crushed black.
 - The −Z end is a wall and an entry door, so the corner view terminates instead of opening onto empty space.
-- Curtains hang as overlapping folds from a rail, with a short gather when the berth is open.
+- Curtains hang from a rail as flat overlapping pleats, gathered to the jamb when the berth is open.
 - The vanity mirror is a framed painted glass, and the basin is an oval bowl rather than a cylinder.
 - Ladders at 0.28 m rung spacing, 0.34 m wide, with a handhold above the upper bunk, outside the walking strip.
 - Locker bank and a vanity (counter 0.88 m, mirror, sink, cup, jar, bottle, shelf).
@@ -29,8 +29,8 @@ The local kit has no bed, pillow, curtain, ladder, sink, or luggage locker. Thes
 
 ## Still open
 
-- Curtain folds are overlapping cylinders on a rail, with a scalloped hem. They are not sewn cloth. Up close the open gather is a ribbed hanging bunch.
-- The duvet is one soft mound and a roll, not a tucked sheet with a hem. The pillow is a smooth loaf, no piping. The berth light no longer blows the duvet out; the shade is the bright spot.
+- Curtain pleats are thin overlapping panels on a rail, with a stepped hem. They read as folded cloth rather than tubes, and they are still not sewn fabric. Unlit, the pleat shading flattens.
+- The duvet is a mattress-width rounded slab with a turned cuff and a seam, not a tucked sheet. The pillow is a rounded rectangle, not a loaf. There is no piping or cloth simulation. The berth light stays on the sconce.
 - The reading lamp is a plate, arm, and shade.
 - The basin is an oval bowl with a rim and a small drain. The faucet is two brass cylinders. The mirror reflection is a painted canvas inside the frame, not a raytraced view of the hall.
 - The default camera shows the locker bank, the ladders, the near open berth, and the vanity. The nearest pod's side fascia is still a large beige plane beside that opening.

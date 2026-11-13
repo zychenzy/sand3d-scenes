@@ -97,7 +97,7 @@
   },
   "assets": {
     "reading_lamp": { "glb": "./assets/reading_lamp.glb", "targetHeight": 0.08, "baked": true },
-    "pillow": { "glb": "./assets/pillow.glb", "targetHeight": 0.15, "baked": true },
+    "pillow": { "glb": "./assets/pillow.glb", "targetHeight": 0.09, "baked": true },
     "luggage_locker": { "glb": "./assets/luggage_locker.glb", "targetHeight": 0.46, "baked": true },
     "cup_mug": { "glb": "../../../cafe/assets/cup_mug__6da6f7f87b8d.glb", "targetHeight": 0.085, "baked": false },
     "jam_jar": { "glb": "../../../cafe/assets/jam_jar__4e43eb29aa14.glb", "targetHeight": 0.11, "baked": false },

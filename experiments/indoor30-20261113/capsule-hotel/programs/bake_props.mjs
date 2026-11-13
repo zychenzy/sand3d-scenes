@@ -1,6 +1,6 @@
 /**
  * Bake the three props the shared kit does not have:
- * a ceiling reading puck, a soft pillow, and one luggage locker.
+ * a wall reading sconce, a rectangular pillow, and one luggage locker.
  * Geometry is metres. No image textures. Run from the repo root:
  *   node experiments/indoor30-20261113/capsule-hotel/programs/bake_props.mjs
  */
@@ -59,12 +59,46 @@ function readingLamp() {
   ];
 }
 
+function roundedSlab(w, h, d, radius) {
+  const shape = new THREE.Shape();
+  const x = -w / 2;
+  const y = -d / 2;
+  const r = Math.min(radius, w / 2 - 0.001, d / 2 - 0.001);
+  shape.moveTo(x + r, y);
+  shape.lineTo(x + w - r, y);
+  shape.absarc(x + w - r, y + r, r, -Math.PI / 2, 0, false);
+  shape.lineTo(x + w, y + d - r);
+  shape.absarc(x + w - r, y + d - r, r, 0, Math.PI / 2, false);
+  shape.lineTo(x + r, y + d);
+  shape.absarc(x + r, y + d - r, r, Math.PI / 2, Math.PI, false);
+  shape.lineTo(x, y + r);
+  shape.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5, false);
+  const geo = new THREE.ExtrudeGeometry(shape, {
+    depth: h,
+    bevelEnabled: true,
+    bevelThickness: 0.008,
+    bevelSize: 0.01,
+    bevelSegments: 2,
+    curveSegments: 6,
+  });
+  geo.rotateX(-Math.PI / 2);
+  geo.computeBoundingBox();
+  geo.translate(0, -geo.boundingBox.min.y, 0);
+  return geo;
+}
+
+function withIndex(geo) {
+  if (geo.index) return geo;
+  const count = geo.attributes.position.count;
+  const idx = count > 65535 ? new Uint32Array(count) : new Uint16Array(count);
+  for (let i = 0; i < count; i++) idx[i] = i;
+  geo.setIndex(new THREE.BufferAttribute(idx, 1));
+  return geo;
+}
+
 function pillow() {
   const cloth = [0.97, 0.96, 0.93];
-  const geo = new THREE.SphereGeometry(1, 32, 20);
-  geo.scale(0.16, 0.075, 0.23);
-  geo.translate(0, 0.075, 0);
-  return [part('pillow', geo, cloth)];
+  return [part('pillow', withIndex(roundedSlab(0.34, 0.08, 0.5, 0.05)), cloth)];
 }
 
 function locker() {
