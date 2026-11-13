@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "title": "Tide Lock cipher study",
+    "units": "metres",
+    "style": "Toon hard",
+    "room": { "width": 10.6, "depth": 7.8, "height": 3.3 },
+    "puzzle": {
+      "order": ["anchor", "gull", "lantern"],
+      "digits": { "anchor": 4, "gull": 8, "lantern": 2 },
+      "colors": { "anchor": "#1e4e86", "gull": "#d15a42", "lantern": "#e2a23a" }
+    },
+    "notes": [
+      "Cutaway harbor cipher study. Back wall is -Z, window wall is -X, camera side is +X and +Z.",
+      "Study-desk kneehole faces local +X; rotationY -pi/2 turns that face toward the room (+Z).",
+      "Dining-chair seat faces local +Z. rotationY pi turns the sitter toward -Z, into the desk.",
+      "Easel canvas faces local +Z. Chalkboard face is local +X; rotationY -pi/2 turns it toward the room.",
+      "Library-lamp shade overhangs local +Z, toward the sitter.",
+      "Combination cabinets, wheels, chart, and key are procedural. GLBs are read-only symlinks."
+    ]
+  },
+  "anchors": {
+    "studyDesk": { "x": -1.15, "z": -0.85 },
+    "schoolDesk": { "x": -4.05, "z": 0.7 },
+    "easel": { "x": -3.55, "z": -2.4 },
+    "slate": { "x": -1.85, "z": -3.42 },
+    "table": { "x": 1.55, "z": 1.05 },
+    "cabinets": [0.55, 1.45, 2.35],
+    "cabinetZ": -3.5,
+    "panel": { "x": 4.35, "z": -3.68 },
+    "plinth": { "x": 3.2, "z": -2.45 },
+    "lectern": { "x": -2.5, "z": 2.55 }
+  },
+  "circulation": [
+    [0.4, 3.35],
+    [0.4, 1.85],
+    [0.4, 0.15],
+    [0.4, -1.55],
+    [1.8, -1.55],
+    [4.2, -1.55]
+  ],
+  "branch": [
+    [0.4, 0.15],
+    [-2.2, 0.15],
+    [-3.15, 0.15]
+  ],
+  "assets": {
+    "study_desk": {
+      "glb": "assets/study_desk__630f6d76cbcd.glb",
+      "targetHeight": 0.76,
+      "span": [0.432, 1.288]
+    },
+    "school_desk": {
+      "glb": "assets/school_desk__57f955646049.glb",
+      "targetHeight": 0.74,
+      "span": [0.637, 0.468]
+    },
+    "dining_chair": {
+      "glb": "assets/dining_chair__5e1f7a56da4a.glb",
+      "targetHeight": 0.88,
+      "span": [0.318, 0.449]
+    },
+    "library_lamp": {
+      "glb": "assets/library_lamp__06accd4e0351.glb",
+      "targetHeight": 0.42,
+      "span": [0.32, 0.32]
+    },
+    "book_stand": {
+      "glb": "assets/book_stand__fb784262748d.glb",
+      "targetHeight": 1.02,
+      "span": [0.56, 0.56]
+    },
+    "easel": {
+      "glb": "assets/easel__4d7f020db965.glb",
+      "targetHeight": 1.62,
+      "span": [0.67, 0.76]
+    },
+    "square_table": {
+      "glb": "assets/square_table__7aaf2767b5f0.glb",
+      "targetHeight": 0.75,
+      "span": [0.76, 0.76]
+    },
+    "chalkboard": {
+      "glb": "assets/chalkboard__72286e591df6.glb",
+      "targetHeight": 1.18,
+      "span": [0.4, 1.4]
+    },
+    "museum_bench": {
+      "glb": "assets/museum_bench__0025f9484fc6.glb",
+      "targetHeight": 0.46,
+      "span": [0.42, 1.51]
+    },
+    "museum_plinth": {
+      "glb": "assets/museum_plinth__6bce39246b2c.glb",
+      "targetHeight": 0.78,
+      "span": [0.3, 0.3],
+      "tint": "#e6dfd2"
+    },
+    "piano_bench": {
+      "glb": "assets/piano_bench__10332493b3a6.glb",
+      "targetHeight": 0.5,
+      "span": [0.95, 0.46]
+    },
+    "pendant_lamp": {
+      "glb": "assets/pendant_lamp__1b528c6ab04e.glb",
+      "targetHeight": 0.5,
+      "span": [0.26, 0.26]
+    },
+    "flowerpot": {
+      "glb": "assets/flowerpot__4a270f247734.glb",
+      "targetHeight": 0.32,
+      "span": [0.39, 0.39],
+      "tint": "#c46a45"
+    },
+    "jam_jar": {
+      "glb": "assets/jam_jar__4e43eb29aa14.glb",
+      "targetHeight": 0.15,
+      "span": [0.12, 0.12]
+    },
+    "cup_mug": {
+      "glb": "assets/cup_mug__6da6f7f87b8d.glb",
+      "targetHeight": 0.09,
+      "span": [0.09, 0.09]
+    },
+    "thermos": {
+      "glb": "assets/thermos__c85ee7b8828b.glb",
+      "targetHeight": 0.26,
+      "span": [0.08, 0.18]
+    },
+    "cash_register": {
+      "glb": "assets/cash_register__870f6ebb115a.glb",
+      "targetHeight": 0.3,
+      "span": [0.16, 0.24]
+    }
+  },
+  "instances": [
+    { "id": "study_desk", "kind": "study_desk", "position": [-1.15, 0, -0.85], "rotationY": -1.5708, "blocksPath": true, "contact": [0.72, 0.32] },
+    { "id": "study_chair", "kind": "dining_chair", "position": [-1.15, 0, -0.18], "rotationY": 3.1416, "blocksPath": true, "contact": [0.22, 0.26] },
+    { "id": "study_lamp", "kind": "library_lamp", "position": [-0.72, 0.76, -0.98], "rotationY": 0 },
+    { "id": "study_mug", "kind": "cup_mug", "position": [-1.62, 0.76, -0.78], "rotationY": 0.4 },
+
+    { "id": "school_desk", "kind": "school_desk", "position": [-4.05, 0, 0.7], "rotationY": 0, "blocksPath": true, "contact": [0.36, 0.28] },
+    { "id": "school_chair", "kind": "dining_chair", "position": [-4.05, 0, 1.28], "rotationY": 3.1416, "blocksPath": true, "contact": [0.22, 0.26] },
+    { "id": "school_register", "kind": "cash_register", "position": [-4.22, 0.74, 0.58], "rotationY": 0.15 },
+    { "id": "school_thermos", "kind": "thermos", "position": [-3.82, 0.74, 0.58], "rotationY": 0.2 },
+
+    { "id": "easel", "kind": "easel", "position": [-3.55, 0, -2.4], "rotationY": 0, "blocksPath": true, "contact": [0.4, 0.42] },
+    { "id": "slate", "kind": "chalkboard", "position": [-1.85, 0, -3.42], "rotationY": -1.5708, "blocksPath": true, "contact": [0.72, 0.26] },
+
+    { "id": "clue_table", "kind": "square_table", "position": [1.55, 0, 1.05], "rotationY": 0.08, "blocksPath": true, "contact": [0.46, 0.46] },
+    { "id": "jar_anchor", "kind": "jam_jar", "position": [1.28, 0.75, 0.92], "rotationY": 0.2 },
+    { "id": "jar_gull", "kind": "jam_jar", "position": [1.55, 0.75, 1.12], "rotationY": -0.3 },
+    { "id": "jar_lantern", "kind": "jam_jar", "position": [1.82, 0.75, 0.94], "rotationY": 0.6 },
+
+    { "id": "panel_bench", "kind": "piano_bench", "position": [4.35, 0, -2.65], "rotationY": 0, "blocksPath": true, "contact": [0.55, 0.28] },
+    { "id": "prize_plinth", "kind": "museum_plinth", "position": [3.2, 0, -2.45], "rotationY": 0.2, "blocksPath": true, "contact": [0.22, 0.22] },
+    { "id": "lectern", "kind": "book_stand", "position": [-2.5, 0, 2.55], "rotationY": 0.8, "blocksPath": true, "contact": [0.34, 0.34] },
+    { "id": "entry_bench", "kind": "museum_bench", "position": [-4.45, 0, 2.7], "rotationY": 0, "blocksPath": true, "contact": [0.28, 0.8] },
+
+    { "id": "pot_window", "kind": "flowerpot", "position": [-4.75, 0, 3.35], "rotationY": 0.3, "blocksPath": true, "contact": [0.24, 0.24] },
+    { "id": "pot_entry", "kind": "flowerpot", "position": [4.55, 0, 3.25], "rotationY": 1.1, "blocksPath": true, "contact": [0.24, 0.24] },
+
+    { "id": "pendant_aisle", "kind": "pendant_lamp", "position": [0.35, 2.8, 1.7], "rotationY": 0.2 },
+    { "id": "pendant_table", "kind": "pendant_lamp", "position": [1.55, 2.8, 1.05], "rotationY": -0.4 }
+  ],
+  "shell": {
+    "floorColor": "#d8c09a",
+    "floorDark": "#c4a67c",
+    "wallColor": "#f4efe6",
+    "wainscot": "#1f4f58",
+    "woodColor": "#5c3d2e",
+    "woodDeep": "#3e291f",
+    "brass": "#c6a15b",
+    "ceilingColor": "#f7f1e8",
+    "rug": "#1c6b62",
+    "rugEdge": "#c4553a",
+    "clearColor": "#d7e3ea",
+    "fogColor": "#d7e3ea",
+    "fogNear": 18,
+    "fogFar": 36
+  },
+  "camera": {
+    "fov": 46,
+    "position": [3.55, 3.05, 5.85],
+    "target": [-0.25, 1.0, -1.2]
+  },
+  "cameraPresets": {
+    "corner": {
+      "position": [-4.6, 2.55, 4.85],
+      "target": [0.4, 1.05, -1.2]
+    },
+    "close": {
+      "position": [-3.15, 1.42, -0.72],
+      "target": [-3.55, 0.92, -2.15]
+    }
+  },
+  "lights": {
+    "hemi": { "sky": "#fff4e6", "ground": "#6a8f88", "intensity": 0.82 },
+    "key": { "color": "#fff6ea", "intensity": 1.15, "position": [7.5, 12.5, 6.5] },
+    "fill": { "color": "#c9dff0", "intensity": 0.48, "position": [-8, 6.5, 2] },
+    "points": [
+      { "color": "#ffe2b8", "intensity": 1.05, "position": [-0.75, 1.22, -0.7], "distance": 3.4, "decay": 2 },
+      { "color": "#fff1d2", "intensity": 0.85, "position": [-3.5, 2.35, -2.05], "distance": 4.2, "decay": 2 },
+      { "color": "#ffd7a0", "intensity": 0.7, "position": [4.3, 1.9, -2.7], "distance": 3.8, "decay": 2 },
+      { "color": "#d7ebf6", "intensity": 0.55, "position": [-4.7, 2.15, 0.75], "distance": 4.5, "decay": 2 },
+      { "color": "#ffe6c4", "intensity": 0.4, "position": [1.55, 2.2, 1.05], "distance": 3.2, "decay": 2 }
+    ]
+  }
+}
