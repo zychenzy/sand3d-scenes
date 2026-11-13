@@ -12,4 +12,4 @@ Lanes and the approach receive the key shadow. The map is 4096 and the frustum i
 
 There is no full pinsetter, ball track under the cap, foul judge, bumper, or bowler. The pit shows a curtain, a ball door, a rake bar, and a sweep bar per lane. Speakers are the catalog box on a masking shelf, not a cluster of horns. The counter is a shortened bar bake used as the shoe desk. Shoes in the cubbies are pairs of blocks.
 
-Four lanes, not a full commercial house. The ceiling over the lanes is gone on purpose so the cutaway can see the truss. The default frame still shows bare ground and sky on the open right. The carpet is a quiet grid, not a woven pattern. The monitor glass stays an untextured black bake.
+Four lanes, not a full commercial house. The ceiling over the lanes is open to the truss. The concourse ceiling is a slat soffit. The corner frame still shows a long plain plaster wall above the dado on the left. The carpet is a quiet grid, not a woven pattern. The monitor glass stays an untextured black bake.

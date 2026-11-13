@@ -146,6 +146,25 @@ function paintCarpet() {
   return tex;
 }
 
+function paintCard(title, lines, bg = '#7a3038') {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 280;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, 512, 280);
+  ctx.strokeStyle = '#e7d7a4';
+  ctx.lineWidth = 12;
+  ctx.strokeRect(10, 10, 492, 260);
+  ctx.fillStyle = '#f8f1df';
+  ctx.textAlign = 'center';
+  ctx.font = '700 58px Georgia, serif';
+  ctx.fillText(title, 256, 108);
+  ctx.font = '500 30px Georgia, serif';
+  lines.forEach((line, i) => ctx.fillText(line, 256, 168 + i * 40));
+  return srgbTexture(canvas, true);
+}
+
 function paintDado() {
   const canvas = document.createElement('canvas');
   canvas.width = 128;
@@ -489,7 +508,7 @@ function addMasking(g) {
       lane.width * 0.9,
       1.35,
       0.05,
-      toon('#5c5558'),
+      toon('#8a837c'),
       lane.cx,
       DECK + 0.72,
       -LANE.deckRear - 0.04,
@@ -501,24 +520,27 @@ function addMasking(g) {
         0.035,
         1.32,
         0.02,
-        toon(side === 0 ? '#4a444c' : '#726b70'),
+        toon(side === 0 ? '#6a6468' : '#a39c96'),
         lane.cx + side,
         DECK + 0.72,
         -LANE.deckRear + 0.01,
       );
       fold.userData.noCast = true;
     }
-    const door = addCyl(g, 0.16, 0.16, 0.04, toon('#6a5648'), lane.cx, DECK + 0.28, -LANE.deckRear + 0.02, 16);
+    const door = addCyl(g, 0.16, 0.16, 0.04, toon('#a08a74'), lane.cx, DECK + 0.28, -LANE.deckRear + 0.02, 16);
     door.rotation.x = Math.PI / 2;
     door.userData.noCast = true;
     const rake = addBox(g, lane.width * 0.82, 0.045, 0.07, toon('#8a8278'), lane.cx, DECK + 0.96, -LANE.foulToHeadPin - 0.48);
     rake.name = `rake_${lane.number}`;
     const sweep = addBox(g, lane.width * 0.62, 0.028, 0.045, toon('#6e665e'), lane.cx, DECK + 0.58, -LANE.foulToHeadPin - 0.7);
     sweep.userData.noCast = true;
-    const spot = new THREE.PointLight(0xfff6e8, 0.85, 6.5, 1.4);
-    spot.position.set(lane.cx, 2.35, -17.4);
+    const spot = new THREE.PointLight(0xfff4e2, 1.35, 8, 1.2);
+    spot.position.set(lane.cx, 2.15, -17.15);
     g.add(spot);
   }
+  const pitWash = new THREE.PointLight(0xffe6c4, 0.9, 10, 1.3);
+  pitWash.position.set(0, 1.55, -17.6);
+  g.add(pitWash);
 }
 
 function addWalls(g) {
@@ -544,21 +566,50 @@ function addWalls(g) {
     addBox(g, 0.1, h, 0.16, toon('#5c4034'), leftX + 0.12, h / 2, z);
   }
   addBox(g, 0.03, 0.035, len, toon('#c4b49a'), leftX + 0.1, 2.62, zc);
-  const panels = [-16.2, -12.2, -8.2, -4.2, -0.2, 2.6];
-  panels.forEach((z, i) => {
-    const frame = addBox(g, 0.02, 0.7, 1.52, toon('#e2c27a'), leftX + 0.07, 2.05, z);
+  const cards = [
+    [-15.4, 'LEAGUE', ['THURSDAY  7 PM']],
+    [-11.2, 'OPEN BOWL', ['WALK-INS WELCOME']],
+    [-7.2, 'HOUSE BALLS', ['8 LB  TO  15 LB']],
+    [-3.2, 'LANES 1–4', ['NORTHLANE']],
+    [0.8, 'SHOE DESK', ['RIGHT OF THE AISLE']],
+    [4.15, 'NORTHLANE', ['FOUR LANES']],
+    [3.4, 'NO SLIP', ['RENTAL SHOES']],
+  ];
+  cards.forEach(([z, title, lines], i) => {
+    if (i % 2 === 0) {
+      const upper = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.08, 0.42),
+        toon('#fff6df', { map: paintCard(i === 0 ? 'NORTHLANE' : title, i === 0 ? ['FOUR LANES'] : lines, '#5c2830') }),
+      );
+      upper.rotation.y = Math.PI / 2;
+      upper.position.set(leftX + 0.1, 2.58, z);
+      upper.userData.noCast = true;
+      g.add(upper);
+    }
+    const frame = addBox(g, 0.02, 0.62, 1.28, toon('#e2c27a'), leftX + 0.07, 1.95, z);
     frame.userData.noCast = true;
-    const panel = addBox(g, 0.028, 0.52, 1.22, toon(i % 2 === 0 ? '#8d3a42' : '#6e3038'), leftX + 0.1, 2.05, z);
-    panel.userData.noCast = true;
+    const card = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.08, 0.46),
+      toon('#fff6df', { map: paintCard(title, lines, i % 2 ? '#6e3038' : '#8d3a42') }),
+    );
+    card.rotation.y = Math.PI / 2;
+    card.position.set(leftX + 0.1, 1.95, z);
+    card.userData.noCast = true;
+    card.name = `lane_card_${i + 1}`;
+    g.add(card);
   });
   const cutL = addBox(g, 0.16, h, 0.08, toon('#3f3834'), leftX, h / 2, z1);
   cutL.name = 'cut-left';
 
-  const rightX = house.x1 + 0.18;
-  const knee = 0.4;
-  addBox(g, 0.12, knee, len, toon('#5c4034'), rightX, knee / 2, zc);
-  const cap = addBox(g, 0.18, 0.07, len, toon('#3f3834'), rightX, knee + 0.03, zc);
+  const rightX = house.x1 + 0.22;
+  const knee = 3.15;
+  addBox(g, 0.14, knee, len, toon('#6a5344'), rightX, knee / 2, zc);
+  addBox(g, 0.06, 1.05, len, toon('#6d4632'), rightX - 0.06, 0.52, zc);
+  addBox(g, 0.05, knee - 1.2, len, toon('#f4efe6'), rightX - 0.05, 1.15 + (knee - 1.2) / 2, zc);
+  const cap = addBox(g, 0.22, 0.08, len, toon('#3f3834'), rightX, knee + 0.02, zc);
   cap.name = 'cut-right';
+  const floorLip = addBox(g, 0.55, 0.04, len, toon('#c4b6a4'), rightX + 0.28, 0.02, zc);
+  floorLip.userData.noCast = true;
 
   const bayX = house.x0 - PLACED.bay;
   const bayZ0 = LANE.approach;
@@ -567,13 +618,23 @@ function addWalls(g) {
   addBox(g, 0.14, h, bayLen, plaster, bayX, h / 2, (bayZ0 + bayZ1) / 2);
   addBox(g, 0.04, 1.08, bayLen, toon('#6d4632'), bayX + 0.08, 0.56, (bayZ0 + bayZ1) / 2);
   addBox(g, 0.14, h, 0.08, toon('#3f3834'), bayX, h / 2, bayZ1);
+  [['OPEN', ['BOWLING']], ['LEAGUE', ['THU  7PM']]].forEach(([title, lines], i) => {
+    const card = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.15, 0.5),
+      toon('#fff6df', { map: paintCard(title, lines, i ? '#6e3038' : '#8d3a42') }),
+    );
+    card.rotation.y = Math.PI / 2;
+    card.position.set(bayX + 0.1, 2.15, bayZ0 + 1.15 + i * 1.45);
+    card.userData.noCast = true;
+    g.add(card);
+  });
 }
 
 function addCanopy(g) {
-  const z0 = 5.05;
-  const z1 = 7.95;
-  const x0 = house.x0 - 0.05;
-  const x1 = house.x1 + 0.2;
+  const z0 = 5.15;
+  const z1 = 7.7;
+  const x0 = house.x0 - PLACED.bay + 0.2;
+  const x1 = house.x1 + 0.9;
   const beam = toon('#6d4e36');
   const slat = toon('#b08a62');
   for (const z of [z0, (z0 + z1) / 2, z1]) {
@@ -584,8 +645,8 @@ function addCanopy(g) {
     const m = addBox(g, x1 - x0 - 0.08, 0.02, 0.07, slat, (x0 + x1) / 2, 2.88, z);
     m.userData.noCast = true;
   }
-  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 0.34), toon('#fff6df', { map: paintWord() }));
-  sign.position.set(house.x0 + 0.05, 2.48, -6.1);
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.55, 0.42), toon('#fff6df', { map: paintWord() }));
+  sign.position.set(house.x0 + 0.06, 1.55, -5.2);
   sign.rotation.y = Math.PI / 2;
   sign.name = 'wordmark';
   g.add(sign);
@@ -595,7 +656,7 @@ function addEntryWall(g) {
   const z = PLACED.entryZ + 0.04;
   const x0 = house.x0 - PLACED.bay + 0.1;
   const x1 = house.x1 + 0.55;
-  const h = 3.15;
+  const h = 1.28;
   const mid = (x0 + x1) / 2;
   const span = x1 - x0;
   const wall = addBox(g, span, h, 0.14, toon('#f4efe6'), mid, h / 2, z);
@@ -607,16 +668,27 @@ function addEntryWall(g) {
   dado.position.set(mid, 0.54, z - 0.08);
   dado.userData.noCast = true;
   g.add(dado);
-  addBox(g, span, 0.04, 0.04, toon(GOLD), mid, 1.1, z - 0.09);
-  for (const x of [-2.2, 0.4, 2.4]) {
-    const frame = addBox(g, 1.15, 0.62, 0.02, toon('#e2c27a'), x, 2.05, z - 0.08);
-    frame.userData.noCast = true;
-    const panel = addBox(g, 0.96, 0.44, 0.02, toon('#8d3a42'), x, 2.05, z - 0.1);
-    panel.userData.noCast = true;
-  }
+  addBox(g, span, 0.04, 0.04, toon(GOLD), mid, 1.08, z - 0.09);
   const cap = addBox(g, span, 0.08, 0.2, toon('#3f3834'), mid, h + 0.02, z);
   cap.name = 'entry-cut';
   cap.userData.noCast = true;
+}
+
+function addConcourseCeiling(g) {
+  const z0 = 4.85;
+  const z1 = PLACED.entryZ + 0.15;
+  const x0 = house.x0 - PLACED.bay + 0.15;
+  const x1 = house.x1 + 1.15;
+  const mat = toon('#f7f1e6');
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, z1 - z0), mat);
+  ceil.rotation.x = Math.PI / 2;
+  ceil.position.set((x0 + x1) / 2, 3.02, (z0 + z1) / 2);
+  ceil.userData.noCast = true;
+  ceil.name = 'concourse-ceiling';
+  g.add(ceil);
+  const fascia = addBox(g, Math.min(x1, house.x1 + 0.15) - x0, 0.08, 0.06, toon('#6d4e36'), (x0 + Math.min(x1, house.x1 + 0.15)) / 2, 2.86, z0);
+  fascia.userData.noCast = true;
+  fascia.name = 'ceiling-fascia';
 }
 
 function addTruss(g) {
@@ -663,11 +735,25 @@ function makeShell() {
   const carpetMap = paintCarpet();
   carpetMap.repeat.set(3.2, 1.4);
 
-  const slabW = house.total + PLACED.bay * 2 + 0.8;
-  const slabD = LANE.deckRear + PLACED.entryZ + 1.2;
-  const slab = addBox(g, slabW, 0.16, slabD, toon('#b7aa98'), (house.x0 - PLACED.bay + house.x1 + PLACED.bay) / 2, -0.08, (-LANE.deckRear + PLACED.entryZ) / 2);
-  slab.userData.noCast = true;
-  slab.receiveShadow = true;
+  const laneFloorW = house.total + 1.15;
+  const laneFloorD = LANE.deckRear + LANE.approach + 0.7;
+  const laneFloor = addBox(g, laneFloorW, 0.16, laneFloorD, toon('#c4b6a4'), 0, -0.08, (-LANE.deckRear + LANE.approach) / 2);
+  laneFloor.userData.noCast = true;
+  laneFloor.receiveShadow = true;
+  const concW = house.total + PLACED.bay * 2 + 0.4;
+  const concD = PLACED.entryZ - LANE.approach + 0.7;
+  const concFloor = addBox(
+    g,
+    concW,
+    0.16,
+    concD,
+    toon('#c4b6a4'),
+    (house.x0 - PLACED.bay + house.x1 + PLACED.bay) / 2,
+    -0.08,
+    (LANE.approach + PLACED.entryZ) / 2 + 0.1,
+  );
+  concFloor.userData.noCast = true;
+  concFloor.receiveShadow = true;
 
   for (const lane of house.lanes) {
     const deck = addDeck(g, lane.width, LANE.deckRear, lane.cx, -LANE.deckRear / 2, laneMap, MAPLE);
@@ -769,6 +855,7 @@ function makeShell() {
   addWalls(g);
   addCanopy(g);
   addEntryWall(g);
+  addConcourseCeiling(g);
   addTruss(g);
   addRack(g, ballProto);
   addCubbies(g);
