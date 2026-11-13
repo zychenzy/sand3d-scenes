@@ -81,10 +81,12 @@ function makeMats() {
   const tiles = tileTexture();
   const boards = boardTexture();
   const grate = grateTexture();
+  const mirrorGlass = mirrorGlassTexture();
   return {
     tiles,
     boards,
     grate,
+    mirrorGlass,
     plaster: toon('#f0e6d6'),
     plasterWash: toon('#f4ece0'),
     timberFloor: toon('#ffffff'),
@@ -117,7 +119,6 @@ function makeMats() {
     hoop: toon('#8e9896'),
     ceramic: toon('#e7eeea'),
     soap: toon('#e6d3a4'),
-    mirror: toon('#c5d6da'),
     mirrorFrame: toon('#6e4a32'),
     water: toon('#2f8b96', { transparent: true, opacity: 0.94 }),
     coping: toon('#d7b07a'),
@@ -506,11 +507,67 @@ function washHall(parent, mats, layout) {
   box(parent, 0.5, 0.28, 0.02, mats.frost, 0.85, 2.55, bath.zWall + 0.02, { name: 'clerestory' });
 }
 
+function mirrorGlassTexture() {
+  const w = 512;
+  const h = 160;
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const sky = ctx.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, '#e7f4f5');
+  sky.addColorStop(0.22, '#d5e7e9');
+  sky.addColorStop(0.28, '#e4d3b4');
+  sky.addColorStop(0.34, '#d7e6e8');
+  sky.addColorStop(0.72, '#c9dddf');
+  sky.addColorStop(1, '#e3d4bc');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = '#b7cdd0';
+  for (let i = 0; i < 7; i++) ctx.fillRect(48 + i * 68, 58, 10, 36);
+  ctx.save();
+  ctx.translate(w * 0.5, h * 0.42);
+  ctx.rotate(-0.55);
+  const glint = ctx.createLinearGradient(-220, 0, 220, 0);
+  glint.addColorStop(0, 'rgba(247,252,252,0)');
+  glint.addColorStop(0.38, 'rgba(247,252,252,0.35)');
+  glint.addColorStop(0.5, '#f7fcfc');
+  glint.addColorStop(0.62, 'rgba(247,252,252,0.35)');
+  glint.addColorStop(1, 'rgba(247,252,252,0)');
+  ctx.fillStyle = glint;
+  ctx.fillRect(-260, -14, 520, 28);
+  ctx.restore();
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
+  tex.magFilter = THREE.LinearFilter;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
+  tex.needsUpdate = true;
+  return tex;
+}
+
+function mirrorMaterial(map) {
+  return toon('#6a8082', {
+    emissive: '#ffffff',
+    emissiveIntensity: 1,
+    map,
+    emissiveMap: map,
+  });
+}
+
 function mirrorBand(parent, mats, x, z, length, dir) {
   const eH = 0.46;
   const y = 1.22;
-  box(parent, 0.03, eH + 0.06, length + 0.06, mats.mirrorFrame, x + dir * 0.01, y, z, { name: 'mirror-frame' });
-  box(parent, 0.012, eH, length, mats.mirror, x + dir * 0.03, y, z, { name: 'mirror' });
+  const span = Math.abs(length);
+  box(parent, 0.03, eH + 0.06, span + 0.06, mats.mirrorFrame, x + dir * 0.01, y, z, { name: 'mirror-frame' });
+  const geo = new THREE.PlaneGeometry(span, eH);
+  const glass = new THREE.Mesh(geo, mirrorMaterial(mats.mirrorGlass));
+  glass.position.set(x + dir * 0.04, y, z);
+  glass.rotation.y = dir > 0 ? Math.PI / 2 : -Math.PI / 2;
+  glass.name = 'mirror';
+  glass.userData.castShadow = false;
+  glass.userData.receiveShadow = false;
+  parent.add(glass);
 }
 
 function makeProcedural(layout) {
@@ -576,7 +633,7 @@ function audit(scene) {
     }
     for (const m of mats) {
       if (!m) continue;
-      if (m.map && maxDim > 1.2) {
+      if (m.map && m.map.wrapS === THREE.RepeatWrapping && maxDim > 1.2) {
         const reps = Math.max(m.map.repeat.x, m.map.repeat.y) * uvSpan;
         const metres = maxDim / Math.max(reps, 1e-3);
         if (metres > 0.5) issues.push(`giant-map:${obj.name || 'mesh'}:${metres.toFixed(2)}m`);

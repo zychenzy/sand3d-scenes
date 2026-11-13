@@ -60,14 +60,20 @@ export function toToonMaterial(src) {
 
 export function toUnlitMaterial(src) {
   const color = colorFromMaterial(src);
-  if (src && src.emissive) {
+  if (src && src.emissiveMap) {
+    const e = (src.emissive ? src.emissive.clone() : new THREE.Color(0xffffff))
+      .multiplyScalar(src.emissiveIntensity ?? 1);
+    color.setRGB(Math.min(1, e.r), Math.min(1, e.g), Math.min(1, e.b));
+  } else if (src && src.emissive) {
     const e = src.emissive.clone().multiplyScalar(src.emissiveIntensity ?? 1);
     color.r = Math.min(1, color.r + e.r);
     color.g = Math.min(1, color.g + e.g);
     color.b = Math.min(1, color.b + e.b);
   }
   const m = new THREE.MeshBasicMaterial({ color });
-  return copySurface(m, src);
+  copySurface(m, src);
+  if (src && src.emissiveMap) m.map = src.emissiveMap;
+  return m;
 }
 
 export function applyShading(root, mode) {
@@ -119,6 +125,7 @@ export function toon(color, opts = {}) {
     m.emissiveIntensity = opts.emissiveIntensity ?? 1;
   }
   if (opts.map) m.map = opts.map;
+  if (opts.emissiveMap) m.emissiveMap = opts.emissiveMap;
   return m;
 }
 

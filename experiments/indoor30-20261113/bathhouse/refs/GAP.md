@@ -15,6 +15,6 @@ Still open:
 - The towel shelf is the cafe oak shelf. Its rounded end panels are still a domestic shelf, not a kago rack.
 - The register is a counter-top machine, not a period bandai till. Its silhouette is right; the keys are small at hall scale.
 - Tile and floorboards are repeated canvases (100 mm tile, 130 mm boards), not separate meshes. Grout is the gap in that canvas.
-- Water is an opaque toon slab. No refraction, steam, or wet tracks. Mirrors are pale panes, not reflections. Noren panels are flat boards with a hem and a crest, not cloth.
+- Water is an opaque toon slab. No refraction, steam, or wet tracks. Each mirror is one painted cool-glass plate: a faint room band and a diagonal glint, held up with emissive so the hard shadow does not turn the glass into a dark slab. It is not a live reflection. Noren panels are flat boards with a hem and a crest, not cloth.
 - One gender hall. The other side of a full sento, the boiler, and the rest of the tub are out of frame on purpose.
 - Glazing does not cast coloured light. The cool fill and the clerestory colour stand in for it. Shadows are a single hard map; contact at the stool feet is the mesh itself, not an AO bake.
