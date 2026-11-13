@@ -379,6 +379,13 @@ export async function boot(opts) {
       else node.scale.multiplyScalar(inst.scale[0]);
     } else if (inst.scale) node.scale.multiplyScalar(inst.scale);
     node.name = inst.id;
+    if (inst.castShadow === false) {
+      node.traverse((obj) => {
+        if (!obj.isMesh) return;
+        obj.userData.noShadow = true;
+        obj.castShadow = false;
+      });
+    }
     props.add(node);
   }
 

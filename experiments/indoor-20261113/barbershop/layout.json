@@ -57,7 +57,7 @@
     { "id": "shelf", "kind": "shelf", "position": [-4.95, 1.42, 3.15], "rotationY": 1.5707963267948966 },
     { "id": "cash", "kind": "cash", "position": [-2.05, 0.96, 2.32], "rotationY": 0 },
     { "id": "lamp", "kind": "lamp", "position": [-1.18, 0.96, 2.42], "rotationY": 0 },
-    { "id": "pendant", "kind": "pendant", "position": [2.85, 2.32, 1.85], "rotationY": 0 },
+    { "id": "pendant", "kind": "pendant", "position": [2.85, 2.32, 1.85], "rotationY": 0, "castShadow": false },
     { "id": "pot", "kind": "pot", "position": [4.28, 0, 0.72], "rotationY": 0.4 },
     { "id": "jar_a", "kind": "jar", "position": [-3.0, 0.88, -3.58], "rotationY": 0.3 },
     { "id": "jar_c", "kind": "jar", "position": [1.52, 0.88, -3.58], "rotationY": -0.4 },

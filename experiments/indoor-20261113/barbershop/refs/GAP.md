@@ -8,6 +8,6 @@
 - The oak dining chair bake is 0.33 m wide. It is not used. Waiting seats are the loveseat (1.53 m) and the bench (seat 0.46 m, length 1.51 m).
 - The coffee-table bake is 1.00 × 0.40 × 1.82 m. Plan scale is 0.62 and 0.68 so it fits the loveseat. Height is not scaled.
 - Shelf bottles are placed from the shelf's node heights, not from a measured board. They read on the shelf in the corner shot; a retarget of the GLB could clip them.
-- Contact shadows are flat discs. The pendant throws a round shadow near the runner that can read as a floor mark.
+- Contact shadows are flat discs under the chairs, desk, and waiting seats. The pendant shade does not cast; its round shadow was reading as a floor mark.
 - No people. Clearances are for a standing barber (about 0.6 m) and a seated client, not a posed figure.
 - Unlit mode is real `MeshBasicMaterial`. Bulbs stay bright because emissive is folded into the color. The room is flat on purpose in that mode.

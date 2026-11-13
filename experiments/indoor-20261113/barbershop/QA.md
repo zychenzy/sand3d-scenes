@@ -25,5 +25,5 @@ Console had no errors. Network had no failed responses and no host other than `1
 
 - Mirror glass is a silver panel, so the close shot does not show the client or the barber.
 - The loveseat reads gray, with one visible pad, rather than a tufted waiting bench.
-- A round pendant shadow sits on the floor near the runner.
+- The pendant shade does not cast. A hard disc from that shade was reading as a stain on the runner.
 - Shelf bottles could clip if the GLB shelf boards move.

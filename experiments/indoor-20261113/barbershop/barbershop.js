@@ -294,8 +294,9 @@ function barberChair(seatY) {
   addBox(back, 0.44, 0.5, 0.07, leatherDeep(), 0, 0.28, 0);
   addBox(back, 0.18, 0.42, 0.03, leather(), -0.1, 0.3, 0.04);
   addBox(back, 0.18, 0.42, 0.03, leather(), 0.1, 0.3, 0.04);
-  addBox(back, 0.26, 0.1, 0.08, leather(), 0, 0.62, 0.02);
-  addCyl(back, 0.02, 0.02, 0.08, chrome(), 0, 0.58, 0.02, 8);
+  addCyl(back, 0.016, 0.016, 0.1, chrome(), 0, 0.52, 0.02, 8);
+  const pad = addSphere(back, 0.12, leather(), 0, 0.6, 0.03);
+  pad.scale.set(1.2, 0.48, 0.62);
   back.position.set(0, seatY + 0.08, -0.22);
   back.rotation.x = -0.08;
   g.add(back);
